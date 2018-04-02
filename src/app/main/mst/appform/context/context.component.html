@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+      <p-dataTable [value]="data" [loading]="loading" [immutable]=false [responsive]="true">
+        <p-column field="owner" header="Owner"></p-column>
+        <p-column field="last_upd" header="Last Update"></p-column>
+        <p-column field="context_data" header="Context Data"></p-column>
+      </p-dataTable>
+    </div>
+  </div>
+</div>

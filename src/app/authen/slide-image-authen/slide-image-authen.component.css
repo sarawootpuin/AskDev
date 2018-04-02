@@ -1,0 +1,114 @@
+.carousel, .item, .active {
+  height: 100%;
+}
+
+.carousel-inner {
+  height: 100%;
+}
+
+.carousel-inner > .item > img {
+  height: 100%;
+}
+
+.fill {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.head-caption-1 {
+  font-size: 30px;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  top: 5%;
+  opacity: 1;
+  animation-name: topFadeOutHead;
+  animation-duration: 3s;
+  color: white;
+  text-shadow:5px 5px 5px black;
+  /*text-shadow:5px 5px 5px white;*/
+}
+
+.caption-1 {
+  font-size: 24px;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  top: 15%;
+  opacity: 1;
+  animation-name: topFadeOutCaption;
+  animation-duration: 3s;
+  color: white;
+  text-shadow:5px 5px 5px black;
+  /*text-shadow:5px 5px 5px white;*/
+}
+
+.head-caption-2 {
+  font-size: 30px;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  top: 5%;
+  opacity: 1;
+  animation-name: topFadeOutHead;
+  animation-duration: 3s;
+  color: white;
+  text-shadow:5px 5px 5px white;
+}
+
+.caption-2 {
+  font-size: 24px;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  top: 15%;
+  opacity: 1;
+  animation-name: topFadeOutCaption;
+  animation-duration: 3s;
+  color: white;
+  text-shadow:5px 5px 5px white;
+}
+
+@keyframes topFadeOutHead {
+  0% {
+    position: absolute;
+    top: 0%;
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    top: 5%;
+    opacity: 1;
+  }
+}
+
+@keyframes topFadeOutCaption {
+  0% {
+    position: absolute;
+    top: 10%;
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    top: 15%;
+    opacity: 1;
+  }
+}

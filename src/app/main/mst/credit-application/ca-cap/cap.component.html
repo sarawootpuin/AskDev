@@ -1,0 +1,169 @@
+<div class="border-isa">
+  <div class="d-flex">
+    <div class="flex-md-column col-md-3">
+      <div class="form-group">
+        <label> Total Exposure (Before cap)</label>
+        <div class="form-inline">
+          <input appMyCurrency
+                 [value]="caTotalExposure"
+                 class="form-control"  disabled
+                 />
+          <label>&nbsp;Baht.</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex">
+    <div class="flex-md-column col-md-3">
+      <div class="form-group">
+        <label> Request Cap</label>
+        <div class="form-inline">
+          <input class="form-control"  disabled
+                 appMyCurrency
+                 [value]="caRequestCap"
+                 />
+          <label>&nbsp; Baht.</label>
+        </div>
+      </div>
+    </div>
+    <div class="flex-md-column col-md-3">
+      <div class="form-group">
+        <label> Over Cap </label>
+        <div class="form-inline">
+          <input appMyCurrency
+                 class="form-control"  disabled
+                 [value]="caOverCap"
+                /> <label>&nbsp;Baht.</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex">
+    <div class="form-group flex-md-column col-md-6 ">
+      <button type="button"  pButton style="float:left" (click)="openDialog()"
+              label="Select Cap"></button>
+      <button type="button"  pButton style="float:left" (click)="onClickCancelCap()"  [disabled]="selectCapcl?.cancel_by != ''"
+              label="Cancel Cap"></button>
+    </div>
+  </div>
+
+  <div class="d-flex">
+    <div class="flex-md-column col-md-6 ">
+      <p-panel header="Fac">
+        <div class="form-group">
+          <p-dataTable selectionMode="single"
+                       [value] = "listCapClOwner"
+                       rows="15"
+                       [responsive]="true">
+            <p-column field="flg_cap"            header=" Selcet " [style]="{'width':'60px','text-align': 'center'}"></p-column>
+            <p-column field="seller_name"        header=" Seller Name "></p-column>
+            <p-column field="this_approve"       header=" Exposures "></p-column>
+            <p-column field="joint_seller_group" header=" Seller Group "></p-column>
+            <p-column field="cust_group"         header=" Customer Group "></p-column>
+            <p-footer>
+              <div class="ui-helper-clearfix" style="width:100%">
+              </div>
+            </p-footer>
+          </p-dataTable>
+        </div>
+      </p-panel>
+    </div>
+    <div class="flex-md-column col-md-6 ">
+      <p-panel header="HP/LS/DL">
+        <div class="form-group">
+          <p-dataTable selectionMode="single"
+                       [value]="listcapothstore"
+                       [responsive]="true">
+            <p-column field="com_code" header=" Company "></p-column>
+            <p-column field="cus_name" header=" Customer Name "></p-column>
+            <p-column field="ca_no"    header=" CA No./Agr "></p-column>
+            <p-column field="os_pri"   header=" Exposures "></p-column>
+            <p-footer>
+              <div class="ui-helper-clearfix" style="width:100%">
+              </div>
+            </p-footer>
+          </p-dataTable>
+        </div>
+      </p-panel>
+    </div>
+  </div>
+</div>
+
+<app-action-dialog   #actiondialog [width]="1200"
+                     [showCancel]="true"
+                     [showOk]="true" (onOk)="onOkCap()" >
+    <div class="row">
+      <div class="form-group col-md-6" >
+        <label> Total Exposure : </label>
+        <input appMyCurrency
+               class="form-control"  disabled
+               [value]="caTotalExposure"
+                />
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6" >
+        <label> Request Cap </label>
+        <input appMyCurrency
+               class="form-control"
+               [value]="tempcaRequestCap" (change)="tempcaRequestCap = $event.target.value"
+               (blur)="calOverCap()"
+               />
+      </div>
+      <div class="form-group col-md-6" >
+        <label> Over Cap </label>
+        <input appMyCurrency
+               class="form-control"  disabled
+               [value]="tempcaOverCap"
+               />
+      </div>
+    </div>
+
+   <div class="row">
+    <div class="col-md-6 form-group">
+      <p-dataTable selectionMode="single"
+                   [value] = "listCapClOwnerFromStore"
+                   rows="15"
+                   [responsive]="true">
+        <p-column field="flg_cap" [editable]="true"  header="Selcet" [style]="{'width':'60px','text-align': 'center'}" >
+          <ng-template let-col let-cl="rowData" pTemplate="body">
+            <input type="checkbox"
+                   [checked]="cl[col.field] == 'Y'" (change)="cl[col.field] = onClickCheck($event)"
+            >
+          </ng-template>
+        </p-column>
+        <p-column field="seller_code" header=" Seller "></p-column>
+        <p-column field="seller_name" header=" Name "></p-column>
+        <p-column field="this_approve" header=" Credit Line "></p-column>
+        <p-column field="joint_seller_group" header=" Joine Group "></p-column>
+        <p-column field="cust_group" header=" Cust Group "></p-column>
+        <p-footer>
+          <div class="ui-helper-clearfix" style="width:100%">
+          </div>
+        </p-footer>
+      </p-dataTable>
+    </div>
+
+    <div class="col-md-6 form-group">
+      <p-panel header="HP/LS/DL">
+        <div class="form-group">
+          <p-dataTable selectionMode="single"
+                       [value]="listcapothstore"
+                       [responsive]="true">
+            <p-column field="com_code" header=" Company "></p-column>
+            <p-column field="cus_name" header=" Customer Name "></p-column>
+            <p-column field="ca_no"    header=" CA No./Agr "></p-column>
+            <p-column field="os_pri"   header=" Exposures "></p-column>
+            <p-footer>
+              <div class="ui-helper-clearfix" style="width:100%">
+              </div>
+            </p-footer>
+          </p-dataTable>
+        </div>
+      </p-panel>
+     </div>
+   </div>
+
+</app-action-dialog>
+
+<app-alert-dialog  #alertCap (onOK)="okCancelCap()"  ></app-alert-dialog>

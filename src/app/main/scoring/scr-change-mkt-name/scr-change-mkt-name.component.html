@@ -1,0 +1,48 @@
+<app-alert-dialog #dialogChangeMktName></app-alert-dialog>
+<app-alert-dialog (onOK)="onClickSave()" #dialogConfirm></app-alert-dialog>
+<app-action-button-form
+  [title]="'Change Marketing Name'"
+></app-action-button-form>
+
+<div class="container-fluid">
+  <div class="d-flex justify-content-start">
+    <div class="p-2">
+      <div class="form-group">
+        <label>Reference No.</label>
+        <input type="text" class="form-control" [(ngModel)]="this.refNo">
+      </div>
+    </div>
+    <div class="p-3">
+      <br>
+      <app-custom-button [option]="'search'" (click)="onClickSearch()"></app-custom-button>
+      <app-custom-button [option]="'cancel'" (click)="onClickClear()"></app-custom-button>
+      <app-custom-button [option]="'save'"   (click)="onConfirmSave()"></app-custom-button>
+    </div>
+  </div>
+
+  <p-dataTable [value]="this.listScrChangeMktNameModel" scrollable="true" scrollHeight="340px" [(selection)]="this.listScrChangeMktNameModelSelected"  dataKey="run_no">
+    <p-column [style]="{'width':'3%'}" selectionMode="multiple"></p-column>
+    <p-column  field="ref_no"  header="เลขที่อ้างอิง"></p-column>
+    <p-column field="mkt_emp_nme" header="MKT" [editable]="true">
+        <ng-template let-col let-rowAns="rowData" let-ri="rowIndex" pTemplate="body">
+            <select class="form-control h-25" [(ngModel)]="rowAns[col.field]">
+              <option *ngFor="let items of listScrDropDownMktNameModel;let i=index" [selected]="items?.mkt_emp_nme == rowAns.mkt_emp_nme" [value]="items.mkt_emp_nme">
+                {{items.mkt_emp_nme}}
+              </option>
+            </select>
+        </ng-template>
+    </p-column>
+    <p-column  field="ent_cd"  header="รหัสลูกค้า"></p-column>
+    <p-column  field="ent_typ"  header="ประเภทลูกค้า"></p-column>
+    <p-column  field="name"  header="ชื่่อ-นามสกุล"></p-column>
+    <!--<p-column  field="ver_type"  header="VER_TYPE"></p-column>-->
+    <p-column  field="run_no"  header="ลำดับ"></p-column>
+    <p-footer>
+      <!--<ul>-->
+        <!--<li *ngFor="let car of listScrChangeMktNameModelSelected" style="text-align: left">{{car.mkt_emp_nme + ' - ' + car.ent_typ + ' - ' + car.name + ' - ' + car.run_no}}</li>-->
+      <!--</ul>-->
+    </p-footer>
+  </p-dataTable>
+
+
+</div>

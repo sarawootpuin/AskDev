@@ -1,0 +1,41 @@
+<div class="form-group">
+  <label>stg id </label>
+  <input type="text" class="form-control" [(ngModel)]="stgId" (blur)="chageStg()">
+</div>
+<p-dataTable [value]="todoVerifier" rowGroupMode="subheader" groupField="ver_emp_nme" expandableRowGroups="true"
+             [sortableRowGroup]="false" (onRowClick)="setSelectedTodo($event)">
+  <p-header>Todo : Verfier</p-header>
+  <ng-template pTemplate="rowgroupheader" let-rowData>{{rowData['ver_emp_nme']}} จำนวนงาน ({{rowData['cnt_refno']}})
+  </ng-template>
+  <!--  <p-column field="ver_emp_nme" header="Verifier Owner"></p-column>
+    <p-column field="" header="จำนcnt_refnoวนงาน"></p-column>-->
+  <p-column field="com_code" header="บริษัท"></p-column>
+  <p-column field="ref_no" header="เลขที่อ้างอิง"></p-column>
+  <p-column field="ent_typ" header="ประเภท Entity"></p-column>
+  <p-column field="ent_cd" header="รหัส Entity"></p-column>
+  <p-column field="ent_cat" header="บุคคล/นิติบุคคล"></p-column>
+  <p-column field="*" header="*"></p-column>
+  <p-column field="name" header="ชื่อ-นามสกุล"></p-column>
+  <p-column field="start_scr_dt" header="เริ่มทำ scoring"></p-column>
+  <p-column field="wait_mthd" header="Wait"></p-column>
+  <p-column field="run_no" header="Runnning"></p-column>
+
+  <!--    <ng-template let-col let-car="rowData" pTemplate="body">
+        <span>{{car[col.field] | currency:'USD':true:'.0-0'}}</span>
+      </ng-template>
+    </p-column>-->
+  <!--<ng-template pTemplate="rowgroupfooter" let-car>-->
+  <!--<td colspan="3" style="text-align:right">Total Price</td>-->
+  <!--<td>{{calculateGroupTotal(car['brand']) | currency:'USD':true:'.0-0' }}</td>-->
+  <!--</ng-template>-->
+</p-dataTable>
+
+
+
+
+
+
+
+
+
+

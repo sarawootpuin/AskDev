@@ -1,0 +1,100 @@
+<div class="container-fluid m-2">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>Company </label>
+        <input type="text" class="form-control"
+               #inputCompany
+               [value]="entityModel?entityModel.comCode:comCode" disabled>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>Ent code</label>
+        <input type="text" class="form-control"
+               #inputEntCode
+               [value]="entityModel?.entCode" disabled>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>สาขาที่</label>
+        <input type="text" class="form-control"
+               #inputBranch
+               [value]="entityModel?.branchNo">
+      </div>
+    </div>
+    <div class="col-md-3 form-group">
+      <label class="text-danger">เลขบัตร / id card</label>
+      <input type="text" class="form-control"
+             #inputNewCard
+             [value]="entityModel?.newCardNo">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 form-group">
+      <label class="text-danger">คำนำหน้าชื่อ</label>
+      <select class="form-control" #inputPrefixT>
+        <option></option>
+        <option *ngFor="let pf of prefix"
+                [value]="pf.id"
+                [selected]="entityModel?.fNameCode==pf.id">
+          {{pf.display}}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-4 form-group">
+      <label class ="text-danger">ชื่อ</label>
+      <input type="text" class="form-control"
+             #inputFNameT
+             [value]="entityModel?.fNameT">
+    </div>
+    <div class="col-md-4 form-group">
+      <label>นามสกุล</label>
+      <input type="text" class="form-control"
+             #inputLNameT
+             [value]="entityModel?.lNameT">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 form-group">
+      <label class="text-danger">Intial</label>
+      <select class="form-control" #inputPrefixE>
+        <option></option>
+        <option *ngFor="let pfEng of prefixEng"
+                [value]="pfEng.id"
+                [selected]="entityModel?.fNameECode==pfEng.id">
+          {{pfEng.display}}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-4 form-group">
+      <label class="text-danger">First Name</label>
+      <input type="text" class="form-control"
+             #inputFNameE
+             [value]="entityModel?.fNameE">
+    </div>
+    <div class="col-md-4 form-group">
+      <label>Last Name</label>
+      <input type="text" class="form-control"
+             #inputLNameE
+             [value]="entityModel?.lNameE">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 form-group">
+      <label class="text-danger">วันเกิด/จดทะเบียน</label>
+      <div class="form-control" style="padding: 0px;border: none">
+        <p-calendar dateFormat="dd/mm/yy"
+                    [(ngModel)]="birthD"></p-calendar>
+      </div>
+    </div>
+    <div class="col-md-3 form-group">
+      <label>วันที่ก่อตั้ง</label>
+      <div class="form-control" style="padding: 0px;border: none">
+        <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="establishDate"
+        ></p-calendar>
+      </div>
+    </div>
+  </div>
+</div>

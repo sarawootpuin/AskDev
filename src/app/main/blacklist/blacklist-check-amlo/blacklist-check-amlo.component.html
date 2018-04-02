@@ -1,0 +1,151 @@
+<app-action-button-form [showReject]="false" [showSubmit]="false"  [showNew]="false" [showCalculator]="false" [showSearch]="false" [showBack]="false" [showEdit]="false" [showPrint]="false" [showSave]="false" [showCancel]="false"  [title]="'Search AMLO.'"></app-action-button-form>
+<app-custom-progress-bar *ngIf="loadProgressBar"></app-custom-progress-bar>
+<!-- ----------- SHOW TABLE ----------------------------------------------- -->
+
+<p-dataTable [loading]="loading" loadingIcon="fa-spinner" [value]="myAMLO" [lazy]="true" [rows]="10" [paginator]="true"
+             (onRowSelect)="onRowSelect($event)" selectionMode="single" [totalRecords]="totalRecords" (onLazyLoad)="loadMyAMLO($event)">
+
+  <p-header>สัญญาที่ปรากฏในข้อมูล ปปง.</p-header>
+  <p-column field="ENT_TYPE" header="Entity"></p-column>
+  <p-column field="AGR_CODE" header="เลขที่สัญญา"></p-column>
+  <p-column field="NAME" header="ชื่อ-นามสกุล"></p-column>
+  <p-column field="OS_AR" header="OS AR"></p-column>
+  <p-column field="OS_PRI" header="OS Pri"></p-column>
+  <p-column field="STATUS" header="Status"></p-column>
+  <p-column field="NEW_CARD_NO" header="เลขที่บัตร"></p-column>
+  <p-column field="LAW_DATE" header="วันที่คดี"></p-column>
+  <p-column field="REMARK" header="Close Active"></p-column>
+
+</p-dataTable>
+
+<div class="container" style="background-color: #FFF">
+  <div class="col-md-8" id="p1" style="padding: 10px">
+    <!--<div class="container" style="margin: 0; width: 100%">-->
+      <!--<div class="portlet grey-cascade box">-->
+        <!--<div class="container">-->
+          <!--<div class="row" style="padding: 5px;background-color: #969FA1; border: 1px solid #b1bdbd">-->
+            <!--<div class="col">-->
+              <!--<div class="caption  float-left" style="color: white">-->
+              <!--<i class="fa fa-info-circle"></i> สัญญาที่ปรากฏในข้อมูล ปปง.-->
+            <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="container" style="padding: 10px">-->
+          <!--<div class="thead-responsive" style="overflow-x: auto;min-height: .01%; border: 1px solid #b1bdbd">-->
+            <!--<table class="table table-bordered table-hover">-->
+              <!--<thead>-->
+              <!--<tr style="background-color: #8fcafe">-->
+                <!--<th>#</th>-->
+                <!--<th>Entity</th>-->
+                <!--<th>เลขที่สัญญา</th>-->
+                <!--<th>ชื่อ-นามสกุล</th>-->
+                <!--<th>OS AR</th>-->
+                <!--<th>OS Pri</th>-->
+                <!--<th>Status</th>-->
+                <!--<th>เลขที่บัตร</th>-->
+                <!--<th>วันที่คดี</th>-->
+                <!--<th>Close Active</th>-->
+              <!--</tr>-->
+              <!--</thead>-->
+              <!--<tbody>-->
+              <!--<tr>-->
+                <!--<td>1</td>-->
+                <!--<td>Product1</td>-->
+                <!--<td>10-6070001</td>-->
+                <!--<td>John</td>-->
+                <!--<td>345.50$</td>-->
+                <!--<td>2</td>-->
+                <!--<td> 12312124</td>-->
+                <!--<td> 2</td>-->
+                <!--<td> </td>-->
+                <!--<td> </td>-->
+              <!--</tr>-->
+              <!--<tr class="table-info">-->
+                <!--<td>2</td>-->
+                <!--<td>Product2</td>-->
+                <!--<td>10-6070002</td>-->
+                <!--<td>Michael</td>-->
+                <!--<td>245.50$</td>-->
+                <!--<td>2</td>-->
+                <!--<td> 455313</td>-->
+                <!--<td> 9</td>-->
+                <!--<td> </td>-->
+                <!--<td> </td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+                <!--<td>3</td>-->
+                <!--<td>Product3</td>-->
+                <!--<td>10-6070003</td>-->
+                <!--<td>Nakroth</td>-->
+                <!--<td>200.50$</td>-->
+                <!--<td>2</td>-->
+                <!--<td> 554574</td>-->
+                <!--<td> 8</td>-->
+                <!--<td> </td>-->
+                <!--<td> </td>-->
+              <!--</tr>-->
+              <!--<tr class="table-info">-->
+                <!--<td>4</td>-->
+                <!--<td>Product4</td>-->
+                <!--<td>10-6070004</td>-->
+                <!--<td>Tara</td>-->
+                <!--<td>245.65$</td>-->
+                <!--<td>2</td>-->
+                <!--<td> 868634</td>-->
+                <!--<td> 1</td>-->
+                <!--<td> </td>-->
+                <!--<td> </td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+                <!--<td>5</td>-->
+                <!--<td>Product5</td>-->
+                <!--<td>10-6070005</td>-->
+                <!--<td>Noei</td>-->
+                <!--<td>745.00$</td>-->
+                <!--<td>2</td>-->
+                <!--<td> 42135</td>-->
+                <!--<td> 3</td>-->
+                <!--<td> </td>-->
+                <!--<td> </td>-->
+              <!--</tr>-->
+              <!--<tr class="table-info">-->
+                <!--<td>6</td>-->
+                <!--<td>Product6</td>-->
+                <!--<td>10-6070006</td>-->
+                <!--<td>Vuncent</td>-->
+                <!--<td>500.00$</td>-->
+                <!--<td>2</td>-->
+                <!--<td> 11242</td>-->
+                <!--<td> 15</td>-->
+                <!--<td> </td>-->
+                <!--<td> </td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+                <!--<td>7</td>-->
+                <!--<td>Product7</td>-->
+                <!--<td>10-6070007</td>-->
+                <!--<td>Golf</td>-->
+                <!--<td>465.65$</td>-->
+                <!--<td>2</td>-->
+                <!--<td> 266897</td>-->
+                <!--<td> 5</td>-->
+                <!--<td> </td>-->
+                <!--<td> </td>-->
+              <!--</tr>-->
+              <!--</tbody>-->
+            <!--</table>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <br/>
+    <div class="col-md-12">
+      <div class="form-group">
+        <label>Remark : </label>
+        <textarea class="form-control" [(ngModel)]="remark" rows="3"></textarea>
+      </div>
+    </div>
+  </div>  <!-- <div class="col-md-12 " id="p1" style="padding: 10px">  -->
+  <!------------- END SHOW TABLE ---------------------------->
+

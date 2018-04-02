@@ -1,0 +1,57 @@
+<div class="d-flex">
+  <div class="col-md-3 mr-1">
+    <!-------------------Asset------------------------------->
+    <div class="row">
+      <div class="thead-responsive" style="overflow-x: auto;min-height: .01%; padding: 10px">
+        <p-dataTable [value]="listbgdetail" [(selection)]="selectbgdetail"
+                     (onRowSelect)="onSelectdetail(selectbgdetail);index = 0;"
+                     scrollable="true" scrollHeight="400px"
+                     [loading]="loading" selectionMode="single"
+                     [immutable]="false">
+
+          <p-header>
+            <app-custom-botton-icon [option]="'new'" (onBtnClick)="onAddAsset();index = 0;"></app-custom-botton-icon>
+            <app-custom-botton-icon [option]="'delete'"
+                                    (onBtnClick)="onDeleteAsset(selectbgdetail)"></app-custom-botton-icon>
+          </p-header>
+          <p-column field="sub_id" header="No." [style]="{'width':'75px'}"></p-column>
+          <p-column field="credit_type" header="Credit Type"></p-column>
+        </p-dataTable>
+
+      </div>
+    </div>
+    <hr>
+    <!-------------------Sub  Asset------------------------------->
+    <div class="row">
+      <div class="thead-responsive" style="overflow-x: auto;min-height: .01%; padding: 10px">
+        <p-dataTable [value]="listbgdetailSub" [(selection)]="selectbgdetailSub"
+                     (onRowSelect)="onSelectdetailSub(selectbgdetailSub);index = 1;"
+                     scrollable="true" scrollHeight="400px"
+                     [loading]="loading" selectionMode="single"
+                     [immutable]="false">
+
+          <p-header>
+            <app-custom-botton-icon [option]="'new'" (onBtnClick)="onAddSubAsset();index = 1;"></app-custom-botton-icon>
+            <app-custom-botton-icon [option]="'delete'"
+                                    (onBtnClick)="onDeleteSubAsset(selectbgdetailSub)"></app-custom-botton-icon>
+          </p-header>
+          <p-column field="sub_id2" header="No." [style]="{'width':'75px'}"></p-column>
+          <p-column field="asset_type" header="Asset Code"></p-column>
+        </p-dataTable>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9 card border-isa">
+    <p-tabView [activeIndex]="index">
+      <p-tabPanel header="Finance">
+        <app-ca-finance></app-ca-finance>
+      </p-tabPanel>
+      <p-tabPanel header="Asset Detail">
+        <fieldset [disabled]="listbgdetailSub?.length == 0">
+          <app-asset-detail></app-asset-detail>
+        </fieldset>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>

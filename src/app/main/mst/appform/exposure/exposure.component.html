@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+      <p-dataTable [value]="data" [loading]="loading" [immutable]=false [responsive]="true">
+        <p-headerColumnGroup>
+          <p-row>
+            <p-column header="Categories" rowspan="2"></p-column>
+            <p-column header="Total Exposure" rowspan="2">
+            </p-column>
+            <p-column header="O/S Balance" rowspan="2">
+            </p-column>
+            <p-column header="Maturity Date" rowspan="2"></p-column>
+            <p-column header="Highest Amount" rowspan="2">
+            </p-column>
+            <p-column header="With Collateral" rowspan="2">
+            </p-column>
+            <p-column header="Without Collateral" rowspan="2">
+            </p-column>
+            <p-column header="B/L" rowspan="2"></p-column>
+          </p-row>
+        </p-headerColumnGroup>
+        <p-column field="product"></p-column>
+        <p-column field="exposure" [style]="{'text-align':'right'}">
+          <ng-template let-col let-row="rowData" pTemplate="body" >
+            <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="os_balance" [style]="{'text-align':'right'}">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="follow_up_point" [style]="{'text-align':'right'}"></p-column>
+        <p-column field="highest_amt" [style]="{'text-align':'right'}">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="with_collateral" [style]="{'text-align':'right'}">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="with_out_collateral" [style]="{'text-align':'right'}">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="bl_flg"  [style]="{'text-align':'right'}"></p-column>
+      </p-dataTable>
+    </div>
+  </div>
+</div>

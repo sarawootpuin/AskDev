@@ -1,0 +1,69 @@
+<p-panel header="ผู้รับเงินแทน / บุคคลอ้างอิง">
+  <div class="d-flex col-md-12">
+    <div class="form-group">
+      <p-panel header="ประเภทผู้ชำระ">
+        <div class="form-inline" style="padding: 5px">
+          <input type="checkbox" name="direct_payment" [checked]="data?.p1 === 'Y'"
+          >
+          :
+          ผู้รับเงินแทน
+          <span></span>
+          <br>
+          <input type="checkbox" name="progress_payment" [checked]="data?.p2 === 'Y'"
+          >
+          : บุคคลอ้างอิง
+          <span></span>
+        </div>
+      </p-panel>
+    </div>
+  </div>
+  <div class="d-flex col-md-12">
+
+    <div class="form-group col-md-3">
+      <label>ผู้รับชำระเงินแทน</label>
+      <input class="form-control">
+    </div>
+    <div class="form-group col-md-3">
+      <label>ความสัมพันธ์กับผู้เช่าซื้อ</label>
+      <input class="form-control">
+    </div>
+    <div class="form-group col-md-6">
+      <label>ที่อยู่</label>
+      <input class="form-control">
+    </div>
+  </div>
+  <div class="d-flex col-md-12">
+    <div class="form-group col-md-3">
+      <label>โทรศัพท์</label>
+      <input class="form-control">
+    </div>
+    <div class="form-group col-md-3">
+      <label>โทรศัพท์มือถือ (1)</label>
+      <input class="form-control">
+    </div>
+    <div class="form-group col-md-3">
+      <label>(2)</label>
+      <input class="form-control">
+    </div>
+    <div class="form-group col-md-3">
+      <label>(3)</label>
+      <input class="form-control">
+    </div>
+  </div>
+</p-panel>
+<div class="form-group">
+  <p-dataTable selectionMode="single" [(selection)]="selected" (onRowSelect)="onRowSelect($event)" rows="15"
+               [responsive]="true">
+    <p-column field="f1" header="ประเภทผู้รับชำระ"></p-column>
+    <p-column field="f2" header="ชื่อผู้รับชำระเงินแทน/ บุคคลอ้างอิง"></p-column>
+    <p-column field="f3" header="ชื่อผู้ค้ำ"></p-column>
+    <p-column field="f4" header="ลำดับความรับผิดชอบ"></p-column>
+    <p-footer>
+      <!--<div class="ui-helper-clearfix" style="width:100%">
+        <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()"
+                label="Add"></button>
+      </div>-->
+    </p-footer>
+  </p-dataTable>
+</div>
+

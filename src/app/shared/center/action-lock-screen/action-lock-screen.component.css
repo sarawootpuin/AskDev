@@ -1,0 +1,72 @@
+div#lockscreen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index : 1029;
+  background-color: #00000047;
+  /*cursor: wait;*/
+  text-align: center;
+  color: white;
+  cursor: wait;
+
+}
+
+div#lock {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index : 1029;
+  background-color: #00000047;
+  width: 100%;
+  height:100%;
+  /*cursor: wait;*/
+  text-align: center;
+  color: white;
+  cursor: wait;
+
+}
+
+div#progressbar
+{
+  padding-top: 70px;
+}
+
+.center-all {
+  padding-top: 20%;
+  margin: -8px;
+  width: 16px;
+  height: 16px;
+  text-align: center;
+}
+
+.btn {
+  width: 100px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 8px 14px 7px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .1), 0 1px 2px rgba(0, 0, 0, .18);
+  color: #fff;
+}
+
+.btn:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.34), 0 1px 2px rgba(0, 0, 0, 0.43);
+  color: #fff;
+}
+
+.btn-cancel {
+  background-color: #E87E04;
+  cursor: pointer;
+}
+
+.btn-cancel:hover {
+  background-color: #b26103;
+}

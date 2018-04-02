@@ -1,0 +1,17 @@
+.trOdd {
+  background: rgba(150, 171, 189, 0.1);
+}
+.trEven {
+  background:#FFFFFF;
+}
+
+/*
+table {
+table-layout: fixed;
+word-wrap: break-word;
+}
+
+table th, table td {
+overflow: hidden;
+}
+*/

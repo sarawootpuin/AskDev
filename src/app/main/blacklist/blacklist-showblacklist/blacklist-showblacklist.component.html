@@ -1,0 +1,39 @@
+<app-action-button-form [showReject]="false" [showSubmit]="false"  [showNew]="false" [showCalculator]="false" [showSearch]="false"   [showEdit]="false" [showPrint]="false" [showSave]="false" [showCancel]="false"
+                        [showBack]="false"  [title]="'Blacklist Inquiry'"></app-action-button-form>
+
+<div class="col-md-12 " id="p1" style="padding: 10px">
+  <div  style="margin: 0; width: 100%">
+    <div class="portlet grey-cascade box">
+
+      <p-dataTable scrollable="true" [loading]="loading" (onLazyLoad)="loadBLInquiry($event)"  loadingIcon="fa-spinner" [value]="blinquiry" [lazy]="true" [rows]="5" [paginator]="true"
+                   [totalRecords]="totalRecords_BlInquiry" selectionMode="single" (onRowSelect)="onRowSelect($event)">
+        <p-header>Blacklist Inquiry</p-header>
+        <p-column [style]="{'width':'220px'}"  field="FIRST_NAME" header="ชื่อบุคคล/นิติบุคคล"></p-column>
+        <p-column [style]="{'width':'220px'}"  field="LAST_NAME" header="นามสกุล"></p-column>
+        <p-column [style]="{'width':'120px'}" field="AMLO" header="ปปง."></p-column>
+        <p-column [style]="{'width':'150px'}" field="ID_CARD" header="เลขที่บัตร"></p-column>
+        <p-column [style]="{'width':'120px'}" field="LAW_DATE" header="วันที่คดี"></p-column>
+        <p-column [style]="{'width':'120px','text-align':'right'}" field="LAW_AMOUNT" header="จำนวนเงิน">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+          </ng-template>
+        </p-column>
+        <p-column [style]="{'width':'120px'}" field="LAW_SUIT" header="คดี"></p-column>
+        <p-column [style]="{'width':'120px'}" field="ACCUSER" header="โจทย์"></p-column>
+        <p-column [style]="{'width':'120px'}" field="ENG_NUM" header="เลขเครื่อง"></p-column>
+        <p-column [style]="{'width':'120px'}" field="CHASSIS" header="เลขถัง"></p-column>
+        <p-column [style]="{'width':'120px'}" field="BRAND" header="ยี่ห้อ"></p-column>
+        <p-column [style]="{'width':'120px'}" field="LICENCE" header="ทะเบียน"></p-column>
+
+      </p-dataTable>
+
+    </div>
+  </div>
+</div>  <!-- <div class="col-md-12 " id="p1" style="padding: 10px">  -->
+<!------------- END SHOW TABLE ---------------------------->
+<br>
+<div class="col-md-10 offset-1">
+  <label>หมายเหตุ : </label>
+  <textarea disabled class="form-control" id="exampleTextarea" rows="3" >{{this?.remark}}</textarea>
+</div>
+<br>

@@ -1,0 +1,321 @@
+<app-alert-dialog #dialogMainVerify></app-alert-dialog>
+
+<app-action-dialog [title]="''" #ncbDialog
+                   [width]="1000">
+<app-blacklist-ncb-showenquiry [ptradeid]="mainTab.id_card"
+[showMktCheckDate]="true"
+[showSentNcbDate]="true"
+[showMktName]="true"
+[showEntSurname]="true"
+[showEntName]="true"
+[showBlResult]="true"
+[showResultNcb]="true"
+></app-blacklist-ncb-showenquiry>
+</app-action-dialog>
+
+<app-action-dialog [title]="''" #blDialog
+                   [width]="1000">
+  <app-blacklist-showblacklist [LAST_NAME]="this.nameSearchBL" *ngIf="this.mainTab.ent_cat == 'Individual'"></app-blacklist-showblacklist>
+  <app-blacklist-showblacklist [FIRST_NAME]="this.nameSearchBL" *ngIf="this.mainTab.ent_cat == 'Juristic'"></app-blacklist-showblacklist>
+</app-action-dialog>
+
+<div class="container-fluid">
+  <br>
+  <div class="row">
+    <div class="col- col-md-1">
+      <div class="form-group">
+        <label>สำนักงาน</label>
+        <input type="text" class="form-control" readonly value="{{mainTab?.com_code}}">
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>ลำดับ</label>
+        <input type="text" class="form-control" readonly value="{{mainTab?.run_no}}">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>เลขที่อ้างอิง</label>
+        <input type="text" class="form-control" readonly value="{{mainTab?.ref_no}}" readonly>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="row">
+        <div class="form-group col-md-5">
+          <label>ประเภทลูกค้า</label>
+          <input type="text" class="form-control" readonly value="{{mainTab?.ent_typ}}" readonly>
+        </div>
+        <div class="form-group col-md">
+          <label>วันที่ทำรายการ</label>
+          <input class="form-control" type="text" readonly value="{{mainTab?.scr_dt}}">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>Product Code</label>
+        <select class="form-control" (change)="onChangeDropDown(mainTab.list_product_cd,$event.target.value)"
+                [disabled]="checkReadOnly">
+          <option *ngFor="let items of mainTab?.list_product_cd;let i=index" [selected]="items?.selected == 'Y'"
+                  [value]="i">{{items.item}}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>MKT/CS</label>
+        <input type="text" class="form-control" readonly value="{{mainTab?.mkt_emp_no}}">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>เจ้าหน้าที่ตรวจสอบ</label>
+        <select class="form-control" (change)="onChangeDropDown(mainTab.list_ver_emp_no,$event.target.value)"
+                [disabled]="checkReadOnly">
+          <option *ngFor="let items of mainTab?.list_ver_emp_no;let i=index" [selected]="items?.selected == 'Y'"
+                  [value]="i">{{items.item}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>รหัส</label>
+        <input type="text" class="form-control" readonly value="{{mainTab?.ent_cd}}">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>ชื่อ - นามสกุล</label>
+        <input type="text" class="form-control" [(ngModel)]="mainTab.ent_nme" [readonly]="checkReadOnly">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>ชื่อ-นามสกุล คู่สมรส</label>
+        <input type="text" class="form-control" [(ngModel)]="mainTab.spus_nme" [readonly]="checkReadOnly">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>ตรวจสอบภายใน/ภายนอก</label>
+        <select class="form-control" (change)="onChangeDropDown(mainTab.list_in_out,$event.target.value)"
+                [disabled]="checkReadOnly">
+          <option *ngFor="let items of mainTab?.list_in_out;let i=index" [selected]="items?.selected == 'Y'"
+                  [value]="i">{{items.item}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>งานรอตรวจสอบ</label>
+        <select class="form-control" (change)="onChangeDropDown(mainTab.listWaitMthd,$event.target.value)"
+                [disabled]="checkReadOnly">
+          <option *ngFor="let items of mainTab?.listWaitMthd;let i=index" [selected]="items?.selected == 'Y'"
+                  [value]="i">{{items.item}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3" *ngIf="mainTab.ent_typ!='Customer'">
+      <div class="form-group">
+        <label>ความสัมพันธ์กับผู้เช่าซื้อ</label>
+        <input type="text" class="form-control" [(ngModel)]="mainTab.relsn" [readonly]="checkReadOnly">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>วิธีการตรวจสอบ</label>
+        <select class="form-control" (change)="onChangeDropDown(mainTab.list_ver_mthd,$event.target.value)"
+                [disabled]="checkReadOnly">
+          <option *ngFor="let items of mainTab?.list_ver_mthd;let i=index" [selected]="items?.selected == 'Y'"
+                  [value]="i">{{items.item}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>ไม่สามารถตรวจสอบได้เพราะ</label>
+        <textarea class="form-control" rows="1" [(ngModel)]="mainTab.ver_mthd_more"
+                  [readonly]="checkReadOnly"></textarea>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>โทรศัพท์บ้าน</label>
+        <input type="text" class="form-control" [(ngModel)]="mainTab.home_tel" [readonly]="checkReadOnly">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>ผลตรวจสอบโทรศัพท์บ้าน</label>
+        <textarea class="form-control" rows="1" [(ngModel)]="mainTab.home_tel_rsult"
+                  [readonly]="checkReadOnly"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>โทรศัพท์ที่ทำงาน</label>
+        <input type="text" class="form-control" [(ngModel)]="mainTab.offce_tel" [readonly]="checkReadOnly">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>ผลตรวจสอบโทรศัพท์ที่ทำงาน</label>
+        <textarea class="form-control" rows="1" [(ngModel)]="mainTab.offce_tel_rsult"
+                  [readonly]="checkReadOnly"></textarea>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>โทรศัพท์มือถือ</label>
+        <input type="text" class="form-control" [(ngModel)]="mainTab.moble_tel" [readonly]="checkReadOnly">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>ผลตรวจสอบโทรศัพท์ทมือถือ</label>
+        <textarea class="form-control" rows="1" [(ngModel)]="mainTab.visit_rsult" [readonly]="checkReadOnly"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>ผู้ขอใช้เบอร์</label>
+        <input type="text" class="form-control" [(ngModel)]="mainTab.ownr_home_tel" [readonly]="checkReadOnly">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>ที่อยู่ที่บ้าน</label>
+        <select class="form-control" (change)="onChangeDropDown(mainTab.list_home_addr_crrct_cd,$event.target.value)"
+                [disabled]="checkReadOnly">
+          <option *ngFor="let items of mainTab?.list_home_addr_crrct_cd;let i=index"
+                  [selected]="items?.selected == 'Y'" [value]="i">{{items.item}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>ที่อยู่ที่ทำงาน</label>
+        <select class="form-control"
+                (change)="onChangeDropDown(mainTab.list_offce_addr_crrct_cd,$event.target.value)"
+                [disabled]="checkReadOnly">
+          <option *ngFor="let items of mainTab?.list_offce_addr_crrct_cd;let i=index"
+                  [selected]="items?.selected == 'Y'" [value]="i">{{items.item}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>ข้อมูลข้างเคียง</label>
+        <input type="text" class="form-control" [(ngModel)]="mainTab.ngbhd" [readonly]="checkReadOnly">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>ขณะตรวจสอบ</label>
+        <select class="form-control" (change)="onChangeDropDown(mainTab.list_visit_cd,$event.target.value)"
+                [disabled]="checkReadOnly">
+          <option *ngFor="let items of mainTab?.list_visit_cd;let i=index" [selected]="items?.selected == 'Y'"
+                  [value]="i">{{items.item}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>เหตุผลขณะตรวจสอบ</label>
+        <textarea class="form-control" rows="1" [(ngModel)]="mainTab.ver_mthd_more"
+                  [readonly]="checkReadOnly"></textarea>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>ประวัติ Tracing</label>
+        <select class="form-control" (change)="onChangeDropDown(mainTab.list_trec_rec_cd,$event.target.value)"
+                [disabled]="checkReadOnly">
+          <option *ngFor="let items of mainTab?.list_trec_rec_cd;let i=index" [selected]="items?.selected == 'Y'"
+                  [value]="i">{{items.item}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>รายละเอียดTracing</label>
+        <textarea class="form-control" rows="1" [(ngModel)]="mainTab.trce_rec_dtel"
+                  [readonly]="checkReadOnly"></textarea>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <button type="button" class="btn btn-primary btn-sm" style="width: auto" (click)="clickBlDialog()">
+          <i class="fa fa-search" aria-hidden="true" ></i>
+        </button>
+        <label>ประวัติ B/L ของ ASK</label>
+        <select class="form-control" (change)="onChangeDropDown(mainTab.list_ask_rec_cd,$event.target.value)"
+                [disabled]="checkReadOnly">
+          <option *ngFor="let items of mainTab?.list_ask_rec_cd;let i=index" [selected]="items?.selected == 'Y'"
+                  [value]="i">{{items.item}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <button type="button" class="btn btn-primary btn-sm" style="width: auto" (click)="clickNcbDialog()">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+        <label>ประวัติ NCB</label>
+
+        <select class="form-control" (change)="onChangeDropDown(mainTab.list_ncb_rec_cd,$event.target.value)"
+                [disabled]="checkReadOnly">
+          <option *ngFor="let items of mainTab?.list_ncb_rec_cd;let i=index" [selected]="items?.selected == 'Y'"
+                  [value]="i">{{items.item}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>รายละเอียดB/LของASKและประวัติNCB</label>
+        <textarea class="form-control" rows="3" [(ngModel)]="mainTab.ask_rec_dtel"
+                  [readonly]="checkReadOnly"></textarea>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group" *ngIf="this.mainTab.stg_id =='4'">
+        <label>ข้อมูลที่ต้องเตรียม</label>
+        <textarea class="form-control" rows="3" [(ngModel)]="mainTab.rev_dtel" [readonly]="checkEnquiry"></textarea>
+      </div>
+      <div class="form-group" *ngIf="this.mainTab.stg_id !='4'">
+        <label>ข้อมูลที่ต้องเตรียม</label>
+        <textarea class="form-control" rows="3" [(ngModel)]="mainTab.rev_dtel" [readonly]="checkReadOnly"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+

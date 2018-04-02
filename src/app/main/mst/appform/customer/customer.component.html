@@ -1,0 +1,17 @@
+<p-tabView>
+  <p-tabPanel header="Customer Information">
+    <app-information></app-information>
+  </p-tabPanel>
+  <p-tabPanel header="Address(TH)">
+    <app-address-th></app-address-th>
+  </p-tabPanel>
+  <p-tabPanel header="Address(EN)">
+    <app-address-en></app-address-en>
+  </p-tabPanel>
+  <p-tabPanel *ngIf="false" header="Card / Bank">
+    <app-bank-card></app-bank-card>
+  </p-tabPanel>
+  <p-tabPanel header="% Of Industry">
+    <app-percent-industry></app-percent-industry>
+  </p-tabPanel>
+</p-tabView>

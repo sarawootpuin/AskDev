@@ -1,0 +1,25 @@
+<fieldset [disabled]="disabled == 'N'">
+  <div class="d-flex">
+    <div class="col-md-3 mr-1">
+      <app-list (clickList)="setDataSelect($event)"></app-list>
+      <!--[data]="data" (clickList)="setDataSlect($event)">-->
+      <!-- [data] ของลูก /*ที่เรียนจากพี่ฟุ๊ค*/ $event param รับค่าจาก emit-->
+
+    </div>
+    <div class="col-md-9 card border-isa">
+      <fieldset [disabled]="data.length == 0">
+        <app-detail [data]="dataSelect"
+                    [dataFin]="dataListFin"
+                    [dataSubFin]="dataListSubFin"
+                    [dataSubFinLs]="dataListSubFinLs"
+                    [dataLease]="dataListLease"
+                    [dataPaid]="dataListPaid"
+                    [dataCurType]="dataListCurType"
+                    [dataBank]="dataListBank"
+                    [dataIntRate]="dataListInsRate"
+                    [dataBankIntRate]="dataListBankIntRate"
+        ></app-detail>
+      </fieldset>
+    </div>
+  </div>
+</fieldset>

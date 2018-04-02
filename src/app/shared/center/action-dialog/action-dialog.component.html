@@ -1,0 +1,63 @@
+<div class="modal fade" #action_dialog>
+  <div class="modal-dialog"   [ngStyle]="{'max-width': this.width + 'px' }"  role="document">
+    <div class="modal-content">
+      <div class="modal-header"  data-parent ="dialogborder" >
+        <h5 class="modal-title">{{title}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                #btn_close_dialog>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <ng-content></ng-content>
+
+
+      </div>
+      <div class="modal-footer" data-parent ="dialogborder" >
+        <button type="button" class="btn btn-success" *ngIf="showChoose"   data-dismiss="modal"
+                (click)="onChooseClick()">
+          <i class="fa fa-check"></i> Choose
+        </button>
+
+        <button type="button" class="btn btn-success" *ngIf="showOk"   data-dismiss="modal"
+                (click)="onOkClick()">
+          <i class="fa fa-check"></i> OK
+        </button>
+        <button type="button" class="btn btn-success" *ngIf="showAdd"  data-dismiss="modal"
+                (click)="onAddClick()">
+          <i class="fa fa-plus"></i> Add
+        </button>
+        <button type="button" class="btn btn-success" *ngIf="showYes"   data-dismiss="modal"
+                (click)="onYesClick()">
+          <i class="fa fa-check"></i> Yes
+        </button>
+        <button type="button" class="btn btn-edit" *ngIf="showEdit"   data-dismiss="modal"
+                (click)="onEditClick()">
+          <i class="fa fa-edit"></i> Edit
+        </button>
+        <button type="button" class="btn btn-save" *ngIf="showSave"   data-dismiss="modal"
+                (click)="onSaveClick()">
+          <i class="fa fa-save" ></i> Save
+        </button>
+        <button type="button" class="btn btn-print" *ngIf="showPrint"  data-dismiss="modal"
+                (click)="onPrintClick()">
+          <i class="fa fa-print" ></i> Print
+        </button>
+        <button type="button" class="btn btn-cancel" *ngIf="showCancel" data-dismiss="modal"
+                (click)="onCancelClick()">
+          <i class="fa fa-close" ></i> Cancel
+        </button>
+        <button type="button" class="btn btn-danger" *ngIf="showNo"   data-dismiss="modal"
+                (click)="onNoClick()">
+          <i class="fa fa-close"></i> No
+        </button>
+        <button type="button" class="btn btn-primary" *ngIf="showClose"   data-dismiss="modal"
+                (click)="onCloseClick()">
+          <i class="fa fa-close"></i> Close
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>

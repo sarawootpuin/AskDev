@@ -1,0 +1,58 @@
+<script src="./canvas-datagrid/dist/canvas-datagrid.js"></script>
+
+<br>
+<div class="form-inline">
+  <label>
+    <input type="file" accept=".xls,.xlsx,.xlsm" #fileInput style="display: none;" (change)="onFileChange($event)"
+           multiple="false"/>
+    <span class="btn-nav-browseisa">
+  <i class="fa fa-folder-open" aria-hidden="true"></i>&nbsp;{{titleButton}}
+</span>
+  </label>
+  <label class="fileselect" *ngIf="fileSelect&&showFileName">{{fileSelect}}</label>
+</div>
+
+<p-tabView *ngIf="dataExcel&&useTabSheet" (onChange)="onTabSheet($event.index)">
+  <div *ngFor="let tab of tabSheet;let i_index = index">
+    <!--<canvas-datagrid class="myGridStyle">-->
+    <!--{{dataExcel[i_index]}}-->
+    <!--</canvas-datagrid>-->
+
+
+    <!--<p-tabPanel *ngIf="i_index==0" header="{{tab}}" [selected]="true" (click)="onTabSheet(i_index)">-->
+    <!--<div id="dataExcel">-->
+    <!--</div>-->
+    <!--</p-tabPanel>-->
+
+    <!--<p-tabPanel *ngIf="i_index!=0" header="{{tab}}" [selected]="false" (click)="onTabSheet(i_index)">-->
+    <!--<div style="height: 300px;" id="grid{{i_index}}"></div>-->
+    <!--</p-tabPanel>-->
+
+    <p-tabPanel *ngIf="i_index==0" header="{{tab}}" [selected]="true">
+      <table class="table table-secondary">
+        <tr *ngFor="let row of dataExcel[i_index]">
+          <td *ngFor="let val of row" style="width: 150px">
+            {{val}}
+          </td>
+        </tr>
+      </table>
+    </p-tabPanel>
+
+    <p-tabPanel *ngIf="i_index!=0" header="{{tab}}" [selected]="false">
+      <table class="table table-secondary">
+        <tr *ngFor="let row of dataExcel[i_index]">
+          <td *ngFor="let val of row" style="width: 150px">
+            {{val}}
+          </td>
+        </tr>
+      </table>
+    </p-tabPanel>
+  </div>
+</p-tabView>
+
+
+<!--<p-dataTable *ngIf="data" [value]="cars">-->
+
+<!--<p-column *ngFor="let row of data; let i = index" [style]="{'width':'220px'}" field="row" header="index"></p-column>-->
+
+<!--</p-dataTable>-->

@@ -1,0 +1,443 @@
+<app-alert-dialog #alertDialog
+                  (onOK)="goBack()"
+                  (onCloseDialog)="goBack()"></app-alert-dialog>
+
+<app-alert-dialog #alertWarning>
+
+</app-alert-dialog>
+
+<app-action-lock-screen *ngIf="checkLoader"
+                        [spinner]="true"
+                        (onCancel)="checkLoader = false"
+                        #lockScreen>
+</app-action-lock-screen>
+
+<app-action-dialog #caApproveDialog
+                   [width]="600"
+                   [showOk]="true"
+                   (onOk)="clickCaApprove()">
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-3">
+        <label>Approve Person</label>
+      </div>
+      <div class="col-md">
+        <input type="text" class="form-control" [(ngModel)]="approvePerson" disabled>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-3">
+        <label>Task</label>
+      </div>
+      <div class="col-md">
+        <input type="text" class="form-control" [(ngModel)]="task" disabled>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-3">
+        <label>Comment & Reason</label>
+      </div>
+      <div class="col-md">
+        <textarea class="col-md" style="height: 200px" [(ngModel)]="comment"></textarea>
+      </div>
+    </div>
+  </div>
+</app-action-dialog>
+
+<app-action-dialog [title]="'Confirm Selected'" #confirmDialog
+                   [width]="400"
+                   [showCancel]="true"
+                   [showOk]="true"
+                   (onOk)="confirmSelected()">
+  <p *ngFor="let msg of confirmMsg">{{msg}} </p>
+</app-action-dialog>
+
+<app-alert-dialog  #saveDialog
+                   (onOK)="this.action == 'Reject' || this.action == 'Return' ? this.caApproveDialog.open() : this.saveData()">
+</app-alert-dialog>
+
+<app-alert-dialog  #warningBlacklist
+                   (onOK)="this.verifyGuarantor()">
+</app-alert-dialog>
+
+<app-alert-dialog  #warningGuarantor
+                   (onCancel)="this.verifyBeforeSubmit()">
+</app-alert-dialog>
+
+<app-action-dialog [title]="applyEmit.type" #newRenewDialog
+                   [width]="1200"
+                   [showCancel]="true"
+                   [showChoose]="true" (onChoose)="SelectDialog()">
+  <div class="row">
+    <div class="col-md-2" *ngIf="applyEmit.type == 'New'">
+      <div class="list-group">
+        <button *ngFor="let product of productNewRenew" type="button" class="list-group-item list-group-item-action"
+                [ngClass]="{'active': this.applyEmit.sbuType == product.idCode}"
+                (click)="ClickTabView(product)">
+          {{product.remark}}
+        </button>
+      </div>
+    </div>
+    <div class="col-md">
+      <app-applysalecall></app-applysalecall>
+    </div>
+  </div>
+</app-action-dialog>
+
+<app-action-dialog [title]="" #blackListDialog
+                   [width]="1300">
+  <app-blacklist-share-center></app-blacklist-share-center>
+</app-action-dialog>
+
+
+<div class="" style="background-color: #FFF">
+  <app-action-button-form title="Application Form ( {{data.current_task}} )"
+                          (onSave)="actionClick('Save')"
+                          (onCancel)="actionClick('Cancel')"
+                          (onNew)="showDialog()"
+                          (onPrint)="showReport()"
+                          (onSubmit)="actionClick('Submit')"
+                          (onReject)="actionClick('Reject')"
+                          (onReturn)="actionClick('Return')"
+                          [showSearch]="false"
+                          [showNew]="!data.ap_no"
+                          [showSubmit]="data.ap_no"
+                          [showSave]="data.current_task == 'Apply AP' || data.current_task == 'Revise AP'"
+                          [showPrint]="data.ap_no"
+                          [showCancel]="data.current_task == 'Apply AP' || data.current_task == 'Revise AP'"
+                          [showReject]="data.disabled == 'N' && data.current_task != 'Scoring'"
+                          [showReturn]="data.current_task == 'Scoring'"
+                          [showEdit]="false"
+                          [showCalculator]="false"
+                          [showBack]="false"></app-action-button-form>
+  <div class="card m-1 border-isa">
+    <p-panel [toggleable]="true" header="Information">
+      <div class="main-container">
+        <div class="row">
+          <div class="flex-md-column col-md-3">
+            <div class="form-group">
+              <label>Call / Visit No</label>
+              <input type="text" class="form-control" [(ngModel)]="data.sale_call_no" readonly>
+            </div>
+          </div>
+          <div class="flex-md-column col-md-3">
+            <div class="form-group">
+              <label>Application No</label>
+              <input type="text" class="form-control" [(ngModel)]="data.ap_no" readonly>
+            </div>
+          </div>
+          <div class="flex-md-column col-md-3">
+            <div class="form-group">
+              <label>CA No</label>
+              <input type="text" class="form-control" [(ngModel)]="data.ca_no" readonly>
+            </div>
+          </div>
+          <div class="flex-md-column col-md-3 align-self-center">
+            <div class="d-flex">
+              <div class="form-group">
+                <label class="mt-radio" *ngIf="(data.sbu_typ != 'FDO') && (data.sbu_typ != 'P')">
+                  <input type="radio" name="ca_type" value="1"
+                         [(ngModel)]="data.ca_type"
+                         [disabled]="data.disabled == 'N'"> CA Normal<br>
+                  <input type="radio" name="ca_type" value="2"
+                         [(ngModel)]="data.ca_type"
+                         [disabled]="data.disabled == 'N'"> CA Main Credit Line
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="flex-md-column col-md-3">
+            <div class="form-group">
+              <label>Marketing Officer</label>
+              <input type="text" class="form-control" [(ngModel)]="data.mkt_name" readonly>
+            </div>
+          </div>
+          <div class="flex-md-column col-md-3">
+            <div class="form-group" *ngIf="data.current_task != 'Scoring Assign'">
+              <label>Credit Analyst</label>
+              <input type="text" class="form-control" [(ngModel)]="data.verifier_name" readonly>
+            </div>
+            <div class="form-group" *ngIf="data.current_task == 'Scoring Assign'">
+              <label>Credit Analyst </label>
+              <select class="form-control"
+                      #analyst
+                      [(ngModel)]="data.verifier">
+                <option [value]=""></option>
+                <option *ngFor="let list of listAnalyst"
+                        [value]="list.id_code"
+                        [selected]="data.verifier === list.id_code">{{list.remark}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex-md-column col-md-3">
+            <div class="form-group"
+                 *ngIf="data.current_task == 'Scoring Assign' && data.verify_head_name == 'Surin Towises'">
+              <label>Cross Team</label>
+              <select class="form-control"
+                      (change)="analystLeaderChange($event.target.value)">
+                <option [value]=""></option>
+                <option *ngFor="let list of listAnalystLeader"
+                        [value]="list.id_code"
+                        [selected]="data.verify_head === list.id_code">{{list.remark}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="flex-md-column col-md-3">
+            <div class="d-flex">
+              <div class="form-group">
+                <label>Score</label>
+                <input type="text" class="form-control" [(ngModel)]="data.score" readonly style="text-align:right">
+              </div>
+              <div class="form-group offset-1">
+                <label>Grade</label>
+                <input type="text" class="form-control" [(ngModel)]="data.grade" readonly>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="flex-md-column col-md-3">
+            <div class="form-group">
+              <label>Customer Code</label>
+              <input type="text" class="form-control" [(ngModel)]="data.cus_code" readonly>
+            </div>
+          </div>
+          <div class="flex-md-column col-md-3">
+            <div class="form-group">
+              <label>Customer Name</label>
+              <input type="text" class="form-control" [(ngModel)]="data.cus_name" readonly>
+            </div>
+          </div>
+          <div class="flex-md-column col-md-3">
+            <div class="form-group">
+              <label>Customer Status</label>
+              <input type="text" class="form-control" [(ngModel)]="data.customerStatus" readonly>
+            </div>
+          </div>
+          <div class="flex-md-column col-md-3">
+            <div class="form-group">
+              <label>Connect Since</label>
+              <input type="text" class="form-control" [(ngModel)]="data.connect_since" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="flex-md-column col-md-3">
+            <div class="form-group">
+              <label>Credit Type</label>
+              <input type="text" class="form-control" [(ngModel)]="data.sbu_type_desc" readonly>
+            </div>
+          </div>
+          <div class="flex-md-column col-md-3">
+            <div class="form-group">
+              <label>BlackList</label>
+              <div class="row">
+                <div class="col-md-7">
+                  <input type="text"
+                         class="form-control"
+                         [ngStyle]="{'color': data.bl_flag == 'Y' ? 'red' : 'blue'}"
+                         [(ngModel)]="data.blackList"
+                         readonly>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-search" type="button"
+                          (click)="openBlackList()"
+                          *ngIf="data.current_task == 'Apply AP' ||
+                                 data.current_task == 'Revise AP' ||
+                                 data.current_task == 'Scoring'">
+                    <i class="fa fa-search fa-fw"></i> Check BL
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-md-column col-md-3">
+            <div class="form-group">
+              <label>Introduced By</label>
+              <select class="form-control"
+                      [disabled]="data.disabled == 'N'"
+                      [(ngModel)]="data.intro_mthd_cd"
+                      (ngModelChange)="sourceChange()">
+                <option [value]=""></option>
+                <option *ngFor="let list of listIntro"
+                        [value]="list.id_code"
+                        [selected]="data.intro_mthd_cd === list.id_code">{{list.remark}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="flex-md-column col-md-3">
+            <div class="form-group">
+              <label style="height: 15px"></label>
+              <div class="row">
+                <div class="col-md-10">
+                  <input type="text" class="form-control" [(ngModel)]="data.intro_by_name" readonly>
+                </div>
+                <div class="col-md-2">
+                  <app-search-un inuURL={{this.OutURL}}
+                                 title="NAME;CODE;"
+                                 (col1)="setIntroName($event)"
+                                 (col2)="setIntroValue($event)"
+                  >
+                  </app-search-un>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="flex-md-column col-md-3">
+            <div class="form-group" *ngIf="data.sbu_typ == 'FDO'">
+              <label>Joint Seller Group</label>
+              <select class="form-control"
+                      [disabled]="data.disabled == 'N'"
+                      (change)="jointChange($event.target.value)">
+                <option [value]="-1"></option>
+                <option *ngFor="let list of listJointSeller; let i = index"
+                        [value]="i"
+                        [selected]="data.joint_seller_group === list.id_code">{{list.id_code}} : {{list.remark}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="flex-md-column col-md-3">
+            <div class="form-group" *ngIf="data.sbu_typ == 'FDO'">
+              <label>Joint Seller CR. Amount</label>
+              <input class="form-control"
+                     currencyMask
+                     disabled
+                     [(ngModel)]="data.join_group_cr"
+                     [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
+            </div>
+          </div>
+        </div><!--
+        <div class="row">
+          <div class="flex-md-column col-md-3">
+            <div class="form-group">
+              <label>Total Exposure(Before)</label>
+              <input class="form-control"
+                     currencyMask
+                     readonly
+                     [(ngModel)]="data.total_exposure"
+                     [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
+            </div>
+          </div>
+          <div class="flex-md-column col-md-3">
+            <div class="form-group">
+              <label>Request Cap</label>
+              <input currencyMask
+                     class="form-control"
+                     [readonly]="data.disabled == 'N'"
+                     [(ngModel)]="data.total_exposure_cap"
+                     [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
+            </div>
+          </div>
+        </div>-->
+      </div>
+    </p-panel>
+  </div>
+  <div class="m-1 border-isa">
+    <app-side-tab [defaultMenuName]="openTab">
+      <app-side-tab-panel>
+        <app-side-tab-level [nameMenu]="'Customer'">
+        </app-side-tab-level>
+        <app-side-tab-level [nameMenu]="'Guarantor'">
+        </app-side-tab-level>
+
+        <app-side-tab-level [nameMenu]="'Pricing'" *ngIf="data.sbu_typ == 'FDO'">
+
+          <app-side-tab-level [nameMenu]="'Seller'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Buyers'">
+          </app-side-tab-level>
+        </app-side-tab-level>
+        <app-side-tab-level [nameMenu]="'Pricing'" [idMenu]="1"
+                            *ngIf="data.sbu_typ == 'HP' ||
+                                   data.sbu_typ == 'LS' ||
+                                   data.sbu_typ == 'HP/LS'">
+        </app-side-tab-level>
+        <app-side-tab-level [nameMenu]="'Pricing'" [idMenu]="2"
+                            *ngIf="data.sbu_typ == 'P'">
+        </app-side-tab-level>
+        <app-side-tab-level [nameMenu]="'Collateral'"
+                            *ngIf="data.sbu_typ == 'P'">
+        </app-side-tab-level>
+
+        <app-side-tab-level [nameMenu]="'Exposure'">
+        </app-side-tab-level>
+        <app-side-tab-level [nameMenu]="'Reason'"
+                            *ngIf="data.current_task == 'Revise AP'">
+        </app-side-tab-level>
+        <app-side-tab-level [nameMenu]="'Context Data'">
+        </app-side-tab-level>
+        <app-side-tab-level [nameMenu]="'Attachment'"
+                            *ngIf="data.current_task == 'Scoring Assign' ||
+                                   data.current_task == 'Scoring' ||
+                                   data.current_task == 'Scoring Return' ||
+                                   data.current_task == 'Scoring Approve'">
+        </app-side-tab-level>
+        <app-side-tab-level [nameMenu]="'Recommendation'" *ngIf="data.current_task == 'Scoring Approve'">
+        </app-side-tab-level>
+      </app-side-tab-panel>
+      <app-side-tab-main>
+        <app-side-tab-content [nameContent]="'Customer'">
+          <app-customer></app-customer>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Guarantor'">
+          <app-guarantor></app-guarantor>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="1"
+                              *ngIf="data.sbu_typ == 'HP' ||
+                                     data.sbu_typ == 'LS' ||
+                                     data.sbu_typ == 'HP/LS'">
+          <app-leasing></app-leasing>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="2"
+                              *ngIf="data.sbu_typ == 'P'">
+          <app-loans></app-loans>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Collateral'" *ngIf="data.sbu_typ == 'P'">
+          <app-collateral></app-collateral>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Seller'"
+                              *ngIf="data.sbu_typ == 'FDO'">
+          <app-pricing></app-pricing>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Buyers'"
+                              *ngIf="data.sbu_typ == 'FDO'">
+          <app-buyer></app-buyer>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Exposure'">
+          <app-exposure></app-exposure>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Reason'"
+                              *ngIf="data.current_task == 'Revise AP'">
+          <app-reason></app-reason>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Context Data'">
+          <app-context></app-context>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Attachment'"
+                              *ngIf="data.current_task == 'Scoring Assign' ||
+                                     data.current_task == 'Scoring' ||
+                                     data.current_task == 'Scoring Return' ||
+                                     data.current_task == 'Scoring Approve'">
+          <app-attachment></app-attachment>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Recommendation'"
+                              *ngIf="data.current_task == 'Scoring Approve'">
+          <app-recommendation></app-recommendation>
+        </app-side-tab-content>
+      </app-side-tab-main>
+    </app-side-tab>
+  </div>
+</div>

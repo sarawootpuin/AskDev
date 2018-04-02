@@ -1,0 +1,37 @@
+<app-alert-dialog #dialogChangeDepartment></app-alert-dialog>
+<app-alert-dialog (onOK)="onSubmitClick()" #dialogConfirm></app-alert-dialog>
+<app-action-button-form
+  [title]="'Change Department'"
+  [showSubmit]="true"
+  (onSubmit)="onConfirmSubmit()"
+></app-action-button-form>
+<div class="container-fluid" style="margin-top: 10px">
+  <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+    <input #gb type="text" pInputText size="50" placeholder="Global Filter">
+    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+  </div>
+  <p-dataTable [value]="this.listScrChangeDepartModel" scrollable="true" scrollHeight="190px"   [(selection)]="this.listScrChangeDepartModelSelected"  dataKey="key_field"
+               [globalFilter]="gb" #dt
+               [sortField]="this.sortF"
+               (onSort)="changeSort($event)"
+               >
+    <p-column [style]="{'width':'3%'}" selectionMode="multiple"></p-column>
+    <p-header>** พนักงานแผนก Verification และ สาขา เท่านั้น</p-header>
+    <!--<p-column  field="chk"  header="CHECK"></p-column>-->
+    <p-column  field="code"  header="ID พนักงาน" [sortable]="true"></p-column>
+    <p-column  field="com_code"  header="รหัสบริษัท" [sortable]="true"></p-column>
+    <p-column  field="full_name"  header="ชื่อ-นามสกุล" [sortable]="true"></p-column>
+    <p-column  field="dept_name"  header="แผนก" [sortable]="true"></p-column>
+    <p-column  field="position"  header="ตำแหน่ง" [sortable]="true"></p-column>
+  </p-dataTable>
+
+  <p-dataTable [value]="this.listScrChangeDepartModelSelected" scrollable="true" scrollHeight="150px" >
+    <p-header>พนักงานแผนก VER และ สาขา ที่ย้ายแผนก</p-header>
+    <!--<p-column  field="chk"  header="CHECK"></p-column>-->
+    <p-column  field="code"  header="ID พนักงาน"></p-column>
+    <p-column  field="com_code"  header="รหัสบริษัท"></p-column>
+    <p-column  field="full_name"  header="ชื่อ-นามสกุล"></p-column>
+    <p-column  field="dept_name"  header="แผนก"></p-column>
+    <p-column  field="position"  header="ตำแหน่ง"></p-column>
+  </p-dataTable>
+</div>

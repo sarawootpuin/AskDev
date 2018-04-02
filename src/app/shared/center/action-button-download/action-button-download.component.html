@@ -1,0 +1,11 @@
+<app-alert-dialog #alertDialogComponent></app-alert-dialog>
+<app-action-lock-screen *ngIf="!complete" (onCancel)="cancelDownload()" [spinner]="true"></app-action-lock-screen>
+<button *ngIf="disabled==true" type="button" class="btn-nav-printisa-disabled" style="width: 120px" disabled>
+  <i class="fa fa-print"></i> {{buttonName}}
+</button>
+<button *ngIf="complete&&disabled==false" type="button" class="btn-nav-printisa" style="width: 120px" (click)="SaveFile()">
+  <i class="fa fa-print"></i> {{buttonName}}
+</button>
+<button *ngIf="!complete&&disabled==false" type="button" class="btn-nav-printisa" style="width: 120px" disabled="disabled">
+  <i class="fa fa-spinner fa-spin fa-1x fa-fw fa-align-center"></i>  Loading...
+</button>

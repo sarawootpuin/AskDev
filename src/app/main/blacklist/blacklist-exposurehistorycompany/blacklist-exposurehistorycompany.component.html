@@ -1,0 +1,39 @@
+<app-custom-progress-bar *ngIf="loadProgressBar"></app-custom-progress-bar>
+<p-dataTable [scrollable]="true"  [loading]="loading" loadingIcon="fa-spinner" [value]="modelExposureHistory" [lazy]="true" [rows]="10" [paginator]="true"
+             [totalRecords]="totalRecords"  selectionMode="single" (onLazyLoad)="loadExposureHistory($event)">
+
+  <p-header><i class="fa fa-info-circle" ></i> ยอดสินเชื่อ</p-header>
+  <p-column [style]="{'width':'120px'}" field="AS_OF_DATE"  header="As of"></p-column>
+  <p-column [style]="{'width':'120px'}"  field="AGR_CODE"  header="เลขที่สัญญา"></p-column>
+  <p-column [style]="{'width':'120px'}" field="REGISTRATION_NUMBER" header="เลขทะเบียน"></p-column>
+  <p-column [style]="{'width':'120px'}" field="FIRST_NAME" header="ชื่อบุคคล/บริษัท"></p-column>
+  <p-column [style]="{'width':'120px'}" field="LAST_NAME" header="นามสกุล"></p-column>
+  <p-column [style]="{'width':'120px'}" field="CUS_GUAR" header="ลูกค้า/ผู้ค้ำ"></p-column>
+  <p-column [style]="{'width':'120px'}" field="CLOSE_ACTIVE" header="Closing/Active"></p-column>
+  <p-column [style]="{'width':'120px','text-align':'right'}" field="OS_AR" header="ยอดลูกหนี้คงเหลือ">
+    <ng-template let-col let-row="rowData" pTemplate="body">
+      <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+    </ng-template>
+  </p-column>
+  <p-column [style]="{'width':'120px','text-align':'right'}" field="OS_PRI" header="ยอดเงินต้นคงเหลือ">
+    <ng-template let-col let-row="rowData" pTemplate="body">
+      <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+    </ng-template>
+  </p-column>
+  <p-column [style]="{'width':'120px','text-align':'right'}" field="PAST_DUE" header="ค่างวดค้างชำระ">
+    <ng-template let-col let-row="rowData" pTemplate="body">
+      <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+    </ng-template>
+  </p-column>
+  <p-column [style]="{'width':'120px'}" field="OVER_NO" header="งวดค้าง">
+    <ng-template let-col let-row="rowData" pTemplate="body">
+      <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+    </ng-template>
+  </p-column>
+  <p-column [style]="{'width':'120px'}" field="C_STATUS" header="สถานะลูกค้า"></p-column>
+  <p-column [style]="{'width':'120px'}" field="CREDIT_GRADING" header="Credit Grading"></p-column>
+  <p-column [style]="{'width':'120px'}" field="PAYMENT_GRADING" header="Payment Grade"></p-column>
+  <p-column [style]="{'width':'220px'}" field="MARKETING" header="Marketing"></p-column>
+  <p-column [style]="{'width':'220px'}" field="VERIFIER" header="Verifier"></p-column>
+  <p-column [style]="{'width':'220px'}" field="CUSTOMER_SERVICE" header="Customer Service"></p-column>
+</p-dataTable>

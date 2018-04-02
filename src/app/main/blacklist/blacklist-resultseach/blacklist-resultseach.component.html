@@ -1,0 +1,82 @@
+<app-alert-dialog #alertDialogComponent></app-alert-dialog>
+<div class="detail-container" style="overflow-y: scroll;height: 80vh">
+  <div class="container" style="background-color: #FFF">
+
+
+
+<!-- ----------- SHOW TABLE ----------------------------------------------- -->
+<p-dataTable [loading]="loading" loadingIcon="fa-spinner" [value]="myBlacklistUnique" [lazy]="true" [rows]="10" [paginator]="true"
+            [totalRecords]="totalRecords" (onRowSelect)="onRowSelect($event)" selectionMode="single" (onLazyLoad)="loadMyBlacklist($event)">
+
+    <p-header><i class="fa fa-info-circle"></i> ประวัติ Blacklist</p-header>
+    <p-column field="value.FIRST_NAME" header="ชื่อ"></p-column>
+    <p-column field="value.LAST_NAME" header="นามสกุล"></p-column>
+    <p-column field="value.AMLO" header="ปปง."></p-column>
+    <p-column field="value.ID_CARD" header="เลขที่บัตร"></p-column>
+    <p-column field="value.ENG_NUM" header="เลขเครื่อง"></p-column>
+    <p-column field="value.CHASSIS" header="เลขถัง"></p-column>
+    <p-column [bodyStyle]="{'text-align':'center'}" field="count" header="จำนวน Black List"></p-column>
+
+</p-dataTable>
+
+<!--<div>
+<div class="col-md-12 " id="p1" style="padding: 10px">
+  <div  style="margin: 0; width: 100%">
+    <div class="portlet grey-cascade box">
+      <div>
+        <div class="row" style="padding: 5px;background-color: #969FA1; border: 1px solid #b1bdbd">
+          <div class="col">
+            <div class="caption  float-left" style="color: white">
+              <i class="fa fa-info-circle"></i> ประวัติ Blacklist
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="padding: 10px">
+        <div class="thead-responsive" style="overflow-x: auto;min-height: .01%; border: 1px solid #b1bdbd">
+          <table class="table table-bordered table-hover">
+            <thead>
+            <tr style="background-color: #8fcafe">
+              <th>#</th>
+              <th>ชื่อบุคคล/นิติบุคคล</th>
+              <th>นามสกุล</th>
+              <th>ปปง.</th>
+              <th>เลขที่บัตร</th>
+              <th>เลขเครื่อง</th>
+              <th>เลขถัง</th>
+              <th>จำนวน Black List</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let BL of myBlacklist;let i = index" (click)="sentresult(i)" style="cursor: hand;cursor: pointer;">
+              <td>{{i+1}}</td>
+              <td>{{BL.FIRST_NAME}}</td>
+              <td>{{BL.LAST_NAME}}</td>
+              <td>{{BL.AMLO}}</td>
+              <td>{{BL.ID_CARD}}</td>
+              <td>{{BL.ENG_NUM}}</td>
+              <td>{{BL.CHASSIS}}</td>
+              <td>0</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>   <div class="col-md-12 " id="p1" style="padding: 10px">  -->
+<!------------- END SHOW TABLE ---------------------------->
+
+<br/>
+<p-dataTable [value]="myBlacklistHistory" [lazy]="true" [rows]="10" [paginator]="true"
+            [totalRecords]="totalRecordsHistory" (onLazyLoad)="loadmyBlacklistHistory($event)">
+    <p-header><i class="fa fa-info-circle"></i> ประวัติการตรวจสอบ</p-header>
+    <p-column field="FIRST_NAME" header="ชื่อ"></p-column>
+    <p-column field="LAST_NAME" header="นามสกุล"></p-column>
+    <p-column field="CHECK_DATE" header="วันที่เช็คข้อมูล"></p-column>
+    <p-column field="CHECK_BY" header="เช็คข้อมูลโดย"></p-column>
+</p-dataTable>
+  <!-- ----------- SHOW TABLE ----------------------------------------------- -->
+
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="container" style="border-style: solid; border-width: 1px; border-radius: 10px; padding: 3px " >
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-12 form-group p-1"  >
+        <div class="container" style="margin: 0; width: 100%;padding-right: 5px;padding-left: 5px">
+          <div class="portlet grey-cascade box">
+            <div class="container" style="padding: 0px;width: 100%">
+              <p-dataTable [responsive]="true" [value]="this.mySaleCallHistory"
+                           scrollable="true" scrollHeight="400px">
+                <p-column field="sale_call_no" header="Sale Call No."></p-column>
+                <p-column field="sale_call_dt" header="Call/Visit Date"></p-column>
+                <p-column field="sale_call_note" header="Call/Visit Note"></p-column>
+                <p-column field="follow_up_point" header="Follow Up Note"></p-column>
+                <p-column field="comp_ent_code" header="Contact Person Name"></p-column>
+                <p-column field="call_visit_by" header="Call/Visit By"></p-column>
+              </p-dataTable>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

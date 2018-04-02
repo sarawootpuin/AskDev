@@ -1,0 +1,39 @@
+<div class="d-flex">
+    <p-panel header="Exposure">
+      <div class="form-group flex-column">
+        <p-dataTable selectionMode="single"  rows="15"
+                     [value]="listcaexposure"
+                     [responsive]="true">
+             <p-column field="product" header="Categories"></p-column>
+             <p-column field="exposure" header="Total Exposure"  [style]="{'text-align':'right'}" >
+                 <ng-template let-col let-row="rowData" pTemplate="body">
+                   <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+                 </ng-template>
+             </p-column>
+             <p-column field="os_balance" header="O/S Balance"  [style]="{'text-align':'right'}" >
+                 <ng-template let-col let-row="rowData" pTemplate="body">
+                   <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+                 </ng-template>
+             </p-column>
+             <p-column field="maturity_date" header="Maturity Date"></p-column>
+             <p-column field="highest_amt" header="Highest Amount"   [style]="{'text-align':'right'}">
+                 <ng-template let-col let-row="rowData" pTemplate="body">
+               <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+             </ng-template>
+             </p-column>
+             <p-column field="with_collateral" header="With Collateral"   [style]="{'text-align':'right'}">
+                 <ng-template let-col let-row="rowData" pTemplate="body">
+                   <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+                 </ng-template>
+             </p-column>
+             <p-column field="with_out_collateral" header="Without Collateral"   [style]="{'text-align':'right'}">
+                 <ng-template let-col let-row="rowData" pTemplate="body">
+                   <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+                 </ng-template>
+             </p-column>
+             <p-column field="bl_flg" header="B/L"></p-column>
+        </p-dataTable>
+      </div>
+    </p-panel>
+  </div>
+

@@ -1,0 +1,45 @@
+<div class="modal fade align-items-center " style="vertical-align:middle" #alert_dialog>
+  <div class="modal-dialog"  role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <strong><p class="modal-title" style="font-size: 16px;color: white">{{title}}</p></strong>
+        <button type="button" class="close" (click)="close()" aria-label="Close"
+                #btn_close_dialog>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-1" style="text-align: center">
+            <i class="fa fa-question-circle fa-2x" aria-hidden="true" style="color: blue"
+               *ngIf="this.symbol === 'QUESTION'"></i>
+            <i class="fa fa-exclamation-triangle fa-2x" aria-hidden="true" style="color: yellow"
+               *ngIf="this.symbol === 'WARNING'"></i>
+            <i class="fa fa fa-times-circle fa-2x" aria-hidden="true" style="color: red"
+               *ngIf="this.symbol === 'ERROR'"></i>
+            <i class="fa fa-info-circle fa-2x" aria-hidden="true" style="color: blue"
+               *ngIf="this.symbol === 'INFORMATION'"></i>
+          </div>
+          <div class="col-md">
+            <div *ngIf="single==1">
+                <p>{{msg}} </p>
+            </div>
+            <div *ngIf="single!=1">
+              <p *ngFor="let m of list_msg">{{m}} </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-sm custom" *ngIf="showOK"
+                (click)="onOKClick()"  ><strong>OK</strong>
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm custom" *ngIf="showCancel"
+                (click)="onCancelClick()"><strong>Cancel</strong>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

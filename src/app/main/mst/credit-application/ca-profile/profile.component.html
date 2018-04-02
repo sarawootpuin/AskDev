@@ -1,0 +1,24 @@
+<p-panel header="General Infomation">
+  <div class="d-flex">
+    <div class="form-group col-md-4">
+      <p-dataTable selectionMode="single" [(selection)]="selected" (onRowSelect)="onRowSelect($event)" rows="15"
+                   [responsive]="true">
+        <p-column field="f1" header=" เอกสารแนบ "></p-column>
+
+        <p-footer>
+          <div class="ui-helper-clearfix" style="width:100%">
+          </div>
+        </p-footer>
+      </p-dataTable>
+    </div>
+    <div class="form-group col-md-8">
+      <button type="button" pButton style="float:left" (click)="showDialogToAdd()"
+              label="Attach Files"></button>
+      <br><br>
+      <button type="button" pButton style="float:left" (click)="showDialogToAdd()"
+              label="Refresh Grading"></button>
+      <br><br><label style="color: grey">Credit Analist Only</label>
+
+    </div>
+  </div>
+</p-panel>

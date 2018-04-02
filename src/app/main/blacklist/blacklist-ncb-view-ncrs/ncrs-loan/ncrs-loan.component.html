@@ -1,0 +1,97 @@
+<div class="card card-header">
+  <p-tabView>
+    <p-tabPanel header="สรุป" [selected]="true">
+      <div id="summary">
+        <div class="row">
+          <div class="col-md-2 offset-1 text-center">
+            <label><b>ประเภทสินเชื่อ</b></label>
+          </div>
+          <div class="col-md-2 text-center">
+            <label><b>สินเชื่อ</b></label>
+          </div>
+          <div class="col-md-2 text-center">
+            <label><b>ข้อตกลง</b></label>
+          </div>
+          <div class="col-md-2 text-center">
+            <label><b>ภาระหนี้</b></label>
+          </div>
+          <div class="col-md-2 text-center">
+            <label><b>วันที่เปิดบัญชี</b></label>
+          </div>
+        </div>
+        <div style="border-top:2px dashed #8c8b8b"></div>
+        <br>
+        <div class="row" style="background-color:#edeef3;border:1px solid #e7e5e5" *ngFor="let data of modelLoanHead">
+          <div class="col-md-2 offset-1 text-left">
+            <label>{{data.ACCOUNT_TYPE_THA}}</label>
+          </div>
+          <div class="col-md-2 text-left">
+            <label>รวม &nbsp; : &nbsp; {{data.SUM_ACC}}</label>
+            <br>
+            <label>มากกว่า 90 วัน/Limit &nbsp; : &nbsp;{{data.MORE90}}</label>
+            <br>
+            <label>คงค้างเป็นศูนย์ &nbsp;:&nbsp; {{data.NUM_OS0}}</label>
+          </div>
+          <div class="col-md-2 text-left">
+            <label>วงเงิน &nbsp; : &nbsp; THB {{data.SUM_FIN | number:'.2-2'}}</label>
+            <br>
+            <label>การผ่อนชำระ &nbsp; : &nbsp; THB {{data.SUM_INST=='-'?0:data.SUM_INST | number:'.2-2'}}</label>
+          </div>
+          <div class="col-md-2 text-left">
+            <label>คงค้าง &nbsp; : &nbsp; THB {{data.OS_PRI | number:'.2-2'}}</label>
+            <br>
+            <label>เกินกำหนดชำระ &nbsp; : &nbsp; THB {{data.PASTDUE=='-'?0:data.PASTDUE | number:'.2-2' }}</label>
+          </div>
+          <div class="col-md-2 text-left">
+            <label>วันที่ล่าสุด &nbsp; : &nbsp; {{data.MAX_DATE}}</label>
+            <br>
+            <label>วันที่แรกสุด &nbsp; : &nbsp; {{data.MIN_DATE}}</label>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+
+    <div *ngFor="let tab of tabSummaryDetail">
+      <p-tabPanel header="{{tab.ACCOUNT_TYPE_THA}}">
+        <div class="row">
+          <div class="col-md-3 text-center">
+            <label><b>ข้อมูล ณ วันที่</b></label>
+          </div>
+          <div class="col-md-3 text-center">
+            <label><b>ผู้ให้สินเชื่อ</b></label>
+          </div>
+          <div class="col-md-3 text-center">
+            <label><b>วงเงินและภาระหนี้</b></label>
+          </div>
+          <div class="col-md-3 text-center">
+            <label><b>รายละเอียดบัญชี</b></label>
+          </div>
+        </div>
+        <div style="border-top:2px dashed #8c8b8b"></div>
+        <br>
+        <div class="row" *ngFor="let listData of tab.LIST_DATA" style="background-color:#edeef3;border:1px solid #e7e5e5">
+          <div class="col-md-3 text-left">
+            <label>{{listData.AS_OF_DATE}}</label>
+          </div>
+          <div class="col-md-3 text-left">
+            <label>{{listData.MEMBER_SHORT_NAME}}</label>
+          </div>
+          <div class="col-md-3 text-left">
+            <label>วงเงิน &nbsp; : &nbsp;{{listData.CURRENCY_CODE}} &nbsp; {{listData.CREDITLIMITORIGINALLOAN_AMOUNT=='-'?0:listData.CREDITLIMITORIGINALLOAN_AMOUNT | number:'.2-2'}}</label>
+            <br>
+            <label>คงค้าง &nbsp; : &nbsp;{{listData.CURRENCY_CODE}} &nbsp; {{listData.AMOUNT_OWED=='-'?0:listData.AMOUNT_OWED| number:'.2-2'}} </label>
+            <br>
+            <label>เกินกำหนดชำระ &nbsp; : &nbsp;{{listData.CURRENCY_CODE}} &nbsp; {{listData.AMOUNT_PAST_DUE=='-'?0:listData.AMOUNT_PAST_DUE| number:'.2-2'}}</label>
+          </div>
+          <div class="col-md-3 text-left">
+            <label>สถานะมากกว่า 90 วัน/Limit&nbsp; : &nbsp; {{listData.ACCOUNT_ID=='-'||listData.ACCOUNT_ID<1?'ไม่ใช่':'ใช่'}}</label>
+            <br>
+            <label>จำนวนวันชำระหนี้ล่าช้าสูงสุด &nbsp; : &nbsp; {{listData.MAX_HIST}}</label>
+            <br>
+            <label>สถานะบัญชี &nbsp; : &nbsp; {{listData.ACCOUNT_STATUS}} - {{listData.ACCOUNT_STATUS_THA}}</label>
+          </div>
+        </div>
+      </p-tabPanel>
+    </div>
+  </p-tabView>
+</div>

@@ -1,0 +1,39 @@
+<div *ngIf="task!==undefined">
+  <div class="card">
+    <div class="card-header ">
+      <div class="text-center h6">
+        Task : {{ task.taskName}}
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+        <input #searchInput class="form-control" type="text" pInputText size="50" placeholder="Search">
+      </div>
+      <div class="my-3">
+        <div *ngIf="isLoading" class="text-center">
+          <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>Loading...
+        </div>
+        <div *ngIf="!isLoading">
+          <p-dataTable #dt [responsive]="true"
+                       [value]="listTodoVerifier"
+                       selectionMode="single"
+                       rowGroupMode="subheader"
+                       groupField="ver_emp_nme"
+                       expandableRowGroups="true"
+                       [sortableRowGroup]="false"
+                       [rows]="10"
+                       paginatorPosition="both"
+                       [paginator]="true"
+                       (onRowSelect)="rowSelectList($event.data)"
+                       [globalFilter]="searchInput">
+            <ng-template pTemplate="rowgroupheader" let-rowData>{{rowData['ver_emp_nme']}}</ng-template>
+            <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"
+                      filterMatchMode="contains">
+            </p-column>
+          </p-dataTable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

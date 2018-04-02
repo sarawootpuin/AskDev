@@ -1,0 +1,18 @@
+<div class="form-group col-md-12">
+  <div class="mb-2">
+    <p-dataTable selectionMode="single" [(selection)]="selected" (onRowSelect)="onRowSelect($event)" rows="15"
+                 [responsive]="true" scrollable="true" scrollWidth="73vw">
+      <p-column field="f1" header=" Term " [style]="{'width':'250px'}"></p-column>
+      <p-column field="f2" header="Due Date" [style]="{'width':'250px'}"></p-column>
+      <p-column field="f3" header="ค่างวด" [style]="{'width':'250px'}"></p-column>
+      <p-column field="f4" header="W/H TAX" [style]="{'width':'250px'}"></p-column>
+      <p-column field="f5" header="ค่างวด W/H TAX" [style]="{'width':'250px'}"></p-column>
+      <p-column field="f6" header="VAT " [style]="{'width':'250px'}"></p-column>
+      <p-column field="f7" header="Cash Receive" [style]="{'width':'250px'}"></p-column>
+      <p-column field="f8" header="เงินต้น" [style]="{'width':'250px'}"></p-column>
+      <p-column field="f9" header=" ดอกเบี้ย " [style]="{'width':'250px'}"></p-column>
+      <p-column field="f10" header="เงินต้นคงเหลือ" [style]="{'width':'250px'}"></p-column>
+      <p-column field="f11" header=" OS_INTEREST " [style]="{'width':'250px'}"></p-column>
+    </p-dataTable>
+  </div>
+</div>

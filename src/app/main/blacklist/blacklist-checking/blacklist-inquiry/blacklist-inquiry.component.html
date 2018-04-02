@@ -1,0 +1,112 @@
+<app-action-button-form [showBack]="true" [showReject]="false" [showSubmit]="false"  [showNew]="false" [showCalculator]="false" [showSearch]="false"  (onBack)="backPage()" [showEdit]="false" [showPrint]="false" [showSave]="false" [showCancel]="false"  [title]="'Blacklist Inquiry'"></app-action-button-form>
+
+<div>
+  <div class="col-md-12 " id="p1" style="padding: 10px">
+    <div  style="margin: 0; width: 100%">
+      <div class="portlet grey-cascade box">
+
+        <p-dataTable scrollable="true" [loading]="loading" (onLazyLoad)="loadBLInquiry($event)"  loadingIcon="fa-spinner" [value]="blinquiry" [lazy]="true" [rows]="10" [paginator]="true"
+                     [totalRecords]="totalRecords_BlInquiry" selectionMode="single" (onRowSelect)="onRowSelect($event)">
+          <p-header>Blacklist Inquiry</p-header>
+          <p-column [style]="{'width':'220px'}"  field="FIRST_NAME" header="ชื่อบุคคล/นิติบุคคล"></p-column>
+          <p-column [style]="{'width':'220px'}"  field="LAST_NAME" header="นามสกุล"></p-column>
+          <p-column [style]="{'width':'120px'}" field="AMLO" header="ปปง."></p-column>
+          <p-column [style]="{'width':'150px'}" field="ID_CARD" header="เลขที่บัตร"></p-column>
+          <p-column [style]="{'width':'120px'}" field="LAW_DATE" header="วันที่คดี"></p-column>
+          <p-column [style]="{'width':'120px','text-align':'right'}" field="LAW_AMOUNT" header="จำนวนเงิน">
+            <ng-template let-col let-row="rowData" pTemplate="body">
+              <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" field="LAW_SUIT" header="คดี"></p-column>
+          <p-column [style]="{'width':'120px'}" field="ACCUSER" header="โจทย์"></p-column>
+          <p-column [style]="{'width':'120px'}" field="ENG_NUM" header="เลขเครื่อง"></p-column>
+          <p-column [style]="{'width':'120px'}" field="CHASSIS" header="เลขถัง"></p-column>
+          <p-column [style]="{'width':'120px'}" field="BRAND" header="ยี่ห้อ"></p-column>
+          <p-column [style]="{'width':'120px'}" field="LICENCE" header="ทะเบียน"></p-column>
+
+        </p-dataTable>
+
+      </div>
+    </div>
+  </div>  <!-- <div class="col-md-12 " id="p1" style="padding: 10px">  -->
+  <!------------- END SHOW TABLE ---------------------------->
+  <br>
+  <div class="col-md-10 offset-1">
+  <label>หมายเหตุ : </label>
+  <textarea disabled class="form-control" id="exampleTextarea" rows="3">{{remark}}</textarea>
+  </div>
+  <br>
+  <!-- ----------- SHOW TABLE ----------------------------------------------- -->
+  <div>
+    <div class="col-md-12 " id="p1" style="padding: 10px">
+      <!--<div class="container" style="margin: 0; width: 100%">-->
+      <div class="portlet grey-cascade box">
+
+        <p-dataTable scrollable="true" [loading]="loading" (onLazyLoad)="loadExposure($event)" loadingIcon="fa-spinner" [value]="modelExposure" [lazy]="true" [rows]="10" [paginator]="true"
+                     [totalRecords]="totalRecords_Exposure" selectionMode="single" scrollHeight="300px">
+          <p-header>ประวัติสัญญากับบริษัท</p-header>
+          <p-column [style]="{'width':'120px'}"  field="AS_OF_DATE" header="As Of"></p-column>
+          <p-column [style]="{'width':'120px'}"  field="AGR_CODE" header="เลขที่สัญญา"></p-column>
+          <p-column [style]="{'width':'120px'}" field="CUS_GUAR" header="ลูกค้า/ผู้ค้ำ"></p-column>
+          <p-column [style]="{'width':'120px'}" field="CLOSE_ACTIVE" header="Closing/Active"></p-column>
+          <p-column [style]="{'width':'120px','text-align':'right'}" field="OS_AR" header="ยอดลูกหนี้คงเหลือ">
+            <ng-template let-col let-row="rowData" pTemplate="body">
+              <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px','text-align':'right'}" field="OS_PRI" header="ยอดเงินต้นคงเหลือ">
+            <ng-template let-col let-row="rowData" pTemplate="body">
+              <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px','text-align':'right'}" field="PAST_DUE" header="ค่างวดค้างชำระ">
+            <ng-template let-col let-row="rowData" pTemplate="body">
+              <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px','text-align':'right'}" field="OVER_NO" header="งวดค้าง">
+            <ng-template let-col let-row="rowData" pTemplate="body">
+              <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+            </ng-template>
+          </p-column>
+          <p-column [style]="{'width':'120px'}" field="C_STATUS" header="สถานะลูกค้า"></p-column>
+          <p-column [style]="{'width':'120px','text-align':'center'}" field="CREDIT_GRADING" header="Credit Grade"></p-column>
+          <p-column [style]="{'width':'120px'}" field="PAYMENT_GRADING" header="Payment Grade"></p-column>
+          <p-column [style]="{'width':'120px'}" field="REGISTRATION_NUMBER" header="เลขทะเบียน"></p-column>
+          <p-column [style]="{'width':'220px'}" field="MARKETING" header="Marketing"></p-column>
+          <p-column [style]="{'width':'220px'}" field="VERIFIER" header="Verifier"></p-column>
+          <p-column [style]="{'width':'220px'}" field="CUSTOMER_SERVICE" header="Customer Service"></p-column>
+
+        </p-dataTable>
+
+      </div>
+      <!--</div>-->
+    </div>  <!-- <div class="col-md-12 " id="p1" style="padding: 10px">  -->
+    <!-------------ํ END SHOW TABLE ---------------------------->
+
+  </div>
+
+  <!-- ----------- SHOW TABLE ----------------------------------------------- -->
+  <div>
+    <div class="col-md-12 " id="p1" style="padding: 10px">
+      <!--<div class="container" style="margin: 0; width: 100%">-->
+      <div class="portlet grey-cascade box">
+
+        <p-dataTable scrollable="true" [loading]="loading" (onLazyLoad)="loadBLHistory($event)" loadingIcon="fa-spinner" [value]="BLHistory" [lazy]="true" [rows]="10" [paginator]="true"
+                     [totalRecords]="totalRecords" selectionMode="single"  >
+          <p-header>ประวัติการตรวจสอบ</p-header>
+          <p-column [style]="{'width':'220px'}"  field="FIRST_NAME" header="ชื่อ"></p-column>
+          <p-column [style]="{'width':'220px'}"  field="LAST_NAME" header="นามสกุล/บริษัท"></p-column>
+          <p-column [style]="{'width':'120px'}" field="CHECK_DATE" header="วันที่เช็คข้อมูล"></p-column>
+          <p-column [style]="{'width':'120px'}" field="CHECK_BY" header="เช็คข้อมูลโดย"></p-column>
+
+        </p-dataTable>
+
+      </div>
+      <!--</div>-->
+    </div>  <!-- <div class="col-md-12 " id="p1" style="padding: 10px">  -->
+    <!------------- END SHOW TABLE ---------------------------->
+
+  </div>
+</div>

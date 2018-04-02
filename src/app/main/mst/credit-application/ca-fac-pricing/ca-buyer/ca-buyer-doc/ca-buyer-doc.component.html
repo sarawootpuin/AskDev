@@ -1,0 +1,88 @@
+<div class="border-isa p-2">
+  <div class="row">
+    <div class="flex-md-column col-md-7">
+      <div class="form-group mb-1">
+        <input type="radio" name="bt" value="Factored"> Factored &nbsp;
+        <input type="radio" name="bt" value="Collection"> Collection &nbsp;
+        <input type="radio" name="bt" value="All"> All &nbsp;
+      </div>
+      <div class="form-group mb-1">
+        <label style="color:gray"> click column title select all If any (Must = /)</label>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <p-dataTable   [value]="listBuyerDoc"
+                         selectionMode="single" [(selection)]="selectBuyerDoc"
+                         [scrollable]="true"
+                         scrollHeight="400px"  scrollWidth="400px"
+                         [responsive]="true" >
+            <p-headerColumnGroup>
+              <p-row>
+                <p-column header="Select" colspan="3"  [style]="{'width':'180px'}"></p-column>
+                <p-column header="If Any" rowspan="2"  [style]="{'width':'50px'}"></p-column>
+                <p-column header="Description" rowspan="10" [style]="{'width':'250px'}" ></p-column>
+                <p-column header="Remark" rowspan="10" [style]="{'width':'250px'}" ></p-column>
+              </p-row>
+              <p-row>
+                <p-column header="Original" [style]="{'width':'60px'}"></p-column>
+                <p-column header="Photo"    [style]="{'width':'60px'}"></p-column>
+                <p-column header="Copy"     [style]="{'width':'60px'}"></p-column>
+              </p-row>
+            </p-headerColumnGroup>
+            <p-column field="select_o"   [editable]="true"   [style]="{'width':'60px','text-align': 'center'}">
+              <ng-template let-col let-doc="rowData" pTemplate="body">
+                <input type="checkbox"
+                       [checked]="doc[col.field] == 'Y'"      (change)="doc[col.field] = onClickCheck($event)"
+                >
+              </ng-template>
+            </p-column>
+            <p-column field="select_p"   [editable]="true"    [style]="{'width':'60px','text-align': 'center'}">
+              <ng-template let-col let-doc="rowData" pTemplate="body">
+                <input type="checkbox"
+                       [checked]="doc[col.field] == 'Y'"      (change)="doc[col.field] = onClickCheck($event)"
+                >
+              </ng-template>
+            </p-column>
+            <p-column field="select_c"    [editable]="true"    [style]="{'width':'60px','text-align': 'center'}">
+              <ng-template let-col let-doc="rowData" pTemplate="body">
+                <input type="checkbox"
+                       [checked]="doc[col.field] == 'Y'"  (change)="doc[col.field] = onClickCheck($event)"
+                >
+              </ng-template>
+            </p-column>
+            <p-column field="factored_ifany" [editable]="true" [style]="{'width':'50px','text-align': 'center'}">
+              <ng-template let-col let-doc="rowData" pTemplate="body">
+                <input type="checkbox"
+                       [checked]="doc[col.field] == 'Y'"     (change)="doc[col.field] = onClickCheck($event)"
+                >
+              </ng-template>
+            </p-column>
+            <p-column field="remark_cat" [style]="{'width':'250px'}" ></p-column>
+            <p-column field="remark" [editable]="true"  [style]="{'width':'250px'}"></p-column>
+            <p-footer>
+            </p-footer>
+          </p-dataTable>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex col-md-5">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label><b>Other 1</b><br></label>
+          <input class="form-control" [(ngModel)]="selectBuyerDoc.oth1" >
+        </div>
+        <div class="form-group">
+          <label><b>Other 2</b><br></label>
+          <input class="form-control" [(ngModel)]="selectBuyerDoc.oth2">
+        </div>
+        <div class="form-group">
+          <label><b>Other 3</b><br></label>
+          <input class="form-control" [(ngModel)]="selectBuyerDoc.oth3">
+        </div>
+        <div class="form-group">
+          <label style="color:gray"> *Edit and Double click For update data</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,253 @@
+<div class="container-fluid my-4">
+  <div class="row">
+    <div class="col-md-3 form-group">
+      <label class="text-danger">ประเภทบัตร</label>
+      <select class="form-control" #inputCardType>
+        <option></option>
+        <option *ngFor="let ct of cardType"
+                [value]="ct.id"
+                [selected]="entityModel?.cardType==ct.id">
+          {{ct.display}}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label>สถานที่ออกบัตร</label>
+      <input type="text" class="form-control" #inputCardBy
+             [value]="entityModel?.cardBy">
+    </div>
+    <div class="col-md-2 form-group">
+      <label>อายุ</label>
+      <input appMyCurrency [fraction]="0" pKeyFilter="pnum"
+             class="form-control" #inputAges
+             [value]="entityModel?.ages">
+    </div>
+    <div class="col-md-2 form-group">
+      <label>น้ำหนัก(กก.)</label>
+      <input appMyCurrency [fraction]="2" pKeyFilter="pnum"
+             class="form-control" #inputWeight
+             [value]="entityModel?.weight">
+    </div>
+    <div class="col-md-2 form-group">
+      <label>ส่วนสูง(ซ.ม.)</label>
+      <input appMyCurrency [fraction]="2"pKeyFilter="pnum" class="form-control" #inputHeight
+             [value]="entityModel?.high">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 form-group">
+      <label>วันที่ออกบัตร</label>
+      <div class="form-control" style="padding: 0px;border: none">
+        <p-calendar dateFormat="dd/mm/yy"
+                    [(ngModel)]="cardIssueDate" showButtonBar="false"></p-calendar>
+      </div>
+    </div>
+    <div class="col-md-3 form-group">
+      <label>วันหมดอายุ</label>
+      <div class="form-control" style="padding: 0px;border: none">
+        <p-calendar dateFormat="dd/mm/yy"
+                    [(ngModel)]="cardExpireDate" showButtonBar="true"></p-calendar>
+      </div>
+    </div>
+    <div class="col-md-3 form-group">
+      <label>สัญชาติ</label>
+      <select class="form-control" #inputNationality>
+        <option></option>
+        <option *ngFor="let n of nationality"
+                [value]="n.id"
+                [selected]="entityModel?.nationalityCode==n.id">
+          {{n.display}}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-2 form-group">
+      <label>เพศ</label>
+      <select class="form-control" #inputSex>
+        <option></option>
+        <option *ngFor="let s of sex"
+                [value]="s.id"
+                [selected]="entityModel?.sex==s.id">
+          {{s.display}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6  form-group">
+      <label class="text-danger">สัญชาติ</label><br>
+      <button class="btn btn-primary"
+              (click)="this.listNationality.push({'code':'','percent':''})">Add +
+      </button>
+      <table class="table table-info table-striped" style="padding-left: 15px;padding-right: 15px;">
+        <thead>
+        <th scope="col">#</th>
+        <th scope="col">สัญชาติ</th>
+        <th scope="col">Percent</th>
+        <th scope="col"></th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let nation of listNationality;let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td>
+            <select class="form-control" [(ngModel)]="nation.code">
+              <option></option>
+              <option *ngFor="let n of nationality"
+                      [value]="n.id">
+                {{n.display}}
+              </option>
+            </select>
+          </td>
+          <td>
+            <input type="text" class="form-control text-right"
+                   [(ngModel)]="nation.percent">
+          </td>
+          <td>
+            <button class="btn btn-danger"
+                    (click)="deleteNation(i)">X
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-5  form-group">
+      <label>Business</label>
+      <select class="form-control" #inputBusinessType>
+        <option></option>
+        <option *ngFor="let bt of businessType"
+                [value]="bt.id"
+                [selected]="entityModel?.busTy== bt.id"
+        >
+          {{bt.display}}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-5  form-group">
+      <label>Business Detail</label>
+      <select class="form-control" #inputBusinessDetail>
+        <option></option>
+        <option *ngFor="let bd of businessDetail"
+                [value]="bd.id"
+                [selected]="entityModel?.busDetail==bd.id">
+          {{bd.display}}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4  form-group">
+      <label>Contact To (Eng)</label>
+      <input type="text" class="form-control" #inputContactEng
+             [value]="entityModel?.contractEng">
+    </div>
+    <div class="col-md-4  form-group">
+      <label>Contact To (Th)</label>
+      <input type="text" class="form-control" #inputContactTh
+             [value]="entityModel?.contract">
+    </div>
+    <div class="col-md-3  form-group">
+      <label>รายละเอียด (Tel)</label>
+      <input type="text" class="form-control" #inputContactTel
+             [value]="entityModel?.contactTel">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2  form-group">
+      <label>สถานะสมรส</label>
+      <select class="form-control" #inputStatusM>
+        <option></option>
+        <option *ngFor="let ms of marriageStatus"
+                [value]="ms.id"
+                [selected]="entityModel?.statusM==ms.id">
+          {{ms.display}}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-4  form-group">
+      <label>ผู้มีอำนาจ(นิติบุคคล)TH</label>
+      <input type="text" class="form-control" #inputAuthorizeT
+             [value]="entityModel?.authorizeT">
+    </div>
+    <div class="col-md-4  form-group">
+      <label>Sign by ENG</label>
+      <input type="text" class="form-control" #inputAuthorizeE
+             [value]="entityModel?.authorizeE">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3  form-group">
+      <label>Group Code</label>
+      <select class="form-control" #inputGroupCode>
+        <option></option>
+        <option *ngFor="let cg of customerGroup"
+                [value]="cg.id"
+                [selected]="entityModel?.grpCode==cg.id">
+          {{cg.display}}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-4  form-group">
+      <label>Email</label>
+      <input type="text" class="form-control" #inputEmailAddress
+             [value]="entityModel?.emailAddress">
+    </div>
+    <div class="col-md-4  form-group">
+      <label>Website</label>
+      <input type="text" class="form-control" #inputWebsite
+             [value]="entityModel?.webSite">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3  form-group">
+      <label>Register Capital(MB)</label>
+      <input appMyCurrency
+             [fraction]="2"
+             pKeyFilter="pnum"
+             class="form-control" #inputRegisCapital
+             [value]="entityModel?.regisCapital">
+    </div>
+    <div class="col-md-3  form-group">
+      <label>Sales Ended Year </label>
+      <input type="text" class="form-control" #inputSalesYear
+             [value]="entityModel?.salesYear">
+    </div>
+    <div class="col-md-3  form-group">
+      <label>Sales Ended Amount(MB)</label>
+      <input appMyCurrency
+             [fraction]="2"
+             pKeyFilter="pnum"
+             class="form-control" #inputSalesAmt
+             [value]="entityModel?.salesAmt">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3  form-group">
+      <label>Paid Up Capital(MB)</label>
+      <input appMyCurrency
+             [fraction]="2"
+             pKeyFilter="pnum"
+             class="form-control" #inputPaidUpCapital
+             [value]="entityModel?.paidUpCapital">
+    </div>
+
+    <div class="col-md-3  form-group">
+      <label>Net Worth Ended Year </label>
+      <input type="text" class="form-control" #inputNetWorthYear
+             [value]="entityModel?.netWorthYear">
+    </div>
+    <div class="col-md-3  form-group">
+      <label>Net Worth Ended Amount(MB)</label>
+      <input appMyCurrency
+             [fraction]="2"
+             pKeyFilter="pnum"
+             class="form-control" #inputNetWorthAmt
+             [value]="entityModel?.netWorthAmt">
+    </div>
+  </div>
+</div>

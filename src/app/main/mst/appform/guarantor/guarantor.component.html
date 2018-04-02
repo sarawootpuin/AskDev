@@ -1,0 +1,10 @@
+<fieldset [disabled]="disabled == 'N'">
+  <div class="d-flex">
+    <div class="col-md-3 ">
+      <app-guarantor-list (clickList)="setDataSelect($event)"></app-guarantor-list>
+    </div>
+    <div class="col-md-9 card border-isa">
+      <app-guarantor-detail [data]="dataSelect"></app-guarantor-detail>
+    </div>
+  </div>
+</fieldset>

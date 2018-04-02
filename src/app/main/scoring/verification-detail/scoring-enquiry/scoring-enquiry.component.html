@@ -1,0 +1,57 @@
+<app-alert-dialog #dialogWarning></app-alert-dialog>
+
+<app-action-button-form
+  [title]="'Scoring Enquiry'"
+></app-action-button-form>
+
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>Company</label>
+        <select class="form-control"
+                (change)="onChangeCompany($event.target.value)">
+          <option *ngFor="let list of listCompany; let i = index"
+                  [value]="i"
+                  [selected]="this.com_code === list.com_code">{{list?.com_sub_name}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Global Filter</label><i class="fa fa-search" style="padding-left: 2px"></i>
+        <input type="text" #gb class="form-control">
+        <!--<input #gb type="text" pInputText size="50" placeholder="Global Filter">-->
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="text-center">
+    <app-action-lock-screen [spinner]="true" [showCancel]="false"></app-action-lock-screen>
+  </div>
+
+  <p-dataTable [value]="listScoringEnquiry" [rows]="7" [paginator]="true"
+               [responsive]="true"
+               (onRowDblclick)="onDbClickRowTable($event)"
+               scrollable="true" scrollHeight="300px"
+               [globalFilter]="gb" #dt>
+    <p-header>รายการค้นหา</p-header>
+    <!--<p-column field="source" header="Decision"></p-column>-->
+    <p-column field="run_no" header="ลำดับ" [style]="{'width':'7%'}"></p-column>
+    <p-column field="ref_no" header="เลขที่อ้างอิง" [style]="{'width':'10%'}"></p-column>
+    <p-column field="ent_typ" header="ประเภท" [style]="{'width':'7%'}"></p-column>
+    <p-column field="ent_nme" header="ชื่อ-นามสกุล" [style]="{'width':'15%'}"></p-column>
+    <p-column field="ver_emp_no" header="เจ้าหน้าที่ตรวจสอบ" [style]="{'width':'8%'}"></p-column>
+    <p-column field="ent_cd" header="รหัส" [style]="{'width':'5%'}"></p-column>
+    <p-column field="stg" header="สถานะปัจจุบัน" [style]="{'width':'8%'}"></p-column>
+    <p-column field="scr_date" header="วันที่ทำรายการ" [style]="{'width':'8%'}"></p-column>
+    <p-column field="ver_opn" header="ผลตรวจสอบ" [style]="{'width':'5%'}"></p-column>
+    <p-column field="indv_jrstc" header="บุคคล/นิติบุคคล" [style]="{'width':'7%'}"></p-column>
+    <p-column field="cancel_flg" header="สถานะยกเลิก" [style]="{'width':'5%'}"></p-column>
+    <p-column field="mkt_snd_dt" header="วันที MKT ส่งงาน" [style]="{'width':'10%'}"></p-column>
+  </p-dataTable>
+</div>

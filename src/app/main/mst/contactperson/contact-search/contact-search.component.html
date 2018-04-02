@@ -1,0 +1,38 @@
+<div class="detail-container border-isa ">
+  <div class="row">
+    <div class="col-md-12">
+      <form>
+        <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+          <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+          <div class="form-inline " >
+            <input #gb type="text" class="form-control w-50 mr-2 "  (input)="search_input = gb.value" >
+            <app-custom-botton-icon [option]="'search'"  (onBtnClick)="searchContact()"  ></app-custom-botton-icon>
+            <label> &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;    </label>
+            <app-custom-button [option]="'new'"  (onBtnClick)="openTab2('add')"  ></app-custom-button>
+            <app-custom-button [option]="'edit'" (onBtnClick)="openTab2('edit')"   *ngIf="selectContact"     ></app-custom-button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+  </div>
+  <div>
+    <p-dataTable [value]="contacrList"a
+                 scrollable="true" scrollHeight="380px"
+                 selectionMode="single"
+                 (onRowSelect)="onRowSelect(selectContact)"
+                 [(selection)]="selectContact"
+                 [globalFilter]="gb" #dt
+    >
+      <!--<p-header>-->
+         <!--<app-custom-botton-icon [option]="'new'" ></app-custom-botton-icon>-->
+         <!--<app-custom-botton-icon [option]="'edit'"></app-custom-botton-icon>-->
+      <!--</p-header>-->
+
+      <p-column field="cont_person_code" header="Code" [style]="{'width':'100px' }"  ></p-column>
+      <p-column field="name_th" header="Thai Name"   ></p-column>
+      <p-column field="name_en" header="English Name" ></p-column>
+    </p-dataTable>
+  </div>
+</div>

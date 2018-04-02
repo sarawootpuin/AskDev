@@ -1,0 +1,13 @@
+<app-action-dialog #dialogcontactperson
+                   [showChoose]="btnchoose"  [showCancel]="true"
+                   (onChoose)="chooseContact()" [width]="800" >
+  <p-tabView  [activeIndex]="openTabNo"  (onChange)="changeTab($event.index)"  >
+    <p-tabPanel header="Contact Search" >
+      <app-contact-search></app-contact-search>
+    </p-tabPanel>
+    <p-tabPanel header="Contract Add/Edit"  [disabled]="closeTab2" >
+      <app-contact-add></app-contact-add>
+    </p-tabPanel>
+  </p-tabView>
+</app-action-dialog>
+

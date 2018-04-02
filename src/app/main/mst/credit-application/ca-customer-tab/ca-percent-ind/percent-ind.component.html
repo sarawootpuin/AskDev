@@ -1,0 +1,59 @@
+<div class="form-group">
+  <p-dataTable [value]="listIndus"
+                selectionMode="single" [(selection)]="selectIndus"
+                rows="15"
+               [responsive]="true">
+    <p-header>
+      <app-custom-botton-icon [option]="'new'"    (onBtnClick)="pcntAddorEdit('Add')"  ></app-custom-botton-icon>
+      <app-custom-botton-icon [option]="'edit'"   (onBtnClick)="pcntAddorEdit('Edit')" ></app-custom-botton-icon>
+      <app-custom-botton-icon [option]="'delete'" (onBtnClick)="deletePCNT()"          ></app-custom-botton-icon>
+    </p-header>
+    <p-column field="old_ind_desc" header="Old Industry"></p-column>
+    <p-column field="new_ind_desc" header="New Industry"></p-column>
+    <p-column field="ind_pcnt" header="Percent (%)"></p-column>
+    <p-column field="rmrk" header="Remark"></p-column>
+    <p-footer>
+    </p-footer>
+
+  </p-dataTable>
+</div>
+
+
+<app-action-dialog   #actiondialog
+                     [showCancel]="true"
+                     [showAdd]="true"  (onAdd)="OkPcnt()"  (onOk)="OkPcnt()" >
+  <label *ngIf="!selectIndus"> {{pcntAction}} Industry </label>
+  <div *ngIf="selectIndus">
+    <div class="form-group">
+      <label>New Industry</label>
+      <select #NEWINDUSTRY class="form-control"
+              (change)="selectMultiIndustry('New',NEWINDUSTRY.value)">
+        <option></option>
+        <option *ngFor="let ansNEW of listINE"
+                [selected]="ansNEW?.id_code == tempmySelectPCNT?.new_ind_code"
+                [value]="ansNEW.id_code">{{ansNEW?.remark}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Old Industry</label>
+      <select #OLDINDUSTRY class="form-control"
+              (change)="selectMultiIndustry('Old',OLDINDUSTRY.value)">
+        <option></option>
+        <option *ngFor="let ansOLD of listIND"
+                [selected]="ansOLD?.id_code == tempmySelectPCNT?.old_ind_code"
+                [value]="ansOLD?.id_code">{{ansOLD?.remark}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Percent(%)</label>
+      <input class="form-control" [(ngModel)]="tempmySelectPCNT.ind_pcnt">
+    </div>
+    <div class="form-group">
+      <label>Remark</label>
+      <input class="form-control" [(ngModel)]="tempmySelectPCNT.rmrk">
+    </div>
+  </div>
+
+</app-action-dialog>

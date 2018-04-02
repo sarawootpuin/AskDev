@@ -1,0 +1,21 @@
+<app-alert-dialog  #deleteDialog
+                   (onOK)="this.deleteCollateral()">
+</app-alert-dialog>
+
+<div class="row">
+  <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+    <p-dataTable [value]="data" [loading]="loading" selectionMode="single" [(selection)]="selectedData"
+                 (onRowSelect)="selectList($event.data)"
+                 [immutable]="false"
+                 [responsive]="true">
+      <p-header>
+        <div class="text-left">
+          <app-custom-botton-icon [option]="'new'" (onBtnClick)="addCollateral()"></app-custom-botton-icon>
+          <app-custom-botton-icon [option]="'delete'" (onBtnClick)="deleteWarning()"></app-custom-botton-icon>
+        </div>
+      </p-header>
+      <p-column field="seq_no" header="No." [style]="{'width':'75px'}"></p-column>
+      <p-column field="clt_type_desc" header="Collateral Type"></p-column>
+    </p-dataTable>
+  </div>
+</div>

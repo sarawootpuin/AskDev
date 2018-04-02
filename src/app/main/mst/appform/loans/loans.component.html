@@ -1,0 +1,264 @@
+<app-action-lock-screen *ngIf="checkLoader"
+                        [spinner]="true"
+                        [showCancel]="true"
+                        (onCancel)="checkLoader = false"
+                        #lockScreen></app-action-lock-screen>
+
+<app-alert-dialog [mode_single]="0"
+                  #calIrrLoanWarning></app-alert-dialog>
+
+<app-action-dialog #actionDialog
+                   [showCancel]="true"
+                   [showAdd]="true"
+                   (onAdd)="addClick()">
+  <div class="form-group">
+    <label>From Term</label>
+    <input class="form-control" [(ngModel)]="step.from_term">
+  </div>
+  <div class="form-group">
+    <label>To Term</label>
+    <input class="form-control" [(ngModel)]="step.to_term">
+  </div>
+  <div class="form-group">
+    <label>Installment</label>
+    <input class="form-control" [(ngModel)]="step.inst_e_vat" appMyCurrency>
+  </div>
+</app-action-dialog>
+
+<fieldset [disabled]="disabled == 'N'">
+  <div class="border-isa mt-1 form-group col-md-12 p-3">
+    <label><b>Direct Loan</b></label><br>
+    <div>
+      <div class="row">
+        <div class="col-md-3 form-group">
+          <label>Requested Credit Line :</label>
+          <span class="star">*</span>
+          <div class="form-inline">
+            <input appMyCurrency
+                   class="form-control"
+                   [fraction]="2"
+                   pKeyFilter="pnum"
+                   (change)="data.fin_amt_e_vat = $event.target.value"
+                   [value]="data.fin_amt_e_vat" >
+            <!--<input currencyMask
+                   class="form-control"
+                   [(ngModel)]="data.fin_amt_e_vat"
+                   [options]="{prefix: ''}">-->
+            <div class="col-md-1" style="margin-left: 10px;">
+              <label> Baht. </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 form-group">
+          <label>Estimated Disburse Date</label>
+          <span class="star">*</span>
+            <p-calendar [ngModel]="data.disburse_dt"
+                        (ngModelChange)="disburseChange($event);
+                                       data.first = firstChange($event)"
+                        dateFormat="dd/mm/yy"></p-calendar>
+        </div>
+      </div>
+      <div class=" border-isa col-md-6">
+        <label class="p-0">Cal IRR</label>
+        <div class="flex-row form-inline">
+          <div class="col-md-9">
+            <select class="form-control"
+                    [(ngModel)] = "data.calculateItem">
+              <option [value]="6">1.Calculate Installment: Know Interest,Fin,Term</option>
+              <option [value]="7">2.Calculate Interest: Know Installment,Fin,Term</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <button type="button" pButton style="float:left"
+                    (click)="calculateLoanClick()"
+                    label="Calculate"></button>
+          </div>
+        </div>
+      </div>
+      <div class="border-isa mt-1 form-group col-md-12 p-2">
+        <label><b>Interest Charge</b></label><br>
+        <div class="form-inline ml-3">
+          <label style="padding-right: 10px">Interest Rate</label>
+          <input appMyCurrency
+                 class="form-control"
+                 [fraction]="3"
+                 pKeyFilter="pnum"
+                 (change)="data.flat_rate = $event.target.value"
+                 [value]="data.flat_rate" >
+          <!-- <input currencyMask
+                 class="form-control"
+                 [(ngModel)]="data.flat_rate"
+                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+          <label style="padding-left: 10px;">% ({{data.gross_irr}} %)</label>
+        </div>
+      </div>
+    </div>
+    <div class="border-isa">
+      <div class="row col-md-12">
+        <div class="col-md-3">
+          <label>Front-end Fee</label>
+          <div class="form-group">
+            <input appMyCurrency
+                   class="form-control"
+                   [fraction]="2"
+                   pKeyFilter="pnum"
+                   (change)="data.es_revenue = $event.target.value"
+                   [value]="data.es_revenue" >
+            <!--<input currencyMask
+                   class="form-control"
+                   [(ngModel)]="data.es_expense"
+                   [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label>Tenor</label>
+          <span class="star">*</span>
+          <div class="form-group">
+            <input appMyCurrency
+                   class="form-control"
+                   [fraction]="0"
+                   pKeyFilter="pnum"
+                   (change)="data.terms = $event.target.value"
+                   [value]="data.terms" >
+            <!--<input currencyMask
+                   class="form-control"
+                   [(ngModel)]="data.terms"
+                   [options]="{ prefix: '', thousands: ',', decimal: '.', precision : '0' }"/-->
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex">
+        <div class="col-md-12">
+          <label>Net IRR</label>
+          <span class="star">*</span>
+          <div class="form-group form-inline">
+            <input appMyCurrency
+                   class="form-control input-small"
+                   [fraction]="5"
+                   readonly
+                   pKeyFilter="pnum"
+                   (change)="data.net_irr = $event.target.value"
+                   [value]="data.net_irr" >
+            <!--<input inputFormatNumber
+                   [decimalPlace]="5"
+                   [(ngModel)]="data.net_irr"
+                   name="net_irr"
+                   class="form-control input-small">-->
+            <label class="pl-1 pr-1">Inc. front end fee</label>
+            <div class="form-inline">
+              <input appMyCurrency
+                     class="form-control input-small"
+                     [fraction]="5"
+                     name="net_irr_inc_deposit"
+                     readonly
+                     pKeyFilter="pnum"
+                     (change)="data.net_irr_inc_deposit = $event.target.value"
+                     [value]="data.net_irr_inc_deposit" >
+              <!--<input inputFormatNumber
+                     [decimalPlace]="5"
+                     [(ngModel)]="data.net_irr_inc_deposit"
+                     name="net_irr_inc_deposit"
+                     readonly
+                     class="form-control input-small">-->
+              <label style="padding-left: 10px">Inc. (front end fee+deposit)</label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="panel panel-default border-isa mt-1">
+      <div class="form-inline mb-2 ml-2">
+        <label class="mt-radio" style="padding: 5px">
+          <input type="radio" name="schedule_loan" value="R"
+                 [(ngModel)]="data.schedule"
+                 (ngModelChange)="scheduleChange()"> Straight
+          <input type="radio" name="schedule_loan" value="I"
+                 [(ngModel)]="data.schedule"
+                 (ngModelChange)="scheduleChange()">Step
+        </label>
+        <label style="padding-left: 20px;padding-right: 10px">Installment</label>
+        <input appMyCurrency
+               #insEVatLoan
+               [disabled]="data.schedule == 'I'"
+               class="form-control"
+               [fraction]="2"
+               pKeyFilter="pnum"
+               (change)="data.installment_e_vat = $event.target.value"
+               [value]="data.installment_e_vat" >
+        <!--<input currencyMask
+               #insEVatLoan
+               [disabled]="data.schedule == 'I'"
+               class="form-control"
+               [(ngModel)]="data.installment_e_vat"
+               [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+        <label style="padding-left: 10px;padding-right: 10px">Advance / Rear </label>
+        <input type="text" class="form-control" style="width: 35%;"
+               [(ngModel)]="data.adv_arr_name" disabled><br>
+      </div>
+
+      <p-dataTable [value]="data.listStep" selectionMode="single" [(selection)]="selected"
+                   rows="15" [responsive]="true"
+                   (onRowSelect)="onRowSelect($event)"
+                   *ngIf="data.schedule == 'I'" [responsive]="true">
+        <p-header>
+          <app-custom-botton-icon [option]="'new'"
+                                  (onBtnClick)="addEditStep('add')"></app-custom-botton-icon>
+          <app-custom-botton-icon [option]="'edit'"
+                                  (onBtnClick)="addEditStep('edit')"></app-custom-botton-icon>
+          <app-custom-botton-icon [option]="'delete'"
+                                  (onBtnClick)="delete()"></app-custom-botton-icon>
+        </p-header>
+        <p-headerColumnGroup>
+          <p-row>
+            <p-column header="From Term" rowspan="2"></p-column>
+            <p-column header="To Term" rowspan="2"></p-column>
+            <p-column header="Installment" rowspan="2"></p-column>
+          </p-row>
+        </p-headerColumnGroup>
+        <p-column field="from_term" [style]="{'text-align':'right'}">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] |  number:'.'  }}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="to_term" [style]="{'text-align':'right'}">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] |  number:'.'  }}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="inst_e_vat" [style]="{'text-align':'right'}">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+  </div>
+</fieldset>
+
+<p-dialog header="Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+  <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="step">
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="from_term">Form Term</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="from_term" [(ngModel)]="step.from_term" pKeyFilter="pnum"></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="to_term">To Term</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="to_term" [(ngModel)]="step.to_term" pKeyFilter="pnum"></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="inst_e_vat">Installment</label></div>
+      <div class="ui-grid-col-8">
+        <input pInputText id="inst_e_vat" [(ngModel)]="step.inst_e_vat" appMyCurrency pKeyFilter="pnum"></div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
+      <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+    </div>
+  </p-footer>
+</p-dialog>
+
+

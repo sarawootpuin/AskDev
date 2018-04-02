@@ -1,0 +1,43 @@
+<app-action-button-form title="Sale Call" (onSave)="questionAction('SAVE')"  (onSubmit)="questionAction('SUBMIT')"
+                        [showSave]="btnFormSave"  [showSubmit]="btnFormSubmit"
+                        ></app-action-button-form>
+<div class="card m-1">
+  <div class="card-header p-1">
+    <p-panel header="Information" [toggleable]="true" >
+    <app-call-visit-head></app-call-visit-head>
+    </p-panel>
+  </div>
+  <div class="card-body p-1">
+
+
+
+    <app-side-tab  [defaultMenuName]="'Information Detail'">
+      <app-side-tab-panel>
+        <app-side-tab-level [nameMenu]="'Information Detail'"  ></app-side-tab-level>
+        <app-side-tab-level [nameMenu]="'Call Detail & History'"   ></app-side-tab-level>
+      </app-side-tab-panel>
+
+
+      <app-side-tab-main>
+        <app-side-tab-content [nameContent]="'Information Detail'"   >
+          <app-call-visit-information></app-call-visit-information>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Call Detail & History'">
+          <app-call-visit-detail></app-call-visit-detail>
+        </app-side-tab-content>
+      </app-side-tab-main>
+
+    </app-side-tab>
+
+
+  </div>
+
+  <!--------------------------------dialog alert ----------------------------->
+  <app-alert-dialog #dialogalert > </app-alert-dialog>
+  <app-alert-dialog #Questiondialog  (onOK)="actionOk()"   ></app-alert-dialog>
+
+  <app-alert-dialog  #submitdialog   (onOK)="backToHome()">
+  </app-alert-dialog>
+
+
+</div>

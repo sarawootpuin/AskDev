@@ -1,0 +1,166 @@
+<div class="container" style="border-style: solid; border-width: 1px; border-radius: 10px">
+  <fieldset [disabled]="componentReadOnly" >
+    <div class="row">
+
+      <div class="col-md-6">
+        <label>Travel By</label>
+        <div class="row">
+          <div class="col-md-8 form-group">
+            <div class="container" style="border-style: solid; border-width: 1px; border-radius: 10px; padding-top: 5px;
+                                          width: 100%">
+              <label class="mt-radio">
+                <input type="radio" name="optionsRadios"
+                       value="O"
+                       [ngModel]="mySaleCallVisitOutside?.travel_by"
+                       (ngModelChange)="mySaleCallVisitOutside.travel_by=$event"
+                >Own Car
+                <span></span>
+              </label>
+              <label class="mt-radio">
+                <input type="radio" name="optionsRadios"
+                       value="C"
+                       [ngModel]="mySaleCallVisitOutside?.travel_by"
+                       (ngModelChange)="mySaleCallVisitOutside.travel_by=$event"
+                > Company Car
+                <span></span>
+              </label>
+              <label class="mt-radio">
+                <input type="radio" name="optionsRadios"
+                       value="NE"
+                       [ngModel]="mySaleCallVisitOutside?.travel_by"
+                       (ngModelChange)="mySaleCallVisitOutside.travel_by=$event"
+                > No
+                Expense
+                <span></span>
+              </label>
+              <label class="mt-radio">
+                <input type="radio" name="optionsRadios"
+                       value="OTH"
+                       [ngModel]="mySaleCallVisitOutside?.travel_by"
+                       (ngModelChange)="mySaleCallVisitOutside.travel_by=$event"
+                >Other MKT
+                <span></span>
+              </label>
+            </div>
+          </div>
+          <div class="col-md-8 form-group" *ngIf="mySaleCallVisitOutside?.travel_by=='OTH'">
+            <label>MKT Name</label>
+            <select class="form-control"
+                    [ngModel]="mySaleCallVisitOutside?.travel_name"
+                    (ngModelChange)="mySaleCallVisitOutside.travel_name =$event;" >
+              <option [value]=""></option>
+              <option *ngFor="let ansOFFICER of ListMKT"
+                      [selected]="ansOFFICER?.id == mySaleCallVisitOutside?.travel_name"
+                      [value]="ansOFFICER?.id">{{ansOFFICER?.display}}
+              </option>
+            </select>
+
+          </div>
+          <div class="col-md-6 form-group">
+            <label>From Time</label>
+            <input type="time" class="form-control"
+                   [ngModel]="mySaleCallVisitOutside?.from_time"
+                   (ngModelChange)="mySaleCallVisitOutside.from_time=$event"
+                   placeholder="00:00">
+          </div>
+          <div class="col-md-6 form-group">
+            <label>To Time</label>
+            <input type="time" class="form-control"
+                   [ngModel]="mySaleCallVisitOutside?.to_time"
+                   (ngModelChange)="mySaleCallVisitOutside.to_time=$event"
+                   placeholder="00:00">
+          </div>
+          <div class="col-md-4 form-group">
+            <label>Mile Start</label>
+            <input type="text" class="form-control"
+                   appMyCurrency [fraction]="0"
+                   [value]="mySaleCallVisitOutside?.mile_start"
+                   (change)="mySaleCallVisitOutside.mile_start=$event.target.value"
+                   (blur)="calExpenseAmount()"
+                   >
+          </div>
+          <div class="col-md-4 form-group">
+            <label>Mile End</label>
+            <input type="text" class="form-control"
+                   appMyCurrency  [fraction]="0"
+                   [value]="mySaleCallVisitOutside?.mile_end"
+                   (change)="mySaleCallVisitOutside.mile_end=$event.target.value"
+                   (blur)="calExpenseAmount()"
+                   >
+          </div>
+          <div class="col-md-4 form-group">
+            <label>Mile Total</label>
+            <input type="number" class="form-control"
+                   appMyCurrency
+                   [value]="miletotal"
+                   disabled>
+          </div>
+          <div class="col-md-6 form-group">
+            <label>Amount/Km</label><br>
+            <input type="text" class="form-control" style="display: inline; width: 70%"
+                   appMyCurrency
+                   [value]="mySaleCallVisitOutside?.prce_per_km"
+                   disabled
+                   >
+            <label>Baht/Km.</label>
+          </div>
+          <div class="col-md-6 form-group">
+            <label>Total Amount</label>
+            <input type="text" class="form-control" style="display: inline; width: 80%"
+                   appMyCurrency
+                   [value]="mySaleCallVisitOutside?.withdraw_amt"
+                   disabled
+                   >
+            <label>Baht</label>
+          </div>
+
+          <div class="col-md-12 form-group">
+            <label>Joiner List</label>
+            <div class="form-control" >
+
+              <app-custom-botton-icon [option]="'new'"  (onBtnClick)="openDialogAttendees()" > </app-custom-botton-icon>
+              <app-custom-botton-icon [option]="'delete'"  (onBtnClick)="deleteJoiner()" > </app-custom-botton-icon>
+
+
+              <p-dataTable [value]="joinerList"
+                           scrollHeight="100px"
+                           [responsive]="true"
+                           selectionMode="single"
+                           [(selection)]="selectjoinerList" >
+                <p-column field="display" header="Name"></p-column>
+
+              </p-dataTable>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-------------------  Right   ------------------>
+      <div class="col-md-6 form-group" style="height: 450px">
+        <label>Address Description</label>
+        <textarea class="form-control" [(ngModel)]="mySaleCallVisitOutside.visit_detail"  style="height: 95%">
+          {{mySaleCallVisitOutside?.visit_detail}}
+        </textarea>
+      </div>
+      <!--<div class="col-md-6 form-group" style="height: 450px">-->
+        <!--<label>Address Description</label>-->
+        <!--<textarea class="form-control" [(ngModel)]="mySaleCallVisitOutside.visit_detail"  style="height: 10%">-->
+          <!--{{mySaleCallVisitOutside?.visit_detail}}-->
+        <!--</textarea>-->
+        <!--<agm-map [latitude]="lat" [longitude]="lng">-->
+          <!--<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>-->
+        <!--</agm-map>-->
+      <!--</div>-->
+
+    </div>
+  </fieldset>
+</div>
+
+
+<app-action-dialog  [title]="'Question ? '"  #listAttendee
+                    [showAdd]="true"  (onAdd)="okAddAttendees()"
+                    [showCancel]="true" >
+  <label> ยืนยันการดึงรายชื่อจาก Attendess </label>
+</app-action-dialog>

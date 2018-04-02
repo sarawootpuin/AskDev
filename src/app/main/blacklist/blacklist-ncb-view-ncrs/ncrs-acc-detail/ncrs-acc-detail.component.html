@@ -1,0 +1,78 @@
+<div class="card card-header">
+  <p-tabView>
+    <div *ngFor="let tab of modelNcbAccDetail;index as i">
+
+      <p-tabPanel header="Acc No. {{i+1}}">
+        <div class="card card-header">
+          <div class="row">
+            <div class="col-md-3">
+              <h5>ผู้ให้สินเชื่อ</h5>
+              <br>
+              <label><b>ผู้ให้สินเชื่อ&nbsp;:&nbsp;</b>{{tab.MEMBER_SHORT_NAME}}</label>
+              <br>
+              <label><b>ประเภทสถาบัน&nbsp;:&nbsp;</b>{{tab.MEMBER_CREDIT_TYPE}}</label>
+              <br>
+              <label><b>ข้อมูล ณ วันที่&nbsp;:&nbsp;</b>{{tab.AS_OF_DATE}}</label>
+            </div>
+
+            <div class="col-md-3">
+              <h5>บัญชี</h5>
+              <br>
+              <label><b>บัญชี&nbsp;:&nbsp;</b>{{tab.ACCOUNT_NUMBER}}</label>
+              <br>
+              <label><b>ประเภทสินเชื่อ&nbsp;:&nbsp;</b>{{tab.ACCOUNT_TYPE}}</label>
+              <br>
+              <label><b>วันที่เปิดบัญชี&nbsp;:&nbsp;</b>{{tab.DATE_ACCOUNT_OPENED}}</label>
+              <br>
+              <label><b>วันที่ปรับปรุงโครงสร้างหนี้&nbsp;:&nbsp;</b>{{tab.DATE_OF_LAST_DEBT_RESTRUCTURE}}</label>
+              <br>
+              <label><b>วันที่ปิดบัญชี&nbsp;:&nbsp;</b>{{tab.DATE_ACCOUNT_CLOSED}}</label>
+            </div>
+
+            <div class="col-md-3">
+              <h5>ข้อตกลง</h5>
+              <br>
+              <label><b>ประเภทของเครดิตการ์ด&nbsp;:&nbsp;</b>{{tab.TYPE_OF_CREDIT_CARD}}{{tab.CREDITCARD_TYPE_CODE}}</label>
+              <br>
+              <label><b>ลักษณะของบัญชี&nbsp;:&nbsp;</b>{{tab.OWNERSHIP_INDICATOR}}</label>
+              <br>
+              <label><b>ผู้กู้ร่วม&nbsp;:&nbsp;</b>{{tab.NUMBER_OF_COBORROWERS}}</label>
+              <br>
+              <label><b>วงเงิน&nbsp;:&nbsp;</b>{{tab.CURRENCY_CODE}}&nbsp;{{tab.CREDITLIMITORIGINALLOAN_AMOUNT| number:'.2-2'}}&nbsp;{{tab.CREDIT_TYPE_FLAG}}</label>
+              <br>
+              <label><b>ค่างวด&nbsp;:&nbsp;</b>{{tab.CURRENCY_CODE}}&nbsp;{{tab.INSTALLMENT_AMOUNT| number:'.2-2'}}&nbsp;{{tab.INSTALLMENT_FREQUENCY}}</label>
+              <br>
+              <label><b>จำนวนงวด&nbsp;:&nbsp;</b>{{tab.INSTALLMENT_NUMBER_OF_PAYMENTS}}</label>
+              <br>
+              <label><b>ยอดขั้นต่ำที่ต้องชำระ&nbsp;:&nbsp;</b>{{tab.PERCENT_PAYMENT}}</label>
+              <br>
+              <label><b>ยี่ห้อ&nbsp;:&nbsp;</b>{{tab.UNIT_MAKE}}</label>
+              <br>
+              <label><b>รุ่น&nbsp;:&nbsp;</b>{{tab.UNIT_MODEL}}</label>
+              <br>
+              <label><b>หลักประกัน</b></label>
+              <br>
+              <label><b>1.&nbsp;</b>{{tab.COLLATERAL_1}}</label>
+              <br>
+              <label><b>2.&nbsp;</b>{{tab.COLLATERAL_2}}</label>
+              <br>
+              <label><b>3.&nbsp;</b>{{tab.COLLATERAL_3}}</label>
+            </div>
+
+            <div class="col-md-3">
+              <h5>ยอดคงค้าง</h5>
+              <br>
+              <label><b>ยอดคงเหลือปัจจุบัน&nbsp;:&nbsp;</b>{{tab.CURRENCY_CODE}}&nbsp;{{tab.AMOUNT_OWED}}</label>
+              <br>
+              <label><b>เกินกำหนดชำระ&nbsp;:&nbsp;</b>{{tab.CURRENCY_CODE}}&nbsp;{{tab.AMOUNT_PAST_DUE}}</label>
+              <br>
+              <label><b>วันที่ชำระหนี้ครั้งล่าสุด&nbsp;:&nbsp;</b>{{tab.DATE_OF_LAST_PAYMENT}}</label>
+              <br>
+              <label><b>วันที่เริ่มต้นผิดนัดชำระ&nbsp;:&nbsp;</b>{{tab.DEFAULT_DATE}}</label>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+    </div>
+  </p-tabView>
+</div>

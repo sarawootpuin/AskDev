@@ -1,0 +1,251 @@
+<p-panel header="Customer Information">
+  <div class="main-container">
+    <div class="d-flex">
+      <div class="flex-md-column col-md-3 ">
+        <div class="form-group">
+          <label> Customer Code</label>
+          <input type="text" class="form-control" [(ngModel)] = "data.entCode" disabled>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-6 offset-md-3 ">
+        <div class="form-group">
+          <label> Company </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.comCode" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-3 ">
+        <div class="form-group">
+          <label> Intial (E) </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.titleEng" disabled>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-3 offset-md-3 ">
+        <div class="form-group">
+          <label> Intial (T) </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.titleThai" disabled>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-3">
+        <div class="form-group">
+          <label> Branch No. </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.branchNo" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label> Name (T) </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.fNameT" disabled>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label> Last Name (T) </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.lNameT" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label> Name (E)</label>
+          <input type="text" class="form-control" [(ngModel)] = "data.fNameE" disabled>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label> Last Name (E) </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.lNameE" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-3 ">
+        <div class="form-group">
+          <label>Birth Date / Register Date</label>
+          <input type="text" class="form-control" [(ngModel)] = "data.birthD" disabled>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-3 ">
+        <div class="form-group">
+          <label> Establishment Date</label>
+          <input type="text" class="form-control" [(ngModel)] = "data.establishDate" disabled>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-6">
+        <div class="form-group">
+          <label> Card No. </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.cardNo" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label> Card Type </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.cardTypeDesc" disabled>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label> Issue At </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.cardBy" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="flex-md-column col-md-6 ">
+        <!-- Nationality -->
+        <p-dataTable [value]="data.nationality" [responsive]="true">
+          <p-column field="nationFull" header=" Nation "></p-column>
+          <p-column field="percentage" header=" % "></p-column>
+          <p-footer>
+            <div class="ui-helper-clearfix" style="width:100%">
+            </div>
+          </p-footer>
+        </p-dataTable>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label> (Authorized Officer)Signed By THAI </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.authorizeByT" disabled>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label> (Authorized Officer)Signed By ENG </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.authorizeByE" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label> (Exposure Group) Group Code </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.grpName" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label> Business </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.busTyDesc" disabled>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label> Business Detail </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.busDetailDesc" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label> Business Descript </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.busDetail" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-3 ">
+        <div class="form-group">
+          <label> Register Capital </label>
+          <div class="form-inline">
+            <input currencyMask
+                   disabled
+                   class="form-control"
+                   [(ngModel)]="data.regisCapitalMb"
+                   [options]="{ prefix: '',suffix: '', thousands: ',', decimal: '.' }"/>
+            &nbsp;MB
+          </div>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-3">
+        <div class="form-group">
+          <label> Paid Up Capital </label>
+          <div class="form-inline">
+            <input currencyMask
+                   disabled
+                   class="form-control"
+                   [(ngModel)]="data.paidUpCapitalMb"
+                   [options]="{ prefix: '',suffix: '', thousands: ',', decimal: '.' }"/>
+            &nbsp;MB
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-3 ">
+        <div class="form-group">
+          <label> Sale ended : Year </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.saleYear" disabled>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-3 ">
+        <div class="form-group">
+          <label> &nbsp; </label>
+          <div class="form-inline">
+            - &nbsp;&nbsp;
+            <input currencyMask
+                   disabled
+                   class="form-control"
+                   [(ngModel)]="data.salesAmtMb"
+                   [options]="{ prefix: '',suffix: '', thousands: ',', decimal: '.' }"/>
+            &nbsp;MB
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-3 ">
+        <div class="form-group">
+          <label> Net Worth ended : Year </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.netWorthYear" disabled>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-3 ">
+        <div class="form-group">
+          <label> &nbsp; </label>
+          <div class="form-inline">
+            - &nbsp;&nbsp;
+            <input currencyMask
+                   disabled
+                   class="form-control"
+                   [(ngModel)]="data.netWorthAmtMb"
+                   [options]="{ prefix: '',suffix: '', thousands: ',', decimal: '.' }"/>
+            &nbsp;MB
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label> Contact Person (ENG) </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.contractEng" disabled>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label> Contact Person (Th) </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.contract" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label> Tel. </label>
+          <input type="text" class="form-control" [(ngModel)] = "data.tel" disabled>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-panel>

@@ -1,0 +1,31 @@
+<!--&lt;!&ndash;<div class="responsive" *ngFor="let img of modelNcbImage;let i = index">&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="gallery">&ndash;&gt;-->
+<!--&lt;!&ndash;<a target="_blank" href="{{img.URL}}">&ndash;&gt;-->
+<!--&lt;!&ndash;<img src="{{img.URL}}" alt="Forest" width="600" height="400">&ndash;&gt;-->
+<!--&lt;!&ndash;</a>&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="desc">{{img.docName}}</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+<!--<app-side-tab [defaultMenuName]="'1. '+modelNcbImage[0]?.docName">-->
+
+<!--<app-side-tab-panel [scrollable]="'true'">-->
+
+  <!--<app-side-tab-level *ngFor="let img of modelNcbImage;let i = index" [nameMenu]="i+1+'. '+img.docName">-->
+  <!--</app-side-tab-level>-->
+
+<!--</app-side-tab-panel>-->
+
+<!--<app-side-tab-main>-->
+  <!--<div *ngFor="let img of modelNcbImage;let i = index">-->
+    <!--<app-side-tab-content [nameContent]="i+1+'. '+img.docName">-->
+      <!--<input type="button" value="click me" (click)="rotate()"><br>-->
+      <!--<img id="imageNcb" src="{{img.URL}}" class="img-fluid north">-->
+    <!--</app-side-tab-content>-->
+  <!--</div>-->
+<!--</app-side-tab-main>-->
+
+<!--</app-side-tab>-->
+
+<app-action-show-image-gallery #actionShowImageGalleryComponent [modelImage]="modelImage"></app-action-show-image-gallery>

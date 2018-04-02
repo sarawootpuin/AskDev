@@ -1,0 +1,108 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>Contact Code</label>
+        <input class="form-control" [(ngModel)]="conTact.cont_person_code"  disabled >
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="form-control invisible" >
+        <button  >Customer Detail</button>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <label> &nbsp; </label>
+      <app-custom-button [option]="'save'"   (onBtnClick)="onSave()"   ></app-custom-button>
+    </div>
+    <div class="col-md-2">
+      <label> &nbsp; </label>
+      <app-custom-button [option]="'cancel'"  (onBtnClick)="onCancel()"  ></app-custom-button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 form-group">
+      <label>Intial(Thai)</label>
+      <select class="form-control"
+              [ngModel]="conTact?.title_th"
+              (ngModelChange)="conTact.title_th=$event;mapIntial('T') ">
+        <option></option>
+        <option *ngFor="let ansFNMT of ListFNMT"
+                [selected]="ansFNMT?.id == conTact?.title_th "
+                [value]="ansFNMT?.id">{{ansFNMT?.display}}
+      </select>
+    </div>
+    <div class="col-md-6 form-group">
+      <label>Name(Thai)</label>
+      <input class="form-control"  [(ngModel)]="conTact.name_th" >
+    </div>
+    <div class="col-md-3 form-group">
+      <label>Position</label>
+      <input class="form-control"  [(ngModel)]="conTact.position" >
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 form-group">
+      <label>Intial(Eng)</label>
+      <select class="form-control"
+              [ngModel]="conTact?.title_en"
+              (ngModelChange)="conTact.title_en=$event;mapIntial('E') ">
+        <option></option>
+        <option *ngFor="let ansFNME of ListFNME"
+                [selected]="ansFNME?.id == conTact?.title_en "
+                [value]="ansFNME?.id">{{ansFNME?.display}}
+      </select>
+    </div>
+    <div class="col-md-6 form-group">
+      <label>Name(Eng)</label>
+      <input class="form-control"  [(ngModel)]="conTact.name_en" >
+    </div>
+    <div class="col-md-3 form-group">
+      <label>Department</label>
+      <input class="form-control"  [(ngModel)]="conTact.department" >
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 form-group">
+      <label>Address</label>
+      <input class="form-control"  [(ngModel)]="conTact.address"  >
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-5 form-group">
+      <label>Phone</label>
+      <input class="form-control"  [(ngModel)]="conTact.phone"  >
+    </div>
+    <div class="col-md-2 form-group">
+      <label>Ext</label>
+      <input class="form-control"  [(ngModel)]="conTact.phone_ext"  >
+    </div>
+    <div class="col-md-5 form-group">
+      <label>Fax</label>
+      <input class="form-control"  [(ngModel)]="conTact.fax"  >
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 form-group">
+      <label>Mobile</label>
+      <input class="form-control"  [(ngModel)]="conTact.mobile"  >
+    </div>
+    <div class="col-md-6 form-group">
+      <label>Email</label>
+      <input class="form-control"  [(ngModel)]="conTact.email"  >
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 form-group">
+      <label>Academic And Working History</label>
+      <input class="form-control"  [(ngModel)]="conTact.working_his1"  >
+      <input class="form-control"  [(ngModel)]="conTact.working_his2"  >
+    </div>
+
+  </div>
+
+</div>

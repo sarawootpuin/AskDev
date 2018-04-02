@@ -1,0 +1,20 @@
+<div id="lockscreen">
+  <div *ngIf="spinner" class="center-all">
+  </div>
+  <div *ngIf="progressbar" id="progressbar">
+  </div>
+  <i *ngIf="spinner" class="fa fa-spinner fa-spin fa-5x fa-fw fa-align-center"></i>
+  <span *ngIf="spinner" class="sr-only">Loading...</span>
+  <app-custom-progress-bar *ngIf="progressbar"></app-custom-progress-bar>
+  <br>
+  <br>
+
+  <div *ngIf="progressbar" style="padding-top: 10%">
+  </div>
+
+  <button type="button" class="btn btn-cancel"  *ngIf="showCancel"
+          (click)="onCancelClick()">
+    <i class="fa fa-close"></i> Cancel
+  </button>
+</div>
+

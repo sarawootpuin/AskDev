@@ -1,0 +1,14 @@
+<fieldset [disabled]="disabled == 'N'">
+  <div class="d-flex">
+    <div class="col-md-3">
+      <app-collateral-list (clickList)="setDataSelect($event)"></app-collateral-list>
+    </div>
+    <div class="card col-md-9 border-isa">
+      <fieldset [disabled]="data.length == 0">
+        <app-collateral-detail [data]="dataSelect"
+                               [listPayInterest]="dataListPayInterest"
+        ></app-collateral-detail>
+      </fieldset>
+    </div>
+  </div>
+</fieldset>

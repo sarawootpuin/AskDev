@@ -1,0 +1,293 @@
+<div class="d-flex">
+  <div class="col-md-3">
+    <div class="form-group">
+      <p-dataTable selectionMode="single" [value]="listcacollateral"
+                   [(selection)]="selectCollateral"
+                   (onRowSelect)="rowSelect(selectCollateral)"
+                   [scrollable]="true"
+                   [responsive]="true">
+        <p-header>
+          <app-custom-botton-icon [option]="'new'" (onBtnClick)="addCollateral()"></app-custom-botton-icon>
+          <app-custom-botton-icon [option]="'delete'" (onBtnClick)="deleteCollateral()"></app-custom-botton-icon>
+        </p-header>
+        <p-column field="seq_no" header="Seq No."  [style]="{'width':'50px'}"  ></p-column>
+        <p-column field="clt_type_desc" header="Collateral type"  [style]="{'width':'100px'}"></p-column>
+        <p-column field="doc_no" header="Doc No"     [style]="{'width':'100px'}"></p-column>
+      </p-dataTable>
+    </div>
+  </div>
+
+  <div class="col-md-9 border-isa">
+    <fieldset [disabled]="!selectCollateral.clt_type">
+      <div class="col-md-12">
+        <div class="form-group">
+          <div class="mt-radio-inline border-isa">
+            <label class="p-1"><b>Payment Method</b></label>
+            <div class="form-group  ">
+              <div class="mt-radio-inline" *ngIf="!cltTypeLosn" style="padding: 5px">
+                <input type="radio" name="col_type" [value]="'1'" [(ngModel)]="selectCollateral.clt_type"
+                       (ngModelChange)="getCltTypeDesc('1')"> P/N
+                <input type="radio" name="col_type" [value]="'2'" [(ngModel)]="selectCollateral.clt_type"
+                       (ngModelChange)="getCltTypeDesc('2')"> Cheque
+                <input type="radio" name="col_type" [value]="'3'" [(ngModel)]="selectCollateral.clt_type"
+                       (ngModelChange)="getCltTypeDesc('3')"> CreditLine Guarantee
+              </div>
+              <div class="mt-radio-inline" *ngIf="cltTypeLosn" style="padding: 5px">
+                <input type="radio" name="col_type" [value]="'4'" [(ngModel)]="selectCollateral.clt_type"
+                       (ngModelChange)="getCltTypeDesc('4')"> Machine
+                <input type="radio" name="col_type" [value]="'5'" [(ngModel)]="selectCollateral.clt_type"
+                       (ngModelChange)="getCltTypeDesc('5')"> Invoice
+                <input type="radio" name="col_type" [value]="'6'" [(ngModel)]="selectCollateral.clt_type"
+                       (ngModelChange)="getCltTypeDesc('6')"> Stock
+                <input type="radio" name="col_type" [value]="'7'" [(ngModel)]="selectCollateral.clt_type"
+                       (ngModelChange)="getCltTypeDesc('7')"> Cash Deposit
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12" [hidden]="!selectCollateral.clt_type">
+        <div class="border-isa" *ngIf="openCltDetailTab">
+          <label class="p-1"><b> {{selectCollateral.clt_type_desc}} Detail</b></label>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <label>Collateral Amount</label>
+              <div class="form-inline">
+                <input class="form-control"
+                       [ngModel]="selectCollateral?.clt_amt"
+                       (ngModelChange)="selectCollateral.clt_amt=$event"
+                       currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' ,precision: 2 }">
+                <label>&nbsp; Baht.</label>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label>{{selectCollateral.clt_type_desc}} No</label>
+              <input class="form-control" [(ngModel)]="selectCollateral.doc_no">
+            </div>
+            <div class="form-group col-md-6">
+              <label>{{selectCollateral.clt_type_desc}} Date</label><br>
+              <p-calendar dateFormat="dd/mm/yy"
+                          [ngModel]="selectCollateral?.doc_date"
+                          (ngModelChange)="selectCollateral.doc_date=changedate($event)"
+                          [disabled]="componentReadOnly"
+              ></p-calendar>
+            </div>
+            <div class="form-group col-md-12">
+              <label>Remark </label>
+              <textarea class="form-control" [(ngModel)]="selectCollateral.remark" rows="5"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="border-isa" *ngIf="!openCltDetailTab && selectCollateral.clt_type == '3' ">
+          <label class="p-1"><b>Detail</b></label>
+          <div class="d-flex">
+            <div class="form-group col-md-6">
+              <div class="col-md-12">
+                <label>Collateral Amount </label>
+                <div class="form-inline">
+                  <input class="form-control"  (onblur)="callCollateral('colamt')"
+                         [ngModel]="selectCollateral?.clt_amt"
+                         (ngModelChange)="selectCollateral.clt_amt=$event"
+                         currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' ,precision: 2 }">
+                  <label>&nbsp; Baht.</label>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label>Cash </label>
+                <div class="form-inline">
+                  <input class="form-control"
+                         [ngModel]="selectCollateral?.clt_cash_rcp"
+                         (ngModelChange)="selectCollateral.clt_cash_rcp=$event"
+                         currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' ,precision: 2 }">
+                  <label>&nbsp; Baht.</label>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label>Balance Amount</label>
+                <div class="form-inline">
+                  <input class="form-control"
+                         [ngModel]="selectCollateral?.clt_balance"
+                         (ngModelChange)="selectCollateral.clt_balance=$event"
+                         currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' ,precision: 2 }">
+                  <label>&nbsp; Baht.</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 border-isa mb-1" *ngIf="selectCollateral.clt_type == '3'" >
+              <label class="p-1"><b>Deduct</b></label>
+              <div class="row form-inline">
+                <label class="mt-radio col-md-3">
+                  <input type="radio" name="ded_type" [value]="'P'" [(ngModel)]="selectCollateral.deduct_flg">&nbsp;Percent
+                </label>
+                <input class="form-control"    [disabled]="selectCollateral.deduct_flg != 'P'"
+                       [ngModel]="selectCollateral?.deduct_pcn"
+                       (ngModelChange)="selectCollateral.deduct_pcn=$event"
+                       currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' ,precision: 2 }">&nbsp;
+              </div>
+              <div class="row form-inline">
+                <label class="mt-radio col-md-3">
+                  <input type="radio" name="ded_type" [value]="'A'" [(ngModel)]="selectCollateral.deduct_flg">&nbsp;Amount
+                </label>
+                <input class="form-control"         [disabled]="selectCollateral.deduct_flg != 'A'"
+                       [ngModel]="selectCollateral?.deduct_amt"
+                       (ngModelChange)="selectCollateral.deduct_amt=$event"
+                       currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' ,precision: 2 }">&nbsp;
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="border-isa">
+              <label class="p-1"><b>Interest</b></label>
+              <div class="col-md-12">
+                <div class="d-flex">
+                  <div class="col-md-6 pb-2">
+                    <label> Interest Calculate Detail : </label>
+                    <select class="form-control w-100" (change)="selectCollateral.cal_int_type = $event.target.value">
+                      <option [value]="-1"></option>
+                      <option [value]="0">1.No Calculate</option>
+                      <option [value]="1">2.Away Calculate</option>
+                      <option [value]="2">3.Paid Full Calculate</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="form-group row">
+                  <div class="col-md-2 pl-5 pt-3 mt-3">
+                    <label class="mt-radio">
+                      <input type="radio" name="rate_type2" [value]="'Fix'" [(ngModel)]="selectCollateral.rate_type">&nbsp;Fix
+                    </label>
+                  </div>
+                  <div class="col-md-2">
+                    <label>Interest Rate </label>
+                    <input class="form-control"         [disabled]="selectCollateral.rate_type != 'Fix'"
+                           [ngModel]="selectCollateral?.int_rate"
+                           (ngModelChange)="selectCollateral.int_rate=$event"
+                           currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' ,precision: 2 }">&nbsp;
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="form-group row">
+                  <div class="col-md-2 pl-5 pt-3 mt-3">
+                    <label class="mt-radio">
+                      <input type="radio" name="rate_type2" [value]="'Float'" [(ngModel)]="selectCollateral.rate_type">&nbsp;Float
+                    </label>
+                  </div>
+                    <div class="col-md-2">
+                      <label> Bank </label>
+                      <select class="form-control"     [disabled]="selectCollateral.rate_type != 'Float'"
+                              [(ngModel)]="selectCollateral.rate_bank">
+                        <option [value]="-1"></option>
+                        <option *ngFor="let list of dataListBank; let i = index"
+                                [value]="list.id_code"
+                                [selected]="selectCollateral.rate_bank === list.id_code">{{list?.remark}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-md-2">
+                      <label> Rate </label>
+                      <select class="form-control"     [disabled]="selectCollateral.rate_type != 'Float'"
+                              [(ngModel)]="selectCollateral.rate_m">
+                        <option [value]="-1"></option>
+                        <option *ngFor="let list of dataListInsRate; let i = index"
+                                [value]="list.id_code"
+                                [selected]="selectCollateral.rate_m === list.id_code">{{list?.remark}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-md-2">
+                      <label> Spread </label>
+                      <input class="form-control"       [disabled]="selectCollateral.rate_type != 'Float'"
+                             [ngModel]="selectCollateral?.rate_spread"
+                             (ngModelChange)="selectCollateral.rate_spread=$event"
+                             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' ,precision: 2 }">
+                    </div>
+                    <div class="col-md-2">
+                      <label> Max Interest Rate </label>
+                      <input class="form-control"       [disabled]="selectCollateral.rate_type != 'Float'"
+                             [ngModel]="selectCollateral?.max_int_rate"
+                             (ngModelChange)="selectCollateral.max_int_rate=$event"
+                             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' ,precision: 2 }">
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>   <!--  Fac -->
+        <div class="border-isa" *ngIf="!openCltDetailTab && selectCollateral.clt_type == '7'">
+          <label class="p-1"><b>Detail</b></label>
+          <div class="d-flex">
+            <div class="form-group col-md-6">
+              <div class="col-md-12">
+                <label>Collateral Deposit </label>
+                <div class="form-inline">
+                  <input class="form-control"   (blur)="calDeposit('pcn')"
+                         appMyCurrency
+                         [value]="selectCollateral.deduct_pcn" (change)="selectCollateral.deduct_pcn = $event.target.value"
+                  >
+                  <label>&nbsp;%</label>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label>Collateral Deposit </label>
+                <div class="form-inline">
+                  <input class="form-control"   (blur)="calDeposit('amt')"
+                         appMyCurrency
+                         [value]="selectCollateral.clt_amt" (change)="selectCollateral.clt_amt = $event.target.value">
+                  <label>&nbsp; Baht.</label>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label>Deduct Cheque </label>
+                <div class="form-inline">
+                  <input class="form-control"   disabled
+                         appMyCurrency
+                         [value]="selectCollateral.clt_balance" >
+                  <label>&nbsp; Baht.</label>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label>Cash</label>
+                <div class="form-inline">
+                  <input class="form-control"   (onblur)="calDeposit()"
+                         appMyCurrency
+                         [value]="selectCollateral.clt_cash_rcp" (change)="selectCollateral.clt_cash_rcp = $event.target.value">
+                  <label>&nbsp; Baht.</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="border-isa">
+              <label class="p-1"><b>Interest</b></label>
+              <div class="col-md-12">
+                <div class="d-flex">
+                  <div class="col-md-6 pb-2">
+                    <label> Pay Interest Method  </label>
+                    <select class="form-control w-100" (change)="selectCollateral.cal_int_type = $event.target.value">
+                      <option [value]="0">1.  No Pay</option>
+                      <option [value]="1">2.  Pay On Last due</option>
+                      <option [value]="2">3.  Every Month</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="d-flex">
+                  <div class="col-md-6 pb-2">
+                    <label>Interest Rate </label>
+                    <input class="form-control"
+                           appMyCurrency
+                           [value]="selectCollateral.int_rate" (change)="selectCollateral.int_rate = $event.target.value">&nbsp;
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>    <!--  Direct Loan -->
+      </div>
+    </fieldset>
+  </div>
+
+</div>

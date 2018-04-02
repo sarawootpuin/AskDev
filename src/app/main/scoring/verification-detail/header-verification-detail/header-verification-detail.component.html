@@ -1,0 +1,170 @@
+<app-action-button-form
+  [title]="'Detail Verification'"
+  [showSave]  ="true"
+  [showCalculator]="true"
+  [showCancel]="true"
+  [showSubmit]="true"
+  [showReject]="true"
+
+  (onSave)="onConfirmDialogSave()"
+  (onCalculator)="onCalScoreClick()"
+  (onCancel)="onConfirmDialogCancel()"
+  (onSubmit)="onConfirmDialogSubmit()"
+  (onReject)="onConfirmDialogReject()"
+  *ngIf="((!checkReadOnly) ||((checkEnquiry==false) && (this?.mainTab.stg_id == '4')))"
+>
+</app-action-button-form>
+
+
+<app-action-button-form
+  [title]="'Detail Verification'"
+  *ngIf="(checkReadOnly==true)&& (this.mainTab.stg_id != '4') ">
+</app-action-button-form>
+
+<app-alert-dialog #dialogHeaderVerify
+                  (onCloseDialog)="onCloseDialogHeaderVerify()"
+                  (onOK)="onCloseDialogHeaderVerify()"></app-alert-dialog>
+
+
+<app-action-dialog [title]="'ประวัติการทำ Credit Scoring'" #creditScoringHistoryDialog
+                   [width]="1200"
+                   [showOk]="!checkReadOnly" (onOk)="selectCreditScoringHistory()"
+                   [showCancel]="true">
+  <app-scr-credit-scoring-history></app-scr-credit-scoring-history>
+</app-action-dialog>
+
+
+<app-action-dialog [title]="'ประวัติการแก้ไขข้อมูลที่มีผลต่อการ Verify Data'" #verifyHistoryDialog
+                   [width]="1200"
+                   [showCancel]="true">
+  <!--<app-scr-verify-history></app-scr-verify-history>-->
+  <app-scr-verify-history #scrVerifyHistory></app-scr-verify-history>
+</app-action-dialog>
+
+<app-alert-dialog #dialogConfirm
+                  (onOK)="onCallAction()" (onCancel)="onClickCloseConfirmDialog()">
+</app-alert-dialog>
+
+<app-action-dialog [title]="'ผล Decision Grade'" #decisionGradeDialog
+                   [showOk]="!checkReadOnly" (onOk)="onSaveDecisionGrade()">
+  <div class="form-group">
+    <label>Decision Grade</label>
+    <input type="text" class="form-control" [(ngModel)]="this.tempPrimScr" [readOnly]="checkReadOnly">
+  </div>
+  <div class="form-group">
+    <label>เหตุผล</label>
+    <textarea class="form-control" rows="3" [(ngModel)]="this.tempPrimScrResult" [readOnly]="checkReadOnly">{{mainTab?.prim_scr_rsult}}</textarea>
+  </div>
+</app-action-dialog>
+
+<app-action-dialog [title]="'Payment Grading'" #paymentGradeDialog
+                   [showOk]="true" (onOk)="onSavePaymentGrade()">
+  <div class="form-group">
+    <label>เลขที่สัญญา</label>
+    <input type="text" class="form-control" [(ngModel)]="this.tempPmtGrdngAgrCode">
+  </div>
+  <div class="form-group" style="padding-top: 2px">
+    <label>Payment Grading</label>
+    <input type="text" class="form-control" [(ngModel)]="this.tempPmntGrdng">
+  </div>
+  <div class="form-group" style="padding-top: 2px">
+    <label>As of Date</label><br>
+    <p-calendar #idTempPmntGrdngAsOf [ngModel]="this.tempPmntGrdngAsOf"
+                dateFormat="dd/mm/yy"
+                (onSelect)="this.tempPmntGrdngAsOf=onChangedate(idTempPmntGrdngAsOf.value)"></p-calendar>
+  </div>
+</app-action-dialog>
+
+<app-action-dialog [title]="' ข้อมูลทางการเงิน'" #scrCorpDialog
+                   [width]="900">
+  <app-scr-alert-jrst-fin (onClose)="onCloseAlertScrCorp()"
+                          [displayDialogScrJrstFin]="this.alertScrCorp"></app-scr-alert-jrst-fin>
+</app-action-dialog>
+
+<div>
+  <div class="d-flex justify-content-end">
+    <div class="mr-auto p-2 col-6">
+      <i class="fa fa-user fa-lg"></i>
+      <strong>ลูกค้า: </strong>
+      <span>{{mainTab?.cust_name_display}}</span>
+    </div>
+
+    <div class="col-2 ">
+      <i class="fa fa-edit fa-2x" style="color: #3519d4" (click)="showDialogDecisionGrade()"></i>
+      <strong>Descision Grade: </strong>
+      <span style="color: #3519d4">{{mainTab?.prim_scr}}</span>
+    </div>
+
+    <div class="col-2" *ngIf="!checkReadOnly">
+      <i class="fa fa-edit fa-2x" style="color: #3519d4" (click)="showDialogPaymentGrade()"></i>
+      <strong>Payment Grading: </strong>
+      <span style="color: #3519d4">{{mainTab?.pmnt_grdng}}</span>
+    </div>
+
+    <div class="col-2" style="margin-top: 7px">
+      <strong>ผลเกรด: </strong>
+      <span style="color: #3519d4">{{resultGrade}}</span>
+    </div>
+  </div>
+
+
+  <p-tabView (onChange)="onChangeHeaderTab($event)">
+    <p-tabPanel header="หน้าหลัก">
+      <div class="d-flex justify-content-start">
+        <div class="ml-auto">
+          <button type="button" class="btn btn-primary" style="width: auto" (click)="clickVerifyHistory()">
+            <i class="fa fa-eye"></i>
+            Verify History
+          </button>
+          <button type="button" class="btn btn-primary" style="width: auto" (click)="clickCreditScoringHistory()">
+            <i class="fa fa-edit"></i>
+            Credit Scoring History
+          </button>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="ความสามารถ">
+      <div *ngIf="mainTab?.ent_cat == 'Juristic'">
+        <div class="d-flex justify-content-start">
+          <div class="ml-auto">
+            <button type="button" class="btn btn-primary" style="width: auto" (click)="showDialogCorp()">
+              <i class="fa fa-edit"></i>
+              สถานะทางการเงิน
+            </button>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="ข้อมูล NCB">
+      <div class="d-flex justify-content-start">
+        <p-tabView (onChange)="onChangeSubHeaderTab($event)">
+          <p-tabPanel header="เงินให้กู้เพื่อการเคหะ">
+          </p-tabPanel>
+          <p-tabPanel header="เช่าซื้อ">
+          </p-tabPanel>
+          <p-tabPanel header="บัตรสินเชื่อ">
+          </p-tabPanel>
+          <p-tabPanel header="เงินให้กู้ส่วนบุคคล">
+          </p-tabPanel>
+          <p-tabPanel header="เงินเบิกเกินบัญชี">
+          </p-tabPanel>
+        </p-tabView>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="ฐานะความเป็นอยู่">
+    </p-tabPanel>
+    <p-tabPanel header="หลักประกัน">
+    </p-tabPanel>
+    <p-tabPanel header="ความเห็น">
+    </p-tabPanel>
+    <p-tabPanel header="รูปภาพ">
+    </p-tabPanel>
+  </p-tabView>
+</div>
+
+
+
+
+
+
+

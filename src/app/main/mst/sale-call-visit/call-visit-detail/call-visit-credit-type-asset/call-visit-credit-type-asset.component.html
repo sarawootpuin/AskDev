@@ -1,0 +1,248 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 form-group" style="padding-left: 0px">
+      <label>Credit Type</label>
+      <div class="form-control  mt-checkbox-inline"
+           style="border-style: solid; border-width: 1px;border-radius: 10px;padding-top: 5px;padding-left: 10px">
+        <label class="mt-checkbox">
+          <input type="checkbox"
+                 [ngModel]="Credit_P"
+                 (ngModelChange)="Credit_P=!Credit_P"
+                 (change)="setCredit()"
+                 [disabled]="componentReadOnly"
+          >DirectLoan
+          <span></span>
+        </label>
+        <label class="mt-checkbox">
+          <input type="checkbox"
+                 [ngModel]="Credit_HP"
+                 (ngModelChange)="Credit_HP=!Credit_HP"
+                 (change)="setCredit()"
+                 [disabled]="componentReadOnly"
+          >Hire Purchase
+          <span></span>
+        </label>
+        <label class="mt-checkbox mt-checkbox-disabled">
+          <input type="checkbox"
+                 [ngModel]="Credit_LS"
+                 (ngModelChange)="Credit_LS=!Credit_LS"
+                 (change)="setCredit()"
+                 [disabled]="componentReadOnly"
+          >Leasing
+          <span></span>
+        </label>
+        <label class="mt-checkbox mt-checkbox-disabled">
+          <input type="checkbox"
+                 [ngModel]="Credit_FIM"
+                 (ngModelChange)="Credit_FIM=!Credit_FIM"
+                 (change)="setCredit()"
+                 [disabled]="componentReadOnly"
+          >Import Factoring
+          <span></span>
+        </label>
+        <label class="mt-checkbox mt-checkbox-disabled">
+          <input type="checkbox"
+                 [ngModel]="Credit_FEX"
+                 (ngModelChange)="Credit_FEX=!Credit_FEX"
+                 (change)="setCredit()"
+                 [disabled]="componentReadOnly"
+          >Export Factoring
+          <span></span>
+        </label>
+        <label class="mt-checkbox mt-checkbox-disabled">
+          <input type="checkbox"
+                 [ngModel]="Credit_FDO"
+                 (ngModelChange)="Credit_FDO=!Credit_FDO"
+                 (change)="setCredit()"
+                 [disabled]="componentReadOnly"
+          >Domestic Factoring
+          <span></span>
+        </label>
+      </div>
+    </div>
+    <div class="col-md-1 form-group" style="padding: 0px">
+      <label>Asset</label>
+      <div class="form-control mt-checkbox-inline"
+           style="border-style: solid; border-width: 1px;border-radius: 10px;padding-top: 5px;padding-left: 10px">
+        <label class="mt-checkbox">
+          <input type="checkbox"
+                 [ngModel]="this.FinnanAsset_M"
+                 (ngModelChange)="this.FinnanAsset_M=!this.FinnanAsset_M"
+                 (change)="setFinanAsset()"
+                 [disabled]="componentReadOnly"
+          >Machine
+          <span></span>
+        </label><br>
+        <label class="mt-checkbox">
+          <input type="checkbox"
+                 [ngModel]="this.FinnanAsset_V"
+                 (ngModelChange)="this.FinnanAsset_V=!this.FinnanAsset_V"
+                 (change)="setFinanAsset()"
+                 [disabled]="componentReadOnly"
+          >Vehicle
+          <span></span>
+        </label>
+      </div>
+    </div>
+    <div class="col-md-1 form-group" style="padding-left: 0px">
+      <label>Open L/C</label>
+      <div class="form-control mt-radio-inline"
+           style="border-style: solid; border-width: 1px;border-radius: 10px;padding-top: 5px;padding-left: 10px">
+        <label class="mt-radio">
+          <input type="radio" name="openLc"
+                 value="Y"
+                 [ngModel]="mySaleCallVisitAsset?.open_lc"
+                 (ngModelChange)="mySaleCallVisitAsset.open_lc=$event"
+                 [disabled]="componentReadOnly">Yes
+          <span></span>
+        </label><br>
+        <label class="mt-radio">
+          <input type="radio" name="openLc"
+                 value="N"
+                 [ngModel]="mySaleCallVisitAsset?.open_lc"
+                 (ngModelChange)="mySaleCallVisitAsset.open_lc=$event"
+                 [disabled]="componentReadOnly">No
+          <span></span>
+        </label>
+      </div>
+    </div>
+    <div class="col-md-3 form-group" style="padding-left: 0px">
+      <button class="btn btn-primary btn-sm  invisible">Previous Data</button>
+      <br>
+      <label>Cost/Credit Line</label><br>
+      <input class="form-control" type="text"
+             style="display: inline;width: 50%;text-align: right;"
+             appMyCurrency
+             [value]="mySaleCallVisitAsset?.fin_amt"
+             (change)="mySaleCallVisitAsset.fin_amt = $event.target.value"
+             [disabled]="componentReadOnly">
+      <label>MB.</label>
+    </div>
+    <div class="col-md-6 form-group" style="padding-left: 0px">
+      <label>Brand</label><br>
+      <input class="form-control" type="text" class="form-control"  [maxlength]="40"
+             [ngModel]="mySaleCallVisitAsset?.brand"
+             (ngModelChange)="mySaleCallVisitAsset.brand=$event"
+             [disabled]="componentReadOnly">
+    </div>
+    <div class="col-md-6 form-group" style="padding-left: 0px">
+      <label>Specifies</label><br>
+      <input class="form-control" type="text"  [maxlength]="200"
+             [ngModel]="mySaleCallVisitAsset?.asset_detail"
+             (ngModelChange)="mySaleCallVisitAsset.asset_detail=$event"
+             [disabled]="componentReadOnly">
+    </div>
+    <div class="col-md-12 " style="padding-left: 0px">
+      <label>Credit Note</label>
+      <div class="container" style="border-style: solid; border-width: 1px; border-radius: 10px">
+        <label>Issue discussed</label>
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <label>-The Purpose of new credit line</label>
+          </div>
+          <div class="col-md-6  form-group">
+            <div class="mt-checkbox-inline">
+              <label class="mt-checkbox">
+                <input   type="checkbox"
+                       [ngModel]="Purpose_R"
+                       (ngModelChange)="Purpose_R=!Purpose_R"
+                       (change)="setPurpose()"
+                       [disabled]="componentReadOnly"
+                >Replace the old one
+                <span></span>
+              </label>
+              <label class="mt-checkbox">
+                <input type="checkbox"
+                       [ngModel]="Purpose_S"
+                       (ngModelChange)="Purpose_S=!Purpose_S"
+                       (change)="setPurpose()"
+                       [disabled]="componentReadOnly"
+                > Support new order
+                <span></span>
+              </label>
+              <label class="mt-checkbox mt-checkbox-disabled">
+                <input  type="checkbox"
+                       [ngModel]="Purpose_H"
+                       (ngModelChange)="Purpose_H=!Purpose_H"
+                       (change)="setPurpose()"
+                       [disabled]="componentReadOnly"
+                > Hiring replacement
+                <span></span>
+              </label>
+              <label class="mt-checkbox mt-checkbox-disabled">
+                <input type="checkbox"
+                       [ngModel]="Purpose_O"
+                       (ngModelChange)="Purpose_O=!Purpose_O"
+                       (change)="setPurpose()"
+                       [disabled]="componentReadOnly"
+                > Other
+                <span></span>
+              </label>
+            </div>
+          </div>
+          <div class="col-md-6  form-group">
+            <input class="form-control" type="text"
+                   [disabled]="!this.Purpose_O"
+                   [(ngModel)]="Purpose_O_note"
+                   (focusout)="setPurpose()"
+                   [disabled]="componentReadOnly">
+          </div>
+          <div class="col-md-12 form-group">
+            <label>-Our competitor</label>
+          </div>
+          <div class="col-md-4  form-group">
+            <label>Leasing Name</label>
+            <input type="text" class="form-control"
+                   [ngModel]="mySaleCallVisitAsset?.competitor_lease"
+                   (ngModelChange)="mySaleCallVisitAsset.competitor_lease=$event"
+                   [disabled]="componentReadOnly">
+          </div>
+          <div class="col-md-4  form-group">
+            <label>Bank Name</label>
+            <select class="form-control"  [disabled]="componentReadOnly"
+                    [ngModel]="mySaleCallVisitAsset?.competitor_bank"
+                    (ngModelChange)="mySaleCallVisitAsset.competitor_bank =$event">
+              <option> </option>
+              <option *ngFor="let ansBANK of ListBank"
+                      [selected]="ansBANK?.id == saleCallH?.competitor_bank  "
+                      [value]="ansBANK?.id">{{ansBANK?.display}}
+            </select>
+          </div>
+          <div class="col-md-4  form-group">
+            <label>Other</label>
+            <input type="text" class="form-control"
+                   [ngModel]="mySaleCallVisitAsset?.competitor_other"
+                   (ngModelChange)="mySaleCallVisitAsset.competitor_other=$event"
+                   [disabled]="componentReadOnly">
+          </div>
+          <div class="col-md-12 form-group">
+            <label>-Competitor condition</label>
+          </div>
+          <div class="col-md-4  form-group">
+            <label>IRR</label>
+            <input type="text" class="form-control" style="display: inline;width: 50%"  pKeyFilter="pnum"
+                   [ngModel]="mySaleCallVisitAsset?.competitor_irr"
+                   (ngModelChange)="mySaleCallVisitAsset.competitor_irr=$event"
+                   [disabled]="componentReadOnly">
+            <label>%</label>
+          </div>
+          <div class="col-md-3  form-group">
+            <label>Term</label>
+            <input type="text" class="form-control" style="display: inline;width: 50%"  pKeyFilter="int"
+                   [ngModel]="mySaleCallVisitAsset?.competitor_term"
+                   (ngModelChange)="mySaleCallVisitAsset.competitor_term=$event"
+                   [disabled]="componentReadOnly">
+          </div>
+          <div class="col-md-5  form-group">
+            <label>Financing Amount</label>
+            <input type="text" class="form-control" style="display: inline;width: 50%"  pKeyFilter="pnum"
+                   [ngModel]="mySaleCallVisitAsset?.competitor_fin_pcnt"
+                   (ngModelChange)="mySaleCallVisitAsset.competitor_fin_pcnt=$event"
+                   [disabled]="componentReadOnly">
+            <label>%</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+
+<app-side-tab [defaultMenuName]="'1. '+modelNcbPdf[0]?.IMG_NAME">
+
+  <app-side-tab-panel [scrollable]="'true'">
+
+    <app-side-tab-level *ngFor="let pdf of modelNcbPdf;let i = index" [nameMenu]="i+1+'. '+pdf.IMG_NAME">
+    </app-side-tab-level>
+
+  </app-side-tab-panel>
+
+  <app-side-tab-main>
+    <div *ngFor="let pdf of modelNcbPdf;let i = index">
+      <app-side-tab-content [nameContent]="i+1+'. '+pdf.IMG_NAME">
+        <!--<embed src="{{pdf.IMG_LINK}}" width="800px" height="1200px"/>-->
+        {{pdf.IMG_LINK}}}
+      </app-side-tab-content>
+    </div>
+  </app-side-tab-main>
+
+</app-side-tab>

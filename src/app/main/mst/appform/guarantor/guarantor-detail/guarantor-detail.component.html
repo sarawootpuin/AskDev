@@ -1,0 +1,138 @@
+
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Customer Code</label>
+          <input type="text" class="form-control" [(ngModel)]="data.guar_code" disabled>
+        </div>
+        <div class="form-group">
+          <label>Initial(T)</label>
+          <input type="text" class="form-control" [(ngModel)]="data.title_thi" disabled>
+        </div>
+        <div class="form-group">
+          <label>Name(T)</label>
+          <input type="text" class="form-control" [(ngModel)]="data.f_namet" disabled>
+        </div>
+        <div class="form-group">
+          <label>Last Name(T)</label>
+          <input type="text" class="form-control" [(ngModel)]="data.l_namet" disabled>
+        </div>
+        <div class="form-group">
+          <label>Birth Date/Register Date</label>
+          <input type="text" class="form-control" [(ngModel)]="data.birth_d" disabled>
+        </div>
+        <div class="form-group">
+          <label>Salary/Year</label>
+          <input type="text" class="form-control" [(ngModel)]="data.salary_per_year" disabled>
+        </div>
+        <div class="form-group">
+          <label>Card Type</label><span class="star">*</span>
+          <input type="text" class="form-control" [(ngModel)]="data.card_type_desc" disabled>
+        </div>
+        <div class="form-group">
+          <label>Issue Date</label>
+          <input type="text" class="form-control" [(ngModel)]="data.card_issue_date" disabled>
+        </div>
+        <div class="form-group">
+          <label>Sex</label>
+          <input type="text" class="form-control" [(ngModel)]="data.sex_desc" disabled>
+        </div>
+        <div class="form-group">
+          <label>Marital status</label>
+          <input type="text" class="form-control" [(ngModel)]="data.status_m_desc" disabled>
+        </div>
+        <!--Wait-->
+        <div class="form-group">
+          <label>(Authorized Officer)Signed By THAI</label>
+          <input type="text" class="form-control" [(ngModel)]="data.authorize_by_t" disabled>
+        </div>
+        <div class="form-group">
+          <label>Authorized Conditions</label>
+          <input type="text" class="form-control" disabled>
+        </div>
+        <!--Wait-->
+        <div class="form-group">
+          <label>Customer Group</label>
+          <input type="text" class="form-control" [(ngModel)]="data.grp_name" disabled>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Customer Relations</label>
+          <input type="text" class="form-control" [(ngModel)]="data.relation_with_cus" disabled>
+        </div>
+        <div class="form-group">
+          <label>Initial(E)</label><span class="star">*</span>
+          <input type="text" class="form-control" [(ngModel)]="data.title_eng" disabled>
+        </div>
+        <div class="form-group">
+          <label>Name(E)</label><span class="star">*</span>
+          <input type="text" class="form-control" [(ngModel)]="data.f_namee" disabled>
+        </div>
+        <div class="form-group">
+          <label>Last Name(E)</label>
+          <input type="text" class="form-control" [(ngModel)]="data.l_namee" disabled>
+        </div>
+        <div class="form-group">
+          <label>Establishment Date</label>
+          <input type="text" class="form-control" [(ngModel)]="data.establish_date" disabled>
+        </div>
+        <div class="form-group">
+          <label>Registered Capital</label>
+          <input type="text" class="form-control" [(ngModel)]="data.regis_capital" disabled>
+        </div>
+        <div class="form-group">
+          <label>Card No.</label><span class="star">*</span>
+          <input type="text" class="form-control" [(ngModel)]="data.new_card_no" disabled>
+        </div>
+        <div class="form-group">
+          <label>Issue At</label>
+          <input type="text" class="form-control" [(ngModel)]="data.card_by" disabled>
+        </div>
+        <div class="form-group">
+          <label>Expire Date</label>
+          <input type="text" class="form-control" [(ngModel)]="data.card_expire_date" disabled>
+        </div>
+        <div class="form-group">
+          <label>Nationality</label>
+          <input type="text" class="form-control" [(ngModel)]="data.nationality_code_desc" disabled>
+        </div>
+        <div class="form-group">
+          <label>(Authorized Officer)Signed By ENG</label>
+          <input type="text" class="form-control" [(ngModel)]="data.authorize_by_e" disabled>
+        </div>
+        <div class="form-group">
+          <label>Detail(Tel)</label>
+          <input type="text" class="form-control" [(ngModel)]="data.tel" disabled>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Branch</label>
+          <input type="text" class="form-control" disabled>
+        </div>
+        <div class="form-group">
+          <label>BlackList</label>
+          <input type="text"
+                 class="form-control"
+                 [ngStyle]="{'color': data.bl_flag == 'Y' ? 'red' : 'blue'}"
+                 [(ngModel)] = "data.blackList"
+                 disabled>
+        </div>
+      </div>
+      <!--<div class="col-md-8 " style="background: chocolate">
+
+        <div class="form-group ui-md-offset-4">
+          <label>ความสัมพันธ์กับลูกค้า</label>
+          <input type="text" class="form-control">
+        </div>
+
+        <div class="form-group col-md-4">
+          <label>Initial</label><span class="star">*</span>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+  -->
+    </div>
+  </div>

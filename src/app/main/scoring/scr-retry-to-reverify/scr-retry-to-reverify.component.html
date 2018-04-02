@@ -1,0 +1,43 @@
+<app-alert-dialog #dialogWarning></app-alert-dialog>
+
+
+<app-alert-dialog #dialogConfirm
+    (onOK)="onSubmit()" (onCancel)="onClickCloseConfirmDialog()">
+</app-alert-dialog>
+
+<app-action-button-form
+  [title]="'Retry To Re-Verify'"
+  [showSubmit]="true"
+  (onSubmit)="onConfirmDialog()"
+></app-action-button-form>
+
+
+<div class="container-fluid">
+
+  <div class="d-flex justify-content-start">
+    <div class="p-2">
+      <div class="form-group">
+        <label>Reference No.</label>
+        <input type="text" class="form-control" [(ngModel)]="this.refNo">
+      </div>
+    </div>
+    <div class="p-3">
+      <br>
+      <app-custom-button [option]="'search'"  (click)="onClickSearch()"></app-custom-button>
+      <app-custom-button [option]="'cancel'" (click)="onClickClear()"></app-custom-button>
+    </div>
+  </div>
+
+<p-dataTable [value]="this.listScrRetryToReVerify" scrollable="true" scrollHeight="340px"
+             [(selection)]="listScrRetryToReVerifySelected" dataKey="ent_cd"
+             rowHover ="true">
+  <p-column [style]="{'width':'2%'}" selectionMode="single"></p-column>
+  <p-column  field="ent_cd"  header="Entity Code"></p-column>
+  <p-column  field="ent_typ"  header="Entity Type"></p-column>
+  <p-column  field="ent_nme"  header="Name"></p-column>
+  <p-column  field="finish_scr_dt"  header="วันที่ Ver ทำสำเร็จ"></p-column>
+  <p-column  field="mgr_app_dt"  header="วันที่ Manager อนุมัติ"></p-column>
+  <p-column  field="ver_type"  header="Ver Type"></p-column>
+  <p-column  field="open_session"  header="Todo ค้าง"></p-column>
+</p-dataTable>
+</div>

@@ -1,0 +1,110 @@
+<app-action-button-form [showReject]="false" [showSubmit]="false" [showNew]="false" [showCalculator]="false" [showSearch]="false" [showBack]="false" [showEdit]="false"
+                        [showPrint]="false" [showSave]="false" [showCancel]="false"
+                        [title]="'Exposure Report'"></app-action-button-form>
+<app-action-lock-screen *ngIf="waiting" (onCancel)="Cancel()" [spinner]="true"></app-action-lock-screen>
+<div>
+  <br>
+  <div class="col-md-12">
+    <div class="card card-header">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="col-md-12">
+          <!--<button type="button" class="btn-nav-searchisa" (click)="redirect()">-->
+          <!---->
+          <!--<i class="fa fa-search"></i> Search-->
+          <!--</button>-->
+
+          <app-entity-dialog #entityDialogComponent [allComCode]="true" [title]="'Search Dialog'" (onEntitySelect)="getexposurereport($event)"></app-entity-dialog>
+
+          <!--<p-dialog header="Search Dialog" [(visible)]="display" [width]="800" [height]="470">-->
+            <!--<div *ngIf="waitingdialog" style="text-align: center">-->
+              <!--<i class="fa fa-spinner fa-spin fa-3x fa-fw fa-align-center"></i>-->
+              <!--<span class="sr-only">Loading...</span>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;<app-custom-progress-bar *ngIf="waitingdialog"></app-custom-progress-bar>&ndash;&gt;-->
+            <!--<div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">-->
+              <!--<i class="fa fa-search" style="margin:4px 4px 0 0"></i>-->
+              <!--<input #gb type="text" pInputText size="50" placeholder="Search">-->
+            <!--</div>-->
+            <!--<p-dataTable selectionMode="single" [value]="ModelSearchDialog" [rows]="10" [paginator]="true"-->
+                         <!--(onRowClick)="handleRowClick($event)"-->
+                         <!--[totalRecords]="totalRecords" [globalFilter]="gb" [scrollable]="true" scrollHeight="200px" #dt>-->
+              <!--<p-column field="THA_NAME" header="Thai Name"></p-column>-->
+              <!--<p-column field="ENG_NAME" header="Eng Name"></p-column>-->
+              <!--<p-column field="ID_CARD" header="ID CARD"></p-column>-->
+            <!--</p-dataTable>-->
+            <!--<p-footer>-->
+              <!--<button *ngIf="!waitingdialog" type="button" pButton icon="fa-check" (click)="getexposurereport()"-->
+                      <!--label="OK"></button>-->
+              <!--<button *ngIf="waitingdialog" type="button" pButton icon="fa-check" label="OK" disabled></button>-->
+              <!--<button type="button" pButton icon="fa-times" (click)="Cancel();display=false" label="Cancel"></button>-->
+            <!--</p-footer>-->
+          <!--</p-dialog>-->
+          <!--<button type="button" class="btn-nav-searchisa" (click)="showDialog()" icon="fa-external-link-square"-->
+          <!--label="Search"><i class="fa fa-search"></i> Search-->
+          <!--</button>-->
+          <app-custom-button option="search" (onBtnClick)="showDialog()"></app-custom-button>
+          <app-action-button-download *ngIf="ID_CARD" [disabled]="false" [fileName]="'Exposure_'+ID_CARD+'.xlsx'"
+                                      [buttonName]="'Print Excel'"
+                                      [modelExcel]="modelExcel"
+                                      [method]="'post'"
+                                      [linkWebService]="_url+_bl_tps+'/ask/blacklist/ExcelExposureReport'"></app-action-button-download>
+          <app-action-button-download *ngIf="!ID_CARD" [disabled]="true" [fileName]="'Exposure_'+ID_CARD+'.xlsx'"
+                                      [buttonName]="'Print Excel'"
+                                      [modelExcel]="modelExcel"
+                                      [method]="'post'"
+                                      [linkWebService]="_url+_bl_tps+'/ask/blacklist/ExcelExposureReport'"></app-action-button-download>
+
+          <!--<a href="http://localhost:8080/MKS_WebServices/ask/blacklist/ExcelExposureReport?pcode={{ID_CARD}}" type="button" class="btn-nav-printisa" style="width: 120px">-->
+          <!--<i class="fa fa-print"></i> Print Excel-->
+          <!--</a>-->
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <div class="col-md-12">
+          <label><h6 style="color: #6d6d6d">Customer ID Card : {{ID_CARD}}</h6></label>
+        </div>
+        <div class="col-md-12">
+          <label><h6 style="color: #6d6d6d">Name Thai : {{NAME_ENG}}</h6></label>
+        </div>
+        <div class="col-md-12">
+          <label><h6 style="color: #6d6d6d">Name Eng : {{NAME_THA}}</h6></label>
+        </div>
+      </div>
+      <!--<div class="col-md-4">-->
+      <!--<label>INCLUDE ON PROCESS</label>-->
+      <!--</div>-->
+    </div>
+    </div>
+
+    <!--<div *ngIf="waiting" style="text-align: center">-->
+    <!--<i class="fa fa-spinner fa-spin fa-3x fa-fw fa-align-center"></i>-->
+    <!--<span class="sr-only">Loading...</span>-->
+    <!--</div>-->
+  <br>
+    <p-tabView *ngIf="!ID_CARD">
+      <p-tabPanel header="Summary" [disabled]="true">
+        <app-summary #SummaryComponent_></app-summary>
+      </p-tabPanel>
+      <p-tabPanel header="ASK" [disabled]="true">
+        <app-ask #ASKComponent_></app-ask>
+      </p-tabPanel>
+      <p-tabPanel header="BGPL" [disabled]="true">
+        <app-bgpl #BgplComponent_></app-bgpl>
+      </p-tabPanel>
+    </p-tabView>
+
+    <p-tabView *ngIf="ID_CARD">
+      <p-tabPanel header="Summary">
+        <app-summary #SummaryComponent_></app-summary>
+      </p-tabPanel>
+      <p-tabPanel header="ASK">
+        <app-ask #ASKComponent_></app-ask>
+      </p-tabPanel>
+      <p-tabPanel header="BGPL">
+        <app-bgpl #BgplComponent_></app-bgpl>
+      </p-tabPanel>
+    </p-tabView>
+
+</div>

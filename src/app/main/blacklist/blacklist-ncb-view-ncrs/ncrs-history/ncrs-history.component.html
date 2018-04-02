@@ -1,0 +1,12 @@
+
+<p-dataTable [value]="modelNcrsHistory"
+             [totalRecords]="modelNcrsHistory.length" [scrollable]="true" scrollHeight="200px">
+  <p-column field="ENQUIRY_DATE" header="วัน/เวลา">
+    <ng-template let-col let-row="rowData" pTemplate="body">
+      <span>{{ row[col.field] | date: 'dd/MM/yyyy h:mm:ss'  }}</span>
+    </ng-template>
+  </p-column>
+  <p-column field="MEMBER_SHORT_NAME" header="ผู้ให้สินเชื่อ"></p-column>
+  <p-column field="MEM_NAME_TH" header="ประเภท"></p-column>
+  <p-column field="PURPOSE" header="วัตถุประสงค์การสืบค้น"></p-column>
+</p-dataTable>

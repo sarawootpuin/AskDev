@@ -1,0 +1,265 @@
+<div class="d-flex">
+<div class="form-group flex-md-column col-md-4">
+  <p-dataTable selectionMode="single" [(selection)]="selected" (onRowSelect)="onRowSelect($event)" rows="15"
+               [responsive]="true">
+    <p-column field="f1" header=" ประเภท "></p-column>
+    <p-column field="f2" header=" ยี่ห้อ "></p-column>
+    <p-column field="f3" header=" จำนวน "></p-column>
+    <p-column field="f4" header=" Finance Amt. "></p-column>
+    <p-footer>
+      <div class="ui-helper-clearfix" style="width:100%">
+      </div>
+    </p-footer>
+  </p-dataTable>
+
+</div>
+<div class="flex-md-column col-md-8 ">
+  <p-panel header="Pricing">
+    <div class="d-flex">
+      <div class="flex-md-column col-md-12">
+        <div class="form-group">
+          <label> Asset Amt. (ราคารถ + ราคาอุปกรณ์ + ประกันชีวิต) </label>
+          <div class="form-inline">
+            <input type="text" class="form-control col-md-6 text-right">
+            <input type="checkbox" [checked]="data?.vat === 'Y'"
+                   (change)="$event.target.checked ? (data.vat = 'Y') : (data.vat = 'N')" class="mx-1"> Asset With
+            VAT
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-md-column col-md-12 ">
+      <div class="form-group">
+        <label> Asset Desc. </label>
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="flex-md-column col-md-12 ">
+      <div class="form-group">
+        <label> Accessories </label>
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="flex-md-column col-md-6 ">
+      <div class="form-group">
+        <label> Accessories Amt. </label>
+        <input currencyMask
+               class="form-control"
+               [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
+      </div>
+    </div>
+    <div class="form-group col-md-6 d-flex">
+      <div class="mt-radio-inline col-md-6" style="padding: 5px;border: solid;border-width:thin;border-color:#dfdfdf">
+        <input type="radio" name="pay_status" value="bg"> Beginning
+        <br>
+        <input type="radio" name="pay_status" value="end"> Ending
+      </div>
+      &nbsp;
+      <div class="mt-radio-inline col-md-6" style="padding: 5px;border: solid;border-width:thin;border-color:#dfdfdf">
+        <input type="radio" name="pay_mthd" value="Stra"> Straight Payment
+        <br>
+        <input type="radio" name="pay_mthd" value="Step"> Step Payment
+        <br>
+      </div>
+    </div>
+
+    <div class="d-flex">
+      <div class="flex-md-column col-md-6">
+        <div class="form-group">
+          <label> Down Payment</label>
+          <div class="form-inline">
+            <input currencyMask
+                   class="form-control"
+                   [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>&nbsp;(Baht.)
+          </div>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-4">
+        <div class="form-group">
+          <label> &nbsp; </label>
+          <div class="form-inline">
+            <input currencyMask
+                   class="form-control"
+                   [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>&nbsp;(%)
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-6">
+        <div class="form-group">
+          <label> Down Chassis</label>
+          <div class="form-inline">
+            <input currencyMask
+                   class="form-control"
+                   [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>&nbsp;(Baht.)
+          </div>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-4">
+        <div class="form-group">
+          <label> &nbsp; </label>
+          <div class="form-inline">
+            <input currencyMask
+                   class="form-control"
+                   [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>&nbsp;(%)
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-6">
+        <div class="form-group">
+          <label> Com Amt. (Exc. Vat)</label>
+          <div class="form-inline">
+            <input currencyMask
+                   class="form-control"
+                   [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>&nbsp;(Baht.)
+          </div>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-4">
+        <div class="form-group">
+          <label> &nbsp; </label>
+          <div class="form-inline">
+            <input currencyMask
+                   class="form-control"
+                   [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>&nbsp;(%)
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-6">
+        <label>Est. Disb. Date</label>
+        <div class="form-group">
+          <p-calendar dateFormat="dd/mm/yy" class="my-1"></p-calendar>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-6">
+        <label> Est. First. Date </label>
+        <div class="form-group">
+          <p-calendar dateFormat="dd/mm/yy" class="my-1"></p-calendar>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-4">
+        <div class="form-group">
+          <label> Term </label>
+          <input type="text" class="form-control text-right">
+        </div>
+      </div>
+      <div class="flex-md-column col-md-4">
+        <div class="form-group">
+          <label> Flat Rate </label>
+          <input type="text" class="form-control text-right">
+        </div>
+      </div>
+      <div class="flex-md-column col-md-4">
+        <div class="form-group">
+          <label> Net Flat Rate</label>
+          <input type="text" class="form-control text-right">
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-4">
+        <div class="form-group">
+          <label> Finance Amt. </label>
+          <input type="text" class="form-control text-right">
+        </div>
+      </div>
+      <div class="flex-md-column col-md-4">
+        <div class="form-group">
+          <label> Gross IRR </label>
+          <input type="text" class="form-control text-right">
+        </div>
+      </div>
+      <div class="flex-md-column col-md-4">
+        <div class="form-group">
+          <label> Net IRR </label>
+          <input type="text" class="form-control text-right">
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-4">
+        <div class="form-group">
+          <label> Installment Amt.</label>
+          <input type="text" class="form-control text-right">
+        </div>
+      </div>
+      <div class="flex-md-column col-md-4">
+        <div class="form-group">
+          <label> Vat. </label>
+          <input type="text" class="form-control text-right">
+        </div>
+      </div>
+      <div class="flex-md-column col-md-4">
+        <div class="form-group">
+          <label>Net Installment Amt.</label>
+          <input type="text" class="form-control text-right">
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-12">
+        <div class="form-group">
+          <label> ประเภทสัญญา </label>
+          <div class="form-inline">
+            <input type="text" class="form-control col-md-6">
+            <input type="checkbox" [checked]="data?.vat === 'Y'"
+                   (change)="$event.target.checked ? (data.vat = 'Y') : (data.vat = 'N')" class="mx-1"> PDC
+            <input type="text" class="form-control col-md-3 m-2 "> ฉบับ
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-6">
+        <div class="form-group">
+          <label> ประเภทรถ</label>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+      <div class="flex-md-column col-md-6">
+        <div class="form-group">
+          <label> รุ่นรถ</label>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-9">
+        <div class="form-group">
+          <label> ยี่ห้อ</label>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-12">
+        <div class="form-group">
+          <label> ลักษณะรถ </label>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-6">
+        <div class="form-group">
+          <label>ปีรถ</label>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+      <div class="flex-md-column col-md-6">
+        <div class="form-group">
+          <label>จำนวน (คัน)</label>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+    </div>
+  </p-panel>
+</div>
+</div>

@@ -1,0 +1,43 @@
+<div class="card border-dark mb-2">
+  <div class="card-header d-flex justify-content-between p-2">
+    <div class="text-info font-weight-bold d-flex align-items-center ">
+      {{ groupCode}}
+    </div>
+    <div class="mx-1 d-flex">
+      <button class="btn btn-sm"
+              [ngClass]="{'btn-danger':showAll,'btn-secondary':!showAll}"
+              (click)="toggleMode(!showAll)">
+        <i class="fa fa-cog mr-1"></i>All
+      </button>
+    </div>
+  </div>
+  <div class="card-body p-2">
+    <div *ngIf="isLoading" class="text-center">
+      <i class="fa fa-refresh fa-spin"></i>Loading...
+    </div>
+    <div *ngIf="!isLoading">
+      <ul class="list-group" *ngIf="listTask.length>0;else emptyTemplate">
+        <li class="list-group-item d-flex justify-content-between
+    align-items-center p-2"
+            [ngClass]="{'active':t.taskCode===task?.taskCode}"
+            [ngStyle]="{'cursor':'pointer'}"
+            *ngFor="let t of listTask"
+            (click)="onSelectTask(t)">
+          <div>{{t.taskName}}</div>
+          <span class="badge badge-pill"
+                [ngClass]="{'badge-secondary':t.taskCount==0,
+            'badge-primary':t.taskCount>0 && t.taskCount<=10,
+            'badge-warning':t.taskCount>10&& t.taskCount<=20,
+            'badge-danger':t.taskCount>20}"
+          >{{t.taskCount}}</span>
+        </li>
+      </ul>
+      <ng-template #emptyTemplate>
+        <div class="mx-3 font-weight-bold
+    d-flex justify-content-center">
+          Not found task.
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

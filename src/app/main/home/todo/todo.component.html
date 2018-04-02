@@ -1,0 +1,48 @@
+<div class="container-fluid py-1">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mb-3 ">
+        <div class="card-header d-flex justify-content-between">
+          <div class="h6 text-success d-flex align-items-center ">
+            <div>TO-DO</div>
+          </div>
+          <div class="mx-2 d-flex">
+            <div class="h6 font-weight-normal d-flex align-items-center ">
+              <div>Company</div>
+            </div>
+            <select class="form-control ml-2 mx-1"
+                    (change)="setComCode($event.target.value)">
+              <option *ngFor="let company of accessCompany"
+                      [selected]="company.comCode === comCode"
+              >
+                {{company.comCode}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="card-body p-1">
+          <div class="container-fluid">
+            <div class="row">
+
+                  <div class="col-md-3">
+                    <p-scrollPanel [style]="{width: '100%',height: '450px'}" styleClass="custom">
+                      <div style="padding-right:1em;line-height:1.5">
+                        <app-todo-task></app-todo-task>
+                      </div>
+                    </p-scrollPanel>
+                  </div>
+
+                <div class="col-md-9">
+                  <p-scrollPanel [style]="{width: '100%', height: '450px'}" styleClass="custom">
+                    <div #content_list>
+                      <app-todo-list></app-todo-list>
+                    </div>
+                  </p-scrollPanel>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="main-container">
+  <div class="form-group">
+    <p-dataTable selectionMode="single"
+                 [value]="listcacontext"
+                 [responsive]="true">
+      <p-column field="last_upd"     header=" Action Date "></p-column>
+      <p-column field="full_namet"   header=" Action By "></p-column>
+      <p-column field="context_data" header=" Action Detail "></p-column>
+      <p-footer>
+        <div class="ui-helper-clearfix" style="width:100%">
+        </div>
+      </p-footer>
+    </p-dataTable>
+  </div>
+</div>

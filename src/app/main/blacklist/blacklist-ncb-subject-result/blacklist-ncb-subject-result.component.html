@@ -1,0 +1,22 @@
+<app-action-button-form [title]="'ผลการสืบค้น'" [showSearch]="true" (onSearch)="showblacklist()"></app-action-button-form>
+<div class="card card-header">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="text-left">
+        <label>รายการที่ค้นพบ</label>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="text-right">
+        <label>Tracking No.</label>
+      </div>
+    </div>
+  </div>
+  <p-dataTable [loading]="loading" loadingIcon="fa-spinner" [value]="modelNcbSubjectResult" [lazy]="true" [rows]="10" [paginator]="true"
+               [totalRecords]="totalRecords" (onRowSelect)="onRowSelect($event)" selectionMode="single">
+    <p-column field="memo1" header="เลขประจำตัว"></p-column>
+    <p-column field="memo2" header="ชื่อ/ข้อมูลส่วนบุตตล"></p-column>
+    <p-column field="bankruptcy" header="Bankrupty"></p-column>
+
+  </p-dataTable>
+</div>

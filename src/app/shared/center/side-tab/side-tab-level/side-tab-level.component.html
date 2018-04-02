@@ -1,0 +1,9 @@
+<div id="sidebar">
+  <a *ngIf="checkChild==0" (click)="openContent($event,nameMenu)" class="list-group-item" name="tab-level{{nameMenu}}" data-parent="#sidebar"
+     ><i class="{{icon}}"></i> <span class="d-md-inline">{{nameTitle}}</span> </a>
+  <a *ngIf="checkChild==1" href="#{{nameMenu}}" (click)="openContent($event,nameMenu)" class="list-group-item collapsed" name="tab-level{{nameMenu}}" data-toggle="collapse" data-parent="#sidebar"
+     aria-expanded="false"><i class="{{icon}}"></i> <span class="d-md-inline">{{nameTitle}}</span> </a>
+  <div #refChild class="collapse" id="{{nameMenu}}">
+    <ng-content></ng-content>
+  </div>
+</div>

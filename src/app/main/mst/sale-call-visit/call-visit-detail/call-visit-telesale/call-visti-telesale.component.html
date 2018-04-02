@@ -1,0 +1,68 @@
+<p-panel  header="Personal Loan">
+  <div class="main-container ">
+    <div class="row">
+      <div class="flex-md-column col-md-3">
+        <div class="form-group">
+          <label>Refer Old Agr/Sale Call No.</label>
+          <input type="text" class="form-control" >
+        </div>
+      </div>
+      <div class="flex-md-column col-md-4">
+        <div class="form-group">
+          <label> Employee </label>
+            <app-search-un app-search-un  [iconOnly]="false"   title="NAME;CODE;">
+            </app-search-un>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="flex-md-column col-md-3">
+        <div class="form-group">
+          <label>Requested Credit Line</label>
+          <span class="star">*</span>
+          <input type="text" class="form-control" >
+        </div>
+      </div>
+      <div class="flex-md-column col-md-1">
+        <div class="form-group">
+          <label>Tenor</label>
+          <span class="star">*</span>
+          <input type="text" class="form-control" >
+        </div>
+      </div>
+      <div class="flex-md-column col-md-3">
+        <div class="form-group">
+          <label>Front-end Fee</label>
+          <input type="text" class="form-control"  style="text-align: right"  [value]="0.00"  disabled  >
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="flex-md-column col-md-3">
+        <div class="form-group">
+          <label>Campaign</label>
+          <span class="star">*</span>
+          <input type="text" class="form-control" >
+        </div>
+      </div>
+      <div class="flex-md-column col-md-2">
+        <div class="form-group">
+          <label>Interest Rate(%)</label>
+          <input type="text" class="form-control" style="text-align: right"  [value]="0.00" disabled  >
+        </div>
+      </div>
+      <div class="flex-md-column col-md-2">
+        <div class="form-group">
+          <label>Facility Rate(%)</label>
+          <input type="text" class="form-control" style="text-align: right"  [value]="0.00"  disabled  >
+        </div>
+      </div>
+      <div class="flex-md-column col-md-3">
+        <div class="form-group">
+          <label>Installment</label>
+          <input type="text" class="form-control" style="text-align: right"  [value]="0.00"  disabled  >
+        </div>
+      </div>
+    </div>
+  </div>
+</p-panel>

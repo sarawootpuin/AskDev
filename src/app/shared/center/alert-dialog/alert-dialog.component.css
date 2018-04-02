@@ -1,0 +1,11 @@
+.modal-header{
+  background: linear-gradient(#1D5FBD, #6D9EDB)
+
+}
+.custom {
+  width: 78px !important;
+}
+p {
+  font-size: 14px;
+  word-wrap: break-word;
+}

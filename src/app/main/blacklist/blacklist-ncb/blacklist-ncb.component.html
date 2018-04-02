@@ -1,0 +1,54 @@
+<app-action-button-form [title]="'NCB'" (onSave)="ncbSave()"
+                        [showCancel]="true" [showCalculator]="false" [showSearch]="true" [showBack]="false" [showSave]="true" [showPrint]="false" [showEdit]="false"></app-action-button-form>
+<!--<app-side-tab [defaultMenuName]="'Screen'">-->
+  <!--<app-side-tab-panel [scrollable]="false">-->
+    <!--<app-side-tab-level [nameMenu]="'Screen'">-->
+    <!--</app-side-tab-level>-->
+    <!--<app-side-tab-level [nameMenu]="'Images'">-->
+    <!--</app-side-tab-level>-->
+    <!--<app-side-tab-level [nameMenu]="'PDF'">-->
+    <!--</app-side-tab-level>-->
+    <!--<app-side-tab-level [nameMenu]="'Insert Images'">-->
+    <!--</app-side-tab-level>-->
+
+  <!--</app-side-tab-panel>-->
+
+  <!--<app-side-tab-main>-->
+    <!--<app-side-tab-content [nameContent]="'Screen'">-->
+      <!--<app-blacklist-ncb-screen></app-blacklist-ncb-screen>-->
+    <!--</app-side-tab-content>-->
+    <!--<app-side-tab-content [nameContent]="'Images'">-->
+      <!--<app-blacklist-ncb-images></app-blacklist-ncb-images>-->
+    <!--</app-side-tab-content>-->
+    <!--<app-side-tab-content [nameContent]="'PDF'">-->
+      <!--<app-blacklist-ncb-pdf></app-blacklist-ncb-pdf>-->
+    <!--</app-side-tab-content>-->
+    <!--<app-side-tab-content [nameContent]="'Insert Images'">-->
+      <!--<app-blacklist-ncb-insertimages></app-blacklist-ncb-insertimages>-->
+    <!--</app-side-tab-content>-->
+
+  <!--</app-side-tab-main>-->
+  <!---->
+<!--</app-side-tab>-->
+
+<app-blacklist-ncb-screen-todo *ngIf="showTodo" (onSelectData)="showData()"></app-blacklist-ncb-screen-todo>
+
+<p-tabView (onChange)="handleTabChange($event)">
+
+  <p-tabPanel header="Screen" [selected]="true">
+    <app-blacklist-ncb-screen #blacklistNcbScreenComponent></app-blacklist-ncb-screen>
+  </p-tabPanel>
+
+  <p-tabPanel header="Images">
+    <app-blacklist-ncb-images #blacklistNcbImagesComponent></app-blacklist-ncb-images>
+  </p-tabPanel>
+
+  <p-tabPanel header="PDF">
+    <app-blacklist-ncb-pdf #blacklistNcbPdfComponent></app-blacklist-ncb-pdf>
+  </p-tabPanel>
+
+  <p-tabPanel header="Insert Images">
+    <app-blacklist-ncb-insertimages></app-blacklist-ncb-insertimages>
+  </p-tabPanel>
+
+</p-tabView>

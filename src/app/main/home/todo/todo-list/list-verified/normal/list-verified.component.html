@@ -1,0 +1,179 @@
+<div *ngIf="task!==undefined">
+  <div class="card">
+    <div class="card-header ">
+      <div class="text-center h6">
+        Task : {{ task.taskName}}
+      </div>
+    </div>
+
+    <div class="form-actions" align="right">
+      <app-custom-button [option]="'edit'" (onBtnClick)="openDialog()">
+      </app-custom-button>
+    </div>
+    <div class="card-body">
+
+
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+        <input #searchInput class="form-control" type="text" pInputText size="50" placeholder="Search">
+      </div>
+      <div class="my-3">
+        <div *ngIf="isLoading" class="text-center">
+          <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>Loading...
+        </div>
+        <div *ngIf="!isLoading">
+          <p-dataTable #dt [responsive]="true"
+
+                       [value]="listTodoVerifier"
+                       [rows]="10"
+                       paginatorPosition="both"
+                       [paginator]="true"
+                       [globalFilter]="searchInput"
+                       (onRowDblclick)="rowSelectList($event.data)"
+                       [scrollable]="true"
+                       [(selection)]="selectedTodo"
+          >
+
+            <!--<p-column styleClass="col-button"-->
+            <!--[style]="{'text-align':'center','width':'50px'}">-->
+            <!--<ng-template let-todo="rowData" pTemplate="body">-->
+            <!--<button class="btn btn-warning" (click)="editTodo(todo);">-->
+            <!--<i class="fa fa-pencil"></i>-->
+            <!--</button>-->
+            <!--</ng-template>-->
+            <!--</p-column>-->
+
+            <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
+
+            <p-column field="orgCom" header="ต้นทาง"
+                      filterMatchMode="contains" [style]="{'width':'100px'}"></p-column>
+            <p-column field="workCom" header="ปลายทาง"
+                      filterMatchMode="contains" [style]="{'width':'100px'}"></p-column>
+            <p-column field="refNo" header="เลขอ้างอิง"
+                      filterMatchMode="contains" [style]="{'width':'150px'}"></p-column>
+            <p-column field="entType" header="ประเภท Entity"
+                      filterMatchMode="contains" [style]="{'width':'150px'}"></p-column>
+            <p-column field="name" header="ชื่อ-นามสกุล"
+                      filterMatchMode="contains" [style]="{'width':'150px'}"></p-column>
+            <p-column field="verEmpNme" header="Verifier"
+                      filterMatchMode="contains" [style]="{'width':'150px'}"></p-column>
+            <p-column field="inOut" header="ประเภทการตรวจสอบ"
+                      filterMatchMode="contains" [style]="{'width':'150px'}"></p-column>
+            <p-column field="assgnStus" header="สถานะAssignงาน"
+                      filterMatchMode="contains" [style]="{'width':'150px'}"></p-column>
+            <p-column field="mktEmpName" header="User MKT/CS"
+                      filterMatchMode="contains" [style]="{'width':'150px'}"></p-column>
+            <p-column field="prvStg" header="Stageก่อนหน้า"
+                      filterMatchMode="contains" [style]="{'width':'100px'}"></p-column>
+            <p-column field="entCd" header="รหัสEntity"
+                      filterMatchMode="contains" [style]="{'width':'100px'}"></p-column>
+            <p-column field="zipCd" header="รหัสไปรษณีย์"
+                      filterMatchMode="contains" [style]="{'width':'100px'}"></p-column>
+            <p-column field="revDtel" header="Comment"
+                      filterMatchMode="contains" [style]="{'width':'200px'}"></p-column>
+
+          </p-dataTable>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-action-dialog #dialogFormVerified
+                     [title]="'Step : Assign Task'"
+                     [width]="800"
+                     [showSave]="true" (onSave)="submitData()"
+                     [showClose]="true">
+    <p-dataTable
+      [value]="selectedTodo"
+      [rows]="3"
+      [paginator]="true"
+    >
+      <p-column field="orgCom" header="ต้นทาง"
+                filterMatchMode="contains" [style]="{'width':'100px'}"></p-column>
+      <p-column field="refNo" header="เลขอ้างอิง"
+                filterMatchMode="contains" [style]="{'width':'150px'}"></p-column>
+      <p-column field="entType" header="ประเภท Entity"
+                filterMatchMode="contains" [style]="{'width':'150px'}"></p-column>
+      <p-column field="name" header="ชื่อ-นามสกุล"
+                filterMatchMode="contains" [style]="{'width':'150px'}"></p-column>
+    </p-dataTable>
+
+    <br>
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Destination Company</label>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <select #dropCom class="form-control" (change)="indexCom = $event.target.value">
+            <option *ngFor="let desCom of listEmpCom; let i = index" [value]="i">
+              {{desCom?.comCode}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Verifier</label>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <select #dropVer class="form-control" (change)="verfier = $event.target.value">
+            <option *ngFor="let ver of listEmpCom[indexCom]?.listVerifier; let i = index" [value]="ver?.verifier">
+              {{ver?.verifier}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Type of inspection</label>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <select #dropInOut class="form-control" (change)="inOut = $event.target.value">
+            <option *ngFor="let inOut of listInOut; let i = index" [value]="inOut?.inOut">
+              {{inOut?.inOut}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Assign Status</label>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <select #dropAssgnStus class="form-control" (change)="assgnStus = $event.target.value">
+            <option *ngFor="let assign of listAssgnStus; let i = index" [value]="assign?.assgnStus">
+              {{assign?.assgnStus}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Comment</label>
+      <textarea class="form-control" [(ngModel)]="comment"></textarea>
+    </div>
+
+
+  </app-action-dialog>
+
+  <app-alert-dialog [mode_single]="1"
+                    #alerDialog></app-alert-dialog>
+
+
+</div>
+
+

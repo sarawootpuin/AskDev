@@ -1,0 +1,53 @@
+<div class="container" style="border-style: solid; border-width: 1px; border-radius: 10px">
+  <div class="row">
+    <!---------------left-->
+    <div class="col-md-6  form-group border-isa">
+      <h5 style="text-align: center" > BGPL </h5>
+      <p-dataTable [value]="this.mySaleCallAttendeesB"
+                   scrollable="true" scrollHeight="400px"
+                   [(selection)]="selectB"
+                   selectionMode="single">
+        <p-header>
+          <div class="form-inline">
+            <app-search-un app-search-un inuURL={{this.OutURLB}}
+                           title="Employ Name;POSITON;CODE;" [option]="'new'"
+                           (col1)="getNameB($event)"
+                           (col2)="getPosB($event)"
+                           (col3)="getCodeB($event)">
+            </app-search-un>
+            <div class="mt-1" >
+            <app-custom-botton-icon [option]="'delete'" (onBtnClick)="deleteB()"    [disabled]="selectB == undefined"   ></app-custom-botton-icon>
+            </div>
+          </div>
+        </p-header>
+        <p-column field="order_no" header="Order"></p-column>
+        <p-column field="name_full" header="Name"></p-column>
+        <p-column field="attnd_position" header="Position"></p-column>
+        <p-footer></p-footer>
+      </p-dataTable>
+
+    </div>
+
+    <div class="col-md-6 form-group  border-isa">
+      <h5 style="text-align: center" > Customer </h5>
+      <p-dataTable [value]="mySaleCallAttendeesC"
+                   [editable]="true"
+                   scrollable="true" scrollHeight="400px"
+                   [(selection)]="selectC">
+        <p-header>
+          <div class="form-inline" >
+           <div class="mt-1" >
+             <app-custom-botton-icon [option]="'new'" (onBtnClick)="addC()" ></app-custom-botton-icon>
+             <app-custom-botton-icon [option]="'delete'" (onBtnClick)="deleteC()"    [disabled]="selectC == undefined"   ></app-custom-botton-icon>
+           </div>
+          </div>
+        </p-header>
+        <p-column field="attnd_name"      header="Name" [editable]="true" ></p-column>
+        <p-column field="attnd_position" header="Position" [editable]="true"></p-column>
+        <p-footer></p-footer>
+      </p-dataTable>
+
+    </div>
+
+  </div>
+</div>

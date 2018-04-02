@@ -1,0 +1,189 @@
+<div class="border-isa p-2">
+  <div class="row">
+    <div class="col-md-4">
+      <label>Application Type</label>
+      <span class="star">*</span>
+      <div class="form-group">
+        <select class="form-control"
+                [(ngModel)]="selectBuyer.app_type">
+          <option *ngFor="let list of listAPT; let i = index"
+                  [value]="i+1"
+                  [selected]="selectBuyer.app_type === list.id_code">{{list?.remark}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label>Advance Ratio</label>
+      <span class="star">*</span>
+      <div class="form-group">
+        <input currencyMask
+               class="form-control"
+               [(ngModel)]="selectBuyer.advance_ratio"
+               [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label>Effective Rate(%)</label>
+      <div class="form-group">
+        <input currencyMask
+               disabled
+               class="form-control"
+               [(ngModel)]="selectBuyer.eff_rate"
+               [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Sub-Line Limit</label>
+      <span class="star">*</span>
+      <div class="form-group">
+        <input currencyMask
+               class="form-control"
+               [(ngModel)]="selectBuyer.sub_line_amt"
+               [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label>Payment Term</label>
+      <span class="star">*</span>
+      <div class="form-group">
+        <input currencyMask
+               class="form-control"
+               [(ngModel)]="selectBuyer.terms"
+               [options]="{ prefix: '', thousands: ',', precision  : '0' }"/>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Join Buyer Group</label>
+      <div class="form-group">
+        <select class="form-control"
+                (change)="onBuyerGroupChange($event.target.value)">
+          <option [value]="-1"></option>
+          <option *ngFor="let list of listsJointB; let i = index"
+                  [selected]="selectBuyer.joint_buyer_group === list.id_code"
+                  [value]="i"
+          >{{list.id_code}} : {{list.remark}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label>Join Buyer CR. Amount </label>
+      <div class="form-group">
+        <input currencyMask
+               disabled
+               class="form-control"
+               [(ngModel)]="selectBuyer.cr_limit"
+               [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="row">
+    <div class="col-md-4">
+      <input type="checkbox"
+             name="noti_type"
+             [checked]="data?.noti_type==='Y'"
+             (change)="$event.target.checked ? (selectBuyer.noti_type = 'Y') : (selectBuyer.noti_type = 'N')"> Notification
+      <div class="mt-radio-inline border-isa">
+        <label><b>Advance Condition Code</b></label>
+        <div class="form-group">
+          <div class="mt-radio-inline" style="padding: 5px">
+            <input type="radio"
+                   name="advance_code"
+                   value="01"
+                   [(ngModel)]="selectBuyer.advance_code"> 01 : Pre-Delivery<br>
+            <input type="radio"
+                   name="advance_code"
+                   value="02"
+                   [(ngModel)]="selectBuyer.advance_code"> 02 : After Delivery<br>
+            <input type="radio"
+                   name="advance_code"
+                   value="03"
+                   [(ngModel)]="selectBuyer.advance_code"> 03 : After Billing<br>
+            <input type="radio"
+                   name="advance_code"
+                   value="04"
+                   [(ngModel)]="selectBuyer.advance_code"> 04 : No Billing Process<br>
+            <input type="radio"
+                   name="advance_code"
+                   value="05"
+                   [(ngModel)]="selectBuyer.advance_code"> 05 : Other<br>
+            <input type="radio"
+                   name="advance_code"
+                   value="06"
+                   [(ngModel)]="selectBuyer.advance_code"> 06 : After Shipment
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <div class="mt-radio-inline border-isa">
+          <label><b>Payment Type</b></label>
+          <div class="form-group" style="padding: 5px">
+            <input type="checkbox"
+                   name="direct_payment"
+                   [checked]="data?.drirect_payment === 'Y'"
+                   (change)="$event.target.checked ? (selectBuyer.drirect_payment = 'Y') : (selectBuyer.drirect_payment = 'N')"> :
+            Direct Payment
+            <br>
+            <input type="checkbox"
+                   name="progress_payment"
+                   [checked]="data?.progress_payment === 'Y'"
+                   (change)="$event.target.checked ? (selectBuyer.progress_payment = 'Y') : (selectBuyer.progress_payment = 'N')"> :
+            Progress Payment
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label>Factoring Fee</label>
+      <span class="star">*</span>
+      <div class="form-group">
+        <input [disabled]="editable"
+               currencyMask
+               class="form-control"
+               [(ngModel)]="selectBuyer.factoring_fee"
+               [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
+      </div>
+      <label>Minimum Factoring Fee</label>
+      <div class="form-group">
+        <input [disabled]="editable"
+               currencyMask
+               class="form-control"
+               [(ngModel)]="selectBuyer.min_facfee"
+               [options]="{ prefix: '', thousands: ',', decimal: '.' , precision  : '0'}"/>
+      </div>
+      <label>Max Facforing Fee</label>
+      <div class="form-group">
+        <input [disabled]="editable"
+               currencyMask
+               class="form-control"
+               [(ngModel)]="selectBuyer.max_facfee"
+               [options]="{ prefix: '', thousands: ',', decimal: '.', precision  : '0' }"/>
+      </div>
+      <br>
+      <div class="mt-radio-inline border-isa">
+        <label><b>Payment Method</b></label>
+        <div class="form-group">
+          <div class="mt-radio-inline" style="padding: 5px">
+            <input type="radio" name="pay_mthd" value="CH" [(ngModel)]="selectBuyer.pay_mthd"> CH : Cheque Collection
+            <br>
+            <input type="radio" name="pay_mthd" value="TR" [(ngModel)]="selectBuyer.pay_mthd"> TR : Wire Tranfer
+            <br>
+            <input type="radio" name="pay_mthd" value="PDC" [(ngModel)]="selectBuyer.pay_mthd"> PDC : Post Date Cheque
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label><b>Remark</b><br></label>
+      <textarea class="form-control" rows="10" [(ngModel)]="selectBuyer.other_doc"></textarea>
+    </div>
+  </div>
+</div>

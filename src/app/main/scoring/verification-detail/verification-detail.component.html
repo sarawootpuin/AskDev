@@ -1,0 +1,24 @@
+<div *ngIf="isLoading" class="text-center">
+  <app-action-lock-screen [spinner]="true" [showCancel]="false"></app-action-lock-screen>
+</div>
+
+<div *ngIf="isLoading == false">
+  <div>
+    <app-header-verification-detail (onTabChange)="navigateTab($event)"
+                                    (onTabNameChange)="onChangeTab($event)"></app-header-verification-detail>
+  </div>
+  <!--<router-outlet></router-outlet>-->
+  <div *ngIf="currentTabName == 'main'">
+    <app-mainTab-verification-detail></app-mainTab-verification-detail>
+  </div>
+  <div *ngIf="currentTabName == 'question'">
+    <app-questiontabs-verification-detail></app-questiontabs-verification-detail>
+  </div>
+  <div *ngIf="currentTabName == 'img'">
+    <app-action-show-image-gallery #actionShowImageGalleryComponent [modelImage]="modelImage"></app-action-show-image-gallery>
+  </div>
+
+</div>
+
+
+

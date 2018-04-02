@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-md-3 offset-md-1 align-items-center">
+      <label><b>ประเภทที่อยู่</b></label>
+    </div>
+    <div class="col-md-4 align-items-center">
+      <label><b>ที่อยู่</b></label>
+    </div>
+    <div class="col-md-4 align-items-center">
+      <label><b>รายละเอียด</b></label>
+    </div>
+</div>
+<br>
+<div class="row" *ngFor="let listNcbAddress of modelNcbAddress">
+  <div class="col-md-3 offset-md-1 text-left">
+     <label>{{listNcbAddress.ADDRESS_TYPE}}</label>
+  </div>
+
+  <div class="col-md-4 text-left">
+    <label>{{listNcbAddress.ADDRESS}}</label>
+  </div>
+
+  <div class="col-md-4 align-items-center">
+    <label><b>สถานะการอยู่อาศัย</b>&nbsp;:&nbsp;{{listNcbAddress.RESIDENTIAL_STATUS}}</label>
+    <br>
+    <label><b>ประเภทโทรศัพท์</b>&nbsp;:&nbsp;{{listNcbAddress.TELEPHONE_TYPE}}</label>
+    <br>
+    <label><b>หมายเลขโทรศัพท์</b>&nbsp;:&nbsp;{{listNcbAddress.TELEPHONE}}</label>
+    <br>
+    <label><b>วันที่บันทึก</b>&nbsp;:&nbsp;{{listNcbAddress.REPORTED_DATE}}</label>
+  </div>
+</div>

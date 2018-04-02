@@ -1,0 +1,62 @@
+<div id="actionbutton"  class="root d-flex w-100 p-2 ">
+  <div class="p-1 h4">
+    {{title}}
+  </div>
+  <div class="ml-auto p-1">
+
+    <button type="button" class="btn btn-back" *ngIf="showBack"
+            (click)="onBackClick()">
+      <i class="fa fa-undo"></i> {{titleBack}}
+    </button>
+    <button type="button" class="btn btn-nav-newisa" *ngIf="showNew"
+            (click)="onNewClick()">
+      <i class="fa fa-plus"></i> {{titleNew}}
+    </button>
+    <button type="button" class="btn btn-edit" *ngIf="showEdit"
+            (click)="onEditClick()">
+      <i class="fa fa-edit"></i> {{titleEdit}}
+    </button>
+    <button type="button" class="btn btn-search" *ngIf="showSearch"
+            (click)="onSearchClick()">
+      <i class="fa fa-search"></i> {{titleSearch}}
+    </button>
+    <button type="button" class="btn btn-save" *ngIf="showSave"
+            (click)="onSaveClick()">
+      <i class="fa fa-save" ></i> {{titleSave}}
+    </button>
+    <button type="button" class="btn btn-nav-submitisa"  *ngIf="showSubmit"
+            (click)="onSubmitClick()" >
+      <i class="fa fa-thumbs-up"></i> {{titleSubmit}}
+    </button>
+    <button type="button" class="btn btn-nav-rejectisa" *ngIf="showReject"
+            (click)="onRejectClick()"  >
+      <i class="fa fa-thumbs-down"></i> {{titleReject}}
+    </button>
+    <button type="button" class="btn btn-return" *ngIf="showReturn"
+            (click)="onReturnClick()">
+      {{titleReturn}}
+    </button>
+    <button type="button" class="btn btn-print" *ngIf="showPrint"
+            (click)="onPrintClick()">
+      <i class="fa fa-print" ></i> {{titlePrint}}
+    </button>
+    <button type="button" class="btn btn-cancel" *ngIf="showCancel"
+            (click)="onCancelClick()">
+      <i class="fa fa-close" ></i> {{titleCancel}}
+    </button>
+    <button type="button" class="btn btn-calculator" *ngIf="showCalculator"
+            (click)="onCalculatorClick()">
+      <i class="fa fa-calculator" ></i> {{titleCalculator}}
+    </button>
+    <button type="button" class="btn btn-danger" *ngIf="showExit"
+            (click)="onExit()">
+      <i class="fa fa-power-off" ></i> Exit
+    </button>
+    <button type="button" class="btn btn-danger" *ngIf="showClose"
+            (click)="onClose()">
+      <i class="fa fa-power-off" ></i> Close
+    </button>
+  </div>
+</div>
+
+<app-alert-dialog #Questiondialog  (onOK)="okExist()"  ></app-alert-dialog>

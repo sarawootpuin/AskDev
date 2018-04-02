@@ -1,0 +1,33 @@
+<div #slider class="carousel slide"
+     data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item" [ngClass]="{active:i==0}"
+         style="height: 100vh;"
+         *ngFor="let image of images;let i = index;">
+      <img class="d-block img-fluid fill" [src]="image">
+
+      <!--<div class="head-caption">Hirepurchase & Leasing</div>-->
+      <!--<div class="caption">{{captions[i]}}</div>-->
+
+      <div *ngIf="i==5 || i==6; then cap2 else cap1"></div>
+      <ng-template #cap1>
+        <div class="head-caption-1">Hirepurchase & Leasing</div>
+        <div class="caption-1">{{captions[i]}}</div>
+      </ng-template>
+
+      <ng-template #cap2>
+        <div class="head-caption-2">Hirepurchase & Leasing</div>
+        <div class="caption-2">{{captions[i]}}</div>
+      </ng-template>
+    </div>
+  </div>
+
+  <a class="carousel-control-prev" (click)="prevImage()" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" (click)="nextImage()" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>

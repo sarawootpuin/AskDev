@@ -1,0 +1,62 @@
+<app-action-lock-screen *ngIf="isSaving" [spinner]="true" [showCancel]="false"></app-action-lock-screen>
+<div *ngIf="isLoading" class="text-center my-2">
+  <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>Loading...
+</div>
+<div [hidden]="isLoading">
+  <app-action-button-form title="Entity"
+                          [showNew]="false" [showSearch]="false"
+                          [showSubmit]="false" [showReject]="false"
+                          [showReturn]="false" [showPrint]="false"
+                          [showEdit]="false" [showCalculator]="false"
+                          [showCancel]="false"
+
+                          [showExit]="!this.hiddenExit"
+                          [showClose]="this.hiddenExit"
+
+                          [showSave]="true"
+                          [showBack]="true"
+                          (onBack)="backToEntity()"
+                          (onSave)="openSaveDialog()">
+
+  </app-action-button-form>
+
+  <div class="card m-4">
+    <p-panel header="Information" [toggleable]="true">
+      <app-entity-head [entity]="entityModel" #entityHead></app-entity-head>
+    </p-panel>
+    <div class="card-body my-1">
+      <p-tabView>
+        <p-tabPanel header="General Information">
+          <app-entity-general-detail [entity]="entityModel" #entityDetail></app-entity-general-detail>
+        </p-tabPanel>
+        <p-tabPanel header="Career And Spouse">
+          <app-entity-career-spouse [entity]="entityModel" #entityCareer></app-entity-career-spouse>
+        </p-tabPanel>
+        <p-tabPanel header="Address Th">
+          <app-entity-address-th [entity]="entityModel" #entityAddressT></app-entity-address-th>
+        </p-tabPanel>
+        <p-tabPanel header="Address En">
+          <app-entity-address-en [entity]="entityModel" #entityAddressE></app-entity-address-en>
+        </p-tabPanel>
+        <p-tabPanel header="Card">
+          <app-entity-card [entity]="entityModel" #entityCard (errorMsg)="showErrorMsg($event)"></app-entity-card>
+        </p-tabPanel>
+        <p-tabPanel header="Bank">
+          <app-entity-bank [entity]="entityModel" #entityBank (errorMsg)="showErrorMsg($event)"></app-entity-bank>
+        </p-tabPanel>
+        <p-tabPanel header="% Of Industry">
+          <app-entity-industry [entity]="entityModel" #entityIndustry></app-entity-industry>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+    <app-alert-dialog #alertDialog>
+    </app-alert-dialog>
+
+    <app-alert-dialog #askDialog (onOK)="saveEntity()">
+    </app-alert-dialog>
+
+    <app-alert-dialog #alertWarning >
+    </app-alert-dialog>
+
+  </div>
+</div>

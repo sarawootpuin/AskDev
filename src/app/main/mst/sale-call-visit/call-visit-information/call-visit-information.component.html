@@ -1,0 +1,281 @@
+<div class="container-fluid border-isa">
+  <div class="row">
+    <div class="col-md-6 form-group">
+      <label>Business Type</label>
+      <select class="form-control"
+              [ngModel]="saleCallH_Info?.bussiness_type"
+              (ngModelChange)="saleCallH_Info.bussiness_type=$event;saleCallH_Info.bussiness_detail =''">
+        <option></option>
+        <option *ngFor="let ansBUSTYPE of ListBUSTYPE"
+                [selected]="ansBUSTYPE?.id == saleCallH_Info?.bussiness_type"
+                [value]="ansBUSTYPE?.id">{{ansBUSTYPE?.display}}
+        </option>
+
+      </select>
+    </div>
+    <div class="col-md-3 form-group">
+      <label>DBD Code </label>
+      <input type="text" class="form-control" disabled
+             [ngModel]="saleCallH_Info?.bussiness_detail"
+             (ngModelChange)="saleCallH_Info.bussiness_detail=$event">
+    </div>
+    <div class="col-md-1 form-group">
+      <div class="d-flex align-self-center invisible" style="height: 80%;margin: 10px">
+        <button>Find</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 form-group">
+      <label>Specifies</label><br>
+      <div class="row">
+        <div class="col-md-10">
+          <input type="text" class="form-control"
+                 [value]="saleCallH_Info.bussiness_detail_name ? saleCallH_Info.bussiness_detail_name : '' "
+                 [disabled]="true">
+        </div>
+        <div class="col-md-2 pl-0">
+          <app-search-un app-search-un inuURL={{OutURL}}
+                         title="Business Type;Specifies;DBD CODE;"
+                         (col1)="setBusName($event)"
+                         (col3)="setBuscode($event)"
+                         (col4)="setCluster($event)"
+                         (col5)="setBusType($event)">
+          </app-search-un>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 form-group">
+      <div class="form-control">
+        <p><b>Cluster :</b>
+          {{saleCallH_Info?.cluster}} :<br/>
+          <b>Group Industry :</b>
+          {{saleCallH_Info?.bussiness_detail_name}}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 form-group">
+      <label>Managing Director</label>
+      <input type="text" class="form-control"  [maxlength]="70"
+             [ngModel]="saleCallH_Info?.md_name"
+             (ngModelChange)="saleCallH_Info.md_name=$event">
+    </div>
+    <div class="col-md-4 form-group">
+      <label>Nationality</label>
+      <select class="form-control"
+              [ngModel]="saleCallH_Info?.nationality"
+              (ngModelChange)="saleCallH_Info.nationality = $event">
+        <option></option>
+        <option *ngFor="let ansNATION of ListNATION"
+                [selected]="ansNATION.id == saleCallH_Info?.nationality"
+                [value]="ansNATION.id">{{ansNATION?.display}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 form-group">
+      <label>Address</label>
+      <input type="text" class="form-control"  [maxlength]="100"
+             [ngModel]="saleCallH_Info?.addr"
+             (ngModelChange)="saleCallH_Info.addr=$event">
+    </div>
+    <div class="col-md-2  form-group">
+      <label>Province</label>
+      <select class="form-control"
+              [ngModel]="saleCallH_Info?.prv_code"
+              (ngModelChange)="saleCallH_Info.prv_code=$event">
+        <option></option>
+        <option *ngFor="let ansPROVINCE of ListPROVINCE"
+                [selected]="ansPROVINCE.id == saleCallH_Info?.prv_code"
+                [value]="ansPROVINCE.id">{{ansPROVINCE?.display}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 form-group">
+      <label>Tel</label>
+      <input type="text" class="form-control"  [maxlength]="50"
+             [ngModel]="saleCallH_Info?.tel"
+             (ngModelChange)="saleCallH_Info.tel=$event">
+    </div>
+    <div class="col-md-3 form-group">
+      <label>E-mail</label>
+      <input type="text" class="form-control"  [maxlength]="100"
+             [ngModel]="saleCallH_Info?.e_mail"
+             (ngModelChange)="saleCallH_Info.e_mail=$event">
+    </div>
+    <div class="col-md-2 form-group">
+      <label>Fax</label>
+      <input type="text" class="form-control"  [maxlength]="50"
+             [ngModel]="saleCallH_Info?.fax"
+             (ngModelChange)="saleCallH_Info.fax=$event">
+    </div>
+    <div class="col-md-4 form-group">
+      <label>Website</label>
+      <input type="text" class="form-control"    [maxlength]="100"
+             [ngModel]="saleCallH_Info?.website"
+             (ngModelChange)="saleCallH_Info.website=$event">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 form-group">
+      <label>Register Capital</label><br>
+      <div class="form-inline">
+        <input appMyCurrency   class="form-control"
+                               (change)="saleCallH_Info.regis_capital_amt = $event.target.value"
+                               [value]="saleCallH_Info.regis_capital_amt" >
+        <label>&nbsp; MB.</label>
+      </div>
+    </div>
+    <div class="col-md-3 form-group">
+
+      <label>Paid Up Capital</label><br>
+      <div class="form-inline">
+        <input appMyCurrency   class="form-control" (change)="saleCallH_Info.paid_up_capital_amt = $event.target.value"
+                                                     [value]="saleCallH_Info.paid_up_capital_amt" >
+        <label>&nbsp; MB.</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 form-group">
+      <label>Sales Ended Year</label><br>
+      <div class="form-inline">
+        <input type="text" class="form-control"
+               pTooltip="2017"  style="text-align: right"
+               [textMask]="{mask: textmask.yyyy }"
+               [ngModel]="saleCallH_Info?.performance_year"
+               (ngModelChange)="saleCallH_Info.performance_year =$event">
+        <label>&nbsp; YEAR</label>
+      </div>
+    </div>
+    <div class="col-md-3 form-group">
+      <label>Sales Ended Amount</label><br>
+      <div class="form-inline">
+        <input appMyCurrency   class="form-control"
+               (change)="saleCallH_Info.sale_amt = $event.target.value"
+               [value]="saleCallH_Info.sale_amt" >
+        <label>&nbsp; MB.</label>
+      </div>
+    </div>
+    <div class="col-md-4 form-group">
+      <label>Net Profit</label><br>
+      <div class="form-inline">
+        <input appMyCurrency   class="form-control"
+               (change)="saleCallH_Info.net_profit_amt = $event.target.value"
+               [value]="saleCallH_Info.net_profit_amt"  >
+        <label>&nbsp; MB.</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 form-group">
+      <label>Net Worth Ended Year</label><br>
+      <div class="form-inline">
+        <input type="text" class="form-control"
+               pTooltip="2017"  style="text-align: right"
+               [textMask]="{mask: textmask.yyyy }"
+               [ngModel]="saleCallH_Info?.net_worth_year"
+               (ngModelChange)="saleCallH_Info.net_worth_year =$event">
+        <label>&nbsp; YEAR</label>
+      </div>
+    </div>
+    <div class="col-md-3 form-group">
+      <label>Net Worth Ended Amount</label><br>
+      <div class="form-inline">
+        <input appMyCurrency   class="form-control"  (change)="saleCallH_Info.net_worth_amt = $event.target.value"
+               [value]="saleCallH_Info.net_worth_amt" >
+        <label>&nbsp; MB.</label>
+      </div>
+    </div>
+    <div class="col-md-4 form-group">
+      <label>Established Year</label><br>
+      <div class="form-inline">
+        <input type="text" class="form-control"
+               pTooltip="2017"  style="text-align: right"
+               [textMask]="{mask: textmask.yyyy }"
+               [ngModel]="saleCallH_Info?.established_year"
+               (ngModelChange)="saleCallH_Info.established_year =$event">
+        <span class="text-danger">&nbsp; Example. 2017</span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 form-group">
+      <label>Main Bank & Credit Line</label><br>
+      <input type="text" class="form-control"  [maxlength]="50"
+             [ngModel]="saleCallH_Info?.main_bank"
+             (ngModelChange)="saleCallH_Info.main_bank=$event">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12  form-group">
+      <label>% Of Industry </label><br>
+      <div class="form-control">
+        <p-dataTable [value]="saleCallH_Info.listPCNT"
+                     scrollable="true" scrollHeight="400px"
+                     [(selection)]="mySelectPCNT"
+                     selectionMode="single"
+                     [responsive]="true"
+        >
+          <p-header>
+            <app-custom-botton-icon [option]="'new'"    (onBtnClick)="pcntAddorEdit('Add')"     ></app-custom-botton-icon>
+            <app-custom-botton-icon [option]="'edit'"   (onBtnClick)="pcntAddorEdit('Edit')"     ></app-custom-botton-icon>
+            <app-custom-botton-icon [option]="'delete'" (onBtnClick)="deletePCNT()"     ></app-custom-botton-icon>
+          </p-header>
+          <p-column field="new_ind_decs" header="New Industry"></p-column>
+          <p-column field="old_ind_decs" header="Old Industry"></p-column>
+          <p-column field="ind_pcnt" header="Percent(%)"></p-column>
+          <p-column field="rmrk" header="Remark"></p-column>
+          <p-footer></p-footer>
+        </p-dataTable>
+      </div>
+    </div>
+
+
+    <!----------------------action dialog------------------------------>
+    <app-action-dialog   #actiondialog
+                        [showCancel]="true"
+                        [showOk]="!btnShowAdd"
+                        [showAdd]="btnShowAdd"  (onAdd)="OkPcnt()"  (onOk)="OkPcnt()" >
+        <label *ngIf="!selectPCNT"> {{pcntAction}} Industry </label>
+        <div *ngIf="selectPCNT">
+          <div class="form-group">
+            <label>New Industry</label>
+            <select #NEWINDUSTRY class="form-control"
+                    (change)="selectMultiIndustry('New',NEWINDUSTRY.value)">
+              <option [value]="-1"></option>
+              <option *ngFor="let ansNEW of ListNEWINDUSTRY"
+                      [selected]="ansNEW?.id == tempmySelectPCNT?.new_ind_code"
+                      [value]="ansNEW.id">{{ansNEW?.display}}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Old Industry</label>
+            <select #OLDINDUSTRY class="form-control"
+                    (change)="selectMultiIndustry('Old',OLDINDUSTRY.value)">
+              <option></option>
+              <option *ngFor="let ansOLD of ListOLDINDUSTRY"
+                      [selected]="ansOLD?.id == tempmySelectPCNT?.xold_ind_code"
+                      [value]="ansOLD?.id">{{ansOLD?.display}}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Percent(%)</label>
+            <input class="form-control" [(ngModel)]="tempmySelectPCNT.ind_pcnt"  pKeyFilter="int" >
+          </div>
+          <div class="form-group">
+            <label>Remark</label>
+            <input class="form-control" [(ngModel)]="tempmySelectPCNT.rmrk"  [maxlength]="100" >
+          </div>
+        </div>
+
+    </app-action-dialog>
+
+  </div>
+</div>

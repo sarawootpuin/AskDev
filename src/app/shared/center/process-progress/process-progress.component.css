@@ -1,0 +1,50 @@
+.dotChart {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.dotChart .percentLine, .dotChart .percentLineBG {
+  stroke: #d3d3d3;
+  stroke-width: 5;
+  stroke-miterlimit: 10;
+}
+.dotChart .percentLine {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+.dotChart .percentLine.active {
+  animation: grow 0.5s linear forwards;
+  stroke: #3a6a83;
+}
+.dotChart .bar {
+  stroke: #64C4CF;
+  stroke-width: 4;
+  stroke-miterlimit: 10;
+}
+.dotChart .percentText {
+  fill: #64c4cf;
+  /*font-size: 20px;*/
+  pointer-events: none;
+}
+.dotChart .percentText tspan {
+  font-size: 0.5rem;
+  fill: #3db5c3;
+}
+.dotChart .dot {
+  stroke-width: 20px;
+  stroke-linecap: round;
+  stroke: #64c4cf;
+  /*cursor: pointer;*/
+  transition: 0.5s stroke-width;
+}
+.dotChart .dot.active {
+  stroke: #ed7957;
+  stroke-width: 25px;
+}
+@keyframes grow {
+  to {
+    stroke-dashoffset: 0;
+  }
+  from {
+    stroke-dashoffset: 1000;
+  }
+}

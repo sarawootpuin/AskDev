@@ -1,0 +1,431 @@
+<!--<app-side-tab [defaultMenuName]="'Exposure Inquiry'">-->
+<!--<app-side-tab-panel>-->
+<!--<app-side-tab-level [nameMenu]="'Main 1 $@%'">-->
+<!--<app-side-tab-level [nameMenu]="'SubMain1'">-->
+<!--<app-side-tab-level [nameMenu]="'SubSubMain1'">-->
+<!--<app-side-tab-level [nameMenu]="'SubSubSubMain1'">-->
+<!--<app-side-tab-level [nameMenu]="'SubSubSubSubMain1'">-->
+<!--</app-side-tab-level>-->
+<!--</app-side-tab-level>-->
+<!--</app-side-tab-level>-->
+<!--</app-side-tab-level>-->
+
+<!--<app-side-tab-level [nameMenu]="'SubMain2'">-->
+  <!--<app-side-tab-level [nameMenu]="'SubSubMain2'"></app-side-tab-level>-->
+<!--</app-side-tab-level>-->
+<!--<app-side-tab-level [nameMenu]="'SubMain3'">-->
+<!--</app-side-tab-level>-->
+<!--</app-side-tab-level>-->
+
+<!--<app-side-tab-level [nameMenu]="'Main2'">-->
+<!--<app-side-tab-level [nameMenu]="'SubMain2-1'">-->
+<!--<app-side-tab-level [nameMenu]="'Exposure Inquiry'">-->
+<!--</app-side-tab-level>-->
+<!--</app-side-tab-level>-->
+
+<!--</app-side-tab-level>-->
+
+<!--<app-side-tab-level [nameMenu]="'Exposure Report'" [idMenu]="'1'">-->
+<!--</app-side-tab-level>-->
+<!--<app-side-tab-level [nameMenu]="'Exposure Report'" [idMenu]="'2'">-->
+<!--</app-side-tab-level>-->
+<!--<app-side-tab-level [nameMenu]="'AMLO'" [idMenu]="'3'">-->
+<!--</app-side-tab-level>-->
+<!--</app-side-tab-panel>-->
+
+<!--<app-side-tab-main>-->
+<!--<app-side-tab-content [nameContent]="'Exposure Inquiry'">-->
+<!--<app-exposureinquiry></app-exposureinquiry>-->
+<!--</app-side-tab-content>-->
+
+<!--<app-side-tab-content [nameContent]="'Exposure Report'" [idMenu]="'1'">-->
+<!--<app-exposurereport></app-exposurereport>-->
+<!--</app-side-tab-content>-->
+
+<!--<app-side-tab-content [nameContent]="'Exposure Report'" [idMenu]="'2'">-->
+<!--<app-check-amlo></app-check-amlo>-->
+<!--</app-side-tab-content>-->
+
+<!--</app-side-tab-main>-->
+
+<!--</app-side-tab>-->
+
+<!--<app-action-read-excel #actionReadExcelComponent (onAfterOpen)="testReadFile()" [titleButton]="'เลือกไฟล์'" [showFileName]="true" [useTabSheet]="false"></app-action-read-excel>-->
+<!--{{modelExcel1}}-->
+
+
+
+<app-alert-dialog #alertDialogComponent2 [msg]="'โปรดใส่ข้อมูลในช่องที่มี * ให้ครบถ้วน !!'"></app-alert-dialog>
+<app-action-button-form [showSave]="true" [showCancel]="true" [showReject]="false" [showSubmit]="false"  [showNew]="false" [showCalculator]="false" [showSearch]="false" [showEdit]="false" [showPrint]="false"
+                        [showBack]="false" [title]="'Apply Blacklist'" (onCancel)="clearinputform()"
+                        (onSave)="showDialog()" (onReturn)="changeLanguage()"></app-action-button-form>
+
+<app-alert-dialog #alertDialogComponent
+                  [msg]="'Save Success!!'"></app-alert-dialog>
+
+
+<div class="card m-4">
+
+  <div class="card-header">
+
+    <div>
+      <form role="form" [formGroup]="blacklistFG" ngNativeValidate>
+
+
+        <!--<app-action-dialog [title]="'Save Information'" #actiondialog-->
+                                                <!--[showOk]="true"-->
+                                                <!--[showCancel]="true" (onOk)="onSubmit();">-->
+        <!--<div class="form-group">-->
+          <!--<h4 style="text-align: center">Are you Sure ?</h4>-->
+        <!--</div>-->
+      <!--</app-action-dialog>-->
+        <app-alert-dialog #alertDialogComponent3 (onOK)="onSubmit();"></app-alert-dialog>
+
+
+        <!--<p-dialog header="Are you sure ?" [(visible)]="display" modal="modal" width="300" [responsive]="true">-->
+        <!--&lt;!&ndash;<p>คุณต้องก</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p-footer>&ndash;&gt;-->
+        <!--<button type="button" pButton icon="fa-check" (click)="onSubmit();display = false;" label="Yes"></button>-->
+        <!--<button type="button" pButton icon="fa-close" (click)="display=false" label="No"></button>-->
+        <!--&lt;!&ndash;</p-footer>&ndash;&gt;-->
+        <!--</p-dialog>-->
+
+        <!------------- SHOW DETAIL ------------------------------->
+        <div id="p2">
+          <div class="row">
+            <div class="col-md-6">
+
+              <div class="form-group">
+                <label>{{blacklistLanguage.applyBlacklistComponent.default.prefix}}</label>
+                <div class="form-inline">
+                  <input type="text" aria-required="true" [(ngModel)]="PREFIX_NAME" formControlName="PREFIX_NAME"
+                         id="PREFIX_NAME"
+                         class="form-control" placeholder="" style="width:80%;">
+
+                </div>
+              </div>
+
+            </div>   <!-- <div class="col-md-6" > -->
+            <div class="col-md-6">
+
+              <div class="form-group">
+                <br/> <br/>
+                <label _ngcontent-hos-14="" class="mt-checkbox">
+                  <input _ngcontent-hos-14="" [(ngModel)]="AMLO" formControlName="AMLO" id="checkbokpp" type="checkbox"
+                         value="option1"> {{blacklistLanguage.applyBlacklistComponent.default.amlo}}
+                  <span _ngcontent-hos-14=""></span>
+                </label>
+                <!--<label for="example-date-input" class="col-form-label">Date</label>-->
+                <!--<span class="star">*</span>-->
+                <!--<input class="form-control col-3" type="date" value="2011-08-19" id="example-date-input">-->
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>{{blacklistLanguage.applyBlacklistComponent.default.name}}</label>
+                <label *ngIf="FIRST_NAME.length==0"
+                style="color:red">
+                &nbsp;*
+                </label>
+                <label *ngIf="FIRST_NAME.length>0"
+                style="color:green">
+                &nbsp;<i class="fa fa-check" aria-hidden="true"></i>
+                </label>
+                <div class="form-inline">
+                  <input type="text" [(ngModel)]="FIRST_NAME" formControlName="FIRST_NAME" id="FIRST_NAME"
+                         class="form-control input-medium" style="width: 80%" placeholder="">
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+
+              <div class="form-group">
+                <label>นามสกุล</label>
+                <label *ngIf="LAST_NAME.length==0"
+                style="color:red">
+                &nbsp;*
+                </label>
+                <label *ngIf="LAST_NAME.length>0"
+                style="color:green">
+                &nbsp;<i class="fa fa-check" aria-hidden="true"></i>
+                </label>
+                <div class="form-inline">
+                  <input type="text" [(ngModel)]="LAST_NAME" formControlName="LAST_NAME" id="LAST_NAME"
+                         class="form-control input-small" placeholder="" style="width: 80%">
+
+                </div>
+              </div>
+
+            </div>   <!-- <div class="col-md-6" > -->
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+
+              <div class="form-group">
+                <label for="LAW_DATE" class="col-form-label">วันที่ของคดี</label>
+                <!--<input class="form-control col-3" style="width: 500px" [(ngModel)]="LAW_DATE" formControlName="LAW_DATE"-->
+                <!--type="date"-->
+                <!--value="2011-08-19" id="LAW_DATE">-->
+                <div class="form-inline">
+                  <div style="padding-top: 5px">
+                    <p-calendar [(ngModel)]="LAW_DATE" dateFormat="dd/mm/yy" formControlName="LAW_DATE"
+                                id="LAW_DATE"></p-calendar>
+
+                  </div>
+                  <!--<label *ngIf="!LAW_DATE"-->
+                         <!--style="color:red">-->
+                    <!--&nbsp;*Required-->
+                  <!--</label>-->
+                  <!--<label *ngIf="LAW_DATE"-->
+                         <!--style="color:green">-->
+                    <!--&nbsp;<i class="fa fa-check" aria-hidden="true"></i>-->
+                  <!--</label>-->
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label>จำนวนเงิน</label>
+                <!--<input currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"-->
+                       <!--class="form-control input-small" [(ngModel)]="LAW_AMOUNT"-->
+                       <!--formControlName="LAW_AMOUNT" placeholder="" id="LAW_AMOUNT">-->
+                <input inputFormatNumber
+                class="form-control input-small" [(ngModel)]="LAW_AMOUNT"
+                formControlName="LAW_AMOUNT" placeholder="" id="LAW_AMOUNT">
+                <!--<input        appMyCurrency [fraction]="3"-->
+                       <!--class="form-control input-small" [(ngModel)]="LAW_AMOUNT"-->
+                       <!--formControlName="LAW_AMOUNT" placeholder="" id="LAW_AMOUNT">-->
+              </div>
+
+            </div>
+
+
+            <div class="col-md-6" style="padding-top: 7px;padding-bottom: 7px">
+
+              <div class="form-group">
+                <label>เลขที่บัตร</label>
+
+                <div class="form-inline">
+                  <input type="text" [(ngModel)]="ID_CARD" formControlName="ID_CARD" class="form-control"
+                         maxlength="25"
+                         name="ID_CARD" id="ID_CARD" style="width: 80%">
+
+                  <!--<label *ngIf="ID_CARD.length==0"-->
+                         <!--style="color:red">-->
+                    <!--&nbsp;*Required-->
+                  <!--</label>-->
+                  <!--<label *ngIf="ID_CARD.length>0"-->
+                         <!--style="color:green">-->
+                    <!--&nbsp;<i class="fa fa-check" aria-hidden="true"></i>-->
+                  <!--</label>-->
+                </div>
+
+              </div>
+
+              <div class="form-group">
+                <label>คดี</label>
+                <input type="text" [(ngModel)]="LAW_SUIT" formControlName="LAW_SUIT" class="form-control" maxlength="25"
+                       name="LAW_SUIT" id="LAW_SUIT">
+              </div>
+
+            </div>
+
+
+          </div>  <!-- <div class="row"> -->
+
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>โจทย์</label>
+                <input type="text" [(ngModel)]="ACCUSER" formControlName="ACCUSER" class="form-control" maxlength="25"
+                       name="ACCUSER" id="ACCUSER">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>สื่อ</label>
+                <input type="text" [(ngModel)]="MEDIA" formControlName="MEDIA" class="form-control" maxlength="25"
+                       name="MEDIA" id="MEDIA">
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>เลขเครื่อง</label>
+                <input type="text" [(ngModel)]="ENG_NUM" class="form-control" formControlName="ENG_NUM" maxlength="25"
+                       name="ENG_NUM" id="ENG_NUM">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>เลขถัง</label>
+                <input type="text" [(ngModel)]="CHASSIS" class="form-control" formControlName="CHASSIS" maxlength="25"
+                       name="CHASSIS" id="CHASSIS">
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>ยี่ห้อ</label>
+                <input type="text" [(ngModel)]="BRAND" formControlName="BRAND" class="form-control" maxlength="25"
+                       name="BRAND" id="BRAND">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>ทะเบียน</label>
+                <input type="text" [(ngModel)]="LICENCE" formControlName="LICENCE" class="form-control" maxlength="25"
+                       name="LICENCE" id="LICENCE">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>หมายเหตุ</label>
+                <textarea type="text" [(ngModel)]="REMARK" formControlName="REMARK" class="form-control" rows="3"
+                          id="REMARK"></textarea>
+              </div>
+            </div>
+          </div>
+
+
+          <br>
+
+
+        </div>  <!-- <div class="col-md-12" id="p2" style="padding: 10px">  -->
+      </form>
+
+      <!--&lt;!&ndash; ----------- SHOW TABLE ----------------------------------------------- &ndash;&gt;-->
+      <!--<div class="col-md-12 " id="p1" style="padding: 10px">-->
+      <!--<div class="container" style="margin: 0; width: 100%">-->
+      <!--<div class="portlet grey-cascade box">-->
+      <!--<div class="container">-->
+      <!--<div class="row" style="padding: 5px;background-color: #969FA1; border: 1px solid #b1bdbd">-->
+      <!--<div class="col">-->
+      <!--<div class="caption  float-left" style="color: white">-->
+      <!--<i class="fa fa-info-circle"></i> Information-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="container" style="padding: 10px">-->
+      <!--<div class="thead-responsive" style="overflow-x: auto;min-height: .01%; border: 1px solid #b1bdbd">-->
+      <!--<table class="table table-bordered table-hover">-->
+      <!--<thead>-->
+      <!--<tr style="background-color: #8fcafe">-->
+      <!--<th>#</th>-->
+      <!--<th>Product</th>-->
+      <!--<th>Item Status</th>-->
+      <!--<th>Date</th>-->
+      <!--<th>Price</th>-->
+      <!--<th>Quantity</th>-->
+      <!--<th>Tax Amount</th>-->
+      <!--<th>Tax Percent</th>-->
+      <!--<th>Discount Amount</th>-->
+      <!--</tr>-->
+      <!--</thead>-->
+      <!--<tbody>-->
+      <!--<tr>-->
+      <!--<td>1</td>-->
+      <!--<td>Product1</td>-->
+      <!--<td>Available</td>-->
+      <!--<td>03/01/2017</td>-->
+      <!--<td>345.50$</td>-->
+      <!--<td>2</td>-->
+      <!--<td> 4%</td>-->
+      <!--<td> 0.00$</td>-->
+      <!--<td> 691.00$</td>-->
+      <!--</tr>-->
+      <!--<tr class="table-info">-->
+      <!--<td>2</td>-->
+      <!--<td>Product2</td>-->
+      <!--<td>Available</td>-->
+      <!--<td>16/01/2017</td>-->
+      <!--<td>245.50$</td>-->
+      <!--<td>2</td>-->
+      <!--<td> 4%</td>-->
+      <!--<td> 0.00$</td>-->
+      <!--<td> 691.00$</td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+      <!--<td>3</td>-->
+      <!--<td>Product3</td>-->
+      <!--<td>Available</td>-->
+      <!--<td>30/1/2017</td>-->
+      <!--<td>200.50$</td>-->
+      <!--<td>2</td>-->
+      <!--<td> 4%</td>-->
+      <!--<td> 0.00$</td>-->
+      <!--<td> 691.00$</td>-->
+      <!--</tr>-->
+      <!--<tr class="table-info">-->
+      <!--<td>4</td>-->
+      <!--<td>Product4</td>-->
+      <!--<td>Available</td>-->
+      <!--<td>23/02/2017</td>-->
+      <!--<td>245.65$</td>-->
+      <!--<td>2</td>-->
+      <!--<td> 4%</td>-->
+      <!--<td> 0.00$</td>-->
+      <!--<td> 691.00$</td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+      <!--<td>5</td>-->
+      <!--<td>Product5</td>-->
+      <!--<td>Available</td>-->
+      <!--<td>28/02/2017</td>-->
+      <!--<td>745.00$</td>-->
+      <!--<td>2</td>-->
+      <!--<td> 4%</td>-->
+      <!--<td> 0.00$</td>-->
+      <!--<td> 691.00$</td>-->
+      <!--</tr>-->
+      <!--<tr class="table-info">-->
+      <!--<td>6</td>-->
+      <!--<td>Product6</td>-->
+      <!--<td>Available</td>-->
+      <!--<td>01/03/2017</td>-->
+      <!--<td>500.00$</td>-->
+      <!--<td>2</td>-->
+      <!--<td> 4%</td>-->
+      <!--<td> 0.00$</td>-->
+      <!--<td> 691.00$</td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+      <!--<td>7</td>-->
+      <!--<td>Product7</td>-->
+      <!--<td>Available</td>-->
+      <!--<td>16/03/2017</td>-->
+      <!--<td>465.65$</td>-->
+      <!--<td>2</td>-->
+      <!--<td> 4%</td>-->
+      <!--<td> 0.00$</td>-->
+      <!--<td> 691.00$</td>-->
+      <!--</tr>-->
+      <!--</tbody>-->
+      <!--</table>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>  &lt;!&ndash; <div class="col-md-12 " id="p1" style="padding: 10px">  &ndash;&gt;-->
+      <!--&lt;!&ndash;----------- END SHOW TABLE --------------------------&ndash;&gt;-->
+
+    </div>  <!-- <div class="row"> -->
+    <!-------------------------------- END SHOW DETAIL ------------------------------>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<!--<div class="main-container">-->
+  <div class="detail-container">
+    <div class="row">
+      <div class="col-md-12">
+        <form>
+            <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+              <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+              <input #gb type="text" pInputText size="50" placeholder="Search">
+            </div>
+        </form>
+      </div>
+    </div>
+    <div>
+          <p-dataTable [value]="ListReassign"
+                       scrollable="true" scrollHeight="380px"
+                       selectionMode="single"
+                       (onRowSelect)="onRowSelect($event)"
+                       [(selection)]="selectList"
+                       [globalFilter]="gb" #dt
+          >
+          <p-header>Marketing list</p-header>
+          <p-column field="fullname" header="Officer Name"  ></p-column>
+          <p-column field="group_code" header="Team Code"   ></p-column>
+          <p-column field="dept_name" header="Department"   ></p-column>
+          <p-column field="todo_numer" header="Todo Number" ></p-column>
+        </p-dataTable>
+    </div>
+  </div>
+<!--</div>-->

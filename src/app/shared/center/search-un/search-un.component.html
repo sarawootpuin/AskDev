@@ -1,0 +1,35 @@
+
+<div class="mt-1" *ngIf="iconOnly" >
+  <app-custom-botton-icon [option]="option"   (onBtnClick)="showDialog()" ></app-custom-botton-icon>
+</div>
+
+<div class="ui-inputgroup" *ngIf="!iconOnly"  >
+  <input type="text" class="form-control" [value]="displaytext"  [disabled]="true" >
+  <div  class="mt-1" >
+     <app-custom-botton-icon [option]="option"   (onBtnClick)="showDialog()"></app-custom-botton-icon>
+  </div>
+</div>
+
+<!----------------------action dialog------------------------------>
+<app-action-dialog [title]="'Action Dialog'"  #searchdialog
+                   [showChoose]="btnChoose"  [width]="700"
+                   [showNo]="true"  (onChoose)="onSubmit()">
+
+  <p-dataTable [value]="Listselect"
+               scrollable="true" scrollHeight="380px"
+               selectionMode="single"
+               (onRowSelect)="onChoose(SelectRow)"
+               [(selection)]="SelectRow"
+               [paginator]="true"
+               [rows]="7"
+               [globalFilter]="gb" #dt
+  >
+    <p-header>Search list &nbsp;
+      <input #gb type="text" class="w-75"  (blur)="thissearchUnText=gb.value" >
+      <app-custom-botton-icon  *ngIf="!callApiOnShow"   [option]="'search'" (onBtnClick)="searchAPI()" ></app-custom-botton-icon>
+    </p-header>
+    <p-column *ngFor="let col of setColum" [field]="col.field " [header]="col.name"></p-column>
+  </p-dataTable>
+
+</app-action-dialog>
+

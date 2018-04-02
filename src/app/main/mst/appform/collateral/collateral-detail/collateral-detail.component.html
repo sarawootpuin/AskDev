@@ -1,0 +1,142 @@
+<div class="border-isa">
+  <label><b>Collateral Type</b></label>
+  <div class="mt-radio-inline" (change)="cltTypeChange()">
+    <input type="radio" name="clt_type" value="4" [(ngModel)]="data.clt_type"> Machine
+    <input type="radio" name="clt_type" value="5" [(ngModel)]="data.clt_type"> Invoice
+    <input type="radio" name="clt_type" value="6" [(ngModel)]="data.clt_type"> Stock
+    <input type="radio" name="clt_type" value="7" [(ngModel)]="data.clt_type"> Cash Deposit
+  </div>
+</div>
+
+
+<div class="border-isa" *ngIf="data.clt_type != '7'">
+  <label>Collateral Amount</label>
+  <div class="form-group form-inline">
+    <input appMyCurrency
+           class="form-control"
+           [fraction]="2"
+           pKeyFilter="pnum"
+           (change)="data.clt_amt = $event.target.value"
+           [value]="data.clt_amt" >
+    <!--<input currencyMask
+           class="form-control"
+           [(ngModel)]="data.clt_amt"
+           [options]="{ prefix: '', thousands: ',', decimal: '.', precision : '2' }"/>-->
+    <label>Baht</label>
+  </div>
+  <label>{{data.clt_type_desc}} No</label>
+  <div class="form-group form-inline">
+    <input type="text" class="form-control" [(ngModel)]="data.doc_no">
+  </div>
+  <label>{{data.clt_type_desc}} Date</label>
+  <div class="form-group">
+    <p-calendar #docDate
+                [ngModel]="data.doc_date"
+                (onSelect)="data.doc_date = onSelectMethod(docDate.value)"
+                dateFormat="dd/mm/yy"></p-calendar>
+  </div>
+  <label>Remark</label>
+  <div class="form-group">
+    <textarea class="form-control" rows="10" [(ngModel)]="data.remark"></textarea>
+  </div>
+</div>
+<div class="border-isa" *ngIf="data.clt_type === '7'">
+  <label>Collateral Deposit</label>
+  <div class="form-group form-inline">
+    <input appMyCurrency
+           (blur)="pcnBlur()"
+           class="form-control"
+           [fraction]="2"
+           pKeyFilter="pnum"
+           (change)="data.deduct_pcn = $event.target.value"
+           [value]="data.deduct_pcn" >
+    <!--<input currencyMask
+           class="form-control"
+           (blur)="pcnBlur()"
+           [(ngModel)]="data.deduct_pcn"
+           [options]="{ prefix: '', thousands: ',', decimal: '.', precision : '2' }"/>-->
+    <label>%</label>
+  </div>
+  <label>Collateral Deposit</label>
+  <div class="form-group form-inline">
+    <input appMyCurrency
+           (blur)="cltAmountBlur()"
+           class="form-control"
+           [fraction]="2"
+           pKeyFilter="pnum"
+           (change)="data.clt_amt = $event.target.value"
+           [value]="data.clt_amt" >
+    <!--<input currencyMask
+           class="form-control"
+           (blur)="cltAmountBlur()"
+           [(ngModel)]="data.clt_amt"
+           [options]="{ prefix: '', thousands: ',', decimal: '.', precision : '2' }"/>-->
+    <label>Baht</label>
+  </div>
+  <label>Deduct Cheque</label>
+  <div class="form-group form-inline">
+    <input appMyCurrency
+           class="form-control"
+           [fraction]="2"
+           pKeyFilter="pnum"
+           (change)="data.clt_balance = $event.target.value"
+           [value]="data.clt_balance" >
+    <!--<input currencyMask
+           class="form-control"
+           [(ngModel)]="data.clt_balance"
+           [options]="{ prefix: '', thousands: ',', decimal: '.', precision : '2' }"/>-->
+    <label>Baht</label>
+  </div>
+  <label>Cash</label>
+  <div class="form-group form-inline">
+    <input appMyCurrency
+           (blur)="cltCash()"
+           class="form-control"
+           [fraction]="2"
+           pKeyFilter="pnum"
+           (change)="data.clt_cash_rcp = $event.target.value"
+           [value]="data.clt_cash_rcp" >
+    <!--<input currencyMask
+           class="form-control"
+           (blur)="cltCash()"
+           [(ngModel)]="data.clt_cash_rcp"
+           [options]="{ prefix: '', thousands: ',', decimal: '.', precision : '2' }"/>-->
+    <label>Baht</label>
+  </div>
+  <div class="border-isa" header="Interest">
+    <div class="form-group">
+      <label>Pay Interest Method</label>
+      <div class="form-group">
+        <select class="form-control"
+                [(ngModel)]="data.cal_int_type"
+                (ngModelChange)="interestChange($event)">
+          <option [value]="-1"></option>
+          <option *ngFor="let list of listPayInterest; let i = index"
+                  [selected]="data.cal_int_type === list.id_code"
+                  [value]="list.id_code"
+          >{{list.remark}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <label>Interest Rate</label>
+    <div class="form-group form-inline">
+      <input appMyCurrency
+             (blur)="cltCash()"
+             class="form-control"
+             [fraction]="2"
+             pKeyFilter="pnum"
+             (change)="data.int_rate = $event.target.value"
+             [value]="data.int_rate" >
+      <!--<input currencyMask
+             #intRate
+             class="form-control"
+             (blur)="cltCash()"
+             [(ngModel)]="data.int_rate"
+             [options]="{ prefix: '', thousands: ',', decimal: '.', precision : '2' }"/>-->
+      <label>%</label>
+    </div>
+  </div>
+</div>
+
+

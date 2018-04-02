@@ -1,0 +1,250 @@
+
+  <div>
+    <div class="flex-column">
+      <div class="row">
+        <div class="flex-md-column col-md-6">
+          <div class="form-group">
+            <label>Finance Asset Type</label><br>
+            <select class="form-control"
+                    [ngModel]="bgdetailSub?.asst_type"
+                    (ngModelChange)="bgdetailSub.asst_type=$event;onChangeFat('');">
+              <option></option>
+              <option *ngFor="let list of listFAT"
+                      [selected]="list?.id_code == bgdetailSub?.asst_type"
+                      [value]="list?.id_code">{{list?.remark}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="flex-md-column col-md-6">
+          <div class="form-group">
+            <label>Finance Asset Code</label><br>
+            <select class="form-control"
+                    [ngModel]="bgdetailSub?.asst_code"
+                    (ngModelChange)="bgdetailSub.asst_code=$event;onChangeFac('');">
+              <option></option>
+              <option *ngFor="let list of listFAC"
+                      [selected]="list?.id_code == bgdetailSub?.asst_code"
+                      [value]="list?.id_code">{{list?.remark}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="flex-md-column col-md-6">
+          <div class="form-group">
+            <label>Finance Asset Sub Code</label><br>
+            <select class="form-control"
+                    [ngModel]="bgdetailSub?.asst_sub_code"
+                    (ngModelChange)="bgdetailSub.asst_sub_code=$event">
+              <option></option>
+              <option *ngFor="let list of listFAS"
+                      [selected]="list?.id_code == bgdetailSub?.asst_sub_code"
+                      [value]="list?.id_code">{{list?.remark}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="flex-md-column col-md-6 mt-3">
+          <div class="form-group">
+            <input type="radio" name="bt" value="N"
+                   [ngModel]="bgdetailSub?.asset_status"
+                   (ngModelChange)="bgdetailSub.asset_status=$event"> New Asset
+            <input type="radio" name="bt" value="U"
+                   [ngModel]="bgdetailSub?.asset_status"
+                   (ngModelChange)="bgdetailSub.asset_status=$event"> Used Asset
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div>
+      <div class="row">
+        <div class="flex-md-column col-md-3">
+          <div class="form-group">
+            <label>Brand </label>
+            <input type="text" class="form-control" [(ngModel)]="bgdetailSub.brand_code">
+          </div>
+        </div>
+        <div class="flex-md-column offset-3 col-md-3">
+          <div class="form-group">
+            <label>Model</label>
+            <input type="text" class="form-control" [(ngModel)]="bgdetailSub.model_code">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="flex-md-column col-md-3">
+          <div class="form-group">
+            <label>Chassis</label>
+            <input type="text" class="form-control" [(ngModel)]="bgdetailSub.chassis">
+          </div>
+        </div>
+        <div class="flex-md-column offset-3 col-md-3">
+          <div class="form-group">
+            <label>Engine No.</label>
+            <input type="text" class="form-control" [(ngModel)]="bgdetailSub.eng_num">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="flex-md-column col-md-3">
+          <div class="form-group">
+            <label>Year</label>
+            <input type="text" class="form-control" [(ngModel)]="bgdetailSub.year" [textMask]="{mask: textmask.yyyy }">
+          </div>
+        </div>
+        <div class="flex-md-column offset-3 col-md-3">
+          <div class="form-group">
+            <label>Regis No.</label>
+            <input type="text" class="form-control" [(ngModel)]="bgdetailSub.reg_num">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="flex-md-column col-md-3">
+          <div class="form-group">
+            <label>Color</label>
+            <input type="text" class="form-control" [(ngModel)]="bgdetailSub.color">
+          </div>
+        </div>
+        <div class="flex-md-column offset-3 col-md-3">
+          <div class="form-group">
+            <label>CC</label>
+            <input type="text" class="form-control" [(ngModel)]="bgdetailSub.cc" pKeyFilter="int">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="flex-md-column col-md-8">
+          <div class="form-group">
+            <label>Dealer Name</label><br>
+            <app-search-un app-search-un inuURL={{OutURL}}
+                           title="NAME;CODE;"
+                           [iconOnly]="false" [displaycol]="'COL1'" [displaytext]="bgdetailSub.dealer_name"
+                           [callApiOnShow]="false"
+                           [searchParamName]="'condition'"
+                           (col1)="setDealerName($event)"
+                           (col2)="setDealerCode($event)">
+            </app-search-un>
+          </div>
+        </div>
+      </div>
+      <!--<div class="row">-->
+      <!--<div class="flex-md-column col-md-9">-->
+      <!--<div class="form-group">-->
+      <!--<label>Last Name</label>-->
+      <!--<input type="text" class="form-control"   >-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <div class="row">
+        <div class="flex-md-column col-md-3">
+          <div class="form-group">
+            <label>O/S Credit Line</label>
+            <input class="form-control"
+                   appMyCurrency
+                   [value]="bgdetailSub?.comm_amt" (change)="bgdetailSub.comm_amt = $event.target.value">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="flex-md-column col-md-3">
+          <div class="form-group">
+            <label>Equip Type</label><br>
+            <select class="form-control"
+                    [ngModel]="bgdetailSub?.eqp_ty"
+                    (ngModelChange)="bgdetailSub.eqp_ty=$event">
+              <option></option>
+              <option *ngFor="let list of listEQP"
+                      [selected]="list?.id_code == bgdetailSub?.eqp_ty"
+                      [value]="list?.id_code">{{list?.remark}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="flex-md-column offset-3 col-md-3">
+          <div class="form-group">
+            <label>Weight</label>
+            <input type="text" class="form-control"
+                   appMyCurrency [value]="bgdetailSub.weight" (change)="bgdetailSub.weight = $event.target.value">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="flex-md-column col-md-3">
+          <div class="form-group">
+            <label>Body </label><br>
+            <select class="form-control"
+                    [ngModel]="bgdetailSub?.body"
+                    (ngModelChange)="bgdetailSub.body=$event">
+              <option></option>
+              <option *ngFor="let list of listBDY"
+                      [selected]="list?.id_code == bgdetailSub?.body"
+                      [value]="list?.id_code">{{list?.remark}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="flex-md-column offset-3 col-md-3">
+          <div class="form-group">
+            <label>Miles</label>
+            <input type="text" class="form-control"
+                   appMyCurrency [value]="bgdetailSub.miles" (change)="bgdetailSub.miles = $event.target.value"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="flex-md-column col-md-3">
+          <div class="form-group">
+            <label>Engine Type</label><br>
+            <select class="form-control"
+                    [ngModel]="bgdetailSub?.enigne_type"
+                    (ngModelChange)="bgdetailSub.enigne_type=$event">
+              <option></option>
+              <option *ngFor="let list of listENG_TYPE"
+                      [selected]="list?.id_code == bgdetailSub?.enigne_type"
+                      [value]="list?.id_code">{{list?.remark}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="flex-md-column offset-3 col-md-3">
+          <div class="form-group">
+            <label>Seat</label>
+            <input type="text" class="form-control" [(ngModel)]="bgdetailSub.seat">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="flex-md-column col-md-9">
+          <div class="form-group">
+            <label>Asset Detail</label>
+            <input type="text" class="form-control" [(ngModel)]="bgdetailSub.detail">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="flex-md-column col-md-6">
+          <div class="form-group">
+            <label>Accessory</label>
+            <input type="text" class="form-control" [(ngModel)]="bgdetailSub.accessory">
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="flex-md-column col-md-3">
+          <div class="form-group">
+            <label>Asset (Exc. VAT)</label>
+            <input type="text" class="form-control"
+                   appMyCurrency
+                   [value]="bgdetailSub.asst_amt_e_vat"
+                   (change)="bgdetailSub.asst_amt_e_vat = $event.target.value">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

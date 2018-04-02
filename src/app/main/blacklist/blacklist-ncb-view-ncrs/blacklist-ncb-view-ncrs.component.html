@@ -1,0 +1,27 @@
+<app-action-button-form [title]="'NCRS View'"></app-action-button-form>
+<div class="card card-header">
+  <label>ชื่อ - นามสกุล :&nbsp;</label><br>
+  <label>หนังสือให้ความยินยอม&nbsp;</label>
+
+  <p-tabView>
+    <p-tabPanel header="ข้อมูลส่วนบุคคล" [selected]="true">
+      <app-personal-info></app-personal-info>
+    </p-tabPanel>
+
+    <p-tabPanel header="ข้อมูลที่อยู่">
+      <app-ncrs-address></app-ncrs-address>
+    </p-tabPanel>
+
+    <p-tabPanel header="สรุปข้อมูลบัญชีสินเชื่อ">
+      <app-ncrs-loan></app-ncrs-loan>
+    </p-tabPanel>
+
+    <p-tabPanel header="รายละเอียดบัญชี">
+      <app-ncrs-acc-detail></app-ncrs-acc-detail>
+    </p-tabPanel>
+
+    <p-tabPanel header="การสืบค้น">
+    </p-tabPanel>
+
+  </p-tabView>
+</div>

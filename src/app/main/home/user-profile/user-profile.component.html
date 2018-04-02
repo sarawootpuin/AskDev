@@ -1,0 +1,112 @@
+<div class="card mb-3 ">
+  <div class="card-header d-flex justify-content-between">
+    <div class="h5 text-success d-flex align-items-center ">
+      <div>Personal Details</div>
+    </div>
+    <div class="mx-2 d-flex">
+      <div class="h6 font-weight-normal d-flex align-items-center ">
+        <div>Company</div>
+      </div>
+      <select class="form-control ml-2 mx-1"
+              (change)="onComCodeChange($event.target.value)">
+        <option *ngFor="let company of accessCompany"
+                [selected]="company.comCode === comCode"
+                >
+          {{company.comCode}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="card-body ">
+    <div class="text-center">
+      <img src="assets/img/profile_holder.png"
+           style="width: 100px;height: 100px;" class="img-thumbnail rounded-circle">
+    </div>
+    <div class="text-center mt-3">
+      <p class="h6 text-uppercase">{{this.userProfile?.fullNameE}}</p>
+      <div class="font-italic">{{this.userProfile?.email}}</div>
+    </div>
+    <form class="mt-5">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label font-weight-bold">
+          Employee code
+        </label>
+        <div class="col-sm-9">
+          <input type="text"
+                 readonly class="form-control-plaintext w-100"
+                 [value]="this.userProfile?.empCode">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label font-weight-bold">
+          Fullname (En)
+        </label>
+        <div class="col-sm-9">
+          <input type="text"
+                 readonly class="form-control-plaintext w-100"
+                 [value]="this.userProfile?.fullNameE">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label font-weight-bold">
+          Fullname (Th)
+        </label>
+        <div class="col-sm-9">
+          <input type="text"
+                 readonly class="form-control-plaintext w-100"
+                 [value]="this.userProfile?.fullNameT">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label font-weight-bold">
+          Company code
+        </label>
+        <div class="col-sm-9">
+          <input type="text"
+                 readonly class="form-control-plaintext w-100"
+                 [value]="this.userProfile?.comCode">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label font-weight-bold">
+          Concise branch
+        </label>
+        <div class="col-sm-9">
+          <input type="text"
+                 readonly class="form-control-plaintext w-100"
+                 [value]="this.userProfile?.conciseBranchCode">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label font-weight-bold">
+          Position
+        </label>
+        <div class="col-sm-9">
+          <input type="text"
+                 readonly class="form-control-plaintext w-100"
+                 [value]="this.userProfile?.position">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label font-weight-bold">
+          Sec code
+        </label>
+        <div class="col-sm-9">
+          <input type="text"
+                 readonly class="form-control-plaintext w-100"
+                 [value]="this.userProfile?.secCode">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label font-weight-bold">
+          Department
+        </label>
+        <div class="col-sm-9">
+          <input type="text"
+                 readonly class="form-control-plaintext w-100"
+                 [value]="this.userProfile?.deptName">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

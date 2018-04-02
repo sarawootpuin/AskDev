@@ -1,0 +1,69 @@
+<p-panel header="Approve Level / Comment & Reason">
+  <div class="main-container">
+    <div class="d-flex">
+      <div class="flex-md-column col-md-3">
+        <div class="form-group">
+          <label class="my-3"> Authority </label>
+          <input class="form-control" disabled >
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label class="my-1"> Approve CA Level </label>
+          <p-dataTable selectionMode="single" [value]= "listcacusapv"
+                       [(selection)]="selectCaCusApv"
+                       [scrollable]="true"
+                       scrollHeight="200px"  scrollWidth="400px"
+                       [responsive]="true">
+            <p-column field="approve_level" header="Level " [style]="{'width':'50px'  }" ></p-column>
+            <p-column field="apv_person_name" header="Authorized approvers"></p-column>
+            <p-column field="approve_date" header=" Approve date "></p-column>
+            <p-column field="apv_user_name" header="Approvers "></p-column>
+            <p-footer>
+              <div class="ui-helper-clearfix" style="width:100%">
+              </div>
+            </p-footer>
+          </p-dataTable>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label class="my-1">History </label>
+          <p-dataTable selectionMode="single"
+                       [value]= "listcaapvhist"
+                       [(selection)]="selectCaApvhist"
+                       [scrollable]="true"
+                       scrollHeight="200px"  scrollWidth="400px"
+                       [responsive]="true">
+            <p-column field="run_no" header=" SeqNo. "  [style]="{'width':'50px' ,'height':'50px'   }"></p-column>
+            <p-column field="approve_flg" header="Y/N"  [style]="{'width':'50px','height':'50px'}"></p-column>
+            <p-column field="approve_name" header="Name"  [style]="{'width':'150px','height':'50px'}"></p-column>
+            <p-column field="approve_date" header="Date "  [style]="{'width':'150px','height':'50px'}"></p-column>
+            <p-column field="remark" header="Reason "  [style]="{'width':'400px','height':'50px'}"></p-column>
+            <p-footer>
+              <div class="ui-helper-clearfix" style="width:100%">
+              </div>
+            </p-footer>
+          </p-dataTable>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-6">
+        <div class="form-group">
+          <label> Key Comment </label>
+          <textarea class="form-control" disabled ></textarea>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-6">
+        <div class="form-group">
+          <label> Reject Reason </label>
+          <textarea class="form-control"  disabled  ></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-panel>

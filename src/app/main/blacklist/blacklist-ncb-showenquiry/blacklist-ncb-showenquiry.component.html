@@ -1,0 +1,57 @@
+<app-action-button-form [title]="'NCB Enquiry'" [showReject]="false" [showSubmit]="false" [showNew]="false"
+                        [showCancel]="false" [showCalculator]="false" [showSearch]="true" [showBack]="false"
+                        [showSave]="false" [showPrint]="false" [showEdit]="false"
+                        (onSearch)="getDataNcbEnquiry()"></app-action-button-form>
+
+<div class="card card-header">
+  <div class="row">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-4">
+            <label class="col-md-12">Name</label>
+            <div class="col-md-12">
+              <input type="text" [(ngModel)]="pname" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label class="col-md-12">Surname</label>
+            <div class="col-md-12">
+              <input type="text" [(ngModel)]="psurname" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label class="col-md-12">ID / Trade No</label>
+            <div class="col-md-12">
+              <input type="text" [(ngModel)]="ptradeid" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+
+        </div>
+      </div>
+
+  </div>
+</div>
+
+
+<p-dataTable [value]="modelNcbEnquiry" [rows]="5" [lazy]="true" [paginator]="true"
+             [totalRecords]="totalRecords" (onPage)="loadNcbEnquiry($event)">
+  <p-header>NCB Enquiry</p-header>
+  <p-column field="CHECK_DT" header="MKT Check Date" *ngIf="showMktCheckDate">
+    <ng-template let-col let-row="rowData" pTemplate="body">
+      <span>{{ row[col.field] | date: 'dd/MM/yyyy'  }}</span>
+    </ng-template>
+  </p-column>
+  <p-column field="SENT_NCB_DT" header="Sent NCB Date" *ngIf="showSentNcbDate">
+    <ng-template let-col let-row="rowData" pTemplate="body">
+      <span>{{ row[col.field] | date: 'dd/MM/yyyy'  }}</span>
+    </ng-template>
+  </p-column>
+  <p-column field="MKT_NAME" header="MKT Name" *ngIf="showMktName"></p-column>
+  <p-column field="NAME" header="Name" *ngIf="showEntName"></p-column>
+  <p-column field="SURNAME" header="Surname" *ngIf="showEntSurname"></p-column>
+  <p-column field="ID" header="ID" *ngIf="id"></p-column>
+  <p-column field="BL_RESULT" header="BL_RESULT" *ngIf="showBlResult"></p-column>
+  <p-column field="RESULT_NCB" header="RESULT_NCB" *ngIf="showResultNcb"></p-column>
+</p-dataTable>

@@ -1,0 +1,274 @@
+#sidebar {
+  overflow: hidden;
+  z-index: 3;
+}
+#sidebar .list-group {
+  min-width: 240px;
+  background-color: #333;
+  min-height: 100vh;
+}
+#sidebar i {
+  margin-right: 6px;
+}
+
+#sidebar .list-group-item {
+   border-radius: 0;
+   /*background-color: #898989;*/
+   color: #727272;
+   border-left: 0;
+   border-right: 0;
+   border-color: #ffffff;
+   white-space: pre-wrap;
+   cursor: pointer;
+   user-select: none;
+ }
+
+#sidebar .list-group-item:hover {
+  border-radius: 0;
+  background-color: #c9dbdb;
+  color: #797979;
+  border-left: 0;
+  border-right: 0;
+  border-color: #ffffff;
+  white-space: pre-wrap;
+  cursor: pointer;
+  user-select: none;
+}
+
+#sidebar .list-group-item-not-expanded {
+  border-radius: 0;
+  background-color: #e4e3eb;
+  color: #ccc;
+  border-left: 0;
+  border-right: 0;
+  border-color: #ffffff;
+  white-space: nowrap;
+}
+
+/* highlight active menu */
+#sidebar .list-group-item:not(.collapsed) {
+  /*background-color: #1A237E;*/
+}
+
+#sidebar .list-group-item-not-expanded:not(.collapsed) {
+  background-color: #b7b5f3;
+}
+
+/* closed state */
+#sidebar .list-group-item[aria-expanded="false"]::after {
+  content: " \f0d7";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 5px;
+}
+
+#sidebar .list-group-item-not-expanded[aria-expanded="false"]::after {
+ /* content: " \f0d7";*/
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 5px;
+}
+
+/* open state */
+#sidebar .list-group-item[aria-expanded="true"] {
+  background-color: #d9dada;
+}
+
+#sidebar .list-group-item-not-expanded[aria-expanded="true"] {
+  background-color: #e5e9e7;
+}
+
+#sidebar .list-group-item[aria-expanded="true"]::after {
+  content: " \f0da";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 5px;
+}
+
+#sidebar .list-group-item-not-expanded[aria-expanded="true"]::after {
+  /*content: " \f0da";*/
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 5px;
+}
+
+/* level 1*/
+#sidebar  .collapse .list-group-item,
+#sidebar  .collapsing .list-group-item  {
+  padding-left: 20px;
+  background-color: #dce0de;
+}
+
+#sidebar  .collapse .list-group-item:hover,
+#sidebar  .collapsing .list-group-item:hover  {
+  padding-left: 20px;
+  background-color: #c9dbdb;
+}
+
+#sidebar  .collapse .list-group-item-not-expanded,
+#sidebar  .collapsing .list-group-item-not-expanded  {
+  padding-left: 20px;
+  background-color: #dce0de;
+}
+
+#sidebar  .collapse .list-group-item-not-expanded:hover,
+#sidebar  .collapsing .list-group-item-not-expanded:hover  {
+  padding-left: 20px;
+  background-color: #c9dbdb;
+}
+
+/* level 2*/
+#sidebar #sidebar .list-group-item,
+#sidebar  .collapse #sidebar > .collapse .list-group-item,
+#sidebar  .collapse #sidebar > .collapsing .list-group-item,
+#sidebar  .collapsing #sidebar > .collapse .list-group-item,
+#sidebar  .collapsing #sidebar > .collapsing .list-group-item{
+  padding-left: 30px;
+  background-color: #e8e9e9;
+}
+
+#sidebar #sidebar .list-group-item:hover,
+#sidebar  .collapse #sidebar > .collapse .list-group-item:hover,
+#sidebar  .collapse #sidebar > .collapsing .list-group-item:hover,
+#sidebar  .collapsing #sidebar > .collapse .list-group-item:hover,
+#sidebar  .collapsing #sidebar > .collapsing .list-group-item:hover{
+  padding-left: 30px;
+  background-color: #c9dbdb;
+}
+/* level 3*/
+#sidebar .collapse #sidebar> .collapse #sidebar> .collapse .list-group-item,
+#sidebar .collapse #sidebar> .collapse #sidebar> .collapsing .list-group-item,
+#sidebar .collapse #sidebar> .collapsing #sidebar> .collapse .list-group-item,
+#sidebar .collapse #sidebar> .collapsing #sidebar> .collapsing .list-group-item,
+#sidebar .collapsing #sidebar> .collapse #sidebar> .collapse .list-group-item,
+#sidebar .collapsing #sidebar> .collapse #sidebar> .collapsing .list-group-item,
+#sidebar .collapsing #sidebar> .collapsing #sidebar> .collapse .list-group-item,
+#sidebar .collapsing #sidebar> .collapsing #sidebar> .collapsing .list-group-item{
+  padding-left: 30px;
+  background-color: #c9cdcb;
+}
+
+#sidebar .collapse #sidebar> .collapse #sidebar> .collapse .list-group-item:hover,
+#sidebar .collapse #sidebar> .collapse #sidebar> .collapsing .list-group-item:hover,
+#sidebar .collapse #sidebar> .collapsing #sidebar> .collapse .list-group-item:hover,
+#sidebar .collapse #sidebar> .collapsing #sidebar> .collapsing .list-group-item:hover,
+#sidebar .collapsing #sidebar> .collapse #sidebar> .collapse .list-group-item:hover,
+#sidebar .collapsing #sidebar> .collapse #sidebar> .collapsing .list-group-item:hover,
+#sidebar .collapsing #sidebar> .collapsing #sidebar> .collapse .list-group-item:hover,
+#sidebar .collapsing #sidebar> .collapsing #sidebar> .collapsing .list-group-item:hover{
+  padding-left: 30px;
+  background-color: #c9dbdb;
+}
+
+
+/* level 4*/
+#sidebar .collapse #sidebar> .collapse #sidebar> .collapse #sidebar> .collapse .list-group-item,
+#sidebar .collapse #sidebar> .collapse #sidebar> .collapse #sidebar> .collapsing .list-group-item,
+#sidebar .collapse #sidebar> .collapse #sidebar> .collapsing #sidebar> .collapse .list-group-item,
+#sidebar .collapse #sidebar> .collapse #sidebar> .collapsing #sidebar> .collapsing .list-group-item,
+#sidebar .collapse #sidebar> .collapsing #sidebar> .collapse #sidebar> .collapse .list-group-item,
+#sidebar .collapse #sidebar> .collapsing #sidebar> .collapse #sidebar> .collapsing .list-group-item,
+#sidebar .collapse #sidebar> .collapsing #sidebar> .collapsing #sidebar> .collapse .list-group-item,
+#sidebar .collapse #sidebar> .collapsing #sidebar> .collapsing #sidebar> .collapsing .list-group-item,
+#sidebar .collapsing #sidebar> .collapse #sidebar> .collapse #sidebar> .collapse .list-group-item,
+#sidebar .collapsing #sidebar> .collapse #sidebar> .collapse #sidebar> .collapsing .list-group-item,
+#sidebar .collapsing #sidebar> .collapse #sidebar> .collapsing #sidebar> .collapse .list-group-item,
+#sidebar .collapsing #sidebar> .collapse #sidebar> .collapsing #sidebar> .collapsing .list-group-item,
+#sidebar .collapsing #sidebar> .collapsing #sidebar> .collapse #sidebar> .collapse .list-group-item,
+#sidebar .collapsing #sidebar> .collapsing #sidebar> .collapse #sidebar> .collapsing .list-group-item,
+#sidebar .collapsing #sidebar> .collapsing #sidebar> .collapsing #sidebar> .collapse .list-group-item,
+#sidebar .collapsing #sidebar> .collapsing #sidebar> .collapsing #sidebar> .collapsing .list-group-item
+{
+  padding-left: 35px;
+  background-color: #bcc0be;
+}
+
+#sidebar .collapse #sidebar> .collapse #sidebar> .collapse #sidebar> .collapse .list-group-item:hover,
+#sidebar .collapse #sidebar> .collapse #sidebar> .collapse #sidebar> .collapsing .list-group-item:hover,
+#sidebar .collapse #sidebar> .collapse #sidebar> .collapsing #sidebar> .collapse .list-group-item:hover,
+#sidebar .collapse #sidebar> .collapse #sidebar> .collapsing #sidebar> .collapsing .list-group-item:hover,
+#sidebar .collapse #sidebar> .collapsing #sidebar> .collapse #sidebar> .collapse .list-group-item:hover,
+#sidebar .collapse #sidebar> .collapsing #sidebar> .collapse #sidebar> .collapsing .list-group-item:hover,
+#sidebar .collapse #sidebar> .collapsing #sidebar> .collapsing #sidebar> .collapse .list-group-item:hover,
+#sidebar .collapse #sidebar> .collapsing #sidebar> .collapsing #sidebar> .collapsing .list-group-item:hover,
+#sidebar .collapsing #sidebar> .collapse #sidebar> .collapse #sidebar> .collapse .list-group-item:hover,
+#sidebar .collapsing #sidebar> .collapse #sidebar> .collapse #sidebar> .collapsing .list-group-item:hover,
+#sidebar .collapsing #sidebar> .collapse #sidebar> .collapsing #sidebar> .collapse .list-group-item:hover,
+#sidebar .collapsing #sidebar> .collapse #sidebar> .collapsing #sidebar> .collapsing .list-group-item:hover,
+#sidebar .collapsing #sidebar> .collapsing #sidebar> .collapse #sidebar> .collapse .list-group-item:hover,
+#sidebar .collapsing #sidebar> .collapsing #sidebar> .collapse #sidebar> .collapsing .list-group-item:hover,
+#sidebar .collapsing #sidebar> .collapsing #sidebar> .collapsing #sidebar> .collapse .list-group-item:hover,
+#sidebar .collapsing #sidebar> .collapsing #sidebar> .collapsing #sidebar> .collapsing .list-group-item:hover
+{
+  padding-left: 35px;
+  background-color: #c9dbdb;
+}
+
+
+@media (max-width:200px) {
+  #sidebar {
+    min-width: 35px;
+    max-width: 40px;
+    overflow-y: auto;
+    overflow-x: visible;
+    transition: all 0.25s ease;
+    transform: translateX(-45px);
+    position: fixed;
+  }
+
+  #sidebar.show {
+    transform: translateX(0);
+  }
+
+  #sidebar::-webkit-scrollbar{ width: 0px; }
+
+  #sidebar, #sidebar .list-group {
+    min-width: 35px;
+    overflow: visible;
+  }
+  /* overlay sub levels on small screens */
+  #sidebar .list-group .collapse.show, #sidebar .list-group .collapsing {
+    position: relative;
+    z-index: 1;
+    width: 190px;
+    top: 0;
+  }
+  #sidebar .list-group > .list-group-item {
+    text-align: center;
+    padding: .75rem .5rem;
+  }
+
+  #sidebar .list-group > .list-group-item-not-expanded {
+    text-align: center;
+    padding: .75rem .5rem;
+  }
+  /* hide caret icons of top level when collapsed */
+  #sidebar .list-group > .list-group-item[aria-expanded="true"]::after,
+  #sidebar .list-group > .list-group-item[aria-expanded="false"]::after {
+    display:none;
+  }
+}
+
+.collapse.show {
+  visibility: visible;
+}
+.collapsing {
+  visibility: visible;
+  height: 0;
+  -webkit-transition-property: height, visibility;
+  transition-property: height, visibility;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.collapsing.width {
+  -webkit-transition-property: width, visibility;
+  transition-property: width, visibility;
+  width: 0;
+  height: 100%;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}

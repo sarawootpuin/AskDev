@@ -1,0 +1,90 @@
+<app-alert-dialog #alertDialogComponent [title]="'Warning Information'" [msg]="'โปรดใส่ข้อมูลก่อนเพื่อค้นหา'"></app-alert-dialog>
+<app-action-button-form [showSearch]="true" [showReject]="false" [showSubmit]="false" [showNew]="false" (onSearch)="onSubmit()" [showCalculator]="false" [showBack]="false" [showEdit]="false"
+                        (onBack)="backPage()" [showPrint]="false" [showSave]="false" [showCancel]="false"
+                        [title]="'Exposure Inquiry'"></app-action-button-form>
+
+<div class="card m-4">
+  <div class="card-header">
+
+    <div class="row">
+      <div class="card-block col-md-2 offset-md-2">
+        <h4 class="card-title">Select Condition</h4>
+        <div class="form-group">
+          <div class="col-md-12">
+
+
+            <!--<p-radioButton name="group1" value="fullname" label="ชื่อ/นามสกุล" [(ngModel)]="selectopt"-->
+            <!--inputId="opt1"></p-radioButton>-->
+            <!--</div>-->
+            <!--<div class="ui-g-12">-->
+            <!--<p-radioButton name="group1" value="regis" label="เลขที่ทะเบียน" [(ngModel)]="selectopt"-->
+            <!--inputId="opt2"></p-radioButton>-->
+            <!--</div>-->
+            <!--<div class="ui-g-12">-->
+            <!--<p-radioButton name="group1" value="agrcode" label="เลขที่สัญญา" [(ngModel)]="selectopt"-->
+            <!--inputId="opt3"></p-radioButton>-->
+            <!--</div>-->
+            <div class="ui-g-12">
+              <div class="radio">
+                <label><input type="radio" name="group1" value="fullname"
+                              [(ngModel)]="selectopt">&nbsp;ชื่อ/นามสกุล</label>
+              </div>
+            </div>
+            <div class="ui-g-12">
+              <div class="radio">
+                <label><input type="radio" name="group1" value="regis"
+                              [(ngModel)]="selectopt">&nbsp;เลขที่ทะเบียน</label>
+              </div>
+            </div>
+
+            <div class="ui-g-12">
+              <div class="radio">
+                <label><input type="radio" name="group1" value="agrcode"
+                              [(ngModel)]="selectopt">&nbsp;เลขที่สัญญา</label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <form class="form-group" [formGroup]="formexposure" (ngSubmit)="onSubmit()" class="col-md-6">
+        <div class="form-group col-md-12" *ngIf="selectopt=='fullname'">
+          <br><br>
+          <label class="col-6 col-form-label">ชื่อบุลคล / นิติบุคคล</label>
+          <div class="col-10">
+            <input class="form-control" type="text" value="" formControlName="firstname" id="firstname">
+          </div>
+
+          <label class="col-6 col-form-label">นามสกุล</label>
+          <div class="col-10">
+            <input class="form-control" type="text" value="" formControlName="lastname" id="lastname">
+          </div>
+        </div>
+
+        <div class="form-group col-md-12" *ngIf="selectopt=='regis'">
+          <br><br>
+          <label class="col-6 col-form-label">เลขที่ทะเบียน</label>
+          <div class="col-10">
+            <input class="form-control" type="text" value="" formControlName="regisnumber" id="regisnumber">
+          </div>
+        </div>
+
+        <div class="form-group col-md-12" *ngIf="selectopt=='agrcode'">
+          <br><br>
+          <label class="col-6 col-form-label">เลขที่สัญญา</label>
+          <div class="col-10">
+            <input class="form-control" type="text" value="" formControlName="agrcode" id="agrcode">
+          </div>
+        </div>
+
+        <!--<div class="col-md-12">-->
+        <!--<div class="form-group col-10">-->
+        <!--<br>-->
+        <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+        <!--</div>-->
+        <!--</div>-->
+
+      </form>
+    </div>
+  </div>
+</div>

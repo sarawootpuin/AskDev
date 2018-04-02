@@ -1,0 +1,134 @@
+<div class="container-fluid my-4">
+  <div class="row">
+    <p-panel header="อาชีพ" class="col-md-6" >
+      <div class="my-2 p-2 border">
+        <div class="row">
+        <div class="col-md-6 form-group">
+          <label>อาชีพ</label>
+          <select class="form-control" #inputOccupa>
+            <option></option>
+            <option *ngFor="let o of occupation"
+                    [value]="o.id"
+                    [selected]="entityModel?.occupa==o.id">
+              {{o.display}}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-6 form-group">
+          <label>ตำแหน่ง</label>
+          <select class="form-control" #inputPosition>
+            <option></option>
+            <option *ngFor="let pb of positionBg"
+                    [value]="pb.id"
+                    [selected]="entityModel?.posi">
+              {{pb.display}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>อุตสาหกรรม</label>
+          <input type="text" class="form-control" #inputIndustry
+                 [value]="entityModel?.indTy">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label>บริษัท</label>
+          <input type="text" class="form-control" #inputOfficeName
+                 [value]="entityModel?.officeName">
+        </div>
+        <div class="col-md-6 form-group">
+          <label>แผนก</label>
+          <input type="text" class="form-control" #inputOfficeDept
+                 [value]="entityModel?.officeDepartment">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label>รายได้(บาท/เดือน)</label>
+          <input type="text" class="form-control" #inputSalaryPerYear
+                 [value]="entityModel?.salaryPerYear">
+        </div>
+        <div class="col-md-6 form-group">
+          <label>รายได้อื่นๆ(บาท/เดือน)</label>
+          <input type="text" class="form-control" #inputOtherIncome
+                 [value]="entityModel?.otherIncome">
+        </div>
+      </div>
+    </div>
+    </p-panel>
+    <p-panel header="คู่สมรส" class="col-md-6">
+        <div class="my-2 p-2 border">
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label>ชื่อคู่สมรส</label>
+              <input type="text" class="form-control" #inputMName
+                     [value]="entityModel?.mName">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 form-group">
+              <label>อายุ</label>
+              <input type="number" class="form-control" #inputSpousAges
+                     [value]="entityModel?.spousAges">
+            </div>
+            <div class="col-md-5 form-group">
+              <label>เบอร์โทรศัพท์</label>
+              <input type="text" class="form-control" #inputSpousTel
+                     [value]="entityModel?.spousTel">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label>อาชีพ</label>
+              <select class="form-control" #inputSpousOccupa>
+                <option></option>
+                <option *ngFor="let o of occupation"
+                        [value]="o.id"
+                        [selected]="entityModel?.spousOccup==o.id">
+                  {{o.display}}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-6 form-group">
+              <label>ตำแหน่ง</label>
+              <select class="form-control" #inputSpousPosi>
+                <option></option>
+                <option *ngFor="let pb of positionBg"
+                        [value]="pb.id"
+                        [selected]="entityModel?.spousPosi==pb.id">
+                  {{pb.display}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label>บริษัท</label>
+              <input type="text" class="form-control" #inputSpousOfficeName
+                     [value]="entityModel?.spousOfficeName">
+            </div>
+            <div class="col-md-6 form-group">
+              <label>แผนก</label>
+              <input type="text" class="form-control" #inputSpousOfficeDept
+                     [value]="entityModel?.spousOfficeDepartment">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label>รายได้(บาท/เดือน)</label>
+              <input type="text" class="form-control" #inputSpousSalary
+                     [value]="entityModel?.spousSalary">
+            </div>
+            <div class="col-md-6 form-group">
+              <label>รายได้อื่นๆ(บาท/เดือน)</label>
+              <input type="text" class="form-control" #inputSpousOtherIncome
+                     [value]="entityModel?.spousOtherIncome">
+            </div>
+          </div>
+        </div>
+    </p-panel>
+  </div>
+</div>

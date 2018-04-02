@@ -1,0 +1,77 @@
+<div class="container-fluid my-4">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="my-2">
+        <b>% Of Industry</b>
+      </div>
+      <div class="my-2 p-2 border">
+        <p-dataTable #dt
+                     [metaKeySelection]="false"
+                     [value]="listIndustry"
+                     scrollable="true" scrollHeight="380px"
+                     selectionMode="single"
+                     [immutable]="false"
+                     [(selection)]="listIndustrySelected">
+          <p-column *ngFor="let col of cols" [field]="col.field"
+                    [header]="col.header"
+                    [style]="{'text-align':'center'}">
+          </p-column>
+        </p-dataTable>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="my-2">
+        <button class="btn btn-primary"
+                (click)="addNewIndustry()">Add New
+        </button>
+        <button class="btn btn-warning"
+                (click)="saveRow()" *ngIf="listIndustrySelected">Save
+        </button>
+        <button class="btn btn-secondary" (click)="resetForm()">Cancel</button>
+        <button class="btn btn-danger" *ngIf="listIndustrySelected"
+                (click)="deleteRow()">Delete
+        </button>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>Old Industry</label>
+          <select class="form-control" #inputOldIndustry>
+            <option></option>
+            <option *ngFor="let i of industry"
+                    [value]="i.id+','+i.display"
+                    [selected]="listIndustrySelected?.industryOldCode == i.id">
+              {{i.display}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>New Industry</label>
+          <select class="form-control" #inputNewIndustry>
+            <option></option>
+            <option *ngFor="let ie of industryEng"
+                    [value]="ie.id+','+ie.display"
+                    [selected]="listIndustrySelected?.industryNewCode == ie.id">
+              {{ie.display}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>Percent(%)</label>
+          <input type="text" class="form-control" #inputPercent
+                 [value]="listIndustrySelected?.percent">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>Remark</label>
+          <textarea class="form-control" rows="3"
+                    #inputRemark>{{listIndustrySelected?.remark}}</textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

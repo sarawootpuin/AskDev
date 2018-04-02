@@ -1,0 +1,89 @@
+<div class="container-fluid my-4">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="my-2">
+        <b>บัตรอื่นๆ เพิ่มเติม</b>
+      </div>
+      <div class="my-2 p-2 border">
+        <p-dataTable #dt
+                     [metaKeySelection]="false"
+                     [value]="listCard"
+                     scrollable="true" scrollHeight="380px"
+                     selectionMode="single"
+                     [immutable]="false"
+                     [(selection)]="listCardSelected">
+          <p-column *ngFor="let col of cols" [field]="col.field"
+                    [header]="col.header"
+                    [style]="{'text-align':'center'}">
+          </p-column>
+        </p-dataTable>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="my-2">
+        <button class="btn btn-primary"
+                (click)="addNewCard()">Add New
+        </button>
+        <button class="btn btn-warning" (click)="saveRow()" *ngIf="listCardSelected">Save</button>
+        <button class="btn btn-secondary" (click)="resetForm()">Clear</button>
+        <button class="btn btn-danger" *ngIf="listCardSelected"
+                (click)="deleteRow()">Delete
+        </button>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label class="text-danger">เลขบัตร</label>
+          <input type="text" class="form-control" #inputCardNumber
+                 [value]="listCardSelected?.card_number">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label class="text-danger">ประเภทบัตร</label>
+          <select class="form-control" #inputCardType>
+            <option></option>
+            <option *ngFor="let ct of cardType"
+                    [value]="ct.id+','+ct.display"
+                    [selected]="listCardSelected?.card_type_code == ct.id">
+              {{ct.display}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>สถานที่ออกบัตร</label>
+          <input type="text" class="form-control" #inputPlace
+                 [value]="listCardSelected?.place">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label class="text-danger">วันที่ออกบัตร</label>
+          <div class="form-control" style="padding: 0px;border: none">
+            <p-calendar dateFormat="dd/mm/yy" #inputStartDate
+                        [ngModel]="listCardSelected?.start_date"></p-calendar>
+          </div>
+        </div>
+        <div class="col-md-6 form-group">
+          <label class="text-danger">วันที่หมดอายุ</label>
+          <div class="form-control" style="padding: 0px;border: none">
+            <p-calendar dateFormat="dd/mm/yy" #inputExpiredDate
+                        [ngModel]="listCardSelected?.expired_date"></p-calendar>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>ที่อยู่</label>
+          <input type="text" class="form-control" #inputAddress1
+                 [value]="listCardSelected?.address1">
+        </div>
+        <div class="col-md-12 form-group">
+          <input type="text" class="form-control" #inputAddress2
+                 [value]="listCardSelected?.address2">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

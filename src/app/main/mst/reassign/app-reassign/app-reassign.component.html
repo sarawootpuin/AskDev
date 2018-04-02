@@ -1,0 +1,52 @@
+<p-growl [(value)]="msgs"></p-growl>
+
+<div class="detail-container">
+   <div class="page-header">
+     <div class="d-flex align-self-center">
+       <button type="button" class="btn-nav-saveisa" style="width: 200px;" (click)="clickProcess()" >
+         <i class="fa fa-plus">Process Reassign</i>
+       </button>
+     </div>
+     <form>
+       <label>Information</label>
+       <div class="row form-group "   style="margin-left: 0px;width: 100%;  border-style: solid; border-width: 1px; border-radius: 10px; padding-top: 0px;padding-bottom : 10px;">
+          <div class="col-md-6" >
+             <label>Reassign To Mkt. Officer :</label><br>
+             <input type="text"  class="form-control"  [value] = "mkt_toname" disabled style="width: 300px" >
+             <app-search-un app-search-un inuURL={{this.OutURL}}
+                            title="MKT NAME;CODE;"
+                            (col1)="getName($event)"
+                            (col2)="getCode($event)"
+             >
+             </app-search-un>
+           </div>
+       </div>
+     </form>
+   </div>
+
+
+<div>
+  <p-dataTable [value]="ListWork"
+               scrollable="true" scrollHeight="380px"
+               [(selection)]="selectListWork"
+               resizableColumns="true"
+               selectionMode="multiple"
+               [globalFilter]="appsearch" #appRe
+  >
+    <p-header>
+      <input #appsearch type="text"  pInputText placeholder="Search" class="form-control" >
+    </p-header>
+    <p-column [style]="{'width':'38px'}" selectionMode="multiple" header="Select"></p-column>
+    <p-column field="sale_call_no" header="Sale Call No" ></p-column>
+    <p-column field="cust_name_th" header="Customer Name TH"></p-column>
+    <p-column field="cust_name_en" header="Customer Name EN"></p-column>
+    <p-column field="mkt_name"     header="Officer Name"></p-column>
+    <p-column field="task_date"    header="Assign/Call/Visit Date"></p-column>
+    <p-column field="current_task" header="Current Task"></p-column>
+
+    <p-footer>  </p-footer>
+  </p-dataTable>
+</div>
+
+
+</div>

@@ -1,0 +1,53 @@
+
+<div class="container-fluid border-isa">
+  <!--<app-custom-botton-icon [option]="'new'"   (onBtnClick)="newDetail()"  >   </app-custom-botton-icon>-->
+
+  <app-custom-button [option]="'new'"   (onBtnClick)="newDetail()"   ></app-custom-button>
+
+  <div class="row"  style="min-height: 450px"  >
+    <div class="col-md-12">
+      <p-tabView>
+        <p-tabPanel header="Call Visit"   >
+          <app-call-visit-result></app-call-visit-result>
+        </p-tabPanel>
+        <p-tabPanel header="Credit Type/Asset">
+          <app-call-visit-credit-type-asset></app-call-visit-credit-type-asset>
+        </p-tabPanel>
+        <p-tabPanel header="Personal Loan"  *ngIf="comCode != 'BGPL'" >
+          <app-call-visti-telesale></app-call-visti-telesale>
+        </p-tabPanel>
+        <p-tabPanel header="Attendees"  *ngIf="SelectList?.sale_call_type == 'V'"  >
+          <app-call-visit-attendees></app-call-visit-attendees>
+        </p-tabPanel>
+        <p-tabPanel header="Expense"    *ngIf="SelectList?.sale_call_type == 'V'"  >
+          <app-call-visit-expense></app-call-visit-expense>
+        </p-tabPanel>
+        <p-tabPanel header="Exposure">
+          <app-call-visit-exposure></app-call-visit-exposure>
+        </p-tabPanel>
+        <p-tabPanel header="Calling" >
+          <app-call-visit-calling-history></app-call-visit-calling-history>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+  <div class="row">
+    <p-dataTable [value]="mySaleCallD"
+                 scrollable="true"
+                 scrollHeight="200px"
+                 [responsive]="true"
+                 selectionMode="single"
+                 (onRowSelect)="selectSaleCallDetail(SelectList)"
+                 [(selection)]="SelectList">
+      <p-column field="seq_no" header="Seq No." [style]="{'width':'70px','text-align': 'center'}" ></p-column>
+      <p-column field="sale_call_dt" header="Call/Visit Date" [style]="{'width':'100px','text-align': 'center'}"></p-column>
+      <p-column field="sale_call_type" header="Call/Visit Type" [style]="{'width':'110px','text-align': 'center'}"></p-column>
+      <p-column field="prepare_flag" header="Prepare CA" [style]="{'width':'90px','text-align': 'center'}"></p-column>
+      <p-column field="reject" header="Reject" [style]="{'width':'110px','text-align': 'center'}" ></p-column>
+      <p-column field="follow_date" header="Follow Up/Date" [style]="{'width':'110px','text-align': 'center'}"></p-column>
+      <p-column field="sale_call_note" header="Call/Visit Note"></p-column>
+      <p-column field="follow_up_point" header="Follow Up Note"></p-column>
+      <p-column field="call_by_name" header="Call/Visit By"></p-column>
+    </p-dataTable>
+  </div>
+</div>

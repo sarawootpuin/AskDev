@@ -1,0 +1,86 @@
+<div id="app" style="height: 100vh; width: 100vw;">
+  <!--<div class="container">-->
+  <br>
+    <div class="text-center">
+      <svg
+        [attr.data-capacity]="capacity"
+        class="dotChart"
+        style="overflow: visible"
+        preserveAspectRatio="xMinYMax meet"
+        version="1.1"
+        x="0px"
+        y="0px"
+        viewBox="0 -2 400 60">
+        <!--Label-->
+        <g *ngIf="hasLabelTop()">
+          <text x="0%" y="5" text-anchor="middle" class="percentText">
+            {{ captionTop[0] }}
+          </text>
+          <text *ngFor="let point of captionTop.slice(1, captionTop.length); let i = index"
+                [attr.x]="calcPoint5(i)"
+                y="5"
+                text-anchor="middle"
+                class="percentText">
+            {{ point }}
+          </text>
+        </g>
+        <!--Lines-->
+        <g>
+          <line
+            class="percentLineBG"
+            x1="0"
+            x2="100%"
+            y1="25"
+            y2="25"/>
+          <line
+            [attr.data-value]="_points[0]"
+            class="percentLine yo"
+            [ngClass]="{'active':isActive(_points[0])}"
+            x1="0"
+            [attr.x2]="calcPoint()"
+            y1="25"
+            y2="25"/>
+
+          <line *ngFor="let point of _points.slice(1, _points.length - 1); let i = index"
+                [attr.data-value]="point"
+                class="percentLine"
+                [ngClass]="{'active':isActive(point)}"
+                [attr.x1]="calcPoint2(i)"
+                [attr.x2]="calcPoint3(i)"
+                y1="25"
+                y2="25"/>
+        </g>
+        <!--points-->
+        <g>
+          <line
+            [attr.data-value]="_points[0]"
+            [ngClass]="{'dot': true, 'active':isCurrent(_points[0])}"
+            x1="0%"
+            x2="0%"
+            y1="25"
+            y2="25"/>
+          <line *ngFor="let point of _points.slice(1, _points.length); let i = index"
+                [attr.data-value]="point"
+                [ngClass]="{'dot': true, 'active':isCurrent(point)}"
+                [attr.x1]=" calcPoint4(i)"
+                [attr.x2]=" calcPoint4(i)"
+                y1="25"
+                y2="25"/>
+        </g>
+        <!-- 	Labels	 -->
+        <g *ngIf="hasLabelBot()">
+          <text x="0%" y="50" text-anchor="middle" class="percentText">
+            {{ captionBot[0] }}
+          </text>
+          <text *ngFor="let point of captionBot.slice(1, captionBot.length); let i = index"
+                [attr.x]="calcPoint5(i)"
+                y="50"
+                text-anchor="middle"
+                class="percentText">
+            {{ point }}
+          </text>
+        </g>
+      </svg>
+    </div>
+  <!--</div>-->
+</div>

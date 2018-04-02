@@ -1,0 +1,251 @@
+<app-action-button-form [title]="'Search NCB'" [showSearch]="true" [showCancel]="true"
+                        xmlns="http://www.w3.org/1999/html" (onSearch)="onClickSearch()"></app-action-button-form>
+<div class="card card-header">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-5 text-right">
+          <label><span style="color: #1A237E;font-weight: bold">เลขประจำตัว</span></label>
+        </div>
+        <div class="col-md-7">
+
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-5 text-right">
+          <label>ประเภทเลขประจำตัว&nbsp;&nbsp;&nbsp;</label>
+          <label style="color:red">
+            &nbsp;*
+          </label>
+          <label>1)</label>
+        </div>
+        <div class="col-md-7">
+          <select class="form-control" data-width="auto" [(ngModel)]="CardType_1">
+            <option *ngFor="let rows of modelCardType_1;let i = index">{{rows.NAME_TH}}</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-5 text-right">
+          <label>2)</label>
+        </div>
+        <div class="col-md-7">
+          <select class="form-control" data-width="auto" [(ngModel)]="CardType_2">
+            <option *ngFor="let rows of modelCardType_2;let i = index">{{rows.NAME_TH}}</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-5 text-right">
+          <label>3)</label>
+        </div>
+        <div class="col-md-7">
+          <select class="form-control" data-width="auto" [(ngModel)]="CardType_3">
+            <option *ngFor="let rows of modelCardType_3;let i = index">{{rows.NAME_TH}}</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-5 text-right">
+          <label>4)</label>
+        </div>
+        <div class="col-md-7">
+          <select class="form-control" data-width="auto" [(ngModel)]="CardType_4">
+            <option *ngFor="let rows of modelCardType_4;let i = index">{{rows.NAME_TH}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class=""></div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4 offset-md-6 text-center">
+      <label><span style="color: #1A237E;font-weight: bold">สำหรับเลขประจำตัว/หนังสือเดินทางชาวต่างชาติ</span></label>
+    </div>
+
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-5 text-right">
+          <label>เลขประจำตัว</label>
+          <label style="color:red">
+            &nbsp;*
+          </label>
+        </div>
+        <div class="col-md-7">
+          <input type="text" class="form-control" [(ngModel)]="cardNo">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-2 text-left">
+          <label>รหัสประเทศ</label>
+        </div>
+        <div class="col-md-7">
+          <input type="text" class="form-control" [(ngModel)]="idCountry">
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="col-md-5 text-right">
+        <label><span style="color: #1A237E;font-weight: bold">ชื่อ</span></label>
+      </div>
+      <div class="col-md-7">
+
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-5 text-right">
+          <label>ชื่อ</label>
+          <label style="color:red">
+            &nbsp;*
+          </label>
+        </div>
+        <div class="col-md-7">
+          <input type="text" class="form-control" [(ngModel)]="firstName">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-2 text-left">
+          <label>ชื่อกลาง</label>
+        </div>
+        <div class="col-md-7">
+          <input type="text" class="form-control" [(ngModel)]="middleName">
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-5 text-right">
+          <label>นามสกุล</label>
+          <label style="color:red">
+            &nbsp;*
+          </label>
+        </div>
+        <div class="col-md-7">
+          <input type="text" class="form-control" [(ngModel)]="familyName">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-2 text-left">
+          <label>วันเดือนปีเกิด</label>
+        </div>
+        <div class="col-md-7">
+          <!--<input type="text" class="form-control">-->
+          <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="dateOfBirth"></p-calendar>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="col-md-5 text-right">
+        <label><span style="color: #1A237E;font-weight: bold">การสิบค้น</span></label>
+      </div>
+      <div class="col-md-7">
+
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-5 text-right">
+          <label>วัตถุประสงค์</label>
+          <label style="color:red">
+            &nbsp;*
+          </label>
+        </div>
+        <div class="col-md-7">
+          <select class="form-control" data-width="auto" [(ngModel)]="edtPurpose">
+            <option *ngFor="let rows of modelPurpose;let i = index" [selected]="rows.ID_CODE == '01'">{{rows.NAME_TH}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-2 text-left">
+          <label>วงเงินพิจารณาอัตนุมัติ</label>
+        </div>
+        <div class="col-md-7">
+          <input type="text" class="form-control" [(ngModel)]="edtFinAmt">
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-5 text-right">
+          <label>หนังสือให้ความยินยอมข้อโต้แย้ง</label>
+          <label style="color:red">
+            &nbsp;*
+          </label>
+        </div>
+        <div class="col-md-7">
+          <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+            <input type="checkbox" class="custom-control-input" checked>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">ข้อมูลนี้ได้รับหนังสือยินยอมฯให้เรียกดูข้อมูลเครดิต</span>
+          </label>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-7 offset-md-5">
+          <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+            <input type="checkbox" class="custom-control-input" checked>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">เลือกเพื่อแสดงข้อโต้แย้ง หากมีการบันทึกไว้</span>
+          </label>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-5 text-right">
+          <label>หมายเลขอ้างอิง</label>
+          <label style="color:red">
+            &nbsp;*
+          </label>
+        </div>
+        <div class="col-md-7">
+          <input type="text" class="form-control" [(ngModel)]="refCode">
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+
+
+</div>
+

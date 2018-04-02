@@ -1,0 +1,439 @@
+<p-panel>
+  <p-header>Screen</p-header>
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                  <div class="row">
+                    <label class="col-md-12">Checking Date(A.D.) *</label>
+                    <div class="col-md-12">
+                      <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="CHECK_DT"></p-calendar>
+                    </div>
+                  </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                  <div class="row">
+                    <label class="col-md-12">Receive Date(A.D.) </label>
+                    <div class="col-md-12">
+                      <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="RECEIVE_DT"></p-calendar>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <div class="row">
+                <label class="col-md-12">Checking for * &nbsp;</label>
+                <div class="col-md-12">
+                  <select class="form-control" data-width="auto" [(ngModel)]="CHECK_FOR">
+                    <option *ngFor="let rows of modelNcbEnquiryCheckingFor;let i = index" [selected]="rows.COM_CODE == CHECK_FOR">{{rows.COM_CODE}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-sm-4">
+              <div class="row">
+                <label class="col-md-12">Status *</label>
+                <div class="col-md-12">
+                  <select class="form-control" data-width="auto" [(ngModel)]="ENT_TYPE" *ngIf="appStatus" disabled>
+                    <option *ngFor="let rows of modelNcbScreenStatus;let i = index" [selected]="rows.CAPTION==ENT_TYPE">{{rows.CAPTION}}</option>
+                  </select>
+                  <select class="form-control" data-width="auto" [(ngModel)]="ENT_TYPE" *ngIf="!appStatus">
+                    <option *ngFor="let rows of modelNcbScreenStatus;let i = index" [selected]="rows.CAPTION==ENT_TYPE">{{rows.CAPTION}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-sm-4" *ngIf="appStatus">
+              <div class="row">
+                <label class="col-md-12">Application Status</label>
+                <div class="col-md-12">
+                  <select class="form-control" data-width="auto" [(ngModel)]="APP_ENT_TYPE">
+                    <option *ngFor="let rows of modelNcbScreenAppStatus;let i = index" [selected]="rows.CAPTION==APP_ENT_TYPE">{{rows.CAPTION}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">Name *</label>
+                  <div class="col-md-12">
+                    <input type="text" class="form-control" [(ngModel)]="NAME">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">Surname</label>
+                  <div class="col-md-12">
+                    <input type="text" class="form-control" [(ngModel)]="SURNAME">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">Status of person *</label>
+                  <div class="col-md-12">
+                    <select class="form-control" data-width="auto" [(ngModel)]="ENT_CAT">
+                      <option *ngFor="let rows of modelNcbEntCat;let i = index" [selected]="rows.CAPTION==ENT_CAT">{{rows.CAPTION}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">ID / Trade No *</label>
+                  <div class="col-md-12">
+                    <input type="text" class="form-control" [(ngModel)]="CARD_ID">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">Other ID</label>
+                  <div class="col-md-12">
+                    <input type="text" class="form-control" [(ngModel)]="OTH_ID">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">Birth Date (A.D.)</label>
+                  <div class="col-md-12">
+                    <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="BIRTH_DT"></p-calendar>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">Occupation</label>
+                  <div class="col-md-12">
+                    <input type="text" class="form-control" [(ngModel)]="OCCP">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">MKT *</label>
+                  <div class="col-md-12">
+                    <select class="form-control" data-width="auto" [(ngModel)]="MKT">
+                      <option *ngFor="let rows of modelNcbMkt;let i = index" [selected]="rows.CODE==MKT">{{rows.FULL_NAMET}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">B/L Result</label>
+                  <div class="col-md-12">
+                    <select class="form-control" data-width="auto" [(ngModel)]="BL_RESULT">
+                      <option *ngFor="let rows of modelNcbBlResult;let i = index" [selected]="rows.CAPTION===BL_RESULT">{{rows.CAPTION}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-inline">
+                <div class="row">
+                  <div class="col-md-12">
+                    <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                      <input type="checkbox" class="custom-control-input" [(ngModel)]="O_CUS_ASK_FLG">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Old ASK Customer</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-inline">
+                <div class="row">
+                  <div class="col-md-12">
+                    <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                      <input type="checkbox" class="custom-control-input" [(ngModel)]="O_CUS_BGPL_FLG">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Old BGPL Customer</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-inline">
+                <div class="row">
+                  <div class="col-md-12">
+                    <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                      <input type="checkbox" class="custom-control-input" [(ngModel)]="O_GUA_ASK_FLG">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Old ASK Guarantor</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-inline">
+                <div class="row">
+                  <div class="col-md-12">
+                    <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                      <input type="checkbox" class="custom-control-input" [(ngModel)]="O_GUA_BGPL_FLG">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Old BGPL Guarantor</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-inline">
+                <div class="row">
+                  <div class="col-md-12">
+                    <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                      <input type="checkbox" class="custom-control-input" [(ngModel)]="GUA_COOP_FLG">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Guarantor of Cooperative</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+            <div class="form-inline">
+              <div class="row">
+                <div class="col-md-12">
+                  <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                    <input type="checkbox" class="custom-control-input" [(ngModel)]="SENT_NCB_DT">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Not send to NCB</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="col-md-4">
+              <div class="form-inline">
+                <div class="row">
+                  <div class="col-md-12">
+                    <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                      <input type="checkbox" class="custom-control-input" [(ngModel)]="INFORM_MKT_FLG">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Inform to MKT</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">NCB Result</label>
+                  <div class="col-md-12">
+                    <select class="form-control" data-width="auto" [(ngModel)]="NCB_CD">
+                      <option *ngFor="let rows of modelNcbResult;let i = index" [selected]="rows.REMARK===NCB_CD">{{rows.REMARK}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">Tracing</label>
+                  <div class="col-md-12">
+                    <select class="form-control" data-width="auto" [(ngModel)]="TRACING">
+                      <option *ngFor="let rows of modelNcbTracing;let i = index" [selected]="rows.CAPTION==TRACING">{{rows.CAPTION}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-12">
+                    <label>&nbsp;</label>
+                  </div>
+                  <div class="form-inline col-md-12">
+                    <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                      <input type="checkbox" class="custom-control-input" [(ngModel)]="FILE_COMP_FLG">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">NCB file not Complete</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-12">
+                    <label>&nbsp;</label>
+                  </div>
+                  <div class="form-inline col-md-12">
+                    <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                      <input type="checkbox" class="custom-control-input" [(ngModel)]="RECEIVE_CONSENT_DT">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Not Receive Consent</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">Finance Amount</label>
+                  <div class="col-md-12">
+                    <input type="text" class="form-control" [(ngModel)]="FIN_AMT">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">Down (%)</label>
+                  <div class="col-md-12">
+                    <input type="text" class="form-control" [(ngModel)]="DOWN_PCNT">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">Body</label>
+                  <div class="col-md-12">
+                    <select class="form-control" data-width="auto" [(ngModel)]="BDY">
+                      <option *ngFor="let rows of modelNcbBody;let i = index" [selected]="rows.CAPTION==BDY">{{rows.CAPTION}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">New/Used</label>
+                  <div class="col-md-12">
+                    <select class="form-control" data-width="auto" [(ngModel)]="NEW_TR">
+                      <option *ngFor="let rows of modelNcbNewUsed;let i = index" [selected]="rows.CAPTION==NEW_TR">{{rows.CAPTION}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">Rejected Reason</label>
+                  <div class="col-md-12">
+                    <select class="form-control" data-width="auto" [(ngModel)]="REJECT_CD">
+                      <option *ngFor="let rows of modelNcbRejectReason;let i = index" [selected]="rows.REMARK==REJECT_CD">{{rows.REMARK}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">Other</label>
+                  <div class="col-md-12">
+                    <input type="text" class="form-control" [(ngModel)]="OTH_ID">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">กำหนดออกรถ</label>
+                  <div class="col-md-12">
+                    <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="ESTIMATE_DISB_DT"></p-calendar>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-md-12">Remark</label>
+                  <div class="col-md-12">
+                    <input type="text" class="form-control" [(ngModel)]="RMRK">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+</p-panel>

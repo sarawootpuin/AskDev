@@ -1,0 +1,21 @@
+<fieldset [disabled]="disabled == 'N'">
+  <!--<div class="form-inline-new">-->
+  <div class="d-flex">
+    <div class="col-md-3">
+      <!--<app-list-buyer [data]="data" (clickList)="setDataSlect($event)">-->
+      <!-- [data] ของลูก /*ที่เรียนจากพี่ฟุ๊ค*/ $event param รับค่าจาก emit-->
+      <app-list-buyer (clickList)="setDataSelect($event)">
+      </app-list-buyer>
+    </div>
+    <div class="col-md-9 border-isa">
+      <!--<app-detail-buyer [data]="dataSelect"></app-detail-buyer>-->
+      <!--<app-detail-buyer></app-detail-buyer>-->
+      <fieldset [disabled]="data.length == 0">
+        <app-detail-buyer [data]="dataSelect"
+                          [lists]="dataListAnswer"
+                          [listsJointB]="dataListJointBuyer"
+        ></app-detail-buyer>
+      </fieldset>
+    </div>
+  </div>
+</fieldset>

@@ -1,0 +1,219 @@
+<div class="container"  >
+  <fieldset [disabled]="componentReadOnly" >
+   <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-7 form-group">
+          <label>Call/Visit Type</label>
+          <div class="container form-control"
+               style="width: 100%; border-style: solid; border-width: 1px; border-radius: 10px; padding-top: 5px;">
+            <label class="mt-radio">
+              <input type="radio" name="CallVisittype"
+                     value="CF"
+                     [ngModel]="thisSaleCallD?.sale_call_type"
+                     (ngModelChange)="thisSaleCallD.sale_call_type=$event"
+                     [disabled]="componentReadOnly"
+              > Call Found
+              <span></span>
+            </label>
+            <label class="mt-radio">
+              <input type="radio" name="CallVisittype"
+                     value="CNF"
+                     [ngModel]="thisSaleCallD?.sale_call_type"
+                     (ngModelChange)="thisSaleCallD.sale_call_type=$event"
+                     [disabled]="componentReadOnly"> Call not Found
+              <span></span>
+            </label>
+            <label class="mt-radio">
+              <input type="radio" name="CallVisittype"
+                     value="V"
+                     [ngModel]="thisSaleCallD?.sale_call_type"
+                     (ngModelChange)="thisSaleCallD.sale_call_type=$event;visitClick();"
+                     [disabled]="componentReadOnly"> Visit
+              <span></span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-5 form-group">
+          <label class="col-form-label">Call/Visit Date</label>
+          <span class="text-danger">*</span>
+          <p-calendar dateFormat="dd/mm/yy"  inputStyleClass="form-control"
+                      [ngModel]="thisSaleCallD?.sale_call_dt"
+                      (ngModelChange)="thisSaleCallD.sale_call_dt=Changedate($event)"
+                      [disabled]="componentReadOnly"
+          ></p-calendar>
+        </div>
+        <div class="col-md-12 form-group" *ngIf="thisSaleCallD?.sale_call_type == 'V' " >
+          <label>Visit Purpose</label>
+          <select class="form-control w-50"
+                  [ngModel]="thisSaleCallD?.purpose"
+                  (ngModelChange)="thisSaleCallD.purpose =$event;">
+            <option></option>
+            <option *ngFor="let ansPur of ListVisitPur"
+                    [selected]="ansPur?.id == thisSaleCallD?.purpose"
+                    [value]="ansPur?.id">{{ansPur?.display}}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-12 form-group">
+          <label>Call/Visit Note</label>
+          <span class="text-danger">*</span>
+          <textarea class="form-control"   [maxlength]="500"
+                    [ngModel]="thisSaleCallD?.sale_call_note"
+                    (ngModelChange)="thisSaleCallD.sale_call_note=$event"
+                    [disabled]="componentReadOnly">
+          </textarea>
+        </div>
+        <div class="col-md-6 form-group">
+          <label>Interview</label><span class="text-danger">*</span><br>
+          <div class="form-inline">
+            <input type="text" class="form-control" style="display: inline;width: auto;text-align: right;"
+                   [ngModel]="thisSaleCallD?.interview"  pKeyFilter="int"
+                   (ngModelChange)="thisSaleCallD.interview=$event"
+                   [disabled]="componentReadOnly" >
+            <label>&nbsp; Minute</label>
+          </div>
+        </div>
+        <div class="col-md-6 form-group"  *ngIf="thisSaleCallD?.sale_call_type == 'V' " >
+          <label>Traffic Time</label><br>
+          <div class="form-inline">
+          <input type="text" class="form-control"  style="text-align: right;"
+                 [ngModel]="thisSaleCallD?.traffic" pKeyFilter="int"
+                 (ngModelChange)="thisSaleCallD.traffic=$event"
+                 [disabled]="componentReadOnly" >
+          <label>&nbsp; Minute</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!------------   Right    ----------->
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>Summary Call Result</label>
+          <div class="container  form-control"
+               style="width: 100%; border-style: solid; border-width: 1px; border-radius: 10px; padding-top: 5px;">
+            <label class="mt-radio">
+              <input type="radio" name="Result"
+                     value="P"
+                     (change)="changeResult()"
+                     [ngModel]="thisSaleCallD?.call_result_flg"
+                     (ngModelChange)="thisSaleCallD.call_result_flg=$event"
+                     [disabled]="componentReadOnly">
+              Prepare CA
+              <span></span>
+            </label>
+            <label class="mt-radio">
+              <input type="radio" name="Result"
+                     value="F"
+                     (change)="changeResult()"
+                     [ngModel]="thisSaleCallD?.call_result_flg"
+                     (ngModelChange)="thisSaleCallD.call_result_flg=$event"
+                     [disabled]="componentReadOnly">
+              Follow Up
+              <span></span>
+            </label>
+            <label class="mt-radio">
+              <input type="radio" name="Result"
+                     value="R"
+                     (change)="changeResult()"
+                     [ngModel]="thisSaleCallD?.call_result_flg"
+                     (ngModelChange)="thisSaleCallD.call_result_flg=$event"
+                     [disabled]="componentReadOnly">
+              Reject
+              <span></span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-12 form-group" *ngIf="ReasonShow">
+          <label>Reason</label>
+          <select class="form-control" (change)="selectResult($event.target.value)"  [disabled]="componentReadOnly" >
+            <option></option>
+            <option *ngFor="let ansREASON of ListReason"
+                    [selected]="ansREASON?.id == thisSaleCallD?.call_result_detail"
+                    [value]="ansREASON?.id">{{ansREASON?.display}}
+            </option>
+
+          </select>
+        </div>
+        <div clase="col-md-12" *ngIf="FollowShow">
+          <div class="row  border-isa m-1" >
+            <div class="col-md-6 form-group">
+              <label>Follow Up/Date</label>
+              <p-calendar
+                          dateFormat="dd/mm/yy"
+                          [ngModel]="thisSaleCallD?.follow_date"
+                          (ngModelChange)="thisSaleCallD.follow_date=Changedate($event)"
+                          [disabled]="componentReadOnly"></p-calendar>
+            </div>
+            <div class="col-md-3 form-group">
+              <div class="d-flex align-self-center" style="margin-top: 20px;height: 80%;width: 100% ">
+                <button style="width: 100%;" (click)="addDay(7)" [disabled]="componentReadOnly" >7 Days</button>
+              </div>
+            </div>
+            <div class="col-md-3 form-group">
+              <div class="d-flex align-self-center" style="margin-top: 20px;height: 80%;width: 100%">
+                <button style="width: 100%;" (click)="addDay(90)" [disabled]="componentReadOnly" >90 Days</button>
+              </div>
+            </div>
+            <div class="col-md-12 form-group">
+              <label>Follow Up Note</label>
+              <textarea class="form-control"   [maxlength]="500"
+                        [ngModel]="thisSaleCallD?.follow_up_point"
+                        (ngModelChange)="thisSaleCallD.follow_up_point=$event"
+                        [disabled]="componentReadOnly">
+              </textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!---------------Bottom  ------------>
+    <div class="col-md-12" >
+      <label>Contact Person</label>
+      <div class="row  border-isa">
+        <div class="col-md-12">
+          <app-custom-botton-icon [option]="'new'" (onBtnClick)="openContract()"  ></app-custom-botton-icon>
+          <app-contactperson #dialogcontactperson     (onContactSelect)="getContact($event)" ></app-contactperson>
+          <app-custom-botton-icon [option]="'delete'" (onBtnClick)="clearContact()"  ></app-custom-botton-icon>
+        </div>
+        <div class="col-md-2 form-group">
+          <label>Contact Code</label>
+          <input  class="form-control" type="text" disabled [ngModel]="thisSaleCallD?.cont_person_code" >
+        </div>
+        <div class="col-md-4 form-group">
+          <label>Name(Eng)</label>
+          <input  class="form-control" type="text" disabled [ngModel]="thisSaleCallD?.name_en">
+        </div>
+        <div class="col-md-4 form-group">
+          <label>Name(Thai)</label>
+          <input  class="form-control" type="text" disabled [ngModel]="thisSaleCallD?.name_th">
+        </div>
+        <div class="col-md-2 form-group">
+          <label>Position</label>
+          <input type="text" class="form-control"  disabled  [ngModel]="thisSaleCallD?.position">
+        </div>
+
+        <div class="col-md-3 form-group">
+          <label>Phone</label>
+          <input type="text" class="form-control"  disabled  [ngModel]="thisSaleCallD?.phone">
+        </div>
+        <div class="col-md-3 form-group">
+          <label>Ext</label>
+          <input type="text" class="form-control"  disabled  [ngModel]="thisSaleCallD?.phone_ext">
+        </div>
+        <div class="col-md-2 form-group">
+          <label>Moblie</label>
+          <input type="text" class="form-control"  disabled  [ngModel]="thisSaleCallD?.mobile">
+        </div>
+        <div class="col-md-4 form-group">
+          <label>E-Mail</label>
+          <input type="text" class="form-control"  disabled  [ngModel]="thisSaleCallD?.email">
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </fieldset>
+</div>
+

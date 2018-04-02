@@ -1,0 +1,461 @@
+<p-panel header="Customer">
+  <div class="row">
+    <!--<div class="col-md-1">-->
+    <!--<label><h3>Customer</h3></label>-->
+    <!--</div>-->
+    <div class="offset-md-1 col-md-11">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-4">
+              <label class="offset-4">Highest Amount</label>
+              <div class="form-group row">
+                <div class="col-md-1">
+                  <label class="col-form-label">LS:</label>
+                </div>
+                <div class="col-md-11">
+                  <label class="sr-only">Name</label>
+                  <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                         class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="HI_BGP_LS">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label class="offset-4">O/S Print/Bal.</label>
+              <div class="offset-md-1 col-md-11">
+                <label class="sr-only">Name</label>
+                <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                       class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="OS_LS">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label class="offset-4">Max. Day Late</label>
+              <div class="offset-md-1 col-md-11">
+                <label class="sr-only">Name</label>
+                <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                       class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="DAYLATE_LS">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group row">
+                <div class="col-md-1">
+                  <label class="col-form-label">HP:</label>
+                </div>
+                <div class="col-md-11">
+                  <label class="sr-only">Name</label>
+                  <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                         class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="HI_BGP_HP">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="offset-md-1 col-md-11">
+                <label class="sr-only">Name</label>
+                <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                       class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="OS_HP">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="offset-md-1 col-md-11">
+                <label class="sr-only">Name</label>
+                <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                       class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="DAYLATE_HP">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group row">
+                <div class="col-md-1">
+                  <label class="col-form-label">PL:</label>
+                </div>
+                <div class="col-md-11">
+                  <label class="sr-only">Name</label>
+                  <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                         class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="HI_BGP_PL">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="offset-md-1 col-md-11">
+                <label class="sr-only">Name</label>
+                <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                       class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="OS_PL">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="offset-md-1 col-md-11">
+                <label class="sr-only">Name</label>
+                <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                       class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="DAYLATE_PL">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group row">
+                <div class="col-md-1">
+                  <label class="col-form-label">FAC:</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="offset-md-1 col-md-11">
+                <label class="sr-only">Name</label>
+                <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                       class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="FAC_ACC_ADVANCE">
+              </div>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group row">
+                <div class="col-md-1">
+                  <label class="col-form-label">Total: </label>
+                </div>
+                <div class="col-md-11">
+                  <label class="sr-only">Name</label>
+                  <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                         class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="TOTAL_HI">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="offset-md-1 col-md-11">
+                <label class="sr-only">Name</label>
+                <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                       class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="OS_TOTAL">
+              </div>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="col-md-12">
+      <p-dataTable [value]="ModelEPS_BGPL" [lazy]="true" [rows]="10" [paginator]="true"
+                   [totalRecords]="totalRecords" (onLazyLoad)="loadEPS_BGPL($event)">
+        <p-header>BGPL Customer</p-header>
+        <p-column field="CREDIT_TYPE" header="Credit Type"></p-column>
+        <p-column field="AGR_CODE" header="Agreement No."></p-column>
+        <p-column field="BRAND_NAME" header="Brand"></p-column>
+        <p-column field="MODEL_DSC" header="Model"></p-column>
+        <p-column field="BODY_NAME" header="Body Type"></p-column>
+        <p-column field="FIRST" header="First Due">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] | date: 'dd/MM/yyyy'  }}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="LAST_DUE" header="Last Due">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] | date: 'dd/MM/yyyy'  }}</span>
+          </ng-template>
+        </p-column>
+        <p-column [bodyStyle]="{'text-align':'right'}" field="FIN_AMT_E_VAT" header="Finance Amt.">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+          </ng-template>
+        </p-column>
+        <p-column [bodyStyle]="{'text-align':'right'}" field="OS_PRI" header="O/S Principle">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+  </div>
+</p-panel>
+<br>
+
+<p-panel header="Guarantor">
+  <div class="row">
+    <div class="offset-md-1 col-md-11">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-4">
+              <label class="offset-4">Highest Amount</label>
+              <div class="form-group row">
+                <div class="col-md-1">
+                  <label class="col-form-label">LS:</label>
+                </div>
+                <div class="col-md-11">
+                  <label class="sr-only">Name</label>
+                  <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                         class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="HI_GUAR_BGP_LS">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label class="offset-4">O/S Print/Bal.</label>
+              <div class="offset-md-1 col-md-11">
+                <label class="sr-only">Name</label>
+                <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                       class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="OS_LS_GUAR">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label class="offset-4">Max. Day Late</label>
+              <div class="offset-md-1 col-md-11">
+                <label class="sr-only">Name</label>
+                <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                       class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="DAYLATE_LS_GUAR">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group row">
+                <div class="col-md-1">
+                  <label class="col-form-label">HP:</label>
+                </div>
+                <div class="col-md-11">
+                  <label class="sr-only">Name</label>
+                  <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }" type="text"
+                         class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="HI_GUAR_BGP_HP">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="offset-md-1 col-md-11">
+                <label class="sr-only">Name</label>
+                <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                       class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="OS_HP_GUAR">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="offset-md-1 col-md-11">
+                <label class="sr-only">Name</label>
+                <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                       class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="DAYLATE_HP_GUAR">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group row">
+                <div class="col-md-1">
+                  <label class="col-form-label">PL:</label>
+                </div>
+                <div class="col-md-11">
+                  <label class="sr-only">Name</label>
+                  <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                         class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="HI_GUAR_BGP_PL">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="offset-md-1 col-md-11">
+                <label class="sr-only">Name</label>
+                <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                       class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="OS_PL_GUAR">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="offset-md-1 col-md-11">
+                <label class="sr-only">Name</label>
+                <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                       class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="DAYLATE_PL_GUAR">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group row">
+                <div class="col-md-1">
+                  <label class="col-form-label">Total: </label>
+                </div>
+                <div class="col-md-11">
+                  <label class="sr-only">Name</label>
+                  <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                         class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="TOTAL_GUAR_HI">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="offset-md-1 col-md-11">
+                <label class="sr-only">Name</label>
+                <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                       class="form-control mb-2 mr-sm-2 mb-sm-0" [(ngModel)]="OS_TOTAL_GUAR">
+              </div>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="col-md-12">
+      <p-dataTable [value]="ModelEPS_BGPLGUAR" [lazy]="true" [rows]="10" [paginator]="true"
+                   [totalRecords]="totalRecordsGUAR" (onLazyLoad)="loadEPS_BGPLGUAR($event)">
+        <p-header>BGPL Guarantor</p-header>
+        <p-column field="CREDIT_TYPE" header="Credit Type"></p-column>
+        <p-column field="AGR_CODE" header="Agreement No."></p-column>
+        <p-column field="BRAND_NAME" header="Brand"></p-column>
+        <p-column field="MODEL_DSC" header="Model"></p-column>
+        <p-column field="BODY_NAME" header="Body Type"></p-column>
+        <p-column field="FIRST" header="First Due">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] | date: 'dd/MM/yyyy'  }}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="LAST_DUE" header="Last Due">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] | date: 'dd/MM/yyyy'  }}</span>
+          </ng-template>
+        </p-column>
+        <p-column [bodyStyle]="{'text-align':'right'}" field="FIN_AMT_E_VAT" header="Finance Amt.">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+          </ng-template>
+        </p-column>
+        <p-column [bodyStyle]="{'text-align':'right'}" field="OS_PRI" header="O/S Principle">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+  </div>
+
+</p-panel>
+<br>
+
+<p-panel header="Domestic , International Factoring">
+  <div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-3">
+          <label>Credit Line :</label>
+        </div>
+        <div class="col-md-3">
+          <label>O/S Balance :</label>
+        </div>
+        <div class="col-md-3">
+          <label>Joint Line with :</label>
+        </div>
+        <div class="col-md-3">
+          <label>Total Group O/S Balance :</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <label style="margin-left: 30px">Seller Name:</label>
+    </div>
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group row">
+            <div class="col-10">
+              <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }" class="form-control"
+                     [(ngModel)]="APPROVE_AMT">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group row">
+            <div class="col-10">
+              <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }" class="form-control"
+                     [(ngModel)]="ACC_ADVANCE">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group row">
+            <div class="col-10">
+              <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }" class="form-control"
+                     [(ngModel)]="ACC_ADVANCE_GP">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group row">
+
+            <div class="col-10">
+              <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }" class="form-control"
+                     [(ngModel)]="CR_GROUP">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <label style="margin-left: 30px">With Buyer Name:</label>
+    </div>
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group row">
+            <div class="col-10">
+              <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }" class="form-control"
+                     [(ngModel)]="SUM_CR_LIMIT">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group row">
+            <div class="col-10">
+              <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }" class="form-control"
+                     [(ngModel)]="SUM_ADVANCE_AMT">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <label style="margin-left: 30px">Total:</label>
+    </div>
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group row">
+            <div class="col-10">
+              <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }" class="form-control"
+                     [(ngModel)]="CREDIT_LINT_TOT">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group row">
+            <div class="col-10">
+              <input disabled currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' }" class="form-control"
+                     [(ngModel)]="ADVANCE_AMT_TOT">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p-dataTable [value]="ModelEPS_FACSELLER" [lazy]="true" [rows]="10" [paginator]="true"
+               [totalRecords]="totalRecordsFAC_SELLER" (onLazyLoad)="loadEPS_FAC_SELLER($event)">
+    <!--<p-header></p-header>-->
+    <p-column field="SELLER" header="Seller Name"></p-column>
+    <p-column field="CREDIT_LINE" header="Sub-line"></p-column>
+    <p-column field="ADVANCE_AMT" header="O/S Balance"></p-column>
+  </p-dataTable>
+</p-panel>
+

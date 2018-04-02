@@ -1,0 +1,345 @@
+<!--<app-action-dialog [title]="' ข้อมูลทางการเงิน'" #creditScoringHistoryDialog-->
+                   <!--[width]="900"-->
+                   <!--&gt;-->
+  <!--<app-scr-credit-scoring-history></app-scr-credit-scoring-history>-->
+<!--</app-action-dialog>-->
+
+<!--<p-dialog (onHide)="hideDialog()" [(visible)]="this.displayDialogScrJrstFin"-->
+          <!--[width]="900" [height]="1000"-->
+          <!--[contentStyle]="{'overflow':'scroll'}" baseZIndex="0">-->
+
+  <!--<p-header>-->
+    <!--ข้อมูลทางการเงิน-->
+  <!--</p-header>-->
+<input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" [(ngModel)]="num_test" >
+  <div class="row">
+    <div class="col-4 text-right">
+    </div>
+    <div class="col-2">
+
+      <label>ย้อนหลัง 1 ปี</label>
+    </div>
+    <div class="col-2">
+      <label>ย้อนหลัง 2 ปี</label>
+    </div>
+    <div class="col-2">
+      <label>ย้อนหลัง 3 ปี</label>
+    </div>
+    <div class="col-2">
+      <label>ย้อนหลัง 4 ปี</label>
+    </div>
+  </div>
+  <div class="row   ">
+    <div class="col-4 text-right">
+      <label>ปี ค.ศ.</label>
+    </div>
+    <div class="col-2">
+      <input type="text"  class="form-control h-75 h-75"
+             [(ngModel)]="this.listScrCorp[0].field_1">
+    </div>
+    <div class="col-2">
+      <input type="text"  class="form-control h-75"
+             [(ngModel)]="this.listScrCorp[0].field_2">
+    </div>
+    <div class="col-2">
+      <input type="text"  class="form-control h-75"
+             [(ngModel)]="this.listScrCorp[0].field_3">
+    </div>
+    <div class="col-2">
+      <input type="text"  class="form-control h-75"
+             [(ngModel)]="this.listScrCorp[0].field_4">
+    </div>
+  </div>
+
+  <div class="row  ">
+    <div class="col-4 text-right">
+      <label>รายได้</label>
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" [(ngModel)]="this.listScrCorp[1].field_1" >
+
+      <!--<input type="text" currencyMask [options]="{ prefix: ''}" currencyMask [options]="{ prefix: ''}"-->
+             <!--class="form-control h-75" [(ngModel)]="this.listScrCorp[1].field_1">-->
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[1].field_2">
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[1].field_3">
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[1].field_4">
+    </div>
+  </div>
+
+  <div class="row  ">
+    <div class="col-4 text-right">
+      <label>ต้นทุนขาย</label>
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[2].field_1">
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[2].field_2">
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[2].field_3">
+    </div>
+    <div class="col-2">
+    </div>
+  </div>
+
+  <div class="row  ">
+    <div class="col-4 text-right">
+      <label>สินทรัพย์หมุนเวียน</label>
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[3].field_1">
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[3].field_2">
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[3].field_3">
+    </div>
+    <div class="col-2">
+    </div>
+  </div>
+
+  <div class="row  ">
+    <div class="col-4 text-right">
+      <label>หนี้สินหมุนเวียน</label>
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[4].field_1">
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[4].field_2">
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[4].field_3">
+    </div>
+    <div class="col-2">
+    </div>
+  </div>
+
+  <div class="row  ">
+    <div class="col-4 text-right">
+      <label>สินทรัพย์รวม</label>
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[5].field_1">
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[5].field_2">
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[5].field_3">
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[5].field_4">
+    </div>
+  </div>
+
+  <div class="row  ">
+    <div class="col-4 text-right">
+      <label>หนี้สินรวม</label>
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[6].field_1">
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[6].field_2">
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[6].field_3">
+    </div>
+    <div class="col-2">
+    </div>
+  </div>
+
+
+  <div class="row  ">
+    <div class="col-4 text-right">
+      <label>กำไรขั้นต้น</label>
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" readonly
+             [(ngModel)]="this.listScrCorp[7].field_1">
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" readonly
+             [(ngModel)]="this.listScrCorp[7].field_2">
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" readonly
+             [(ngModel)]="this.listScrCorp[7].field_3">
+    </div>
+    <div class="col-2">
+    </div>
+  </div>
+
+  <div class="row  ">
+    <div class="col-4 text-right">
+      <label>กำไร/ขาดทุนสุทธิ</label>
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[8].field_1">
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[8].field_2">
+    </div>
+    <div class="col-2">
+      <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small"
+             [(ngModel)]="this.listScrCorp[8].field_3">
+    </div>
+    <div class="col-2">
+    </div>
+  </div>
+
+  <div style="background-color: rgba(203,197,154,0.25)">
+    <div class="row  ">
+      <div class="col-4 text-right">
+        <label>การเติบโตรายได้</label>
+      </div>
+      <div class="col-2">
+        <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" readonly
+               [(ngModel)]="this.listScrCorpCalculate[1].field_1">
+      </div>
+      <div class="col-2">
+        <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" readonly
+               [(ngModel)]="this.listScrCorpCalculate[1].field_2">
+      </div>
+      <div class="col-2">
+        <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" readonly
+               [(ngModel)]="this.listScrCorpCalculate[1].field_3">
+      </div>
+      <div class="col-2">
+      </div>
+    </div>
+
+    <div class="row  ">
+      <div class="col-4 text-right">
+        <label>สภาพคล่องทางการเงิน</label>
+      </div>
+      <div class="col-2">
+        <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" readonly
+               [(ngModel)]="this.listScrCorpCalculate[2].field_1">
+      </div>
+      <div class="col-2">
+        <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" readonly
+               [(ngModel)]="this.listScrCorpCalculate[2].field_2">
+      </div>
+      <div class="col-2">
+        <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" readonly
+               [(ngModel)]="this.listScrCorpCalculate[2].field_3">
+      </div>
+      <div class="col-2">
+      </div>
+    </div>
+
+    <div class="row  ">
+      <div class="col-4 text-right">
+        <label>ประสิทธิภาพในการใช้ทรัพย์สิน</label>
+      </div>
+      <div class="col-2">
+        <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" readonly
+               [(ngModel)]="this.listScrCorpCalculate[3].field_1">
+      </div>
+      <div class="col-2">
+        <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" readonly
+               [(ngModel)]="this.listScrCorpCalculate[3].field_2">
+      </div>
+      <div class="col-2">
+        <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" readonly
+               [(ngModel)]="this.listScrCorpCalculate[3].field_3">
+      </div>
+      <div class="col-2">
+      </div>
+    </div>
+
+    <div class="row  ">
+      <div class="col-4 text-right">
+        <label>ความสามารถในการก่อหนี้</label>
+      </div>
+      <div class="col-2">
+        <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" readonly
+               [(ngModel)]="this.listScrCorpCalculate[4].field_1">
+      </div>
+      <div class="col-2">
+        <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" readonly
+               [(ngModel)]="this.listScrCorpCalculate[4].field_2">
+      </div>
+      <div class="col-2">
+        <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" readonly
+               [(ngModel)]="this.listScrCorpCalculate[4].field_3">
+      </div>
+      <div class="col-2">
+      </div>
+    </div>
+
+    <div class="row  ">
+      <div class="col-4 text-right">
+        <label>ความสามารถในการทำกำไร</label>
+      </div>
+      <div class="col-2">
+        <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" readonly
+               [(ngModel)]="this.listScrCorpCalculate[5].field_1">
+      </div>
+      <div class="col-2">
+        <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" readonly
+               [(ngModel)]="this.listScrCorpCalculate[5].field_2">
+      </div>
+      <div class="col-2">
+        <input inputFormatNumber [decimalPlace]="2"  class="form-control input-small" readonly
+               [(ngModel)]="this.listScrCorpCalculate[5].field_3">
+      </div>
+      <div class="col-2">
+      </div>
+    </div>
+  </div>
+<div class="d-flex justify-content-start">
+  <div class="ml-auto">
+      <button type="button" class="btn-nav-saveisa" style="width: auto" (click)="calCulateScrCorp()">
+      <i class="fa fa-save"></i> CALCULATE
+      </button>
+      <button type="button" class="btn-nav-cancelisa" style="width: auto" (click)="transferScrCorp()" *ngIf="!checkReadOnly">
+      <i class="fa fa-reply-all"></i> TRANSFER
+      </button>
+  </div>
+</div>
+
+
+  <!--<p-footer>-->
+    <!--<button type="button" class="btn-nav-saveisa" style="width: auto" (click)="calCulateScrCorp()">-->
+      <!--<i class="fa fa-save"></i> CALCULATE-->
+    <!--</button>-->
+    <!--<button type="button" class="btn-nav-cancelisa" style="width: auto" (click)="transferScrCorp()" *ngIf="!checkReadOnly">-->
+      <!--<i class="fa fa-reply-all"></i> TRANSFER-->
+    <!--</button>-->
+  <!--</p-footer>-->
+<!--</p-dialog>-->
+
+
+

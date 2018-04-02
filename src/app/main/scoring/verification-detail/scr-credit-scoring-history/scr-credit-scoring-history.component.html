@@ -1,0 +1,12 @@
+<p-dataTable [value]="dataTable" selectionMode={{selectMode}} scrollable="true" scrollHeight="340px"
+             [(selection)]="selectedData" (onRowSelect)="onRowSelect($event)" #table>
+  <p-column field="runNo" header="Running No"></p-column>
+  <p-column field="entTyp" header="Entity Type"></p-column>
+  <p-column field="entCd" header="Entity No"></p-column>
+  <p-column field="refNo" header="เลขที่อ้างอิง"></p-column>
+  <p-column field="scrDt" header="วันที่ทำ"></p-column>
+  <p-column field="scr" header="เกรด"></p-column>
+  <!--<p-column field="indv_jrstc" header="col.header"></p-column>-->
+  <p-column field="mobileSource" header="ทำเพื่อออกเกรดเบื้องต้น"></p-column>
+</p-dataTable>
+

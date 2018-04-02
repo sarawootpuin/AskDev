@@ -1,0 +1,7 @@
+ul > li:hover {
+  color: #fff !important;
+  background-color: #007791;
+}
+hr {
+  background-color: #17a2b8;
+}

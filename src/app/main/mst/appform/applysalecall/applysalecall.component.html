@@ -1,0 +1,18 @@
+<div class="input-group">
+  <span class="input-group-addon"><i class="fa fa-search"></i></span>
+  <input #searchInput class="form-control" type="text" pInputText size="50" placeholder="Search">
+</div>
+
+<div class="card mt-1">
+  <p-dataTable [value]="dataTable" scrollable="true" scrollHeight="300px" scrollWidth={{width}} [loading]="loading"
+               selectionMode="single" [responsive]="true" [globalFilter]="searchInput"
+               [(selection)]="Selected" (onRowSelect)="onRowSelect($event)" #table>
+    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"
+
+              [hidden]="col.hidden"
+              [style]="{'width':col.width}">
+    </p-column>
+  </p-dataTable>
+</div>
+
+<!--[excludeGlobalFilter]="col.filter"-->

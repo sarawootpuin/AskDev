@@ -1,0 +1,143 @@
+<div class="d-flex">
+  <div class="panel panel-default" style="width: 100%">
+    <p-panel header="Other Card">
+      <div class="main-container">
+        <div class="d-flex">
+          <div class="flex-md-column col-md-6">
+            <div class="form-group">
+              <label> Card Number</label>
+              <input type="text" class="form-control" [(ngModel)]="selectedCard.cardNo" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="flex-md-column col-md-6">
+            <div class="form-group">
+              <label> Card Type</label>
+              <input type="text" class="form-control" [(ngModel)]="selectedCard.cardTypeDesc" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="flex-md-column col-md-6">
+            <div class="form-group">
+              <label> Issued at .</label>
+              <input type="text" class="form-control" [(ngModel)]="selectedCard.cardBy" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="flex-md-column col-md-6">
+            <div class="form-group">
+              <label> Dated Issued </label>
+              <input type="text" class="form-control" [(ngModel)]="selectedCard.cardIssueDate" readonly>
+            </div>
+          </div>
+          <div class="flex-md-column col-md-6">
+            <div class="form-group">
+              <label> Expiry date </label>
+              <input type="text" class="form-control" [(ngModel)]="selectedCard.cardExpireDate" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="flex-md-column col-md-12">
+            <div class="form-group">
+              <label>Address</label>
+              <input type="text" class="form-control" [(ngModel)]="selectedCard.cardAdd1" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="flex-md-column col-md-12">
+            <div class="form-group">
+              <label></label>
+              <input type="text" class="form-control" [(ngModel)]="selectedCard.cardAdd2" readonly>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-panel>
+  </div>
+  <div class="panel panel-default" style="width: 100%">
+    <p-panel header="Bank">
+      <div class="main-container">
+        <div class="d-flex">
+          <div class="flex-md-column col-md-6">
+            <div class="form-group">
+              <label> Account name </label>
+              <input type="text" class="form-control" [(ngModel)]="selectedBank.accName" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="flex-md-column col-md-6">
+            <div class="form-group">
+              <label> Account Number </label>
+              <input type="text" class="form-control" [(ngModel)]="selectedBank.accNo" readonly>
+              <br>
+              <input type="checkbox" [checked]="selectedBank?.directDebitFlag == 'Y'" disabled> Debit
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-md-column col-md-6">
+          <div class="form-group">
+            <input type="radio" name="bt" value="N" [(ngModel)]="accountType" disabled> Saving
+            <input type="radio" name="bt" value="Y" [(ngModel)]="accountType" disabled> Current
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="flex-md-column col-md-6">
+            <div class="form-group">
+              <label> Bank </label>
+              <input type="text" class="form-control" [(ngModel)]="selectedBank.bank" readonly>
+            </div>
+          </div>
+          <div class="flex-md-column col-md-6">
+            <div class="form-group">
+              <label> Branch </label>
+              <input type="text" class="form-control" [(ngModel)]="selectedBank.bankBranch" readonly>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-panel>
+  </div>
+</div>
+
+<div class="d-flex">
+  <div class="panel panel-default" style="border: solid;border-width:thin;width: 100%">
+    <div class="form-group">
+      <p-dataTable [value]="cardTable" selectionMode="single"
+                   [(selection)]="selectedCard"
+                   dataKey = "cardType"
+                   (onRowSelect) = "selectCard($event)"
+                   [responsive]="true"
+                   rows="15">
+        <p-column field="cardType" header="Card Type"></p-column>
+        <p-column field="cardNo" header="Card No."></p-column>
+        <p-column field="cardIssueDate" header="Issue Date"></p-column>
+        <p-column field="cardExpireDate" header="Expire Date"></p-column>
+        <p-column field="cardBy" header="Issued at "></p-column>
+      </p-dataTable>
+    </div>
+  </div>
+  <div class="panel panel-default" style="border: solid;border-width:thin;width: 100%">
+    <div class="form-group">
+      <p-dataTable [value]="bankTable" selectionMode="single"
+                   [(selection)]="selectedBank"
+                   dataKey = "bank"
+                   [responsive]="true"
+                   (onRowSelect) = "selectBank($event)"
+                   rows="15">
+        <p-column field="accName" header="Account name"></p-column>
+        <p-column field="accountType" header="Account Type"></p-column>
+        <p-column field="bank" header="Bank"></p-column>
+        <p-column field="bankBranch" header="Branch"></p-column>
+        <p-column field="directDebitFlag" header="Debit"></p-column>
+      </p-dataTable>
+    </div>
+  </div>
+</div>
+

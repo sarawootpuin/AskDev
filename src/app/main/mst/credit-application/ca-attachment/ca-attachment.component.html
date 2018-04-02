@@ -1,0 +1,19 @@
+<app-action-read-excel (onAfterOpen)="checkValueExcel()" [caNo]="caNo" [comCode]="comCode" #actionReadExcel>
+
+</app-action-read-excel>
+
+
+<button type="button" *ngIf = 'partDownload'
+        class="btn btn-print" (click)="downloadFile()">
+  <i class="fa fa-print" ></i> {{titleDownload}}
+</button>
+
+<button type="button"
+        class="btn btn-print">
+  <i class="fa fa-print" ></i> {{titleDownloadTemp}}
+</button>
+
+<app-action-button-download [buttonName]="'Print Excel'"
+                            [modelExcel]="modelExcel"
+                            [method]="'post'"
+                            [linkWebService]="partDownload"></app-action-button-download>

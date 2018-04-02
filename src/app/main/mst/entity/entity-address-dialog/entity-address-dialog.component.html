@@ -1,0 +1,44 @@
+<div class="modal fade" #entity_address_dialog>
+  <div class="modal-dialog" style="max-width: 1200px;"
+       role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{title}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                #btn_close_dialog>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row align-items-center">
+          <div class="col-md-10">
+            <label class="sr-only">Name</label>
+            <input #searchInput class="form-control" type="text" pInputText size="50" placeholder="Search">
+          </div>
+        </div>
+        <div class="my-2">
+          <p-dataTable #dt
+                       [value]="address"
+                       scrollable="true" scrollHeight="380px"
+                       selectionMode="single"
+                       [globalFilter]="searchInput"
+                       [(selection)]="addressSelected"
+                       [rows]="10" [paginator]="true">
+            <p-column *ngFor="let col of cols" [field]="col.field"
+                      [header]="col.header"
+                      filterMatchMode="contains">
+            </p-column>
+          </p-dataTable>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success"
+                [disabled]="addressSelected==null"
+                (click)="selectAddress();">CHOOSE
+        </button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
+
+      </div>
+    </div>
+  </div>
+</div>

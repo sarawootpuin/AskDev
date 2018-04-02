@@ -1,0 +1,58 @@
+<p-dataTable [value]="listTable" [responsive]="true" [scrollable]="true" scrollHeight="360px">
+  <p-column field="topicCd" header="#" [style]="{'width':'10%'}"></p-column>
+  <p-column field="topicNme" header="คำถาม" [style]="{'width':'30%'}"></p-column>
+  <p-column header="คำตอบ" [editable]="true" [style]="{'width':'20%'}">
+    <ng-template let-rowAns="rowData" let-ri="rowIndex" pTemplate="body">
+      <div *ngIf="rowAns.lookUp ==='Y';">
+        <select class="form-control h-25" (change)="onChangeSelectedAns(ri,$event.target.value)"
+                [disabled]="checkReadOnly">
+          <option *ngFor="let items of rowAns.listAnswer;let i=index" [selected]="items?.selected == 'Y'" [value]="i">
+            {{items.answer}}
+          </option>
+        </select>
+      </div>
+      <!--grand point and total point does not show anser-->
+      <div *ngIf="rowAns.lookUp ==='N';">
+        <div *ngIf="rowAns.type_for_cal != 'G' && rowAns.type_for_cal != 'GG'
+                    && rowAns.type_for_cal != 'P' &&rowAns.type_for_cal != 'GP'">
+          <textarea class="form-control" rows="1" (blur)="onChangeSelectedAnsRange(ri,$event.target.value)"
+                    [(ngModel)]="rowAns.answer" [readOnly]="checkReadOnly"></textarea>
+        </div>
+      </div>
+    </ng-template>
+  </p-column>
+  <p-column header="คะแนน" [style]="{'width':'10%'}">
+    <ng-template let-rowAns="rowData" let-ri="rowIndex" pTemplate="body">
+      <div *ngIf="rowAns.lookUp ==='Y';">
+        <div *ngFor="let items of rowAns.listAnswer">
+          <div *ngIf="items?.selected == 'Y'">{{items?.scr}}</div>
+        </div>
+      </div>
+      <div *ngIf="rowAns.lookUp ==='N';">
+        <!--all case -->
+        <div *ngIf="rowAns.type_for_cal != 'P' && rowAns.type_for_cal != 'GP'">
+          <div *ngFor="let items of rowAns.listAnswerRange">
+            <div *ngIf="items?.selected == 'Y'">{{items?.scr}}</div>
+          </div>
+        </div>
+        <!--Grand Point -->
+        <div *ngIf="rowAns.type_for_cal == 'P' || rowAns.type_for_cal == 'GP'">
+          <div>{{rowAns?.scr}}</div>
+        </div>
+      </div>
+    </ng-template>
+  </p-column>
+  <p-column header="คำอธิบาย" [editable]="true" [style]="{'width':'30%'}">
+    <ng-template let-rowAns="rowData" let-ri="rowIndex" pTemplate="body">
+      <textarea class="form-control" rows="1" [(ngModel)]="rowAns.detail" (blur)="onEditTab()"
+                [readOnly]="checkReadOnly"></textarea>
+    </ng-template>
+  </p-column>
+
+</p-dataTable>
+
+
+
+
+
+

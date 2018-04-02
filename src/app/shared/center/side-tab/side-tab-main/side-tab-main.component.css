@@ -1,0 +1,9 @@
+:host { flex: 1 }
+
+.app-tab-content
+{
+  height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  visibility: visible;
+}

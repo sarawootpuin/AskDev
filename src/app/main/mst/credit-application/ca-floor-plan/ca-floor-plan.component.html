@@ -1,0 +1,158 @@
+<p-panel header="Credit Line ">
+  <div class="col-md-12">
+    <div class="d-flex">
+      <div class="form-group col-md-1">
+        <label class="mt-radio">
+          <input type="radio" name="rate_type" value="Fix">&nbsp;Fix
+        </label>
+      </div>
+      <div class="form-group col-md-3">
+        <label> Interst Rate </label>
+        <div class="form-inline">
+          <input currencyMask
+                 class="form-control"
+                 [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"/>
+          &nbsp; %
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="d-flex">
+      <div class="form-group col-md-1">
+        <label class="mt-radio">
+          <input type="radio" name="rate_type" value="Float">&nbsp;Float
+        </label>
+      </div>
+      <div class="form-group col-md-3">
+        <label> Bank </label>
+        <input class="form-control">
+      </div>
+      <div class="form-group col-md-3">
+        <label> Type </label>
+        <input class="form-control">
+      </div>
+      <div class="form-group col-md-3">
+        <label> Spread </label>
+        <input currencyMask
+               class="form-control"
+               [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
+      </div>
+    </div>
+  </div>
+</p-panel>
+<br>
+<div class="d-flex">
+  <div class="col-md-6">
+    <div class="d-flex col-md-12">
+      <div class="form-group col-md-6 ">
+        <label> Tenor </label>
+        <div class="form-inline">
+          <input class="form-control text-right">
+          &nbsp; Month
+        </div>
+      </div>
+    </div>
+    <div class="d-flex col-md-12">
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label> Start Date </label><br>
+          <p-calendar dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"></p-calendar>
+        </div>
+      </div>
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label>Expiry Date</label><br>
+          <p-calendar dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"></p-calendar>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex col-md-12">
+      <div class="form-group col-md-6 ">
+        <label> Requested Credit Line </label>
+        <input class="form-control text-right">
+      </div>
+      <div class="form-group col-md-6 ">
+        <label> Penalty Rate </label>
+        <div class="form-inline">
+          <input class="form-control">
+          &nbsp; %
+        </div>
+      </div>
+    </div>
+    <div class="d-flex col-md-12">
+      <div class="form-group col-md-6 ">
+        <label> Duty Amount </label>
+        <input currencyMask
+               class="form-control"
+               [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"/>
+      </div>
+      <div class="form-group col-md-6 ">
+        <label> Drawdown Period </label>
+        <div class="form-inline">
+          <input class="form-control text-right">
+          &nbsp; Days
+        </div>
+      </div>
+    </div>
+    <div class="d-flex col-md-12">
+      <div class="form-group col-md-6 ">
+        <label>OS Duty Amount </label>
+        <input currencyMask
+               class="form-control"
+               [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"/>
+      </div>
+      <div class="form-group col-md-6 ">
+        <label> Minimum Interest Rate </label>
+        <input currencyMask
+               class="form-control"
+               [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"/>
+      </div>
+    </div>
+    <div class="d-flex col-md-12">
+      <div class="form-group col-md-6 offset-6">
+        <label> Percent of the appraised </label>
+        <div class="form-inline">
+          <input currencyMask
+                 class="form-control"
+                 [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"/>
+          &nbsp; %
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group col-md-12 border-isa">
+      <label class="p-1">Ref. Old CA</label>
+      <div class="d-flex col-md-12">
+        <div class="form-group col-md-6 ">
+          <label>Total Credit Line </label>
+          <input currencyMask
+                 class="form-control"
+                 [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"/>
+        </div>
+        <div class="form-group col-md-6 ">
+          <label>Used Credit Line</label>
+          <input currencyMask
+                 class="form-control"
+                 [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"/>
+        </div>
+      </div>
+      <div class="d-flex col-md-12">
+        <div class="form-group col-md-6 ">
+          <label>Waiting DrawDown Approval </label>
+          <input currencyMask
+                 class="form-control"
+                 [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"/>
+        </div>
+        <div class="form-group col-md-6 ">
+          <label>Available Credit Line</label>
+          <input currencyMask
+                 class="form-control"
+                 [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

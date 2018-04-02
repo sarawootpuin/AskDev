@@ -1,0 +1,168 @@
+<app-action-button-form [title]="'NCB Enquiry'" [showReject]="false" [showSubmit]="false" [showNew]="false"
+                        [showCancel]="false" [showCalculator]="false" [showSearch]="true" [showBack]="false"
+                        [showSave]="false" [showPrint]="false" [showEdit]="false"
+                        (onSearch)="getDataNcbEnquiry()"></app-action-button-form>
+
+<div class="card card-header">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+            <label class="col-md-12">Name</label>
+            <div class="col-md-12">
+              <input type="text" [(ngModel)]="pname" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label class="col-md-12">Surname</label>
+            <div class="col-md-12">
+              <input type="text" [(ngModel)]="psurname" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label class="col-md-12">ID / Trade No</label>
+            <div class="col-md-12">
+              <input type="text" [(ngModel)]="ptradeid" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label class="col-md-12">Ref_No</label>
+            <div class="col-md-12">
+              <input type="text" [(ngModel)]="pref_no" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label class="col-md-12">MKT Checking Date (A.D.)</label>
+            <div class="col-md-12">
+              <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="pcheckdate"></p-calendar>
+              &nbsp; - &nbsp;
+              <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="pcheckdateto"></p-calendar>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label class="col-md-12">Sent NCB Date (A.D.)</label>
+            <div class="col-md-12">
+              <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="pncbdate"></p-calendar>
+              &nbsp; - &nbsp;
+              <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="pncbdateto"></p-calendar>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label class="col-md-12">Checking For</label>
+            <div class="col-md-12">
+              <select class="form-control" data-width="auto" [(ngModel)]="pcheckfor">
+                  <option *ngFor="let rows of modelNcbEnquiryCheckingFor;let i = index" [selected]="rows.COM_CODE == comCode">{{rows.COM_CODE}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-inline" style="margin-top: 30px;margin-left: 15px">
+              <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                <input type="checkbox" class="custom-control-input" [(ngModel)]="pchb_no_reason">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Not input reason</span>
+              </label>
+              <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                <input type="checkbox" class="custom-control-input" [(ngModel)]="pchb_no_tracking">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Customer not have Tracking NCB</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div class="card card-header" *ngIf="controlNcbEnquiry==2">-->
+  <!--<div class="row">-->
+    <!--<div class="col-md-8 offset-md-2">-->
+      <!--<div class="form-group">-->
+        <!--<div class="row">-->
+          <!--<div class="col-md-6">-->
+            <!--<label class="col-md-12">Name</label>-->
+            <!--<div class="col-md-12">-->
+              <!--<input type="text" [(ngModel)]="pname" class="form-control">-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="col-md-6">-->
+            <!--<label class="col-md-12">Surname</label>-->
+            <!--<div class="col-md-12">-->
+              <!--<input type="text" [(ngModel)]="psurname" class="form-control">-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+          <!--<div class="col-md-6">-->
+            <!--<label class="col-md-12">ID / Trade No</label>-->
+            <!--<div class="col-md-12">-->
+              <!--<input type="text" [(ngModel)]="ptradeid" class="form-control">-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+
+<!--<p-dataTable [value]="modelNcbEnquiry" [rows]="10" [lazy]="true" [paginator]="true"-->
+             <!--[totalRecords]="totalRecords" (onPage)="loadNcbEnquiry($event)">-->
+  <!--<p-header>NCB Enquiry</p-header>-->
+  <!--<p-column field="CHECK_DT" header="MKT Check Date">-->
+    <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+      <!--<span>{{ row[col.field] | date: 'dd/MM/yyyy'  }}</span>-->
+    <!--</ng-template>-->
+  <!--</p-column>-->
+  <!--<p-column field="SENT_NCB_DT" header="Sent NCB Date">-->
+    <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+      <!--<span>{{ row[col.field] | date: 'dd/MM/yyyy'  }}</span>-->
+    <!--</ng-template>-->
+  <!--</p-column>-->
+  <!--<p-column field="MKT_NAME" header="MKT Name"></p-column>-->
+  <!--<p-column field="NAME" header="Name"></p-column>-->
+  <!--<p-column field="SURNAME" header="Surname"></p-column>-->
+  <!--<p-column field="ID" header="ID"></p-column>-->
+  <!--<p-column field="BL_RESULT" header="BL_RESULT"></p-column>-->
+  <!--<p-column field="RESULT_NCB" header="RESULT_NCB"></p-column>-->
+<!--</p-dataTable>-->
+
+<p-dataTable [value]="modelNcbEnquiry" [rows]="10" [lazy]="true" [paginator]="true"
+             [totalRecords]="totalRecords" selectionMode="single" (onPage)="loadNcbEnquiry($event)" (onRowDblclick)="onRowDbClick($event)">
+  <p-header>NCB Enquiry</p-header>
+  <p-column field="RUN_NO" header="Run no."></p-column>
+  <p-column field="CHECK_DT" header="MKT Check Date">
+    <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+    <!--<span>{{ row[col.field] | date: 'dd/MM/yyyy'  }}</span>-->
+  <!--</ng-template>-->
+  </p-column>
+  <p-column field="SENT_NCB_DT" header="Sent NCB Date">
+    <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+      <!--<span>{{ row[col.field] | date: 'dd/MM/yyyy'  }}</span>-->
+    <!--</ng-template>-->
+  </p-column>
+  <p-column field="RECEIVE_DT" header="Receive Date">
+    <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+      <!--<span>{{ row[col.field] | date: 'dd/MM/yyyy'  }}</span>-->
+    <!--</ng-template>-->
+  </p-column>
+  <p-column field="INFORM_MKT_FLG" header="Inform MKT"></p-column>
+  <p-column field="MKT_NAME" header="MKT Name"></p-column>
+  <p-column field="ENT_TYPE" header="Ent Type"></p-column>
+  <p-column field="APP_ENT_TYPE" header="App Ent Type"></p-column>
+  <p-column field="NAME" header="Name"></p-column>
+  <p-column field="SURNAME" header="Surname"></p-column>
+  <p-column field="ID" header="ID"></p-column>
+  <p-column field="REF_NCB" header="Ref NCB"></p-column>
+  <p-column field="REJECT" header="Reject"></p-column>
+  <p-column field="TRACKING_ID" header="Tracking"></p-column>
+  <p-column field="RESULT_NCB" header="RESULT_NCB"></p-column>
+</p-dataTable>

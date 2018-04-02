@@ -1,0 +1,97 @@
+<div *ngIf="loadProgressBar" style="text-align: center">
+<i class="fa fa-spinner fa-spin fa-3x fa-fw fa-align-center"></i>
+<span class="sr-only">Loading...</span>
+</div>
+
+<!--<div class="form-group" align="right">-->
+    <!--&lt;!&ndash;<button type="button" class="btn-nav-printisa" style="width: auto" align="right">&ndash;&gt;-->
+      <!--&lt;!&ndash;<i class="fa fa-print"></i> Print Summary Exposure</button>&ndash;&gt;-->
+  <!--<app-custom-button [option]="'print'" [title]="'Print Summary Exposure'" [disabled]="true"></app-custom-button>-->
+
+<!--</div>-->
+<p-dataTable scrollable="true" [loading]="loading" loadingIcon="fa-spinner" [value]="myExposure" [lazy]="true" [rows]="10" [paginator]="true"
+             (onRowSelect)="onRowSelect($event)" [totalRecords]="totalRecords" selectionMode="single" (onLazyLoad)="loadMyExposure($event)" [responsive]="true">
+
+
+  <p-column field="F_NAMET" header="ชื่อ ปัจจุบัน"></p-column>
+  <p-column field="L_NAMET" header="นามสกุล ปัจจุบัน"></p-column>
+  <p-column field="FIRST_NAME" header="ชื่อ เดิม"></p-column>
+  <p-column field="LAST_NAME" header="นามสกุล เดิม"></p-column>
+  <p-column field="CARD_NO" header="เลขที่บัตร"></p-column>
+  <p-column field="COUNT" header="จำนวนสัญญารวมปิดบัญชี"></p-column>
+  <p-column [bodyStyle]="{'text-align':'right'}" field="OS_AR" header="ยอดลูกหนี้คงเหลือรวม">
+    <ng-template let-col let-row="rowData" pTemplate="body">
+      <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+    </ng-template>
+  </p-column>
+  <p-column [bodyStyle]="{'text-align':'right'}" field="OS_PRI" header="ยอดเงินต้นคงเหลือรวม">
+    <ng-template let-col let-row="rowData" pTemplate="body">
+      <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+    </ng-template>
+  </p-column>
+  <p-column [bodyStyle]="{'text-align':'right'}" field="PAST_DUE" header="ยอดค้างชำระรวม">
+    <ng-template let-col let-row="rowData" pTemplate="body">
+      <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+    </ng-template>
+  </p-column>
+
+</p-dataTable>
+<br>
+<!--<div class="form-group" align="right">-->
+  <!--<app-custom-button [option]="'print'" [title]="'Print Detail Exposure'" [disabled]="true"></app-custom-button>-->
+<!--</div>-->
+
+
+<p-dataTable scrollable="true" [loading]="loading" loadingIcon="fa-spinner" [value]="myExposurecomp" [lazy]="true" [rows]="10" [paginator]="true"
+             [totalRecords]="totalRecordscomp"  (onLazyLoad)="loadMyExposureComp($event)">
+
+  <p-header>ประวัติสัญญากับบริษัท</p-header>
+  <p-column [style]="{'width':'120px'}" field="AS_OF_DATE" header="As of"></p-column>
+  <p-column [style]="{'width':'120px'}" field="AGR_CODE" header="เลขที่สัญญา"></p-column>
+  <p-column [style]="{'width':'120px'}" field="REGISTRATION_NUMBER" header="เลขที่ทะเบียน"></p-column>
+  <p-column [style]="{'width':'120px'}" field="CUS_GUAR" header="ลูกค้า/ผู้ค้ำ"></p-column>
+  <p-column [style]="{'width':'120px'}" field="CLOSE_ACTIVE" header="Closing/Active"></p-column>
+  <p-column [style]="{'width':'120px','text-align':'right'}" field="OS_AR" header="ยอดลูกหนี้คงเหลือ">
+
+    <ng-template let-col let-row="rowData" pTemplate="body">
+      <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+    </ng-template>
+  </p-column>
+  <p-column [style]="{'width':'120px','text-align':'right'}" field="OS_PRI" header="ยอดเงินต้นคงเหลือ">
+    <ng-template let-col let-row="rowData" pTemplate="body">
+      <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+    </ng-template>
+  </p-column>
+  <p-column [style]="{'width':'120px','text-align':'right'}" field="PAST_DUE" header="ค่างวดค้างชำระ">
+    <ng-template let-col let-row="rowData" pTemplate="body">
+      <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+    </ng-template>
+  </p-column>
+  <p-column [style]="{'width':'120px','text-align':'right'}" field="OVER_NO" header="งวดคา้ง">
+    <ng-template let-col let-row="rowData" pTemplate="body">
+      <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+    </ng-template>
+  </p-column>
+  <p-column [style]="{'width':'120px'}" field="C_STATUS" header="สถานะลูกค้า"></p-column>
+  <p-column [style]="{'width':'120px'}" field="CREDIT_GRADING" header="Credit Grade"></p-column>
+  <p-column [style]="{'width':'120px'}" field="PAYMENT_GRADING" header="Payment Grade"></p-column>
+  <p-column [style]="{'width':'120px'}" field="MARKETING" header="Marketing"></p-column>
+  <p-column [style]="{'width':'120px'}" field="VERIFIER" header="Verifier"></p-column>
+  <p-column [style]="{'width':'120px'}" field="CUSTOMER_SERVICE" header="Customer Service"></p-column>
+
+</p-dataTable>
+
+<br/>
+<p-dataTable scrollable="true" [loading]="loading" loadingIcon="fa-spinner" [value]="myExposuretransfer" [lazy]="true" [rows]="10" [paginator]="true"
+             [totalRecords]="totalRecordscomp"  (onLazyLoad)="loadMyExposureTransfer($event)">
+
+  <p-header>ประวัติสัญญาที่มีการทำโอน</p-header>
+  <p-column field="AGR_CODE" header="เลขที่สัญญา"></p-column>
+  <p-column field="NEW_CUS" header="ชื่อลูกค้า / ผู้ค้า"></p-column>
+  <p-column field="REG_NUM" header="เลขทะเบียน"></p-column>
+  <p-column field="CUS_GUAR" header="ลูกค้า/ผู้ค้ำ"></p-column>
+  <p-column field="CLOSE_ACTIVE" header="Closing/Active"></p-column>
+  <p-column field="STATUS_CD" header="Status ณ.วันที่โอนสัญญา"></p-column>
+  <p-column field="TRNSFR_APP_DT" header="วันที่โอนสัญญาา"></p-column>
+
+</p-dataTable>

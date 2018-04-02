@@ -1,0 +1,15 @@
+<div *ngIf="pageType==saleCallPage">
+  <app-list-sale-call [task]="task"></app-list-sale-call>
+</div>
+<div *ngIf="pageType==appFormPage">
+  <app-list-app-form [task]="task"></app-list-app-form>
+</div>
+<div *ngIf="pageType==verifiyNormalPage">
+  <app-list-verified [task]="task"></app-list-verified>
+</div>
+<div *ngIf="pageType==verifiyGroupPage">
+  <app-list-verified-group [task]="task"></app-list-verified-group>
+</div>
+<div *ngIf="pageType==caBgplPage">
+  <app-list-ca-bgpl [task]="task"></app-list-ca-bgpl>
+</div>

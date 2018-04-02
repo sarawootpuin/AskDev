@@ -1,0 +1,55 @@
+<div class="d-flex">
+  <div class="col-md-2">
+    <div class="form-group">
+      <p-dataTable selectionMode="single"
+                   [(selection)]="selectGuarantor"
+                   (onRowSelect)="onSelectGuarantor(selectGuarantor)"
+                   [value]="listcaGuarantor"
+                   [responsive]="true">
+
+        <p-header>
+          <app-custom-botton-icon [option]="'new'" (onBtnClick)="openEntity()"  ></app-custom-botton-icon>
+          <app-custom-botton-icon [option]="'delete'"  (onBtnClick)="deleteGuarantor()" ></app-custom-botton-icon>
+        </p-header>
+        <p-column field="responsibility_level" header="No" [style]="{'width': '20%'}" ></p-column>
+        <p-column field="f_namet" header=" Guarantor Name "></p-column>
+
+      </p-dataTable>
+    </div>
+  </div>
+
+  <div class="col-md-10">
+    <p-tabView>
+      <p-tabPanel header="Information">
+        <app-ca-guarantor></app-ca-guarantor>
+      </p-tabPanel>
+      <p-tabPanel header="Address(TH)">
+        <app-ca-guar-address-th></app-ca-guar-address-th>
+
+      </p-tabPanel>
+      <p-tabPanel header="Address(EN)">
+        <app-ca-guar-address-en></app-ca-guar-address-en>
+
+      </p-tabPanel>
+      <p-tabPanel header="Card / Bank" *ngIf="false">
+        <app-ca-guar-card *ngIf="false" ></app-ca-guar-card>
+      </p-tabPanel>
+      <p-tabPanel header="% Of Industry"  *ngIf="false" >
+        <app-ca-guar-percent-ind *ngIf="false"></app-ca-guar-percent-ind>
+      </p-tabPanel>
+      <p-tabPanel header="Machine Location"  *ngIf="false" >
+        <app-ca-guar-machine *ngIf="false"></app-ca-guar-machine>
+      </p-tabPanel>
+      <p-tabPanel header="Exposure"  *ngIf="false"  >
+        <app-ca-guar-exposure *ngIf="false"></app-ca-guar-exposure>
+      </p-tabPanel>
+      <p-tabPanel header="Condition & Remark"  *ngIf="false"  >
+        <app-ca-guar-asia-condition *ngIf="false"></app-ca-guar-asia-condition>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>
+
+<!--dialog  Entity-->
+<app-entity-dialog #entity_dialog title="Guarantor"
+                   (onEntitySelect)="getEntity($event)"></app-entity-dialog>

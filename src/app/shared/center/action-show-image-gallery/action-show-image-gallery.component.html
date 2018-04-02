@@ -1,0 +1,29 @@
+<!--<div class="responsive" *ngFor="let img of modelNcbImage;let i = index">-->
+<!--<div class="gallery">-->
+<!--<a target="_blank" href="{{img.URL}}">-->
+<!--<img src="{{img.URL}}" alt="Forest" width="600" height="400">-->
+<!--</a>-->
+<!--<div class="desc">{{img.docName}}</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<app-side-tab [defaultMenuName]="'1. '+modelImage[0]?.docName">
+
+  <app-side-tab-panel [scrollable]="'true'">
+
+    <app-side-tab-level *ngFor="let img of modelImage;let i = index" [nameMenu]="i+1+'. '+img.docName">
+    </app-side-tab-level>
+
+  </app-side-tab-panel>
+
+  <app-side-tab-main>
+    <div *ngFor="let img of modelImage;let i = index">
+      <app-side-tab-content [nameContent]="i+1+'. '+img.docName">
+        <input type="button" value="Rotate" (click)="rotate()"><br>
+        <img id="app-image" src="{{img.URL}}" class="img-fluid north">
+      </app-side-tab-content>
+    </div>
+  </app-side-tab-main>
+
+</app-side-tab>

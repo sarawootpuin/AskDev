@@ -1,0 +1,24 @@
+<app-alert-dialog  #deleteDialog
+                   (onOK)="this.deleteBuyer()">
+</app-alert-dialog>
+
+<div class="row">
+  <div class="thead-responsive" style="overflow-x: auto;min-height: .01%;padding: 10px">
+    <p-dataTable [value]="data" [loading]="loading" selectionMode="single" [(selection)]="selectedData"
+                 (onRowSelect)="selectList($event.data)" [immutable]="false" [responsive]="true">
+      <p-header>
+        <app-custom-botton-icon [option]="'new'" (onBtnClick)="openEntity()"></app-custom-botton-icon>
+        <app-custom-botton-icon [option]="'delete'" (onBtnClick)="deleteWarning()"></app-custom-botton-icon>
+      </p-header>
+      <p-column field="seq_no" header="No." [style]="{'width':'75px'}"></p-column>
+      <p-column field="buyer_name" header="Buyer Name"></p-column>
+    </p-dataTable>
+
+
+    <app-entity-dialog #entity_dialog title="Buyer"
+                       (onEntitySelect)="getEntity($event)"></app-entity-dialog>
+  </div>
+</div>
+
+
+

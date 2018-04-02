@@ -1,0 +1,119 @@
+<div class="container-fluid my-4">
+  <div class="row">
+    <p-panel header="Current/Company Certificate" class="col-md-6">
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>Address</label>
+          <input type="text" class="form-control"
+                 #inputAddressEng
+                 [value]="entityModel?.addressEng">
+        </div>
+        <div class="col-md-12 form-group">
+          <input type="text" class="form-control"
+                 #inputAddressEng2
+                 [value]="entityModel?.addressEng2">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>Neighborhood</label>
+          <input type="text" class="form-control"
+                 #inputNearEng
+                 [value]="entityModel?.nearEng">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 form-group">
+          <label>Telephone No.</label>
+          <input type="text" class="form-control"
+                 #inputTel
+                 [value]="entityModel?.tel">
+        </div>
+        <div class="col-md-4 form-group">
+          <label>Fax No.</label>
+          <input type="text" class="form-control"
+                 #inputFaxCurrent
+                 [value]="entityModel?.faxCurrent">
+        </div>
+      </div>
+    </p-panel>
+    <p-panel header="Office" class="col-md-6">
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>Address</label>
+          <input type="text" class="form-control"
+                 #inputAddressOEng
+                 [value]="entityModel?.addOEng">
+        </div>
+        <div class="col-md-12 form-group">
+          <input type="text" class="form-control"
+                 #inputAddressOEng2
+                 [value]="entityModel?.addOEng2">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>Neighborhood</label>
+          <input type="text" class="form-control"
+                 #inputNearOEng
+                 [value]="entityModel?.nearOEng">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 form-group">
+          <label>Telephone No.</label>
+          <input type="text" class="form-control"
+                 #inputTelO
+                 [value]="entityModel?.telO">
+        </div>
+        <div class="col-md-4 form-group">
+          <label>Fax No.</label>
+          <input type="text" class="form-control"
+                 #inputFaxOffice
+                 [value]="entityModel?.faxOffice">
+        </div>
+      </div>
+    </p-panel>
+  </div>
+  <div class="row">
+    <p-panel header="Card" class="col-md-6">
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>Address</label>
+          <input type="text" class="form-control"
+                 #inputAddressCEng
+                 [value]="entityModel?.addCEng">
+        </div>
+        <div class="col-md-12 form-group">
+          <input type="text" class="form-control"
+                 #inputAddressCEng2
+                 [value]="entityModel?.addCEng2">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 form-group">
+          <label>Telephone No.</label>
+          <input type="text" class="form-control"
+                 #inputTelCard
+                 [value]="entityModel?.telCard">
+        </div>
+      </div>
+    </p-panel>
+    <p-panel header="Mail" class="col-md-6">
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>Address</label>
+          <input type="text" class="form-control"
+                 #inputAddressMEng
+                 [value]="entityModel?.addMEng">
+        </div>
+        <div class="col-md-12 form-group">
+          <input type="text" class="form-control"
+                 #inputAddressMEng2
+                 [value]="entityModel?.addMEng2">
+        </div>
+      </div>
+    </p-panel>
+  </div>
+
+</div>

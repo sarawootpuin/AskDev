@@ -1,0 +1,24 @@
+<app-alert-dialog  #deleteDialog
+                   (onOK)="this.deleteAsset()">
+</app-alert-dialog>
+
+<div class="row">
+  <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+    <p-dataTable [value]="data" [loading]="loading" selectionMode="single" [(selection)]="dataSelect"
+                 (onRowSelect)="selectList($event.data)"
+                 [immutable]="false" [responsive]="true">
+                 <!--[tableStyle]="{'table-layout':'auto'}"-->
+
+      <p-header>
+        <app-custom-botton-icon [option]="'new'"
+                                (onBtnClick)="addAsset()"></app-custom-botton-icon>
+        <app-custom-botton-icon [option]="'delete'" (onBtnClick)="deleteWarning()"></app-custom-botton-icon>
+      </p-header>
+      <p-column field="sub_id" header="No." [style]="{'width':'75px'}"></p-column>
+      <p-column field="fin_type_name" header="Credit Type"></p-column>
+    </p-dataTable>
+
+  </div>
+</div>
+
+

@@ -1,0 +1,31 @@
+<app-action-dialog #actionDialogComponent [title]="'TOTAL TO DO : '+totalTodo+' items'" [width]="800">
+<app-action-lock-screen *ngIf="waiting" [spinner]="true"></app-action-lock-screen>
+  <p-radioButton name="modeSelect" value="rbN_InfMKT" label="Not Inform To MKT" [(ngModel)]="selectedValue" (onClick)="showListTodo('rbN_InfMKT')"></p-radioButton>
+  <p-radioButton name="modeSelect" value="rbN_RevCons" label="Not Receive Consent" [(ngModel)]="selectedValue" (onClick)="showListTodo('rbN_RevCons')"></p-radioButton>
+  <div class="form-group" style="padding:4px 10px;border-bottom: 0 none">
+    <input #filterTodo type="text" class="form-control" pInputText size="50" placeholder="Search...">
+  </div>
+  <p-dataTable [value]="modelNcbScreenTodo" [rows]="7" [paginator]="true"
+               [(selection)]="dataSelect" [totalRecords]="totalTodo" (onLazyLoad)="loadListTodo($event)" selectionMode="single" [globalFilter]="filterTodo" #dt>
+    <p-header>TO DO</p-header>
+    <p-column field="RUN_NO" header="No."></p-column>
+    <p-column field="ENT" header="Ent"></p-column>
+    <p-column field="NAME" header="Name"></p-column>
+    <p-column field="CARD_ID" header="Card ID"></p-column>
+    <p-column field="ENT_CODE" header="Entity Code"></p-column>
+    <p-column field="COM_CODE" header="Company"></p-column>
+    <p-column field="REF_CODE" header="REF Code"></p-column>
+  </p-dataTable>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success"
+            [disabled]="dataSelect==null"
+            (click)="onSelect(dataSelect)"
+            >CHOOSE
+    </button>
+    <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
+  </div>
+</app-action-dialog>
+
+<div class="alert alert-info text-center">
+  <strong>TOTAL TO DO: {{totalTodo}} items</strong>  <app-custom-button [title]="'show'" [option]="'search'" (onBtnClick)="openDialog()"></app-custom-button>
+</div>

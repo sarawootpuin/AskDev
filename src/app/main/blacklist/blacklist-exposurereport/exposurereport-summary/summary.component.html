@@ -1,0 +1,170 @@
+<p-panel header="Customer">
+
+  <p-dataTable [value]="ModelEPS_SUMCUS" [lazy]="true" [rows]="10" [paginator]="true"
+               [totalRecords]="totalRecords" (onLazyLoad)="loadSUMMARY_CUS($event)">
+    <p-headerColumnGroup>
+      <p-row>
+        <p-column header="Company" rowspan="2"></p-column>
+        <p-column header="Hire Purchase" colspan="2"></p-column>
+        <p-column header="Leasing" colspan="2"></p-column>
+        <p-column header="Floor Plan" colspan="2"></p-column>
+        <p-column header="Personal" colspan="2"></p-column>
+        <p-column header="Factoring" colspan="1"></p-column>
+        <p-column header="Total" colspan="1"></p-column>
+      </p-row>
+      <p-row>
+        <p-column header="Highest Amt."></p-column>
+        <p-column header="O/S Principle"></p-column>
+        <p-column header="Highest Amt."></p-column>
+        <p-column header="O/S Principle"></p-column>
+        <p-column header="Highest Amt."></p-column>
+        <p-column header="O/S Principle"></p-column>
+        <p-column header="Highest Amt."></p-column>
+        <p-column header="O/S Principle"></p-column>
+        <p-column header="O/S Balance"></p-column>
+        <p-column header="O/S Print/Bal."></p-column>
+      </p-row>
+    </p-headerColumnGroup>
+
+    <p-column field="COM_CODE"></p-column>
+    <p-column field="HI_HP" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="OS_HP" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="HI_LS" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="OS_LS" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="HI_FP" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="OS_FP" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="HI_PL" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="OS_PL" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="OS_FAC" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="OS_TOTAL" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+
+
+  </p-dataTable>
+
+</p-panel>
+<br/>
+
+<p-panel header="Guarantor">
+
+  <p-dataTable [value]="ModelEPS_SUMGUAR" [lazy]="true" [rows]="10" [paginator]="true"
+               [totalRecords]="totalRecordsGUAR" (onLazyLoad)="loadSUMMARY_GUAR($event)">
+    <p-headerColumnGroup>
+      <p-row>
+        <p-column header="Company" rowspan="2"></p-column>
+        <p-column header="Hire Purchase" colspan="2"></p-column>
+        <p-column header="Leasing" colspan="2"></p-column>
+        <p-column header="Floor Plan" colspan="2"></p-column>
+        <p-column header="Personal" colspan="2"></p-column>
+        <p-column header="Factoring" colspan="1"></p-column>
+        <p-column header="Total" colspan="1"></p-column>
+      </p-row>
+      <p-row>
+        <p-column header="Highest Amt."></p-column>
+        <p-column header="O/S Principle"></p-column>
+        <p-column header="Highest Amt."></p-column>
+        <p-column header="O/S Principle"></p-column>
+        <p-column header="Highest Amt."></p-column>
+        <p-column header="O/S Principle"></p-column>
+        <p-column header="Highest Amt."></p-column>
+        <p-column header="O/S Principle"></p-column>
+        <p-column header="O/S Balance"></p-column>
+        <p-column header="O/S Print/Bal."></p-column>
+      </p-row>
+    </p-headerColumnGroup>
+
+    <p-column field="COM_CODE"></p-column>
+    <p-column field="HI_HP" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="OS_HP" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="HI_LS" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="OS_LS" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="HI_FP" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="OS_FP" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="HI_PL" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="OS_PL" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="OS_FAC" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="OS_TOTAL" [bodyStyle]="{'text-align':'right'}">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+
+
+  </p-dataTable>
+
+</p-panel>

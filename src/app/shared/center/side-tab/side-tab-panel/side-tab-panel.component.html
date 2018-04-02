@@ -1,0 +1,17 @@
+<div class="d-inline-flex flex-sidebar-panel" id="sidebarflex">
+  <div class="collapse width show" id="sidebar"
+       [ngStyle]="{'overflow-y': overflowY,'height':'80vh' }"
+  >
+    <div class="list-group border-0 card text-center text-md-left">
+      <ng-content></ng-content>
+    </div>
+
+  </div>
+  <div class="p-1">
+    <a href="#" data-target="#sidebar" (click)="setContentWidth()" data-toggle="collapse"><i
+      class="fa fa-chevron-left flex-sidebar-split-plane"></i></a>
+  </div>
+</div>
+
+
+

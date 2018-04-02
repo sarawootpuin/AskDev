@@ -1,0 +1,19 @@
+<div class="d-flex flex-row">
+  <div class="flex-md-column col-md-3">
+    <div class="form-group">
+      <p-dataTable selectionMode="single" [(selection)]="selected" (onRowSelect)="onRowSelect($event)" rows="15"
+                   [responsive]="true">
+        <p-column field="f1" header=" ประเภท "></p-column>
+        <p-footer>
+          <div class="ui-helper-clearfix" style="width:100%">
+          </div>
+        </p-footer>
+      </p-dataTable>
+    </div>
+  </div>
+  <!--<button pButton type="button" (click)="fullscreen = true" icon="fa-arrows-alt" panelHeight="100%"></button>-->
+  <!--<p-sidebar [(visible)]="fullscreen" [fullScreen]="true" [baseZIndex]="10000">-->
+  <p-lightbox class="form-control" [images]="images" id="details" x-placement="100"></p-lightbox>
+  <!--</p-sidebar>-->
+</div>
+

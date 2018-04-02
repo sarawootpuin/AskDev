@@ -1,0 +1,225 @@
+<div class="container-fluid m-2">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group" *ngIf="comCode != 'BGPL'">
+        <label>Information</label>
+        <div class="container"
+             style="border-style: solid; border-width: 1px; border-radius: 10px; padding-top: 5px;">
+          <label class="mt-radio">
+            <input type="radio" name="radioinfo"
+                   [checked]="this.saleCallH?.dealer_type ==='N'"
+                   (click)="this.saleCallH.DEALER_TYPE='N'"
+            > Customer
+            <span></span>
+          </label><br>
+          <label class="mt-radio">
+            <input type="radio" name="radioinfo"
+                   [checked]="this.saleCallH?.dealer_type === 'Y'"
+                   (click)="this.saleCallH.DEALER_TYPE='Y'"
+            > Dealer
+            <span></span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group"   >
+        <label>Type Of Customer</label>
+        <div class="container form-control" aria-readonly="true"
+            >
+          <label class="mt-radio">
+            <input type="radio" name="Custype"  disabled
+                   [checked]="this.saleCallH?.cus_status  === 'N'"
+                   (click)="this.saleCallH.cus_status='N'"
+            > New
+            <span></span>
+          </label><br>
+          <label class="mt-radio">
+            <input type="radio" name="Custype" disabled
+                   [checked]="this.saleCallH?.cus_status === 'E'"
+                   (click)="this.saleCallH.cus_status='E'"
+            > Existing
+            <span></span>
+          </label><br>
+          <label class="mt-radio">
+            <input type="radio" name="Custype" disabled
+                   [checked]="this.saleCallH?.cus_status === 'O'"
+                   (click)="this.saleCallH.cus_status='O'"> Old
+            <span></span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>Customer Code </label>
+        <input type="text" class="form-control"
+               value="{{saleCallH?.comp_ent_code}}" disabled>
+      </div>
+      <div class="form-group">
+        <label>Card ID </label>
+        <input type="text" class="form-control"   [disabled]="saleCallH.comp_ent_code"
+                pTooltip="Ex. 9999999999999"
+               [ngModel]="saleCallH?.new_card_no" (blur)="onNewCardchkEntity($event.target.value,'')"
+               (ngModelChange)="saleCallH.new_card_no = $event">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>Sale Call No </label>
+        <input type="text" class="form-control" disabled
+               value="{{saleCallH?.sale_call_no}}">
+      </div>
+      <div class="form-group">
+        <label>Pre Branch</label>
+        <select class="form-control"
+                [ngModel]="saleCallH?.prebranch_code"
+                (ngModelChange)="saleCallH.prebranch_code =$event;">
+          <option></option>
+          <option *ngFor="let ansPre of ListPrebranch"
+                  [selected]="saleCallH.prebranch_code ==ansPre?.id"
+                  [value]="ansPre?.id">{{ansPre?.display}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="d-flex align-self-center invisible" style="height: 110px;margin-top: 20px;">
+        <button  >Customer Detail</button>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="saleCallH?.sale_call_no == '' " >
+    <button type="button" class="btn btn-primary my-1"
+            (click)="openEntity()"  >
+      <i class="fa fa-search"></i>
+      Find Exist Customer
+    </button>
+    <app-entity-dialog #entity_dialog title="Customer"
+    (onEntitySelect)="checkEntity($event)"></app-entity-dialog>
+  </div>
+  <div class="row">
+    <div class="col-md-3 form-group">
+      <label>Intial(Thai)</label>
+      <select class="form-control"
+              [ngModel]="saleCallH?.f_name"
+              (ngModelChange)="saleCallH.f_name=$event;mapIntial('T') ">
+        <option></option>
+        <option *ngFor="let ansFNMT of ListFNMT"
+                [selected]="ansFNMT?.id == saleCallH?.f_name  "
+                [value]="ansFNMT?.id">{{ansFNMT?.display}}
+      </select>
+    </div>
+    <div class="col-md-4 form-group">
+      <label>First Name(Thai)</label>
+      <input type="text" class="form-control"  [maxlength]="70"
+             [ngModel]="saleCallH?.comp_tha_nme"
+             (ngModelChange)="saleCallH.comp_tha_nme=$event">
+    </div>
+    <div class="col-md-4 form-group">
+      <label>Last Name(Thai)</label>
+      <input type="text" class="form-control"  [maxlength]="70"
+             [ngModel]="saleCallH?.comp_l_tha_nme"
+             (ngModelChange)="saleCallH.comp_l_tha_nme=$event">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 form-group">
+      <label>Intial(Eng)</label>
+      <select class="form-control"
+              [ngModel]="saleCallH?.f_name_e"
+              (ngModelChange)="saleCallH.f_name_e =$event;mapIntial('E')">
+        <option></option>
+        <option *ngFor="let ansFNME of ListFNME"
+                [selected]="ansFNME?.id == saleCallH?.f_name_e "
+                [value]="ansFNME?.id">{{ansFNME?.display}}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-4 form-group">
+      <label>First Name(Eng)</label>
+      <input type="text" class="form-control"  [maxlength]="70"
+             [ngModel]="saleCallH?.comp_eng_nme"
+             (ngModelChange)="saleCallH.comp_eng_nme =$event;">
+    </div>
+    <div class="col-md-4 form-group">
+      <label>Last Name(Eng)</label>
+      <input type="text" class="form-control"  [maxlength]="70"
+             [ngModel]="saleCallH?.comp_l_eng_nme"
+             (ngModelChange)="saleCallH.comp_l_eng_nme =$event;">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 form-group">
+      <label>Source</label>
+      <select class="form-control"
+              [ngModel]="saleCallH?.source"
+              (ngModelChange)="changeSource($event)">
+        <option></option>
+        <option *ngFor="let ansSOURCE of ListSOURCE"
+                [selected]="ansSOURCE?.id == saleCallH?.source"
+                [value]="ansSOURCE?.id">{{ansSOURCE?.display}}
+        </option>
+
+      </select>
+    </div>
+    <div class="col-md-5 form-group">
+      <label>Introduce By </label><br>
+      <div class="row">
+        <div class="col-md-10">
+          <input type="text" class="form-control"
+                 [value]="intro_by ? intro_by : ''" [disabled]="!inputIntro">
+        </div>
+        <div class="col-md-2">
+          <app-search-un inuURL={{OutURL}}
+                         title="NAME;CODE;"
+                         (col1)="setIntroName($event)"
+                         (col2)="setIntroValue($event)"
+                         [ngClass]="{'invisible':inputIntro}">
+          </app-search-un>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 form-group">
+      <label>Marketing Officer</label>
+      <select class="form-control"  disabled
+              [ngModel]="saleCallH?.ownr"
+              (ngModelChange)="saleCallH.ownr=$event">
+        <option></option>
+        <option *ngFor="let ansOFFICER of ListOFFICER"
+                [selected]="ansOFFICER?.id == saleCallH?.ownr"
+                [value]="ansOFFICER?.id">{{ansOFFICER?.display}}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-4 form-group">
+      <label>Apply By </label>
+      <input type="text" class="form-control"
+             value="{{saleCallH?saleCallH.mkt_name:code}}"
+             disabled>
+    </div>
+    <div class="col-md-2 form-group">
+      <label>Connect Since</label>
+      <input type="text" class="form-control"
+             pTooltip="01/2017"
+             [textMask]="{mask: textmask.mm_yyyy }"
+             [ngModel]="saleCallH?.connect_since"
+             (ngModelChange)="saleCallH.connect_since =$event">
+    </div>
+  </div>
+</div>
+
+
+<app-alert-dialog #Questiondialog (onOK)="getEntity(selectEntity)"   ></app-alert-dialog>
+<app-alert-dialog #QuestionAfnewcard (onOK)="onCompareSaleCall()"   ></app-alert-dialog>
+<app-alert-dialog #Aleartdialog  ></app-alert-dialog>
+
+<app-action-lock-screen *ngIf="checkLoader"
+                        [spinner]="true"
+                        [showCancel]="false"
+                        #lockScreen></app-action-lock-screen>

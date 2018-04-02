@@ -1,0 +1,107 @@
+<div class="container-fluid my-4">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="my-2">
+        <b>ธนาคาร</b>
+      </div>
+      <div class="my-2 p-2 border">
+        <p-dataTable #dt
+                     [metaKeySelection]="false"
+                     [value]="listBank"
+                     scrollable="true" scrollHeight="380px"
+                     selectionMode="single"
+                     [immutable]="false"
+                     [(selection)]="listBankSelected">
+          <p-column field="accNo" header="เลขที่บัญชี"
+                    [style]="{'text-align':'center'}"></p-column>
+          <p-column field="type_account" header="ประเภทบัญชี"
+                    [style]="{'text-align':'center'}">
+            <ng-template let-col let-row="rowData"
+                         let-ri="rowIndex" pTemplate="body">
+              <span *ngIf="row[col.field]=='Saving'">Saving</span>
+              <span *ngIf="row[col.field]=='Current'">Current</span>
+            </ng-template>
+          </p-column>
+          <p-column field="bankName" header="ธนาคาร"
+                    [style]="{'text-align':'center'}"></p-column>
+          <p-column field="branch" header="สาขา"
+                    [style]="{'text-align':'center'}"></p-column>
+          <p-column field="directDebitFlag" header="พักบัญชี"
+                    [style]="{'text-align':'center'}"></p-column>
+        </p-dataTable>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="my-2">
+        <button class="btn btn-primary" (click)="addNewBank()">Add</button>
+        <button class="btn btn-warning" (click)="saveRow()" *ngIf="listBankSelected">Save</button>
+        <button class="btn btn-secondary" (click)="resetForm()">Cancel</button>
+        <button class="btn btn-danger" *ngIf="listBankSelected"
+                (click)="deleteRow()">Delete
+        </button>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label class="text-danger">ชื่อบัญชี</label>
+          <div class="form-inline">
+            <input type="text" class="form-control col-md-10" #inputAccName
+                   [value]="listBankSelected?.accName">
+            <div class="col-md-2 form-check">
+              <input style="margin-left:0" type="checkbox" class="form-check-input"
+                     value="Y" #inputDirectDebitFlag [checked]="listBankSelected?.directDebitFlag=='Y'">
+              <label class="form-check-label text-danger">พักบัญชี</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label class="text-danger">เลขที่บัญชี</label>
+          <input type="text" class="form-control" #inputAccNo
+                 [value]="listBankSelected?.accNo">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>ประเภทบัญชี</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="typeRadio"
+                     #inputTypeSaving
+                     value="Saving" [checked]="listBankSelected?.type_account=='Saving'">
+              Saving
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="typeRadio"
+                     #inputTypeCurrent
+                     value="Current" [checked]="listBankSelected?.type_account=='Current'">
+              Current
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>ธนาคาร</label>
+          <select class="form-control" #inputBank>
+            <option></option>
+            <option *ngFor="let b of bank"
+                    [value]="b.id+','+b.display"
+                    [selected]="listBankSelected?.bankCode == b.id">
+              {{b.display}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>สาขา</label>
+          <input type="text" class="form-control" #inputBranch
+                 [value]="listBankSelected?.branch">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
