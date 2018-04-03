@@ -638,7 +638,7 @@
       <workItem from="1522221037896" duration="2748000" />
       <workItem from="1522312962278" duration="4089000" />
       <workItem from="1522374218839" duration="2415000" />
-      <workItem from="1522634064156" duration="2322000" />
+      <workItem from="1522634064156" duration="3515000" />
     </task>
     <task id="LOCAL-00001" summary="add showButtonBar=&quot;true&quot;">
       <created>1522121150038</created>
@@ -672,7 +672,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="741011000" />
+    <option name="totallyTimeSpent" value="742204000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -684,7 +684,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30441898" sideWeight="0.46182084" order="13" side_tool="false" content_ui="tabs" />
