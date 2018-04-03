@@ -13,13 +13,13 @@
     </div>
     <div class="col-md-3">
       <label>Disburse Date</label><br>
-      <p-calendar [ngModel]="selectbgdetail.disburse_dt"
+      <p-calendar [ngModel]="selectbgdetail.disburse_dt"   showButtonBar="true"
                   (ngModelChange)="disburseChange($event); selectbgdetail.first= firstChange($event);"
                   dateFormat="dd/mm/yy"></p-calendar>
     </div>
     <div class="col-md-3">
       <label>First Due</label><br>
-      <p-calendar [ngModel]="selectbgdetail.first"
+      <p-calendar [(ngModel)]="selectbgdetail.first" dataType="string"  showButtonBar="true"
                   dateFormat="dd/mm/yy"></p-calendar>
     </div>
 

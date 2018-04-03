@@ -320,9 +320,8 @@
     <div class="col-md-4 ">
       <div class="">
         <label> Disburse </label>
-        <p-calendar dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"
-                    [ngModel]="bgdetail?.disburse_dt"
-                    (ngModelChange)="bgdetail.disburse_dt=onSelectDate($event)"
+        <p-calendar dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy" dataType="string"  showButtonBar="true"
+                    [(ngModel)]="bgdetail.disburse_dt"
                    ></p-calendar>
 
 
@@ -331,9 +330,8 @@
     <div class="col-md-4 ">
       <div class="form-group">
         <label> First Date </label>
-        <p-calendar dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"
-                    [ngModel]="bgdetail?.first"
-                    (ngModelChange)="bgdetail.first=onSelectDate($event)"
+        <p-calendar dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"  dataType="string"   showButtonBar="true"
+                    [(ngModel)]="bgdetail.first"
                     ></p-calendar>
       </div>
     </div>

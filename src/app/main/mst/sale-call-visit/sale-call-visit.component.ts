@@ -35,6 +35,8 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
   comCode: string = "";
   task : string = "" ;
 
+  checkLoader : boolean = true ;
+
   btnFormSave : boolean = false ;
   btnFormSubmit : boolean = false ;
 
@@ -56,6 +58,8 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
         this.vsale_no = params['sale_call_no'];
         this.vcard_no = params['card_no'];
         this.task     = params['task'];
+
+
         this.controlActionForm(this.task);
         if (this.vcard_no) {
              this.saleCallExposureser.setNewCardNO(this.vcard_no); }
@@ -81,6 +85,7 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
     ).subscribe(
       (json: any) => {
         console.log(json);
+        this.checkLoader = false ;
         this.saleCallVisitService.setListAns(json.LIST_DATA);
         this.saleH = SaleCallHead.parse(json.DATA);
 
@@ -101,10 +106,6 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
   }
 
   Savesalecall() {
-    // this.dialogalert.reset() ;
-    // this.dialogalert.setModeSingle(1);
-    //
-    //  if (this.saleCallVisitService.selectsaleD) {
       this.saleCallVisitService.sendSaleCall("web", this.username, this.comCode
         , this.vsale_no, "save").subscribe(
         (data: any) => {
@@ -124,12 +125,6 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
           }
         }
       );
-     // }
-     // else {
-     //   this.dialogalert.setMessage("Please, Input Detail of Call");
-     //   this.dialogalert.open();
-     //
-     // } ;
   }
 
   Submitsalecall() {

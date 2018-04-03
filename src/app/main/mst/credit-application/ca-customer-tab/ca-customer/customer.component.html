@@ -84,18 +84,16 @@
       <div class="flex-md-column col-md-2 ">
         <div class="form-group">
           <label>Birth/Register Date</label>
-          <p-calendar  dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"
-                       [ngModel]="caEntityDetail?.birth_d"
-                       (ngModelChange)="caEntityDetail.birth_d= creditApplicationService.Changedate($event)"></p-calendar>
+          <p-calendar  dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"  dataType="string"  showButtonBar="true"
+                       [(ngModel)]="caEntityDetail.birth_d"></p-calendar>
 
         </div>
       </div>
       <div class="flex-md-column col-md-2 ">
         <div class="form-group">
           <label>  Establishment Date</label>
-            <p-calendar  dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"
-                         [ngModel]="caEntityDetail?.birth_d"
-                         (ngModelChange)="caEntityDetail.birth_d= creditApplicationService.Changedate($event)"></p-calendar>
+            <p-calendar  dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy" dataType="string"  showButtonBar="true"
+                         [(ngModel)]="caEntityDetail.birth_d"></p-calendar>
         </div>
       </div>
       <div class="flex-md-column col-md-6 offset-2 ">

@@ -50,7 +50,7 @@ export class CallVisitExposureComponent implements OnInit,OnDestroy {
   onCallExposure(vcard  : string){
     this.subscription =  this.exposureService.getExposureService("web", this.username, vcard).subscribe(
       (data: any) => {
-        //console.log(data);
+        console.log(data);
         this.listExposure = SaleCallExposure.parse(data.LIST_DATA);
         this.exposureService.setExposure(this.listExposure);
       }

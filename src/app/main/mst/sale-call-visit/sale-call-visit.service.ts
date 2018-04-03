@@ -12,7 +12,7 @@ import {UserStorage} from "../../../shared/user/user.storage.service";
 export class SaleCallVisitService implements OnDestroy {
 
   ngOnDestroy() {
-    console.log('Destroy Service Sale Call');
+   // console.log('Destroy Service Sale Call');
   }
 
 
@@ -63,7 +63,7 @@ export class SaleCallVisitService implements OnDestroy {
     this.saleH.listDetail = [];
     this.VerifieddataSaleCall();
     let task_code = this.saleH.current_task ? this.saleH.current_task : 'Apply Sale Call' ;
-    // const url =  'http://localhost:8080' + this.service.sale_call_api + `/ask/salecall/SendSaleCall`;
+    //const url =  'http://localhost:8080' + this.service.sale_call_api + `/ask/salecall/SendSaleCall`;
     const url = this.service.url + this.service.sale_call_api + `/ask/salecall/SendSaleCall`;
     let data = {
       "device": device,
@@ -77,7 +77,7 @@ export class SaleCallVisitService implements OnDestroy {
     }
 
     console.log('Before send data');
-    console.log(data);
+    console.log(JSON.stringify(data));
     let options = {
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
@@ -96,7 +96,6 @@ export class SaleCallVisitService implements OnDestroy {
       "comCode": comCode,
       "saleCallNo": saleCallNo
     }
-    //console.log(data)
     let options = {
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
@@ -104,6 +103,17 @@ export class SaleCallVisitService implements OnDestroy {
     };
 
     return this.http.post(url, data, options);
+  }
+
+  getListSaleCall(device: string, userName: string, taskCode: string, code: string) {
+    const url = decodeURI(this.service.url + this.service.sale_call_api + `/ask/salecall/GetSaleCallTodoList?Task=${taskCode}&CODE=${code}&device=${device}&user=${userName}`);
+    let options = {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    };
+    //console.log(url);
+    return this.http.get(url, options);
   }
 
   VerifieddataSaleCall() {

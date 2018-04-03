@@ -63,6 +63,38 @@ export class creditApplicationService {
     return this.http.post(url, data, options);
   }
 
+  callRejectCa(device: string, username: string ,action : string , reason: string ){
+
+    //  psendflg ( 'SAVE' , 'SUBMIT' )
+    // const url =  'http://localhost:8080/API_CA/ask/ca/SaveAndSubmit';
+    let url = '';
+
+    if (action == 'REJECT'){
+      url = this.service.url + this.service.ca_api + `/ask/ca/RejectData`;
+    } else if (action == 'CANCEL'){
+      url = this.service.url + this.service.ca_api + `/ask/ca/CancelData`;
+    }
+
+
+    let data = {
+      "device":device,
+      "username": username,
+      "comcode": this.caHead.com_code,
+      "cano": this.caHead.ca_no,
+      "reason": reason? reason : ''
+
+    };
+
+    console.log('Before send data');
+    console.log(data);
+    let options = {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    };
+    return this.http.post(url, data, options);
+  }
+
   caReportExpo(){
     const url = `http://192.168.112.125:8096/datasnap/rest/TServerMethods1/prc_temp1/ca_pkg.get_exposure_ca/p_id_card;/`+ this.newCardNo +`;`;
     let options = {
@@ -74,8 +106,7 @@ export class creditApplicationService {
     return this.http.get(url, options);
   }
 
-  getListMasterPost(device: string, username: string, pccomcode: string, pcano: string)
-  {
+  getListMasterPost(device: string, username: string, pccomcode: string, pcano: string){
     const url = this.service.url + this.service.ca_api +'/ask/ca/GetListMaster';
     let data = {
       "device": device,

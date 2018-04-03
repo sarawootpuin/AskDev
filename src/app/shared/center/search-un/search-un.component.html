@@ -12,15 +12,16 @@
 
 <!----------------------action dialog------------------------------>
 <app-action-dialog [title]="'Action Dialog'"  #searchdialog
-                   [showChoose]="btnChoose"  [width]="700"
+                   [showChoose]="btnChoose"  [width]="width"
                    [showNo]="true"  (onChoose)="onSubmit()">
 
   <p-dataTable [value]="Listselect"
-               scrollable="true" scrollHeight="380px"
+               [scrollable]="true" scrollHeight="380px"
                selectionMode="single"
                (onRowSelect)="onChoose(SelectRow)"
                [(selection)]="SelectRow"
                [paginator]="true"
+               [responsive]="true"
                [rows]="7"
                [globalFilter]="gb" #dt
   >
@@ -28,7 +29,9 @@
       <input #gb type="text" class="w-75"  (blur)="thissearchUnText=gb.value" >
       <app-custom-botton-icon  *ngIf="!callApiOnShow"   [option]="'search'" (onBtnClick)="searchAPI()" ></app-custom-botton-icon>
     </p-header>
-    <p-column *ngFor="let col of setColum" [field]="col.field " [header]="col.name"></p-column>
+
+    <p-column *ngFor="let col of setColum" [field]="col.field " [header]="col.name"  [style]="{'width':col.widthcol +'px'}"  ></p-column>
+
   </p-dataTable>
 
 </app-action-dialog>

@@ -12,6 +12,7 @@ import {SaleCallPcnt} from "../model/Sale-Call-Pcnt";
 import {DatePipe} from "@angular/common";
 import {TextMaskType} from "../../../../shared/config/text-mask-type";
 import {AlertDialogComponent} from "../../../../shared/center/alert-dialog/alert-dialog.component";
+import {ActivatedRoute, Params} from "@angular/router";
 
 @Component({
   selector: 'app-call-visit-head',
@@ -25,6 +26,7 @@ export class CallVisitHeadComponent implements OnInit, OnDestroy {
   @ViewChild('QuestionAfnewcard') QuestionAfnewcard: AlertDialogComponent;
   @ViewChild('Aleartdialog') Aleartdialog: AlertDialogComponent;
 
+  subParams: Subscription;
   subscription: Subscription;
   subscriptionCheckEntity: Subscription;
   ListPrebranch: ObjTemp[];
@@ -49,15 +51,28 @@ export class CallVisitHeadComponent implements OnInit, OnDestroy {
   username: string = "";
   comCode: string = "";
 
+  vsale_no: string = '';
+  vcard_no: string = '';
 
   constructor(private saleCallVisitService: SaleCallVisitService,
               private serviceEndPoint: ServiceEndpoint,
+              private route: ActivatedRoute,
               private dataPipe: DatePipe,
               private textmask : TextMaskType,
               private userStorage: UserStorage) {
   }
 
   ngOnInit() {
+
+    this.subParams = this.route.queryParams.subscribe(
+      (params: Params) => {
+        this.vsale_no = params['sale_call_no'];
+        this.vcard_no = params['card_no'];
+      }
+    );
+
+
+
     this.code = this.userStorage.getCode();
     this.username = this.userStorage.getUserName();
     this.comCode = this.userStorage.getComCodePort();
@@ -77,11 +92,26 @@ export class CallVisitHeadComponent implements OnInit, OnDestroy {
           this.intro_by = this.saleCallH.intro_by_cd_full ;
 
         }
+
+        //// after  Call  Data  finish
+        if (!this.vsale_no){     ///  Don'have Sale Call No
+          if (this.vcard_no){   ///  But have New Card No
+            console.log(this.vsale_no);
+            console.log(this.vcard_no);
+            this.saleCallH.new_card_no = this.vcard_no ;
+            this.onNewCardchkEntity(this.saleCallH.new_card_no,'')
+          }
+        }
       }
     )
   }
 
   ngOnDestroy() {
+
+    if (this.subParams != null){
+       this.subParams.unsubscribe();
+    }
+
     if (this.subscription != null) {
       this.subscription.unsubscribe();
     }
@@ -329,6 +359,5 @@ export class CallVisitHeadComponent implements OnInit, OnDestroy {
     this.saleCallH.established_year = this.comparesaleCallH.established_year ;
 
     this.saleCallH.listPCNT = this.comparesaleCallH.listPCNT ;
-
   }
 }

@@ -37,9 +37,8 @@
         <div class="col-md-5 form-group">
           <label class="col-form-label">Call/Visit Date</label>
           <span class="text-danger">*</span>
-          <p-calendar dateFormat="dd/mm/yy"  inputStyleClass="form-control"
-                      [ngModel]="thisSaleCallD?.sale_call_dt"
-                      (ngModelChange)="thisSaleCallD.sale_call_dt=Changedate($event)"
+          <p-calendar dateFormat="dd/mm/yy"  inputStyleClass="form-control" dataType="string"  showButtonBar="true"
+                      [(ngModel)]="thisSaleCallD.sale_call_dt"
                       [disabled]="componentReadOnly"
           ></p-calendar>
         </div>
@@ -140,10 +139,8 @@
           <div class="row  border-isa m-1" >
             <div class="col-md-6 form-group">
               <label>Follow Up/Date</label>
-              <p-calendar
-                          dateFormat="dd/mm/yy"
-                          [ngModel]="thisSaleCallD?.follow_date"
-                          (ngModelChange)="thisSaleCallD.follow_date=Changedate($event)"
+              <p-calendar dateFormat="dd/mm/yy"   dataType="string"  showButtonBar="true"
+                          [(ngModel)]="thisSaleCallD.follow_date"
                           [disabled]="componentReadOnly"></p-calendar>
             </div>
             <div class="col-md-3 form-group">

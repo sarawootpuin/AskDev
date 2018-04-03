@@ -7,6 +7,7 @@ import {SearchUnservice} from "./SearchUn.service";
 import {columnobj} from "./search-un-model/columnobj";
 import {ActionDialogComponent} from "../action-dialog/action-dialog.component";
 import {Subscription} from "rxjs/Subscription";
+import {assertNumber} from "@angular/core/src/render3/assert";
 
 @Component({
   selector: 'app-search-un',
@@ -22,11 +23,13 @@ export class SearchUnComponent implements OnInit, OnChanges ,OnDestroy {
   @Input()  inuURL: string;
   @Input()  callApiOnShow: boolean = true;
   @Input()  title: string[];
-  @Input('option') private option : string;
-  @Input('searchParamName') private searchParamName : string;
-  @Input('iconOnly') private iconOnly : boolean = true;
+  @Input('option') private option : string;    ///  option for button
+  @Input('searchParamName') private searchParamName : string;    ///   For search  param in URL(of Service)
+  @Input('iconOnly') private iconOnly : boolean = true;      ////   show  icon
   @Input('displaytext') private displaytext : string;
   @Input('displaycol') private displaycol : string;
+  @Input('widthcol') private widthcol : string;
+  @Input('width') private width : number = 700;
 
 
   @ViewChild('searchdialog') searchdialog: ActionDialogComponent;
@@ -64,6 +67,7 @@ export class SearchUnComponent implements OnInit, OnChanges ,OnDestroy {
      this.searchParamName = '' ;
      this.displaytext = '' ;
      this.displaycol = '' ;
+     this.width = 700;
 
   }
 
@@ -136,6 +140,7 @@ export class SearchUnComponent implements OnInit, OnChanges ,OnDestroy {
   }
 
   setUpColumn(title: string[]) {
+    //////  Set Title of column
     this.setColum = [];
     let tempi: number = 0;
     let tempstr: string = '';
@@ -149,6 +154,24 @@ export class SearchUnComponent implements OnInit, OnChanges ,OnDestroy {
         tempstr = tempstr + title[i];
       }
     }
+
+    //////  Set width of column
+    if ( (this.widthcol) &&  (this.widthcol.length > 0 ) ){
+
+      let afSplit = this.widthcol.split(';');
+      if ((afSplit) && (afSplit.length > 0 )) {
+        for(let i = 0 ; i < this.setColum.length ; i++ ){
+           if (afSplit[i]){
+             this.setColum[i].widthcol  =  afSplit[i] ;
+           }else {
+             this.setColum[i].widthcol  =  ( (this.width - 100 )  / this.setColum.length ).toString() ;
+           };
+           console.log(this.setColum[i].widthcol + 'px' );
+        }
+      }
+    }
+
+
   }
 
   onChoose(click: searchobj) {

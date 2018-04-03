@@ -13,9 +13,10 @@ export class SaleCallTodo {
   public TO_SALE_CALL;
   public FROM_SALE_CALL;
   public REJECT_TODO;
+  public PROCESS_NAME;
 
   constructor(COM_CODE, sale_call_no, card_no, SEQ_NO, COMP_ENT_CODE, TITLE_T, COMP_THA_NME, COMP_ENG_NME
-    , CURRENT_TASK, MKT_NAME, DAY_COUNT, TO_SALE_CALL, FROM_SALE_CALL, REJECT_TODO) {
+    , CURRENT_TASK, MKT_NAME, DAY_COUNT, TO_SALE_CALL, FROM_SALE_CALL, REJECT_TODO,PROCESS_NAME) {
     this.COM_CODE = COM_CODE;
     this.sale_call_no = sale_call_no;
     this.card_no = card_no;
@@ -30,6 +31,7 @@ export class SaleCallTodo {
     this.TO_SALE_CALL = TO_SALE_CALL;
     this.FROM_SALE_CALL = FROM_SALE_CALL;
     this.REJECT_TODO = REJECT_TODO;
+    this.PROCESS_NAME = PROCESS_NAME;
   }
 
   static parse(json: any[]) {
@@ -49,7 +51,8 @@ export class SaleCallTodo {
         json[i].DAY_COUNT,
         json[i].TO_SALE_CALL,
         json[i].FROM_SALE_CALL,
-        json[i].REJECT_TODO
+        json[i].REJECT_TODO,
+        json[i].PROCESS_NAME
       ))
     }
 

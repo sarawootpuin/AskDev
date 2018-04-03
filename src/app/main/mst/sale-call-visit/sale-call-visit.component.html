@@ -1,3 +1,8 @@
+<div *ngIf="checkLoader" class="text-center my-2">
+  <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>Loading...
+</div>
+<div [hidden]="checkLoader">
+
 <app-action-button-form title="Sale Call" (onSave)="questionAction('SAVE')"  (onSubmit)="questionAction('SUBMIT')"
                         [showSave]="btnFormSave"  [showSubmit]="btnFormSubmit"
                         ></app-action-button-form>
@@ -39,5 +44,7 @@
   <app-alert-dialog  #submitdialog   (onOK)="backToHome()">
   </app-alert-dialog>
 
+
+</div>
 
 </div>

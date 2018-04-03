@@ -145,4 +145,9 @@ export class CallVisitResultComponent implements OnInit, OnDestroy {
     this.thisSaleCallD.mobile = '' ;
     this.thisSaleCallD.email = '' ;
   }
+
+
+  test(){
+    console.log(this.thisSaleCallD.sale_call_dt);
+  }
 }

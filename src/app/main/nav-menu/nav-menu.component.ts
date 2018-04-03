@@ -138,6 +138,8 @@ export class NavMenuComponent implements OnInit, OnDestroy,OnChanges,AfterViewIn
           task: "Apply"
         }
       });
+    } else if (menuCodeSelect == "MSM-04") {
+      this.router.navigate(['/SaleCall/inQuery']);
     } else if (menuCodeSelect == "MSM-07") {
       this.router.navigate(['/reassign']);
     } else if (menuCodeSelect == "AP-01") {
@@ -172,6 +174,10 @@ export class NavMenuComponent implements OnInit, OnDestroy,OnChanges,AfterViewIn
       this.router.navigate(['/blacklist/blacklist-exposureinquiry']);
     } else if (menuCodeSelect == "E2") {
       this.router.navigate(['/blacklist/blacklist-exposurereport']);
+    } else if (menuCodeSelect == "N1") {
+      this.router.navigate(['/blacklist/ncb']);
+    } else if (menuCodeSelect == "N2") {
+      this.router.navigate(['/blacklist/ncb-enquiry']);
     } else if (menuCodeSelect == "SCRMKT") {
       this.router.navigate(['/scoring/change-mkt-name']);
     } else if (menuCodeSelect == "SCRDEP") {
@@ -180,8 +186,6 @@ export class NavMenuComponent implements OnInit, OnDestroy,OnChanges,AfterViewIn
       this.router.navigate(['/scoring/enquiry']);
     } else if (menuCodeSelect == "SCRRTN1") {
       this.router.navigate(['/scoring/reverify']);
-    }  else if (menuCodeSelect == "P1") {
-      this.router.navigate(['/entity']);
     }
 
 

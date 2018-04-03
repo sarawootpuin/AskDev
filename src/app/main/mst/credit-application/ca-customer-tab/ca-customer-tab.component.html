@@ -16,8 +16,8 @@
   <p-tabPanel header="% Of Industry">
     <app-ca-percent-ind></app-ca-percent-ind>
   </p-tabPanel>
-  <p-tabPanel header="Machine Location"  *ngIf="sbu_type != 'FDO'" >
-    <app-ca-machine  *ngIf="sbu_type != 'FDO'" ></app-ca-machine>
+  <p-tabPanel header="Machine Location"  *ngIf="sbu_type != 'FDO' && sbu_type != 'DL'" >
+    <app-ca-machine  *ngIf="sbu_type != 'FDO' && sbu_type != 'DL'" ></app-ca-machine>
   </p-tabPanel>
   <p-tabPanel header="Exposure" *ngIf="false" >
     <app-ca-exposure  *ngIf="false" ></app-ca-exposure>

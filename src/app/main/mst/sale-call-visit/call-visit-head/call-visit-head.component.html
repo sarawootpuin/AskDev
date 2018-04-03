@@ -68,7 +68,7 @@
       <div class="form-group">
         <label>Sale Call No </label>
         <input type="text" class="form-control" disabled
-               value="{{saleCallH?.sale_call_no}}">
+               [value]="saleCallH?.sale_call_no">
       </div>
       <div class="form-group">
         <label>Pre Branch</label>
@@ -175,6 +175,8 @@
                          title="NAME;CODE;"
                          (col1)="setIntroName($event)"
                          (col2)="setIntroValue($event)"
+                         [width]="600"
+                         [widthcol]="'350;150;'"
                          [ngClass]="{'invisible':inputIntro}">
           </app-search-un>
         </div>

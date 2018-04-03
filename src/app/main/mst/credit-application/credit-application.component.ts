@@ -126,14 +126,17 @@ export class CreditApplicationComponent implements OnInit,OnDestroy {
   onConfirmQuest(value : string){
     this.tmpaction = value ;
     if (value == 'SUBMIT') {
-        if ( this.myCaHead.current_task == 'Approve' ){  this.reaSonDialog.open(); }
-        else {  this.processCA(value); }
+        if ( this.myCaHead.current_task == 'Approve' ){
+           this.reaSonDialog.open();
+        }else {
+          this.processCA(value);
+        }
     }else if  (value == 'SAVE'){
        this.processCA(value);
     }else if (value == 'REJECT'){
-       this.onRejectCA();
+       this.reaSonDialog.open();
     }else if (value == 'CANCEL'){
-       this.onCancalCA();
+      this.reaSonDialog.open();
     }
   }
 
@@ -141,7 +144,11 @@ export class CreditApplicationComponent implements OnInit,OnDestroy {
      if (this.tmpaction == 'SUBMIT'){
        this.processCA(this.tmpaction);
      }else if (this.tmpaction == 'REJECT'){
-
+       console.log('Reject');
+       this.onRejectCA();
+     }else if (this.tmpaction == 'CANCEL'){
+       console.log('Cancel');
+       this.onCancalCA();
      }
   }
 
@@ -190,11 +197,51 @@ export class CreditApplicationComponent implements OnInit,OnDestroy {
   }
 
   onCancalCA(){
-
+    this.submitComplete = false ;
+    this.saveComplete   = false ;
+    this.checkLoader = true;
+    this.creditApplicationService.callRejectCa("web"
+      ,this.userStorage.getUserName()
+      , 'CANCEL'
+      ,this.comment).subscribe(
+      (json:any) =>
+      {
+        this.checkLoader = false;
+        console.log(json);
+        let stringMsg : string = '';
+        if ( json.CODE == '200'){
+          this.dialogalert.setMessage(json.MSG);
+          this.dialogalert.open();
+        } else {
+          this.dialogalert.setMessage(stringMsg+" Error");
+          this.dialogalert.open();
+        }
+      }
+    );
   }
 
   onRejectCA(){
-
+    this.submitComplete = false ;
+    this.saveComplete   = false ;
+    this.checkLoader = true;
+    this.creditApplicationService.callRejectCa("web"
+      ,this.userStorage.getUserName()
+      , 'REJECT'
+      ,this.comment).subscribe(
+      (json:any) =>
+      {
+        this.checkLoader = false;
+        console.log(json);
+        let stringMsg : string = '';
+        if ( json.CODE == '200'){
+          this.dialogalert.setMessage(json.MSG);
+          this.dialogalert.open();
+        } else {
+          this.dialogalert.setMessage(stringMsg+" Error");
+          this.dialogalert.open();
+        }
+      }
+    );
   }
 
   showReport(){

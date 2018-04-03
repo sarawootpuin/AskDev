@@ -11,7 +11,7 @@ export class ServiceEndpoint{
   // private _url:string = 'http://javadev01:8095';
   private _url:string = '';
   // private _url :string;
-  private _app_name:string =  '/abmis';
+  private _app_name:string = '/abmis';
   private _url_img:string = 'http://javadev01:8095';
   private _url_report: string = 'http://192.168.112.125:8097';
   private _mks_tps:string = '/WebServices_MKS';

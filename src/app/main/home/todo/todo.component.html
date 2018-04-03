@@ -1,4 +1,4 @@
-<div class="container-fluid py-1">
+<div class="container-fluid py-4">
   <div class="row">
     <div class="col-md-12">
       <div class="card mb-3 ">
@@ -20,25 +20,21 @@
             </select>
           </div>
         </div>
-        <div class="card-body p-1">
+        <div class="card-body">
           <div class="container-fluid">
             <div class="row">
-
-                  <div class="col-md-3">
-                    <p-scrollPanel [style]="{width: '100%',height: '450px'}" styleClass="custom">
-                      <div style="padding-right:1em;line-height:1.5">
-                        <app-todo-task></app-todo-task>
-                      </div>
-                    </p-scrollPanel>
+              <div class="col-md-3 p-1">
+                <p-scrollPanel [style]="{width: '100%', height: '450px'}" styleClass="custom" >
+                   <app-todo-task></app-todo-task>
+                </p-scrollPanel>
+              </div>
+              <div class="col-md-9 p-2">
+                <p-scrollPanel [style]="{width: '100%', height: '450px'}" styleClass="custom" >
+                  <div #content_list>
+                    <app-todo-list></app-todo-list>
                   </div>
-
-                <div class="col-md-9">
-                  <p-scrollPanel [style]="{width: '100%', height: '450px'}" styleClass="custom">
-                    <div #content_list>
-                      <app-todo-list></app-todo-list>
-                    </div>
-                  </p-scrollPanel>
-                </div>
+                </p-scrollPanel>
+              </div>
             </div>
           </div>
         </div>

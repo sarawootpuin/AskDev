@@ -23,6 +23,7 @@ import {PanelModule} from 'primeng/primeng';
 import {TextMaskModule} from "angular2-text-mask";
 import {ContactpersonModule} from "../contactperson/contactperson.module";
 import {CallVistiTelesaleComponent} from "./call-visit-detail/call-visit-telesale/call-visti-telesale.component";
+import {CallVisitInqueryComponent} from "./call-visit-inquery/call-visit-inquery.component";
 
 
 // import {AgmCoreModule} from "@agm/core";
@@ -52,8 +53,8 @@ import {CallVistiTelesaleComponent} from "./call-visit-detail/call-visit-telesal
     CallVisitInformationComponent, CallVisitDetailComponent,
     CallVisitResultComponent, CallVisitCreditTypeAssetComponent,
     CallVisitAttendeesComponent, CallVisitExpenseComponent,
-    CallVisitExposureComponent, CallVisitCallingHistoryComponent, CallVistiTelesaleComponent],
-  providers: [ DatePipe]
+    CallVisitExposureComponent, CallVisitCallingHistoryComponent, CallVistiTelesaleComponent,
+    CallVisitInqueryComponent]
 })
 export class SaleCallVisitModule {
 }
