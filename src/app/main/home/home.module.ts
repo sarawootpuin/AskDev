@@ -1,4 +1,3 @@
-///<reference path="todo/todo-list/list-ins/list-ins06-2/list-ins06-2.component.ts"/>
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HomeComponent} from "./home.component";
@@ -20,10 +19,7 @@ import {ListAppFormComponent} from "./todo/todo-list/list-app-form/list-app-form
 import {ListVerifiedComponent} from "./todo/todo-list/list-verified/normal/list-verified.component";
 import {ListVerifiedGroupComponent} from "./todo/todo-list/list-verified/group/list-verified-group.component";
 import {ListCaBgplComponent} from "./todo/todo-list/list-ca-bgpl/list-ca-bgpl.component";
-import {ListRegComponent} from "./todo/todo-list/list-reg/list-reg.component";
-import {ListInsComponent} from "./todo/todo-list/list-ins/list-ins.component";
-import {ListIns38Component} from "./todo/todo-list/list-ins/list-ins38/list-ins38.component";
-import {ListIns062Component} from "./todo/todo-list/list-ins/list-ins06-2/list-ins06-2.component";
+
 
 @NgModule({
   imports: [
@@ -47,11 +43,11 @@ import {ListIns062Component} from "./todo/todo-list/list-ins/list-ins06-2/list-i
     ListAppFormComponent,
     ListVerifiedComponent,
     ListVerifiedGroupComponent,
-    ListCaBgplComponent,
-    ListRegComponent,
-    ListInsComponent,
-    ListIns062Component,
-    ListIns38Component
+    ListCaBgplComponent
+    // ListRegComponent,
+    // ListInsComponent,
+    // ListIns062Component,
+    // ListIns38Component
   ],
   providers: [HomeService, TodoService, UserProfileService]
 })

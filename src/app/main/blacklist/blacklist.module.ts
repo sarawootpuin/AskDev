@@ -54,6 +54,7 @@ import {NcrsAddressComponent} from "./blacklist-ncb-view-ncrs/ncrs-address/ncrs-
 import {NcrsLoanComponent} from "./blacklist-ncb-view-ncrs/ncrs-loan/ncrs-loan.component";
 import {NcrsAccDetailComponent} from "./blacklist-ncb-view-ncrs/ncrs-acc-detail/ncrs-acc-detail.component";
 import {NcrsHistoryComponent} from "./blacklist-ncb-view-ncrs/ncrs-history/ncrs-history.component";
+import {InputFormatNumber} from "../../shared/center/input-format-number.directive";
 
 @NgModule({
   imports: [
@@ -107,13 +108,13 @@ import {NcrsHistoryComponent} from "./blacklist-ncb-view-ncrs/ncrs-history/ncrs-
     NcrsAddressComponent,
     NcrsLoanComponent,
     NcrsAccDetailComponent,
-    NcrsHistoryComponent
-
+    NcrsHistoryComponent,
+    InputFormatNumber
   ],
   providers:[ApplyBlacklistService,DatePipe,BlacklistResultService,CurrencyPipe,DecimalPipe,ExposureReportService,BlacklistNcbService
              ,BlShareCenterService,BlacklistLanguage
             ]
   ,
-  exports:[BlacklistNcbImagesComponent,BlacklistcheckingComponent,BlacklistComponent,BlacklistShareCenterComponent]
+  exports:[BlacklistNcbImagesComponent,BlacklistcheckingComponent,BlacklistComponent,BlacklistShareCenterComponent,BlacklistNcbShowEnquiryComponent,BlacklistShowblacklistComponent,InputFormatNumber]
 })
 export class BlacklistModule { }

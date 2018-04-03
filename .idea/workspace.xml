@@ -25,33 +25,11 @@
       <file leaf-file-name="nav-menu.component.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/main/nav-menu/nav-menu.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="32" column="14" lean-forward="true" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+            <state relative-caret-position="102">
+              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding>
                 <element signature="e#0#85#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list-ca-bgpl.component.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/main/home/todo/todo-list/list-ca-bgpl/list-ca-bgpl.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1231">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#115#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="nav-menu.component.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/main/nav-menu/nav-menu.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-268">
-              <caret line="14" column="41" lean-forward="true" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -67,8 +45,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>input-group-addon</find>
-      <find>onBack</find>
       <find>entity_dialog</find>
       <find>winw</find>
       <find>ed</find>
@@ -97,6 +73,8 @@
       <find>entityModel</find>
       <find>ptradeid</find>
       <find>InputFormatNumber</find>
+      <find>list-ins06-2.component.ts'</find>
+      <find>list-ins06-2.component.ts</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -108,11 +86,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/app/main/home/todo/todo-task/todo-task.component.ts" />
         <option value="$PROJECT_DIR$/src/app/main/mst/sale-call-visit/sale-call-visit.service.ts" />
         <option value="$PROJECT_DIR$/package-lock.json" />
         <option value="$PROJECT_DIR$/dist/index.html" />
-        <option value="$PROJECT_DIR$/src/app/main/home/home.module.ts" />
         <option value="$PROJECT_DIR$/src/app/shared/center/action-read-excel/action-read-excel.component.ts" />
         <option value="$PROJECT_DIR$/src/app/main/home/todo/todo.component.css" />
         <option value="$PROJECT_DIR$/src/app/main/mst/sale-call-visit/call-visit-detail/call-visit-detail.component.html" />
@@ -125,9 +101,7 @@
         <option value="$PROJECT_DIR$/src/app/shared/center/input-format-number.directive.ts" />
         <option value="$PROJECT_DIR$/src/app/main/home/todo/todo.component.html" />
         <option value="$PROJECT_DIR$/src/app/main/mst/appform/appform.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/main/mst/credit-application/credit-application.module.ts" />
         <option value="$PROJECT_DIR$/src/app/main/mst/appform/attachment/attachment.component.html" />
-        <option value="$PROJECT_DIR$/src/app/main/nav-menu/nav-menu.component.ts" />
         <option value="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-asset/ca-finance/ca-finance.component.html" />
         <option value="$PROJECT_DIR$/src/app/main/mst/credit-application/credit-application.component.html" />
         <option value="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-asset/asset-detail/asset-detail.component.ts" />
@@ -159,6 +133,10 @@
         <option value="$PROJECT_DIR$/src/app/shared/config/service-endpoint.ts" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/app/shared/center/search-un/search-un.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/main/nav-menu/nav-menu.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/main/home/home.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/main/mst/credit-application/credit-application.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/main/mst/credit-application/credit-application.routing.module.ts" />
       </list>
     </option>
   </component>
@@ -336,6 +314,96 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AskDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AskDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AskDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AskDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="todo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AskDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AskDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="todo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="todo-list" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -350,7 +418,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.tslint" value="D:\Mobile_Dev\workspace\WebStorm\AskProduction\node_modules\tslint" />
-    <property name="SearchEverywhereHistoryKey" value="app-search-un&#9;null&#9;null&#10;serve&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;service end&#9;null&#9;null&#10;app-blacklist-ncb-showenquiry&#9;null&#9;null&#10;pp-entity-head&#9;null&#9;null&#10;saveCusCode&#9;null&#9;null&#10;entity-fo&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.ts&#10;entity-form&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.html&#10;search-un&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/center/search-un/search-un.component.html&#10;searchun&#9;null&#9;null&#10;entity-gen&#9;null&#9;null&#10;en&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.html&#10;entity&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.html&#10;saveEntity&#9;null&#9;null&#10;appformservi&#9;null&#9;null&#10;tns.&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/assets/tns.json&#10;servic&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;entity-dia&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-dialog/entity-dialog.component.html&#10;ac&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/center/action-button-form/action-button-form.component.ts&#10;app-form&#9;null&#9;null&#10;entity form&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.ts&#10;entity.component&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.html&#10;pack&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/package.json&#10;tod&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/home/todo/todo-list/todo-list.component.html&#10;end&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;action&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/center/action-button-form/action-button-form.component.ts&#10;se&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;main&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/main.routing.module.ts&#10;e&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;servi&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;service&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;entity di&#9;null&#9;null&#10;routing&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/app.routing.module.ts&#10;rou&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/home/home.routing.module.ts&#10;nav&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/nav-menu/nav-menu.component.ts&#10;app-nav-menu&#9;null&#9;null&#10;nav-&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/nav-menu/nav-menu.component.ts&#10;entity.service.ts&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity.service.ts&#10;nav-me&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/nav-menu/nav-menu.component.html&#10;todo&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/home/todo/todo.component.html&#10;service-end&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;enp&#9;null&#9;null&#10;credit-application.module.ts&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/credit-application/credit-application.module.ts&#10;onFormatNumber &#9;null&#9;null&#10;app form&#9;null&#9;null&#10;call-visti-telesale.component&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/sale-call-visit/call-visit-detail/call-visit-telesale/call-visti-telesale.component.html&#10;attachment.component.ts&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/appform/attachment/attachment.component.ts&#10;service e&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;pa&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/package.json&#10;todo lis&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/home/todo/todo-list/todo-list.component.html" />
+    <property name="SearchEverywhereHistoryKey" value="credit-application.routing.module.ts&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/credit-application/credit-application.routing.module.ts&#10;credit-application.module.ts&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/credit-application/credit-application.module.ts&#10;home.module.ts&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/home/home.module.ts&#10;app-search-un&#9;null&#9;null&#10;serve&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;service end&#9;null&#9;null&#10;app-blacklist-ncb-showenquiry&#9;null&#9;null&#10;pp-entity-head&#9;null&#9;null&#10;saveCusCode&#9;null&#9;null&#10;entity-fo&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.ts&#10;entity-form&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.html&#10;search-un&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/center/search-un/search-un.component.html&#10;searchun&#9;null&#9;null&#10;entity-gen&#9;null&#9;null&#10;en&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.html&#10;entity&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.html&#10;saveEntity&#9;null&#9;null&#10;appformservi&#9;null&#9;null&#10;tns.&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/assets/tns.json&#10;servic&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;entity-dia&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-dialog/entity-dialog.component.html&#10;ac&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/center/action-button-form/action-button-form.component.ts&#10;app-form&#9;null&#9;null&#10;entity form&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.ts&#10;entity.component&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.html&#10;pack&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/package.json&#10;tod&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/home/todo/todo-list/todo-list.component.html&#10;end&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;action&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/center/action-button-form/action-button-form.component.ts&#10;se&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;main&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/main.routing.module.ts&#10;e&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;servi&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;service&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;entity di&#9;null&#9;null&#10;routing&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/app.routing.module.ts&#10;rou&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/home/home.routing.module.ts&#10;nav&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/nav-menu/nav-menu.component.ts&#10;app-nav-menu&#9;null&#9;null&#10;nav-&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/nav-menu/nav-menu.component.ts&#10;entity.service.ts&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity.service.ts&#10;nav-me&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/nav-menu/nav-menu.component.html&#10;todo&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/home/todo/todo.component.html&#10;service-end&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;enp&#9;null&#9;null&#10;onFormatNumber &#9;null&#9;null&#10;app form&#9;null&#9;null&#10;call-visti-telesale.component&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/sale-call-visit/call-visit-detail/call-visit-telesale/call-visti-telesale.component.html&#10;attachment.component.ts&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/appform/attachment/attachment.component.ts&#10;service e&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -608,7 +676,7 @@
       <workItem from="1522312962278" duration="4089000" />
       <workItem from="1522374218839" duration="2415000" />
       <workItem from="1522634064156" duration="4664000" />
-      <workItem from="1522734178927" duration="5711000" />
+      <workItem from="1522734178927" duration="8176000" />
     </task>
     <task id="LOCAL-00001" summary="add showButtonBar=&quot;true&quot;">
       <created>1522121150038</created>
@@ -642,7 +710,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="749064000" />
+    <option name="totallyTimeSpent" value="751529000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -654,13 +722,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30441898" sideWeight="0.46182084" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29166666" sideWeight="0.4815618" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32715008" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22259696" sideWeight="0.4954751" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32715008" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32405892" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962293" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -677,7 +746,6 @@
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32715008" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -762,9 +830,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-address-th/entity-address-th.component.html" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/appform/customer/address-th/address-th.component.html" />
-    <entry file="file://$PROJECT_DIR$/src/app/shared/center/action-lock-screen/action-lock-screen.component.ts" />
     <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-address-th/entity-address-th.component.ts" />
     <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-career-spouse/entity-career-spouse.component.html" />
     <entry file="file://$PROJECT_DIR$/node_modules/primeng/components/common/shared.js" />
@@ -870,7 +935,7 @@
         <state relative-caret-position="61">
           <caret line="54" column="13" lean-forward="false" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
           <folding>
-            <element signature="e#0#78#0" expanded="true" />
+            <element signature="e#0#78#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -888,7 +953,27 @@
         <state relative-caret-position="-1231">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#115#0" expanded="true" />
+            <element signature="e#0#115#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/credit-application/credit-application.routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/credit-application/credit-application.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="92" column="0" lean-forward="true" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -896,15 +981,26 @@
     <entry file="file://$PROJECT_DIR$/src/app/main/nav-menu/nav-menu.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-268">
-          <caret line="14" column="41" lean-forward="true" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
+          <caret line="14" column="41" lean-forward="false" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/home/home.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+            <marker date="1522749508297" expanded="true" signature="1930:2033" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/main/nav-menu/nav-menu.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="32" column="14" lean-forward="true" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+        <state relative-caret-position="102">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
             <element signature="e#0#85#0" expanded="true" />
           </folding>

@@ -1,18 +1,18 @@
 import {CreditApplicationComponent} from "./credit-application.component";
 import {Route, RouterModule} from "@angular/router";
 import {NgModule} from "@angular/core";
-import {CaInqueryComponent} from "./ca-inquery/ca-inquery.component";
-import {CaUseCreditlineComponent} from "./ca-use-creditline/ca-use-creditline.component";
+/*import {CaInqueryComponent} from "./ca-inquery/ca-inquery.component";
+import {CaUseCreditlineComponent} from "./ca-use-creditline/ca-use-creditline.component";*/
 const routes: Route[] = [
   {
     path: '', component: CreditApplicationComponent
   },
-  {
+/*  {
     path: 'inQuery', component: CaInqueryComponent
   },
   {
     path: 'useCreditline', component: CaUseCreditlineComponent
-  }
+  }*/
 
 
 

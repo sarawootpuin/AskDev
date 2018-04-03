@@ -64,8 +64,7 @@ import {TextMaskModule} from "angular2-text-mask";
 import {CaFacPricingComponent} from "./ca-fac-pricing/ca-fac-pricing.component";
 import {CaRecommendComponent} from "./ca-recommend/ca-recommend.component";
 import {BlacklistModule} from "../../blacklist/blacklist.module";
-import {CaInqueryComponent} from "./ca-inquery/ca-inquery.component";
-import {CaUseCreditlineComponent} from "./ca-use-creditline/ca-use-creditline.component";
+
 @NgModule({
   imports: [
     ButtonModule, DialogModule, FileUploadModule, PanelModule, TabViewModule, DataTableModule, SharedModule,
@@ -87,7 +86,6 @@ import {CaUseCreditlineComponent} from "./ca-use-creditline/ca-use-creditline.co
   ,CaExposureTabComponent,CaAsiaConditionComponent,CaBgExposureComponent,CaGuarantorComponent,CaAssetComponent,RepaymentComponent,AssetDetailComponent
   ,CaGuarAddressEnComponent,CaGuarAsiaConditionComponent,CaGuarCardComponent,CaGuarAddressThComponent,CaGuarExposureComponent,CaGuarMachineComponent
   ,CaGuarPercentIndComponent,AssetDetailComponent,CaFinanceComponent,CaAttachmentComponent,CaFacPricingComponent,CaRecommendComponent
-  ,CaInqueryComponent,CaUseCreditlineComponent
   ],
   providers:[CurrencyPipe,DecimalPipe,DatePipe,creditApplicationService]
 })
