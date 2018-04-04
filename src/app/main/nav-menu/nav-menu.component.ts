@@ -186,7 +186,9 @@ export class NavMenuComponent implements OnInit, OnDestroy,OnChanges,AfterViewIn
       this.router.navigate(['/scoring/enquiry']);
     } else if (menuCodeSelect == "SCRRTN1") {
       this.router.navigate(['/scoring/reverify']);
-    }
+    } else if (menuCodeSelect == "P1") {
+      this.router.navigate(['/entity']);
+}
 
 
 
