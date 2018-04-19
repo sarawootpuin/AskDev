@@ -69,6 +69,7 @@ export class EntityFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.hiddenExit = false;
     this.isLoading = true
     this.userCode = this.userStorage.getCode();
     this.comCode = this.userStorage.getComCodePort();

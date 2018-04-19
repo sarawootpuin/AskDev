@@ -3,9 +3,13 @@
     <div class="d-flex">
       <div class="flex-md-column col-md-3">
         <div class="form-group">
-          <label class="my-3"> Authority </label>
-          <input class="form-control" disabled >
+          <label>Authority </label>
+          <input type="text" class="form-control" [ngModel]="caHead.authority_ca" readonly>
+          <!--<input type="text" class="form-control" [value]="caHead.authority_ca"-->
+                 <!--(change)="caHead.authority_ca = $event.target.value"   -->
+                 <!--readonly>-->
         </div>
+
       </div>
     </div>
     <div class="d-flex">

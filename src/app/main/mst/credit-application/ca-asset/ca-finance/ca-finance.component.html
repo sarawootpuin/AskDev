@@ -13,7 +13,7 @@
       </option>
     </select>
     <!--------------fin_typ 1 (Hire purchars)---------------------------->
-    <select class="form-control"
+    <select class="form-control"   {{bgdetail?.buy_back_flg }}
             *ngIf="bgdetail.fin_typ == 1"
             (change)="subFinChange($event.target.value)">
       <option [value]="-1"></option>
@@ -70,7 +70,7 @@
       <div class="d-flex col-md-12 p-0">
         <div class="form-inline col-md-4 mt-4">
           <input type="checkbox"
-                 [checked]="bgdetail?.wh_tax > 0 "
+                 [checked]="bgdetail ?  bgdetail.wh_tax > 0 : false"
                  (change)="$event.target.checked ? (bgdetail.wh_tax = 5) : (bgdetail.wh_tax = 0 )">W/H Tax
 
           <input type="text" class="form-control ml-1 col-md-7" [(ngModel)]="bgdetail.wh_tax">
@@ -114,14 +114,15 @@
                appMyCurrency
                [value]="bgdetail.asst_amt_e_vat" (change)="bgdetail.asst_amt_e_vat = $event.target.value"
                #assetEvat
-               (blur)="calculateAsset()"
+               pKeyFilter="pnum"
+               (blur)="calculateAsset('E')"
                />
       </div>
       <div class="col-md-2 text-center">
         <label>VAT</label>
         <input disabled
                class="form-control"
-               appMyCurrency  [value]="bgdetail.asst_amt_vat" (change)="bgdetail.asst_amt_vat  = $event.target.value"
+               appMyCurrency  [value]="bgdetail.asst_amt_vat"
                />
       </div>
       <div class="col-md-2.5 text-center">
@@ -130,6 +131,8 @@
                disabled
                class="form-control" appMyCurrency
                [value]="bgdetail.asst_amt_i_vat" (change)="bgdetail.asst_amt_i_vat = $event.target.value"
+               pKeyFilter="pnum"
+               (blur)="calculateAsset('I')"
              />
       </div>
 
@@ -142,19 +145,19 @@
       <div class="col-md-2.5">
         <input
                #downEvat
-               (blur)="calculateDown()"
+               (blur)="calculateDown('E')"
                class="form-control" appMyCurrency
                [value]="bgdetail.down_amt_e_vat" (change)="bgdetail.down_amt_e_vat = $event.target.value"/>
       </div>
       <div class="col-md-2">
-        <input
-               disabled
+        <input disabled
                class="form-control" appMyCurrency
-               [value]="bgdetail.down_amt_vat" (change)="bgdetail.down_amt_vat = $event.target.value"/>
+               [value]="bgdetail.down_amt_vat" />
       </div>
       <div class="col-md-2.5">
         <input #downIvat
                disabled
+               (blur)="calculateDown('I')"
                class="form-control" appMyCurrency
                [value]="bgdetail.down_amt_i_vat" (change)="bgdetail.down_amt_i_vat = $event.target.value"/>
       </div>

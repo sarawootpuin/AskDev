@@ -7,8 +7,10 @@ import {CookieModule} from "ngx-cookie";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {ServiceEndpoint} from "./shared/config/service-endpoint";
-import {StringUtils} from "./shared/config/string-utils";
+import {StringUtils} from "./shared/config/string-utils";	
 import {TextMaskType} from "./shared/config/text-mask-type";
+import { APP_INITIALIZER } from "@angular/core";
+import {ConfigService} from "./shared/config/ConfigService";
 
 @NgModule({
   declarations: [
@@ -22,7 +24,19 @@ import {TextMaskType} from "./shared/config/text-mask-type";
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [ServiceEndpoint,StringUtils,TextMaskType],
+  providers: [ServiceEndpoint,StringUtils,TextMaskType,ConfigService,
+    {
+      provide   : APP_INITIALIZER,
+      useFactory: ConfigLoader,
+      deps      : [ConfigService],
+      multi     : true
+    }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function ConfigLoader(configService: ConfigService) {
+  let configUrl = './assets/tns.json';
+  return () => configService.load(configUrl);
+}

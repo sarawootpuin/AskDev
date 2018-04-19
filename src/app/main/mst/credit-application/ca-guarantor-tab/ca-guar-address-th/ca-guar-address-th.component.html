@@ -1,7 +1,7 @@
 <p-panel header="Current Address / Certificate Address">
   <div class="col-md-12">
     <div class="d-flex">
-      <div class="flex-md-column col-md-6">
+      <div class="flex-md-column col-md-10">
         <div class="form-group">
           <label>Address</label>
           <input type="text" class="form-control" [(ngModel)]="caGua.address">
@@ -10,45 +10,58 @@
     </div>
     <div class="d-flex">
       <div class="flex-md-column col-md-2">
+        <label>Address Code</label>
+        <div class="input-group">
+          <input type="text" class="form-control" [(ngModel)]="caGua.zip" readonly>
+          <app-search-un app-search-un [inuURL]="urlAddress"
+                         [servicetype]="'POST'" [objforpost]="dataAddress"
+                         title="ZIP CODE;Address; ;POST CODE;" [widthcol]="'100;300;0;100;'"
+                         (col1)="setZip($event,'CC')"
+                         (col2)="setZip_desc($event,'CC')"
+                         (col4)="setPost($event,'CC')"
+          ></app-search-un>
+          <!--<app-search-un app-search-un inuURL={{this.OutURLB}}
+                         title="Employ Name;POSITON;CODE;" [option]="'new'"
+                         (col1)="getNameB($event)"
+                         (col2)="getPosB($event)"
+                         (col3)="getCodeB($event)">
+          </app-search-un>-->
+        </div>
+      </div>
+      <div class="flex-md-column col-md-8">
         <div class="form-group">
-          <label>Address Code</label>
-          <input type="text" class="form-control" [(ngModel)]="caGua.zip" >
+          <label>&nbsp;</label>
+          <input type="text" class="form-control" [(ngModel)]="caGua.zip_desc" readonly>
 
         </div>
       </div>
-      <div class="flex-md-column col-md-6">
+      <div class="col-md-2">
         <div class="form-group">
-          <label>&nbsp;</label>
-          <input type="text" class="form-control" [(ngModel)]="caGua.zip"  >
+          <label>Post Code</label>
+          <input type="text" class="form-control " [(ngModel)]="caGua.post_cd" readonly>
         </div>
       </div>
     </div>
     <div class="d-flex">
-      <div class="col-md-2 ">
 
-        <div class="form-group">
-          <label>Post Code</label>
-          <input type="text" class="form-control " [(ngModel)]="caGua.post_cd"  >
-        </div>
-      </div>
-      <div class="col-md-6 ">
+      <div class="col-md-10">
         <div class="form-group">
           <label>Nearby Place</label>
-          <input type="text" class="form-control" [(ngModel)]="caGua.near"  >
+          <input type="text" class="form-control" [(ngModel)]="caGua.near">
         </div>
       </div>
     </div>
     <div class="d-flex">
       <div class="col-md-3 ">
         <div class="form-group">
-          <label>Telephone No.  </label>
-          <input type="text" class="form-control " [(ngModel)]="caGua.tel"  >
+          <label>Telephone No. </label>
+          <input type="text" class="form-control " [(ngModel)]="caGua.tel">
         </div>
       </div>
       <div class="col-md-3 ">
         <div class="form-group">
           <label>Fax No.</label>
-          <input type="text" class="form-control "  [(ngModel)]="caGua.fax_current" >
+          <input type="text" class="form-control " [(ngModel)]="caGua.fax_current">
         </div>
       </div>
     </div>
@@ -57,39 +70,46 @@
 <p-panel header="  ที่อยู่ตาม ภ.พ 20">
   <div class="col-md-12">
     <div class="d-flex">
-      <div class="flex-md-column col-md-6">
+      <div class="flex-md-column col-md-10">
         <div class="form-group">
           <label>Address</label>
-          <input type="text" class="form-control" [(ngModel)]="caGua.add_c"  >
+          <input type="text" class="form-control" [(ngModel)]="caGua.add_c">
         </div>
       </div>
     </div>
     <div class="d-flex">
       <div class="flex-md-column col-md-2">
-        <div class="form-group">
-          <label>Address Code</label>
-          <input type="text" class="form-control" [(ngModel)]="caGua.zip_c"  >
 
+        <label>Address Code</label>
+        <div class="input-group">
+          <input type="text" class="form-control" [(ngModel)]="caGua.zip_c" readonly>
+          <app-search-un app-search-un [inuURL]="urlAddress"
+                         [servicetype]="'POST'" [objforpost]="dataAddress"
+                         title="ZIP CODE;Address; ;POST CODE;" [widthcol]="'100;300;0;100;'"
+                         (col1)="setZip($event,'C')"
+                         (col2)="setZip_desc($event,'C')"
+                         (col4)="setPost($event,'C')"
+          ></app-search-un>
         </div>
       </div>
-      <div class="flex-md-column col-md-6">
+      <div class="flex-md-column col-md-8">
         <div class="form-group">
           <label>&nbsp;</label>
-          <input type="text" class="form-control" [(ngModel)]="caGua.zip_c_desc"  >
+          <input type="text" class="form-control" [(ngModel)]="caGua.zip_c_desc" readonly>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>Post Code</label>
+          <input type="text" class="form-control " [(ngModel)]="caGua.post_cd_c" readonly>
         </div>
       </div>
     </div>
     <div class="d-flex">
-      <div class="col-md-2 ">
-        <div class="form-group">
-          <label>Post Code</label>
-          <input type="text" class="form-control " [(ngModel)]="caGua.post_cd_c"  >
-        </div>
-      </div>
-      <div class="col-md-6 ">
+      <div class="col-md-10">
         <div class="form-group">
           <label>Nearby Code</label>
-          <input type="text" class="form-control " [(ngModel)]="caGua.near"  >
+          <input type="text" class="form-control " [(ngModel)]="caGua.near">
         </div>
       </div>
     </div>
@@ -98,10 +118,10 @@
 <p-panel header="Office">
   <div class="col-md-12">
     <div class="d-flex">
-      <div class="flex-md-column col-md-6">
+      <div class="flex-md-column col-md-10">
         <div class="form-group">
           <label>Address</label>
-          <input type="text" class="form-control"  [(ngModel)]="caGua.add_o" >
+          <input type="text" class="form-control" [(ngModel)]="caGua.add_o">
         </div>
       </div>
     </div>
@@ -109,27 +129,37 @@
       <div class="flex-md-column col-md-2">
         <div class="form-group">
           <label>Address Code</label>
-          <input type="text" class="form-control" [(ngModel)]="caGua.zip_o"  >
+          <div class="input-group">
+             <input type="text" class="form-control" [(ngModel)]="caGua.zip_o" readonly>
+             <app-search-un app-search-un [inuURL]="urlAddress"
+                         [servicetype]="'POST'" [objforpost]="dataAddress"
+                         title="ZIP CODE;Address; ;POST CODE;" [widthcol]="'100;300;0;100;'"
+                         (col1)="setZip($event,'O')"
+                         (col2)="setZip_desc($event,'O')"
+                         (col4)="setPost($event,'O')"
+             ></app-search-un>
+          </div>
         </div>
       </div>
-      <div class="flex-md-column col-md-3">
+      <div class="flex-md-column col-md-8">
         <div class="form-group">
           <label>&nbsp;</label>
-          <input type="text" class="form-control" [(ngModel)]="caGua.zip_o_desc"  >
+          <input type="text" class="form-control" [(ngModel)]="caGua.zip_o_desc" readonly>
+        </div>
+      </div>
+      <div class="col-md-2 ">
+        <div class="form-group">
+          <label>Post Code</label>
+          <input type="text" class="form-control " [(ngModel)]="caGua.post_cd_o" readonly>
         </div>
       </div>
     </div>
     <div class="d-flex">
-      <div class="col-md-2 ">
-        <div class="form-group">
-          <label>Post Code</label>
-          <input type="text" class="form-control " [(ngModel)]="caGua.post_cd_o"  >
-        </div>
-      </div>
-      <div class="col-md-6 ">
+
+      <div class="col-md-10">
         <div class="form-group">
           <label>Nearby Place</label>
-          <input type="text" class="form-control " [(ngModel)]="caGua.near_o"  >
+          <input type="text" class="form-control " [(ngModel)]="caGua.near_o">
         </div>
       </div>
     </div>
@@ -137,13 +167,13 @@
       <div class="col-md-3 ">
         <div class="form-group">
           <label>Tel. </label>
-          <input type="text" class="form-control "  [(ngModel)]="caGua.tel_o"  >
+          <input type="text" class="form-control " [(ngModel)]="caGua.tel_o">
         </div>
       </div>
       <div class="col-md-3 ">
         <div class="form-group">
           <label>Fax No.</label>
-          <input type="text" class="form-control "  [(ngModel)]="caGua.fax_office" >
+          <input type="text" class="form-control " [(ngModel)]="caGua.fax_office">
         </div>
       </div>
     </div>
@@ -152,10 +182,10 @@
 <p-panel header=" Mail">
   <div class="col-md-12">
     <div class="d-flex">
-      <div class="flex-md-column col-md-6">
+      <div class="flex-md-column col-md-10">
         <div class="form-group">
           <label>Address</label>
-          <input type="text" class="form-control" [(ngModel)]="caGua.add_m"  >
+          <input type="text" class="form-control" [(ngModel)]="caGua.add_m">
         </div>
       </div>
     </div>
@@ -163,20 +193,28 @@
       <div class="flex-md-column col-md-2">
         <div class="form-group">
           <label>Address Code</label>
-          <input type="text" class="form-control" [(ngModel)]="caGua.zip_m"  >
-
+          <div class="input-group">
+          <input type="text" class="form-control" [(ngModel)]="caGua.zip_m" readonly>
+            <app-search-un app-search-un [inuURL]="urlAddress"
+                           [servicetype]="'POST'" [objforpost]="dataAddress"
+                           title="ZIP CODE;Address; ;POST CODE;" [widthcol]="'100;300;0;100;'"
+                           (col1)="setZip($event,'M')"
+                           (col2)="setZip_desc($event,'M')"
+                           (col4)="setPost($event,'M')"
+            ></app-search-un>
+          </div>
         </div>
       </div>
-      <div class="flex-md-column col-md-3">
+      <div class="flex-md-column col-md-8">
         <div class="form-group">
           <label>&nbsp;</label>
-          <input type="text" class="form-control"  [(ngModel)]="caGua.zip_m_desc"  >
+          <input type="text" class="form-control" [(ngModel)]="caGua.zip_m_desc" readonly>
         </div>
       </div>
       <div class="d-flex">
         <div class="form-group">
           <label>Post Code</label>
-          <input type="text" class="form-control "  [(ngModel)]="caGua.post_cd_m"  >
+          <input type="text" class="form-control" [(ngModel)]="caGua.post_cd_m" readonly>
         </div>
       </div>
     </div>
@@ -185,29 +223,32 @@
 <p-panel header=" Tel.">
   <div class="col-md-12">
     <div class="d-flex">
-      <div class="flex-md-column col-md-3">
+      <div class="flex-md-column col-md-4">
         <div class="form-group">
           <label>Tel.1 </label>
-          <input type="text" class="form-control" [(ngModel)]="caGua.mobile_phone" >
+          <input type="text" class="form-control" [(ngModel)]="caGua.mobile_phone">
         </div>
       </div>
 
-      <div class="flex-md-column col-md-3">
+      <div class="flex-md-column col-md-4">
         <div class="form-group">
           <label>Tel.2</label>
-          <input type="text" class="form-control" [(ngModel)]="caGua.mobile_phone2" >
+          <input type="text" class="form-control" [(ngModel)]="caGua.mobile_phone2">
         </div>
       </div>
-      <div class="flex-md-column col-md-3">
+      <div class="flex-md-column col-md-4">
         <div class="form-group">
           <label>Tel.3</label>
-          <input type="text" class="form-control" [(ngModel)]="caGua.mobile_phone3" >
+          <input type="text" class="form-control" [(ngModel)]="caGua.mobile_phone3">
         </div>
       </div>
-      <div class="flex-md-column col-md-3">
+
+    </div>
+    <div class="d-flex">
+      <div class="flex-md-column col-md-12">
         <div class="form-group">
           <label>Email Address </label>
-          <input type="text" class="form-control"  readonly>
+          <input type="text" class="form-control" readonly>
         </div>
       </div>
     </div>

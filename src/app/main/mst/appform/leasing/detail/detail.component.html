@@ -120,10 +120,11 @@
           <label>Estimated Disburse Date</label>
           <span class="star">*</span>
           <p-calendar #disburse
-                      [ngModel]="data.disburse_dt"
-                      (onSelect)="data.disburse_dt = onSelectMethod(disburse.value)"
-                      (ngModelChange)="changeFirst($event)"
-                      dateFormat="dd/mm/yy"></p-calendar>
+                      inputStyleClass="form-control"
+                      [(ngModel)]="data.disburse_dt"
+                      (ngModelChange) = "changeFirst($event)"
+                      dateFormat="dd/mm/yy"
+                      dataType = "string"></p-calendar>
         </div>
         <div class="col-md-3 form-group">
           <label>Advance / Rear</label>

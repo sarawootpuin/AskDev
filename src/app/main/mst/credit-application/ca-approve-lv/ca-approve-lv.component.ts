@@ -19,12 +19,16 @@ export class CaApproveLvComponent implements OnInit , OnDestroy {
   listcacusapv : caCusapv[];
   selectCaCusApv : caCusapv ;
 
+  caHead :caHead;
+
   constructor(private creditApplicationService: creditApplicationService) { }
 
   ngOnInit() {
+    this.caHead = new caHead();
     this.subscripData = this.creditApplicationService.eventCaHead.subscribe(
       (value : caHead ) =>
       {
+        this.caHead = value ;
         this.listcaapvhist = value.listcaapvhist ;
         if ((this.listcaapvhist)  && (this.listcaapvhist.length > 1) )
         {

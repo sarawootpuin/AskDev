@@ -144,13 +144,13 @@
       <div class="flex-md-column col-md-6 ">
         <div class="form-group">
           <label>  (Authorized Officer)Signed By THAI </label>
-          <input type="text" class="form-control" >
+          <input type="text" class="form-control"  [(ngModel)]="caEntityDetail.authorize_by_t"  >
         </div>
       </div>
       <div class="flex-md-column col-md-6 ">
         <div class="form-group">
           <label> (Authorized officer)Signed By ENG </label>
-          <input type="text" class="form-control">
+          <input type="text" class="form-control"  [(ngModel)]="caEntityDetail.authorize_by_e">
         </div>
 
       </div>
@@ -159,21 +159,31 @@
       <div class="flex-md-column col-md-6 ">
         <div class="form-group">
           <label> (Exposure Group) Group Code </label>
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.grp_code"  >
         </div>
       </div>
     </div>
     <div class="d-flex">
-      <div class="flex-md-column col-md-6 ">
+      <div class="flex-md-column col-md-1 pr-0 ">
+        <label> &nbsp; </label>
+        <app-search-un app-search-un inuURL={{OutURL}}
+                       title="Business Type;Specifies;DBD CODE;"
+                       (col1)="setBusName($event)"
+                       (col3)="setBuscode($event)"
+                       (col4)="setCluster($event)"
+                       (col5)="setBusType($event)">
+        </app-search-un>
+      </div>
+      <div class="flex-md-column col-md-4 ">
         <div class="form-group">
           <label> Business </label>
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" disabled  [(ngModel)]="caEntityDetail.bus_detail_desc"  >
         </div>
       </div>
       <div class="flex-md-column col-md-6 ">
         <div class="form-group">
           <label> Business Detail </label>
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" disabled [(ngModel)]="caEntityDetail.bus_detail_desc" >
         </div>
       </div>
     </div>
@@ -182,10 +192,10 @@
         <div class="form-group">
           <label> Register Capital </label>
           <div class="form-inline">
-            <input currencyMask
+            <input appMyCurrency
                    class="form-control"
-                   [options]="{ prefix: '',suffix: '', thousands: ',', decimal: '.' }"
-                   [(ngModel)]="caEntityDetail.regis_capital_mb"/>
+                   (change)="caEntityDetail.regis_capital_mb = $event.target.value ;caEntityDetail.regis_capital = caEntityDetail.regis_capital_mb * 1000000 ;"
+                   [value]="caEntityDetail.regis_capital_mb"/>
             &nbsp;MB
           </div>
         </div>
@@ -194,17 +204,17 @@
         <div class="form-group">
           <label> Paid Up Capital </label>
           <div class="form-inline">
-            <input currencyMask
+            <input appMyCurrency
                    class="form-control"
-                   [options]="{ prefix: '',suffix: '', thousands: ',', decimal: '.' }"
-                   [(ngModel)]="caEntityDetail.paid_up_capital_mb"/>
+                   (change)="caEntityDetail.paid_up_capital_mb = $event.target.value;caEntityDetail.paid_up_capital = caEntityDetail.paid_up_capital_mb * 1000000 ;"
+                   [value]="caEntityDetail.paid_up_capital_mb"/>
             &nbsp;MB
           </div>
         </div>
       </div>
     </div>
     <div class="d-flex">
-      <div class="flex-md-column col-md-3 ">
+      <div class="flex-md-column col-md-2 ">
         <div class="form-group">
           <label> Sale ended : Year </label>
           <input type="text" class="form-control" [(ngModel)]="caEntityDetail.sales_year" pKeyFilter="int" >
@@ -214,18 +224,18 @@
         <div class="form-group">
           <label> &nbsp; </label>
           <div class="form-inline">
-            - &nbsp;&nbsp;
-          <input currencyMask
+            - &nbsp;&nbsp; &nbsp;&nbsp;
+          <input appMyCurrency
                  class="form-control"
-                 [options]="{ prefix: '',suffix: '', thousands: ',', decimal: '.' }"
-                 [(ngModel)]="caEntityDetail.sales_amt_mb"/>
+                 (change)="caEntityDetail.sales_amt_mb = $event.target.value;caEntityDetail.sales_amt = caEntityDetail.sales_amt_mb * 1000000 ;"
+                 [value]="caEntityDetail.sales_amt_mb"/>
             &nbsp;MB
           </div>
         </div>
       </div>
     </div>
     <div class="d-flex">
-      <div class="flex-md-column col-md-3 ">
+      <div class="flex-md-column col-md-2 ">
         <div class="form-group">
           <label> Net Worth ended : Year </label>
           <input type="text" class="form-control" [(ngModel)]="caEntityDetail.net_worth_year" pKeyFilter="int">
@@ -235,11 +245,11 @@
         <div class="form-group">
           <label> &nbsp; </label>
           <div class="form-inline">
-            - &nbsp;&nbsp;
-            <input currencyMask
+            - &nbsp;&nbsp; &nbsp;&nbsp;
+            <input appMyCurrency
                    class="form-control"
-                   [options]="{ prefix: '',suffix: '', thousands: ',', decimal: '.' }"
-                   [(ngModel)]="caEntityDetail.net_worth_amt_mb"/>
+                   (change)="caEntityDetail.net_worth_amt_mb = $event.target.value;caEntityDetail.net_worth_amt = caEntityDetail.net_worth_amt_mb * 1000000 ;"
+                   [value]="caEntityDetail.net_worth_amt_mb"/>
             &nbsp;MB
           </div>
         </div>

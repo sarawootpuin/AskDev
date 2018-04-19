@@ -35,7 +35,7 @@ export class CaBuyerComponent implements OnInit , OnDestroy {
       (value : caHead ) =>
       {
          this.listBuyer = value.listcabuyer ;
-         if ((this.listBuyer)  && (this.listBuyer.length > 1) )
+         if ((this.listBuyer)  && (this.listBuyer.length > 0) )
          {
             this.onRowSelect(this.listBuyer[0]);
             if ( this.selectBuyer.listcabuyerdoc )
@@ -43,13 +43,6 @@ export class CaBuyerComponent implements OnInit , OnDestroy {
                this.setMasterBuyerDoc(this.selectBuyer.listcabuyerdoc);
             }
          }
-
-      }
-    );
-
-    this.subscripMaster = this.creditApplicationService.eventListMaster.subscribe(
-      (obj)=> {
-
       }
     );
   }
@@ -66,16 +59,14 @@ export class CaBuyerComponent implements OnInit , OnDestroy {
 
   setMasterBuyerDoc(value :caBuyerDoc[]){
     if (value){
-      this.masterBuyerDoc = [];
-      for(let i=0 ; i< value.length ; i++ ){
-        this.masterBuyerDoc.push(value[i]);
+      this.masterBuyerDoc = caBuyerDoc.parse(value);
+      for(let i=0 ; i< this.masterBuyerDoc.length ; i++ ){
         this.masterBuyerDoc[i].factored_ifany = 'N';
         this.masterBuyerDoc[i].select_o = 'N';
         this.masterBuyerDoc[i].select_p = 'N';
         this.masterBuyerDoc[i].select_c = 'N';
         this.masterBuyerDoc[i].remark  = '' ;
       }
-      //console.log(this.masterBuyerDoc);
     }
   }
 
@@ -90,6 +81,7 @@ export class CaBuyerComponent implements OnInit , OnDestroy {
   }
 
   getEntity(entityModel: EntityModel) {
+
     let newBuyer = new caBuyer();
     newBuyer.com_code = entityModel.comCode;
     newBuyer.ca_no = this.creditApplicationService.caHead.ca_no;
@@ -99,19 +91,29 @@ export class CaBuyerComponent implements OnInit , OnDestroy {
     newBuyer.app_type_desc = 'WITH RECOURSE';
     this.creditApplicationService.checkFactoring(entityModel.entCode, entityModel.newCardNo).subscribe(
       (data: any) => {
+
         if (data.CODE === "200" && data.LIST_DATA.length > 0) {
           newBuyer.buyer_code = data.LIST_DATA[0].entCode;
         }
         else {
           newBuyer.buyer_code = entityModel.entCode;
         }
+        newBuyer.buyer_name = entityModel.fNameE + " " + entityModel.lNameE;
+
+        let master = this.masterBuyerDoc;
+
+        for(let i = 0; i < master.length ; i++){
+          master[i].buyer_code = newBuyer.buyer_code ;
+        }
+        newBuyer.listcabuyerdoc = master;
+
+        this.listBuyer = [...this.listBuyer,newBuyer];
+        this.creditApplicationService.caHead.listcabuyer = this.listBuyer;
+        this.onRowSelect(newBuyer);
+
       }
     );
-    newBuyer.buyer_name = entityModel.fNameE + " " + entityModel.lNameE;
-    newBuyer.listcabuyerdoc = [...this.masterBuyerDoc];
 
-    this.listBuyer.push(newBuyer);
-    this.onRowSelect(newBuyer);
   }
 
   deleteWarning(){

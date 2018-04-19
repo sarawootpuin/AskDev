@@ -255,6 +255,7 @@ export class CallVisitHeadComponent implements OnInit, OnDestroy {
       this.saleCallH.listPCNT = this.listpcnt ;
 
     }
+
   }
 
   mapIntial(inputT : string){

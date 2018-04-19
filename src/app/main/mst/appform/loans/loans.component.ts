@@ -56,12 +56,11 @@ export class LoansComponent implements OnInit {
     }
   }
 
-  firstChange(event) {
-    return this.dateUtils.dateToString(this.dateUtils.addMonth(event, 1), 'dd/MM/yyyy');
+  firstChange() {
+    this.data.first = this.dateUtils.addMonth(this.data.disburse_dt, 1);
   }
 
-  disburseChange(disburse) {
-    this.data.disburse_dt = this.dateUtils.dateToString(disburse, 'dd/MM/yyyy');
+  disburseChange() {
     if (this.data.disburse_dt === this.data.first) {
       this.data.adv_arr = 'V';
       this.data.adv_arr_name = 'Paid In Advance';
@@ -124,6 +123,7 @@ export class LoansComponent implements OnInit {
       this.appFormService.calculateIrr(this.data.sub_id, this.data.calculateItem).subscribe(
         (data: any) => {
           console.log("After");
+          console.log(data);
           if (data.CODE == '200') {
             console.log(data.LIST_DATA[0]);
             this.data.fin_amt_e_vat = data.LIST_DATA[0].finExcVat;

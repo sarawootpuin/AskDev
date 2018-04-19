@@ -5,6 +5,8 @@ import {ReassignListWork} from "../reassign-model/ReassignListWork";
 import {isNullOrUndefined} from "util";
 import {Message} from 'primeng/components/common/api';
 import {LazyLoadEvent} from "primeng/primeng";
+import {ServiceEndpoint} from "../../../../shared/config/service-endpoint";
+import {UserStorage} from "../../../../shared/user/user.storage.service";
 
 
 @Component({
@@ -25,10 +27,11 @@ export class AppReassignComponent implements OnInit,OnChanges {
 
   ListWork :ReassignListWork[];
   selectListWork :ReassignListWork[];
-  constructor(private pService:ReassignService
-            , private route:ActivatedRoute) {
-      this.OutURL =  "http://javadev03:8095/Sale_calltodo/ask/reassign/GetListMKT?DEPTCODE=2210&device=web&user=CHANTANA.CH" ;
-
+  constructor(private pService:ReassignService,
+              private service: ServiceEndpoint,
+              private userStorage: UserStorage,
+              private route:ActivatedRoute) {
+      this.OutURL =   this.service.url + this.service.sale_call_api+`/ask/reassign/GetListMKT?device=web&user=${this.userStorage.getUserName()}` ;
       this.mkt_toname = "";
       this.mkt_tocode = "";
   }
@@ -42,7 +45,7 @@ export class AppReassignComponent implements OnInit,OnChanges {
   }
 
   ngOnChanges(){
-    this.pService.getListWork("web","sira.ch",this.vcom_code,this.vcode).subscribe(
+    this.pService.getListWork("web",this.userStorage.getUserName(),this.vcom_code,this.vcode).subscribe(
       (data : any) => {
         this.ListWork = ReassignListWork.parse(data.LIST_DATA);
       }
@@ -55,16 +58,16 @@ export class AppReassignComponent implements OnInit,OnChanges {
   }
   getCode(data :string)
   {
-    console.log(data);
+    //console.log(data);
     this.mkt_tocode = data;
   }
 
   clickProcess(){
     if (this.mkt_tocode != "" ){
       if ( !isNullOrUndefined(this.selectListWork) ) {
-             console.log("Send to reassign");
-             console.log(this.selectListWork);
-              this.pService.postsendReassign("web","sira.ch","1000000821",this.mkt_tocode,this.selectListWork).subscribe(
+             //console.log("Send to reassign");
+             //console.log(this.selectListWork);
+              this.pService.postsendReassign("web", this.userStorage.getUserName() ,this.userStorage.getCode(),this.mkt_tocode,this.selectListWork).subscribe(
                 (data : any) => {
 
                   let msgreturn = data.MSG ;

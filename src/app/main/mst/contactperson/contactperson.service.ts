@@ -69,7 +69,7 @@ export class ContactService {
 
 
     let data = contactForSave ;
-    //console.log('Before send data');
+    //console.log(url);
     //console.log(data);
     let options = {
       headers: {

@@ -25,6 +25,7 @@ export class creditApplicationService {
 
   sendCreditApplication(device: string, username: string, pccomcode: string, pcano: string ) {
     const url = this.service.url + this.service.ca_api +'/ask/ca/GetDataCA';
+
     let data = {
       "device": device,
       "username": username,
@@ -70,9 +71,9 @@ export class creditApplicationService {
     let url = '';
 
     if (action == 'REJECT'){
-      url = this.service.url + this.service.ca_api + `/ask/ca/RejectData`;
+      url = this.service.url + this.service.ca_api + `/ask/ca/RejectCA`;
     } else if (action == 'CANCEL'){
-      url = this.service.url + this.service.ca_api + `/ask/ca/CancelData`;
+      url = this.service.url + this.service.ca_api + `/ask/ca/CancelCA`;
     }
 
 
@@ -369,4 +370,47 @@ export class creditApplicationService {
     console.log(url);
     return this.http.get(url, options);
   }
+
+  listUseCreditLine() {
+    const url = this.service.url + this.service.ca_api + `/ask/ca/TodoCA?device=web&user=NAT.AM&comcode=BGPL&task=CA-USED`;
+    // const url = const url = this.service.url + this.service.ca_api + `/ask/ca/TodoCA?device=${device}&user=${userCode}&comcode=${comCode}&task=${task}`;
+    let options = {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    };
+    console.log(url);
+    return this.http.get(url, options);
+  }
+
+  listCaInquery() {
+    const url = this.service.url + this.service.ca_api + `/ask/ca/TodoCA?device=web&user=NAT.AM&comcode=BGPL&task=CA-00`;
+    // const url = const url = this.service.url + this.service.ca_api + `/ask/ca/TodoCA?device=${device}&user=${userCode}&comcode=${comCode}&task=${task}`;
+    let options = {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    };
+    console.log(url);
+    return this.http.get(url, options);
+  }
+
+  UsedCreditLine(device: string, username: string, pccomcode: string, pcano: string ) {
+    const url = this.service.url + this.service.ca_api +'/ask/ca/UsedCreditLine';
+
+    let data = {
+      "device": device,
+      "username": username,
+      "comcode": pccomcode,
+      "cano": pcano
+    };
+    let options = {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    };
+    console.log(data);
+    return this.http.post(url, data, options);
+  }
+
 }

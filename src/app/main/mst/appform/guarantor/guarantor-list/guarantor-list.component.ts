@@ -15,6 +15,7 @@ export class GuarantorListComponent implements OnInit {
   @ViewChild("entity_dialog") entity_dialog: EntityDialogComponent;
   @ViewChild('deleteDialog') deleteDialog: AlertDialogComponent;
 
+
   data: ListGuarantor[] = [];
   selectedData: ListGuarantor;
 

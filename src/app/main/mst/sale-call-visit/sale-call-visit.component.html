@@ -5,6 +5,7 @@
 
 <app-action-button-form title="Sale Call" (onSave)="questionAction('SAVE')"  (onSubmit)="questionAction('SUBMIT')"
                         [showSave]="btnFormSave"  [showSubmit]="btnFormSubmit"
+                        [showPrint]="true"  (onPrint)="showReport()"
                         ></app-action-button-form>
 <div class="card m-1">
   <div class="card-header p-1">

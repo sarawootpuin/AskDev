@@ -1,7 +1,7 @@
 <p-panel header=" Current Address / Certificate Address">
   <div class="col-md-12">
     <div class="d-flex">
-      <div class="flex-md-column col-md-6">
+      <div class="flex-md-column col-md-10">
         <div class="form-group">
           <label>Address</label>
           <input type="text" class="form-control" [(ngModel)]="caEntityDetail.address">
@@ -12,26 +12,35 @@
       <div class="flex-md-column col-md-2">
         <div class="form-group">
           <label>Address Code</label>
-          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.zip">
-
+          <div class="input-group">
+           <input type="text" class="form-control" [(ngModel)]="caEntityDetail.zip" readonly>
+           <app-search-un app-search-un [inuURL]="urlAddress"
+                         [servicetype]="'POST'" [objforpost]="dataAddress"
+                         title="ZIP CODE;Address; ;POST CODE;" [widthcol]="'100;300;0;100;'"
+                         (col1)="setZip($event,'CC')"
+                         (col2)="setZip_desc($event,'CC')"
+                         (col4)="setPost($event,'CC')"
+           ></app-search-un>
+          </div>
         </div>
       </div>
-      <div class="flex-md-column col-md-6">
+      <div class="flex-md-column col-md-8">
         <div class="form-group">
           <label>&nbsp;</label>
-          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.zip_desc">
+          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.zip_desc" readonly>
         </div>
       </div>
-    </div>
-    <div class="d-flex">
       <div class="col-md-2 ">
 
         <div class="form-group">
           <label>Post Code</label>
-          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.post_cd">
+          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.post_cd" readonly>
         </div>
       </div>
-      <div class="col-md-6 ">
+    </div>
+    <div class="d-flex">
+
+      <div class="col-md-10">
         <div class="form-group">
           <label>Nearby Place</label>
           <input type="text" class="form-control " [(ngModel)]="caEntityDetail.near">
@@ -39,13 +48,13 @@
       </div>
     </div>
     <div class="d-flex">
-      <div class="col-md-3 ">
+      <div class="col-md-4 ">
         <div class="form-group">
           <label>Telephone No. </label>
           <input type="text" class="form-control " [(ngModel)]="caEntityDetail.tel">
         </div>
       </div>
-      <div class="col-md-3 ">
+      <div class="col-md-4 ">
         <div class="form-group">
           <label>Fax No.</label>
           <input type="text" class="form-control " [(ngModel)]="caEntityDetail.fax_current">
@@ -57,7 +66,7 @@
 <p-panel header=" Address VAT Registration ">
   <div class="col-md-12">
     <div class="d-flex">
-      <div class="flex-md-column col-md-6">
+      <div class="flex-md-column col-md-10">
         <div class="form-group">
           <label>Address</label>
           <button (click)="copyOwnr('VAT')" > <i class="fa fa-copy">  Duplicate Address from Current </i> </button>
@@ -69,30 +78,31 @@
       <div class="flex-md-column col-md-2">
         <div class="form-group">
           <label>Address Code</label>
-          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.zip_c">
-
+          <div class="input-group">
+            <input type="text" class="form-control" [(ngModel)]="caEntityDetail.zip_c" readonly>
+            <app-search-un app-search-un [inuURL]="urlAddress"
+                           [servicetype]="'POST'" [objforpost]="dataAddress"
+                           title="ZIP CODE;Address; ;POST CODE;" [widthcol]="'100;300;0;100;'"
+                           (col1)="setZip($event,'C')"
+                           (col2)="setZip_desc($event,'C')"
+                           (col4)="setPost($event,'C')"
+            ></app-search-un>
+          </div>
         </div>
+
       </div>
-      <div class="flex-md-column col-md-6">
+      <div class="flex-md-column col-md-8">
         <div class="form-group">
           <label>&nbsp;</label>
-          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.zip_c_desc">
+          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.zip_c_desc" readonly>
         </div>
       </div>
-    </div>
-    <div class="d-flex">
       <div class="col-md-2 ">
         <div class="form-group">
           <label>Post Code</label>
-          <input type="text" class="form-control " [(ngModel)]="caEntityDetail.post_cd_c">
+          <input type="text" class="form-control " [(ngModel)]="caEntityDetail.post_cd_c" readonly>
         </div>
       </div>
-      <!--<div class="col-md-6 ">-->
-        <!--<div class="form-group">-->
-          <!--<label>Nearby Code</label>-->
-          <!--<input type="text" class="form-control " [(ngModel)]="caEntityDetail.near">-->
-        <!--</div>-->
-      <!--</div>-->
     </div>
   </div>
 </p-panel>
@@ -111,24 +121,34 @@
       <div class="flex-md-column col-md-2">
         <div class="form-group">
           <label>Address Code</label>
-          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.zip_o">
+          <div class="input-group">
+            <input type="text" class="form-control" [(ngModel)]="caEntityDetail.zip_o" readonly>
+            <app-search-un app-search-un [inuURL]="urlAddress"
+                           [servicetype]="'POST'" [objforpost]="dataAddress"
+                           title="ZIP CODE;Address; ;POST CODE;" [widthcol]="'100;300;0;100;'"
+                           (col1)="setZip($event,'O')"
+                           (col2)="setZip_desc($event,'O')"
+                           (col4)="setPost($event,'O')"
+            ></app-search-un>
+          </div>
         </div>
+
       </div>
-      <div class="flex-md-column col-md-3">
+      <div class="flex-md-column col-md-8">
         <div class="form-group">
           <label>&nbsp;</label>
-          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.zip_o_desc">
+          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.zip_o_desc" readonly>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>Post Code</label>
+          <input type="text" class="form-control " [(ngModel)]="caEntityDetail.post_cd_o" readonly>
         </div>
       </div>
     </div>
     <div class="d-flex">
-      <div class="col-md-2 ">
-        <div class="form-group">
-          <label>Post Code</label>
-          <input type="text" class="form-control " [(ngModel)]="caEntityDetail.post_cd_o">
-        </div>
-      </div>
-      <div class="col-md-6 ">
+      <div class="col-md-10">
         <div class="form-group">
           <label>Nearby Place </label>
           <input type="text" class="form-control " [(ngModel)]="caEntityDetail.near_o">
@@ -164,22 +184,33 @@
     </div>
     <div class="d-flex">
       <div class="flex-md-column col-md-2">
+
         <div class="form-group">
           <label>Address Code</label>
-          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.zip_m">
-
+          <div class="input-group">
+            <input type="text" class="form-control" [(ngModel)]="caEntityDetail.zip_m" readonly>
+            <app-search-un app-search-un [inuURL]="urlAddress"
+                           [servicetype]="'POST'" [objforpost]="dataAddress"
+                           title="ZIP CODE;Address; ;POST CODE;" [widthcol]="'100;300;0;100;'"
+                           (col1)="setZip($event,'M')"
+                           (col2)="setZip_desc($event,'M')"
+                           (col4)="setPost($event,'M')"
+            ></app-search-un>
+          </div>
         </div>
+
+
       </div>
-      <div class="flex-md-column col-md-3">
+      <div class="flex-md-column col-md-8">
         <div class="form-group">
           <label>&nbsp;</label>
-          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.zip_m_desc">
+          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.zip_m_desc" readonly>
         </div>
       </div>
       <div class="d-flex">
         <div class="form-group">
           <label>Post Code</label>
-          <input type="text" class="form-control " [(ngModel)]="caEntityDetail.post_cd_m">
+          <input type="text" class="form-control " [(ngModel)]="caEntityDetail.post_cd_m" readonly>
         </div>
       </div>
     </div>

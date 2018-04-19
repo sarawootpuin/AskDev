@@ -16,14 +16,13 @@ export class ReassignService {
   //////  Service  For List MKT Reassign From Database
   getListReassign(device: string, userCode: string, code: string)
   {
-   // const url = decodeURI(`http://javadev01:8095/Sale_calltodo/ask/salecall/GetSaleCallTodoList?Task=${taskCode}&CODE=${code}&device=${device}&user=${userCode}`);
-
-    const url = decodeURI(this.service.url + this.service.mks_tps+`/ask/reassign/GetReassignList?CODE=${code}&device=${device}&user=${userCode}`);
+    const url = decodeURI(this.service.url + this.service.sale_call_api+`/ask/reassign/GetReassignList?CODE=${code}&device=${device}&user=${userCode}`);
     let options = {
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
       }
     };
+    console.log(url);
 
     return this.http.get(url, options);
   }
@@ -31,12 +30,13 @@ export class ReassignService {
 
   getListWork(device: string, userCode: string,com_code: string, code: string)
   {
-    const url = decodeURI(this.service.url + this.service.mks_tps+`/ask/reassign/GetListWork?CODE=${code}&COMCODE=${com_code}&device=${device}&user=${userCode}`);
+    const url = decodeURI(this.service.url + this.service.sale_call_api+`/ask/reassign/GetListWork?CODE=${code}&COMCODE=${com_code}&device=${device}&user=${userCode}`);
     let options = {
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
       }
     };
+    console.log(url);
     return this.http.get(url, options);
   }
 
@@ -44,7 +44,7 @@ export class ReassignService {
   /// Reassign
   postsendReassign(device: string, userCode: string ,code: string ,reassignTo :string , selectListWork :ReassignListWork[]   ){
 
-    const url = this.service.url + this.service.mks_tps+`/ask/reassign/sendReassign`;
+    const url = this.service.url + this.service.sale_call_api+`/ask/reassign/sendReassign`;
     let data = {
       "device": device,
       "userName": userCode,
@@ -57,7 +57,9 @@ export class ReassignService {
         'Content-Type': 'application/json;charset=utf-8'
       }
     };
+    console.log(url);
     console.log(data);
+
     return  this.http.post(url, data, options);
   }
 

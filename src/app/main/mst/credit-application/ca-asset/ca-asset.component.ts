@@ -95,11 +95,15 @@ export class CaAssetComponent implements OnInit , OnDestroy {
     this.newSubAsset.ca_no = this.selectbgdetail.ca_no ;
     this.newSubAsset.sub_id = this.selectbgdetail.sub_id ;
 
-    if (this.listbgdetailSub.length)  {  this.newSubAsset.sub_id2 = this.listbgdetailSub.length + 1 }
-    else { this.newSubAsset.sub_id2 = 1 }
 
-
-    this.listbgdetailSub = [ ...this.listbgdetailSub,this.newSubAsset];
+    if ( (this.listbgdetailSub) && (this.listbgdetailSub.length) )  {
+        this.newSubAsset.sub_id2 = this.listbgdetailSub.length + 1 ;
+        this.listbgdetailSub = [ ...this.listbgdetailSub,this.newSubAsset];
+    }
+    else {
+        this.newSubAsset.sub_id2 = 1;
+      this.listbgdetailSub = [this.newSubAsset];
+    }
     this.selectbgdetail.listbgdetailsub = this.listbgdetailSub ;
     this.onSelectdetailSub(this.newSubAsset);
   }

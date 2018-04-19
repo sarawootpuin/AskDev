@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import * as dataTNS from '../../../assets/tns.json';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {ConfigService} from "./ConfigService";
 
 @Injectable()
 export class ServiceEndpoint{
@@ -12,9 +13,8 @@ export class ServiceEndpoint{
   private _url:string = '';
   // private _url :string;
   private _app_name:string = '/abmis';
-  private _url_img:string = 'http://javadev01:8095';
   private _url_report: string = 'http://192.168.112.125:8097';
-  private _mks_tps:string = '/WebServices_MKS';
+  private _url_upload: string = 'http://172.16.1.112';
   private _ccs_tps:string = '/WebServices_CCS';
   private _fas_tps:string = '/WebServices_FAS';
   private _cos_tps:string = '/WebServices_COS';
@@ -28,8 +28,10 @@ export class ServiceEndpoint{
   private _entity_api :string = '/WebServices_Entity';
   private _img_api :string = '/WebServices_IMG';
 
-  constructor(private http: HttpClient) {
-    this._url = (<any>dataTNS).tns;
+  constructor(private http: HttpClient,private configService: ConfigService) {
+    //this._url = (<any>dataTNS).tns;
+    this._url_report = this.configService.getConfiguration().tnsReport;
+    this._url = this.configService.getConfiguration().tns;
   }
 
 
@@ -65,9 +67,9 @@ export class ServiceEndpoint{
     this._bl_tps = value;
   }
 
-  get url_img(): string {
+/*  get url_img(): string {
     return this._url_img;
-  }
+  }*/
 
   get url_report(): string {
     return this._url_report;
@@ -77,9 +79,9 @@ export class ServiceEndpoint{
     return this._url;
   }
 
-  get mks_tps(): string {
-    return this._mks_tps;
-  }
+  // get mks_tps(): string {
+  //   return this._mks_tps;
+  // }
 
   get ccs_tps(): string {
     return this._ccs_tps;
@@ -113,5 +115,10 @@ export class ServiceEndpoint{
 
   set entity_api(value: string) {
     this._entity_api = value;
+  }
+
+
+  get url_upload(): string {
+    return this._url_upload;
   }
 }

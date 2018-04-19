@@ -99,21 +99,18 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
   }
 
   creditTypeChange(dataSelect: any) {
-    // this.bgdetail.inputIvat = false;
-    // if (dataSelect) {
-    //   this.bgdetail.fin_type_name = this.dataFin.find(
-    //     (i) => dataSelect === i.id_code
-    //   ).remark;
-    // }
-    // else {
-    //   this.bgdetail.fin_type_name = '';
-    // }
+    if (dataSelect) {
+      this.bgdetail.credit_type = this.dataFin.find(
+        (i) => dataSelect.id_code === i.id_code
+      ).remark;
+    }
+    else {
+      this.bgdetail.credit_type = '';
+    }
     this.bgdetail.sub_fin = '';
     this.bgdetail.operating_lease = '';
     this.bgdetail.with_vat = 'Y';
-    this.bgdetail.wh_tax = 'N';
-    //this.inputChange();
-    //this.handleChange(!this.isChecked);
+    this.bgdetail.wh_tax  = 0;
   }
 
   subFinChange(index) {
@@ -308,15 +305,15 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
           if (callIrr.CODE == '200') {
             console.log("Cal IRR");
             console.log(callIrr);
-            this.bgdetail.fin_amt_e_vat = callIrr.LIST_DATA[0].finExcVat;
-            this.bgdetail.fin_amt_vat = callIrr.LIST_DATA[0].finVat;
-            this.bgdetail.fin_amt_i_vat = callIrr.LIST_DATA[0].finIncVat;
-            this.bgdetail.installment_e_vat = callIrr.LIST_DATA[0].installmentExcVat;
-            this.bgdetail.installment_vat = callIrr.LIST_DATA[0].installmentVat;
-            this.bgdetail.installment_i_vat = callIrr.LIST_DATA[0].installmentIncVat;
-            this.bgdetail.flat_rate = callIrr.LIST_DATA[0].flatRate;
-            this.bgdetail.gross_irr = callIrr.LIST_DATA[0].grossIrr;
-            this.bgdetail.net_irr = callIrr.LIST_DATA[0].netIrr;
+            this.bgdetail.fin_amt_e_vat = +callIrr.LIST_DATA[0].finExcVat;
+            this.bgdetail.fin_amt_vat = +callIrr.LIST_DATA[0].finVat;
+            this.bgdetail.fin_amt_i_vat = +callIrr.LIST_DATA[0].finIncVat;
+            this.bgdetail.installment_e_vat = +callIrr.LIST_DATA[0].installmentExcVat;
+            this.bgdetail.installment_vat = +callIrr.LIST_DATA[0].installmentVat;
+            this.bgdetail.installment_i_vat = +callIrr.LIST_DATA[0].installmentIncVat;
+            this.bgdetail.flat_rate = +callIrr.LIST_DATA[0].flatRate;
+            this.bgdetail.gross_irr = +callIrr.LIST_DATA[0].grossIrr;
+            this.bgdetail.net_irr = +callIrr.LIST_DATA[0].netIrr;
             this.checkLoader = false;
           }
         }
@@ -347,31 +344,55 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
       this.bgdetail.fin_amt_vat = '';
       this.bgdetail.fin_amt_e_vat = this.bgdetail.fin_amt_i_vat;
     }
-    if (this.bgdetail.asst_amt_e_vat) {
+    if ((this.bgdetail.asst_amt_e_vat)  && (this.bgdetail.fin_amt_e_vat) ) {
       this.bgdetail.fin_ratio = Number(this.bgdetail.fin_amt_e_vat / this.bgdetail.asst_amt_e_vat).toFixed(2);
     }
   }
 
-  calculateAsset() {
-    if (this.bgdetail.with_vat === 'Y') {
-      this.bgdetail.asst_amt_vat = Number(this.bgdetail.asst_amt_e_vat * this.vatRate / 100).toFixed(2);
-      this.bgdetail.asst_amt_i_vat = (Number(this.bgdetail.asst_amt_e_vat) + Number(this.bgdetail.asst_amt_vat)).toFixed(2);
+  calculateAsset(from: string) {
+    if (from == 'E') {
+      if (this.bgdetail.with_vat === 'Y') {
+        this.bgdetail.asst_amt_vat = Number((this.bgdetail.asst_amt_e_vat ? this.bgdetail.asst_amt_e_vat  : 0) * this.vatRate / 100).toFixed(2);
+        this.bgdetail.asst_amt_i_vat = (Number(this.bgdetail.asst_amt_e_vat ? this.bgdetail.asst_amt_e_vat  : 0) + Number(this.bgdetail.asst_amt_vat)).toFixed(2);
+      }
+      else {
+        this.bgdetail.asst_amt_vat = 0;
+        this.bgdetail.asst_amt_i_vat = this.bgdetail.asst_amt_e_vat ? this.bgdetail.asst_amt_e_vat : 0;
+      }
     }
     else {
-      this.bgdetail.asst_amt_vat = '';
-      this.bgdetail.asst_amt_i_vat = this.bgdetail.asst_amt_e_vat;
+      if (this.bgdetail.with_vat == 'Y') {
+        this.bgdetail.asst_amt_e_vat = Number((this.bgdetail.asst_amt_i_vat ? this.bgdetail.asst_amt_i_vat : 0) * 100 / (100 + this.vatRate)).toFixed(2);
+        this.bgdetail.asst_amt_vat = Number((this.bgdetail.asst_amt_i_vat ? this.bgdetail.asst_amt_i_vat : 0)  - this.bgdetail.asst_amt_e_vat).toFixed(2);
+      }
+      else {
+        this.bgdetail.asst_amt_vat = 0;
+        this.bgdetail.asst_amt_e_vat = this.bgdetail.asst_amt_i_vat ? this.bgdetail.asst_amt_i_vat : 0;
+      }
     }
-    this.calculatefinfromAsset();
+  //  this.calculatefinfromAsset();
   }
 
-  calculateDown() {
-    if (this.bgdetail.with_vat === 'Y') {
-      this.bgdetail.down_amt_vat = Number(this.bgdetail.down_amt_e_vat * this.vatRate / 100).toFixed(2);
-      this.bgdetail.down_amt_i_vat = (Number(this.bgdetail.down_amt_e_vat) + Number(this.bgdetail.down_amt_vat)).toFixed(2);
+  calculateDown(from: any) {
+    if (from == 'E') {
+      if (this.bgdetail.with_vat === 'Y') {
+        this.bgdetail.down_amt_vat = Number((this.bgdetail.down_amt_e_vat ? this.bgdetail.down_amt_e_vat : 0) * this.vatRate / 100).toFixed(2);
+        this.bgdetail.down_amt_i_vat = (Number(this.bgdetail.down_amt_e_vat ? this.bgdetail.down_amt_e_vat : 0) + Number(this.bgdetail.down_amt_vat)).toFixed(2);
+      }
+      else {
+        this.bgdetail.down_amt_vat = 0;
+        this.bgdetail.down_amt_i_vat = (this.bgdetail.down_amt_e_vat ? this.bgdetail.down_amt_e_vat  : 0);
+      }
     }
     else {
-      this.bgdetail.down_amt_vat = '';
-      this.bgdetail.down_amt_i_vat = this.bgdetail.down_amt_e_vat;
+      if (this.bgdetail.with_vat == 'Y') {
+        this.bgdetail.down_amt_e_vat = Number((this.bgdetail.down_amt_i_vat ? this.bgdetail.down_amt_i_vat  : 0) * 100 / (100 + this.vatRate)).toFixed(2);
+        this.bgdetail.down_amt_vat = Number((this.bgdetail.down_amt_i_vat ? this.bgdetail.down_amt_i_vat  : 0) - this.bgdetail.down_amt_e_vat).toFixed(2);
+      }
+      else {
+        this.bgdetail.down_amt_vat = 0;
+        this.bgdetail.down_amt_i_vat = (this.bgdetail.down_amt_e_vat ? this.bgdetail.down_amt_e_vat  : 0);
+      }
     }
     this.calculatefinfromAsset();
   }

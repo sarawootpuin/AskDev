@@ -52,6 +52,7 @@ import {BankCardComponent} from "./customer/bank-card/bank-card.component";
 import {InformationComponent} from "./customer/information/information.component";
 import {RecommendationComponent} from "./recommendation/recommendation.component";
 import {BlacklistModule} from "../../blacklist/blacklist.module";
+import {CardModule} from "primeng/card";
 
 @NgModule({
   imports: [/*import module*/
@@ -74,7 +75,8 @@ import {BlacklistModule} from "../../blacklist/blacklist.module";
     EntityModule,
     InputSwitchModule,
     BlacklistModule,
-    KeyFilterModule
+    KeyFilterModule,
+    CardModule
   ],
   declarations: [/*import Component In Module*/
     AppFormComponent, ApplySaleCallComponent,

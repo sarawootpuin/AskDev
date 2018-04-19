@@ -31,7 +31,7 @@ export class ImageServices{
    // const url = this._url+this._img_api+`/ask/image/GetNCBImage?device=web&userlogin=`+this.userStorage.getUserName()+param;
     //let ExposureJson = {"pcode":pcode,"userlogin":this.userStorage.getUserName()};
     //console.log(url);
-    const  severGetImage = '&server='+this.service.url_img.replace('http://','');
+    const  severGetImage = '&server='+this.service.url.replace('http://','');
     let options = {
       headers: {
         'Content-Type': 'application/json;charset=utf-8'

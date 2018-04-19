@@ -97,6 +97,8 @@ export class ApplySaleCallComponent implements OnInit {
   getDataTable(applyEmit) {
     this.applyNewService.getNewRenew(applyEmit.type).subscribe(
       (data: any) => {
+        console.log('GetDataTable');
+        console.log(data);
         if (data.MSG == "Complete") {
           this.dataTable = null;
           this.cols = null;

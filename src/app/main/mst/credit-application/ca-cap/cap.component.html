@@ -57,7 +57,11 @@
                        [responsive]="true">
             <p-column field="flg_cap"            header=" Selcet " [style]="{'width':'60px','text-align': 'center'}"></p-column>
             <p-column field="seller_name"        header=" Seller Name "></p-column>
-            <p-column field="this_approve"       header=" Exposures "></p-column>
+            <p-column field="this_approve"       header=" Exposures " [style]="{'text-align':'right'}" >
+              <ng-template let-col let-row="rowData" pTemplate="body">
+                <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+              </ng-template>
+            </p-column>
             <p-column field="joint_seller_group" header=" Seller Group "></p-column>
             <p-column field="cust_group"         header=" Customer Group "></p-column>
             <p-footer>
@@ -77,7 +81,11 @@
             <p-column field="com_code" header=" Company "></p-column>
             <p-column field="cus_name" header=" Customer Name "></p-column>
             <p-column field="ca_no"    header=" CA No./Agr "></p-column>
-            <p-column field="os_pri"   header=" Exposures "></p-column>
+            <p-column field="os_pri"   header=" Exposures " [style]="{'text-align':'right'}">
+              <ng-template let-col let-row="rowData" pTemplate="body">
+                <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+              </ng-template>
+            </p-column>
             <p-footer>
               <div class="ui-helper-clearfix" style="width:100%">
               </div>
@@ -134,7 +142,11 @@
         </p-column>
         <p-column field="seller_code" header=" Seller "></p-column>
         <p-column field="seller_name" header=" Name "></p-column>
-        <p-column field="this_approve" header=" Credit Line "></p-column>
+        <p-column field="this_approve" header=" Credit Line " [style]="{'text-align':'right'}" >
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+          </ng-template>
+        </p-column>
         <p-column field="joint_seller_group" header=" Joine Group "></p-column>
         <p-column field="cust_group" header=" Cust Group "></p-column>
         <p-footer>
@@ -154,7 +166,11 @@
             <p-column field="com_code" header=" Company "></p-column>
             <p-column field="cus_name" header=" Customer Name "></p-column>
             <p-column field="ca_no"    header=" CA No./Agr "></p-column>
-            <p-column field="os_pri"   header=" Exposures "></p-column>
+            <p-column field="os_pri"   header=" Exposures " [style]="{'text-align':'right'}" >
+              <ng-template let-col let-row="rowData" pTemplate="body">
+                <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+              </ng-template>
+            </p-column>
             <p-footer>
               <div class="ui-helper-clearfix" style="width:100%">
               </div>

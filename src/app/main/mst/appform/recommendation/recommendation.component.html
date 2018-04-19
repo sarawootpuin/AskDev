@@ -21,7 +21,7 @@
     </div>
     <p-dataTable [value]="listReCommendation"
                  selectionMode="single"
-                 (onRowSelect)="onRowSelect($event.data)"
+                 (onRowDblclick) = "onRowSelect($event.data)"
                  rows="15"
                  [responsive]="true">
       <p-column field="remark" header=" Condition Detail "></p-column>

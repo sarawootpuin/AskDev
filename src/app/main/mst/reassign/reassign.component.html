@@ -1,14 +1,17 @@
+<app-action-button-form title="Reassign"
+                        [showReject]="false"    [showBack]="false"
+                        [showSearch]="false" [showNew]="false"  [showSubmit]="false"
+                        [showEdit]="false" [showCalculator]="false" [showPrint]="false"  [showSave]="false"
+                        [showCancel]="false"></app-action-button-form>
 <header>
   <div class="form-group main-container " >
-    <div class="d-flex justify-content-start">
-      <h3 class="p-2"  style="margin-top: 1px" >Reassign </h3><br>
-    </div>
     <div class="d-flex justify-content-start">
       <button class="p-2 btn-nav-editisa"   style="width: 90px" routerLinkActive="active" [routerLink]="['/reassign']" >
         <i class="fa fa-edit"></i> List MKT</button>
     </div>
   </div>
 </header>
+
 <router-outlet></router-outlet>
 
 

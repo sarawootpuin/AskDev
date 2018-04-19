@@ -6,6 +6,7 @@ import {caEntity} from "../../model/ca-entity";
 import {isUndefined, log} from "util";
 import {caListMaster} from "../../model/ca_listmaster";
 import {Subscription} from "rxjs/Subscription";
+import {ServiceEndpoint} from "../../../../../shared/config/service-endpoint";
 
 @Component({
   selector: 'app-ca-customer',
@@ -22,10 +23,17 @@ export class CaCustomerComponent implements OnInit , OnDestroy {
   listFNME : caListMaster[];
   listCRD  : caListMaster[];
   listNTY  : caListMaster[];
+  OutURL: string;
 
   constructor(private creditApplicationService: creditApplicationService,
+              private serviceEndPoint: ServiceEndpoint,
               private userStorage: UserStorage) {
 
+    this.OutURL = this.serviceEndPoint.url
+      + this.serviceEndPoint.sale_call_api
+      + "/ask/salecall/GetDBD?device=Web&user="
+      + this.userStorage.getUserName() + "&Comcode=" + this.userStorage.getComCode()
+      + "&dbdcode=" + "No";
   }
 
   ngOnInit() {
@@ -55,6 +63,23 @@ export class CaCustomerComponent implements OnInit , OnDestroy {
     if (this.subscripMaster != null) {
       this.subscripMaster.unsubscribe();
     }
+  }
+
+
+  setBusName(data: string) {
+    this.caEntityDetail.bus_detail_desc  = data;
+  }
+
+  setBuscode(data: string) {
+    this.caEntityDetail.bus_detail  = data;
+  }
+
+  setBusType(data: string) {
+    this.caEntityDetail.business_type   = data;
+  }
+
+  setCluster(data: string) {
+    this.caEntityDetail.cluster_ind   = data;
   }
 
 

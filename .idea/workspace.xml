@@ -1,7 +1,188 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-form.component.ts" line="136" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="42d88145-9854-4a51-b05b-a4132f852405" name="Default" comment="" />
+    <list default="true" id="42d88145-9854-4a51-b05b-a4132f852405" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/app.module.ts" afterPath="$PROJECT_DIR$/src/app/app.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/appform.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/appform.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/appform.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/appform.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/appform.module.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/appform.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/appform.routing.module.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/appform.routing.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/appform.service.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/appform.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/applysalecall/applysalecall.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/applysalecall/applysalecall.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/applysalecall/applysalecall.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/applysalecall/applysalecall.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/attachment/attachment.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/attachment/attachment.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/attachment/attachment.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/attachment/attachment.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/buyer/buyer.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/buyer/buyer.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/buyer/buyer.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/buyer/buyer.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/buyer/detail-buyer/detail-buyer.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/buyer/detail-buyer/detail-buyer.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/buyer/detail-buyer/detail-buyer.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/buyer/detail-buyer/detail-buyer.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/buyer/list-buyer/list-buyer.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/buyer/list-buyer/list-buyer.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/buyer/list-buyer/list-buyer.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/buyer/list-buyer/list-buyer.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/collateral/collateral-detail/collateral-detail.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/collateral/collateral-detail/collateral-detail.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/collateral/collateral-detail/collateral-detail.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/collateral/collateral-detail/collateral-detail.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/collateral/collateral-list/collateral-list.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/collateral/collateral-list/collateral-list.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/collateral/collateral-list/collateral-list.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/collateral/collateral-list/collateral-list.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/collateral/collateral.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/collateral/collateral.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/collateral/collateral.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/collateral/collateral.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/context/context.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/context/context.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/context/context.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/context/context.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/customer/address-en/address-en.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/customer/address-en/address-en.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/customer/address-en/address-en.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/customer/address-en/address-en.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/customer/address-th/address-th.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/customer/address-th/address-th.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/customer/address-th/address-th.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/customer/address-th/address-th.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/customer/bank-card/bank-card.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/customer/bank-card/bank-card.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/customer/bank-card/bank-card.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/customer/bank-card/bank-card.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/customer/customer.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/customer/customer.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/customer/customer.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/customer/customer.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/customer/information/information.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/customer/information/information.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/customer/information/information.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/customer/information/information.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/customer/percent-industry/percent-industry.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/customer/percent-industry/percent-industry.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/customer/percent-industry/percent-industry.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/customer/percent-industry/percent-industry.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/exposure/exposure.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/exposure/exposure.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/exposure/exposure.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/exposure/exposure.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/guarantor/guarantor-list/guarantor-list.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/guarantor/guarantor-list/guarantor-list.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/guarantor/guarantor-list/guarantor-list.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/guarantor/guarantor-list/guarantor-list.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/leasing/detail/detail.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/leasing/detail/detail.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/leasing/detail/detail.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/leasing/detail/detail.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/leasing/leasing.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/leasing/leasing.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/leasing/leasing.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/leasing/leasing.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/leasing/list/list.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/leasing/list/list.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/leasing/list/list.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/leasing/list/list.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/loans/loans.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/loans/loans.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/loans/loans.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/loans/loans.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/pricing/pricing.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/pricing/pricing.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/pricing/pricing.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/pricing/pricing.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/reason/reason.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/reason/reason.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/reason/reason.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/reason/reason.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/recommendation/recommendation.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/recommendation/recommendation.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/appform/recommendation/recommendation.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/appform/recommendation/recommendation.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/contactperson/contact-add/contact-add.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/contactperson/contact-add/contact-add.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/contactperson/contact-add/contact-add.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/contactperson/contact-add/contact-add.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/contactperson/contact-search/contact-search.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/contactperson/contact-search/contact-search.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/contactperson/contact-search/contact-search.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/contactperson/contact-search/contact-search.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/contactperson/contactperson.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/contactperson/contactperson.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/contactperson/contactperson.service.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/contactperson/contactperson.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-approve-lv/ca-approve-lv.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-approve-lv/ca-approve-lv.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-approve-lv/ca-approve-lv.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-approve-lv/ca-approve-lv.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-asset/asset-detail/asset-detail.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-asset/asset-detail/asset-detail.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-asset/asset-detail/asset-detail.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-asset/asset-detail/asset-detail.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-asset/ca-asset.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-asset/ca-asset.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-asset/ca-asset.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-asset/ca-asset.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-asset/ca-finance/ca-finance.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-asset/ca-finance/ca-finance.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-asset/ca-finance/ca-finance.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-asset/ca-finance/ca-finance.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-asset/repayment/repayment.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-asset/repayment/repayment.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-asset/repayment/repayment.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-asset/repayment/repayment.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-attachment/ca-attachment.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-attachment/ca-attachment.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-attachment/ca-attachment.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-attachment/ca-attachment.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-bg-exposure/ca-bg-exposure.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-bg-exposure/ca-bg-exposure.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-bg-exposure/ca-bg-exposure.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-bg-exposure/ca-bg-exposure.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-cap/cap.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-cap/cap.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-cap/cap.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-cap/cap.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-collateral/collateral.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-collateral/collateral.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-collateral/collateral.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-collateral/collateral.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-condition-remark/condition-remark.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-condition-remark/condition-remark.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-context-data/context-data.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-context-data/context-data.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-context-data/context-data.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-context-data/context-data.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-address-en/ca-address-en.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-address-en/ca-address-en.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-address-en/ca-address-en.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-address-en/ca-address-en.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-address-th/address-th.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-address-th/address-th.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-address-th/address-th.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-address-th/address-th.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-asia-condition/ca-asia-condition.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-asia-condition/ca-asia-condition.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-asia-condition/ca-asia-condition.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-asia-condition/ca-asia-condition.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-customer-tab.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-customer-tab.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-customer/customer.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-customer/customer.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-customer/customer.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-customer/customer.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-exposure-tab/ca-exposure-tab.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-exposure-tab/ca-exposure-tab.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-exposure-tab/ca-exposure-tab.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-exposure-tab/ca-exposure-tab.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-exposure/exposure.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-exposure/exposure.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-exposure/exposure.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-exposure/exposure.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-machine/machine.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-machine/machine.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-machine/machine.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-machine/machine.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-percent-ind/percent-ind.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-percent-ind/percent-ind.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-percent-ind/percent-ind.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-customer-tab/ca-percent-ind/percent-ind.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-directloans/ca-directloans.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-directloans/ca-directloans.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-duty-stamp/ca-duty-stamp.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-duty-stamp/ca-duty-stamp.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-buyer/buyer.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-buyer/buyer.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-buyer/buyer.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-buyer/buyer.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-buyer/ca-buyer-detail/ca-buyer-detail.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-buyer/ca-buyer-detail/ca-buyer-detail.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-buyer/ca-buyer-detail/ca-buyer-detail.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-buyer/ca-buyer-detail/ca-buyer-detail.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-buyer/ca-buyer-doc/ca-buyer-doc.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-buyer/ca-buyer-doc/ca-buyer-doc.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-buyer/ca-buyer-doc/ca-buyer-doc.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-buyer/ca-buyer-doc/ca-buyer-doc.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-fac-pricing.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-fac-pricing.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-fac-pricing.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-fac-pricing.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-pricing/pricing-normal/pricing-normal.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-pricing/pricing-normal/pricing-normal.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-pricing/pricing-normal/pricing-normal.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-pricing/pricing-normal/pricing-normal.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-pricing/pricing-project/pricing-project.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-pricing/pricing-project/pricing-project.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-pricing/pricing-project/pricing-project.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-pricing/pricing-project/pricing-project.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-pricing/pricing.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-pricing/pricing.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-pricing/pricing.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-pricing/pricing.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-floor-plan/ca-floor-plan.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-floor-plan/ca-floor-plan.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-address-en/ca-guar-address-en.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-address-en/ca-guar-address-en.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-address-en/ca-guar-address-en.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-address-en/ca-guar-address-en.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-address-th/ca-guar-address-th.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-address-th/ca-guar-address-th.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-address-th/ca-guar-address-th.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-address-th/ca-guar-address-th.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-asia-condition/ca-guar-asia-condition.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-asia-condition/ca-guar-asia-condition.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-asia-condition/ca-guar-asia-condition.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-asia-condition/ca-guar-asia-condition.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-card/ca-guar-card.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-card/ca-guar-card.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-card/ca-guar-card.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-card/ca-guar-card.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-exposure/ca-guar-exposure.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-exposure/ca-guar-exposure.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-exposure/ca-guar-exposure.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-exposure/ca-guar-exposure.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-machine/ca-guar-machine.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-machine/ca-guar-machine.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-machine/ca-guar-machine.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-machine/ca-guar-machine.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-percent-ind/ca-guar-percent-ind.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-percent-ind/ca-guar-percent-ind.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-percent-ind/ca-guar-percent-ind.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guar-percent-ind/ca-guar-percent-ind.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guarantor-tab.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guarantor-tab.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guarantor-tab.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guarantor-tab.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guarantor/ca-guarantor.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guarantor/ca-guarantor.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guarantor/ca-guarantor.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-guarantor-tab/ca-guarantor/ca-guarantor.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-imgdoc/imgdoc.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-imgdoc/imgdoc.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-imgdoc/imgdoc.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-imgdoc/imgdoc.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-opinion/opinion.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-opinion/opinion.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-opinion/opinion.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-opinion/opinion.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-profile/profile.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-profile/profile.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-profile/profile.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-profile/profile.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-recommend/ca-recommend.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-recommend/ca-recommend.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-recommend/ca-recommend.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-recommend/ca-recommend.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-ref/ca-ref.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-ref/ca-ref.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-ref/ca-ref.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-ref/ca-ref.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-subca/ca-subca.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-subca/ca-subca.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-subca/ca-subca.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/ca-subca/ca-subca.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/credit-application.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/credit-application.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/credit-application.module.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/credit-application.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/credit-application.routing.module.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/credit-application.routing.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/credit-application.service.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/credit-application.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/credit-application/model/ca-detail.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/credit-application/model/ca-detail.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/entity/entity-dialog/entity-dialog.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/entity/entity-dialog/entity-dialog.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-form.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-form.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/reassign/app-reassign/app-reassign.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/reassign/app-reassign/app-reassign.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/reassign/app-reassign/app-reassign.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/reassign/app-reassign/app-reassign.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/reassign/app-search-reassign/search-reassign.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/reassign/app-search-reassign/search-reassign.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/reassign/app-search-reassign/search-reassign.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/reassign/app-search-reassign/search-reassign.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/reassign/reassign.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/reassign/reassign.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/reassign/reassign.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/reassign/reassign.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/reassign/reassign.module.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/reassign/reassign.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/reassign/reassign.routing.module.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/reassign/reassign.routing.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/reassign/reassign.service.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/reassign/reassign.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/sale-call-visit/call-visit-head/call-visit-head.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/sale-call-visit/call-visit-head/call-visit-head.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/sale-call-visit/call-visit-head/call-visit-head.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/sale-call-visit/call-visit-head/call-visit-head.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/sale-call-visit/sale-call-visit.component.html" afterPath="$PROJECT_DIR$/src/app/main/mst/sale-call-visit/sale-call-visit.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/main/mst/sale-call-visit/sale-call-visit.component.ts" afterPath="$PROJECT_DIR$/src/app/main/mst/sale-call-visit/sale-call-visit.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/center/action-button-form/action-button-form.component.ts" afterPath="$PROJECT_DIR$/src/app/shared/center/action-button-form/action-button-form.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/center/action-read-excel/action-read-excel.component.html" afterPath="$PROJECT_DIR$/src/app/shared/center/action-read-excel/action-read-excel.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/center/action-read-excel/action-read-excel.component.ts" afterPath="$PROJECT_DIR$/src/app/shared/center/action-read-excel/action-read-excel.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/center/action-show-image-gallery/action-show-images-gallery.services.ts" afterPath="$PROJECT_DIR$/src/app/shared/center/action-show-image-gallery/action-show-images-gallery.services.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/center/process-progress/process-progress.component.html" afterPath="$PROJECT_DIR$/src/app/shared/center/process-progress/process-progress.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/center/process-progress/process-progress.component.ts" afterPath="$PROJECT_DIR$/src/app/shared/center/process-progress/process-progress.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/center/search-un/SearchUn.service.ts" afterPath="$PROJECT_DIR$/src/app/shared/center/search-un/SearchUn.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/center/search-un/search-un.component.ts" afterPath="$PROJECT_DIR$/src/app/shared/center/search-un/search-un.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/center/utils/date-utils.ts" afterPath="$PROJECT_DIR$/src/app/shared/center/utils/date-utils.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/config/service-endpoint.ts" afterPath="$PROJECT_DIR$/src/app/shared/config/service-endpoint.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assets/tns.json" afterPath="$PROJECT_DIR$/src/assets/tns.json" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,14 +203,52 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="nav-menu.component.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/main/nav-menu/nav-menu.component.ts">
+      <file leaf-file-name="tns.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/assets/tns.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#85#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="34">
+              <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="service-endpoint.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/shared/config/service-endpoint.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="34" column="3" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConfigService.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/shared/config/ConfigService.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="20" column="26" lean-forward="false" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Configuration.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/shared/config/Configuration.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="20" lean-forward="false" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="nav-menu.component.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/main/nav-menu/nav-menu.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -45,25 +264,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>entity_dialog</find>
-      <find>winw</find>
-      <find>ed</find>
-      <find>subscription</find>
-      <find>event</find>
-      <find>eventTabGuarantor</find>
-      <find>Register Capital(MB)</find>
-      <find>busi</find>
-      <find>appMyCurrency</find>
-      <find>askDialog</find>
-      <find>saveEntity</find>
-      <find>AlertDialogComponent</find>
-      <find>alertDialog</find>
-      <find>save</find>
-      <find>single</find>
-      <find>entity_address_dialog</find>
-      <find>inputAddress</find>
-      <find>openSaveDialog</find>
-      <find>generateHeadRequest</find>
       <find>entCode</find>
       <find>วันที่</find>
       <find>console.log(data);</find>
@@ -75,21 +275,36 @@
       <find>InputFormatNumber</find>
       <find>list-ins06-2.component.ts'</find>
       <find>list-ins06-2.component.ts</find>
+      <find>showClose</find>
+      <find>w</find>
+      <find>s</find>
+      <find>sh</find>
+      <find>shea</find>
+      <find>shear</find>
+      <find>shearc</find>
+      <find>shearck</find>
+      <find>openEntity</find>
+      <find>o</find>
+      <find>onclo</find>
+      <find>onclos</find>
+      <find>onclose</find>
+      <find>edit</find>
+      <find>_url_img</find>
+      <find>mks_tps</find>
+      <find>hiddenExit</find>
+      <find>bu</find>
+      <find>http://192.168.112.125:8097</find>
     </findStrings>
     <replaceStrings>
       <replace />
     </replaceStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="D:/MIS-DEVELOP/AskDev" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/app/main/mst/sale-call-visit/sale-call-visit.service.ts" />
-        <option value="$PROJECT_DIR$/package-lock.json" />
-        <option value="$PROJECT_DIR$/dist/index.html" />
-        <option value="$PROJECT_DIR$/src/app/shared/center/action-read-excel/action-read-excel.component.ts" />
         <option value="$PROJECT_DIR$/src/app/main/home/todo/todo.component.css" />
         <option value="$PROJECT_DIR$/src/app/main/mst/sale-call-visit/call-visit-detail/call-visit-detail.component.html" />
         <option value="$PROJECT_DIR$/src/app/authen/authen.component.html" />
@@ -111,16 +326,12 @@
         <option value="$PROJECT_DIR$/src/app/authen/slide-image-authen/slide-image-authen.component.ts" />
         <option value="$PROJECT_DIR$/src/app/main/mst/contactperson/contactperson.component.ts" />
         <option value="$PROJECT_DIR$/src/app/shared/config/data-json.d.ts" />
-        <option value="$PROJECT_DIR$/src/app/main/mst/appform/guarantor/guarantor-list/guarantor-list.component.ts" />
         <option value="$PROJECT_DIR$/src/app/main/mst/entity/entity-dialog/entity-dialog.component.html" />
         <option value="$PROJECT_DIR$/src/app/shared/center/action-button-form/action-button-form.component.html" />
-        <option value="$PROJECT_DIR$/src/app/shared/center/action-button-form/action-button-form.component.ts" />
-        <option value="$PROJECT_DIR$/src/assets/tns.json" />
         <option value="$PROJECT_DIR$/src/app/main/main.routing.module.ts" />
         <option value="$PROJECT_DIR$/src/app/main/mst/entity/entity.service.ts" />
         <option value="$PROJECT_DIR$/src/app/main/mst/entity/entity.routing.module.ts" />
         <option value="$PROJECT_DIR$/src/app/shared/center/alert-dialog/alert-dialog.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/main/mst/entity/entity-dialog/entity-dialog.component.ts" />
         <option value="$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-head/entity-head.component.html" />
         <option value="$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-address-th/entity-address-th.component.html" />
         <option value="$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-career-spouse/entity-career-spouse.component.html" />
@@ -128,15 +339,23 @@
         <option value="$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-address-en/entity-address-en.component.html" />
         <option value="$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-form.component.html" />
         <option value="$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-general-detail/entity-general-detail.component.html" />
-        <option value="$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-form.component.ts" />
         <option value="$PROJECT_DIR$/src/app/shared/center/center.module.ts" />
-        <option value="$PROJECT_DIR$/src/app/shared/config/service-endpoint.ts" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/app/shared/center/search-un/search-un.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/main/nav-menu/nav-menu.component.ts" />
         <option value="$PROJECT_DIR$/src/app/main/home/home.module.ts" />
         <option value="$PROJECT_DIR$/src/app/main/mst/credit-application/credit-application.module.ts" />
         <option value="$PROJECT_DIR$/src/app/main/mst/credit-application/credit-application.routing.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/main/nav-menu/nav-menu.component.ts" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/ide/ide-scripting.js" />
+        <option value="$PROJECT_DIR$/src/app/shared/center/action-button-form/action-button-form.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/main/mst/appform/guarantor/guarantor-list/guarantor-list.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/main/mst/appform/guarantor/guarantor-list/guarantor-list.component.html" />
+        <option value="$PROJECT_DIR$/src/app/shared/center/action-show-image-gallery/action-show-images-gallery.services.ts" />
+        <option value="$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-form.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/main/mst/entity/entity-dialog/entity-dialog.component.ts" />
+        <option value="$PROJECT_DIR$/src/assets/tns.json" />
+        <option value="$PROJECT_DIR$/src/app/shared/config/Configuration.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/config/service-endpoint.ts" />
       </list>
     </option>
   </component>
@@ -190,20 +409,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="AskDev">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -227,6 +432,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AskDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AskDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="environments" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -310,7 +533,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="nav-menu" />
+              <option name="myItemId" value="mst" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -336,7 +559,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="home" />
+              <option name="myItemId" value="mst" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="credit-application" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -362,11 +589,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="home" />
+              <option name="myItemId" value="mst" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="todo" />
+              <option name="myItemId" value="credit-application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ca-fac-pricing" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -392,16 +623,64 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="home" />
+              <option name="myItemId" value="mst" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="todo" />
+              <option name="myItemId" value="credit-application" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="todo-list" />
+              <option name="myItemId" value="ca-fac-pricing" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ca-buyer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AskDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AskDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mst" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="appform" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="AskDev">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -410,7 +689,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
@@ -418,20 +697,26 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.tslint" value="D:\Mobile_Dev\workspace\WebStorm\AskProduction\node_modules\tslint" />
-    <property name="SearchEverywhereHistoryKey" value="credit-application.routing.module.ts&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/credit-application/credit-application.routing.module.ts&#10;credit-application.module.ts&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/credit-application/credit-application.module.ts&#10;home.module.ts&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/home/home.module.ts&#10;app-search-un&#9;null&#9;null&#10;serve&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;service end&#9;null&#9;null&#10;app-blacklist-ncb-showenquiry&#9;null&#9;null&#10;pp-entity-head&#9;null&#9;null&#10;saveCusCode&#9;null&#9;null&#10;entity-fo&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.ts&#10;entity-form&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.html&#10;search-un&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/center/search-un/search-un.component.html&#10;searchun&#9;null&#9;null&#10;entity-gen&#9;null&#9;null&#10;en&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.html&#10;entity&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.html&#10;saveEntity&#9;null&#9;null&#10;appformservi&#9;null&#9;null&#10;tns.&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/assets/tns.json&#10;servic&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;entity-dia&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-dialog/entity-dialog.component.html&#10;ac&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/center/action-button-form/action-button-form.component.ts&#10;app-form&#9;null&#9;null&#10;entity form&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.ts&#10;entity.component&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.html&#10;pack&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/package.json&#10;tod&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/home/todo/todo-list/todo-list.component.html&#10;end&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;action&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/center/action-button-form/action-button-form.component.ts&#10;se&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;main&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/main.routing.module.ts&#10;e&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;servi&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;service&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;entity di&#9;null&#9;null&#10;routing&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/app.routing.module.ts&#10;rou&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/home/home.routing.module.ts&#10;nav&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/nav-menu/nav-menu.component.ts&#10;app-nav-menu&#9;null&#9;null&#10;nav-&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/nav-menu/nav-menu.component.ts&#10;entity.service.ts&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity.service.ts&#10;nav-me&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/nav-menu/nav-menu.component.html&#10;todo&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/home/todo/todo.component.html&#10;service-end&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;enp&#9;null&#9;null&#10;onFormatNumber &#9;null&#9;null&#10;app form&#9;null&#9;null&#10;call-visti-telesale.component&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/sale-call-visit/call-visit-detail/call-visit-telesale/call-visti-telesale.component.html&#10;attachment.component.ts&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/appform/attachment/attachment.component.ts&#10;service e&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts" />
+    <property name="SearchEverywhereHistoryKey" value="service&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;nav&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/nav-menu/nav-menu.component.html&#10;tns&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/assets/tns.json&#10;ser&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;buy&#9;null&#9;null&#10;entity&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-dialog/entity-dialog.component.ts&#10;rou&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/main.routing.module.ts&#10;entity ro&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity.routing.module.ts&#10;entity-for&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.ts&#10;entity-fo&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.html&#10;app&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/appform/appform.component.ts&#10;action-show-images-gallery.services.&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/center/action-show-image-gallery/action-show-images-gallery.services.ts&#10;end&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;entity-di&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-dialog/entity-dialog.component.html&#10;guarantor&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/appform/guarantor/guarantor-list/guarantor-list.component.ts&#10;entity-form&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.ts&#10;un&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/center/search-un/search-un.component.ts&#10;routin&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/home/home.routing.module.ts&#10;routing&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/home/home.routing.module.ts&#10;credit-application.routing.module.ts&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/credit-application/credit-application.routing.module.ts&#10;credit-application.module.ts&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/credit-application/credit-application.module.ts&#10;home.module.ts&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/home/home.module.ts&#10;app-search-un&#9;null&#9;null&#10;serve&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;service end&#9;null&#9;null&#10;app-blacklist-ncb-showenquiry&#9;null&#9;null&#10;pp-entity-head&#9;null&#9;null&#10;saveCusCode&#9;null&#9;null&#10;search-un&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/center/search-un/search-un.component.html&#10;searchun&#9;null&#9;null&#10;entity-gen&#9;null&#9;null&#10;en&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.html&#10;saveEntity&#9;null&#9;null&#10;appformservi&#9;null&#9;null&#10;tns.&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/assets/tns.json&#10;servic&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;entity-dia&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-dialog/entity-dialog.component.html&#10;ac&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/center/action-button-form/action-button-form.component.ts&#10;app-form&#9;null&#9;null&#10;entity form&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.ts&#10;entity.component&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/mst/entity/entity-form/entity-form.component.html&#10;pack&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/package.json&#10;tod&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/home/todo/todo-list/todo-list.component.html&#10;action&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/center/action-button-form/action-button-form.component.ts&#10;se&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;main&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/main/main.routing.module.ts&#10;e&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;servi&#9;FILE&#9;file://D:/DEVELOP-MIS/AskDev/src/app/shared/config/service-endpoint.ts&#10;entity di&#9;null&#9;null&#10;app-nav-menu&#9;null&#9;null" />
+    <property name="nodejs.jest.jest_package" value="" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Mobile_Dev\workspace\WebStorm\AskProduction\src\app\main\home\todo" />
+      <recent name="D:\Mobile_Dev\workspace\WebStorm\AskProduction\src\app\main\home" />
+      <recent name="D:\Mobile_Dev\workspace\WebStorm\AskProduction\src\app\main\home\todo-task" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Mobile_Dev\workspace\WebStorm\AskProduction\src\app\main\mst\entity\model" />
       <recent name="D:\Mobile_Dev\workspace\WebStorm\AskProduction\src\app\main\mst\sale-call-visit\call-visit-detail\call-visit-exposure" />
       <recent name="D:\Mobile_Dev\workspace\WebStorm\AskProduction\src\app\main\mst\search-un" />
       <recent name="D:\Mobile_Dev\workspace\WebStorm\AskProduction\src\app\main\mst\sale-call-visit\model" />
       <recent name="D:\Mobile_Dev\workspace\WebStorm\AskProduction\src\app" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Mobile_Dev\workspace\WebStorm\AskProduction\src\app\main\home\todo" />
-      <recent name="D:\Mobile_Dev\workspace\WebStorm\AskProduction\src\app\main\home" />
-      <recent name="D:\Mobile_Dev\workspace\WebStorm\AskProduction\src\app\main\home\todo-task" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -676,7 +961,14 @@
       <workItem from="1522312962278" duration="4089000" />
       <workItem from="1522374218839" duration="2415000" />
       <workItem from="1522634064156" duration="4664000" />
-      <workItem from="1522734178927" duration="8176000" />
+      <workItem from="1522734178927" duration="10482000" />
+      <workItem from="1522811720779" duration="4060000" />
+      <workItem from="1522822576828" duration="17856000" />
+      <workItem from="1523248888704" duration="26825000" />
+      <workItem from="1523935644047" duration="1284000" />
+      <workItem from="1523938922691" duration="10418000" />
+      <workItem from="1524023974660" duration="651000" />
+      <workItem from="1524102709196" duration="4900000" />
     </task>
     <task id="LOCAL-00001" summary="add showButtonBar=&quot;true&quot;">
       <created>1522121150038</created>
@@ -710,7 +1002,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="751529000" />
+    <option name="totallyTimeSpent" value="819829000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -723,19 +1015,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
     <layout>
-      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30441898" sideWeight="0.46182084" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29166666" sideWeight="0.4815618" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32715008" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22259696" sideWeight="0.4954751" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32715008" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32405892" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.1898527" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34369886" sideWeight="0.5045249" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30278233" sideWeight="0.46182084" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.203125" sideWeight="0.4815618" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962293" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33060557" sideWeight="0.5045249" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20135747" sideWeight="0.51843816" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39934534" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -744,8 +1036,10 @@
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.43001688" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20135747" sideWeight="0.51843816" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32715008" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -815,9 +1109,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <ignored-roots>
-      <path value="$PROJECT_DIR$" />
-    </ignored-roots>
     <MESSAGE value="add showButtonBar=&quot;false&quot;" />
     <MESSAGE value="add showButtonBar=&quot;true&quot;" />
     <MESSAGE value="edit end point" />
@@ -825,76 +1116,27 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="17" />
+      <breakpoints-dialog>
+        <breakpoints-dialog>
+          <selected-grouping-rules>
+            <grouping-rule id="by-file" />
+          </selected-grouping-rules>
+        </breakpoints-dialog>
+      </breakpoints-dialog>
+      <default-breakpoints>
+        <breakpoint suspend="NONE" type="javascript-exception">
+          <properties />
+        </breakpoint>
+      </default-breakpoints>
+      <option name="time" value="20" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-address-th/entity-address-th.component.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-career-spouse/entity-career-spouse.component.html" />
-    <entry file="file://$PROJECT_DIR$/node_modules/primeng/components/common/shared.js" />
-    <entry file="file://$PROJECT_DIR$/node_modules/primeng/components/datatable/datatable.js" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/credit-application/model/ca-detail.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/shared/center/search-un/search-un.component.html" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-address-en/entity-address-en.component.html" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-general-detail/entity-general-detail.component.css" />
-    <entry file="file://$PROJECT_DIR$/node_modules/@angular/core/src/metadata/lifecycle_hooks.d.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/shared/center/alert-dialog/alert-dialog.component.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-general-detail/entity-general-detail.component.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/main.component.css" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-form.component.css" />
-    <entry file="file://$PROJECT_DIR$/e2e/tsconfig.e2e.json" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/main.component.html" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-general-detail/entity-general-detail.component.html" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity.component.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity.service.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-dialog/entity-dialog.component.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity.component.html" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-form.component.html" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/appform/appform.module.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/appform/appform.component.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity.routing.module.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/app.module.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/shared/center/center.module.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/blacklist/blacklist-ncb-enquiry/blacklist-ncb-enquiry.component.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/blacklist/blacklist-ncb/blacklist-ncb.component.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/blacklist/blacklist-ncb-showenquiry/blacklist-ncb-showenquiry.component.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity.module.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-head/entity-head.component.html" />
-    <entry file="file://$PROJECT_DIR$/src/app/shared/center/input-number.directive.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/shared/center/input-format-number.directive.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-head/entity-head.component.ts" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-form.component.ts" />
     <entry file="file://$PROJECT_DIR$/tslint.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/tns.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/shared/config/service-endpoint.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -902,7 +1144,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -910,15 +1151,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/shared/center/search-un/search-un.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="11" column="1" lean-forward="false" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -926,7 +1158,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="316">
           <caret line="44" column="27" lean-forward="true" selection-start-line="44" selection-start-column="27" selection-end-line="44" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -934,9 +1165,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="61">
           <caret line="54" column="13" lean-forward="false" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#78#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -944,7 +1172,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -952,9 +1179,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1231">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#115#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -962,9 +1186,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
           <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#74#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -972,17 +1193,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
           <caret line="92" column="0" lean-forward="true" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/main/nav-menu/nav-menu.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-268">
-          <caret line="14" column="41" lean-forward="false" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -990,20 +1200,299 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-            <marker date="1522749508297" expanded="true" signature="1930:2033" ph="..." />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/home/home.routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="3" lean-forward="true" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/main/nav-menu/nav-menu.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#85#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="81">
+          <caret line="178" column="22" lean-forward="false" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/ide/ide-scripting.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1428">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-head/entity-head.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1035">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/center/action-button-form/action-button-form.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="54" column="19" lean-forward="false" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/center/search-un/search-un.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="14" column="43" lean-forward="true" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/center/action-button-form/action-button-form.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2337">
+          <caret line="142" column="27" lean-forward="false" selection-start-line="142" selection-start-column="27" selection-end-line="142" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/center/action-dialog/action-dialog.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="45" column="28" lean-forward="true" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/center/custom-botton-icon/custom-botton-icon.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-423">
+          <caret line="12" column="12" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/center/alert-dialog/alert-dialog.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-list/entity-list.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1128">
+          <caret line="89" column="28" lean-forward="true" selection-start-line="89" selection-start-column="28" selection-end-line="89" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-list/entity-list.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="60" column="53" lean-forward="true" selection-start-line="60" selection-start-column="53" selection-end-line="60" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-dialog/entity-dialog.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="52" column="53" lean-forward="true" selection-start-line="52" selection-start-column="53" selection-end-line="52" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/center/action-show-image-gallery/action-show-images-gallery.services.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="3" lean-forward="true" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/reassign/reassign.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="23" column="6" lean-forward="false" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/appform/guarantor/guarantor-detail/guarantor-detail.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2098">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/appform/guarantor/guarantor-list/guarantor-list.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="107" column="6" lean-forward="true" selection-start-line="107" selection-start-column="6" selection-end-line="107" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/appform/guarantor/guarantor-list/guarantor-list.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="19" column="6" lean-forward="true" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/appform/guarantor/guarantor.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="31" column="27" lean-forward="true" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/appform/guarantor/guarantor.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="10" lean-forward="true" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/appform/appform.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/appform/guarantor/guarantor-detail/guarantor-detail.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-102">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/main.routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="26" column="3" lean-forward="true" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity.routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-dialog/entity-dialog.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="127" column="12" lean-forward="true" selection-start-line="127" selection-start-column="12" selection-end-line="127" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-form.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="136" column="9" lean-forward="false" selection-start-line="136" selection-start-column="9" selection-end-line="136" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/entity/entity-form/entity-form.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="6" lean-forward="false" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/appform/buyer/buyer.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="6" column="24" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-buyer/ca-buyer-detail/ca-buyer-detail.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-fac-pricing.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/appform/appform.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-fac-pricing.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/credit-application/ca-fac-pricing/ca-buyer/buyer.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="14" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/credit-application/credit-application.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/mst/credit-application/credit-application.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/main/nav-menu/nav-menu.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/tns.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/config/Configuration.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="20" lean-forward="false" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/config/service-endpoint.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="34" column="3" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/config/ConfigService.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="20" column="26" lean-forward="false" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -75,6 +75,9 @@ export class ContactpersonComponent implements OnInit  {
   }
 
   closeDialog() {
+    ///// Reset
+   this.openTabNo = 0 ;
+   this.closeTab2 = true;
    this.dialogcontactperson.close();
   }
 

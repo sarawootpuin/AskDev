@@ -50,6 +50,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
   approvePerson: string;
   openTab: string = 'Customer';
   subParams: Subscription;
+  isLoading: boolean = true;
 
   @ViewChild('confirmDialog') confirmDialog: ActionDialogComponent;
   @ViewChild('newRenewDialog') newRenewDialog: ActionDialogComponent;
@@ -446,43 +447,61 @@ export class AppFormComponent implements OnInit, OnDestroy {
     }
   }
 
+  showReturnCase(returnCase){
+    this.returnSave = returnCase;
+    this.ap_no = this.returnSave.apNo;
+    this.com_code = "BGPL";
+    this.genDetailAppForm();
+    this.checkLoader = false;
+    //console.log(this.data);
+    if (this.action == "Cancel") {
+      this.showAlertDialog("INFORMATION", "Cancel Complete");
+    }
+    else if (this.action == 'Save' && (this.typeBeforeSave == 'New' || this.typeBeforeSave == 'Renew')) {
+      this.router.navigate(['/appform']
+        , {
+          queryParams: {
+            com_code: this.com_code,
+            ap_no: this.ap_no
+          }
+        });
+    }
+    else if (this.action == 'Save') {
+      this.showAlertDialog("INFORMATION", "Save Complete");
+    }
+    else {
+      this.showAlertDialog("INFORMATION", this.returnSave.nextCase);
+    }
+  }
+
   saveData() {
     this.typeBeforeSave = this.applyEmit.type;
     this.checkLoader = true;
-    console.log(this.action);
-    console.log(this.applyEmit.type);
     this.appFormService.getSave(this.action, this.applyEmit.type).subscribe(
       (data: any) => {
-        console.log(data);
+        //console.log(data);
         if (data.CODE == "200") {
-          this.returnSave = data.DATA;
-          this.ap_no = this.returnSave.apNo;
-          this.com_code = "BGPL";
-          this.genDetailAppForm();
-          this.checkLoader = false;
-          console.log(this.data);
-          if (this.action == "Cancel") {
-            this.showAlertDialog("INFORMATION", "Cancel Complete");
-          }
-          else if (this.action == 'Save' && (this.typeBeforeSave == 'New' || this.typeBeforeSave == 'Renew')) {
-            this.router.navigate(['/appform']
-              , {
-                queryParams: {
-                  com_code: this.com_code,
-                  ap_no: this.ap_no
+          if(this.data.current_task == 'Scoring' && this.action == 'Submit'){
+            this.appFormService.saveAnsWer(this.data.com_code,this.data.ca_no,this.appFormService.getAnsWer()).subscribe(
+              (json : any)=>{
+                //console.log(json);
+                if(json.CODE == '200'){
+                  this.showReturnCase(data.DATA);
                 }
-              });
-          }
-          else if (this.action == 'Save') {
-            this.showAlertDialog("INFORMATION", "Save Complete");
+                else{
+                  alert(json.MSG);
+                  this.checkLoader = false;
+                }
+              }
+            )
           }
           else {
-            this.showAlertDialog("INFORMATION", this.returnSave.nextCase);
+            this.showReturnCase(data.DATA);
           }
         }
         else {
           alert(data.MSG);
-          console.log(data);
+          //console.log(data);
           this.checkLoader = false;
         }
       }
@@ -518,8 +537,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
   data: getDataAppForm;
 
   genDetailAppForm() {
-    console.log('test');
-    console.log(this.ap_no);
+    this.isLoading = true;
     this.appFormService.getDetailAppForm("web", this.user.getCode(), this.com_code, this.ap_no).subscribe(
       (data: any) => {
         console.log(data);
@@ -541,14 +559,19 @@ export class AppFormComponent implements OnInit, OnDestroy {
           this.appFormService.setTabExposure();
 
           if (this.data.sbu_typ === 'P') {
-            this.appFormService.setTabLoan(this.data.listDetail[0]);
+            if (this.data.listDetail.length > 0) {
+              this.appFormService.setTabLoan(this.data.listDetail[0]);
+            }
             this.appFormService.setTabCollateral(this.data.listCollateral);
           }
           else if (this.data.sbu_typ === 'HP' || this.data.sbu_typ === 'LS' || this.data.sbu_typ === 'HP/LS') {
             this.appFormService.setTabLeasing(this.data.listDetail);
           }
           else {
-            this.appFormService.setTabPricing(this.data.listPricing);
+            if (this.data.listPricing.length > 0) {
+              this.appFormService.setTabPricing(this.data.listPricing);
+            }
+
             this.appFormService.setTabBuyer(this.data.listBuyer);
           }
           if (this.data.tabReason) {
@@ -559,17 +582,11 @@ export class AppFormComponent implements OnInit, OnDestroy {
           }
 
           this.disabled = this.appFormService.getAppFormData().disabled;
-
-          if (this.data.current_task == 'Scoring Approve') {
-            this.openTab = 'Recommendation';
-          }
-          else if (this.data.current_task == 'Revise AP') {
-            this.openTab = 'Reason';
-          }
-          else {
-            this.openTab = 'Customer';
-          }
+          this.isLoading = false;
           //this.sideTabComponent.openTab(this.openTab);
+        }
+        else{
+          this.isLoading = false;
         }
       }
     );
@@ -813,20 +830,21 @@ export class AppFormComponent implements OnInit, OnDestroy {
         + "/ask/salecall/GetINTRO?device=Web&user=" + this.user.getUserName()
         + "&Comcode=" + this.user.getComCodePort() + "&INTRO_MTHD_CD=" + source;
     }
-    console.log(this.OutURL);
+    //console.log(this.OutURL);
   }
 
   showReport() {
     let ap_no: string = this.data.ap_no.replace("/", "_");
-    window.open('http://192.168.112.125:8097/result?report=MKT\\App_form_01.fr3&ApNo=' + ap_no + '&format=pdf', '_blank');
+
+    window.open(this.serviceEndPoint.url_report + '/result?report=MKT\\App_form_01.fr3&ApNo=' + ap_no + '&format=pdf', '_blank');
   }
 
   clickCaApprove() {
     if (this.comment) {
-      console.log('if');
+      //console.log('if');
       this.appFormService.approveReject(this.data.com_code, this.data.ap_no, "AP", "N", this.comment).subscribe(
         (result: any) => {
-          console.log(result);
+          //console.log(result);
           if (result.MSG == "Complete") {
             this.saveData();
           }

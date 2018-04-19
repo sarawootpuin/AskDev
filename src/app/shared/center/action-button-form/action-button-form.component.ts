@@ -140,6 +140,7 @@ export class ActionButtonFormComponent implements OnInit {
 
   }
   onClose(){
+    console.log(' close ');
     window.close()
   }
 

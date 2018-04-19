@@ -1,11 +1,12 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
-import * as XLSX from 'xlsx';
-import 'rxjs';
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from "@angular/core";
+import * as XLSX from "xlsx";
+import "rxjs";
 import {Subscription} from "rxjs/Subscription";
 import {HttpClient} from "@angular/common/http";
 import {UserStorage} from "../../user/user.storage.service";
 import {ReturnPart} from "./ReturnPart";
 import {ServiceEndpoint} from "../../config/service-endpoint";
+import {AnsWer} from "./AnsWer";
 
 
 type AOA = Array<Array<any>>;
@@ -48,11 +49,13 @@ export class ActionReadExcelComponent implements OnInit {
   tabSheet: string[] = [];
   subscription: Subscription[];
 
-  part : ReturnPart;
+  part: ReturnPart;
+
+  listAnswer : AnsWer[] = [];
 
   constructor(private http: HttpClient,
               private userStorage: UserStorage,
-              private service : ServiceEndpoint) {
+              private service: ServiceEndpoint) {
   }
 
   ngOnInit() {
@@ -68,26 +71,27 @@ export class ActionReadExcelComponent implements OnInit {
     //console.log(nameManager);
 
     const findName = this.nameManager.filter(name => name.Name == nameManager);
-
+    console.log(findName);
     for (let name of findName) {
+      //console.log(name);
       this.tmpIndex = name.Ref.indexOf('!'); // Find Position Of ! //
       //console.log(this.tmpIndex);
 
       this.workSheet = name.Ref.slice(0, this.tmpIndex); // First Path Is Sheet Name //
       this.cell1 = name.Ref.slice(this.tmpIndex + 1); // Second Path Is Cell Position //
-
+      console.log(this.cell1);
       this.tmpIndex = this.cell1.indexOf(':'); // Some Cell Position Has Range From : To //
       if (this.tmpIndex != -1) {
         this.cell2 = this.cell1.slice(this.tmpIndex + 1);
         this.cell1 = this.cell1.slice(0, this.tmpIndex - 1);
       }
 
-      // console.log(this.workSheet);
-      // console.log(this.cell1);
-      // console.log(this.cell2);
+      //console.log(this.workSheet);
+      //console.log(this.cell1);
+      //console.log(this.cell2);
 
       const ws: XLSX.WorkSheet = this.workBook.Sheets[this.workSheet];
-
+      //console.log(ws)
       if (ws[this.cell1].w && ws) {
         //console.log(ws[this.cell1].w);
         return ws[this.cell1].w;
@@ -95,8 +99,6 @@ export class ActionReadExcelComponent implements OnInit {
         // Return And Get Out From Fucntion //
       }
     }
-
-    console.log(findName);
     return "";
   }
 
@@ -104,7 +106,7 @@ export class ActionReadExcelComponent implements OnInit {
 
     this.nameManager = this.workBook.Workbook.Names;
     // console.log(this.nameManager);
-
+    this.listAnswer = [];
     if (this.nameManager) {
       if (this.nameManager.length > 0) {
         // Manage nameManager //
@@ -134,9 +136,62 @@ export class ActionReadExcelComponent implements OnInit {
           if (this.date == 'Invalid Date') {
             this.date = ws['K2'].w;
           }
+
+          this.listAnswer.push(new AnsWer("1",ws['J9'].w));
+          this.listAnswer.push(new AnsWer("2",ws['J20'].w));
+          this.listAnswer.push(new AnsWer("2.1",ws['J22'].w));
+          this.listAnswer.push(new AnsWer("2.2",ws['J24'].w));
+          this.listAnswer.push(new AnsWer("2.3",ws['J26'].w));
+          this.listAnswer.push(new AnsWer("2.4",ws['J28'].w));
+          this.listAnswer.push(new AnsWer("2.5",ws['J30'].w));
+          this.listAnswer.push(new AnsWer("2.6",ws['J33'].w));
+
+          this.listAnswer.push(new AnsWer("2.7",ws['J23'].w));
+          this.listAnswer.push(new AnsWer("2.8",ws['J25'].w));
+          this.listAnswer.push(new AnsWer("2.9",ws['J27'].w));
+          this.listAnswer.push(new AnsWer("2.10",ws['J29'].w));
+          this.listAnswer.push(new AnsWer("2.11",ws['J31'].w));
+          this.listAnswer.push(new AnsWer("2.12",ws['J34'].w));
+
+          this.listAnswer.push(new AnsWer("3",""));
+          this.listAnswer.push(new AnsWer("3.1",ws['J40'].w));
+          this.listAnswer.push(new AnsWer("3.2",ws['J55'].w));
+          this.listAnswer.push(new AnsWer("3.3",ws['J66'].w));
+
+          this.listAnswer.push(new AnsWer("4",""));
+          this.listAnswer.push(new AnsWer("4.1",ws['J78'].w));
+          this.listAnswer.push(new AnsWer("4.2",ws['J80'].w));
+          this.listAnswer.push(new AnsWer("4.3",ws['J82'].w));
+          this.listAnswer.push(new AnsWer("4.4",ws['J85'].w));
+          this.listAnswer.push(new AnsWer("4.5",ws['J87'].w));
+          this.listAnswer.push(new AnsWer("4.6",ws['J89'].w));
+          this.listAnswer.push(new AnsWer("4.7",ws['J91'].w));
+
+          this.listAnswer.push(new AnsWer("5",ws['J95'].w));
+          this.listAnswer.push(new AnsWer("6",ws['J104'].w));
+          this.listAnswer.push(new AnsWer("7",ws['J113'].w));
+
+          this.listAnswer.push(new AnsWer("8",""));
+          this.listAnswer.push(new AnsWer("8.1",ws['J129'].w));
+          this.listAnswer.push(new AnsWer("8.2",ws['J141'].w));
+          this.listAnswer.push(new AnsWer("8.2.1",ws['J149'].w));
+          this.listAnswer.push(new AnsWer("8.2.2",ws['J150'].w));
+          this.listAnswer.push(new AnsWer("8.3",""));
+          this.listAnswer.push(new AnsWer("8.3.1",ws['J153'].w));
+          this.listAnswer.push(new AnsWer("8.3.2",ws['J156'].w));
+          this.listAnswer.push(new AnsWer("8.3.3",ws['J158'].w));
+          this.listAnswer.push(new AnsWer("8.3.4",ws['J160'].w));
+
+          this.listAnswer.push(new AnsWer("9",""));
+          this.listAnswer.push(new AnsWer("9.1",ws['J163'].w));
+          this.listAnswer.push(new AnsWer("9.2",ws['J165'].w));
+          this.listAnswer.push(new AnsWer("9.3",ws['J167'].w));
+          this.listAnswer.push(new AnsWer("9.4",ws['J169'].w));
+          this.listAnswer.push(new AnsWer("9.5",ws['J171'].w));
         }
 
-        console.log("Finish");
+        // console.log("Finish");
+        // console.log(this.listAnswer);
         // console.log(this.date);
         // console.log(this.point);
         // console.log(this.grade);
@@ -144,7 +199,8 @@ export class ActionReadExcelComponent implements OnInit {
         this.valueManager = {
           "date": this.date,
           "point": this.point,
-          "grade": this.grade
+          "grade": this.grade,
+          "ansWer": this.listAnswer
         };
 
         // const ws: XLSX.WorkSheet = this.workBook.Sheets['Scoring'];
@@ -266,43 +322,43 @@ export class ActionReadExcelComponent implements OnInit {
       (data: any) => {
         console.log(data);
         if (data.MSG == "Complete") {
-         this.part = ReturnPart.parse(data.DATA);
+          this.part = ReturnPart.parse(data.DATA);
         }
       }
     );
   }
 
   onFileChange(evt: any) {
+    if (evt) {
+      this.fileSelect = evt.target.files[0].name;
+      //console.log(this.fileSelect);
+      this.setmodelReadExcel(this.onLoadFile(evt));
 
-    this.fileSelect = evt.target.files[0].name;
-    //console.log(this.fileSelect);
-    this.setmodelReadExcel(this.onLoadFile(evt));
+      let part = new ReturnPart();
 
-    let part = new ReturnPart();
+      this.getCaDirectoryPart().subscribe(
+        (data: any) => {
+          console.log(data);
+          if (data.MSG == "Complete") {
+            part = ReturnPart.parse(data.DATA);
 
-    this.getCaDirectoryPart().subscribe(
-      (data: any) => {
-        console.log(data);
-        if (data.MSG == "Complete") {
-          part = ReturnPart.parse(data.DATA);
-
-          console.log("Upload File");
-          this.onUpload(evt.target.files[0], part.part).subscribe(
-            (data: any) => {
-              console.log(data);
-              this.selected = data.fileName;
-              this.fileSelect = this.selected;
-            }, error => {
-              console.log(error);
-            }
-          );
+            console.log("Upload File");
+            this.onUpload(evt.target.files[0], part.part).subscribe(
+              (data: any) => {
+                console.log(data);
+                this.selected = data.fileName;
+                this.fileSelect = this.selected;
+              }, error => {
+                console.log(error);
+              }
+            );
+          }
+        }, error => {
+          console.log(error);
         }
-      }, error => {
-        console.log(error);
-      }
-    );
-
-    console.log(evt.target.files[0]);
+      );
+    }
+    //console.log(evt.target.files[0]);
     /* wire up file reader */
     // var datagrid = this.onLoadFile(evt);
     // var grid;
@@ -323,7 +379,8 @@ export class ActionReadExcelComponent implements OnInit {
 
   onUpload(fileToUpload: File, part: string) {
 
-    const url = `http://172.16.1.112/uploadFileCa.php`;
+    //const url = `http://localhost/uploadFileCa.php`;
+    const url = this.service.url_upload + `/uploadFileCa.php`;
     const formData: FormData = new FormData();
     formData.append('uploadFile', fileToUpload, fileToUpload.name);
     formData.append('caNo', this.caNo);
@@ -346,7 +403,7 @@ export class ActionReadExcelComponent implements OnInit {
 
   getCaDirectoryPart() {
 
-    const url = this.service.url + this.service.appform_api +  `/ask/common/GetCaDirectoryPart`;
+    const url = this.service.url + this.service.appform_api + `/ask/common/GetCaDirectoryPart`;
     //`http://javadev01:8095/AppForm_WebServices/ask/common/GetCaDirectoryPart`;
     const data =
       {
@@ -367,7 +424,7 @@ export class ActionReadExcelComponent implements OnInit {
   }
 
 
-  findCaDirectoryPart(comCode,caNo) {
+  findCaDirectoryPart(comCode, caNo) {
     // console.log(this.comCode)
     // console.log(this.caNo)
     const url = this.service.url + this.service.appform_api + `/ask/common/FindCaDirectoryPart`;
@@ -377,7 +434,7 @@ export class ActionReadExcelComponent implements OnInit {
         "device": "web",
         "userCode": this.userStorage.getCode(),
         "comCode": comCode,
-        "caNo" : caNo
+        "caNo": caNo
       };
 
     let options = {
@@ -388,6 +445,20 @@ export class ActionReadExcelComponent implements OnInit {
     console.log('Find File In Directory Part');
 
     return this.http.post(url, data, options);
+  }
+
+  findDirectoryTemplate(comCode) {
+    // console.log(this.comCode)
+    // console.log(this.caNo)
+    const url = this.service.url + this.service.appform_api + `/ask/common/FindDirectoryTemplate?device=web&comCode=` + comCode;
+    console.log(url);
+    let options = {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    };
+
+    return this.http.get(url, options);
   }
 
 }

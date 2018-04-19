@@ -31,6 +31,8 @@ export class SearchUnComponent implements OnInit, OnChanges ,OnDestroy {
   @Input('widthcol') private widthcol : string;
   @Input('width') private width : number = 700;
 
+  @Input('servicetype') private servicetype : string ;
+  @Input('objforpost') private  objforpost : any ;
 
   @ViewChild('searchdialog') searchdialog: ActionDialogComponent;
 
@@ -68,7 +70,8 @@ export class SearchUnComponent implements OnInit, OnChanges ,OnDestroy {
      this.displaytext = '' ;
      this.displaycol = '' ;
      this.width = 700;
-
+     this.servicetype = 'GET';
+     this.objforpost = {} ;
   }
 
   ngOnInit() {
@@ -92,7 +95,7 @@ export class SearchUnComponent implements OnInit, OnChanges ,OnDestroy {
     this.defaultText = "";
     this.Listselect=[];
     if (this.callApiOnShow) {                 ////   Call API ON Show Dialog
-      this.subscription = this.pService.getListSelect(this.inuURL).subscribe(
+      this.subscription = this.pService.getListSelect(this.inuURL,  this.servicetype.toUpperCase() ,this.objforpost).subscribe(
           (data: any) => {
             this.Listselect = searchobj.parse(data.LIST_DATA);
           }
@@ -101,8 +104,6 @@ export class SearchUnComponent implements OnInit, OnChanges ,OnDestroy {
   }
 
   searchAPI(){
-    //console.log(this.searchParamName);
-    //console.log(this.thissearchUnText);
     if (( this.searchParamName ) && ( this.thissearchUnText) ) {
       let tempURL = this.inuURL ;
       let paramSearch = this.searchParamName ;
@@ -128,7 +129,7 @@ export class SearchUnComponent implements OnInit, OnChanges ,OnDestroy {
           //console.log(newStr);
 
           this.Listselect=[];
-        this.subscription =  this.pService.getListSelect(newStr).subscribe(
+        this.subscription =  this.pService.getListSelect(newStr,this.servicetype.toUpperCase() ,this.objforpost).subscribe(
           (data: any) => {
             this.Listselect = searchobj.parse(data.LIST_DATA);
            }
@@ -166,7 +167,6 @@ export class SearchUnComponent implements OnInit, OnChanges ,OnDestroy {
            }else {
              this.setColum[i].widthcol  =  ( (this.width - 100 )  / this.setColum.length ).toString() ;
            };
-           console.log(this.setColum[i].widthcol + 'px' );
         }
       }
     }

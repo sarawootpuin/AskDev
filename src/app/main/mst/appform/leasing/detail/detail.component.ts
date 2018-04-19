@@ -126,18 +126,13 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
       this.visiblePanel = false;
     }
   }
-
-
-  onSelectMethod(inputDate) {
-    return this.dateUtils.dateToString(inputDate, 'dd/MM/yyyy');
-  }
-
-  changeFirst(event) {
+  
+  changeFirst(event : string) {
     if (this.data.adv_arr === 'V') {
-      this.data.first = this.onSelectMethod(event);
+      this.data.first = event;
     }
     else {
-      this.data.first = this.onSelectMethod(this.dateUtils.addMonth(event, 1));
+      this.data.first = this.dateUtils.addMonth(event, 1);
     }
   }
 
@@ -327,29 +322,29 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
       this.data.fin_amt_e_vat = this.data.fin_amt_i_vat;
     }
     if (this.data.asst_amt_e_vat) {
-        this.data.fin_ratio = Number(this.data.fin_amt_e_vat ? this.data.fin_amt_e_vat : 0/ this.data.asst_amt_e_vat).toFixed(2);
+        this.data.fin_ratio = Number((this.data.fin_amt_e_vat ? this.data.fin_amt_e_vat : 0)/ this.data.asst_amt_e_vat).toFixed(2);
     }
   }
 
   calculateAsset(from: any) {
     if (from == 'E') {
       if (this.data.with_vat === 'Y') {
-        this.data.asst_amt_vat = Number(this.data.asst_amt_e_vat ? this.data.asst_amt_e_vat  : 0 * this.vatRate / 100).toFixed(2);
+        this.data.asst_amt_vat = Number((this.data.asst_amt_e_vat ? this.data.asst_amt_e_vat : 0) * this.vatRate / 100).toFixed(2);
         this.data.asst_amt_i_vat = (Number(this.data.asst_amt_e_vat ? this.data.asst_amt_e_vat  : 0) + Number(this.data.asst_amt_vat)).toFixed(2);
       }
       else {
         this.data.asst_amt_vat = 0;
-        this.data.asst_amt_i_vat = this.data.asst_amt_e_vat ? this.data.asst_amt_e_vat : 0;
+        this.data.asst_amt_i_vat = (this.data.asst_amt_e_vat ? this.data.asst_amt_e_vat : 0);
       }
     }
     else {
       if (this.data.with_vat == 'Y') {
-        this.data.asst_amt_e_vat = Number(this.data.asst_amt_i_vat ? this.data.asst_amt_i_vat : 0 * 100 / (100 + this.vatRate)).toFixed(2);
-        this.data.asst_amt_vat = Number(this.data.asst_amt_i_vat ? this.data.asst_amt_i_vat : 0  - this.data.asst_amt_e_vat).toFixed(2);
+        this.data.asst_amt_e_vat = Number((this.data.asst_amt_i_vat ? this.data.asst_amt_i_vat : 0) * 100 / (100 + this.vatRate)).toFixed(2);
+        this.data.asst_amt_vat = Number((this.data.asst_amt_i_vat ? this.data.asst_amt_i_vat : 0)  - this.data.asst_amt_e_vat).toFixed(2);
       }
       else {
         this.data.asst_amt_vat = 0;
-        this.data.asst_amt_e_vat = this.data.asst_amt_i_vat ? this.data.asst_amt_i_vat : 0;
+        this.data.asst_amt_e_vat = (this.data.asst_amt_i_vat ? this.data.asst_amt_i_vat : 0);
       }
     }
     this.calculatefinfromAsset();
@@ -358,22 +353,22 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
   calculateDown(from: any) {
     if (from == 'E') {
       if (this.data.with_vat === 'Y') {
-        this.data.down_amt_vat = Number(this.data.down_amt_e_vat ? this.data.down_amt_e_vat  : 0 * this.vatRate / 100).toFixed(2);
+        this.data.down_amt_vat = Number((this.data.down_amt_e_vat ? this.data.down_amt_e_vat : 0) * this.vatRate / 100).toFixed(2);
         this.data.down_amt_i_vat = (Number(this.data.down_amt_e_vat ? this.data.down_amt_e_vat : 0) + Number(this.data.down_amt_vat)).toFixed(2);
       }
       else {
         this.data.down_amt_vat = 0;
-        this.data.down_amt_i_vat = this.data.down_amt_e_vat ? this.data.down_amt_e_vat  : 0;
+        this.data.down_amt_i_vat = (this.data.down_amt_e_vat ? this.data.down_amt_e_vat  : 0);
       }
     }
     else {
       if (this.data.with_vat == 'Y') {
-        this.data.down_amt_e_vat = Number(this.data.down_amt_i_vat ? this.data.down_amt_i_vat  : 0 * 100 / (100 + this.vatRate)).toFixed(2);
-        this.data.down_amt_vat = Number(this.data.down_amt_i_vat ? this.data.down_amt_i_vat  : 0 - this.data.down_amt_e_vat).toFixed(2);
+        this.data.down_amt_e_vat = Number((this.data.down_amt_i_vat ? this.data.down_amt_i_vat  : 0) * 100 / (100 + this.vatRate)).toFixed(2);
+        this.data.down_amt_vat = Number((this.data.down_amt_i_vat ? this.data.down_amt_i_vat  : 0) - this.data.down_amt_e_vat).toFixed(2);
       }
       else {
         this.data.down_amt_vat = 0;
-        this.data.down_amt_i_vat = this.data.down_amt_e_vat ? this.data.down_amt_e_vat  : 0;
+        this.data.down_amt_i_vat = (this.data.down_amt_e_vat ? this.data.down_amt_e_vat  : 0);
       }
     }
     this.calculatefinfromAsset();
@@ -382,22 +377,22 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
   calculateDep(from: any) {
     if (from == 'E') {
       if (this.data.with_vat === 'Y') {
-        this.data.dep_amt_vat = Number(this.data.dep_amt_e_vat ? this.data.dep_amt_e_vat : 0 * this.vatRate / 100).toFixed(2);
+        this.data.dep_amt_vat = Number((this.data.dep_amt_e_vat ? this.data.dep_amt_e_vat : 0) * this.vatRate / 100).toFixed(2);
         this.data.dep_amt_i_vat = (Number(this.data.dep_amt_e_vat ? this.data.dep_amt_e_vat : 0) + Number(this.data.dep_amt_vat)).toFixed(2);
       }
       else {
         this.data.dep_amt_e_vat = 0;
-        this.data.dep_amt_i_vat = this.data.dep_amt_e_vat ? this.data.dep_amt_e_vat : 0;
+        this.data.dep_amt_i_vat = (this.data.dep_amt_e_vat ? this.data.dep_amt_e_vat : 0);
       }
     }
     else {
       if (this.data.with_vat == 'Y') {
-        this.data.dep_amt_e_vat = Number(this.data.dep_amt_i_vat ? this.data.dep_amt_i_vat : 0 * 100 / (100 + this.vatRate)).toFixed(2);
-        this.data.dep_amt_vat = Number(this.data.dep_amt_i_vat ? this.data.dep_amt_i_vat : 0 - this.data.dep_amt_e_vat).toFixed(2);
+        this.data.dep_amt_e_vat = Number((this.data.dep_amt_i_vat ? this.data.dep_amt_i_vat : 0) * 100 / (100 + this.vatRate)).toFixed(2);
+        this.data.dep_amt_vat = Number((this.data.dep_amt_i_vat ? this.data.dep_amt_i_vat : 0) - this.data.dep_amt_e_vat).toFixed(2);
       }
       else {
         this.data.dep_amt_vat = 0;
-        this.data.dep_amt_e_vat = this.data.dep_amt_i_vat ? this.data.dep_amt_i_vat : 0;
+        this.data.dep_amt_e_vat = (this.data.dep_amt_i_vat ? this.data.dep_amt_i_vat : 0);
       }
     }
     this.calculatefinfromAsset();
@@ -562,7 +557,7 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
       this.data.first = this.data.disburse_dt;
     }
     else {
-      this.data.first = this.onSelectMethod(this.dateUtils.addMonth(this.data.disburse_dt, 1));
+      this.data.first = this.dateUtils.addMonth(this.data.disburse_dt, 1);
     }
   }
 

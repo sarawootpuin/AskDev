@@ -31,8 +31,9 @@
   <label>{{data.clt_type_desc}} Date</label>
   <div class="form-group">
     <p-calendar #docDate
-                [ngModel]="data.doc_date"
-                (onSelect)="data.doc_date = onSelectMethod(docDate.value)"
+                [(ngModel)]="data.doc_date"
+                inputStyleClass="form-control"
+                dataType="string"
                 dateFormat="dd/mm/yy"></p-calendar>
   </div>
   <label>Remark</label>

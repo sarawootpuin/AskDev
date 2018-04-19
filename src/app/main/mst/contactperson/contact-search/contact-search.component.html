@@ -18,18 +18,16 @@
 
   </div>
   <div>
-    <p-dataTable [value]="contacrList"a
+    <p-dataTable [value]="contacrList"
                  scrollable="true" scrollHeight="380px"
                  selectionMode="single"
                  (onRowSelect)="onRowSelect(selectContact)"
                  [(selection)]="selectContact"
                  [globalFilter]="gb" #dt
+                 [paginator]="true"
+                 [responsive]="true"
+                 [rows]="7"
     >
-      <!--<p-header>-->
-         <!--<app-custom-botton-icon [option]="'new'" ></app-custom-botton-icon>-->
-         <!--<app-custom-botton-icon [option]="'edit'"></app-custom-botton-icon>-->
-      <!--</p-header>-->
-
       <p-column field="cont_person_code" header="Code" [style]="{'width':'100px' }"  ></p-column>
       <p-column field="name_th" header="Thai Name"   ></p-column>
       <p-column field="name_en" header="English Name" ></p-column>

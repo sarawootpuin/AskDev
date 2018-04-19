@@ -15,7 +15,6 @@ const routes: Route[] = [
                 { path : '' , component : SearchReassignComponent },
                 { path: 'ListWork',component: AppReassignComponent }
              ] },
-  // {path: 'ListWork',component: AppReassignComponent }
 
 ];
 

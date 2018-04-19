@@ -24,22 +24,19 @@ export class CaBuyerDocComponent implements OnInit, OnDestroy {
     this.subscripData = this.creditApplicationService.eventcabuyer.subscribe(
       (value : caBuyer ) =>
       {
+      //  console.log(value);
         this.selectBuyer = value ;
         if (this.selectBuyer)
         {
             this.listBuyerDoc = this.selectBuyer.listcabuyerdoc ;
-            if ((this.listBuyerDoc) && (this.listBuyerDoc.length > 1 ) ){
+            if ((this.listBuyerDoc) && (this.listBuyerDoc.length > 0 ) ){
               this.selectBuyerDoc = this.listBuyerDoc[0];
             }
         }
       }
     );
 
-    this.subscripMaster = this.creditApplicationService.eventListMaster.subscribe(
-      (obj)=> {
 
-      }
-    );
   }
 
   onClickCheck(value){
@@ -49,8 +46,7 @@ export class CaBuyerDocComponent implements OnInit, OnDestroy {
      }else {
        data= 'N';
      }
-
-     console.log(data);
+     //console.log(data);
      return data;
   }
 

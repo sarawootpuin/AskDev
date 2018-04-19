@@ -56,7 +56,6 @@ export class caDetail{
 
   constructor()
   constructor(com_code, ca_no, sub_id, main_sub_id, newtr, body, est_disb_date, cost_e_amt, down_e_amt, fin_amt_e_vat, terms, flat_rate, brand, year, asset_description, unit, os_unit, adv_arr, chq_flag, chq_qty, accessory_desc, accessory_amt, mail_to, last_upd, last_usr, input_user, input_date, cost_i_amt, down_i_amt, fin_amt_i_vat, schedule, installment_e_vat, installment_i_vat, gross_irr, net_irr, fin_asst, comm_amt, comm_pcnt, with_vat, est_first_date, net_flat_rate, pdc_disb_flag, mobile_decision, mobile_decision_by, mobile_decision_remark, step_sim_no, model, down_per, down_chassis, down_chassis_per, body_name, brand_name, newtr_name, vat)
-
   constructor(com_code?, ca_no?, sub_id?, main_sub_id?, newtr?, body?, est_disb_date?, cost_e_amt?, down_e_amt?, fin_amt_e_vat?, terms?, flat_rate?, brand?, year?, asset_description?, unit?, os_unit?, adv_arr?, chq_flag?, chq_qty?, accessory_desc?, accessory_amt?, mail_to?, last_upd?, last_usr?, input_user?, input_date?, cost_i_amt?, down_i_amt?, fin_amt_i_vat?, schedule?, installment_e_vat?, installment_i_vat?, gross_irr?, net_irr?, fin_asst?, comm_amt?, comm_pcnt?, with_vat?, est_first_date?, net_flat_rate?, pdc_disb_flag?, mobile_decision?, mobile_decision_by?, mobile_decision_remark?, step_sim_no?, model?, down_per?, down_chassis?, down_chassis_per?, body_name?, brand_name?, newtr_name?, vat?) {
     this.com_code = com_code;
     this.ca_no = ca_no;

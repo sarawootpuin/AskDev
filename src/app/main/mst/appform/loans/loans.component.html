@@ -49,13 +49,16 @@
             </div>
           </div>
         </div>
+
         <div class="col-md-3 form-group">
           <label>Estimated Disburse Date</label>
           <span class="star">*</span>
-            <p-calendar [ngModel]="data.disburse_dt"
-                        (ngModelChange)="disburseChange($event);
-                                       data.first = firstChange($event)"
-                        dateFormat="dd/mm/yy"></p-calendar>
+            <p-calendar [(ngModel)]="data.disburse_dt"
+                        inputStyleClass="form-control"
+                        (ngModelChange)="disburseChange();
+                                         firstChange()"
+                        dateFormat="dd/mm/yy"
+                        dataType = "string"></p-calendar>
         </div>
       </div>
       <div class=" border-isa col-md-6">

@@ -11,15 +11,28 @@ export class SearchUnservice {
     //console.log("Open SearchUn Service");
   }
 
-  getListSelect(purl: string) {
-    const url = purl;
-    let options = {
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8'
-      }
-    };
-    console.log(url);
-    return this.http.get(url, options);
+  getListSelect(purl: string  ,  pServiceType : string , pData : any) {
+    if (pServiceType == 'GET') {
+      const url = purl;
+      let options = {
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        }
+      };
+      console.log(url);
+      return this.http.get(url, options);
+    }else if ((pServiceType == 'POST') ){
+      const url = purl;
+      let data =  pData;
+      let options = {
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        }
+      };
+      console.log(url);
+      console.log(data);
+      return this.http.post(url,data , options);
+    }
   }
 
 

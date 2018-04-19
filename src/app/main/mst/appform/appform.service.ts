@@ -57,6 +57,8 @@ export class AppFormService {
     this.eventTabPricing.emit(listPricing);
   }
 
+  ca
+
   eventTabLoan = new EventEmitter<ListDetail>();
   dataLoan: ListDetail;
 
@@ -113,6 +115,15 @@ export class AppFormService {
     return this.appFormData;
   }
 
+  ansWer: any;
+
+  setAnsWer(ansWer: any) {
+    this.ansWer = ansWer;
+  }
+
+  getAnsWer() {
+    return this.ansWer;
+  }
 
   listApplicationType: ListAnswer[] = [];
   listJointBuyer: ListAnswer[] = [];
@@ -402,6 +413,25 @@ export class AppFormService {
       "approveFlg": approveFlg,
       "userCode": this.user.getCode(),
       "remark": remark
+    };
+    console.log(JSON.stringify(data));
+    return this.http.post(url, JSON.stringify(data), options);
+  }
+
+  saveAnsWer(comCode, caNo, ansWer) {
+    const url = this.service.url + this.service.appform_api + `/ask/appForm/saveAnsWer`;
+    //const url = `http://localhost:8080/WebServices_AppForm/ask/appForm/saveAnsWer`;
+    let options = {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    };
+    let data = {
+      "device": "web",
+      "userCode": this.user.getCode(),
+      "comCode": comCode,
+      "caNo": caNo,
+      "ansWer": ansWer
     };
     console.log(JSON.stringify(data));
     return this.http.post(url, JSON.stringify(data), options);

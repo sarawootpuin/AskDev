@@ -6,6 +6,7 @@ import {UserStorage} from "../../../shared/user/user.storage.service";
 import {Subscription} from "rxjs/Subscription";
 import {ActionDialogComponent} from "../../../shared/center/action-dialog/action-dialog.component";
 import {AlertDialogComponent} from "../../../shared/center/alert-dialog/alert-dialog.component";
+import {ServiceEndpoint} from "../../../shared/config/service-endpoint";
 
 
 @Component({
@@ -40,6 +41,7 @@ export class CreditApplicationComponent implements OnInit,OnDestroy {
   constructor(private userStorage: UserStorage,
               private route: ActivatedRoute,
               private router: Router,
+              private service: ServiceEndpoint,
               private creditApplicationService: creditApplicationService) {
   }
 
@@ -210,6 +212,7 @@ export class CreditApplicationComponent implements OnInit,OnDestroy {
         console.log(json);
         let stringMsg : string = '';
         if ( json.CODE == '200'){
+          this.submitComplete = true ;
           this.dialogalert.setMessage(json.MSG);
           this.dialogalert.open();
         } else {
@@ -234,6 +237,7 @@ export class CreditApplicationComponent implements OnInit,OnDestroy {
         console.log(json);
         let stringMsg : string = '';
         if ( json.CODE == '200'){
+          this.submitComplete = true ;
           this.dialogalert.setMessage(json.MSG);
           this.dialogalert.open();
         } else {
@@ -249,38 +253,16 @@ export class CreditApplicationComponent implements OnInit,OnDestroy {
       let ca_no: string = this.caNo.replace("/", "_");
       let strURL = '' ;
       if (this.myCaHead.sbu_typ == 'FDO'){
-       strURL = `http://192.168.112.125:8097/result?report=MKT\\CA_DO_01.fr3&p_ca_no=${ca_no}&p_id_card=${this.creditApplicationService.newCardNo}&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf`;
+       strURL = this.service.url_report +`/result?report=MKT\\CA_DO_01.fr3&p_ca_no=${ca_no}&p_id_card=${this.creditApplicationService.newCardNo}&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf`;
       }else if (this.myCaHead.sbu_typ == 'P') {
-        strURL = `http://192.168.112.125:8097/result?report=MKT\\CA_DL_01.fr3&p_ca_no=${ca_no}&p_id_card=${this.creditApplicationService.newCardNo}&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf` ;
+        strURL = this.service.url_report +`/result?report=MKT\\CA_DL_01.fr3&p_ca_no=${ca_no}&p_id_card=${this.creditApplicationService.newCardNo}&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf` ;
       }else if ( (this.myCaHead.sbu_typ == 'HP') || (this.myCaHead.sbu_typ == 'LS') || (this.myCaHead.sbu_typ == 'HPLS') ) {
-        strURL = `http://192.168.112.125:8097/result?report=MKT\\CA_HPLS_01.fr3&p_ca_no=${ca_no}&p_id_card=${this.creditApplicationService.newCardNo}&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf`;
+        strURL = this.service.url_report +`/result?report=MKT\\CA_HPLS_01.fr3&p_ca_no=${ca_no}&p_id_card=${this.creditApplicationService.newCardNo}&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf`;
       }
-
-
-
-
-
-
-
-
-
       window.open(strURL, '_blank');
-      console.log(strURL);
-        // this.creditApplicationService.caReportExpo().subscribe(
-        //   (json : any) => {
-        //     //  window.open('http://192.168.112.125:8096/datasnap/rest/TServerMethods1/prc_temp1/ca_pkg.get_exposure_ca/p_id_card;/'+ this.myCaHead.caentity.new_card_no + ';' );
-        //     console.log(json);
-        //     if (json.result == 'Success'){
-        //      window.open('http://192.168.112.125:8097/result?report=frxCA_Report.fr3&multipage=0&pagenav=1&comcode=' + this.comCode + '&cano=' + ca_no + '&format=pdf', '_blank');
-        //     }
-        //
-        //     //  http://192.168.112.125:8096/datasnap/rest/TServerMethods1/prc_temp1/ca_pkg.get_exposure_ca/p_id_card;/0115556009898;
-        //     //  http://192.168.112.125:8096/datasnap/rest/TServerMethods1/ReverseString/12345
-        //     //  http://192.168.112.125:8096/datasnap/rest/TServerMethods1/prc_temp1/ca_pkg.get_exposure/p_id_card;/0115556009898;
-        //   });
-
-          }
+    }
   }
+
 
   controlActionForm(task :string){
     if (!task){

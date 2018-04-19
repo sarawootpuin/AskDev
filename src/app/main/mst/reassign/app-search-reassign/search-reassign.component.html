@@ -16,6 +16,8 @@
                        selectionMode="single"
                        (onRowSelect)="onRowSelect($event)"
                        [(selection)]="selectList"
+                       [paginator]="true"
+                       [rows]="10"
                        [globalFilter]="gb" #dt
           >
           <p-header>Marketing list</p-header>

@@ -33,6 +33,7 @@ export class CollateralComponent implements OnInit {
   setDataSelect(data: ListCollateral) {
     if (data) {
       this.dataSelect = data;
+      console.log(this.dataSelect);
     }
   }
 
