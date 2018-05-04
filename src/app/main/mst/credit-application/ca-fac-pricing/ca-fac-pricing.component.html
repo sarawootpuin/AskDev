@@ -1,15 +1,16 @@
-<div  class="root d-flex w-100 p-0">
-      <div class="ml-auto p-1">
-          <app-custom-button [option]="'print'"  (onBtnClick)="callAttach()"  >
-          </app-custom-button>
-      </div>
+<div class="root d-flex w-100 p-0">
+  <div class="ml-auto p-1">
+    <app-custom-button [option]="'print'" (onBtnClick)="callAttach()">
+    </app-custom-button>
+  </div>
 </div>
-
-<p-tabView>
-  <p-tabPanel header="Seller">
-    <app-ca-pricing></app-ca-pricing>
-  </p-tabPanel>
-  <p-tabPanel header="Buyer">
-    <app-ca-buyer></app-ca-buyer>
-  </p-tabPanel>
-</p-tabView>
+<fieldset [disabled] = "isReadonly">
+  <p-tabView>
+    <p-tabPanel header="Seller">
+      <app-ca-pricing></app-ca-pricing>
+    </p-tabPanel>
+    <p-tabPanel header="Buyer">
+      <app-ca-buyer></app-ca-buyer>
+    </p-tabPanel>
+  </p-tabView>
+</fieldset>

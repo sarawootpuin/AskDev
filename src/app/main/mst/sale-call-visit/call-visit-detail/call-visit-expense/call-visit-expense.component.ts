@@ -5,6 +5,7 @@ import {SaleCallVisitService} from "../../sale-call-visit.service";
 import {SaleCallDetail} from "../../model/Sale-Call-Detail";
 import {Subscription} from "rxjs/Subscription";
 import {ActionDialogComponent} from "../../../../../shared/center/action-dialog/action-dialog.component";
+import {UserStorage} from "../../../../../shared/user/user.storage.service";
 
 declare var $: any;
 
@@ -32,9 +33,12 @@ export class CallVisitExpenseComponent implements OnInit, OnDestroy {
 
   componentReadOnly:boolean = true ;
 
+  closeKeyExpense : boolean = true ;
+
   @ViewChild('listAttendee') listAttendee: ActionDialogComponent;
 
-  constructor(private saleCallVisitService: SaleCallVisitService) {
+  constructor(private saleCallVisitService: SaleCallVisitService,
+              private userStorage: UserStorage) {
   }
 
   ngOnInit() {
@@ -51,8 +55,12 @@ export class CallVisitExpenseComponent implements OnInit, OnDestroy {
       this.calExpenseAmount();
 
 
-      if ( this.saleCallVisitService.selectsaleD.submit_flg == 'Y' ){ this.componentReadOnly = true }
+      if ( this.saleCallVisitService.selectsaleD.visitOutSide.submit_flag  == 'Y' ){ this.componentReadOnly = true }
       else { this.componentReadOnly = false }
+
+      if ( this.mySaleCallVisitOutside.travel_name == this.userStorage.getCode() ) {
+        this.closeKeyExpense = false ;
+      }
     }
 
 
@@ -69,6 +77,11 @@ export class CallVisitExpenseComponent implements OnInit, OnDestroy {
           // console.log(obj);
           if ( obj.submit_flg == 'Y' ){ this.componentReadOnly = true }
           else { this.componentReadOnly = false }
+
+          console.log(this.mySaleCallVisitOutside.travel_name);
+          if ( this.mySaleCallVisitOutside.travel_name == this.userStorage.getCode() ) {
+              this.closeKeyExpense = false ;
+          }
 
           this.calExpenseAmount();
         }

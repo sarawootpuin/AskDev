@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {CommonModule, DatePipe} from "@angular/common";
-import {AppformRoutingModule} from "./appform.routing.module";
+import {AppFormRoutingModule} from "./appform.routing.module";
 import {AppFormComponent} from "./appform.component";
 import {LoansComponent} from "./loans/loans.component";
 import {BuyerComponent} from "./buyer/buyer.component";
@@ -22,9 +22,7 @@ import {
   TabViewModule
 } from "primeng/primeng";
 import {PricingComponent} from "./pricing/pricing.component";
-import {AppFormService} from "./appform.service";
 import {ExposureComponent} from "./exposure/exposure.component";
-import {ExposureService} from "./exposure/exposure.service";
 import {ContextComponent} from "./context/context.component";
 import {ListComponent} from "./leasing/list/list.component";
 import {DetailComponent} from "./leasing/detail/detail.component";
@@ -35,7 +33,6 @@ import {DetailBuyerComponent} from "./buyer/detail-buyer/detail-buyer.component"
 import {ReasonComponent} from "./reason/reason.component";
 import {AttachmentComponent} from "./attachment/attachment.component";
 import {ApplySaleCallComponent} from "./applysalecall/applysalecall.component";
-import {ApplyNewService} from "./applysalecall/applysalecall.service";
 import {GuarantorComponent} from "./guarantor/guarantor.component";
 import {GuarantorListComponent} from "./guarantor/guarantor-list/guarantor-list.component";
 import {GuarantorDetailComponent} from "./guarantor/guarantor-detail/guarantor-detail.component";
@@ -53,11 +50,12 @@ import {InformationComponent} from "./customer/information/information.component
 import {RecommendationComponent} from "./recommendation/recommendation.component";
 import {BlacklistModule} from "../../blacklist/blacklist.module";
 import {CardModule} from "primeng/card";
+import {AppFormInQuiryComponent} from "./appform-inquiry/appform-inquiry.component";
 
 @NgModule({
   imports: [/*import module*/
     CommonModule,
-    AppformRoutingModule,
+    AppFormRoutingModule,
     ButtonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -96,8 +94,8 @@ import {CardModule} from "primeng/card";
     PercentIndustryComponent,
     AddressThComponent,
     AddressEnComponent,
-    RecommendationComponent
-
+    RecommendationComponent,
+    AppFormInQuiryComponent
   ],
   providers: [DatePipe]
 

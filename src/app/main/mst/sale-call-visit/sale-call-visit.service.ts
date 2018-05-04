@@ -7,6 +7,7 @@ import {SaleCallDetail} from "./model/Sale-Call-Detail";
 import {isUndefined} from "util";
 import {Message} from "primeng/primeng";
 import {UserStorage} from "../../../shared/user/user.storage.service";
+import {SaleCallVisitOutSide} from "./model/Sale-Call-VisitOutSide";
 
 @Injectable()
 export class SaleCallVisitService implements OnDestroy {
@@ -567,4 +568,41 @@ export class SaleCallVisitService implements OnDestroy {
     console.log(url);
     return this.http.get(url, options);
   }
+
+  processCrossExpense(psendflg : string){
+    const url = decodeURI(this.service.url + this.service.sale_call_api + `/ask/salecall/PostExpense`);
+    let options = {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    };
+    this.configvisit();
+    let visit = this.selectsaleD.visitOutSide ;
+    if (psendflg == 'submit'){
+      visit.submit_flag = 'Y';
+    }else{
+      visit.submit_flag = 'N';
+    }
+    let data = {
+      "device": 'web',
+      "userName": this.userStorage.getUserName() ,
+      "comCode": this.userStorage.getComCode,
+      "sendFlg": psendflg,
+      "saleCallvisitoutside": visit
+    };
+    console.log(data);
+    return this.http.post(url, data, options);
+  }
+
+  configvisit(){
+    let visit = this.selectsaleD.visitOutSide ;
+      if (visit.travel_by == 'O' ){
+         visit.travel_name = '' ;
+         visit.visit_by = this.userStorage.getCode();
+      }else if (visit.travel_by == 'OTH' ){
+         visit.travel_by = visit.travel_name ;
+      }
+    this.selectsaleD.visitOutSide =  visit;
+  }
+
 }

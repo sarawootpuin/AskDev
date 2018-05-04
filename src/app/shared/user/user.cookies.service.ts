@@ -19,7 +19,8 @@ export class UserCookies {
       };
     }
 
-    this._cookieService.put(this.authen_key, 'Y', options);
+    //this._cookieService.put(this.authen_key, 'Y', options);
+    sessionStorage.setItem(this.authen_key, 'Y')
   }
 
   storeRemember(remember: boolean|false) {
@@ -29,11 +30,13 @@ export class UserCookies {
     } else {
       r = 'N'
     }
-    this._cookieService.put(this.remember_key, r);
+    //this._cookieService.put(this.remember_key, r);
+    sessionStorage.setItem(this.remember_key, r)
   }
 
   isRemember():boolean{
-    let isRemember = this._cookieService.get(this.remember_key);
+    //let isRemember = this._cookieService.get(this.remember_key);
+    let isRemember = sessionStorage.getItem(this.remember_key)
     if (isRemember == null) {
       return false;
     } else if (isRemember == 'Y') {
@@ -44,7 +47,8 @@ export class UserCookies {
   }
 
   isLogin(): boolean {
-    let isLogin = this._cookieService.get(this.authen_key);
+    //let isLogin = this._cookieService.get(this.authen_key);
+    let isLogin = sessionStorage.getItem(this.authen_key);
     if (isLogin == null) {
       return false;
     } else if (isLogin == 'Y') {
@@ -55,6 +59,7 @@ export class UserCookies {
   }
 
   logout() {
-    this._cookieService.remove(this.authen_key);
+    //this._cookieService.remove(this.authen_key);
+    sessionStorage.removeItem(this.authen_key)
   }
 }

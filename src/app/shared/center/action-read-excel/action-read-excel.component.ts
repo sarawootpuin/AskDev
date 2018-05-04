@@ -27,7 +27,7 @@ export class ActionReadExcelComponent implements OnInit {
   @Input('caNo') caNo: any;
   @Input('comCode') comCode: any;
   @Output() onAfterOpen: EventEmitter<any> = new EventEmitter();
-
+  @Input('openButton') openButton : boolean = true;
 
   valueManager: any;
 

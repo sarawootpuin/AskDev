@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {creditApplicationService} from "../credit-application.service";
 import {caBgDetail} from "../model/ca-bgdetail";
 import {caBgDetailSub} from "../model/ca-bgdetailsub";
@@ -9,6 +9,7 @@ import {Subscription} from "rxjs/Subscription";
   templateUrl: './ca-asset.component.html',
 })
 export class CaAssetComponent implements OnInit , OnDestroy {
+  @Input() isReadonly : boolean;
   subscripData: Subscription;
   subscripMaster: Subscription;
 

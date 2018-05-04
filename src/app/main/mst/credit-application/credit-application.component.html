@@ -2,304 +2,314 @@
   <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>Loading...
 </div>
 <div [hidden]="checkLoader">
-<div class="" style="background-color: #FFF">
-  <app-action-button-form title="Credit Application Form"
-                          (onSubmit)="questionAction('SUBMIT')" (onSave)="questionAction('SAVE')"
-                          (onPrint)="showReport()"
-                          (onReject)="questionAction('REJECT')" (onCancel)="questionAction('CANCEL')"
-                          [showSubmit]="btnFormSubmit" [showSave]="btnFormSave" [showPrint]="true"
-                          [showReject]="btnFormReject" [showCancel]="btnFormCancel"
-  ></app-action-button-form>
-  <div class="p-1 m-1 border-isa">
-    <p-panel [toggleable]="true" header="Infomation - {{myCaHead.sbu_type_desc}} ( {{myCaHead.ca_no}} )  - {{myCaHead.current_task}}  ">
-      <div class="main-container ">
-        <div class="row">
-          <div class="flex-md-column col-md-3">
-            <div class="form-group">
-              <label>Call / Visit No</label>
-              <input type="text" class="form-control" [(ngModel)]="myCaHead.sale_call_no" readonly>
-            </div>
-          </div>
-          <div class="flex-md-column col-md-3">
-            <div class="form-group">
-              <label>CA No</label>
-              <input type="text" class="form-control" [(ngModel)]="myCaHead.ca_no" readonly>
-            </div>
-          </div>
-          <div class="flex-md-column col-md-3">
-            <div class="form-group">
-              <label>Approve Data</label>
-              <input type="text" class="form-control" [(ngModel)]="myCaHead.ca_approve_date" readonly>
-            </div>
-          </div>
-          <div class="col-md-2 ">
-            <div class="d-flex">
+  <div class="" style="background-color: #FFF">
+    <app-action-button-form title="Credit Application Form"
+                            (onSubmit)="questionAction('SUBMIT')" (onSave)="questionAction('SAVE')"
+                            (onPrint)="showReport()"
+                            (onReject)="questionAction('REJECT')" (onCancel)="questionAction('CANCEL')"
+                            [showSubmit]="btnFormSubmit" [showSave]="btnFormSave" [showPrint]="true"
+                            [showReject]="btnFormReject" [showCancel]="btnFormCancel"
+    ></app-action-button-form>
+    <div class="p-1 m-1 border-isa">
+      <p-panel [toggleable]="true"
+               header="Infomation - {{myCaHead.sbu_type_desc}} ( {{myCaHead.ca_no}} )  - {{myCaHead.current_task}}  ">
+        <div class="main-container ">
+          <div class="row">
+            <div class="flex-md-column col-md-3">
               <div class="form-group">
-                <label>Total Score</label>
-                <input type="text" class="form-control text-center" [(ngModel)]="myCaHead.score" readonly>
+                <label>Call / Visit No</label>
+                <input type="text" class="form-control" [(ngModel)]="myCaHead.sale_call_no" readonly>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="flex-md-column col-md-3">
-            <div class="form-group">
-              <label>Marketing Officer</label>
-              <input type="text" class="form-control" [(ngModel)]="myCaHead.mkt_name" readonly>
-            </div>
-          </div>
-          <div class="flex-md-column col-md-3">
-            <div class="form-group">
-              <label>Credit Analyst</label>
-              <input type="text" class="form-control" [(ngModel)] = "myCaHead.verifier_name" readonly>
-            </div>
-          </div>
-          <div class="flex-md-column col-md-3">
-            <div class="form-group">
-              <label>Marketing Group</label>
-              <input type="text" class="form-control" [(ngModel)]="myCaHead.team_mkt_leader" readonly>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="d-flex">
+            <div class="flex-md-column col-md-3">
               <div class="form-group">
-                <label>Gradeing Result</label>
-                <input type="text" class="form-control text-center" [(ngModel)]="myCaHead.grade" readonly
-                       value="A">
+                <label>CA No</label>
+                <input type="text" class="form-control" [(ngModel)]="myCaHead.ca_no" readonly>
               </div>
             </div>
-          </div>
-
-        </div>
-        <div class="row">
-          <div class="flex-md-column col-md-3">
-            <div class="form-group">
-              <label>Customer Code</label>
-              <input type="text" class="form-control" [(ngModel)]="myCaHead.cus_code" readonly>
+            <div class="flex-md-column col-md-3">
+              <div class="form-group">
+                <label>Approve Date</label>
+                <input type="text" class="form-control" [(ngModel)]="myCaHead.ca_approve_date" readonly>
+              </div>
             </div>
-          </div>
-          <div class="flex-md-column col-md-3">
-            <div class="form-group">
-              <label>Customer Name</label>
-              <input type="text" class="form-control" [(ngModel)]="myCaHead.cus_name" readonly>
-            </div>
-          </div>
-          <div class="flex-md-column col-md-3">
-            <div class="form-group">
-              <label>Customer Status</label>
-              <input type="text" class="form-control" [(ngModel)]="myCaHead.cus_status" readonly>
-            </div>
-          </div>
-          <div class="flex-md-column col-md-3">
-            <div class="form-group">
-              <label>Fin. Amt. of this CA (Bath)</label>
-              <input type="text" class="form-control"  readonly
-                     [ngModel]="myCaHead?.highest_amt"
-                     currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Introduced By</label>
-              <input type="text" class="form-control" [(ngModel)]="myCaHead.intro_by_name" readonly>
-            </div>
-          </div>
-          <div class="flex-md-column col-md-3">
-            <div class="form-group">
-              <label>O/S Principal</label>
-              <input type="text" class="form-control"  readonly
-                     [ngModel]="myCaHead?.os_credit_amt"
-                     currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
-            </div>
-          </div>
-          <div class="flex-md-column col-md-3">
-            <div class="form-group">
-              <label> O/S Credit Line</label>
-              <input type="text" class="form-control"  readonly
-                     [ngModel]="myCaHead?.os_credit_line_amt"
-                     currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="flex-md-column col-md-3">
-            <div class="form-group">
-              <label>Pre Branch</label>
-              <input type="text" class="form-control" [(ngModel)]="myCaHead.prebranch_code" readonly>
-            </div>
-          </div>
-          <div class="flex-md-column col-md-3">
-            <div class="form-group">
-              <label>Credit Type</label>
-              <input type="text" class="form-control" [(ngModel)]="myCaHead.sbu_type_desc" readonly>
-            </div>
-          </div>
-
-          <div class="flex-md-column col-md-3">
-            <div class="form-group">
-              <label>BlackList</label>
-              <div class="row">
-                <div class="col-md-7">
-                  <input type="text" class="form-control" [(ngModel)]="myCaHead.bl_flag" readonly>
-                </div>
-                <div class="col-md-4">
-                  <button class="btn btn-search" type="button" (click)="openBlackList()"><i
-                    class="fa fa-search fa-fw"></i> Check BL
-                  </button>
+            <div class="col-md-2 ">
+              <div class="d-flex">
+                <div class="form-group">
+                  <label>Total Score</label>
+                  <input type="text" class="form-control text-center" [(ngModel)]="myCaHead.score" readonly>
                 </div>
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="flex-md-column col-md-3">
+              <div class="form-group">
+                <label>Marketing Officer</label>
+                <input type="text" class="form-control" [(ngModel)]="myCaHead.mkt_name" readonly>
+              </div>
+            </div>
+            <div class="flex-md-column col-md-3">
+              <div class="form-group">
+                <label>Credit Analyst</label>
+                <input type="text" class="form-control" [(ngModel)]="myCaHead.verifier_name" readonly>
+              </div>
+            </div>
+            <div class="flex-md-column col-md-3">
+              <div class="form-group">
+                <label>Marketing Group</label>
+                <input type="text" class="form-control" [(ngModel)]="myCaHead.team_mkt_leader" readonly>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="d-flex">
+                <div class="form-group">
+                  <label>Grading Result</label>
+                  <input type="text" class="form-control text-center" [(ngModel)]="myCaHead.grade" readonly
+                         value="A">
+                </div>
+              </div>
+            </div>
 
+          </div>
+          <div class="row">
+            <div class="flex-md-column col-md-3">
+              <div class="form-group">
+                <label>Customer Code</label>
+                <input type="text" class="form-control" [(ngModel)]="myCaHead.cus_code" readonly>
+              </div>
+            </div>
+            <div class="flex-md-column col-md-3">
+              <div class="form-group">
+                <label>Customer Name</label>
+                <input type="text" class="form-control" [(ngModel)]="myCaHead.cus_name" readonly>
+              </div>
+            </div>
+            <div class="flex-md-column col-md-3">
+              <div class="form-group">
+                <label>Customer Status</label>
+                <input type="text" class="form-control" [(ngModel)]="myCaHead.cus_status" readonly>
+              </div>
+            </div>
+            <div class="flex-md-column col-md-3">
+              <div class="form-group">
+                <label>Fin. Amt. of this CA (Bath)</label>
+                <input type="text" class="form-control" readonly
+                       [ngModel]="myCaHead?.highest_amt"
+                       currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Introduced By</label>
+                <input type="text" class="form-control" [(ngModel)]="myCaHead.intro_by_name" readonly>
+              </div>
+            </div>
+            <div class="flex-md-column col-md-3">
+              <div class="form-group">
+                <label>O/S Principal</label>
+                <input type="text" class="form-control" readonly
+                       [ngModel]="myCaHead?.os_credit_amt"
+                       currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+              </div>
+            </div>
+            <div class="flex-md-column col-md-3">
+              <div class="form-group">
+                <label> O/S Credit Line</label>
+                <input type="text" class="form-control" readonly
+                       [ngModel]="myCaHead?.os_credit_line_amt"
+                       currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="flex-md-column col-md-3">
+              <div class="form-group">
+                <label>Pre Branch</label>
+                <input type="text" class="form-control" [(ngModel)]="myCaHead.prebranch_code" readonly>
+              </div>
+            </div>
+            <div class="flex-md-column col-md-3">
+              <div class="form-group">
+                <label>Credit Type</label>
+                <input type="text" class="form-control" [(ngModel)]="myCaHead.sbu_type_desc" readonly>
+              </div>
+            </div>
+
+            <div class="flex-md-column col-md-3">
+              <div class="form-group">
+                <label>BlackList</label>
+                <div class="row">
+                  <div class="col-md-7">
+                    <input type="text" class="form-control" [(ngModel)]="myCaHead.bl_flag" readonly>
+                  </div>
+                  <div class="col-md-4">
+                    <button class="btn btn-search" type="button" (click)="openBlackList()"><i
+                      class="fa fa-search fa-fw"></i> Check BL
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
-      </div>
-    </p-panel>
-  </div>
-  <div class="m-1 border-isa">
-    <app-side-tab [defaultMenuName]="'Customer'">
-      <app-side-tab-panel>
-        <app-side-tab-level [nameMenu]="'Customer'">
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'Guarantor'">
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'Pricing'" [idMenu]="1" *ngIf="myCaHead.sbu_typ == 'P'"> <!--#directloans-->
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'Pricing'" [idMenu]="2" *ngIf="false"> <!--#floor plan-->
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'Pricing'" [idMenu]="3" *ngIf="false" > <!--#Sub ca (Asia)-->
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'Pricing'" [idMenu]="4" *ngIf="myCaHead.sbu_typ == 'HP' || myCaHead.sbu_typ == 'LS' || myCaHead.sbu_typ == 'HPLS' " > <!--#Asset (BG)-->
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'Pricing'" [idMenu]="5" *ngIf="myCaHead.sbu_typ == 'FDO'">
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'Exposure Detail'">
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'Cap Credit line'">
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'Profile/Report'"   *ngIf="false">
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'Collateral'"  *ngIf="myCaHead.sbu_typ == 'P' || myCaHead.sbu_typ == 'FDO' " >
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'Condition Detail'"  *ngIf="false" >
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'Image Document'"  *ngIf="false">
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'Opinion'"  *ngIf="false" >
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'Collection Duty Stamp'"  *ngIf="false">
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'ผู้รับชำระเงินแทน/บุคคลอ้างอิง'"  *ngIf="false">
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'Approve Level/Comment'">
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'Context Data'">
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'Attachment'" *ngIf="task == 'CA-04-2' ||task == 'CA-04-3'">
-        </app-side-tab-level>
-        <app-side-tab-level [nameMenu]="'Recommend'" >
-        </app-side-tab-level>
-      </app-side-tab-panel>
+      </p-panel>
+    </div>
+    <div class="m-1 border-isa">
+      <app-side-tab [defaultMenuName]="'Customer'">
+        <app-side-tab-panel>
+          <app-side-tab-level [nameMenu]="'Customer'"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Guarantor'"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Pricing'" [idMenu]="1" *ngIf="myCaHead.sbu_typ == 'P'"> <!--#directloans-->
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Pricing'" [idMenu]="2" *ngIf="false"> <!--#floor plan-->
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Pricing'" [idMenu]="3" *ngIf="false"> <!--#Sub ca (Asia)-->
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Pricing'" [idMenu]="4"
+                              *ngIf="myCaHead.sbu_typ == 'HP' || myCaHead.sbu_typ == 'LS' || myCaHead.sbu_typ == 'HPLS' ">
+            <!--#Asset (BG)-->
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Pricing'" [idMenu]="5" *ngIf="myCaHead.sbu_typ == 'FDO'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Exposure Detail'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Cap Credit line'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Profile/Report'" *ngIf="false">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Collateral'" *ngIf="myCaHead.sbu_typ == 'P' || myCaHead.sbu_typ == 'FDO' ">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Condition Detail'" *ngIf="false">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Image Document'" *ngIf="false">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Opinion'" *ngIf="false">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Collection Duty Stamp'" *ngIf="false">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'ผู้รับชำระเงินแทน/บุคคลอ้างอิง'" *ngIf="false">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Approve Level/Comment'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Context Data'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Attachment'" *ngIf="task == 'CA-04-2' ||task == 'CA-04-3'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Recommend'">
+          </app-side-tab-level>
 
-      <app-side-tab-main>
-        <!--===================customer tab============================-->
-        <app-side-tab-content [nameContent]="'Customer'">
-          <app-ca-customer-tab></app-ca-customer-tab>
-        </app-side-tab-content>
+          <app-side-tab-level [nameMenu]="'Amend Content&Reason'" *ngIf="taskShorten=='AM'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Amend Key In'" *ngIf="taskShorten=='AM'">
+          </app-side-tab-level>
+        </app-side-tab-panel>
+        <app-side-tab-main>
+          <!--===================customer tab============================-->
+          <app-side-tab-content [nameContent]="'Customer'">
+            <app-ca-customer-tab [isReadonly]="this.isReadonly"></app-ca-customer-tab>
+          </app-side-tab-content>
 
-        <!--//=========================================================-->
-        <!--<app-side-tab-content [nameContent]="'Condition & Remark[m]1[/m]'"  *ngIf="false">-->
+          <!--//=========================================================-->
+          <!--<app-side-tab-content [nameContent]="'Condition & Remark[m]1[/m]'"  *ngIf="false">-->
           <!--<app-asia-condition></app-asia-condition>-->
-        <!--</app-side-tab-content>-->
-        <!--//=========================================================-->
+          <!--</app-side-tab-content>-->
+          <!--//=========================================================-->
 
-        <!--//=====================Guarantor===========================-->
-        <app-side-tab-content [nameContent]="'Guarantor'">
-          <app-ca-guarantor-tab></app-ca-guarantor-tab>
-        </app-side-tab-content>
+          <!--//=====================Guarantor===========================-->
+          <app-side-tab-content [nameContent]="'Guarantor'">
+            <app-ca-guarantor-tab [isReadonly]="this.isReadonly"></app-ca-guarantor-tab>
+          </app-side-tab-content>
 
-        <!--//=========================Pricing===========================-->
-        <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="1" > <!--#directloans-->
-          <app-ca-directloans></app-ca-directloans>
-        </app-side-tab-content>
-        <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="2" *ngIf="false">  <!--#floor plan-->
-          <app-ca-floor-plan></app-ca-floor-plan>
-        </app-side-tab-content>
-        <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="3" *ngIf="false">  <!--#Sub ca (Asia)-->
-          <app-ca-subca></app-ca-subca>
-        </app-side-tab-content>
-        <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="4" >  <!--#Asset (BG)-->
-          <app-ca-asset></app-ca-asset>
-        </app-side-tab-content>
-        <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="5"  >  <!--#Pricing (Fac)-->
-          <app-ca-fac-pricing></app-ca-fac-pricing>
-        </app-side-tab-content>
-        <!--//================================End Pricing============================-->
-        <app-side-tab-content [nameContent]="'Exposure Detail'">
-          <app-ca-bg-exposure></app-ca-bg-exposure>
-        </app-side-tab-content>
-        <app-side-tab-content [nameContent]="'Cap Credit line'">
-          <app-ca-cap></app-ca-cap>
-        </app-side-tab-content>
-        <app-side-tab-content [nameContent]="'Approve Level/Comment'">
-          <app-ca-approve-lv></app-ca-approve-lv>
-        </app-side-tab-content>
+          <!--//=========================Pricing===========================-->
+          <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="1"> <!--#directloans-->
+            <app-ca-directloans [isReadonly]="this.isReadonly"></app-ca-directloans>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="2" *ngIf="false">  <!--#floor plan-->
+            <app-ca-floor-plan></app-ca-floor-plan>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="3" *ngIf="false">  <!--#Sub ca (Asia)-->
+            <app-ca-subca></app-ca-subca>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="4">  <!--#Asset (BG)-->
+            <app-ca-asset [isReadonly]="this.isReadonly"></app-ca-asset>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="5">  <!--#Pricing (Fac)-->
+            <app-ca-fac-pricing [isReadonly]="this.isReadonly"></app-ca-fac-pricing>
+          </app-side-tab-content>
+          <!--//================================End Pricing============================-->
+          <app-side-tab-content [nameContent]="'Exposure Detail'">
+            <app-ca-bg-exposure></app-ca-bg-exposure>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Cap Credit line'">
+            <app-ca-cap [isReadonly]="this.isReadonly"></app-ca-cap>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Approve Level/Comment'">
+            <app-ca-approve-lv></app-ca-approve-lv>
+          </app-side-tab-content>
 
-        <!--//=========================================================-->
-        <app-side-tab-content [nameContent]="'Condition & Remark[m]2[/m]'" *ngIf="false">
-          <app-asia-condition></app-asia-condition>
-        </app-side-tab-content>
-        <!--//=========================================================-->
+          <!--//=========================================================-->
+          <app-side-tab-content [nameContent]="'Condition & Remark[m]2[/m]'" *ngIf="false">
+            <app-asia-condition></app-asia-condition>
+          </app-side-tab-content>
+          <!--//=========================================================-->
 
-        <app-side-tab-content [nameContent]="'Profile/Report'"  *ngIf="false">
-          <app-ca-profile></app-ca-profile>
-        </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Profile/Report'" *ngIf="false">
+            <app-ca-profile></app-ca-profile>
+          </app-side-tab-content>
 
           <app-side-tab-content [nameContent]="'Opinion'" *ngIf="false">
             <app-ca-opinion></app-ca-opinion>
-        </app-side-tab-content>
-        <app-side-tab-content [nameContent]="'Image Document'"  *ngIf="false" >
-          <app-ca-imgdoc></app-ca-imgdoc>
-        </app-side-tab-content>
-        <app-side-tab-content [nameContent]="'Context Data'">
-          <app-ca-context-data></app-ca-context-data>
-        </app-side-tab-content>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Image Document'" *ngIf="false">
+            <app-ca-imgdoc></app-ca-imgdoc>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Context Data'">
+            <app-ca-context-data></app-ca-context-data>
+          </app-side-tab-content>
 
 
-        <app-side-tab-content [nameContent]="'Condition Detail'"  *ngIf="false">
-          <app-ca-condition-remark></app-ca-condition-remark>
-        </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Condition Detail'" *ngIf="false">
+            <app-ca-condition-remark></app-ca-condition-remark>
+          </app-side-tab-content>
 
-        <app-side-tab-content [nameContent]="'Collateral'" >
-          <app-ca-collateral></app-ca-collateral>
-        </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Collateral'">
+            <app-ca-collateral [isReadonly]="this.isReadonly"></app-ca-collateral>
+          </app-side-tab-content>
 
 
-        <app-side-tab-content [nameContent]="'Collection Duty Stamp'" >
-          <app-ca-duty-stamp  *ngIf="false" ></app-ca-duty-stamp>
-        </app-side-tab-content>
-        <app-side-tab-content [nameContent]="'ผู้รับชำระเงินแทน/บุคคลอ้างอิง'" >
-          <app-ca-ref  *ngIf="false" ></app-ca-ref>
-        </app-side-tab-content>
-        <app-side-tab-content [nameContent]="'Attachment'">
-          <app-ca-attachment  *ngIf="task == 'CA-04-2' ||task == 'CA-04-3'" ></app-ca-attachment>
-        </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Collection Duty Stamp'">
+            <app-ca-duty-stamp *ngIf="false"></app-ca-duty-stamp>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'ผู้รับชำระเงินแทน/บุคคลอ้างอิง'">
+            <app-ca-ref *ngIf="false"></app-ca-ref>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Attachment'">
+            <app-ca-attachment *ngIf="task == 'CA-04-2' ||task == 'CA-04-3'"></app-ca-attachment>
+          </app-side-tab-content>
 
-        <app-side-tab-content [nameContent]="'Recommend'">
-          <app-ca-recommend></app-ca-recommend>
-        </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Recommend'">
+            <app-ca-recommend></app-ca-recommend>
+          </app-side-tab-content>
 
-      </app-side-tab-main>
-
-    </app-side-tab>
+          <app-side-tab-content [nameContent]="'Amend Content&Reason'">
+            <app-ca-amend-content-reason [isReadonly]="this.isReadonly" *ngIf="taskShorten == 'AM'"></app-ca-amend-content-reason>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Amend Key In'">
+            <app-ca-amend-keyin [isReadonly]="this.isReadonly" *ngIf="taskShorten == 'AM'"></app-ca-amend-keyin>
+          </app-side-tab-content>
+        </app-side-tab-main>
+      </app-side-tab>
+    </div>
   </div>
 </div>
-</div>
 
-<app-alert-dialog #Questiondialog  (onOK)="onConfirmQuest(submitOrsave)" > </app-alert-dialog>
+<app-alert-dialog #Questiondialog (onOK)="onConfirmQuest(submitOrsave)"></app-alert-dialog>
 
-<app-alert-dialog #dialogalert  (onOK)="onOksubmit()" > </app-alert-dialog>
+<app-alert-dialog #dialogalert (onOK)="onOksubmit()"></app-alert-dialog>
 
 <app-action-dialog #reaSonDialog
                    [width]="600"

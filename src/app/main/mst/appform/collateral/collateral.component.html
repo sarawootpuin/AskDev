@@ -1,4 +1,4 @@
-<fieldset [disabled]="disabled == 'N'">
+<fieldset [disabled]="disabled == 'N' || inquiry">
   <div class="d-flex">
     <div class="col-md-3">
       <app-collateral-list (clickList)="setDataSelect($event)"></app-collateral-list>

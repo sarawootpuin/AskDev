@@ -1,4 +1,4 @@
 {
-  "tns" : "http://javadev01:8095/",
+  "tns" : "http://javadev01:8095",
   "tnsReport" : "http://192.168.112.125:8097"
 }

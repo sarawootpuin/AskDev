@@ -13,7 +13,7 @@
       </option>
     </select>
     <!--------------fin_typ 1 (Hire purchars)---------------------------->
-    <select class="form-control"   {{bgdetail?.buy_back_flg }}
+    <select class="form-control"
             *ngIf="bgdetail.fin_typ == 1"
             (change)="subFinChange($event.target.value)">
       <option [value]="-1"></option>

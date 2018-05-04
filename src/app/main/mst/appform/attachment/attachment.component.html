@@ -1,6 +1,10 @@
 <div class="col-md-6">
   <p-card title="Upload File">
-    <app-action-read-excel (onAfterOpen)="checkValueExcel()" [caNo]="caNo" [comCode]="comCode" #actionReadExcel>
+    <app-action-read-excel (onAfterOpen)="checkValueExcel()"
+                           [caNo]="caNo"
+                           [comCode]="comCode"
+                           [openButton]="!inquiry"
+                           #actionReadExcel>
     </app-action-read-excel>
 
     <p-footer>

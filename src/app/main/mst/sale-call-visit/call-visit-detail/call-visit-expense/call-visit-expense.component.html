@@ -6,10 +6,11 @@
         <label>Travel By</label>
         <div class="row">
           <div class="col-md-8 form-group">
-            <div class="container" style="border-style: solid; border-width: 1px; border-radius: 10px; padding-top: 5px;
-                                          width: 100%">
+            <div class="container"
+                 style="border-style: solid; border-width: 1px; border-radius: 10px; padding-top: 5px;width: 100%"
+                  >
               <label class="mt-radio">
-                <input type="radio" name="optionsRadios"
+                <input type="radio" name="optionsRadios"  [disabled]="!closeKeyExpense"
                        value="O"
                        [ngModel]="mySaleCallVisitOutside?.travel_by"
                        (ngModelChange)="mySaleCallVisitOutside.travel_by=$event"
@@ -17,7 +18,7 @@
                 <span></span>
               </label>
               <label class="mt-radio">
-                <input type="radio" name="optionsRadios"
+                <input type="radio" name="optionsRadios"  [disabled]="!closeKeyExpense"
                        value="C"
                        [ngModel]="mySaleCallVisitOutside?.travel_by"
                        (ngModelChange)="mySaleCallVisitOutside.travel_by=$event"
@@ -25,7 +26,7 @@
                 <span></span>
               </label>
               <label class="mt-radio">
-                <input type="radio" name="optionsRadios"
+                <input type="radio" name="optionsRadios"  [disabled]="!closeKeyExpense"
                        value="NE"
                        [ngModel]="mySaleCallVisitOutside?.travel_by"
                        (ngModelChange)="mySaleCallVisitOutside.travel_by=$event"
@@ -34,7 +35,7 @@
                 <span></span>
               </label>
               <label class="mt-radio">
-                <input type="radio" name="optionsRadios"
+                <input type="radio" name="optionsRadios"  [disabled]="!closeKeyExpense"
                        value="OTH"
                        [ngModel]="mySaleCallVisitOutside?.travel_by"
                        (ngModelChange)="mySaleCallVisitOutside.travel_by=$event"
@@ -45,7 +46,7 @@
           </div>
           <div class="col-md-8 form-group" *ngIf="mySaleCallVisitOutside?.travel_by=='OTH'">
             <label>MKT Name</label>
-            <select class="form-control"
+            <select class="form-control"     [disabled]="!closeKeyExpense"
                     [ngModel]="mySaleCallVisitOutside?.travel_name"
                     (ngModelChange)="mySaleCallVisitOutside.travel_name =$event;" >
               <option [value]=""></option>
@@ -58,21 +59,21 @@
           </div>
           <div class="col-md-6 form-group">
             <label>From Time</label>
-            <input type="time" class="form-control"
+            <input type="time" class="form-control"  [disabled]="mySaleCallVisitOutside.travel_by != 'O' && closeKeyExpense"
                    [ngModel]="mySaleCallVisitOutside?.from_time"
                    (ngModelChange)="mySaleCallVisitOutside.from_time=$event"
                    placeholder="00:00">
           </div>
           <div class="col-md-6 form-group">
             <label>To Time</label>
-            <input type="time" class="form-control"
+            <input type="time" class="form-control"   [disabled]="mySaleCallVisitOutside.travel_by != 'O' && closeKeyExpense"
                    [ngModel]="mySaleCallVisitOutside?.to_time"
                    (ngModelChange)="mySaleCallVisitOutside.to_time=$event"
                    placeholder="00:00">
           </div>
           <div class="col-md-4 form-group">
             <label>Mile Start</label>
-            <input type="text" class="form-control"
+            <input type="text" class="form-control"  [disabled]="mySaleCallVisitOutside.travel_by != 'O' && closeKeyExpense"
                    appMyCurrency [fraction]="0"
                    [value]="mySaleCallVisitOutside?.mile_start"
                    (change)="mySaleCallVisitOutside.mile_start=$event.target.value"
@@ -81,7 +82,7 @@
           </div>
           <div class="col-md-4 form-group">
             <label>Mile End</label>
-            <input type="text" class="form-control"
+            <input type="text" class="form-control"  [disabled]="mySaleCallVisitOutside.travel_by != 'O' && closeKeyExpense"
                    appMyCurrency  [fraction]="0"
                    [value]="mySaleCallVisitOutside?.mile_end"
                    (change)="mySaleCallVisitOutside.mile_end=$event.target.value"
@@ -118,8 +119,8 @@
             <label>Joiner List</label>
             <div class="form-control" >
 
-              <app-custom-botton-icon [option]="'new'"  (onBtnClick)="openDialogAttendees()" > </app-custom-botton-icon>
-              <app-custom-botton-icon [option]="'delete'"  (onBtnClick)="deleteJoiner()" > </app-custom-botton-icon>
+              <app-custom-botton-icon [option]="'new'"  (onBtnClick)="openDialogAttendees()" [disabled]="mySaleCallVisitOutside.travel_by != 'O' && closeKeyExpense"> </app-custom-botton-icon>
+              <app-custom-botton-icon [option]="'delete'"  (onBtnClick)="deleteJoiner()" [disabled]="mySaleCallVisitOutside.travel_by != 'O' && closeKeyExpense"> </app-custom-botton-icon>
 
 
               <p-dataTable [value]="joinerList"
@@ -140,7 +141,7 @@
       <!-------------------  Right   ------------------>
       <div class="col-md-6 form-group" style="height: 450px">
         <label>Address Description</label>
-        <textarea class="form-control" [(ngModel)]="mySaleCallVisitOutside.visit_detail"  style="height: 95%">
+        <textarea class="form-control"  [disabled]="mySaleCallVisitOutside.travel_by != 'O' && closeKeyExpense" [(ngModel)]="mySaleCallVisitOutside.visit_detail"  style="height: 95%">
           {{mySaleCallVisitOutside?.visit_detail}}
         </textarea>
       </div>

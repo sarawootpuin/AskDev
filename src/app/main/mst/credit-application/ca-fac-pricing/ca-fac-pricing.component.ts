@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import {UserStorage} from "../../../../shared/user/user.storage.service";
@@ -9,7 +9,7 @@ import {ServiceEndpoint} from "../../../../shared/config/service-endpoint";
   templateUrl: './ca-fac-pricing.component.html'
 })
 export class CaFacPricingComponent implements OnInit {
-
+  @Input() isReadonly : boolean;
   caNo : string;
   subParams: Subscription;
   constructor(private route: ActivatedRoute,
@@ -23,7 +23,7 @@ export class CaFacPricingComponent implements OnInit {
         this.caNo = params['ca_no'];
       }
     );
-
+    console.log(this.isReadonly);
   }
 
   ngOnDestroy(){

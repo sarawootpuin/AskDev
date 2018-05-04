@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {AppFormService} from "../appform.service";
 import {ListBuyer} from "../model/getDataBuyer";
 import {ListAnswer} from "../model/getListAnswer";
@@ -12,7 +12,8 @@ export class BuyerComponent implements OnInit {
   data: ListBuyer[] = [];
   dataListAnswer: ListAnswer[] = [];
   dataListJointBuyer: ListAnswer[] = [];
-  disabled : string = 'N';
+  disabled: string = 'N';
+  @Input() inquiry: boolean;
 
   constructor(private appFormService: AppFormService) {
   }

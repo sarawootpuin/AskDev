@@ -2,7 +2,6 @@ import {HttpClient} from "@angular/common/http";
 import {EventEmitter, Injectable} from "@angular/core";
 import {ServiceEndpoint} from "../../../shared/config/service-endpoint";
 import {UserStorage} from "../../../shared/user/user.storage.service";
-import {caEntity} from "./model/ca-entity";
 import {caHead} from "./model/ca-head";
 import {caListMaster} from "./model/ca_listmaster";
 import {caGuarantor} from "./model/ca-guarantor";
@@ -10,8 +9,7 @@ import {DatePipe} from "@angular/common";
 import {caBgDetail} from "./model/ca-bgdetail";
 import {caBgDetailSub} from "./model/ca-bgdetailsub";
 import {caBuyer} from "./model/ca-buyer";
-import {httpFactory} from "@angular/http/src/http_module";
-import {StringUtils} from "../../../shared/config/string-utils";
+import {caAmendKeyIn} from "./model/ca-amendkeyin";
 
 @Injectable()
 export class creditApplicationService {
@@ -23,8 +21,8 @@ export class creditApplicationService {
 
   }
 
-  sendCreditApplication(device: string, username: string, pccomcode: string, pcano: string ) {
-    const url = this.service.url + this.service.ca_api +'/ask/ca/GetDataCA';
+  sendCreditApplication(device: string, username: string, pccomcode: string, pcano: string) {
+    const url = this.service.url + this.service.ca_api + '/ask/ca/GetDataCA';
 
     let data = {
       "device": device,
@@ -40,7 +38,7 @@ export class creditApplicationService {
     return this.http.post(url, data, options);
   }
 
-  processCa(device: string, username: string,  psendflg: string , reason: string ) {
+  processCa(device: string, username: string, psendflg: string, reason: string) {
     //  psendflg ( 'SAVE' , 'SUBMIT' )
     // const url =  'http://localhost:8080/API_CA/ask/ca/SaveAndSubmit';
     const url = this.service.url + this.service.ca_api + `/ask/ca/SaveAndSubmit`;
@@ -48,11 +46,11 @@ export class creditApplicationService {
       "device": device,
       "username": username,
       "comcode": this.caHead.com_code,
-      "cano":this.caHead.ca_no ,
-      "action":psendflg,
-      "reason" : reason? reason : ''  ,
+      "cano": this.caHead.ca_no,
+      "action": psendflg,
+      "reason": reason ? reason : '',
       "data": this.caHead
-      }
+    }
     console.log('Before send data');
     console.log(data);
     console.log(JSON.stringify(data));
@@ -64,25 +62,30 @@ export class creditApplicationService {
     return this.http.post(url, data, options);
   }
 
-  callRejectCa(device: string, username: string ,action : string , reason: string ){
+  callRejectCa(device: string, username: string, action: string, reason: string, taskCode: string) {
 
     //  psendflg ( 'SAVE' , 'SUBMIT' )
     // const url =  'http://localhost:8080/API_CA/ask/ca/SaveAndSubmit';
     let url = '';
 
-    if (action == 'REJECT'){
+    if (action == 'REJECT') {
       url = this.service.url + this.service.ca_api + `/ask/ca/RejectCA`;
-    } else if (action == 'CANCEL'){
-      url = this.service.url + this.service.ca_api + `/ask/ca/CancelCA`;
+    } else if (action == 'CANCEL') {
+      if (taskCode == 'CA') {
+        url = this.service.url + this.service.ca_api + `/ask/ca/CancelCA`;
+      }
+      else if (taskCode == 'AM') {
+        url = this.service.url + this.service.ca_api + `/ask/ca/CancelAmend`;
+      }
     }
 
 
     let data = {
-      "device":device,
+      "device": device,
       "username": username,
       "comcode": this.caHead.com_code,
       "cano": this.caHead.ca_no,
-      "reason": reason? reason : ''
+      "reason": reason ? reason : ''
 
     };
 
@@ -96,8 +99,8 @@ export class creditApplicationService {
     return this.http.post(url, data, options);
   }
 
-  caReportExpo(){
-    const url = `http://192.168.112.125:8096/datasnap/rest/TServerMethods1/prc_temp1/ca_pkg.get_exposure_ca/p_id_card;/`+ this.newCardNo +`;`;
+  caReportExpo() {
+    const url = `http://192.168.112.125:8096/datasnap/rest/TServerMethods1/prc_temp1/ca_pkg.get_exposure_ca/p_id_card;/` + this.newCardNo + `;`;
     let options = {
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
@@ -107,8 +110,8 @@ export class creditApplicationService {
     return this.http.get(url, options);
   }
 
-  getListMasterPost(device: string, username: string, pccomcode: string, pcano: string){
-    const url = this.service.url + this.service.ca_api +'/ask/ca/GetListMaster';
+  getListMasterPost(device: string, username: string, pccomcode: string, pcano: string) {
+    const url = this.service.url + this.service.ca_api + '/ask/ca/GetListMaster';
     let data = {
       "device": device,
       "username": username,
@@ -123,14 +126,14 @@ export class creditApplicationService {
     return this.http.post(url, data, options);
   }
 
-  getListBGExposure(device: string,pccomcode: string, pcano: string, pnewcard : string){
-    const url = this.service.url + this.service.ca_api +'/ask/ca/GetExposure';
-    let data =  {
+  getListBGExposure(device: string, pccomcode: string, pcano: string, pnewcard: string) {
+    const url = this.service.url + this.service.ca_api + '/ask/ca/GetExposure';
+    let data = {
       "device": device,
-      "username": this.userStorage.getUserName()  ,
+      "username": this.userStorage.getUserName(),
       "comcode": pccomcode,
       "cano": pcano,
-      "idcard" : pnewcard
+      "idcard": pnewcard
     };
     let options = {
       headers: {
@@ -142,104 +145,104 @@ export class creditApplicationService {
   }
 
   //////////  Set List Master
-  listFNM : caListMaster[] = [] ;
-  listFNME : caListMaster[] = [] ;
-  listCRD : caListMaster[] = [] ;
-  listNTY : caListMaster[] = [];
-  listBNK : caListMaster[] = [] ;
-  listSTS : caListMaster[] = [] ;
-  listGRP_CUS : caListMaster[] = [] ;
-  listOC : caListMaster[] = [] ;
-  listPOS_BG : caListMaster[] = [] ;
-  listCS_BUS : caListMaster[] = [] ;
-  listINE : caListMaster[] = [] ;
-  listIND : caListMaster[] = [] ;
-  listPAID : caListMaster[] = [] ;
-  listBANK_INT_RATE : caListMaster[] = [] ;
-  listFIN : caListMaster[] = [] ;
-  listSUB_FIN : caListMaster[] = [] ;
-  listSUB_FINLS : caListMaster[] = [];
-  listLease : caListMaster[] = [];
-  listFAT : caListMaster[] = [];
-  listFAC : caListMaster[] = [];
-  listFAS : caListMaster[] = [];
-  listEQP : caListMaster[] = [];
-  listBDY : caListMaster[] = [];
-  listENG_TYPE : caListMaster[] = [];
-  listRMK_MKT : caListMaster[] = [];
-  listCOND_MKT : caListMaster[] = []
-  listCOND_CA : caListMaster[] = [];
+  listFNM: caListMaster[] = [];
+  listFNME: caListMaster[] = [];
+  listCRD: caListMaster[] = [];
+  listNTY: caListMaster[] = [];
+  listBNK: caListMaster[] = [];
+  listSTS: caListMaster[] = [];
+  listGRP_CUS: caListMaster[] = [];
+  listOC: caListMaster[] = [];
+  listPOS_BG: caListMaster[] = [];
+  listCS_BUS: caListMaster[] = [];
+  listINE: caListMaster[] = [];
+  listIND: caListMaster[] = [];
+  listPAID: caListMaster[] = [];
+  listBANK_INT_RATE: caListMaster[] = [];
+  listFIN: caListMaster[] = [];
+  listSUB_FIN: caListMaster[] = [];
+  listSUB_FINLS: caListMaster[] = [];
+  listLease: caListMaster[] = [];
+  listFAT: caListMaster[] = [];
+  listFAC: caListMaster[] = [];
+  listFAS: caListMaster[] = [];
+  listEQP: caListMaster[] = [];
+  listBDY: caListMaster[] = [];
+  listENG_TYPE: caListMaster[] = [];
+  listRMK_MKT: caListMaster[] = [];
+  listCOND_MKT: caListMaster[] = []
+  listCOND_CA: caListMaster[] = [];
   listInsRate: caListMaster[] = [];
-  listAPT : caListMaster[] = [] ;
+  listAPT: caListMaster[] = [];
   eventListMaster = new EventEmitter();
-  setListMaster(json : any[]){
+
+  setListMaster(json: any[]) {
     for (let i = 0; i < json.length; i++) {
       if (json[i].type == 'FNM') {
         this.listFNM.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'FNME') {
+      } else if (json[i].type == 'FNME') {
         this.listFNME.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'CRD') {
+      } else if (json[i].type == 'CRD') {
         this.listCRD.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'BNK') {
+      } else if (json[i].type == 'BNK') {
         this.listBNK.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'STS') {
+      } else if (json[i].type == 'STS') {
         this.listSTS.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'GRP_CUS') {
+      } else if (json[i].type == 'GRP_CUS') {
         this.listGRP_CUS.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'OC') {
+      } else if (json[i].type == 'OC') {
         this.listOC.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'POS_BG') {
+      } else if (json[i].type == 'POS_BG') {
         this.listPOS_BG.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'CS_BUS') {
+      } else if (json[i].type == 'CS_BUS') {
         this.listCS_BUS.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'INE') {
+      } else if (json[i].type == 'INE') {
         this.listINE.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'IND') {
+      } else if (json[i].type == 'IND') {
         this.listIND.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'PAID') {
+      } else if (json[i].type == 'PAID') {
         this.listPAID.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'BANK_INT_RATE') {
+      } else if (json[i].type == 'BANK_INT_RATE') {
         this.listBANK_INT_RATE.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'FIN') {
+      } else if (json[i].type == 'FIN') {
         this.listFIN.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'SUB_FIN') {
+      } else if (json[i].type == 'SUB_FIN') {
         this.listSUB_FIN.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'SUB_FIN_LS') {
+      } else if (json[i].type == 'SUB_FIN_LS') {
         this.listSUB_FINLS.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'Lease') {
+      } else if (json[i].type == 'Lease') {
         this.listLease.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'FAT') {
+      } else if (json[i].type == 'FAT') {
         this.listFAT.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'FAC') {
+      } else if (json[i].type == 'FAC') {
         this.listFAC.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'FAS') {
+      } else if (json[i].type == 'FAS') {
         this.listFAS.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'EQP') {
+      } else if (json[i].type == 'EQP') {
         this.listEQP.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'BDY') {
+      } else if (json[i].type == 'BDY') {
         this.listBDY.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'ENG_TYPE') {
+      } else if (json[i].type == 'ENG_TYPE') {
         this.listENG_TYPE.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'NTY') {
+      } else if (json[i].type == 'NTY') {
         this.listNTY.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'RMK_MKT') {
+      } else if (json[i].type == 'RMK_MKT') {
         this.listRMK_MKT.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'COND_MKT') {
+      } else if (json[i].type == 'COND_MKT') {
         this.listCOND_MKT.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'COND_CA') {
+      } else if (json[i].type == 'COND_CA') {
         this.listCOND_CA.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'INS-RATE') {
+      } else if (json[i].type == 'INS-RATE') {
         this.listInsRate.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
-      }else if (json[i].type == 'APT') {
+      } else if (json[i].type == 'APT') {
         this.listAPT.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
       }
 
 
-
     }
 
-   // console.log('Emit ans');
-  this.eventListMaster.emit();
+    // console.log('Emit ans');
+    this.eventListMaster.emit();
   }
 
 
@@ -253,48 +256,59 @@ export class creditApplicationService {
   //////  Set & Get  caHead (customer information)
   caHead: caHead;
   eventCaHead = new EventEmitter<caHead>();
+
   setCaHead(incaHead: caHead) {
     this.caHead = incaHead;
     this.eventCaHead.emit(incaHead);
   }
 
-  newCardNo : string ;
+  newCardNo: string;
   eventCardNo = new EventEmitter<string>();
-  setNewCardNo(pNewCard : string){
-     this.newCardNo = pNewCard ;
-     this.eventCardNo.emit(pNewCard);
+
+  setNewCardNo(pNewCard: string) {
+    this.newCardNo = pNewCard;
+    this.eventCardNo.emit(pNewCard);
   }
 
-  selectGuarantor : caGuarantor ;
+  selectGuarantor: caGuarantor;
   eventSelectGuarantor = new EventEmitter<caGuarantor>();
-  setSelectGuarantor(selectGuarantor : caGuarantor){
+
+  setSelectGuarantor(selectGuarantor: caGuarantor) {
     this.selectGuarantor = selectGuarantor;
     this.eventSelectGuarantor.emit(selectGuarantor);
   }
 
 
   //////  Asset & Sub Asset
-  bgdetail : caBgDetail ;
-  eventBgdetail = new EventEmitter<caBgDetail>() ;
-  setSelectBgdetail(value : caBgDetail){
-    this.bgdetail = value ;
+  bgdetail: caBgDetail;
+  eventBgdetail = new EventEmitter<caBgDetail>();
+
+  setSelectBgdetail(value: caBgDetail) {
+    this.bgdetail = value;
     this.eventBgdetail.emit(value);
   }
 
-  bgdetailSub : caBgDetailSub ;
-  eventBgdetailSub = new EventEmitter<caBgDetailSub>() ;
-  setSelectBgdetailSub(value :caBgDetailSub ){
-    this.bgdetailSub = value ;
+  bgdetailSub: caBgDetailSub;
+  eventBgdetailSub = new EventEmitter<caBgDetailSub>();
+
+  setSelectBgdetailSub(value: caBgDetailSub) {
+    this.bgdetailSub = value;
     this.eventBgdetailSub.emit(value);
 
   }
 
   ////  Pricing Buyer
-  eventcabuyer = new EventEmitter<caBuyer>() ;
-  setSelectBuyer(value :caBuyer ){
+  eventcabuyer = new EventEmitter<caBuyer>();
+
+  setSelectBuyer(value: caBuyer) {
     this.eventcabuyer.emit(value);
   }
 
+  listCaAmendKeyIn: caAmendKeyIn[] = [];
+  eventAmendKeyIn = new EventEmitter<caAmendKeyIn>();
+  setSelectAmendKeyIn(value : caAmendKeyIn){
+    this.eventAmendKeyIn.emit(value);
+  }
   ////-----------------------End  Event (Emit & subscribtion) ------------------
 
   calculateIrr(subId: any, calType: any) {
@@ -305,7 +319,7 @@ export class creditApplicationService {
         'Content-Type': 'application/json;charset=utf-8'
       }
     };
-    let dataDetail = this.bgdetail ;
+    let dataDetail = this.bgdetail;
     let sumCash = 0;
     let cltType = '';
     let intRate = 0;
@@ -320,7 +334,7 @@ export class creditApplicationService {
       "device": "web",
       "userCode": this.userStorage.getCode(),
       "calType": calType,
-      "finType": dataDetail.fin_typ ,
+      "finType": dataDetail.fin_typ,
       "installmentExcVat": dataDetail.installment_e_vat ? dataDetail.installment_e_vat : 0,
       "installmentVat": dataDetail.installment_vat ? dataDetail.installment_vat : 0,
       "flatRate": dataDetail.flat_rate ? dataDetail.flat_rate : 0,
@@ -330,7 +344,7 @@ export class creditApplicationService {
       "disburseDate": dataDetail.disburse_dt,
       "firstDate": dataDetail.first,
       "isBeginning": dataDetail.adv_arr,
-      "grossIrr": dataDetail.gross_irr ?dataDetail.gross_irr :  0,
+      "grossIrr": dataDetail.gross_irr ? dataDetail.gross_irr : 0,
       "netIrr": dataDetail.net_irr ? dataDetail.net_irr : 0,
       "finExcVat": dataDetail.fin_amt_e_vat ? dataDetail.fin_amt_e_vat : 0,
       "expense": dataDetail.es_expense ? dataDetail.es_expense : 0,
@@ -372,7 +386,7 @@ export class creditApplicationService {
   }
 
   listUseCreditLine() {
-    const url = this.service.url + this.service.ca_api + `/ask/ca/TodoCA?device=web&user=NAT.AM&comcode=BGPL&task=CA-USED`;
+    const url = this.service.url + this.service.ca_api + `/ask/ca/TodoCA?device=web&user=${this.userStorage.getCode()}&comcode=${this.userStorage.getComCode()}&task=CA-USED`;
     // const url = const url = this.service.url + this.service.ca_api + `/ask/ca/TodoCA?device=${device}&user=${userCode}&comcode=${comCode}&task=${task}`;
     let options = {
       headers: {
@@ -384,7 +398,7 @@ export class creditApplicationService {
   }
 
   listCaInquery() {
-    const url = this.service.url + this.service.ca_api + `/ask/ca/TodoCA?device=web&user=NAT.AM&comcode=BGPL&task=CA-00`;
+    const url = this.service.url + this.service.ca_api + `/ask/ca/TodoCA?device=web&user=${this.userStorage.getCode()}&comcode=${this.userStorage.getComCode()}&task=CA-00`;
     // const url = const url = this.service.url + this.service.ca_api + `/ask/ca/TodoCA?device=${device}&user=${userCode}&comcode=${comCode}&task=${task}`;
     let options = {
       headers: {
@@ -395,8 +409,20 @@ export class creditApplicationService {
     return this.http.get(url, options);
   }
 
-  UsedCreditLine(device: string, username: string, pccomcode: string, pcano: string ) {
-    const url = this.service.url + this.service.ca_api +'/ask/ca/UsedCreditLine';
+  listSearchAmend() {
+    const url = this.service.url + this.service.ca_api + `/ask/ca/TodoCA?device=web&user=${this.userStorage.getCode()}&comcode=${this.userStorage.getComCode()}&task=AM-00`;
+    // const url = const url = this.service.url + this.service.ca_api + `/ask/ca/TodoCA?device=${device}&user=${userCode}&comcode=${comCode}&task=${task}`;
+    let options = {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    };
+    console.log(url);
+    return this.http.get(url, options);
+  }
+
+  UsedCreditLine(device: string, username: string, pccomcode: string, pcano: string) {
+    const url = this.service.url + this.service.ca_api + '/ask/ca/UsedCreditLine';
 
     let data = {
       "device": device,
@@ -410,6 +436,24 @@ export class creditApplicationService {
       }
     };
     console.log(data);
+    return this.http.post(url, data, options);
+  }
+
+  amendCa(device: string, userName: string, comCode: string, caNo: string) {
+    const url = this.service.url + this.service.ca_api + '/ask/ca/AmendInsertTempData';
+
+    let data = {
+      "device": device,
+      "username": userName,
+      "comcode": comCode,
+      "cano": caNo
+    };
+    let options = {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    };
+    //console.log(data);
     return this.http.post(url, data, options);
   }
 

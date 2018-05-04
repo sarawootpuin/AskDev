@@ -80,7 +80,7 @@ export class ListAppFormComponent implements OnInit, OnChanges, OnDestroy,
   }
 
   rowSelectList(todoSelected: AppFormTodo) {
-    this.router.navigate(['/appform']
+    this.router.navigate(['/appForm']
       , {
         queryParams: {
           com_code: todoSelected.comCode,

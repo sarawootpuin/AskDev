@@ -1,21 +1,19 @@
 import {NgModule} from "@angular/core";
 import {Route, RouterModule} from "@angular/router";
 import {AppFormComponent} from "./appform.component";
-import {MainGuard} from "../../main.guard";
-import {ListComponent} from "./leasing/list/list.component";
-import {DetailComponent} from "./leasing/detail/detail.component";
+import {AppFormInQuiryComponent} from "./appform-inquiry/appform-inquiry.component";
 
 const routes: Route[] = [
 
-  {path:'',component:AppFormComponent, canActivate: [MainGuard], canActivateChild: [MainGuard],
-    children :[
-    ]
-  }
+  {path: '', component: AppFormComponent
+    /*, canDeactivate:[HomeGuard]*/},
+  {path: 'inquiry', component: AppFormInQuiryComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule]/*,
+  providers: [HomeGuard]*/
 })
-export class AppformRoutingModule {
+export class AppFormRoutingModule {
 }

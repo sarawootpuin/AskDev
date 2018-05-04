@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {creditApplicationService} from "../credit-application.service";
 import {Subscription} from "rxjs/Subscription";
 import {caHead} from "../model/ca-head";
@@ -8,6 +8,7 @@ import {caHead} from "../model/ca-head";
   templateUrl: './ca-customer-tab.component.html'
 })
 export class CaCustomerTabComponent implements OnInit, OnDestroy {
+  @Input() isReadonly : boolean;
 
   subscripData: Subscription;
   sbu_type : string ;

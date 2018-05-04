@@ -138,24 +138,35 @@ export class NavMenuComponent implements OnInit, OnDestroy,OnChanges,AfterViewIn
           task: "Apply"
         }
       });
+    } else if (menuCodeSelect == "MSM-02") {
+      this.router.navigate(['/monitorSMS']);
     } else if (menuCodeSelect == "MSM-04") {
       this.router.navigate(['/SaleCall/inQuery']);
     } else if (menuCodeSelect == "MSM-07") {
       this.router.navigate(['/reassign']);
-    } else if (menuCodeSelect == "AP-01") {
-      this.router.navigate(['/appform'], {
+    } else if (menuCodeSelect == "AP-00") {
+      this.router.navigate(['/appForm/inquiry']);
+    }
+      else if (menuCodeSelect == "AP-01") {
+      this.router.navigate(['/appForm'], {
         relativeTo: this.route,
         queryParams: {
           type: "New"
         }
       });
     } else if (menuCodeSelect == "AP-01-2") {
-        this.router.navigate(['/appform'], {
+        this.router.navigate(['/appForm'], {
           relativeTo: this.route,
           queryParams: {
             type: "Renew"
           }
         });
+    } else if (menuCodeSelect == "CA-00") {
+      this.router.navigate(['/ca/inQuery']);
+    } else if (menuCodeSelect == "CA-CRL") {
+      this.router.navigate(['/ca/useCreditline']);
+    } else if (menuCodeSelect == "AM-00"){
+      this.router.navigate(['/ca/amend']);
     } else if (menuCodeSelect == "ICD1") {
       this.router.navigate(['/IncompleteDoc/ICDApply']);
     } else if (menuCodeSelect == "ICD2") {
@@ -188,7 +199,7 @@ export class NavMenuComponent implements OnInit, OnDestroy,OnChanges,AfterViewIn
       this.router.navigate(['/scoring/reverify']);
     } else if (menuCodeSelect == "P1") {
       this.router.navigate(['/entity']);
-}
+    }
 
 
 

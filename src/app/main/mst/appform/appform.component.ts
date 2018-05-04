@@ -46,11 +46,13 @@ export class AppFormComponent implements OnInit, OnDestroy {
   checkLoader: boolean = false;
   disabled: string = 'N';
   task: string;
+  taskCode : string;
   comment: string;
   approvePerson: string;
   openTab: string = 'Customer';
   subParams: Subscription;
   isLoading: boolean = true;
+  inquiry: boolean = false;
 
   @ViewChild('confirmDialog') confirmDialog: ActionDialogComponent;
   @ViewChild('newRenewDialog') newRenewDialog: ActionDialogComponent;
@@ -79,6 +81,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
     if (!this.applyEmit.type) {
       this.applyEmit.type = '';
     }
+    this.taskCode = this.Route.snapshot.queryParams['taskCode'];
   }
 
   ngOnInit() {
@@ -102,6 +105,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
         if (!this.applyEmit.type) {
           this.applyEmit.type = '';
         }
+        this.taskCode = params['taskCode'];
         this.appFormService.clearData();
         this.data = new getDataAppForm();
         this.genDetailAppForm();
@@ -215,7 +219,6 @@ export class AppFormComponent implements OnInit, OnDestroy {
       || this.action == 'Reject' || this.action == 'Return'
       || this.action == 'Cancel') {
       this.comment = "";
-      console.log('test');
       this.saveDialog.setAction(this.action.toUpperCase());
       this.saveDialog.open();
     }
@@ -458,7 +461,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
       this.showAlertDialog("INFORMATION", "Cancel Complete");
     }
     else if (this.action == 'Save' && (this.typeBeforeSave == 'New' || this.typeBeforeSave == 'Renew')) {
-      this.router.navigate(['/appform']
+      this.router.navigate(['/appForm']
         , {
           queryParams: {
             com_code: this.com_code,
@@ -582,6 +585,11 @@ export class AppFormComponent implements OnInit, OnDestroy {
           }
 
           this.disabled = this.appFormService.getAppFormData().disabled;
+
+          this.inquiry = this.taskCode == 'AP-00' ? true : false;
+          console.log(this.inquiry);
+          this.appFormService.inquiry.emit(this.inquiry);
+
           this.isLoading = false;
           //this.sideTabComponent.openTab(this.openTab);
         }

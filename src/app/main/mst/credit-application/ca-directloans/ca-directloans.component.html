@@ -1,188 +1,188 @@
-<fieldset [disabled]="disabledForm == 'N'">
-<div class="form-group border-isa container-fluid">
-  <div class="row p-1">
-    <div class="col-md-3">
-      <div class="form-group">
-        <label>Requested Credit Line :</label>
-        <span class="star">*</span>
-        <input appMyCurrency
-               class="form-control"
-               [value]="selectbgdetail.fin_amt_e_vat" (change)="selectbgdetail.fin_amt_e_vat = $event.target.value"
-               />
-      </div>
-    </div>
-    <div class="col-md-3">
-      <label>Disburse Date</label><br>
-      <p-calendar [ngModel]="selectbgdetail.disburse_dt"   showButtonBar="true"
-                  (ngModelChange)="disburseChange($event); selectbgdetail.first= firstChange($event);"
-                  dateFormat="dd/mm/yy"></p-calendar>
-    </div>
-    <div class="col-md-3">
-      <label>First Due</label><br>
-      <p-calendar [(ngModel)]="selectbgdetail.first" dataType="string"  showButtonBar="true"
-                  dateFormat="dd/mm/yy"></p-calendar>
-    </div>
-
-  </div>
-  <div class="flex-row form-inline border-isa col-md-6">
-    <div class="col-md-9">
-      <select class="form-control"
-              [(ngModel)] = "selectbgdetail.selectForCall">
-        <option [value]="6">1.Calculate Installment: Know Interest,Fin,Term</option>
-        <option [value]="7">2.Calculate Interest: Know Installment,Fin,Term</option>
-      </select>
-    </div>
-    <div class="col-md-3">
-      <button type="button" pButton style="float:left"
-              (click)="calculateLoanClick()"
-              label="Calculate"></button>
-    </div>
-  </div>
-  <div class="border-isa mt-1 form-group col-md-12 p-2">
-    <label><b>Interest Charge </b></label><br>
-    <div class="form-inline col-md-6">
-      <label>Interest Rate : </label>
-      <input appMyCurrency
-             class="form-control" [fraction]="8"
-             [value]="selectbgdetail.flat_rate" (change)="selectbgdetail.flat_rate = $event.target.value"
-             />
-      <label>&nbsp;% (Gross IRR)</label>
-    </div>
-    <div class="form-inline mt-1 col-md-6">
-      <label>Penalty Rate : </label>
-      <input appMyCurrency
-             readonly
-             class="form-control"  [fraction]="8"
-             [value]="selectbgdetail.pen_rate" (change)="selectbgdetail.pen_rate = $event.target.value"
-             />
-      <label>&nbsp;%</label>
-    </div>
-  </div>
-  <div class="border-isa">
-    <div class="d-flex ">
+<fieldset [disabled]="disabledForm == 'N' || isReadonly">
+  <div class="form-group border-isa container-fluid">
+    <div class="row p-1">
       <div class="col-md-3">
         <div class="form-group">
-          <label>Grace Period</label>
-          <div class="form-inline">
-            <input appMyCurrency
-                   class="form-control"
-                   [value]="selectbgdetail.great_period" (change)="selectbgdetail.great_period = $event.target.value"
-                   />
-            &nbsp; Day
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="form-group">
-          <label>Front-end Fee</label>
-          <div class="form-inline">
-            <input appMyCurrency
-                   class="form-control"
-                   [value]="selectbgdetail.es_revenue" (change)="selectbgdetail.es_revenue = $event.target.value"
-                   />
-            &nbsp; Baht.
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="form-group">
-          <label>Tenor</label>
+          <label>Requested Credit Line :</label>
           <span class="star">*</span>
-          <div class="form-inline">
-            <input appMyCurrency
-                   class="form-control"
-                   [fraction]="0"
-                   [value]="selectbgdetail.terms" (change)="selectbgdetail.terms = $event.target.value"
-                   />
-            &nbsp; Month
-          </div>
+          <input appMyCurrency
+                 class="form-control"
+                 [value]="selectbgdetail.fin_amt_e_vat" (change)="selectbgdetail.fin_amt_e_vat = $event.target.value"
+          />
         </div>
       </div>
-    </div>
-    <div class="d-flex">
-      <div class="col-md-12">
-        <label>Net IRR</label>
-        <span class="star">*</span>
-        <div class="form-group form-inline">
-          <input class="form-control" appMyCurrency
-                 [fraction]="5"
-                 [value]="selectbgdetail.net_irr"
-                 (change)="selectbgdetail.net_irr = $event.target.value"
-                 >
-          <label class="pl-1 pr-1">&nbsp; Inc. front end fee</label>
-          <div class="form-inline">
-            <input class="form-control"
-                   appMyCurrency
-                   [fraction]="5"
-                   [value]="selectbgdetail.net_irr_inc_deposit"
-                   (change)="selectbgdetail.net_irr_inc_deposit = $event.target.value"
-                   readonly
-                   >
-            <label style="padding-left: 10px">Inc. (front end fee+deposit)</label>
-          </div>
-        </div>
+      <div class="col-md-3">
+        <label>Disburse Date</label><br>
+        <p-calendar [ngModel]="selectbgdetail.disburse_dt" showButtonBar="true"
+                    (ngModelChange)="disburseChange($event); selectbgdetail.first= firstChange($event);"
+                    dateFormat="dd/mm/yy"></p-calendar>
       </div>
-    </div>
-  </div>
-  <div class="border-isa mt-1">
-    <div class="form-inline form-group">
-      <label class="mt-radio" style="padding: 5px">
-        <input type="radio" name="schedule_loan" value="R"
-               [(ngModel)]="selectbgdetail.schedule"
-               (ngModelChange)="scheduleChange()"> Straight
-        <input type="radio" name="schedule_loan" value="I"
-               [(ngModel)]="selectbgdetail.schedule"
-               (ngModelChange)="scheduleChange()">Step
-      </label>
-      <label style="padding-left: 20px;padding-right: 10px">Installment</label>
-      <input currencyMask
-             #insEVatLoan
-             [disabled]="selectbgdetail.schedule == 'I'"
-             class="form-control"
-             [(ngModel)]="selectbgdetail.installment_e_vat"
-             [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
-      <label style="padding-left: 10px;padding-right: 10px">Advance / Rear </label>
-      <input type="text" class="form-control" style="width: 35%;"
-             [ngModel]="adv_arr_name" disabled><br>
-    </div>
+      <div class="col-md-3">
+        <label>First Due</label><br>
+        <p-calendar [(ngModel)]="selectbgdetail.first" dataType="string" showButtonBar="true"
+                    dateFormat="dd/mm/yy"></p-calendar>
+      </div>
 
-    <p-dataTable [value]="selectbgdetail.listcastep" selectionMode="single" [(selection)]="selectedStep"
-                 rows="15" [responsive]="true"
-                 (onRowSelect)="onRowSelect($event)"
-                 *ngIf="selectbgdetail.schedule == 'I'">
-      <p-header>
-        <app-custom-botton-icon [option]="'new'"
-                                (onBtnClick)="addEditStep('add')"></app-custom-botton-icon>
-        <app-custom-botton-icon [option]="'edit'"
-                                (onBtnClick)="addEditStep('edit')"></app-custom-botton-icon>
-        <app-custom-botton-icon [option]="'delete'"
-                                (onBtnClick)="delete()"></app-custom-botton-icon>
-      </p-header>
-      <p-headerColumnGroup>
-        <p-row>
-          <p-column header="From Term" rowspan="2"></p-column>
-          <p-column header="To Term" rowspan="2"></p-column>
-          <p-column header="Installment" rowspan="2"></p-column>
-        </p-row>
-      </p-headerColumnGroup>
-      <p-column field="from_term" [style]="{'text-align':'right'}">
-        <ng-template let-col let-row="rowData" pTemplate="body">
-          <span>{{ row[col.field] |  number:'.'  }}</span>
-        </ng-template>
-      </p-column>
-      <p-column field="to_term" [style]="{'text-align':'right'}">
-        <ng-template let-col let-row="rowData" pTemplate="body">
-          <span>{{ row[col.field] |  number:'.'  }}</span>
-        </ng-template>
-      </p-column>
-      <p-column field="inst_e_vat" [style]="{'text-align':'right'}">
-        <ng-template let-col let-row="rowData" pTemplate="body">
-          <span>{{ row[col.field] |  number:'.2-2'  }}</span>
-        </ng-template>
-      </p-column>
-    </p-dataTable>
+    </div>
+    <div class="flex-row form-inline border-isa col-md-6">
+      <div class="col-md-9">
+        <select class="form-control"
+                [(ngModel)]="selectbgdetail.selectForCall">
+          <option [value]="6">1.Calculate Installment: Know Interest,Fin,Term</option>
+          <option [value]="7">2.Calculate Interest: Know Installment,Fin,Term</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <button type="button" pButton style="float:left"
+                (click)="calculateLoanClick()"
+                label="Calculate"></button>
+      </div>
+    </div>
+    <div class="border-isa mt-1 form-group col-md-12 p-2">
+      <label><b>Interest Charge </b></label><br>
+      <div class="form-inline col-md-6">
+        <label>Interest Rate : </label>
+        <input appMyCurrency
+               class="form-control" [fraction]="8"
+               [value]="selectbgdetail.flat_rate" (change)="selectbgdetail.flat_rate = $event.target.value"
+        />
+        <label>&nbsp;% (Gross IRR)</label>
+      </div>
+      <div class="form-inline mt-1 col-md-6">
+        <label>Penalty Rate : </label>
+        <input appMyCurrency
+               readonly
+               class="form-control" [fraction]="8"
+               [value]="selectbgdetail.pen_rate" (change)="selectbgdetail.pen_rate = $event.target.value"
+        />
+        <label>&nbsp;%</label>
+      </div>
+    </div>
+    <div class="border-isa">
+      <div class="d-flex ">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Grace Period</label>
+            <div class="form-inline">
+              <input appMyCurrency
+                     class="form-control"
+                     [value]="selectbgdetail.great_period" (change)="selectbgdetail.great_period = $event.target.value"
+              />
+              &nbsp; Day
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Front-end Fee</label>
+            <div class="form-inline">
+              <input appMyCurrency
+                     class="form-control"
+                     [value]="selectbgdetail.es_revenue" (change)="selectbgdetail.es_revenue = $event.target.value"
+              />
+              &nbsp; Baht.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Tenor</label>
+            <span class="star">*</span>
+            <div class="form-inline">
+              <input appMyCurrency
+                     class="form-control"
+                     [fraction]="0"
+                     [value]="selectbgdetail.terms" (change)="selectbgdetail.terms = $event.target.value"
+              />
+              &nbsp; Month
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex">
+        <div class="col-md-12">
+          <label>Net IRR</label>
+          <span class="star">*</span>
+          <div class="form-group form-inline">
+            <input class="form-control" appMyCurrency
+                   [fraction]="5"
+                   [value]="selectbgdetail.net_irr"
+                   (change)="selectbgdetail.net_irr = $event.target.value"
+            >
+            <label class="pl-1 pr-1">&nbsp; Inc. front end fee</label>
+            <div class="form-inline">
+              <input class="form-control"
+                     appMyCurrency
+                     [fraction]="5"
+                     [value]="selectbgdetail.net_irr_inc_deposit"
+                     (change)="selectbgdetail.net_irr_inc_deposit = $event.target.value"
+                     readonly
+              >
+              <label style="padding-left: 10px">Inc. (front end fee+deposit)</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="border-isa mt-1">
+      <div class="form-inline form-group">
+        <label class="mt-radio" style="padding: 5px">
+          <input type="radio" name="schedule_loan" value="R"
+                 [(ngModel)]="selectbgdetail.schedule"
+                 (ngModelChange)="scheduleChange()"> Straight
+          <input type="radio" name="schedule_loan" value="I"
+                 [(ngModel)]="selectbgdetail.schedule"
+                 (ngModelChange)="scheduleChange()">Step
+        </label>
+        <label style="padding-left: 20px;padding-right: 10px">Installment</label>
+        <input currencyMask
+               #insEVatLoan
+               [disabled]="selectbgdetail.schedule == 'I'"
+               class="form-control"
+               [(ngModel)]="selectbgdetail.installment_e_vat"
+               [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
+        <label style="padding-left: 10px;padding-right: 10px">Advance / Rear </label>
+        <input type="text" class="form-control" style="width: 35%;"
+               [ngModel]="adv_arr_name" disabled><br>
+      </div>
+
+      <p-dataTable [value]="selectbgdetail.listcastep" selectionMode="single" [(selection)]="selectedStep"
+                   rows="15" [responsive]="true"
+                   (onRowSelect)="onRowSelect($event)"
+                   *ngIf="selectbgdetail.schedule == 'I'">
+        <p-header>
+          <app-custom-botton-icon [option]="'new'"
+                                  (onBtnClick)="addEditStep('add')"></app-custom-botton-icon>
+          <app-custom-botton-icon [option]="'edit'"
+                                  (onBtnClick)="addEditStep('edit')"></app-custom-botton-icon>
+          <app-custom-botton-icon [option]="'delete'"
+                                  (onBtnClick)="delete()"></app-custom-botton-icon>
+        </p-header>
+        <p-headerColumnGroup>
+          <p-row>
+            <p-column header="From Term" rowspan="2"></p-column>
+            <p-column header="To Term" rowspan="2"></p-column>
+            <p-column header="Installment" rowspan="2"></p-column>
+          </p-row>
+        </p-headerColumnGroup>
+        <p-column field="from_term" [style]="{'text-align':'right'}">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] |  number:'.'  }}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="to_term" [style]="{'text-align':'right'}">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] |  number:'.'  }}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="inst_e_vat" [style]="{'text-align':'right'}">
+          <ng-template let-col let-row="rowData" pTemplate="body">
+            <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
   </div>
-</div>
 </fieldset>
 
 <app-action-dialog #actionDialog
@@ -200,7 +200,7 @@
   <div class="form-group">
     <label>Installment</label>
     <input class="form-control" appMyCurrency
-                [value]="step.inst_e_vat" (change)="step.inst_e_vat = $event.target.value">
+           [value]="step.inst_e_vat" (change)="step.inst_e_vat = $event.target.value">
   </div>
 </app-action-dialog>
 

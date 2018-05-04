@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {caBgDetail} from "../model/ca-bgdetail";
 import {creditApplicationService} from "../credit-application.service";
 import {DateUtils} from "../../../../shared/center/utils/date-utils";
@@ -13,6 +13,7 @@ import {Subscription} from "rxjs/Subscription";
   templateUrl: './ca-directloans.component.html'
 })
 export class CaDirectloansComponent implements OnInit , OnDestroy {
+  @Input() isReadonly : boolean;
   subscripData: Subscription;
   subscripMaster: Subscription;
 

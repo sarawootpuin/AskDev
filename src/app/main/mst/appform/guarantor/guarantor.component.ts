@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {AppFormService} from "../appform.service";
 import {ListGuarantor} from "../model/getDataGuarantor";
 
@@ -11,6 +11,7 @@ export class GuarantorComponent implements OnInit {
   data: ListGuarantor[];
   dataSelect: ListGuarantor = null;
   disabled: string = 'N';
+  @Input() inquiry: boolean;
 
   constructor(private appFormService: AppFormService) {
 

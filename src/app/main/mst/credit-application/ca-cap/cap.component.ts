@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Subscription} from "rxjs/Subscription";
 import {creditApplicationService} from "../credit-application.service";
 import {caCapCl} from "../model/ca-capcl";
@@ -15,6 +15,7 @@ import {UserStorage} from "../../../../shared/user/user.storage.service";
   templateUrl: './cap.component.html',
 })
 export class CaCapComponent implements OnInit,OnDestroy {
+  @Input() isReadonly : boolean;
   subscripData: Subscription;
   subscripMaster: Subscription;
 

@@ -15,77 +15,77 @@ export class UserStorage {
   }
 
   storageCode(value: string) {
-    localStorage.setItem(this.code, value);
+    sessionStorage.setItem(this.code, value);
   }
 
   storageComCode(value: string) {
-    localStorage.setItem(this.comCode, value);
+    sessionStorage.setItem(this.comCode, value);
   }
 
   storageComCodePort(value: string) {
-    localStorage.setItem(this.comCodePort, value);
+    sessionStorage.setItem(this.comCodePort, value);
   }
 
   storageUserName(value: string) {
-    localStorage.setItem(this.userName, value);
+    sessionStorage.setItem(this.userName, value);
   }
 
   storageAccessCompany(value: string) {
-    localStorage.setItem(this.accessCompany, value);
+    sessionStorage.setItem(this.accessCompany, value);
   }
 
   storageRatePen(value: string) {
-    localStorage.setItem(this.ratePen, value);
+    sessionStorage.setItem(this.ratePen, value);
   }
 
   storageVatRate(value: string) {
-    localStorage.setItem(this.vatRate, value);
+    sessionStorage.setItem(this.vatRate, value);
   }
 
   storageGrace(value: string) {
-    localStorage.setItem(this.grace, value);
+    sessionStorage.setItem(this.grace, value);
   }
 
   removeStorage() {
-    localStorage.removeItem(this.code);
-    localStorage.removeItem(this.comCode);
-    localStorage.removeItem(this.comCodePort)
-    localStorage.removeItem(this.userName);
-    localStorage.removeItem(this.accessCompany);
-    localStorage.removeItem(this.ratePen);
-    localStorage.removeItem(this.vatRate);
-    localStorage.removeItem(this.grace);
+    sessionStorage.removeItem(this.code);
+    sessionStorage.removeItem(this.comCode);
+    sessionStorage.removeItem(this.comCodePort);
+    sessionStorage.removeItem(this.userName);
+    sessionStorage.removeItem(this.accessCompany);
+    sessionStorage.removeItem(this.ratePen);
+    sessionStorage.removeItem(this.vatRate);
+    sessionStorage.removeItem(this.grace);
   }
 
   getCode(): string {
-    return localStorage.getItem(this.code);
+    return sessionStorage.getItem(this.code);
   }
 
   getComCode(): string {
-    return localStorage.getItem(this.comCode);
+    return sessionStorage.getItem(this.comCode);
   }
 
   getComCodePort(): string {
-    return localStorage.getItem(this.comCodePort);
+    return sessionStorage.getItem(this.comCodePort);
   }
 
   getUserName(): string {
-    return localStorage.getItem(this.userName);
+    return sessionStorage.getItem(this.userName);
   }
 
   getAccessCompany(): string {
-    return localStorage.getItem(this.accessCompany);
+    return sessionStorage.getItem(this.accessCompany);
   }
 
   getRatePen(): string {
-    return localStorage.getItem(this.ratePen);
+    return sessionStorage.getItem(this.ratePen);
   }
 
   getVatRate(): string {
-    return localStorage.getItem(this.vatRate);
+    return sessionStorage.getItem(this.vatRate);
   }
 
   getGrace(): string {
-    return localStorage.getItem(this.grace);
+    return sessionStorage.getItem(this.grace);
   }
 }

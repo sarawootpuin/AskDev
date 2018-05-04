@@ -24,6 +24,7 @@ import {TextMaskModule} from "angular2-text-mask";
 import {ContactpersonModule} from "../contactperson/contactperson.module";
 import {CallVistiTelesaleComponent} from "./call-visit-detail/call-visit-telesale/call-visti-telesale.component";
 import {CallVisitInqueryComponent} from "./call-visit-inquery/call-visit-inquery.component";
+import {CallVisitCrossExpenseComponent} from "./call-visit-cross-expense/call-visit-cross-expense.component";
 
 
 // import {AgmCoreModule} from "@agm/core";
@@ -54,7 +55,7 @@ import {CallVisitInqueryComponent} from "./call-visit-inquery/call-visit-inquery
     CallVisitResultComponent, CallVisitCreditTypeAssetComponent,
     CallVisitAttendeesComponent, CallVisitExpenseComponent,
     CallVisitExposureComponent, CallVisitCallingHistoryComponent, CallVistiTelesaleComponent,
-    CallVisitInqueryComponent]
+    CallVisitInqueryComponent,CallVisitCrossExpenseComponent]
 })
 export class SaleCallVisitModule {
 }

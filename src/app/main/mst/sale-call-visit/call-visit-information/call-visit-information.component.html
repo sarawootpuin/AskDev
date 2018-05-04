@@ -86,10 +86,9 @@
       <select class="form-control"
               [ngModel]="saleCallH_Info?.prv_code"
               (ngModelChange)="saleCallH_Info.prv_code=$event">
-        <option></option>
         <option *ngFor="let ansPROVINCE of ListPROVINCE"
                 [selected]="ansPROVINCE.id == saleCallH_Info?.prv_code"
-                [value]="ansPROVINCE.id">{{ansPROVINCE?.display}}
+                [value]="ansPROVINCE.id"> {{ansPROVINCE?.key1}}( {{ansPROVINCE?.display}} )
         </option>
       </select>
     </div>

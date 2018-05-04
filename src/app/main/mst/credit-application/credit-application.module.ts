@@ -66,6 +66,10 @@ import {CaRecommendComponent} from "./ca-recommend/ca-recommend.component";
 import {BlacklistModule} from "../../blacklist/blacklist.module";
 import {CaInqueryComponent} from "./ca-inquery/ca-inquery.component";
 import {CaUseCreditlineComponent} from "./ca-use-creditline/ca-use-creditline.component";
+import {CaAmendContentReasonComponent} from "./ca-amend-content-reason/ca-amend-content-reason.component";
+import {CaAmendKeyinComponent} from "./ca-amend-keyin/ca-amend-keyin.component";
+import {CaSearchAmendComponent} from "./ca-search-amend/ca-search-amend.component";
+import {CardModule} from "primeng/card";
 @NgModule({
   imports: [
     ButtonModule, DialogModule, FileUploadModule, PanelModule, TabViewModule, DataTableModule, SharedModule,
@@ -77,7 +81,7 @@ import {CaUseCreditlineComponent} from "./ca-use-creditline/ca-use-creditline.co
     CreditApplicationRoutingModule,
     CurrencyMaskModule,CenterModule,
     GalleriaModule,LightboxModule,SidebarModule, FormsModule,PanelMenuModule,TooltipModule
-    ,EntityModule,InputSwitchModule,TextMaskModule,KeyFilterModule
+    ,EntityModule,InputSwitchModule,TextMaskModule,KeyFilterModule,CardModule
   ],
   declarations: [CreditApplicationComponent,CaAddressThComponent,CaAddressEnComponent,CaPercentIndComponent
   ,CaMachineComponent,CaExposureComponent,CaCustomerComponent,CaConditionRemarkComponent,CaSubcaComponent,CaProfileComponent
@@ -87,7 +91,7 @@ import {CaUseCreditlineComponent} from "./ca-use-creditline/ca-use-creditline.co
   ,CaExposureTabComponent,CaAsiaConditionComponent,CaBgExposureComponent,CaGuarantorComponent,CaAssetComponent,RepaymentComponent,AssetDetailComponent
   ,CaGuarAddressEnComponent,CaGuarAsiaConditionComponent,CaGuarCardComponent,CaGuarAddressThComponent,CaGuarExposureComponent,CaGuarMachineComponent
   ,CaGuarPercentIndComponent,AssetDetailComponent,CaFinanceComponent,CaAttachmentComponent,CaFacPricingComponent,CaRecommendComponent
-  ,CaInqueryComponent,CaUseCreditlineComponent
+  ,CaInqueryComponent,CaUseCreditlineComponent,CaAmendContentReasonComponent,CaAmendKeyinComponent,CaSearchAmendComponent
   ],
   providers:[CurrencyPipe,DecimalPipe,DatePipe,creditApplicationService]
 })

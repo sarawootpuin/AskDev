@@ -56,6 +56,7 @@ export class ListSaleCallComponent implements OnInit, OnChanges, OnDestroy,
         "web", userName, this.task.taskName, code
       ).subscribe(
         (data: any) => {
+          console.log(data);
           if (data.MSG == 'Complete') {
             this.listSalecallTodo = SaleCallTodo.parse(data.LIST_DATA);
           } else {
@@ -83,13 +84,23 @@ export class ListSaleCallComponent implements OnInit, OnChanges, OnDestroy,
   }
 
   rowSelectList(saleCallSelected: SaleCallTodo) {
-    this.router.navigate(['/SaleCall'], {
-      queryParams: {
-        sale_call_no: saleCallSelected.sale_call_no,
-        card_no: saleCallSelected.card_no,
-        task : this.task.taskName
-      }
-    });
+    if (this.task.taskName == 'Cross Expense') {
+      this.router.navigate(['/SaleCall/crossExpense'], {
+        queryParams: {
+          sale_call_no: saleCallSelected.sale_call_no,
+          seq: saleCallSelected.SEQ_NO,
+          task : this.task.taskName
+        }
+      });
+    }else {
+      this.router.navigate(['/SaleCall'], {
+        queryParams: {
+          sale_call_no: saleCallSelected.sale_call_no,
+          card_no: saleCallSelected.card_no,
+          task : this.task.taskName
+        }
+      });
+    }
   }
 
 }

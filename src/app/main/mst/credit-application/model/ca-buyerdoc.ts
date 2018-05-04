@@ -21,6 +21,8 @@ export class caBuyerDoc {
   public oth2;
   public oth3;
 
+  public forfilter;
+
   constructor()
   constructor(com_code, ca_no, buyer_code, doc_type, doc_code, factored_doc_type, factored_ifany, effective_date, input_by, input_date, last_update_by, last_update_date, remark, id_code, remark_cat, select_o, select_p, select_c, oth1, oth2, oth3)
   constructor(com_code?, ca_no?, buyer_code?, doc_type?, doc_code?, factored_doc_type?, factored_ifany?, effective_date?, input_by?, input_date?, last_update_by?, last_update_date?, remark?, id_code?, remark_cat?, select_o?, select_p?, select_c?, oth1?, oth2?, oth3?) {
@@ -45,6 +47,11 @@ export class caBuyerDoc {
     this.oth1 = oth1? oth1 : '';
     this.oth2 = oth2? oth2 : '';
     this.oth3 = oth3? oth3 : '';
+    if (this.doc_type == '1') {
+      this.forfilter  = 'Factored';
+    }else if (this.doc_type == '2'){
+      this.forfilter  = 'Collection';
+    }
   }
 
   static

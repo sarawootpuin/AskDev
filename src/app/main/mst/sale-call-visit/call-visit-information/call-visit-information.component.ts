@@ -64,7 +64,6 @@ export class CallVisitInformationComponent implements OnInit,OnDestroy {
         this.ListNEWINDUSTRY = this.saleCallVisitService.ListNEWINDUSTRY;
         this.ListOLDINDUSTRY = this.saleCallVisitService.ListOLDINDUSTRY;
 
-
       }
     );
   }

@@ -1,20 +1,18 @@
-
 import {caEntity} from "./ca-entity";
 import {caPcnInd} from "./ca-pcnind";
 import {caGuarantor} from "./ca-guarantor";
-import {caEntityCard} from "./ca-entitycard";
-import {caEntityBank} from "./ca-entitybank";
 import {caBgDetail} from "./ca-bgdetail";
 import {caContext} from "./ca-context";
 import {caAssersite} from "./ca-assetsite";
 import {caPricing} from "./ca-pricing";
 import {caBuyer} from "./ca-buyer";
-import {caBgApvHist} from "./ca-bgapvhist";
 import {caApvHist} from "./ca-apvhist";
 import {caCapCl} from "./ca-capcl";
 import {caCapClOwner} from "./ca-capclowner";
 import {caCollateral} from "./ca-collateral";
 import {caDetail} from "./ca-detail";
+import {caAmendKeyIn} from "./ca-amendkeyin";
+import {caAmendContent} from "./ca-amendcontent";
 export class caHead {
   public com_code;
   public prebranch_code;
@@ -51,7 +49,7 @@ export class caHead {
   public total_exposure_cap;
   public total_exposure_cal;
   public fin_asst;
-  public ca_condition : string;
+  public ca_condition: string;
   public ca_remark;
   public ca_prv_cond;
   public ca_approve_date;
@@ -150,25 +148,27 @@ export class caHead {
   public rec_cond;
   public rec_usr;
   public rec_upd;
-  public caentity:caEntity;
+  public caentity: caEntity;
   public listpcnind: caPcnInd[];
-  public listcaguarantor : caGuarantor[] ;
-  public listbgdetail : caBgDetail[];
-  public listcacontext : caContext[];
-  public listassetsite : caAssersite[];
-  public listcapricing : caPricing[];
-  public listcabuyer : caBuyer[];
+  public listcaguarantor: caGuarantor[];
+  public listbgdetail: caBgDetail[];
+  public listcacontext: caContext[];
+  public listassetsite: caAssersite[];
+  public listcapricing: caPricing[];
+  public listcabuyer: caBuyer[];
 
-  public listcaapvhist : caApvHist[];
-  public listcacapcl : caCapCl[];
-  public listcacapclowner : caCapClOwner[];
-  public listcacollateral : caCollateral[];
-  public listcadetail : caDetail[];
+  public listcaapvhist: caApvHist[];
+  public listcacapcl: caCapCl[];
+  public listcacapclowner: caCapClOwner[];
+  public listcacollateral: caCollateral[];
+  public listcadetail: caDetail[];
+
+  public listamendhist: caAmendKeyIn[];
+  public listamendcontent: caAmendContent[];
 
   public ap_rec_agr_flag;
   public ap_rec_amount;
   public ap_rec_cond;
-
 
 
   constructor()
@@ -189,14 +189,16 @@ export class caHead {
               highest_ls_amt, highest_hp_amt, highest_ls_amt_grp, highest_hp_amt_grp, last_due_ls, last_due_hp, mkt_grp, os_ar_hp,
               os_ar_ls, os_credit_amt, os_credit_line_amt, reqst_credit_amt, intro_by_cd, mkt_name, cus_name, sbu_type_desc,
               team_mkt_leader, verifier_name, join_group_name, join_group_cr, intro_mthd_desc, intro_by_name, title_authority,
-              above_level, rec_agr_flag, rec_cond, rec_usr, rec_upd,ap_rec_agr_flag,ap_rec_amount,ap_rec_cond,
-              caentity,listpcnind,listcaguarantor,listbgdetail,listcacontext,listassetsite
-             ,listcapricing,listcabuyer
-             , listcaapvhist
-             , listcacapcl
-             , listcacapclowner
-             , listcacollateral
-             , listcadetail )
+              above_level, rec_agr_flag, rec_cond, rec_usr, rec_upd, ap_rec_agr_flag, ap_rec_amount, ap_rec_cond,
+              caentity, listpcnind, listcaguarantor, listbgdetail, listcacontext, listassetsite
+    , listcapricing, listcabuyer
+    , listcaapvhist
+    , listcacapcl
+    , listcacapclowner
+    , listcacollateral
+    , listcadetail
+    , listamendhist
+    , listamendcontent)
 
   constructor(com_code?, prebranch_code?, ca_no?, sale_call_no?, ctrl_no?, cus_status?, cus_code?, grp_code?, joint_seller_group?,
               sbu_typ?, advance_type?, apply_by?, apply_dt?, expire_dt?, contract_no?, contract_date?, contract_expire_date?,
@@ -217,14 +219,16 @@ export class caHead {
               last_due_hp?, mkt_grp?, os_ar_hp?, os_ar_ls?, os_credit_amt?, os_credit_line_amt?, reqst_credit_amt?, intro_by_cd?,
               mkt_name?, cus_name?, sbu_type_desc?, team_mkt_leader?, verifier_name?, join_group_name?, join_group_cr?,
               intro_mthd_desc?, intro_by_name?, title_authority?, above_level?, rec_agr_flag?, rec_cond?, rec_usr?, rec_upd?,
-              ap_rec_agr_flag?,ap_rec_amount?,ap_rec_cond?,
-              caentity?, listpcnind?,listcaguarantor?,listbgdetail?,listcacontext?,listassetsite?
-             ,listcapricing? ,listcabuyer?
-            , listcaapvhist?
-            , listcacapcl?
-            , listcacapclowner?
-            , listcacollateral?
-            , listcadetail?) {
+              ap_rec_agr_flag?, ap_rec_amount?, ap_rec_cond?,
+              caentity?, listpcnind?, listcaguarantor?, listbgdetail?, listcacontext?, listassetsite?
+    , listcapricing?, listcabuyer?
+    , listcaapvhist?
+    , listcacapcl?
+    , listcacapclowner?
+    , listcacollateral?
+    , listcadetail?
+    , listamendhist?
+    , listamendcontent?) {
     this.com_code = com_code;
     this.prebranch_code = prebranch_code;
     this.ca_no = ca_no;
@@ -361,22 +365,24 @@ export class caHead {
     this.rec_upd = rec_upd;
 
     this.ap_rec_agr_flag = ap_rec_agr_flag;
-    this.ap_rec_amount   = ap_rec_amount;
-    this.ap_rec_cond     = ap_rec_cond;
+    this.ap_rec_amount = ap_rec_amount;
+    this.ap_rec_cond = ap_rec_cond;
 
     this.caentity = caentity;
     this.listpcnind = listpcnind;
-    this.listcaguarantor = listcaguarantor ;
-    this.listbgdetail = listbgdetail ;
-    this.listcacontext = listcacontext ;
+    this.listcaguarantor = listcaguarantor;
+    this.listbgdetail = listbgdetail;
+    this.listcacontext = listcacontext;
     this.listassetsite = listassetsite;
     this.listcapricing = listcapricing;
-    this.listcabuyer =   listcabuyer;
-    this.listcaapvhist = listcaapvhist
+    this.listcabuyer = listcabuyer;
+    this.listcaapvhist = listcaapvhist;
     this.listcacapcl = listcacapcl;
     this.listcacapclowner = listcacapclowner;
     this.listcacollateral = listcacollateral;
     this.listcadetail = listcadetail;
+    this.listamendhist = listamendhist;
+    this.listamendcontent = listamendcontent;
   }
 
   static parse(json: any) {
@@ -525,12 +531,14 @@ export class caHead {
       caContext.parse(json.listcacontext),
       caAssersite.parse(json.listassetsite),
       caPricing.parse(json.listcapricing),
-      caBuyer.parse( json.listcabuyer),
-      caApvHist.parse( json.listcaapvhist ),
-      caCapCl.parse( json.listcacapcl ),
-      caCapClOwner.parse( json.listcacapclowner ),
-      caCollateral.parse( json.listcacollateral ),
-      caDetail.parse( json.listcadetail )
+      caBuyer.parse(json.listcabuyer),
+      caApvHist.parse(json.listcaapvhist),
+      caCapCl.parse(json.listcacapcl),
+      caCapClOwner.parse(json.listcacapclowner),
+      caCollateral.parse(json.listcacollateral),
+      caDetail.parse(json.listcadetail),
+      caAmendKeyIn.parse(json.listamendhist),
+      caAmendContent.parse(json.listamendcontent)
     )
   }
 }

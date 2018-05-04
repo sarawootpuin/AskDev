@@ -14,7 +14,7 @@ export class ServiceEndpoint{
   // private _url :string;
   private _app_name:string = '/abmis';
   private _url_report: string = 'http://192.168.112.125:8097';
-  private _url_upload: string = 'http://172.16.1.112';
+  private _url_upload: string = 'http://172.16.1.112:80';
   private _ccs_tps:string = '/WebServices_CCS';
   private _fas_tps:string = '/WebServices_FAS';
   private _cos_tps:string = '/WebServices_COS';

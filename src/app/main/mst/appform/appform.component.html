@@ -1,7 +1,6 @@
 <app-alert-dialog #alertDialog
                   (onOK)="goBack()"
                   (onCloseDialog)="goBack()"></app-alert-dialog>
-
 <app-alert-dialog #alertWarning>
 
 </app-alert-dialog>
@@ -109,12 +108,12 @@
                             (onReturn)="actionClick('Return')"
                             [showSearch]="false"
                             [showNew]="!data.ap_no"
-                            [showSubmit]="data.ap_no"
-                            [showSave]="data.current_task == 'Apply AP' || data.current_task == 'Revise AP'"
+                            [showSubmit]="data.ap_no && !this.inquiry"
+                            [showSave]="(data.current_task == 'Apply AP' || data.current_task == 'Revise AP') && !this.inquiry"
                             [showPrint]="data.ap_no"
-                            [showCancel]="data.current_task == 'Apply AP' || data.current_task == 'Revise AP'"
-                            [showReject]="data.disabled == 'N' && data.current_task != 'Scoring'"
-                            [showReturn]="data.current_task == 'Scoring'"
+                            [showCancel]="(data.current_task == 'Apply AP' || data.current_task == 'Revise AP') && !this.inquiry"
+                            [showReject]="data.disabled == 'N' && data.current_task != 'Scoring' && !this.inquiry"
+                            [showReturn]="data.current_task == 'Scoring' && !this.inquiry"
                             [showEdit]="false"
                             [showCalculator]="false"
                             [showBack]="false"></app-action-button-form>
@@ -141,8 +140,8 @@
               </div>
             </div>
             <div class="flex-md-column col-md-3 align-self-center">
-              <div class="d-flex">
-                <div class="form-group">
+              <div class="d-flex" style="color: red;">
+                <div class="form-group" >
                   <label class="mt-radio" *ngIf="(data.sbu_typ != 'FDO') && (data.sbu_typ != 'P')">
                     <input type="radio" name="ca_type" value="1"
                            [(ngModel)]="data.ca_type"
@@ -255,9 +254,10 @@
                   <div class="col-md-4">
                     <button class="btn btn-search" type="button"
                             (click)="openBlackList()"
-                            *ngIf="data.current_task == 'Apply AP' ||
+                            *ngIf="(data.current_task == 'Apply AP' ||
                                  data.current_task == 'Revise AP' ||
-                                 data.current_task == 'Scoring'">
+                                 data.current_task == 'Scoring') &&
+                                 !this.inquiry">
                       <i class="fa fa-search fa-fw"></i> Check BL
                     </button>
                   </div>
@@ -268,7 +268,7 @@
               <div class="form-group">
                 <label>Introduced By</label>
                 <select class="form-control"
-                        [disabled]="data.disabled == 'N'"
+                        [disabled]="data.disabled == 'N' || this.inquiry"
                         [(ngModel)]="data.intro_mthd_cd"
                         (ngModelChange)="sourceChange()">
                   <option [value]=""></option>
@@ -286,7 +286,7 @@
                   <div class="col-md-10">
                     <input type="text" class="form-control" [(ngModel)]="data.intro_by_name" readonly>
                   </div>
-                  <div class="col-md-2">
+                  <div class="col-md-2" [hidden] = "this.inquiry">
                     <app-search-un inuURL={{this.OutURL}}
                                    title="NAME;CODE;"
                                    (col1)="setIntroName($event)"
@@ -303,7 +303,7 @@
               <div class="form-group" *ngIf="data.sbu_typ == 'FDO'">
                 <label>Joint Seller Group</label>
                 <select class="form-control"
-                        [disabled]="data.disabled == 'N'"
+                        [disabled]="data.disabled == 'N' || this.inquiry"
                         (change)="jointChange($event.target.value)">
                   <option [value]="-1"></option>
                   <option *ngFor="let list of listJointSeller; let i = index"
@@ -387,9 +387,11 @@
                               *ngIf="data.current_task == 'Scoring Assign' ||
                                    data.current_task == 'Scoring' ||
                                    data.current_task == 'Scoring Return' ||
-                                   data.current_task == 'Scoring Approve'">
+                                   data.current_task == 'Scoring Approve' ||
+                                   this.inquiry">
           </app-side-tab-level>
-          <app-side-tab-level [nameMenu]="'Recommendation'" *ngIf="data.current_task == 'Scoring Approve'">
+          <app-side-tab-level [nameMenu]="'Recommendation'"
+                              *ngIf="data.current_task == 'Scoring Approve' || this.inquiry">
           </app-side-tab-level>
         </app-side-tab-panel>
         <app-side-tab-main>
@@ -397,28 +399,28 @@
             <app-customer></app-customer>
           </app-side-tab-content>
           <app-side-tab-content [nameContent]="'Guarantor'">
-            <app-guarantor></app-guarantor>
+            <app-guarantor [inquiry]="this.inquiry"></app-guarantor>
           </app-side-tab-content>
           <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="1"
                                 *ngIf="data.sbu_typ == 'HP' ||
                                      data.sbu_typ == 'LS' ||
                                      data.sbu_typ == 'HP/LS'">
-            <app-leasing></app-leasing>
+            <app-leasing [inquiry]="this.inquiry"></app-leasing>
           </app-side-tab-content>
           <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="2"
                                 *ngIf="data.sbu_typ == 'P'">
-            <app-loans></app-loans>
+            <app-loans [inquiry] = "this.inquiry"></app-loans>
           </app-side-tab-content>
           <app-side-tab-content [nameContent]="'Collateral'" *ngIf="data.sbu_typ == 'P'">
-            <app-collateral></app-collateral>
+            <app-collateral [inquiry] = "this.inquiry"></app-collateral>
           </app-side-tab-content>
           <app-side-tab-content [nameContent]="'Seller'"
                                 *ngIf="data.sbu_typ == 'FDO'">
-            <app-pricing></app-pricing>
+            <app-pricing [inquiry]="this.inquiry"></app-pricing>
           </app-side-tab-content>
           <app-side-tab-content [nameContent]="'Buyers'"
                                 *ngIf="data.sbu_typ == 'FDO'">
-            <app-buyer></app-buyer>
+            <app-buyer [inquiry]="this.inquiry"></app-buyer>
           </app-side-tab-content>
           <app-side-tab-content [nameContent]="'Exposure'">
             <app-exposure></app-exposure>
@@ -434,12 +436,13 @@
                                 *ngIf="data.current_task == 'Scoring Assign' ||
                                      data.current_task == 'Scoring' ||
                                      data.current_task == 'Scoring Return' ||
-                                     data.current_task == 'Scoring Approve'">
-            <app-attachment></app-attachment>
+                                     data.current_task == 'Scoring Approve' ||
+                                     this.inquiry">
+            <app-attachment [inquiry]="this.inquiry"></app-attachment>
           </app-side-tab-content>
           <app-side-tab-content [nameContent]="'Recommendation'"
-                                *ngIf="data.current_task == 'Scoring Approve'">
-            <app-recommendation></app-recommendation>
+                                *ngIf="data.current_task == 'Scoring Approve' || this.inquiry">
+            <app-recommendation [inquiry]="this.inquiry"></app-recommendation>
           </app-side-tab-content>
         </app-side-tab-main>
       </app-side-tab>

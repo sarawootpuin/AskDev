@@ -1,10 +1,10 @@
 <div class="border-isa p-2">
   <div class="row">
     <div class="flex-md-column col-md-7">
-      <div class="form-group mb-1">
-        <input type="radio" name="bt" value="Factored"> Factored &nbsp;
-        <input type="radio" name="bt" value="Collection"> Collection &nbsp;
-        <input type="radio" name="bt" value="All"> All &nbsp;
+      <div class="form-group mb-1"  (change)="dt.filter(filterType,'forfilter','equals')" >
+        <input type="radio" name="bt" value="Factored"   [(ngModel)]="filterType"> Factored &nbsp;
+        <input type="radio" name="bt" value="Collection" [(ngModel)]="filterType"> Collection &nbsp;
+        <input type="radio" name="bt" value=""  checked [(ngModel)]="filterType" > All &nbsp;
       </div>
       <div class="form-group mb-1">
         <label style="color:gray"> click column title select all If any (Must = /)</label>
@@ -14,8 +14,10 @@
           <p-dataTable   [value]="listBuyerDoc"
                          selectionMode="single" [(selection)]="selectBuyerDoc"
                          [scrollable]="true"
+                         [editable]="true"
                          scrollHeight="400px"  scrollWidth="400px"
-                         [responsive]="true" >
+                         [rowStyleClass]="colorOfTable"
+                         [responsive]="true" #dt >
             <p-headerColumnGroup>
               <p-row>
                 <p-column header="Select" colspan="3"  [style]="{'width':'180px'}"></p-column>
@@ -29,24 +31,24 @@
                 <p-column header="Copy"     [style]="{'width':'60px'}"></p-column>
               </p-row>
             </p-headerColumnGroup>
-            <p-column field="select_o"   [editable]="true"   [style]="{'width':'60px','text-align': 'center'}">
+            <p-column field="select_o"   [editable]="true" [style]="{'width':'60px','text-align': 'center'}">
               <ng-template let-col let-doc="rowData" pTemplate="body">
                 <input type="checkbox"
-                       [checked]="doc[col.field] == 'Y'"      (change)="doc[col.field] = onClickCheck($event)"
+                       [checked]="doc[col.field] == 'Y'"      (change)="doc[col.field] = onClickCheck($event,doc)"
                 >
               </ng-template>
             </p-column>
             <p-column field="select_p"   [editable]="true"    [style]="{'width':'60px','text-align': 'center'}">
               <ng-template let-col let-doc="rowData" pTemplate="body">
                 <input type="checkbox"
-                       [checked]="doc[col.field] == 'Y'"      (change)="doc[col.field] = onClickCheck($event)"
+                       [checked]="doc[col.field] == 'Y'"      (change)="doc[col.field] = onClickCheck($event,doc)"
                 >
               </ng-template>
             </p-column>
             <p-column field="select_c"    [editable]="true"    [style]="{'width':'60px','text-align': 'center'}">
               <ng-template let-col let-doc="rowData" pTemplate="body">
                 <input type="checkbox"
-                       [checked]="doc[col.field] == 'Y'"  (change)="doc[col.field] = onClickCheck($event)"
+                       [checked]="doc[col.field] == 'Y'"  (change)="doc[col.field] = onClickCheck($event,doc)"
                 >
               </ng-template>
             </p-column>
@@ -58,7 +60,8 @@
               </ng-template>
             </p-column>
             <p-column field="remark_cat" [style]="{'width':'250px'}" ></p-column>
-            <p-column field="remark" [editable]="true"  [style]="{'width':'250px'}"></p-column>
+            <p-column field="remark"  [style]="{'width':'250px'}" [editable]="true" ></p-column>
+            <p-column field="forfilter"  [hidden]="true" ></p-column>
             <p-footer>
             </p-footer>
           </p-dataTable>

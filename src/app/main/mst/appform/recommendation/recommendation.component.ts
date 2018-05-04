@@ -1,6 +1,7 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {AppFormService} from "../appform.service";
 import {ListAnswer} from "../model/getListAnswer";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-recommendation',
@@ -11,6 +12,8 @@ export class RecommendationComponent implements OnInit {
   rec_cond: any;
   rec_agr_flag: any;
   rec_approve: any;
+  subscription : Subscription;
+  @Input() inquiry : boolean = false;
 
   constructor(private appFormService: AppFormService) {
   }
@@ -20,10 +23,11 @@ export class RecommendationComponent implements OnInit {
     this.rec_agr_flag = this.appFormService.getAppFormData().rec_agr_flag;
     this.rec_approve = this.appFormService.getAppFormData().recAmount;
     if(!this.rec_agr_flag){
-      this.rec_agr_flag = 'A';
-      this.appFormService.appFormData.rec_agr_flag = 'A';
+      this.rec_agr_flag = '';
+      this.appFormService.appFormData.rec_agr_flag = '';
     }
     this.listReCommendation = this.appFormService.listReCommendation;
+
   }
 
   onRowSelect(data: any) {

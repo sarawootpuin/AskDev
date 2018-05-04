@@ -12,6 +12,8 @@ export class CaInqueryComponent implements OnInit {
 
   isLoading: boolean = false;
   cols: any[];
+  comcode : string = '';
+  cano : string = '';
 
   listCaInquery : CaTodoBgpl[];
   constructor(private userStorage: UserStorage,
@@ -29,12 +31,16 @@ export class CaInqueryComponent implements OnInit {
   }
 
   rowSelectList(caTodoBgpl: CaTodoBgpl) {
+    this.comcode = caTodoBgpl.comCode;
+    this.cano    = caTodoBgpl.caNo;
     this.router.navigate(['/ca'], {
       queryParams: {
-        ca_no: caTodoBgpl.caNo
-        //  task : this.task.taskCode
+      com_code : this.comcode,
+        ca_no  : this.cano
       }
     });
+
+
 
   }
 

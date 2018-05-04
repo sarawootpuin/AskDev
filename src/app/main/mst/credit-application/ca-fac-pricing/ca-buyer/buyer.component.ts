@@ -61,12 +61,14 @@ export class CaBuyerComponent implements OnInit , OnDestroy {
     if (value){
       this.masterBuyerDoc = caBuyerDoc.parse(value);
       for(let i=0 ; i< this.masterBuyerDoc.length ; i++ ){
+        this.masterBuyerDoc[i].input_by = this.userStorage.getCode();
         this.masterBuyerDoc[i].factored_ifany = 'N';
         this.masterBuyerDoc[i].select_o = 'N';
         this.masterBuyerDoc[i].select_p = 'N';
         this.masterBuyerDoc[i].select_c = 'N';
         this.masterBuyerDoc[i].remark  = '' ;
       }
+      console.log(this.masterBuyerDoc);
     }
   }
 

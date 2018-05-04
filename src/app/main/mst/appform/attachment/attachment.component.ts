@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
+import {Component, OnInit, ViewChild,Input} from "@angular/core";
 import {ActionReadExcelComponent} from "../../../../shared/center/action-read-excel/action-read-excel.component";
 import {AppFormService} from "../appform.service";
 import {AlertDialogComponent} from "../../../../shared/center/alert-dialog/alert-dialog.component";
@@ -13,7 +13,7 @@ declare var $: any;
 export class AttachmentComponent implements OnInit {
   @ViewChild('actionReadExcel') actionReadExcel: ActionReadExcelComponent;
   @ViewChild('alertFinish') alertFinish : AlertDialogComponent;
-
+  @Input() inquiry : boolean = false;
   caNo: string;
   comCode: string;
 
@@ -27,6 +27,7 @@ export class AttachmentComponent implements OnInit {
   ngOnInit() {
     this.caNo = this.appFormService.getAppFormData().ca_no.replace(/\//gi, "_");
     this.comCode = this.appFormService.getAppFormData().com_code;
+
     //console.log(this.caNo);
     // this.actionReadExcel.findCaDirectoryPart().subscribe(
     //   (data: any) => {

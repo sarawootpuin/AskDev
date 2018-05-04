@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
+import {Component, ElementRef, Input, OnInit, ViewChild} from "@angular/core";
 import {AppFormService} from "../appform.service";
 import {ListPricing} from "../model/getDataPricing";
 import {getDataAppForm} from "../model/getDataAppForm";
@@ -15,7 +15,8 @@ export class PricingComponent implements OnInit {
   dataListBank: ListAnswer[] = [];
   dataListInsRate: ListAnswer[] = [];
   dataBankInsRate: ListAnswer[] = [];
-  disabled : string = 'N';
+  disabled: string = 'N';
+  @Input() inquiry: boolean;
   @ViewChild('intRate') intRate: ElementRef;
   @ViewChild('rateBank') rateBank: ElementRef;
   @ViewChild('rateM') rateM: ElementRef;

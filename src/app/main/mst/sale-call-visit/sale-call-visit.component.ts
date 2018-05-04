@@ -8,6 +8,8 @@ import {Message} from "primeng/primeng";
 import {AlertDialogComponent} from "../../../shared/center/alert-dialog/alert-dialog.component";
 import {CallVisitExposureservice} from "./call-visit-detail/call-visit-exposure/call-visit-exposure.service";
 import {ActionDialogComponent} from "../../../shared/center/action-dialog/action-dialog.component";
+import {ServiceEndpoint} from "../../../shared/config/service-endpoint";
+import {DatePipe} from "@angular/common";
 declare var $: any;
 
 @Component({
@@ -42,6 +44,8 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
+              private service: ServiceEndpoint,
+              private dataPipe:DatePipe,
               private saleCallVisitService: SaleCallVisitService,
               private saleCallExposureser :CallVisitExposureservice,
               private userStorage: UserStorage) {
@@ -84,16 +88,17 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
       "web", code, comCode, this.vsale_no
     ).subscribe(
       (json: any) => {
-        console.log(json);
+        //console.log(json);
         this.checkLoader = false ;
         this.saleCallVisitService.setListAns(json.LIST_DATA);
         this.saleH = SaleCallHead.parse(json.DATA);
 
         if (!this.saleH.ownr) { this.saleH.ownr = code };
 
-        if (!this.saleH.com_code) {
-          this.saleH.com_code = comCode
-        }
+        if (!this.saleH.com_code) {  this.saleH.com_code = comCode ;}
+
+        if (!this.saleH.connect_since) {  this.saleH.connect_since = this.dataPipe.transform(new Date(),'MM/yyyy') ;}
+
         this.saleCallVisitService.setSaleCallHead(this.saleH);
         this.saleCallVisitService.setSaleCallDetail(this.saleH.listDetail);
 
@@ -109,7 +114,7 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
       this.saleCallVisitService.sendSaleCall("web", this.username, this.comCode
         , this.vsale_no, "save").subscribe(
         (data: any) => {
-          console.log(data);
+          //console.log(data);
           if ( data.CODE != '500'){
               this.router.navigate(['/SaleCall'], {
                 queryParams: {
@@ -131,7 +136,7 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
       this.saleCallVisitService.sendSaleCall("web", this.username, this.comCode,
         this.vsale_no, "submit").subscribe(
         (test: any) => {
-          console.log(test);
+          //console.log(test);
           if (test.MSG.search('Success  submit') > -1) {
             this.submitdialog.setAction('INFORMATION');
             this.submitdialog.setMessage('Submit Complete');
@@ -212,16 +217,21 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
 
 
   showReport(){
-    if (this.vsale_no) {
-      let sale_no: string = this.vsale_no.replace("/", "_");
-      let strURL = '' ;
-      //strURL = `http://192.168.112.125:8097/result?report=MKT\\CA_HPLS_01.fr3&p_ca_no=${ca_no}&p_id_card=${this.creditApplicationService.newCardNo}&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf`;
 
-      strURL = `http://192.168.112.125:8097/result?report=MKT\\CallVisit_01.fr3&SaleCallNo=${sale_no}&SeqNo=1&format=pdf`;
 
-      // http://192.168.112.125:8097/result?report=MKT\CallVisit_01.fr3&SaleCallNo=61_00064&SeqNo=1&format=pdf
-      window.open(strURL, '_blank');
-      console.log(strURL);
-    }
+    // if (this.vsale_no) {
+    //   let sale_no: string = this.vsale_no.replace("/", "_");
+    //   let strURL = '' ;
+    //   //strURL = this.service.url_report +`/result?report=MKT\\CA_HPLS_01.fr3&p_ca_no=${ca_no}&p_id_card=${this.creditApplicationService.newCardNo}&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf`;
+    //
+    //   strURL = this.service.url_report +`/result?report=MKT\\CallVisit_01.fr3&SaleCallNo=${sale_no}&SeqNo=1&format=pdf`;
+    //
+    //   // http://192.168.112.125:8097/result?report=MKT\CallVisit_01.fr3&SaleCallNo=61_00064&SeqNo=1&format=pdf
+    //   window.open(strURL, '_blank');
+    //   console.log(strURL);
+    // }
+
+    this.questionAction('SAVE');
+
   }
 }

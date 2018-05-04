@@ -53,6 +53,8 @@ export class CallVisitHeadComponent implements OnInit, OnDestroy {
 
   vsale_no: string = '';
   vcard_no: string = '';
+  vtask_code : string = '' ;
+  componentReadOnly : boolean = false ;
 
   constructor(private saleCallVisitService: SaleCallVisitService,
               private serviceEndPoint: ServiceEndpoint,
@@ -68,9 +70,12 @@ export class CallVisitHeadComponent implements OnInit, OnDestroy {
       (params: Params) => {
         this.vsale_no = params['sale_call_no'];
         this.vcard_no = params['card_no'];
+        this.vtask_code = params['task'];
       }
     );
-
+    if (this.vtask_code == 'Cross Expense'){
+       this.componentReadOnly = true;
+    }
 
 
     this.code = this.userStorage.getCode();

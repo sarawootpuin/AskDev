@@ -46,11 +46,13 @@ export class TodoTaskComponent implements OnInit, OnDestroy {
       .subscribe(
       (data: any) => {
         console.log(data);
-        for (let i = 0; i < data.GROUP_TODO.length; i++) {
-          let obj = data.GROUP_TODO[i];
-          let groupItem: GroupItem = new GroupItem(obj.GROUP_TODO,
-            obj.NUM_TODO);
-          this.listGroup.push(groupItem);
+        if (data.GROUP_TODO) {
+          for (let i = 0; i < data.GROUP_TODO.length; i++) {
+            let obj = data.GROUP_TODO[i];
+            let groupItem: GroupItem = new GroupItem(obj.GROUP_TODO,
+              obj.NUM_TODO);
+            this.listGroup.push(groupItem);
+          }
         }
         this.isLoading = false;
       },

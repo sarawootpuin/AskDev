@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {EntityDialogComponent} from "../../entity/entity-dialog/entity-dialog.component";
 import {EntityModel} from "../../entity/model/entity-model";
 import {caGuarantor} from "../model/ca-guarantor";
@@ -7,13 +7,14 @@ import {caHead} from "../model/ca-head";
 import {DatePipe} from "@angular/common";
 import {Subscription} from "rxjs/Subscription";
 
+
 @Component({
   selector: 'app-ca-guarantor-tab',
   templateUrl: './ca-guarantor-tab.component.html'
 })
 export class CaGuarantorTabComponent implements OnInit ,OnDestroy {
   @ViewChild("entity_dialog") entity_dialog: EntityDialogComponent;
-
+  @Input() isReadonly : boolean;
   subscripData: Subscription;
   listcaGuarantor : caGuarantor[] = [];
   selectGuarantor : caGuarantor ;

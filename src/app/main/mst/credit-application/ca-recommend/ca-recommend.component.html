@@ -1,60 +1,72 @@
-
-<div class="row  ml-2" >
-   <div class="col-6 border-isa">
-     <label class="pl-3" > Recommendation CA </label>
-     <div class="form-group col-12">
-       <div class="form-control col-12">
-         <input type="radio" name="rec_agr_flag" value="A"  [(ngModel)]="myCaHead.rec_agr_flag" (ngModelChange) = "clearCondition()"> Agree with the proposal
-         <input type="radio" name="rec_agr_flag" value="AC" [(ngModel)]="myCaHead.rec_agr_flag" (ngModelChange) = "clearCondition()"> Agree with conditions
-         <input type="radio" name="rec_agr_flag" value="D"  [(ngModel)]="myCaHead.rec_agr_flag" (ngModelChange) = "clearCondition()"> Disagree with the proposal &nbsp;
-         <input type="radio" name="rec_agr_flag" value="R"  [(ngModel)]="myCaHead.rec_agr_flag" (ngModelChange) = "clearCondition()"> Return
-       </div>
-     </div>
-     <div class="form-group col-12">
-       <div class="form-inline">
-         <label class="my-1"> Condition Template </label>
-       </div>
-       <p-dataTable [value]="listReCommendation"
-                    selectionMode="single"
-                    [(selection)]="selectCond"
-                    (onRowDblclick)="onDbClickCondition(selectCond)"
-                    rows="15"
-                    [responsive]="true">
-         <p-column field="remark" header=" Condition Detail "></p-column>
-         <p-footer>
-           <div class="ui-helper-clearfix" style="width:100%">
-           </div>
-         </p-footer>
-       </p-dataTable>
-     </div>
-     <div class="form-group col-12">
+<div class="row  ml-2">
+  <div class="col-6 border-isa">
+    <label class="pl-3"> Recommendation CA </label>
+    <div class="form-group col-12">
+      <div class="form-control col-12">
+        <input type="radio" name="rec_agr_flag" value="A" [(ngModel)]="myCaHead.rec_agr_flag"
+               (ngModelChange)="clearCondition()" [disabled]="myCaHead.current_task != 'Scoring Approve'"> Agree with
+        the proposal
+        <input type="radio" name="rec_agr_flag" value="AC" [(ngModel)]="myCaHead.rec_agr_flag"
+               (ngModelChange)="clearCondition()" [disabled]="myCaHead.current_task != 'Scoring Approve'"> Agree with
+        conditions
+        <input type="radio" name="rec_agr_flag" value="D" [(ngModel)]="myCaHead.rec_agr_flag"
+               (ngModelChange)="clearCondition()" [disabled]="myCaHead.current_task != 'Scoring Approve'"> Disagree
+        with the proposal &nbsp;
+        <input type="radio" name="rec_agr_flag" value="R" [(ngModel)]="myCaHead.rec_agr_flag"
+               (ngModelChange)="clearCondition()" [disabled]="myCaHead.current_task != 'Scoring Approve'"> Return
+      </div>
+    </div>
+    <div class="form-group col-12">
+      <div class="form-inline">
+        <label class="my-1"> Condition Template </label>
+      </div>
+      <p-dataTable [value]="listReCommendation"
+                   selectionMode="single"
+                   [(selection)]="selectCond"
+                   (onRowDblclick)="onDbClickCondition(selectCond)"
+                   rows="15"
+                   [responsive]="true">
+        <p-column field="remark" header=" Condition Detail "></p-column>
+        <p-footer>
+          <div class="ui-helper-clearfix" style="width:100%">
+          </div>
+        </p-footer>
+      </p-dataTable>
+    </div>
+    <div class="form-group col-12">
       <textarea class="form-control"
-                [disabled] = "myCaHead.rec_agr_flag == 'A'"
-                rows="10" [(ngModel)] = "myCaHead.rec_cond"  ></textarea>
-     </div>
-   </div>
+                [disabled]="myCaHead.current_task != 'Scoring Approve'"
+                rows="10" [(ngModel)]="myCaHead.rec_cond"></textarea>
+    </div>
+  </div>
 
-  <div class="col-6 border-isa" >
+  <div class="col-6 border-isa">
     <label class="pl-3"> Recommendation Analyst </label>
     <div class="form-group col-12">
       <div class="form-control col-12">
-        <input type="radio" name="ap_rec_agr_flag" value="A"  [(ngModel)]="myCaHead.ap_rec_agr_flag" [disabled] = "true" > Agree with the proposal
-        <input type="radio" name="ap_rec_agr_flag" value="AC" [(ngModel)]="myCaHead.ap_rec_agr_flag" [disabled] = "true"> Agree with conditions
-        <input type="radio" name="ap_rec_agr_flag" value="D"  [(ngModel)]="myCaHead.ap_rec_agr_flag" [disabled] = "true"> Disagree with the proposal &nbsp;
-        <input type="radio" name="ap_rec_agr_flag" value="R"  [(ngModel)]="myCaHead.ap_rec_agr_flag" [disabled] = "true"> Return
+        <input type="radio" name="ap_rec_agr_flag" value="A" [(ngModel)]="myCaHead.ap_rec_agr_flag" [disabled]="true">
+        Agree with the proposal
+        <input type="radio" name="ap_rec_agr_flag" value="AC" [(ngModel)]="myCaHead.ap_rec_agr_flag"
+               [disabled]="true"> Agree with conditions
+        <input type="radio" name="ap_rec_agr_flag" value="D" [(ngModel)]="myCaHead.ap_rec_agr_flag" [disabled]="true">
+        Disagree with the proposal &nbsp;
+        <input type="radio" name="ap_rec_agr_flag" value="R" [(ngModel)]="myCaHead.ap_rec_agr_flag" [disabled]="true">
+        Return
       </div>
     </div>
     <div class="form-group col-12">
       <textarea class="form-control"
-                [disabled] = "true"
-                rows="10" [(ngModel)] = "myCaHead.ap_rec_cond"  ></textarea>
+                [disabled]="true"
+                rows="10" [(ngModel)]="myCaHead.ap_rec_cond"></textarea>
     </div>
 
     <div class="form-group col-12">
       <input appMyCurrency
              class="form-control"
+             [disabled]="myCaHead.current_task != 'Scoring Approve'"
              [value]="myCaHead.ap_rec_amount" (change)="myCaHead.ap_rec_amount = $event.target.value"
       />
     </div>
   </div>
 </div>
+

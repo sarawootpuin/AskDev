@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {AppFormService} from "../appform.service";
 import {ListDetail} from "../model/getDataDetail";
 import {ListAnswer} from "../model/getListAnswer";
@@ -21,6 +21,7 @@ export class LeasingComponent implements OnInit {
   dataListInsRate: ListAnswer[] = [];
   dataListBankIntRate: ListAnswer[] = [];
   disabled: string = 'N';
+  @Input() inquiry: boolean;
 
   constructor(private appFormService: AppFormService) {
   }

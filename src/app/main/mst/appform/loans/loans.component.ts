@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
+import {Component, ElementRef, Input, OnInit, ViewChild} from "@angular/core";
 import {AppFormService} from "../appform.service";
 import {ListDetail} from "../model/getDataDetail";
 import {ListStep} from "../model/getDataStep";
@@ -18,12 +18,13 @@ export class LoansComponent implements OnInit {
   step: ListStep = new ListStep();
   selected: ListStep;
   vatRate: number;
-  checkLoader : boolean = false;
-  disabled : string = 'N';
+  checkLoader: boolean = false;
+  disabled: string = 'N';
   @ViewChild('calIrrLoanWarning') calIrrLoanWarning: AlertDialogComponent;
   @ViewChild('alertDialog') alertDialog: AlertDialogComponent;
   @ViewChild('insEVatLoan') insEVatLoan: ElementRef;
   @ViewChild('actionDialog') actionDialog: ActionDialogComponent;
+  @Input() inquiry: boolean;
 
   constructor(private appFormService: AppFormService,
               private dateUtils: DateUtils,
@@ -79,19 +80,19 @@ export class LoansComponent implements OnInit {
       if (!this.data.fin_amt_e_vat) {
         this.calIrrLoanWarning.addMessage('- Request Credit Line');
       }
-      if(!this.data.flat_rate){
+      if (!this.data.flat_rate) {
         this.calIrrLoanWarning.addMessage('- Interest Rate');
       }
-      if(!this.data.terms){
+      if (!this.data.terms) {
         this.calIrrLoanWarning.addMessage('- Terms');
       }
-      if(!this.data.disburse_dt){
+      if (!this.data.disburse_dt) {
         this.calIrrLoanWarning.addMessage('- Disburse Date');
       }
-      if(!this.data.first){
+      if (!this.data.first) {
         this.calIrrLoanWarning.addMessage('- First Due');
       }
-      if(this.data.schedule == 'I'){
+      if (this.data.schedule == 'I') {
         this.calIrrLoanWarning.addMessage('- Installment Step Not Cal');
       }
     }
@@ -99,16 +100,16 @@ export class LoansComponent implements OnInit {
       if (!this.data.fin_amt_e_vat) {
         this.calIrrLoanWarning.addMessage('- Request Credit Line');
       }
-      if(!this.data.terms){
+      if (!this.data.terms) {
         this.calIrrLoanWarning.addMessage('- Terms');
       }
-      if(!this.data.disburse_dt){
+      if (!this.data.disburse_dt) {
         this.calIrrLoanWarning.addMessage('- Disburse Date');
       }
-      if(!this.data.first){
+      if (!this.data.first) {
         this.calIrrLoanWarning.addMessage('- First Due');
       }
-      if(this.data.schedule == 'R' && !this.data.installment_e_vat){
+      if (this.data.schedule == 'R' && !this.data.installment_e_vat) {
         this.calIrrLoanWarning.addMessage('- Installment');
       }
     }
@@ -190,7 +191,7 @@ export class LoansComponent implements OnInit {
         this.actionDialog.setTitle('Add');
         this.actionDialog.open();
       }
-      else{
+      else {
         alert('-disburse');
       }
     }
@@ -209,7 +210,7 @@ export class LoansComponent implements OnInit {
     if (this.newStep) {
       a.push(this.step);
     }
-    else{
+    else {
       a[this.findSelectedIndex()] = this.step
     }
     this.data.listStep = a;

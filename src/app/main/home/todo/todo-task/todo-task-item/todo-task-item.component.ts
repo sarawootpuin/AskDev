@@ -67,13 +67,14 @@ export class TodoTaskItemComponent implements OnInit, OnChanges, OnDestroy {
     this.subscription = this.todoService.getTaskTodo("web", userCode,
       this.comCode, this.groupCode).subscribe(
       (data: any) => {
-
+      if (data.LIST_TASK_TODO) {
         for (let i = 0; i < data.LIST_TASK_TODO.length; i++) {
           let obj = data.LIST_TASK_TODO[i];
           let taskItem: TaskItem = new TaskItem(obj.TASK_CODE,
             obj.TASK_NAME, obj.COUNT_TODO);
           this.listTaskFull.push(taskItem);
         }
+      }
         this.filterTask();
         this.isLoading = false;
       },

@@ -45,7 +45,7 @@ export class caBuyer {
   public address_eng;
   public address_eng2;
   public listcabuyerdoc : caBuyerDoc[];
-  public listcafactor : caFactor[]
+  public listcafactor : caFactor[];
 
   constructor()
   constructor(com_code, ca_no, buyer_code, seq_no, app_type, joint_buyer_group, sub_line_amt, sub_line_amt_group, sub_os_amt, sub_os_amt_group, seller_cr_amt, seller_os_amt, terms, noti_type, advance_code, advance_ratio, factoring_fee, min_facfee, max_facfee, pay_mthd, other_doc, other_doc_remark, eff_date, expire_dt, eff_rate, drirect_payment, cancel_date, cancel_by, cancel_reason_code, last_usr, last_upd, input_by, input_date, progress_payment, currency_type, ver_waive, ori_sub_line_amt, buyer_name, app_type_desc, join_group_name, cr_limit, address_eng, address_eng2
@@ -96,7 +96,7 @@ export class caBuyer {
     this.address_eng = address_eng;
     this.address_eng2 = address_eng2;
     this.listcabuyerdoc = listcabuyerdoc ;
-    this.listcafactor = listcafactor ;
+    this.listcafactor = listcafactor ? listcafactor : [];
   }
 
   static

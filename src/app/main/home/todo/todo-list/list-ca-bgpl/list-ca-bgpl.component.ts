@@ -28,6 +28,7 @@ export class ListCaBgplComponent implements OnInit, OnChanges, OnDestroy,
     this.cols = [
       {field: 'no', header: 'No'},
       {field: 'caNo', header: 'CA No'},
+      {field: 'apNo', header: 'AP No'},
       {field: 'sbuType', header: 'Credit Type'},
       {field: 'custName', header: 'Customer Name'},
       {field: 'applyDt', header: 'Apply Date'},
@@ -41,7 +42,7 @@ export class ListCaBgplComponent implements OnInit, OnChanges, OnDestroy,
 
   ngOnChanges() {
     let userCode = this.userStorage.getCode();
-    let comCode = this.userStorage.getComCodePort();
+    let comCode = this.userStorage.getComCode();
     this.listCaTodoBgpl = [];
     this.resetSearchInput();
 

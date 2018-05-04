@@ -16,7 +16,10 @@ export class CaBuyerDocComponent implements OnInit, OnDestroy {
   listBuyerDoc :  caBuyerDoc[] ;
   selectBuyerDoc : caBuyerDoc;
 
-  constructor(private creditApplicationService: creditApplicationService) { }
+  filterType : string = '' ;
+
+  constructor(private creditApplicationService: creditApplicationService) {
+  }
 
   ngOnInit() {
 
@@ -24,7 +27,6 @@ export class CaBuyerDocComponent implements OnInit, OnDestroy {
     this.subscripData = this.creditApplicationService.eventcabuyer.subscribe(
       (value : caBuyer ) =>
       {
-      //  console.log(value);
         this.selectBuyer = value ;
         if (this.selectBuyer)
         {
@@ -39,10 +41,15 @@ export class CaBuyerDocComponent implements OnInit, OnDestroy {
 
   }
 
-  onClickCheck(value){
+  onClickCheck(value , test : any){
     let data ;
      if (value.target.checked ){
        data = 'Y';
+       if (test){
+         test.select_o = 'N';
+         test.select_p = 'N';
+         test.select_c = 'N';
+       }
      }else {
        data= 'N';
      }
@@ -60,5 +67,12 @@ export class CaBuyerDocComponent implements OnInit, OnDestroy {
     }
   }
 
+  colorOfTable(rowData, rowIndex) {
+    // console.info('in tableOneHighlight - Table is NOT scrollable; You WILL see this log', rowIndex)
+    // if(rowIndex>=1){
+    //   return '';
+    // }
+     return 'background-color: red';
+  }
 
 }

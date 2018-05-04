@@ -23,7 +23,7 @@
   </div>
   <div class="row">
     <div class="col-md-3 form-group">
-      <label>Intial(Thai)</label>
+      <label>Intial(Thai)</label> <span class="text-danger" >*</span>
       <select class="form-control"
               [ngModel]="conTact?.title_th"
               (ngModelChange)="conTact.title_th=$event;mapIntial('T') ">
@@ -34,17 +34,17 @@
       </select>
     </div>
     <div class="col-md-6 form-group">
-      <label>Name(Thai)</label>
+      <label>Name(Thai)</label>  <span class="text-danger" >*</span>
       <input class="form-control"  [(ngModel)]="conTact.name_th" >
     </div>
     <div class="col-md-3 form-group">
-      <label>Position</label>
+      <label>Position</label>  <span class="text-danger" >*</span>
       <input class="form-control"  [(ngModel)]="conTact.position" >
     </div>
   </div>
   <div class="row">
     <div class="col-md-3 form-group">
-      <label>Intial(Eng)</label>
+      <label>Intial(Eng)</label>  <span class="text-danger" >*</span>
       <select class="form-control"
               [ngModel]="conTact?.title_en"
               (ngModelChange)="conTact.title_en=$event;mapIntial('E') ">
@@ -55,7 +55,7 @@
       </select>
     </div>
     <div class="col-md-6 form-group">
-      <label>Name(Eng)</label>
+      <label>Name(Eng)</label>   <span class="text-danger" >*</span>
       <input class="form-control"  [(ngModel)]="conTact.name_en" >
     </div>
     <div class="col-md-3 form-group">
@@ -72,7 +72,7 @@
 
   <div class="row">
     <div class="col-md-5 form-group">
-      <label>Phone</label>
+      <label>Phone</label>  <span class="text-danger" >*</span>
       <input class="form-control"  [(ngModel)]="conTact.phone"  >
     </div>
     <div class="col-md-2 form-group">

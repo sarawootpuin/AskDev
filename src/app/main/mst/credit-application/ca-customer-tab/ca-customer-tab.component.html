@@ -1,29 +1,31 @@
-<p-tabView>
-  <p-tabPanel header="Customer Information">
-    <app-ca-customer></app-ca-customer>
-  </p-tabPanel>
-  <p-tabPanel header="Address(TH)">
-    <app-ca-address-th></app-ca-address-th>
+<fieldset [disabled]="this.isReadonly">
+  <p-tabView>
+    <p-tabPanel header="Customer Information">
+      <app-ca-customer></app-ca-customer>
+    </p-tabPanel>
+    <p-tabPanel header="Address(TH)">
+      <app-ca-address-th></app-ca-address-th>
 
-  </p-tabPanel>
-  <p-tabPanel header="Address(EN)">
-    <app-ca-address-en></app-ca-address-en>
+    </p-tabPanel>
+    <p-tabPanel header="Address(EN)">
+      <app-ca-address-en></app-ca-address-en>
 
-  </p-tabPanel>
-  <!--<p-tabPanel header="Card / Bank">-->
+    </p-tabPanel>
+    <!--<p-tabPanel header="Card / Bank">-->
     <!--<app-ca-card></app-ca-card>-->
-  <!--</p-tabPanel>-->
-  <p-tabPanel header="% Of Industry">
-    <app-ca-percent-ind></app-ca-percent-ind>
-  </p-tabPanel>
-  <p-tabPanel header="Machine Location"  *ngIf="sbu_type != 'FDO' && sbu_type != 'DL'" >
-    <app-ca-machine  *ngIf="sbu_type != 'FDO' && sbu_type != 'DL'" ></app-ca-machine>
-  </p-tabPanel>
-  <p-tabPanel header="Exposure" *ngIf="false" >
-    <app-ca-exposure  *ngIf="false" ></app-ca-exposure>
-  </p-tabPanel>
-  <p-tabPanel header="Condition & Remark">
-    <app-ca-condition-remark>  </app-ca-condition-remark>
-    <app-asia-condition *ngIf="false" ></app-asia-condition   >
-  </p-tabPanel>
-</p-tabView>
+    <!--</p-tabPanel>-->
+    <p-tabPanel header="% Of Industry">
+      <app-ca-percent-ind></app-ca-percent-ind>
+    </p-tabPanel>
+    <p-tabPanel header="Machine Location" *ngIf="sbu_type != 'FDO' && sbu_type != 'DL'">
+      <app-ca-machine *ngIf="sbu_type != 'FDO' && sbu_type != 'DL'"></app-ca-machine>
+    </p-tabPanel>
+    <p-tabPanel header="Exposure" *ngIf="false">
+      <app-ca-exposure *ngIf="false"></app-ca-exposure>
+    </p-tabPanel>
+    <p-tabPanel header="Condition & Remark">
+      <app-ca-condition-remark></app-ca-condition-remark>
+      <app-asia-condition *ngIf="false"></app-asia-condition>
+    </p-tabPanel>
+  </p-tabView>
+</fieldset>

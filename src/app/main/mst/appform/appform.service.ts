@@ -57,8 +57,6 @@ export class AppFormService {
     this.eventTabPricing.emit(listPricing);
   }
 
-  ca
-
   eventTabLoan = new EventEmitter<ListDetail>();
   dataLoan: ListDetail;
 
@@ -104,6 +102,8 @@ export class AppFormService {
   }
 
   editEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  inquiry : EventEmitter<boolean> = new EventEmitter<boolean>();
 
   appFormData: getDataAppForm;
 
