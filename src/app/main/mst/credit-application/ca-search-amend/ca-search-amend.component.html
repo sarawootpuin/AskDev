@@ -1,0 +1,37 @@
+
+<div class="card">
+  <div class="card-header ">
+    <div class="text-center h6">
+      {{title}}
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-search"></i></span>
+      <input #searchInput class="form-control" type="text" pInputText size="50" placeholder="Search">
+    </div>
+    <div class="my-3">
+      <div *ngIf="isLoading" class="text-center">
+        <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>Loading...
+      </div>
+      <div *ngIf="!isLoading">
+        <p-dataTable #dt
+                     [value]="listCaTodo"
+                     selectionMode="single"
+                     [rows]="10"
+                     paginatorPosition="both"
+                     [paginator]="true"
+                     [globalFilter]="searchInput"
+                     (onRowSelect)="selectedRow($event.data)">
+          <p-column field="caNo" header="CA No"></p-column>
+          <p-column field="sbuType" header="Credit Type"></p-column>
+          <p-column field="custName" header="Customer Name"></p-column>
+          <p-column field="mktName" header="Mkt. Name"></p-column>
+          <p-column field="caApproveDate" header="Approve Date"></p-column>
+        </p-dataTable>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-alert-dialog #alertDialog (onOK)="confirmAmendCa()"></app-alert-dialog>

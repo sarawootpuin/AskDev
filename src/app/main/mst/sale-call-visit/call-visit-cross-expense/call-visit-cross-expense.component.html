@@ -1,0 +1,27 @@
+
+
+<div [hidden]="checkLoader">
+  <app-action-button-form title="Sale Call - Cross Expense"
+                          (onSave)="questionAction('save')"  (onSubmit)="questionAction('submit')"
+                          [showSave]="true"  [showSubmit]="true"
+                          [showPrint]="true"  (onPrint)="showReport()"
+  ></app-action-button-form>
+
+  <div class="card m-1">
+    <div class="card-header p-1">
+      <p-panel header="Information - {{vsale_no}} ( {{vseq_no}} ) " [toggleable]="true" >
+        <app-call-visit-head></app-call-visit-head>
+      </p-panel>
+    </div>
+
+    <div class="card-body p-1"  *ngIf="selectsaleD?.sale_call_type == 'V'" >
+       <app-call-visit-expense></app-call-visit-expense>
+    </div>
+
+  </div>
+
+</div>
+
+<app-alert-dialog #dialogalert > </app-alert-dialog>
+<app-alert-dialog #Questiondialog  (onOK)="actionOk()"   ></app-alert-dialog>
+<app-alert-dialog  #submitdialog   (onOK)="backToHome()"></app-alert-dialog>

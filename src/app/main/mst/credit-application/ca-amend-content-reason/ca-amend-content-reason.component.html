@@ -1,0 +1,38 @@
+<fieldset [disabled]="isReadonly">
+  <div class="p-1 m-1 border-isa">
+    <div class="row">
+      <div class="col-md-2 form-group">
+        <label>Amend Time</label>
+        <input appMyCurrency
+               #assetIvat
+               disabled
+               class="form-control"
+               [fraction]="0"
+               pKeyFilter="pnum"
+               [value]="amendContent.amend_time">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <label>Content</label>
+        <textarea pInputTextarea class="form-control" [(ngModel)]="amendContent.content"></textarea>
+      </div>
+      <div class="col-md-6 form-group">
+        <label>Reason</label>
+        <textarea pInputTextarea class="form-control" [(ngModel)]="amendContent.amend_reason"></textarea>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <label>Note</label>
+        <textarea pInputTextarea class="form-control" [(ngModel)]="amendContent.amend_note"></textarea>
+      </div>
+      <div class="col-md-6 form-group">
+        <label>Reason Overdue</label>
+        <textarea pInputTextarea class="form-control" [(ngModel)]="amendContent.overdue_reason"></textarea>
+      </div>
+    </div>
+  </div>
+</fieldset>
