@@ -33,7 +33,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
   btnFormSubmit: boolean = true;
   btnFormCancel: boolean = true;
   btnFormReject: boolean = true;
-  isReadonly : boolean = true;
+  isReadonly: boolean = true;
 
   checkLoader: boolean = false;
 
@@ -57,7 +57,9 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
       (params: Params) => {
         this.caNo = params['ca_no'];
         this.task = params['task'];
-        this.taskShorten = this.task.slice(0, 2).toUpperCase();
+        if (this.task) {
+          this.taskShorten = this.task.slice(0, 2).toUpperCase();
+        }
         this.controlActionForm(this.task);
         ///////  List ans
         this.subscripMaster = this.creditApplicationService.getListMasterPost('web'
@@ -268,9 +270,9 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
       let ca_no: string = this.caNo.replace("/", "_");
       let strURL = '';
       if (this.taskShorten == 'AM') {
-        if (this.myCaHead.sbu_typ == 'FDO'){
+        if (this.myCaHead.sbu_typ == 'FDO') {
           strURL = this.service.url_report + `/result?report=MKT\\CA_AMEND_FAC_01.fr3&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf`;
-        } else  {
+        } else {
           strURL = this.service.url_report + `/result?report=MKT\\CA_AMEND_HPLS_01.fr3&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf`;
         }
       } else {
@@ -295,7 +297,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
       this.btnFormCancel = false;
       this.isReadonly = true;
     }
-    else if ((task == 'CA-01') || (task == 'CA-01-1') || (task == 'AM-01')) {
+    else if ((task == 'CA-01') || (task == 'CA-01-1') || (task == 'AM-01') || (task == 'AM-01-1'))  {
       this.btnFormSubmit = true;
       this.btnFormSave = true;
       this.btnFormReject = false;

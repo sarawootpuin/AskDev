@@ -33,7 +33,7 @@
           <div class="form-inline">
             <input appMyCurrency
                    class="form-control" disabled
-                   [value]="caOverCap"
+                   [value]="tempcaOverCap"
             /> <label>&nbsp;Baht.</label>
           </div>
         </div>
@@ -42,10 +42,10 @@
     <div class="d-flex">
       <div class="form-group flex-md-column col-md-6 ">
         <button type="button" pButton style="float:left" (click)="openDialog()"
-                label="Select Cap"></button>
+                label="Select Cap" [hidden]="!showSelectCapBtn"></button>
         <button type="button" pButton style="float:left" (click)="onClickCancelCap()"
                 [disabled]="selectCapcl?.cancel_by != ''"
-                label="Cancel Cap"></button>
+                label="Cancel Cap" [hidden]="!showSelectCapBtn"></button>
       </div>
     </div>
 
@@ -99,6 +99,7 @@
     </div>
   </div>
 </fieldset>
+
 <app-action-dialog #actiondialog [width]="1200"
                    [showCancel]="true"
                    [showOk]="true" (onOk)="onOkCap()">
@@ -138,7 +139,7 @@
         <p-column field="flg_cap" [editable]="true" header="Selcet" [style]="{'width':'60px','text-align': 'center'}">
           <ng-template let-col let-cl="rowData" pTemplate="body">
             <input type="checkbox"
-                   [checked]="cl[col.field] == 'Y'" (change)="cl[col.field] = onClickCheck($event)"
+                   [checked]="cl[col.field] == 'Y'" (change)="cl[col.field] = onClickCheck($event.target.checked)"
             >
           </ng-template>
         </p-column>

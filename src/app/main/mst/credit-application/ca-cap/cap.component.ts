@@ -14,63 +14,74 @@ import {UserStorage} from "../../../../shared/user/user.storage.service";
   selector: 'app-ca-cap',
   templateUrl: './cap.component.html',
 })
-export class CaCapComponent implements OnInit,OnDestroy {
-  @Input() isReadonly : boolean;
+export class CaCapComponent implements OnInit, OnDestroy {
+  @Input() isReadonly: boolean;
   subscripData: Subscription;
   subscripMaster: Subscription;
 
-  listCapcl : caCapCl[];
-  selectCapcl : caCapCl;
+  listCapcl: caCapCl[];
+  selectCapcl: caCapCl;
 
-  listCapClOwner : caCapClOwner[];
-  selectCapClOwner : caCapClOwner ;
+  listCapClOwner: caCapClOwner[];
+  selectCapClOwner: caCapClOwner;
 
-  listCapClOwnerFromStore : caCapClOwner[];
+  listCapClOwnerFromStore: caCapClOwner[];
 
-  listCapStore : caCapstore[];
-  selectCapStore :caCapstore ;
+  listCapStore: caCapstore[];
+  selectCapStore: caCapstore;
 
-  listcapothstore : caCapOthstore[];
+  listcapothstore: caCapOthstore[];
 
-  caTotalExposure : number = 0 ;
-  caRequestCap : number = 0 ;
-  tempcaRequestCap : number = 0 ;
-  caOverCap : number = 0 ;
-  tempcaOverCap : number = 0 ;
+  caTotalExposure: number = 0;
+  caRequestCap: number = 0;
+  tempcaRequestCap: number = 0;
+  caOverCap: number = 0;
+  tempcaOverCap: number = 0;
+
+  selectedCap: boolean;
+  showSelectCapBtn: boolean;
 
   @ViewChild('actiondialog') actiondialog: ActionDialogComponent;
   @ViewChild('alertCap') alertCap: AlertDialogComponent;
 
   constructor(private creditApplicationService: creditApplicationService,
-              private userStorage: UserStorage) { }
+              private userStorage: UserStorage) {
+    this.selectedCap = false;
+    this.showSelectCapBtn = true;
+  }
 
   ngOnInit() {
     this.subscripData = this.creditApplicationService.eventCaHead.subscribe(
-      (value : caHead ) =>
-      {
-        this.listCapcl = value.listcacapcl ;
-        this.listCapClOwner = value.listcacapclowner ;
-
-        this.caTotalExposure = value.total_exposure ;
-
+      (value: caHead) => {
+        this.listCapcl = value.listcacapcl;
+        this.listCapClOwner = value.listcacapclowner;
+        this.caTotalExposure = value.total_exposure;
 
         if (value.caentity) {
-           this.listCapStore = value.caentity.listcapstore ;
-           this.listcapothstore = value.caentity.listcapothstore ;
-        };
-
-        if ((this.listCapcl) &&( this.listCapcl.length > 0 )) {
-            this.selectCapcl = this.listCapcl[0];
-            this.caRequestCap = this.selectCapcl.total_cap_amt ;
+          this.listCapStore = value.caentity.listcapstore;
+          this.listcapothstore = value.caentity.listcapothstore;
         }
 
-        this.calOverCap ;
+        if ((this.listCapcl) && ( this.listCapcl.length > 0 )) {
+          this.selectCapcl = this.listCapcl[0];
+          this.caRequestCap = this.selectCapcl.total_cap_amt;
+          //this.calOverCap();
+          this.tempcaOverCap = this.selectCapcl.over_cap;
+          if ((this.creditApplicationService.caHead.ca_no == this.listCapcl[0].current_ca) ||
+            (this.listCapcl[0].current_ca == '')) {
+            this.showSelectCapBtn = true;
+          } else {
+            this.showSelectCapBtn = false;
+          }
+        }
+
+
       }
     );
 
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     if (this.subscripData != null) {
       this.subscripData.unsubscribe();
     }
@@ -80,60 +91,87 @@ export class CaCapComponent implements OnInit,OnDestroy {
     }
   }
 
-  openDialog(){
+  openDialog() {
+
     this.actiondialog.setTitle('Request Cap');
-    this.tempcaOverCap = this.caOverCap ;
-    this.tempcaRequestCap =  this.tempcaRequestCap ;
-    this.getlistCapClOwnerFromStore() ;
+    //this.tempcaOverCap = this.caOverCap;
+    this.tempcaRequestCap = this.caRequestCap;
+    this.getlistCapClOwnerFromStore();
     this.actiondialog.open();
   }
 
-  calOverCap(){
-    if ( this.caTotalExposure > this.caRequestCap){
-      this.tempcaOverCap = this.caTotalExposure - this.tempcaRequestCap ;
+  calOverCap() {
+    //if (this.caTotalExposure > this.caRequestCap) {
+      if (this.caTotalExposure > this.tempcaRequestCap) {
+      this.tempcaOverCap = this.caTotalExposure - this.tempcaRequestCap;
     }
-    else{
-      this.tempcaOverCap = 0 ;
+    else {
+      this.tempcaOverCap = 0;
     }
   }
 
-  getlistCapClOwnerFromStore(){
+  getlistCapClOwnerFromStore() {
     this.listCapClOwnerFromStore = [];
-    let running_code =  0 ;
-    if ((this.selectCapcl) && (this.selectCapcl.cancel_by != '')){
-       running_code = this.selectCapcl.running_code ;
+    let running_code = 0;
+
+    if ((this.selectCapcl) && (this.selectCapcl.cancel_by == '')) {
+      running_code = this.selectCapcl.running_code;
     }
 
-    for(let i = 0 ; i < this.listCapStore.length ; i++){
+    // console.log(this.listCapClOwner);
+    for (let i = 0; i < this.listCapStore.length; i++) {
       let newRec = new caCapClOwner();
       newRec.running_code = running_code;
-      newRec.seq_no = i+1;
+      newRec.seq_no = i + 1;
       newRec.com_code = this.listCapStore[i].com_code;
       newRec.sbu_type = this.listCapStore[i].sbu_typ;
       newRec.seller_code = this.listCapStore[i].cus_code;
-      newRec.flg_cap = 'N';
+
+      if (this.selectedCap == true) {
+        newRec.flg_cap = this.listCapClOwner[i].flg_cap;
+      } else {
+        if ( i <= this.listCapClOwner.length - 1 ) {
+          newRec.flg_cap = this.listCapClOwner[i].flg_cap;
+        } else {
+          newRec.flg_cap = 'N';
+        }
+
+      }
+
       newRec.joint_seller_group = this.listCapStore[i].joint_seller_group;
       newRec.cust_group = this.listCapStore[i].grp_code;
       newRec.this_approve = this.listCapStore[i].os_pri;
       newRec.seller_name = this.listCapStore[i].cus_name;
       this.listCapClOwnerFromStore.push(newRec);
     }
+
+    //console.log('boss1',this.listCapClOwnerFromStore);
   }
 
-  onOkCap(){
-    this.caRequestCap = this.tempcaRequestCap ;
-    this.caOverCap    = this.tempcaOverCap ;
-    this.listCapClOwner = this.listCapClOwnerFromStore ;
-    this.creditApplicationService.caHead.listcacapclowner = this.listCapClOwner ;
+  onOkCap() {
+    this.selectedCap = true;
+    this.caRequestCap = this.tempcaRequestCap;
+    this.caOverCap = this.tempcaOverCap;
+    this.listCapClOwner = this.listCapClOwnerFromStore;
 
-    if ((this.selectCapcl) && (this.selectCapcl.cancel_by != '')){
-      this.selectCapcl.total_cap_amt = this.caRequestCap ? this.caRequestCap : 0 ;
+    // for(let i = 0; i < this.listCapClOwner.length; i++) {
+    //   if (this.listCapClOwner[i].flg_cap == 'Y') {
+    //     this.creditApplicationService.caHead.listcacapclowner[i] = JSON.parse(JSON.stringify(this.listCapClOwner[i]));
+    //   }
+    // }
+    //
+    // console.log(this.creditApplicationService.caHead.listcacapclowner);
+
+    this.creditApplicationService.caHead.listcacapclowner = this.listCapClOwner;
+
+    if ((this.selectCapcl) && (this.selectCapcl.cancel_by != '')) {
+      this.selectCapcl.total_cap_amt = this.caRequestCap ? this.caRequestCap : 0;
       this.selectCapcl.total_exposure = this.caTotalExposure ? this.caTotalExposure : 0;
       this.selectCapcl.over_cap = this.caOverCap ? this.caOverCap : 0;
-    } else{
-      this.selectCapcl = new caCapCl() ;
+    } else {
+      this.selectCapcl = new caCapCl();
       this.selectCapcl.running_code = 0;
-      this.selectCapcl.total_cap_amt = this.caRequestCap ? this.caRequestCap : 0 ;
+      this.selectCapcl.total_cap_amt = this.caRequestCap ? this.caRequestCap : 0;
       this.selectCapcl.total_exposure = this.caTotalExposure ? this.caTotalExposure : 0;
       this.selectCapcl.current_ca = this.creditApplicationService.caHead.ca_no;
       this.selectCapcl.cancel_dt = '';
@@ -146,35 +184,46 @@ export class CaCapComponent implements OnInit,OnDestroy {
       this.listCapcl.push(this.selectCapcl);
     }
 
+    // for (let i = 0; i < this.listCapClOwner.length; i++) {
+    //   if (this.listCapClOwner[i].flg_cap == 'N') {
+    //     this.listCapClOwner.splice(i,1);
+    //   }
+    // }
+
+    console.log('boss2',this.listCapClOwnerFromStore);
+    console.log('boss3',this.listCapClOwner);
+
   }
 
-  onClickCheck(value){
-    let data ;
-    if (value){
+  onClickCheck(value) {
+    console.log(value);
+    let data;
+    if (value) {
       data = 'Y';
-    }else {
-      data= 'N';
+    } else {
+      data = 'N';
     }
     return data;
   }
 
-  onClickCancelCap(){
+  onClickCancelCap() {
     this.alertCap.reset();
     this.alertCap.setAction('CANCEL');
-    this.alertCap.open() ;
+    this.alertCap.open();
   }
 
-  okCancelCap(){
-    if ((this.selectCapcl) && (this.selectCapcl.cancel_by == '')){
-      this.selectCapcl.cancel_by = this.userStorage.getCode() ;
-      this.selectCapcl.cancel_dt = new Date().toLocaleDateString('en-GB') ;
+  okCancelCap() {
+    if ((this.selectCapcl) && (this.selectCapcl.cancel_by == '')) {
+      this.selectCapcl.cancel_by = this.userStorage.getCode();
+      this.selectCapcl.cancel_dt = new Date().toLocaleDateString('en-GB');
 
-      for(let i = 0 ; i < this.listCapClOwner.length;i++){
+      for (let i = 0; i < this.listCapClOwner.length; i++) {
         this.listCapClOwner[i].flg_cap = 'N';
-        this.listCapClOwner[i].cancel_by = this.userStorage.getCode() ;
-        this.listCapClOwner[i].cancel_dt = new Date().toLocaleDateString('en-GB') ;
+        this.listCapClOwner[i].cancel_by = this.userStorage.getCode();
+        this.listCapClOwner[i].cancel_dt = new Date().toLocaleDateString('en-GB');
       }
-    };
+    }
+    ;
 
     console.log(this.selectCapcl);
     console.log(this.listCapClOwner);

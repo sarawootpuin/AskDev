@@ -57,6 +57,9 @@ export class CaAssetComponent implements OnInit , OnDestroy {
 
     if ( (this.listbgdetailSub) && (this.listbgdetailSub.length > 0)  )
     { this.onSelectdetailSub(this.listbgdetailSub[0]) ;  }
+    else{
+      this.onSelectdetailSub(new caBgDetailSub());
+    }
 
   }
 
@@ -69,10 +72,11 @@ export class CaAssetComponent implements OnInit , OnDestroy {
     this.newAsset = new caBgDetail();
 
     this.newAsset.ca_no =  this.creditApplicationService.caHead.ca_no ;
-    if ( this.listbgdetail.length){ this.newAsset.sub_id = this.listbgdetail.length +1    }
+
+    if ( this.listbgdetail.length > 1){ this.newAsset.sub_id = this.listbgdetail.length +1    }
     else {this.newAsset.sub_id = 1  }
 
-
+    console.log(this.newAsset);
     this.listbgdetail = [ ...this.listbgdetail,this.newAsset];
     this.creditApplicationService.caHead.listbgdetail = this.listbgdetail ;
     this.onSelectdetail(this.newAsset);

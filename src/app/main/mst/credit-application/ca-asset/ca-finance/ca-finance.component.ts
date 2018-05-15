@@ -100,8 +100,10 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
 
   creditTypeChange(dataSelect: any) {
     if (dataSelect) {
+      console.log(dataSelect);
+      console.log(this.dataFin);
       this.bgdetail.credit_type = this.dataFin.find(
-        (i) => dataSelect.id_code === i.id_code
+        (i) => dataSelect === i.id_code
       ).remark;
     }
     else {
@@ -121,11 +123,11 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
     else {
       if (this.bgdetail.fin_typ == 1) {
         this.bgdetail.sub_fin = this.dataSubFin[index].id_code;
-        this.bgdetail.buy_back_flg = this.dataSubFin[index].remark;
+        this.bgdetail.buy_back_flg = this.dataSubFin[index].key2;
       }
       else {
         this.bgdetail.sub_fin = this.dataSubFinLs[index].id_code;
-        this.bgdetail.buy_back_flg = this.dataSubFinLs[index].remark;
+        this.bgdetail.buy_back_flg = this.dataSubFinLs[index].key2;
       }
     }
   }

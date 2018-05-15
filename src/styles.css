@@ -91,11 +91,14 @@ body .ui-panel .ui-panel-footer {
   font-size: 12px;
 }
 
-.form-control {
+body .ui-inputtext ,
+.form-control  {
   font-size: 12px;
   color: #0638c5;
 }
 
+
+body .ui-inputtext:disabled , .ui-inputtext[readonly] ,
 .form-control:disabled, .form-control[readonly] {
   background-color: #fdfaa2 ;
   opacity: 1;

@@ -44,6 +44,13 @@ export class CaApproveLvComponent implements OnInit , OnDestroy {
                  this.selectCaCusApv = this.listcacusapv[0];
              }
           }
+
+         if (this.caHead.current_task.indexOf('Amend') > -1){
+           this.listcacusapv = this.listcacusapv.filter( list => list.approve_type == 2 );
+         }
+         else {
+           this.listcacusapv = this.listcacusapv.filter( list => list.approve_type == 1 );
+         }
         }
 
 

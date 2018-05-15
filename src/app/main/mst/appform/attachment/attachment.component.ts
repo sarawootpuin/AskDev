@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild,Input} from "@angular/core";
+import {Component, OnInit, ViewChild, Input, OnChanges} from "@angular/core";
 import {ActionReadExcelComponent} from "../../../../shared/center/action-read-excel/action-read-excel.component";
 import {AppFormService} from "../appform.service";
 import {AlertDialogComponent} from "../../../../shared/center/alert-dialog/alert-dialog.component";
@@ -10,7 +10,7 @@ declare var $: any;
   selector: 'app-attachment',
   templateUrl: './attachment.component.html'
 })
-export class AttachmentComponent implements OnInit {
+export class AttachmentComponent implements OnInit ,OnChanges {
   @ViewChild('actionReadExcel') actionReadExcel: ActionReadExcelComponent;
   @ViewChild('alertFinish') alertFinish : AlertDialogComponent;
   @Input() inquiry : boolean = false;
@@ -38,7 +38,13 @@ export class AttachmentComponent implements OnInit {
     this.directoryTemplate(this.comCode);
   }
 
+  ngOnChanges(){
+    this.checkFile(this.comCode, this.caNo);
+  }
+
   checkFile(comCode, caNo) {
+    //console.log('comCode'+comCode);
+    //console.log('caNo'+caNo);
     this.actionReadExcel.findCaDirectoryPart(comCode, caNo).subscribe(
       (data: any) => {
         //console.log('test');
@@ -49,6 +55,7 @@ export class AttachmentComponent implements OnInit {
           this.partDownload = "http://picask:DC8C3078BC63EAA@" + this.partDownload.substring(2).replace(/\\/g, '/');
           //console.log(this.partDownload);
         }
+        //console.log(this.partDownload);
       }
     );
   }
@@ -109,14 +116,14 @@ export class AttachmentComponent implements OnInit {
     //console.log(this.comCode)
     //console.log(this.caNo)
     //console.log(this.partDownload);
-    this.checkFile(this.comCode, this.caNo);
+
 
     this.alertFinish.setAction("INFORMATION");
     this.alertFinish.list_msg = [];
     this.alertFinish.addMessage('Grade : ' + this.appFormService.getAppFormData().grade +
                                 ' & Score : ' + this.appFormService.getAppFormData().score);
     this.alertFinish.open();
-
+    this.checkFile(this.comCode, this.caNo);
   }
 
   downloadFile() {

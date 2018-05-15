@@ -19,7 +19,8 @@
       <option [value]="-1"></option>
       <option *ngFor="let list of dataSubFin; let i = index "
               [value]="list.id_code"
-              [selected]="bgdetail.sub_fin === list.id_code">{{list?.remark}}
+              [selected]="bgdetail.sub_fin === list.id_code &&
+                          bgdetail.buy_back_flg === list.key2">{{list?.remark}}
       </option>
     </select>
     <!--------------fin_typ 2 (Leasing)---------------------------->
@@ -300,12 +301,13 @@
         <div class="row">
           <div class="col-md-6 ">
             <label>Cal IRR</label>
-            <select class="form-control w-100" (change)="bgdetail.selectForCall = $event.target.value">
-             <option [value]="1">1.Calculate Installment + Flat Know Gross IRR , Fin, Term</option>
-            <option [value]="2">2.Calculate Installment + IRR Know Fin, Flat, Term</option>
-            <option [value]="3">3.Calculate IRR + Flat Know Installment, Fin, Term</option>
-            <option [value]="4">4.Calculate Finance + Flat Know Installment, Gross IRR, Term</option>
-            <option [value]="5">5.Calculate Flat Know Installment, Fin, Term</option>
+            <select class="form-control w-100"
+                    [(ngModel)] = "bgdetail.selectForCall">
+              <option [value]="1">1.Calculate Installment + Flat Know Gross IRR , Fin, Term</option>
+              <option [value]="2">2.Calculate Installment + IRR Know Fin, Flat, Term</option>
+              <option [value]="3">3.Calculate IRR + Flat Know Installment, Fin, Term</option>
+              <option [value]="4">4.Calculate Finance + Flat Know Installment, Gross IRR, Term</option>
+              <option [value]="5">5.Calculate Flat Know Installment, Fin, Term</option>
             </select>
           </div>
           <div class="col-md-6 mt-4 pt-1">

@@ -377,7 +377,7 @@ export class AppFormService {
       "installmentVat": dataDetail.installment_vat ? dataDetail.installment_vat : 0,
       "flatRate": dataDetail.flat_rate ? dataDetail.flat_rate : 0,
       "terms": dataDetail.terms ? dataDetail.terms : 0,
-      "schedule": dataDetail.schedule,
+      "schedule": dataDetail.cal_inst_typ === 'Fix'? dataDetail.schedule : 'R',
       "stepList": dataDetail.listStep,
       "disburseDate": dataDetail.disburse_dt,
       "firstDate": dataDetail.first,

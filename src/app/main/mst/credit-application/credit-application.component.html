@@ -181,7 +181,7 @@
           </app-side-tab-level>
           <app-side-tab-level [nameMenu]="'Profile/Report'" *ngIf="false">
           </app-side-tab-level>
-          <app-side-tab-level [nameMenu]="'Collateral'" *ngIf="myCaHead.sbu_typ == 'P' || myCaHead.sbu_typ == 'FDO' ">
+          <app-side-tab-level [nameMenu]="'Collateral'" *ngIf="myCaHead.sbu_typ == 'P' || myCaHead.sbu_typ == 'FDO' && taskShorten != 'AM'">
           </app-side-tab-level>
           <app-side-tab-level [nameMenu]="'Condition Detail'" *ngIf="false">
           </app-side-tab-level>
@@ -278,6 +278,7 @@
 
           <app-side-tab-content [nameContent]="'Collateral'">
             <app-ca-collateral [isReadonly]="this.isReadonly"></app-ca-collateral>
+
           </app-side-tab-content>
 
 

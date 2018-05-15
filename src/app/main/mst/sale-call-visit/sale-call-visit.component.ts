@@ -219,19 +219,19 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
   showReport(){
 
 
-    // if (this.vsale_no) {
-    //   let sale_no: string = this.vsale_no.replace("/", "_");
-    //   let strURL = '' ;
-    //   //strURL = this.service.url_report +`/result?report=MKT\\CA_HPLS_01.fr3&p_ca_no=${ca_no}&p_id_card=${this.creditApplicationService.newCardNo}&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf`;
-    //
-    //   strURL = this.service.url_report +`/result?report=MKT\\CallVisit_01.fr3&SaleCallNo=${sale_no}&SeqNo=1&format=pdf`;
-    //
-    //   // http://192.168.112.125:8097/result?report=MKT\CallVisit_01.fr3&SaleCallNo=61_00064&SeqNo=1&format=pdf
-    //   window.open(strURL, '_blank');
-    //   console.log(strURL);
-    // }
+    if (this.vsale_no) {
+      let sale_no: string = this.vsale_no.replace("/", "_");
+      let strURL = '' ;
+      //strURL = this.service.url_report +`/result?report=MKT\\CA_HPLS_01.fr3&p_ca_no=${ca_no}&p_id_card=${this.creditApplicationService.newCardNo}&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf`;
 
-    this.questionAction('SAVE');
+      strURL = this.service.url_report +`/result?report=MKT\\CallVisit_01.fr3&SaleCallNo=${sale_no}&SeqNo=1&format=pdf`;
+
+      // http://192.168.112.125:8097/result?report=MKT\CallVisit_01.fr3&SaleCallNo=61_00064&SeqNo=1&format=pdf
+      window.open(strURL, '_blank');
+      console.log(strURL);
+    }
+
+    //this.questionAction('SAVE');
 
   }
 }

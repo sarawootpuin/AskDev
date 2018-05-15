@@ -60,11 +60,11 @@
 </app-alert-dialog>
 
 <app-alert-dialog #warningBlacklist
-                  (onOK)="this.verifyGuarantor()">
+                  (onOK)="verifyBeforeSubmit()">
 </app-alert-dialog>
 
 <app-alert-dialog #warningGuarantor
-                  (onCancel)="this.verifyBeforeSubmit()">
+                  (onCancel)="verifyBeforeSubmit()">
 </app-alert-dialog>
 
 <app-action-dialog [title]="applyEmit.type" #newRenewDialog
@@ -98,7 +98,7 @@
 
 <div [hidden]="isLoading">
   <div class="" style="background-color: #FFF">
-    <app-action-button-form title="Application Form ( {{data.current_task}} )"
+    <app-action-button-form title="Application Form"
                             (onSave)="actionClick('Save')"
                             (onCancel)="actionClick('Cancel')"
                             (onNew)="showDialog()"
@@ -118,7 +118,8 @@
                             [showCalculator]="false"
                             [showBack]="false"></app-action-button-form>
     <div class="card m-1 border-isa">
-      <p-panel [toggleable]="true" header="Information">
+      <p-panel [toggleable]="true"
+               header="Infomation - {{data.current_task}}">
         <div class="main-container">
           <div class="row">
             <div class="flex-md-column col-md-3">

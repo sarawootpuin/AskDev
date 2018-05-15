@@ -79,6 +79,7 @@ export class CaCustomerComponent implements OnInit , OnDestroy {
   }
 
   setCluster(data: string) {
+    console.log(data);
     this.caEntityDetail.cluster_ind   = data;
   }
 

@@ -39,8 +39,10 @@ export class CaCollateralComponent implements OnInit, OnDestroy {
 
         this.listcacollateral = value.listcacollateral;
 
-        if ((this.listcacollateral) && (this.listcacollateral.length > 1)) {
+        if ((this.listcacollateral) && (this.listcacollateral.length > 0)) {
           this.selectCollateral = this.listcacollateral[0];
+          this.getCltTypeDesc(this.selectCollateral.clt_type);
+
         }
 
       }

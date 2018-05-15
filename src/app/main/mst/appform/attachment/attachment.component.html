@@ -8,6 +8,7 @@
     </app-action-read-excel>
 
     <p-footer>
+      <!--<a class="btn btn-primary" *ngIf ='this.partDownload' [href]="this.partDownload" target="_blank"> {{titleDownload}}</a>-->
       <button type="button" *ngIf='this.partDownload'
               class="btn btn-print" (click)="downloadFile()">
         <i class="fa fa-print"></i> {{titleDownload}}
