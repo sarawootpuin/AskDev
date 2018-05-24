@@ -14,13 +14,14 @@
       </div>
     </div>
     <div class="col-md-4">
-      <label>Advance Ratio</label>
+      <label>Advance Ratio (%)</label>
       <span class="star">*</span>
       <div class="form-group">
-        <input currencyMask
+        <input appMyCurrency
+               [fraction]="0"
                class="form-control"
-               [(ngModel)]="selectBuyer.advance_ratio"
-               [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
+               [value]="selectBuyer.advance_ratio"
+               (change)="selectBuyer.advance_ratio = $event.target.value">
       </div>
     </div>
     <div class="col-md-4">
@@ -39,20 +40,22 @@
       <label>Sub-Line Limit</label>
       <span class="star">*</span>
       <div class="form-group">
-        <input currencyMask
+        <input appMyCurrency
+               [fraction]="2"
                class="form-control"
-               [(ngModel)]="selectBuyer.sub_line_amt"
-               [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
+               [value]="selectBuyer.sub_line_amt"
+               (change)="selectBuyer.sub_line_amt = $event.target.value">
       </div>
     </div>
     <div class="col-md-4">
       <label>Payment Term</label>
       <span class="star">*</span>
       <div class="form-group">
-        <input currencyMask
+        <input appMyCurrency
+               [fraction]="0"
                class="form-control"
-               [(ngModel)]="selectBuyer.terms"
-               [options]="{ prefix: '', thousands: ',', precision  : '0' }"/>
+               [value]="selectBuyer.terms"
+               (change)="selectBuyer.terms = $event.target.value">
       </div>
     </div>
   </div>
@@ -74,11 +77,12 @@
     <div class="col-md-4">
       <label>Join Buyer CR. Amount </label>
       <div class="form-group">
-        <input currencyMask
+        <input appMyCurrency
+               [fraction]="2"
                disabled
                class="form-control"
-               [(ngModel)]="selectBuyer.cr_limit"
-               [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
+               [value]="selectBuyer.cr_limit"
+               (change)="selectBuyer.cr_limit = $event.target.value">
       </div>
     </div>
   </div>
@@ -146,26 +150,29 @@
       <span class="star">*</span>
       <div class="form-group">
         <input [disabled]="editable"
-               currencyMask
+               appMyCurrency
+               [fraction]="2"
                class="form-control"
-               [(ngModel)]="selectBuyer.factoring_fee"
-               [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
+               [value]="selectBuyer.factoring_fee"
+               (change)="selectBuyer.factoring_fee = $event.target.value">
       </div>
       <label>Minimum Factoring Fee</label>
       <div class="form-group">
         <input [disabled]="editable"
-               currencyMask
+               appMyCurrency
+               [fraction]="0"
                class="form-control"
-               [(ngModel)]="selectBuyer.min_facfee"
-               [options]="{ prefix: '', thousands: ',', decimal: '.' , precision  : '0'}"/>
+               [value]="selectBuyer.min_facfee"
+               (change)="selectBuyer.min_facfee = $event.target.value">
       </div>
-      <label>Max Facforing Fee</label>
+      <label>Max Factoring Fee</label>
       <div class="form-group">
         <input [disabled]="editable"
-               currencyMask
+               appMyCurrency
+               [fraction]="0"
                class="form-control"
-               [(ngModel)]="selectBuyer.max_facfee"
-               [options]="{ prefix: '', thousands: ',', decimal: '.', precision  : '0' }"/>
+               [value]="selectBuyer.max_facfee"
+               (change)="selectBuyer.max_facfee = $event.target.value">
       </div>
       <br>
       <div class="mt-radio-inline border-isa">

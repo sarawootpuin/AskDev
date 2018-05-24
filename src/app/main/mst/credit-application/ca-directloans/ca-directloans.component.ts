@@ -14,6 +14,7 @@ import {Subscription} from "rxjs/Subscription";
 })
 export class CaDirectloansComponent implements OnInit , OnDestroy {
   @Input() isReadonly : boolean;
+  @Input() task : string;
   subscripData: Subscription;
   subscripMaster: Subscription;
 

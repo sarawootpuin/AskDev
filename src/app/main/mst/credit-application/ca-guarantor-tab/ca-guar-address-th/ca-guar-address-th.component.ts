@@ -65,4 +65,28 @@ export class CaGuarAddressThComponent implements OnInit,OnDestroy {
     if (s_postcd_type == 'O'){this.caGua.post_cd_o = data;}
     if (s_postcd_type == 'M'){this.caGua.post_cd_m = data;}
   }
+
+  copyOwner(panel: string) {
+    if (panel == 'VAT') {
+      this.caGua.add_c = this.caGua.address;
+      this.caGua.zip_c = this.caGua.zip;
+      this.caGua.zip_c_desc = this.caGua.zip_desc;
+      this.caGua.post_cd_c = this.caGua.post_cd;
+     /* this.caGua.post_cd_c = this.caGua.post_cd;
+      this.caGua.tel_card = this.caขGua.tel;*/
+    } else if (panel == 'OFFICE') {
+      this.caGua.add_o = this.caGua.address;
+      this.caGua.zip_o = this.caGua.zip;
+      this.caGua.zip_o_desc = this.caGua.zip_desc;
+      this.caGua.post_cd_o = this.caGua.post_cd;
+      this.caGua.near_o = this.caGua.near;
+      this.caGua.tel_o = this.caGua.tel;
+      this.caGua.fax_office = this.caGua.fax_current;
+    } else if (panel == 'MAIL') {
+      this.caGua.add_m = this.caGua.address;
+      this.caGua.zip_m = this.caGua.zip;
+      this.caGua.zip_m_desc = this.caGua.zip_desc;
+      this.caGua.post_cd_m = this.caGua.post_cd;
+    }
+  }
 }

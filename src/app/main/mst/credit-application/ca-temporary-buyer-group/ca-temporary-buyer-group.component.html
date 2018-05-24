@@ -1,0 +1,142 @@
+<p-panel header="Amend Temporary Creditline Group Buyer" [toggleable]="false" [style]="{'margin-bottom':'3px'}">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <p-dataTable [responsive]="true" [value]="listCaTempCreditLineGroup"
+                     [loading]="loading" selectionMode="single"
+                     [(selection)]="selectedCaTempCreditLineGroup"
+                     [immutable]="false">
+          <p-header>
+            <app-custom-botton-icon [option]="'new'" (onBtnClick)="openDialogBuyer()"></app-custom-botton-icon>
+            <app-custom-botton-icon [option]="'delete'" (onBtnClick)="deleteWarning()"></app-custom-botton-icon>
+          </p-header>
+          <p-column header="Seq No." field="sub_id" [style]="{'width':'75px'}"></p-column>
+          <p-column header="Buyer Group Name" field="group_name"></p-column>
+        </p-dataTable>
+      </div>
+      <div class="col-md-8 border-isa">
+        <div class="row">
+          <div class="col-md-4">
+            <label>Requested Sub-line</label>
+            <div class="form-inline">
+              <input appMyCurrency
+                     class="form-control"
+                     [fraction]="2"
+                     (change)="selectedCaTempCreditLineGroup.temp_sub_ca_amt_group = $event.target.value"
+                     [value]="selectedCaTempCreditLineGroup.temp_sub_ca_amt_group">&nbsp;(Baht)
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <label>Buyer Group</label>
+          </div>
+          <div class="col-md-4">
+            <input class="form-control" type="text" [(ngModel)]="selectedCaTempCreditLineGroup.join_grp_code" readonly>
+          </div>
+          <div class="col-md-8">
+            <input class="form-control" type="text" [(ngModel)]="selectedCaTempCreditLineGroup.group_name" readonly>
+          </div>
+          <div class="col-md-12">
+            <label>Buyer Credit limit</label>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-inline">
+                  <input appMyCurrency
+                         class="form-control"
+                         [fraction]="2"
+                         (change)="selectedCaTempCreditLineGroup.ca_limit = $event.target.value"
+                         [value]="selectedCaTempCreditLineGroup.ca_limit">&nbsp;(Baht)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="padding-top: 2.2rem; padding-left: 8.2rem;">
+          <div class="form-group col-md-12 border-isa">
+            <label><b>Amend Time</b></label>
+            <div class="row">
+              <div class="col-md-3" style="padding-left: 4rem;">
+                <input class="form-check-input" name="amend_buyer_group" type="radio" value="T"
+                       (ngModelChange)="amendChange($event)"
+                       [(ngModel)]="selectedCaTempCreditLineGroup.amend_type"
+                >&nbsp;Time
+              </div>
+              <div class="col-md-6">
+                <div class="form-inline">
+                  <input
+                    appMyCurrency
+                    [fraction]="0"
+                    class="form-control"
+                    type="text"
+                    #timeInput
+                    [disabled]="checkCalendar"
+                    [(ngModel)]="selectedCaTempCreditLineGroup.time"
+                  >&nbsp;&nbsp;Time
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding-top: 1.0rem;">
+              <div class="col-md-3" style="padding-left: 4rem;">
+                <input class="form-check-input" name="amend_buyer_group" type="radio" value="P"
+                       [(ngModel)]="selectedCaTempCreditLineGroup.amend_type"
+                       (ngModelChange)="amendChange($event)"
+                >&nbsp;Period
+              </div>
+              <div class="col-md-9">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Start Date</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p-calendar dateFormat="dd/mm/yy"
+                                class="my-1"
+                                placeholder="dd/mm/yyyy"
+                                dataType="string"
+                                showButtonBar="true"
+                                [disabled]="!checkCalendar"
+                                [(ngModel)]="selectedCaTempCreditLineGroup.eff_date"
+                    ></p-calendar>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Maturity Date</label>
+                  </div>
+                  <div class="col-md-6" style="padding-top: 10px;">
+                    <p-calendar dateFormat="dd/mm/yy"
+                                class="my-1"
+                                placeholder="dd/mm/yyyy"
+                                dataType="string"
+                                showButtonBar="true"
+                                [disabled]="!checkCalendar"
+                                [(ngModel)]="selectedCaTempCreditLineGroup.expire_date"
+                    ></p-calendar>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-panel>
+
+<app-action-dialog #showDialog [showChoose]="true" [showCancel]="true"
+                   (onChoose)="addCaTempCreditLineGroup()">
+  <p-dataTable [value]="listBuyer" [loading]="loading" selectionMode="single" [(selection)]="selectedBuyer"
+               [immutable]="false" [responsive]="true">
+    <p-column header="No." [style]="{'width':'75px'}">
+      <ng-template let-i="rowIndex" pTemplate="body">
+        {{i+1}}
+      </ng-template>
+    </p-column>
+    <p-column field="group_name" header="Buyer Group Name"></p-column>
+  </p-dataTable>
+</app-action-dialog>
+
+<app-alert-dialog #deleteDialog [action]="'DELETE'" (onOK)="deleteCaTempCreditLineGroup()">
+</app-alert-dialog>
+
+

@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {caHead} from "../../../model/ca-head";
 import {caPricing} from "../../../model/ca-pricing";
 import {caListMaster} from "../../../model/ca_listmaster";
@@ -13,6 +13,7 @@ import {Subscription} from "rxjs/Subscription";
 
 })
 export class PricingNormalComponent implements OnInit , OnDestroy{
+  @Input() task : string;
   subscripData: Subscription;
   subscripMaster: Subscription;
   dataHead: caHead = new caHead();

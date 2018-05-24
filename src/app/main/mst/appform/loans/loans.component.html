@@ -9,8 +9,8 @@
 
 <app-action-dialog #actionDialog
                    [showCancel]="true"
-                   [showAdd]="true"
-                   (onAdd)="addClick()">
+                   [showOk]="true"
+                   (onOk)="addClick()">
   <div class="form-group">
     <label>From Term</label>
     <input class="form-control" [(ngModel)]="step.from_term">

@@ -10,15 +10,20 @@ export class ExposureService {
 
   }
 
-  getExposure(device: any, caNo: any, newCardNo: any, thisApprove: any) {
-    const url = this.service.url + this.service.sale_call_api + '/ask/salecall/GetExposure?device=' + device +
-      '&user=' + this.user.getUserName() + '&caNo=' + caNo + '&thisApprove=' + thisApprove + '&newCardNo=' + newCardNo;
+  getExposure(device: any, comCode : any,caNo: any, newCardNo: any) {
+    const url = this.service.url + this.service.ca_api + '/ask/ca/GetExposure';
+    let data = {
+      "device": device,
+      "username": this.user.getUserName(),
+      "comcode": comCode,
+      "cano": caNo,
+      "idcard": newCardNo
+    };
     let options = {
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
       }
     };
-    return this.http.get(url, options);
-
+    return this.http.post(url, data, options);
   }
 }

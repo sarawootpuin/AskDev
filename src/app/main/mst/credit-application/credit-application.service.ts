@@ -174,9 +174,46 @@ export class creditApplicationService {
   listCOND_CA: caListMaster[] = [];
   listInsRate: caListMaster[] = [];
   listAPT: caListMaster[] = [];
+  listCUR_TYPE: caListMaster[] = [];
+  listRMK_ATT: caListMaster[] = [];
+  listNTN: caListMaster[] = [];
   eventListMaster = new EventEmitter();
 
   setListMaster(json: any[]) {
+
+    this.listFNM = [];
+    this.listFNME = [];
+    this.listCRD = [];
+    this.listNTY = [];
+    this.listBNK = [];
+    this.listSTS = [];
+    this.listGRP_CUS = [];
+    this.listOC = [];
+    this.listPOS_BG = [];
+    this.listCS_BUS = [];
+    this.listINE = [];
+    this.listIND = [];
+    this.listPAID = [];
+    this.listBANK_INT_RATE = [];
+    this.listFIN = [];
+    this.listSUB_FIN = [];
+    this.listSUB_FINLS = [];
+    this.listLease = [];
+    this.listFAT = [];
+    this.listFAC = [];
+    this.listFAS = [];
+    this.listEQP = [];
+    this.listBDY = [];
+    this.listENG_TYPE = [];
+    this.listRMK_MKT = [];
+    this.listCOND_MKT = [];
+    this.listCOND_CA = [];
+    this.listInsRate = [];
+    this.listAPT = [];
+    this.listCUR_TYPE = [];
+    this.listRMK_ATT = [];
+    this.listNTN = [];
+
     for (let i = 0; i < json.length; i++) {
       if (json[i].type == 'FNM') {
         this.listFNM.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
@@ -236,11 +273,14 @@ export class creditApplicationService {
         this.listInsRate.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
       } else if (json[i].type == 'APT') {
         this.listAPT.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
+      } else if (json[i].type == 'CUR_TYPE'){
+        this.listCUR_TYPE.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
+      } else if (json[i].type == 'RMK_ATT'){
+        this.listRMK_ATT.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
+      } else if (json[i].type == 'NTN'){
+        this.listNTN.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
       }
-
-
     }
-
     // console.log('Emit ans');
     this.eventListMaster.emit();
   }
@@ -319,7 +359,7 @@ export class creditApplicationService {
         'Content-Type': 'application/json;charset=utf-8'
       }
     };
-    let dataDetail = this.bgdetail;
+    let dataDetail = this.caHead.listbgdetail[subId-1];
     let sumCash = 0;
     let cltType = '';
     let intRate = 0;
@@ -339,7 +379,7 @@ export class creditApplicationService {
       "installmentVat": dataDetail.installment_vat ? dataDetail.installment_vat : 0,
       "flatRate": dataDetail.flat_rate ? dataDetail.flat_rate : 0,
       "terms": dataDetail.terms ? dataDetail.terms : 0,
-      "schedule": dataDetail.schedule,
+      "schedule": dataDetail.cal_inst_typ === 'Fix'? dataDetail.schedule : 'R',
       "stepList": dataDetail.listcastep,
       "disburseDate": dataDetail.disburse_dt,
       "firstDate": dataDetail.first,
@@ -355,7 +395,7 @@ export class creditApplicationService {
       "cashType": cltType,
       "cashIntRate": intRate
     };
-    //console.log(data);
+    console.log(data);
     return this.http.post(url, JSON.stringify(data), options);
   }
 

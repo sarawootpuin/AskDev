@@ -126,8 +126,8 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
       this.visiblePanel = false;
     }
   }
-  
-  changeFirst(event : string) {
+
+  changeFirst(event: string) {
     if (this.data.adv_arr === 'V') {
       this.data.first = event;
     }
@@ -156,6 +156,9 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
       if (!this.data.terms) {
         this.calIrrWarning.addMessage('- Terms');
       }
+      if(this.data.schedule == 'I'){
+        this.calIrrWarning.addMessage('- Installment');
+      }
     }
     else if (this.data.calculateItem == '2') {
       if (!this.data.fin_amt_e_vat) {
@@ -166,6 +169,9 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
       }
       if (!this.data.terms) {
         this.calIrrWarning.addMessage('- Terms');
+      }
+      if(this.data.schedule == 'I'){
+        this.calIrrWarning.addMessage('- Installment');
       }
     }
     else if (this.data.calculateItem == '3') {
@@ -322,7 +328,7 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
       this.data.fin_amt_e_vat = this.data.fin_amt_i_vat;
     }
     if (this.data.asst_amt_e_vat) {
-        this.data.fin_ratio = Number((this.data.fin_amt_e_vat ? this.data.fin_amt_e_vat : 0)/ this.data.asst_amt_e_vat).toFixed(2);
+      this.data.fin_ratio = Number((this.data.fin_amt_e_vat ? this.data.fin_amt_e_vat : 0) / this.data.asst_amt_e_vat).toFixed(2);
     }
   }
 
@@ -330,7 +336,7 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
     if (from == 'E') {
       if (this.data.with_vat === 'Y') {
         this.data.asst_amt_vat = Number((this.data.asst_amt_e_vat ? this.data.asst_amt_e_vat : 0) * this.vatRate / 100).toFixed(2);
-        this.data.asst_amt_i_vat = (Number(this.data.asst_amt_e_vat ? this.data.asst_amt_e_vat  : 0) + Number(this.data.asst_amt_vat)).toFixed(2);
+        this.data.asst_amt_i_vat = (Number(this.data.asst_amt_e_vat ? this.data.asst_amt_e_vat : 0) + Number(this.data.asst_amt_vat)).toFixed(2);
       }
       else {
         this.data.asst_amt_vat = 0;
@@ -340,7 +346,7 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
     else {
       if (this.data.with_vat == 'Y') {
         this.data.asst_amt_e_vat = Number((this.data.asst_amt_i_vat ? this.data.asst_amt_i_vat : 0) * 100 / (100 + this.vatRate)).toFixed(2);
-        this.data.asst_amt_vat = Number((this.data.asst_amt_i_vat ? this.data.asst_amt_i_vat : 0)  - this.data.asst_amt_e_vat).toFixed(2);
+        this.data.asst_amt_vat = Number((this.data.asst_amt_i_vat ? this.data.asst_amt_i_vat : 0) - this.data.asst_amt_e_vat).toFixed(2);
       }
       else {
         this.data.asst_amt_vat = 0;
@@ -358,17 +364,17 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
       }
       else {
         this.data.down_amt_vat = 0;
-        this.data.down_amt_i_vat = (this.data.down_amt_e_vat ? this.data.down_amt_e_vat  : 0);
+        this.data.down_amt_i_vat = (this.data.down_amt_e_vat ? this.data.down_amt_e_vat : 0);
       }
     }
     else {
       if (this.data.with_vat == 'Y') {
-        this.data.down_amt_e_vat = Number((this.data.down_amt_i_vat ? this.data.down_amt_i_vat  : 0) * 100 / (100 + this.vatRate)).toFixed(2);
-        this.data.down_amt_vat = Number((this.data.down_amt_i_vat ? this.data.down_amt_i_vat  : 0) - this.data.down_amt_e_vat).toFixed(2);
+        this.data.down_amt_e_vat = Number((this.data.down_amt_i_vat ? this.data.down_amt_i_vat : 0) * 100 / (100 + this.vatRate)).toFixed(2);
+        this.data.down_amt_vat = Number((this.data.down_amt_i_vat ? this.data.down_amt_i_vat : 0) - this.data.down_amt_e_vat).toFixed(2);
       }
       else {
         this.data.down_amt_vat = 0;
-        this.data.down_amt_i_vat = (this.data.down_amt_e_vat ? this.data.down_amt_e_vat  : 0);
+        this.data.down_amt_i_vat = (this.data.down_amt_e_vat ? this.data.down_amt_e_vat : 0);
       }
     }
     this.calculatefinfromAsset();
@@ -429,26 +435,32 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
   calculateFin(from: any) {
     if (from == 'E') {
       if (this.data.with_vat === 'Y') {
+        this.data.fin_amt_e_vat = this.data.fin_amt_e_vat ? this.data.fin_amt_e_vat : 0;
         this.data.fin_amt_vat = Number(this.data.fin_amt_e_vat * this.vatRate / 100).toFixed(2);
         this.data.fin_amt_i_vat = (Number(this.data.fin_amt_e_vat) + Number(this.data.fin_amt_vat)).toFixed(2);
       }
       else {
+        this.data.fin_amt_e_vat = this.data.fin_amt_e_vat ? this.data.fin_amt_e_vat : 0;
         this.data.fin_amt_vat = '';
         this.data.fin_amt_i_vat = this.data.fin_amt_e_vat;
       }
     }
     else {
       if (this.data.with_vat == 'Y') {
+        this.data.fin_amt_i_vat = this.data.fin_amt_i_vat ? this.data.fin_amt_i_vat : 0;
         this.data.fin_amt_e_vat = Number(this.data.fin_amt_i_vat * 100 / (100 + this.vatRate)).toFixed(2);
         this.data.fin_amt_vat = Number(this.data.fin_amt_i_vat - this.data.fin_amt_e_vat).toFixed(2);
       }
       else {
+        this.data.fin_amt_i_vat = this.data.fin_amt_i_vat ? this.data.fin_amt_i_vat : 0;
         this.data.fin_amt_vat = 0;
         this.data.fin_amt_e_vat = this.data.fin_amt_i_vat;
       }
     }
     if (this.data.asst_amt_e_vat) {
-      this.data.fin_ratio = Number(this.data.fin_amt_e_vat / this.data.asst_amt_e_vat).toFixed(2);
+      if (Number(this.data.asst_amt_e_vat)) {
+        this.data.fin_ratio = Number(Number(this.data.fin_amt_e_vat) / Number(this.data.asst_amt_e_vat)).toFixed(2);
+      }
     }
   }
 
@@ -503,9 +515,9 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
   }
 
   calculateLc() {
-    this.data.asst_amt_e_vat = Number(Number(this.data.asst_prce_forgn) * Number(this.data.currency) * (100 + Number(this.data.duty_pcnt)) / 100).toFixed(2);
+    this.data.asst_amt_e_vat = Number(Number(this.data.asst_prce_forgn) * Number(this.data.currency ? this.data.currency : 0) * (100 + Number(this.data.duty_pcnt ? this.data.duty_pcnt : 0)) / 100).toFixed(2);
     if (this.data.cal_inst_typ === 'Float' || (this.data.schedule === 'R' && this.data.cal_inst_typ === 'Fix')) {
-      this.data.installment_e_vat = Number(Number(this.data.asst_amt_e_vat) * Number(this.data.inst_pcnt_of_asst) / 100).toFixed(2);
+      this.data.installment_e_vat = Number(Number(this.data.asst_amt_e_vat) * Number(this.data.inst_pcnt_of_asst ? this.data.inst_pcnt_of_asst : 0) / 100).toFixed(2);
       this.calculateInstallment('eVat');
     }
     this.calculateFin('E');

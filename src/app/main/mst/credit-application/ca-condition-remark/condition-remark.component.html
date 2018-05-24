@@ -2,7 +2,7 @@
   <p-tabPanel header="Condition">
     <div class="main-container">
       <div class="d-flex">
-        <!------------------Condition-------------------------->
+          <!------------------Condition-------------------------->
         <div class="flex-md-column col-md-6">
           <div class="form-group form-inline border-isa">
             <label> Condition </label>
@@ -26,14 +26,15 @@
         <div class="flex-md-column col-md-6">
           <div class="form-group border-isa">
             <label> Remark </label>
-            <textarea class="form-control pb-0" rows="21" style="resize: none"  [(ngModel)]="myCaHead.ca_remark"></textarea>
+            <textarea class="form-control pb-0" rows="10" style="resize: none"  [(ngModel)]="myCaHead.ca_remark"></textarea>
+
+            <label> Previous Condition </label>
+            <textarea class="form-control pb-0" rows="10" style="resize: none" [(ngModel)]="myCaHead.ca_prv_cond"></textarea>
           </div>
         </div>
       </div>
     </div>
   </p-tabPanel>
-
-
   <p-tabPanel header="Opinion" value="3" *ngIf="false">
     <p-panel header="Opinion">
       <div class="main-container">
@@ -96,31 +97,27 @@
       </div>
     </p-panel>
   </p-tabPanel>
-  <p-tabPanel header="Remark (Attached Sheet)" *ngIf="false">
-    <p-panel header="Remark (Attached Sheet)">
-      <div class="main-container">
-        <div class="d-flex">
-          <div class="flex-md-column col-md-9 ">
-            <div class="form-group">
-              <p-dataTable selectionMode="single" [(selection)]="selected" (onRowSelect)="onRowSelect($event)" rows="15"
-                           [responsive]="true">
-                <p-column field="f1" header=" Remark "></p-column>
-                <p-footer>
-                  <div class="ui-helper-clearfix" style="width:100%">
-                  </div>
-                </p-footer>
-              </p-dataTable>
-            </div>
-          </div>
+  <p-tabPanel header="Remark (Attached Sheet)" *ngIf="myCaHead.sbu_typ == 'FDO'">
+    <div class="main-container">
+      <div class="row">
+        <div class="col-md-6 form-group border-isa">
+          <p-dataTable selectionMode="single"
+                       [value]="listRMK_ATT"
+                       [scrollable]="true" scrollHeight="200px"
+                       [(selection)]="selectRemark"
+                       (onRowDblclick)="onRowSelect(selectRemark)"
+                       [responsive]="true" >
+            <p-column field="remark" header=" Remark "></p-column>
+            <p-footer>
+              <div class="ui-helper-clearfix" style="width:100%">
+              </div>
+            </p-footer>
+          </p-dataTable>
         </div>
-        <div class="d-flex">
-          <div class="flex-md-column col-md-9">
-            <div class="form-group">
-              <textarea class="form-control"></textarea>
-            </div>
-          </div>
+        <div class="col-md-6 form-group border-isa" >
+          <textarea class="form-control pb-0"  rows="21" style="resize: none"  [(ngModel)]="myCaPricing.remark_attached_sheet"></textarea>
         </div>
       </div>
-    </p-panel>
+    </div>
   </p-tabPanel>
 </p-tabView>

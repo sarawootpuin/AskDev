@@ -1,39 +1,72 @@
-<div class="d-flex">
-    <p-panel header="Exposure ( {{show_exposure}} )">
-      <div class="form-group flex-column">
-        <p-dataTable selectionMode="single"  rows="15"
-                     [value]="listcaexposure"
-                     [responsive]="true">
-             <p-column field="product" header="Categories"></p-column>
-             <p-column field="exposure" header="Total Exposure"  [style]="{'text-align':'right'}" >
-                 <ng-template let-col let-row="rowData" pTemplate="body">
-                   <span>{{ row[col.field] |  number:'.2-2'  }}</span>
-                 </ng-template>
-             </p-column>
-             <p-column field="os_balance" header="O/S Balance"  [style]="{'text-align':'right'}" >
-                 <ng-template let-col let-row="rowData" pTemplate="body">
-                   <span>{{ row[col.field] |  number:'.2-2'  }}</span>
-                 </ng-template>
-             </p-column>
-             <p-column field="maturity_date" header="Maturity Date"></p-column>
-             <p-column field="highest_amt" header="Highest Amount"   [style]="{'text-align':'right'}">
-                 <ng-template let-col let-row="rowData" pTemplate="body">
-               <span>{{ row[col.field] |  number:'.2-2'  }}</span>
-             </ng-template>
-             </p-column>
-             <p-column field="with_collateral" header="With Collateral"   [style]="{'text-align':'right'}">
-                 <ng-template let-col let-row="rowData" pTemplate="body">
-                   <span>{{ row[col.field] |  number:'.2-2'  }}</span>
-                 </ng-template>
-             </p-column>
-             <p-column field="with_out_collateral" header="Without Collateral"   [style]="{'text-align':'right'}">
-                 <ng-template let-col let-row="rowData" pTemplate="body">
-                   <span>{{ row[col.field] |  number:'.2-2'  }}</span>
-                 </ng-template>
-             </p-column>
-             <p-column field="bl_flg" header="B/L"></p-column>
-        </p-dataTable>
-      </div>
-    </p-panel>
-  </div>
+<!--<div class="d-flex">-->
+    <!--<p-panel header="Exposure">-->
+      <!--<div class="form-group flex-column">-->
+        <!--<p-dataTable selectionMode="single"  rows="15"-->
+                     <!--[value]="listcaexposure"-->
+                     <!--[responsive]="true">-->
+             <!--<p-column field="product" header="Categories"></p-column>-->
+             <!--<p-column field="exposure" header="Total Exposure"  [style]="{'text-align':'right'}" >-->
+                 <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+                   <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
+                 <!--</ng-template>-->
+             <!--</p-column>-->
+             <!--<p-column field="os_balance" header="O/S Balance"  [style]="{'text-align':'right'}" >-->
+                 <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+                   <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
+                 <!--</ng-template>-->
+             <!--</p-column>-->
+             <!--<p-column field="maturity_date" header="Maturity Date"></p-column>-->
+             <!--<p-column field="highest_amt" header="Highest Amount"   [style]="{'text-align':'right'}">-->
+                 <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+               <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
+             <!--</ng-template>-->
+             <!--</p-column>-->
+             <!--<p-column field="with_collateral" header="With Collateral"   [style]="{'text-align':'right'}">-->
+                 <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+                   <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
+                 <!--</ng-template>-->
+             <!--</p-column>-->
+             <!--<p-column field="with_out_collateral" header="Without Collateral"   [style]="{'text-align':'right'}">-->
+                 <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+                   <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
+                 <!--</ng-template>-->
+             <!--</p-column>-->
+             <!--<p-column field="bl_flg" header="B/L"></p-column>-->
+        <!--</p-dataTable>-->
+      <!--</div>-->
+    <!--</p-panel>-->
 
+
+  <!--</div>-->
+
+<div class="d-flex">
+  <p-panel header="Exposure">
+  <p-table [value]="listcaexposure" selectionMode="single"  [(selection)]="selectedExposur1">
+    <ng-template pTemplate="header" >
+      <tr style="text-align: center">
+        <th>Categories</th>
+        <th>Total Exposure</th>
+        <th>O/S Balance</th>
+        <th>Maturity Date</th>
+        <th>Highest Amount</th>
+        <th>With Collateral</th>
+        <th>Without Collateral</th>
+        <th>B/L</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-exposur let-idx="rowIndex">
+      <tr [pSelectableRow]="exposur" [ngClass]="idx==listcaexposure.length-1 ? 'sty-Total' :null">
+        <td >{{exposur.product}}</td>
+        <td style="text-align:right">{{exposur.exposure| number:'.2-2'}}</td>
+        <td style="text-align:right">{{exposur.os_balance | number:'.2-2'}}</td>
+        <td >{{exposur.maturity_date}}</td>
+        <td style="text-align:right">{{exposur.highest_amt| number:'.2-2'}}</td>
+        <td style="text-align:right">{{exposur.with_collateral| number:'.2-2'}}</td>
+        <td style="text-align:right">{{exposur.with_out_collateral| number:'.2-2'}}</td>
+        <td style="text-align:right">{{exposur.bl_flg}}</td>
+
+      </tr>
+    </ng-template>
+  </p-table>
+  </p-panel>
+</div>

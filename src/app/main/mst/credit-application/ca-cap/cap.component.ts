@@ -32,7 +32,7 @@ export class CaCapComponent implements OnInit, OnDestroy {
 
   listcapothstore: caCapOthstore[];
 
-  caTotalExposure: number = 0;
+  caTotalExposure: number;
   caRequestCap: number = 0;
   tempcaRequestCap: number = 0;
   caOverCap: number = 0;
@@ -63,8 +63,9 @@ export class CaCapComponent implements OnInit, OnDestroy {
         }
 
         if ((this.listCapcl) && ( this.listCapcl.length > 0 )) {
-          this.selectCapcl = this.listCapcl[0];
+          this.selectCapcl  = this.listCapcl[0];
           this.caRequestCap = this.selectCapcl.total_cap_amt;
+
           //this.calOverCap();
           this.tempcaOverCap = this.selectCapcl.over_cap;
           if ((this.creditApplicationService.caHead.ca_no == this.listCapcl[0].current_ca) ||
@@ -129,7 +130,8 @@ export class CaCapComponent implements OnInit, OnDestroy {
 
       if (this.selectedCap == true) {
         newRec.flg_cap = this.listCapClOwner[i].flg_cap;
-      } else {
+      }
+      else {
         if ( i <= this.listCapClOwner.length - 1 ) {
           newRec.flg_cap = this.listCapClOwner[i].flg_cap;
         } else {
@@ -149,6 +151,8 @@ export class CaCapComponent implements OnInit, OnDestroy {
   }
 
   onOkCap() {
+    console.log('TOEY1','caRequestCap',this.caRequestCap);
+    console.log('TOEY2','tempcaRequestCap',this.tempcaRequestCap);
     this.selectedCap = true;
     this.caRequestCap = this.tempcaRequestCap;
     this.caOverCap = this.tempcaOverCap;
@@ -168,21 +172,23 @@ export class CaCapComponent implements OnInit, OnDestroy {
       this.selectCapcl.total_cap_amt = this.caRequestCap ? this.caRequestCap : 0;
       this.selectCapcl.total_exposure = this.caTotalExposure ? this.caTotalExposure : 0;
       this.selectCapcl.over_cap = this.caOverCap ? this.caOverCap : 0;
-    } else {
+      }
+    else
+      {
       this.selectCapcl = new caCapCl();
       this.selectCapcl.running_code = 0;
       this.selectCapcl.total_cap_amt = this.caRequestCap ? this.caRequestCap : 0;
       this.selectCapcl.total_exposure = this.caTotalExposure ? this.caTotalExposure : 0;
       this.selectCapcl.current_ca = this.creditApplicationService.caHead.ca_no;
-      this.selectCapcl.cancel_dt = '';
-      this.selectCapcl.cancel_by = '';
+      this.selectCapcl.cancel_dt  = '';
+      this.selectCapcl.cancel_by  = '';
       this.selectCapcl.input_date = '';
-      this.selectCapcl.input_by = '';
-      this.selectCapcl.last_usr = '';
-      this.selectCapcl.last_upd = '';
-      this.selectCapcl.over_cap = this.caOverCap ? this.caOverCap : 0;
+      this.selectCapcl.input_by   = '';
+      this.selectCapcl.last_usr   = '';
+      this.selectCapcl.last_upd   = '';
+      this.selectCapcl.over_cap   = this.caOverCap ? this.caOverCap : 0;
       this.listCapcl.push(this.selectCapcl);
-    }
+      }
 
     // for (let i = 0; i < this.listCapClOwner.length; i++) {
     //   if (this.listCapClOwner[i].flg_cap == 'N') {
@@ -190,13 +196,13 @@ export class CaCapComponent implements OnInit, OnDestroy {
     //   }
     // }
 
-    console.log('boss2',this.listCapClOwnerFromStore);
-    console.log('boss3',this.listCapClOwner);
+    console.log('boss2',this.selectCapcl.total_cap_amt);
+    //console.log('boss3',this.listCapClOwner);
 
   }
 
   onClickCheck(value) {
-    console.log(value);
+    //console.log(value);
     let data;
     if (value) {
       data = 'Y';

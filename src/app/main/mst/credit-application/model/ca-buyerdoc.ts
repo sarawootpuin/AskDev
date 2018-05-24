@@ -59,6 +59,7 @@ export class caBuyerDoc {
     let data: caBuyerDoc[] = [];
     if (json) {
       for (let i = 0; i < json.length; i++) {
+
         data.push(new caBuyerDoc(
           json[i].com_code,
           json[i].ca_no,
@@ -84,6 +85,7 @@ export class caBuyerDoc {
         ))
       }
     }
+    console.log(data);
     return data ;
   }
 }

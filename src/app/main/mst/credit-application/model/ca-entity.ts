@@ -2,6 +2,7 @@ import {caCusapv} from "./ca-cusapv";
 import {caOpinion} from "./ca-opinion";
 import {caCapstore} from "./ca-capstore";
 import {caCapOthstore} from "./ca-capothstore";
+import {caNationality} from "./ca-nationality";
 export class caEntity {
 
   public com_code;
@@ -138,14 +139,15 @@ export class caEntity {
   public listcusapv : caCusapv[] ;
   public listopinion : caOpinion[] ;
   public listcapothstore : caCapOthstore[];
+  public listentitynation : caNationality[];
 
   constructor()
   constructor(com_code, ca_no, ent_type, ent_code, f_name, f_namet, l_namet, f_namee, f_name_e, l_namee, address, zip, post_cd, contract, address_eng, contract_e, tel, new_card_no, last_upd, last_usr, input_user, input_date, nationality_code, birth_d, bus_detail, address_eng2, fax_current, contract_tel, grp_code, mobile_phone, mobile_phone2, mobile_phone3, net_worth_year, net_worth_amt, regis_capital, paid_up_capital, cluster_ind, add_c, add_c_eng, add_c_eng2, add_m, add_m_eng, add_m_eng2, add_o, add_o_eng, add_o_eng2, address_cont_cs, ages, authorize_by_e, authorize_by_t, branch_no, bus_ty, bus_vat_flg, business_type, card_by, card_expire_date, card_issue_date, card_no, card_type, chairman, confirm_statment_flg, currency_code, email_address, ent_ty, establish_date, fax_office, high, highest, highest_hp, highest_ls, ind_ty, loc_ty, mkt_bgpl, mname, near, near_eng, near_o, near_o_eng, occupa, office_department, office_name, other_income, person_collect_billing, place_billing, place_collect, posi, post_cd_c, post_cd_m, post_cd_o, prv_cont, salary_per_year, sales_amt, sales_year, sex, spous_ages, spous_occup, spous_office_department, spous_office_name, spous_other_income, spous_posi, spous_salary, spous_tel, spouse_card_no, spouse_card_type, status_m, tel_card, tel_o, web_site, weight, zip_c, zip_m, zip_o, title_eng, title_thi, card_type_desc, bus_detail_desc, zip_desc, grp_name, bus_ty_desc, regis_capital_mb, paid_up_capital_mb, sales_amt_mb, net_worth_amt_mb, zip_c_desc, zip_o_desc, zip_m_desc
              ,ap_no,sale_call_no
-             ,listcapstore,listcusapv,listopinion,listcapothstore)
+             ,listcapstore,listcusapv,listopinion,listcapothstore,listNation)
   constructor(com_code?, ca_no?, ent_type?, ent_code?, f_name?, f_namet?, l_namet?, f_namee?, f_name_e?, l_namee?, address?, zip?, post_cd?, contract?, address_eng?, contract_e?, tel?, new_card_no?, last_upd?, last_usr?, input_user?, input_date?, nationality_code?, birth_d?, bus_detail?, address_eng2?, fax_current?, contract_tel?, grp_code?, mobile_phone?, mobile_phone2?, mobile_phone3?, net_worth_year?, net_worth_amt?, regis_capital?, paid_up_capital?, cluster_ind?, add_c?, add_c_eng?, add_c_eng2?, add_m?, add_m_eng?, add_m_eng2?, add_o?, add_o_eng?, add_o_eng2?, address_cont_cs?, ages?, authorize_by_e?, authorize_by_t?, branch_no?, bus_ty?, bus_vat_flg?, business_type?, card_by?, card_expire_date?, card_issue_date?, card_no?, card_type?, chairman?, confirm_statment_flg?, currency_code?, email_address?, ent_ty?, establish_date?, fax_office?, high?, highest?, highest_hp?, highest_ls?, ind_ty?, loc_ty?, mkt_bgpl?, mname?, near?, near_eng?, near_o?, near_o_eng?, occupa?, office_department?, office_name?, other_income?, person_collect_billing?, place_billing?, place_collect?, posi?, post_cd_c?, post_cd_m?, post_cd_o?, prv_cont?, salary_per_year?, sales_amt?, sales_year?, sex?, spous_ages?, spous_occup?, spous_office_department?, spous_office_name?, spous_other_income?, spous_posi?, spous_salary?, spous_tel?, spouse_card_no?, spouse_card_type?, status_m?, tel_card?, tel_o?, web_site?, weight?, zip_c?, zip_m?, zip_o?, title_eng?, title_thi?, card_type_desc?, bus_detail_desc?, zip_desc?, grp_name?, bus_ty_desc?, regis_capital_mb?, paid_up_capital_mb?, sales_amt_mb?, net_worth_amt_mb?, zip_c_desc?, zip_o_desc?, zip_m_desc?
              ,ap_no = '',sale_call_no = ''
-              ,listcapstore?,listcusapv?,listopinion?,listcapothstore?)
+              ,listcapstore?,listcusapv?,listopinion?,listcapothstore?,listentitynation?)
   {
     this.com_code = com_code;
     this.ca_no = ca_no;
@@ -279,6 +281,7 @@ export class caEntity {
     this.listcusapv = listcusapv;
     this.listopinion  = listopinion ;
     this.listcapothstore = listcapothstore ;
+    this.listentitynation =listentitynation;
   }
 
   static parse(json: any) {
@@ -418,7 +421,8 @@ export class caEntity {
         caCapstore.parse(json.listcapstore),
         caCusapv.parse(json.listcusapv),
         caOpinion.parse(json.listopinion),
-        caCapOthstore.parse(json.listcapothstore)
+        caCapOthstore.parse(json.listcapothstore),
+        caNationality.parse(json.listentitynation)
       )
     }
     return data ;

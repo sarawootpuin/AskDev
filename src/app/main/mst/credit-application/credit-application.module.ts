@@ -70,6 +70,11 @@ import {CaAmendContentReasonComponent} from "./ca-amend-content-reason/ca-amend-
 import {CaAmendKeyinComponent} from "./ca-amend-keyin/ca-amend-keyin.component";
 import {CaSearchAmendComponent} from "./ca-search-amend/ca-search-amend.component";
 import {CardModule} from "primeng/card";
+import {CaTemporaryCreditlineComponent} from "./ca-temporary-creditline/ca-temporary-creditline.component";
+import {CaTemporarySellerGroupComponent} from "./ca-temporary-seller-group/ca-temporary-seller-group.component";
+import {CaTemporaryBuyerComponent} from "./ca-temporary-buyer/ca-temporary-buyer.component";
+import {CaTemporaryBuyerGroupComponent} from "./ca-temporary-buyer-group/ca-temporary-buyer-group.component";
+import {TableModule} from "primeng/table";
 @NgModule({
   imports: [
     ButtonModule, DialogModule, FileUploadModule, PanelModule, TabViewModule, DataTableModule, SharedModule,
@@ -81,7 +86,7 @@ import {CardModule} from "primeng/card";
     CreditApplicationRoutingModule,
     CurrencyMaskModule,CenterModule,
     GalleriaModule,LightboxModule,SidebarModule, FormsModule,PanelMenuModule,TooltipModule
-    ,EntityModule,InputSwitchModule,TextMaskModule,KeyFilterModule,CardModule
+    ,EntityModule,InputSwitchModule,TextMaskModule,KeyFilterModule,CardModule,TableModule
   ],
   declarations: [CreditApplicationComponent,CaAddressThComponent,CaAddressEnComponent,CaPercentIndComponent
   ,CaMachineComponent,CaExposureComponent,CaCustomerComponent,CaConditionRemarkComponent,CaSubcaComponent,CaProfileComponent
@@ -92,6 +97,9 @@ import {CardModule} from "primeng/card";
   ,CaGuarAddressEnComponent,CaGuarAsiaConditionComponent,CaGuarCardComponent,CaGuarAddressThComponent,CaGuarExposureComponent,CaGuarMachineComponent
   ,CaGuarPercentIndComponent,AssetDetailComponent,CaFinanceComponent,CaAttachmentComponent,CaFacPricingComponent,CaRecommendComponent
   ,CaInqueryComponent,CaUseCreditlineComponent,CaAmendContentReasonComponent,CaAmendKeyinComponent,CaSearchAmendComponent
+  ,CaTemporaryCreditlineComponent,CaTemporarySellerGroupComponent,CaTemporaryBuyerComponent,CaTemporaryBuyerGroupComponent
+
+
   ],
   providers:[CurrencyPipe,DecimalPipe,DatePipe,creditApplicationService]
 })

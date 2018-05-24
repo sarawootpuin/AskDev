@@ -19,16 +19,20 @@ label {
 
 /* ------------------Table (Grid) ------------------*/
 body .ui-datatable .ui-datatable-header,
-body .ui-datatable .ui-datatable-footer {
+body .ui-datatable .ui-datatable-footer,
+body .ui-table .ui-table-header,
+body .ui-table .ui-table-footer{
   padding: .75em 1.25em;
   color: #626769;
   background-color: #c2d2e8;
   font-weight: bold;
 }
-body .ui-datatable .ui-editable-column.ui-cell-editing .ui-cell-editor {
+body .ui-datatable .ui-editable-column.ui-cell-editing .ui-cell-editor,
+body .ui-table .ui-table-column.ui-cell-editing .ui-cell-editor {
   font-size: medium;
 }
-body .ui-datatable .ui-paginator {
+body .ui-datatable .ui-paginator,
+body .ui-table .ui-paginator {
   padding: 0;
 }
 body .ui-datatable .ui-datatable-thead > tr > th,
@@ -41,11 +45,31 @@ body .ui-datatable .ui-datatable-tfoot > tr > td {
   font-weight:bold;
 }
 
-body .ui-datatable .ui-datatable-data.ui-datatable-hoverable-rows > tr.ui-widget-content:not(.ui-state-highlight):hover{
+body .ui-table .ui-table-thead > tr > th,
+body .ui-table .ui-table-tfoot > tr > td {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #c7c7c7;
+  background-color: #96b9ea;
+  color: white;
+  font-weight:bold;
+}
+
+body .ui-table .ui-table-tbody > tr > td {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #c7c7c7;
+}
+
+body .ui-datatable .ui-datatable-data.ui-datatable-hoverable-rows > tr.ui-widget-content:not(.ui-state-highlight):hover {
   background-color: #2f81d636;
   color: #3519d4;
 }
 
+body .ui-table .ui-table-data.ui-table-hoverable-rows > tr.ui-widget-content:not(.ui-state-highlight):hover {
+  background-color: #2f81d636;
+  color: #3519d4;
+}
 
 
 body .ui-panel {
@@ -450,3 +474,4 @@ p-panel p-panel .ui-panel .ui-panel-titlebar{
   transition: top 0.8s ease 0s;
   padding:70px;
 }
+

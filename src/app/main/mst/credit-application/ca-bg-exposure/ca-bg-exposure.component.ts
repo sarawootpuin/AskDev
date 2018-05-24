@@ -6,7 +6,15 @@ import {caExposure} from "../model/ca-exposure";
 @Component({
   selector: 'app-ca-bg-exposure',
   templateUrl: './ca-bg-exposure.component.html',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  styles: [`
+    .sty-Total {
+      background-color: #96b9ea !important;
+      color: #ffffff !important;
+      font-weight: bold;
+    }
+  `
+  ]
 })
 export class CaBgExposureComponent implements OnInit, OnDestroy {
 
@@ -14,7 +22,8 @@ export class CaBgExposureComponent implements OnInit, OnDestroy {
   subscriptionNewcard: Subscription;
 
   listcaexposure: caExposure[];
-  show_exposure: number;
+  // show_exposure: number;
+  selectedExposur1 : caExposure;
 
   constructor(private creditApplicationService: creditApplicationService) {
 
@@ -37,12 +46,12 @@ export class CaBgExposureComponent implements OnInit, OnDestroy {
                 // console.log(this.listcaexposure );
               })
         }
-        if (this.creditApplicationService.caHead.total_exposure_cap > 0) {
-          this.show_exposure = this.creditApplicationService.caHead.total_exposure_cap.toLocaleString();
-        }
-        else {
-          this.show_exposure = this.creditApplicationService.caHead.total_exposure.toLocaleString();
-        }
+        // if (this.creditApplicationService.caHead.total_exposure_cap > 0) {
+        //   this.show_exposure = this.creditApplicationService.caHead.total_exposure_cap.toLocaleString();
+        // }
+        // else {
+        //   this.show_exposure = this.creditApplicationService.caHead.total_exposure.toLocaleString();
+        // }
       })
   }
 

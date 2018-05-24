@@ -155,12 +155,43 @@
             </div>
 
           </div>
+          <div class="row" *ngIf="myCaHead.sbu_typ == 'FDO'">
+            <div class="flex-md-column col-md-3" >
+              <div class="form-group" >
+                <label>Joint Seller Group</label>
+                <div class="input-group">
+                <input type="text" class="form-control" [(ngModel)]="myCaHead.joint_seller_group " readonly>
+                <app-search-un app-search-un [inuURL]="urlSeller"
+                               [servicetype]="'POST'" [objforpost]="dataSeller"
+                               title="Code;Name;Cr.Limit;" [widthcol]="'100;300;100;'"
+                               (col1)="setGroup($event)"
+                               (col2)="setGroupName($event)"
+                               (col3)="setLimit($event)"
+                ></app-search-un>
+                </div>
+              </div>
+            </div>
+            <div class="flex-md-column col-md-3">
+              <div class="form-group">
+                <label>Joint Group Name</label>
+                <input type="text" class="form-control" [(ngModel)]="myCaHead.join_group_name " readonly>
+              </div>
+            </div>
+
+            <div class="flex-md-column col-md-3">
+              <div class="form-group">
+                <label>Joint Seller CR. Amount (Baht)</label>
+                <input type="text" class="form-control" [(ngModel)]="myCaHead.join_group_cr" readonly>
+              </div>
+            </div>
+
+          </div>
         </div>
       </p-panel>
     </div>
     <div class="m-1 border-isa">
-      <app-side-tab [defaultMenuName]="'Customer'">
-        <app-side-tab-panel>
+      <app-side-tab [defaultMenuName]="'Customer'" >
+        <app-side-tab-panel [scrollable]="true">
           <app-side-tab-level [nameMenu]="'Customer'"></app-side-tab-level>
           <app-side-tab-level [nameMenu]="'Guarantor'"></app-side-tab-level>
           <app-side-tab-level [nameMenu]="'Pricing'" [idMenu]="1" *ngIf="myCaHead.sbu_typ == 'P'"> <!--#directloans-->
@@ -206,11 +237,17 @@
           </app-side-tab-level>
           <app-side-tab-level [nameMenu]="'Amend Key In'" *ngIf="taskShorten=='AM'">
           </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Temporary Creditline'"*ngIf="taskShorten=='AM' && myCaHead.sbu_typ == 'FDO'">
+            <app-side-tab-level [nameMenu]="'Seller'"></app-side-tab-level>
+            <app-side-tab-level [nameMenu]="'Seller Group'"></app-side-tab-level>
+            <app-side-tab-level [nameMenu]="'Buyer'"></app-side-tab-level>
+            <app-side-tab-level [nameMenu]="'Buyer Group'"></app-side-tab-level>
+          </app-side-tab-level>
         </app-side-tab-panel>
         <app-side-tab-main>
           <!--===================customer tab============================-->
           <app-side-tab-content [nameContent]="'Customer'">
-            <app-ca-customer-tab [isReadonly]="this.isReadonly"></app-ca-customer-tab>
+            <app-ca-customer-tab [isReadonly]="this.isReadonly" [business_detail]="myCaHead.business_detail" (business_detail_out)="myCaHead.business_detail = $event" ></app-ca-customer-tab>
           </app-side-tab-content>
 
           <!--//=========================================================-->
@@ -218,6 +255,25 @@
           <!--<app-asia-condition></app-asia-condition>-->
           <!--</app-side-tab-content>-->
           <!--//=========================================================-->
+
+          <!--========================= Temporary Creditline ==========================-->
+
+          <app-side-tab-content [nameContent]="'Seller'">
+            <app-ca-temporary-creditline></app-ca-temporary-creditline>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Seller Group'">
+            <app-ca-temporary-seller-group></app-ca-temporary-seller-group>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Buyer'">
+            <app-ca-temporary-buyer></app-ca-temporary-buyer>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Buyer Group'">
+            <app-ca-temporary-buyer-group></app-ca-temporary-buyer-group>
+          </app-side-tab-content>
+
+
+
+          <!--=========================================================================-->
 
           <!--//=====================Guarantor===========================-->
           <app-side-tab-content [nameContent]="'Guarantor'">
@@ -282,6 +338,8 @@
           </app-side-tab-content>
 
 
+
+
           <app-side-tab-content [nameContent]="'Collection Duty Stamp'">
             <app-ca-duty-stamp *ngIf="false"></app-ca-duty-stamp>
           </app-side-tab-content>
@@ -311,6 +369,8 @@
 <app-alert-dialog #Questiondialog (onOK)="onConfirmQuest(submitOrsave)"></app-alert-dialog>
 
 <app-alert-dialog #dialogalert (onOK)="onOksubmit()"></app-alert-dialog>
+
+<app-alert-dialog #validateAlert></app-alert-dialog>
 
 <app-action-dialog #reaSonDialog
                    [width]="600"

@@ -8,8 +8,8 @@
 
 <app-action-dialog #actionDialog
                    [showCancel]="true"
-                   [showAdd]="true"
-                   (onAdd)="addClick()">
+                   [showOk]="true"
+                   (onOk)="addClick()">
   <div class="form-group">
     <label>From Term</label>
     <input class="form-control" [(ngModel)]="step.from_term">
@@ -106,11 +106,7 @@
                      [fraction]="0"
                      pKeyFilter="pnum"
                      (change)="data.wh_tax = $event.target.value"
-                     [value]="data.wh_tax" >
-              <!--<input currencyMask
-                     class="form-control"
-                     [(ngModel)]="data.wh_tax"
-                     [options]="{ prefix: '', thousands: ',', precision  : '0' }"/>-->
+                     [value]="data.wh_tax">
             </div>
           </div>
         </div>
@@ -122,9 +118,9 @@
           <p-calendar #disburse
                       inputStyleClass="form-control"
                       [(ngModel)]="data.disburse_dt"
-                      (ngModelChange) = "changeFirst($event)"
+                      (ngModelChange)="changeFirst($event)"
                       dateFormat="dd/mm/yy"
-                      dataType = "string"></p-calendar>
+                      dataType="string"></p-calendar>
         </div>
         <div class="col-md-3 form-group">
           <label>Advance / Rear</label>
@@ -175,13 +171,7 @@
                  pKeyFilter="pnum"
                  (blur)="calculateAsset('E')"
                  (change)="data.asst_amt_e_vat = $event.target.value"
-                 [value]="data.asst_amt_e_vat" >
-          <!--<input currencyMask
-                 class="form-control"
-                 (blur)="calculateAsset('E')"
-                 class="form-control"
-                 [(ngModel)]="data.asst_amt_e_vat"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                 [value]="data.asst_amt_e_vat">
         </div>
         <div class="col-md-2">
           <input appMyCurrency
@@ -190,12 +180,7 @@
                  [fraction]="2"
                  pKeyFilter="pnum"
                  (change)="data.asst_amt_vat = $event.target.value"
-                 [value]="data.asst_amt_vat" >
-          <!--<input currencyMask
-                 disabled
-                 class="form-control"
-                 [(ngModel)]="data.asst_amt_vat"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                 [value]="data.asst_amt_vat">
         </div>
         <div class="col-md-3">
           <input appMyCurrency
@@ -206,14 +191,7 @@
                  pKeyFilter="pnum"
                  (blur)="calculateAsset('I')"
                  (change)="data.asst_amt_i_vat = $event.target.value"
-                 [value]="data.asst_amt_i_vat" >
-          <!--<input currencyMask
-                 #assetIvat
-                 disabled
-                 (blur)="calculateAsset('I')"
-                 class="form-control"
-                 [(ngModel)]="data.asst_amt_i_vat"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                 [value]="data.asst_amt_i_vat">
         </div>
         <div class="col-md-2">
         </div>
@@ -231,13 +209,8 @@
                  [fraction]="2"
                  (blur)="calculateDown('E')"
                  (change)="data.down_amt_e_vat = $event.target.value"
-                 [value]="data.down_amt_e_vat" >
-          <!--<input currencyMask
-                 #downEvat
-                 (blur)="calculateDown('E')"
-                 class="form-control"
-                 [(ngModel)]="data.down_amt_e_vat"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                 [value]="data.down_amt_e_vat">
+
         </div>
         <div class="col-md-2">
           <input appMyCurrency
@@ -246,12 +219,7 @@
                  class="form-control"
                  [fraction]="2"
                  (change)="data.down_amt_vat = $event.target.value"
-                 [value]="data.down_amt_vat" >
-          <!--<input currencyMask
-                 disabled
-                 class="form-control"
-                 [(ngModel)]="data.down_amt_vat"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                 [value]="data.down_amt_vat">
         </div>
         <div class="col-md-3">
           <input appMyCurrency
@@ -262,16 +230,8 @@
                  class="form-control"
                  [fraction]="2"
                  (change)="data.down_amt_i_vat = $event.target.value"
-                 [value]="data.down_amt_i_vat" >
-          <!--<input currencyMask
-                 #downIvat
-                 disabled
-                 (blur)="calculateDown('I')"
-                 class="form-control"
-                 [(ngModel)]="data.down_amt_i_vat"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                 [value]="data.down_amt_i_vat">
         </div>
-
       </div>
 
       <div class="row" *ngIf="data.fin_typ === '2'">
@@ -286,13 +246,7 @@
                  [fraction]="2"
                  (blur)="calculateDep('E')"
                  (change)="data.dep_amt_e_vat = $event.target.value"
-                 [value]="data.dep_amt_e_vat" >
-          <!--<input currencyMask
-                 #depositEvat
-                 (blur)="calculateDep('E')"
-                 class="form-control"
-                 [(ngModel)]="data.dep_amt_e_vat"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                 [value]="data.dep_amt_e_vat">
         </div>
         <div class="col-md-2">
           <input appMyCurrency
@@ -301,12 +255,7 @@
                  pKeyFilter="pnum"
                  [fraction]="2"
                  (change)="data.dep_amt_vat = $event.target.value"
-                 [value]="data.dep_amt_vat" >
-          <!--<input currencyMask
-                 disabled
-                 class="form-control"
-                 [(ngModel)]="data.dep_amt_vat"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                 [value]="data.dep_amt_vat">
         </div>
         <div class="col-md-3">
           <input appMyCurrency
@@ -317,14 +266,7 @@
                  [fraction]="2"
                  (blur)="calculateDep('I')"
                  (change)="data.dep_amt_i_vat = $event.target.value"
-                 [value]="data.dep_amt_i_vat" >
-          <!--<input currencyMask
-                 #depositIvat
-                 disabled
-                 (blur)="calculateDep('I')"
-                 class="form-control"
-                 [(ngModel)]="data.dep_amt_i_vat"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                 [value]="data.dep_amt_i_vat">
         </div>
       </div>
 
@@ -341,13 +283,7 @@
                  [fraction]="2"
                  (blur)="calculateFin('E')"
                  (change)="data.fin_amt_e_vat = $event.target.value"
-                 [value]="data.fin_amt_e_vat" >
-          <!--<input currencyMask
-                 #finEvatt
-                 (blur)="calculateFin('E')"
-                 class="form-control"
-                 [(ngModel)]="data.fin_amt_e_vat"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                 [value]="data.fin_amt_e_vat">
         </div>
         <div class="col-md-2">
           <input appMyCurrency
@@ -356,12 +292,7 @@
                  class="form-control"
                  [fraction]="2"
                  (change)="data.fin_amt_vat = $event.target.value"
-                 [value]="data.fin_amt_vat" >
-          <!--<input currencyMask
-                 disabled
-                 class="form-control"
-                 [(ngModel)]="data.fin_amt_vat"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                 [value]="data.fin_amt_vat">
         </div>
         <div class="col-md-3">
           <input appMyCurrency
@@ -372,14 +303,7 @@
                  [fraction]="2"
                  (blur)="calculateFin('I')"
                  (change)="data.fin_amt_i_vat = $event.target.value"
-                 [value]="data.fin_amt_i_vat" >
-          <!--<input currencyMask
-                 #finIvatt
-                 disabled
-                 (blur)="calculateFin('I')"
-                 class="form-control"
-                 [(ngModel)]="data.fin_amt_i_vat"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                 [value]="data.fin_amt_i_vat">
         </div>
         <div class="col-md-2">
           <input appMyCurrency
@@ -388,12 +312,7 @@
                  pKeyFilter="pnum"
                  (blur)="calculateRatio()"
                  (change)="data.fin_ratio = $event.target.value"
-                 [value]="data.fin_ratio" >
-          <!--<input currencyMask
-                 (blur)="calculateRatio()"
-                 class="form-control"
-                 [(ngModel)]="data.fin_ratio"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                 [value]="data.fin_ratio">
         </div>
       </div>
 
@@ -409,13 +328,7 @@
                  [fraction]="2"
                  pKeyFilter="pnum"
                  (change)="data.rv_amt_e_vat = $event.target.value"
-                 [value]="data.rv_amt_e_vat" >
-          <!--<input currencyMask
-                 #rvEvat
-                 (blur)="calculateRv('E')"
-                 class="form-control"
-                 [(ngModel)]="data.rv_amt_e_vat"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                 [value]="data.rv_amt_e_vat">
         </div>
         <div class="col-md-2">
           <input appMyCurrency
@@ -424,12 +337,7 @@
                  pKeyFilter="pnum"
                  disabled
                  (change)="data.rv_amt_vat = $event.target.value"
-                 [value]="data.rv_amt_vat" >
-          <!--<input currencyMask
-                 disabled
-                 class="form-control"
-                 [(ngModel)]="data.rv_amt_vat"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                 [value]="data.rv_amt_vat">
         </div>
         <div class="col-md-3">
           <input appMyCurrency
@@ -440,20 +348,78 @@
                  pKeyFilter="pnum"
                  (blur)="calculateRv('I')"
                  (change)="data.rv_amt_i_vat = $event.target.value"
-                 [value]="data.rv_amt_i_vat" >
-          <!--<input currencyMask
-                 #rvIvat
-                 disabled
-                 (blur)="calculateRv('I')"
-                 class="form-control"
-                 [(ngModel)]="data.rv_amt_i_vat"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                 [value]="data.rv_amt_i_vat">
+
         </div>
         <div class="col-md-2">
         </div>
       </div>
     </div>
-
+    <div class="col-md-12 form-group  border-isa mt-1" *ngIf="visiblePanel">
+      <div class="row form-inline form-group col-md-3">
+        <label *ngIf="data?.lc_flg === 'Y'"><b>Open LC</b></label><br>
+      </div>
+      <div class="row form-group col-md-12">
+        <div class="col-md-3">
+          <label>Asset Price</label>
+          <span class="star">*</span>
+          <input appMyCurrency
+                 (blur)="calculateLc()"
+                 class="form-control"
+                 [fraction]="2"
+                 pKeyFilter="pnum"
+                 (change)="data.asst_prce_forgn = $event.target.value"
+                 [value]="data.asst_prce_forgn">
+        </div>
+        <div class="col-md-3">
+          <label>&nbsp;</label>
+          <select class="form-control"
+                  [(ngModel)]="data.curr_type">
+            <option [value]=""></option>
+            <option *ngFor="let list of dataCurType; let i = index"
+                    [value]="list.id_code"
+                    [selected]="data.curr_type === list.id_code">{{list?.id_code}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row form-group col-md-12">
+        <div class="col-md-3">
+          <label>Currency</label>
+          <span class="star">*</span>
+          <input appMyCurrency
+                 class="form-control"
+                 [fraction]="2"
+                 pKeyFilter="pnum"
+                 (change)="data.currency = $event.target.value"
+                 [value]="data.currency">
+        </div>
+        <div class="col-md-3">
+          <label>Import Duty(%)</label>
+          <input appMyCurrency
+                 (blur)="calculateLc()"
+                 class="form-control"
+                 [fraction]="0"
+                 pKeyFilter="pnum"
+                 (change)="data.duty_pcnt = $event.target.value"
+                 [value]="data.duty_pcnt">
+        </div>
+        <div class="col-md-3">
+          <label>Installment</label>
+          <span class="star">*</span>
+          <input appMyCurrency
+                 (blur)="calculateLc()"
+                 pKeyFilter="pnum"
+                 class="form-control"
+                 [fraction]="5"
+                 (change)="data.inst_pcnt_of_asst = $event.target.value"
+                 [value]="data.inst_pcnt_of_asst">
+        </div>
+        <div class="col-md">
+          <label style="margin-top: 33px;">% Of Asset Price</label>
+        </div>
+      </div>
+    </div>
     <div class="form-group col-md-12 card p-1">
       <div class="d-flex form-group">
         <div class="col-md-3 form-group">
@@ -464,11 +430,7 @@
                  [fraction]="0"
                  pKeyFilter="pnum"
                  (change)="data.terms = $event.target.value"
-                 [value]="data.terms" >
-          <!--<input currencyMask
-                 class="form-control"
-                 [(ngModel)]="data.terms"
-                 [options]="{ prefix: '', thousands: ',', precision  : '0' }"/>-->
+                 [value]="data.terms">
         </div>
         <div class="col-md-3 form-group">
           <label>Flat Rate</label>
@@ -477,11 +439,7 @@
                  [fraction]="2"
                  pKeyFilter="pnum"
                  (change)="data.flat_rate = $event.target.value"
-                 [value]="data.flat_rate" >
-          <!--<input inputFormatNumber
-                 [decimalPlace]="2"
-                 class="form-control"
-                 [(ngModel)]="data.flat_rate"/>-->
+                 [value]="data.flat_rate">
         </div>
         <div class="col-md-3 form-group">
           <label>Net IRR</label>
@@ -489,12 +447,9 @@
                  class="form-control"
                  [fraction]="8"
                  pKeyFilter="pnum"
+                 disabled
                  (change)="data.net_irr = $event.target.value"
-                 [value]="data.net_irr" >
-          <!--<input inputFormatNumber
-                 [decimalPlace]="8"
-                 class="form-control"
-                 [(ngModel)]="data.net_irr"/>-->
+                 [value]="data.net_irr">
         </div>
         <div class="col-md-3 form-group">
           <label>Gross IRR</label>
@@ -504,11 +459,7 @@
                  [fraction]="8"
                  pKeyFilter="pnum"
                  (change)="data.gross_irr = $event.target.value"
-                 [value]="data.gross_irr" >
-          <!--<input inputFormatNumber
-                 [decimalPlace]="8"
-                 class="form-control"
-                 [(ngModel)]="data.gross_irr"/>-->
+                 [value]="data.gross_irr">
         </div>
       </div>
       <div class="d-flex form-group">
@@ -519,7 +470,7 @@
                  [fraction]="2"
                  pKeyFilter="pnum"
                  (change)="data.es_expense = $event.target.value"
-                 [value]="data.es_expense" >
+                 [value]="data.es_expense">
           <!--<input currencyMask
                  class="form-control"
                  [(ngModel)]="data.es_expense"
@@ -532,18 +483,14 @@
                  [fraction]="2"
                  pKeyFilter="pnum"
                  (change)="data.es_revenue = $event.target.value"
-                 [value]="data.es_revenue" >
-          <!--<input currencyMask
-                 class="form-control"
-                 [(ngModel)]="data.es_revenue"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                 [value]="data.es_revenue">
         </div>
         <div class="col-md-6 form-group">
           <div class="row">
             <div class="col-md-6 ">
               <label>Cal IRR</label>
               <select class="form-control w-100"
-                      [(ngModel)] = "data.calculateItem">
+                      [(ngModel)]="data.calculateItem">
                 <option [value]="1">1.Calculate Installment + Flat Know Gross IRR , Fin, Term</option>
                 <option [value]="2">2.Calculate Installment + IRR Know Fin, Flat, Term</option>
                 <option [value]="3">3.Calculate IRR + Flat Know Installment, Fin, Term</option>
@@ -558,87 +505,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-12 form-group  border-isa mt-1" *ngIf="visiblePanel">
-    <div class="row form-inline form-group col-md-3">
-      <label *ngIf="data?.lc_flg === 'Y'"><b>Open LC</b></label><br>
-    </div>
-    <div class="row form-group col-md-12">
-      <div class="col-md-3">
-        <label>Asset Price</label>
-        <span class="star">*</span>
-        <input appMyCurrency
-               (blur)="calculateLc()"
-               class="form-control"
-               [fraction]="2"
-               pKeyFilter="pnum"
-               (change)="data.asst_prce_forgn = $event.target.value"
-               [value]="data.asst_prce_forgn" >
-        <!--<input currencyMask
-               (blur)="calculateLc()"
-               class="form-control"
-               [(ngModel)]="data.asst_prce_forgn"
-               [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
-      </div>
-      <div class="col-md-3">
-        <label>&nbsp;</label>
-        <select class="form-control"
-                [(ngModel)]="data.curr_type">
-          <option [value]=""></option>
-          <option *ngFor="let list of dataCurType; let i = index"
-                  [value]="list.id_code"
-                  [selected]="data.curr_type === list.id_code">{{list?.remark}}
-          </option>
-        </select>
-      </div>
-    </div>
-    <div class="row form-group col-md-12">
-      <div class="col-md-3">
-        <label>Currency</label>
-        <span class="star">*</span>
-        <input appMyCurrency
-               class="form-control"
-               [fraction]="2"
-               pKeyFilter="pnum"
-               (change)="data.currency = $event.target.value"
-               [value]="data.currency" >
-        <!--<input currencyMask
-               class="form-control"
-               [(ngModel)]="data.currency"
-               [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
-      </div>
-      <div class="col-md-3">
-        <label>Import Duty(%)</label>
-        <input appMyCurrency
-               (blur)="calculateLc()"
-               class="form-control"
-               [fraction]="0"
-               pKeyFilter="pnum"
-               (change)="data.duty_pcnt = $event.target.value"
-               [value]="data.duty_pcnt" >
-        <!--<input currencyMask
-               (blur)="calculateLc()"
-               class="form-control"
-               [(ngModel)]="data.duty_pcnt"
-               [options]="{ prefix: '', thousands: ',', decimal: '.', precision  : '0' }"/>-->
-      </div>
-      <div class="col-md-3">
-        <label>Installment</label>
-        <span class="star">*</span>
-        <input appMyCurrency
-               (blur)="calculateLc()"
-               class="form-control"
-               pKeyFilter="pnum"
-               [fraction]="5"
-               (change)="data.inst_pcnt_of_asst = $event.target.value"
-               [value]="data.inst_pcnt_of_asst" >
-        <!--<input currencyMask
-               (blur)="calculateLc()"
-               class="form-control"
-               [(ngModel)]="data.inst_pcnt_of_asst"
-               [options]="{ prefix: '', thousands: ',', decimal: '.', precision  : '5' }"/>-->
       </div>
     </div>
   </div>
@@ -679,12 +545,7 @@
                        [fraction]="2"
                        pKeyFilter="pnum"
                        (change)="data.installment_e_vat = $event.target.value"
-                       [value]="data.installment_e_vat" >
-                <!--<input currencyMask
-                       (blur)="calculateInstallment('eVat')"
-                       class="form-control"
-                       [(ngModel)]="data.installment_e_vat"
-                       [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                       [value]="data.installment_e_vat">
               </div>
               <div class="col-md-3 text-center">
                 <label>VAT</label>
@@ -694,12 +555,8 @@
                        [fraction]="2"
                        pKeyFilter="pnum"
                        (change)="data.installment_vat = $event.target.value"
-                       [value]="data.installment_vat" >
-                <!--<input currencyMask
-                       disabled
-                       class="form-control mr-1 ml-1"
-                       [(ngModel)]="data.installment_vat"
-                       [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                       [value]="data.installment_vat">
+
               </div>
               <div class="col-md-3 text-center">
                 <label>Include VAT</label>
@@ -709,12 +566,7 @@
                        class="form-control"
                        [fraction]="2"
                        (change)="data.installment_i_vat = $event.target.value"
-                       [value]="data.installment_i_vat" >
-                <!--<input currencyMask
-                       (blur)="calculateInstallment('iVat');"
-                       class="form-control"
-                       [(ngModel)]="data.installment_i_vat"
-                       [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                       [value]="data.installment_i_vat">
               </div>
             </div>
           </div>
@@ -770,12 +622,7 @@
                    [fraction]="2"
                    pKeyFilter="pnum"
                    (change)="data.installment_e_vat = $event.target.value"
-                   [value]="data.installment_e_vat" >
-            <!--<input currencyMask
-                   (blur)="calculateInstallment('eVat')"
-                   class="form-control"
-                   [(ngModel)]="data.installment_e_vat"
-                   [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                   [value]="data.installment_e_vat">
           </div>
           <div class="col-md-3 text-center">
             <label>VAT</label>
@@ -785,12 +632,7 @@
                    class="form-control"
                    [fraction]="2"
                    (change)="data.installment_vat = $event.target.value"
-                   [value]="data.installment_vat" >
-            <!--<input currencyMask
-                   disabled
-                   class="form-control"
-                   [(ngModel)]="data.installment_vat"
-                   [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                   [value]="data.installment_vat">
           </div>
           <div class="col-md-3 text-center">
             <label>Include VAT</label>
@@ -800,12 +642,7 @@
                    [fraction]="2"
                    pKeyFilter="pnum"
                    (change)="data.installment_i_vat = $event.target.value"
-                   [value]="data.installment_i_vat" >
-            <!--<input currencyMask
-                   (blur)="calculateInstallment('iVat')"
-                   class="form-control"
-                   [(ngModel)]="data.installment_i_vat"
-                   [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+                   [value]="data.installment_i_vat">
           </div>
         </div>
         <div class="col-md-12 d-flex form-group">
@@ -841,12 +678,7 @@
                    [fraction]="3"
                    pKeyFilter="pnum"
                    (change)="data.interest_rate = $event.target.value"
-                   [value]="data.interest_rate" >
-            <!--<input currencyMask
-                   readonly
-                   class="form-control"
-                   [(ngModel)]="data.interest_rate"
-                   [options]="{ prefix: '', thousands: ',', decimal: '.', precision  : '3'}"/>-->
+                   [value]="data.interest_rate">
           </div>
           <div class="col-md-3">
             <label>Spread</label>
@@ -856,11 +688,7 @@
                    [fraction]="3"
                    pKeyFilter="pnum"
                    (change)="data.spread = $event.target.value"
-                   [value]="data.spread" >
-            <!--<input currencyMask
-                   class="form-control"
-                   [(ngModel)]="data.spread"
-                   [options]="{ prefix: '', thousands: ',', decimal: '.', precision  : '3'}"/>-->
+                   [value]="data.spread">
           </div>
         </div>
       </p-tabPanel>

@@ -1,7 +1,7 @@
 <div class="flex-column">
   <div class="form-group col-md-12 form-inline mb-0">
     <!-------------------Credit Type-------------------------------------->
-    <label>Credit Type :</label>
+    <label>Credit Type</label>
     <span class="star pr-1">*</span>
     <select class="form-control"
             (change)="creditTypeChange($event.target.value)"
@@ -62,6 +62,27 @@
              style="margin-left: 10px"> Project
       <input type="text" class="form-control" [(ngModel)]="bgdetail.group_nme" *ngIf="bgdetail?.group_flg === 'Y'">
     </div>
+
+    <div
+      *ngIf="(creditApplicationService.caHead?.ca_type == '2')">
+
+      <div *ngIf="this.mode == 'Free Text'; then Mode else Free"></div>
+
+      <ng-template #Mode>
+        <button type="button" class="btn-nav-processisa" (click)="changeMode()">
+          Change to Normal Mode
+        </button>
+      </ng-template>
+
+      <ng-template #Free>
+        <button type="button" class="btn-nav-processisa" (click)="changeMode()">
+          Change to Free Text
+        </button>
+      </ng-template>
+
+
+    </div>
+
   </div>
 </div>
 <div class="flex-row border-isa mb-0">
@@ -77,12 +98,12 @@
           <input type="text" class="form-control ml-1 col-md-7" [(ngModel)]="bgdetail.wh_tax">
           <label>&nbsp;%</label>
         </div>
-        <div class="col-md-4">
-          <label>ADVANCE / ARR :</label>
+
+        <div class="col-md-4" *ngIf="mode !== 'Free Text'">
+          <label>ADVANCE / ARR</label>
           <span class="star">*</span>
           <select class="form-control"
-                  [(ngModel)]="bgdetail.adv_arr"
-                  (ngModelChange)="advChange()">
+                  [(ngModel)]="bgdetail.adv_arr">
             <option [value]="-1"></option>
             <option *ngFor="let list of dataPaid; let i = index "
                     [value]="list.id_code"
@@ -90,6 +111,7 @@
             </option>
           </select>
         </div>
+
       </div>
     </div>
     <div class="form-group row">
@@ -99,7 +121,7 @@
                (change)="$event.target.checked ? (bgdetail.with_vat = 'Y') : (bgdetail.with_vat = 'N')">With VAT
       </div>
       <div class="col-md-4 form-inline">
-        <p-inputSwitch [(ngModel)]="checked"  (onChange)="handleChange(checked)" class="ml-2"></p-inputSwitch>
+        <p-inputSwitch [(ngModel)]="checked" (onChange)="handleChange(checked)" class="ml-2"></p-inputSwitch>
         <label class="pl-1">Input Include VAT</label>
       </div>
     </div>
@@ -107,7 +129,7 @@
     <!--------------------Asset Price :------------------------------->
     <div class="form-group row">
       <div class="col-md-2">
-        <label class="mt-4 pt-2">Asset Price : </label>
+        <label class="mt-4 pt-2">Asset Price </label>
       </div>
       <div class="col-md-2.5 text-center">
         <label>Exclude VAT</label>
@@ -117,14 +139,14 @@
                #assetEvat
                pKeyFilter="pnum"
                (blur)="calculateAsset('E')"
-               />
+        />
       </div>
       <div class="col-md-2 text-center">
         <label>VAT</label>
         <input disabled
                class="form-control"
-               appMyCurrency  [value]="bgdetail.asst_amt_vat"
-               />
+               appMyCurrency [value]="bgdetail.asst_amt_vat"
+        />
       </div>
       <div class="col-md-2.5 text-center">
         <label>Include VAT</label>
@@ -134,26 +156,26 @@
                [value]="bgdetail.asst_amt_i_vat" (change)="bgdetail.asst_amt_i_vat = $event.target.value"
                pKeyFilter="pnum"
                (blur)="calculateAsset('I')"
-             />
+        />
       </div>
 
     </div>
     <!--------------------Down Amount------------------------------->
-    <div class="form-group row" [hidden]="bgdetail.fin_typ == '2'" >
+    <div class="form-group row" [hidden]="bgdetail.fin_typ == '2'">
       <div class="col-md-2">
-        <label class="mt-2">Down Amount :</label>
+        <label class="mt-2">Down Amount</label>
       </div>
       <div class="col-md-2.5">
         <input
-               #downEvat
-               (blur)="calculateDown('E')"
-               class="form-control" appMyCurrency
-               [value]="bgdetail.down_amt_e_vat" (change)="bgdetail.down_amt_e_vat = $event.target.value"/>
+          #downEvat
+          (blur)="calculateDown('E')"
+          class="form-control" appMyCurrency
+          [value]="bgdetail.down_amt_e_vat" (change)="bgdetail.down_amt_e_vat = $event.target.value"/>
       </div>
       <div class="col-md-2">
         <input disabled
                class="form-control" appMyCurrency
-               [value]="bgdetail.down_amt_vat" />
+               [value]="bgdetail.down_amt_vat"/>
       </div>
       <div class="col-md-2.5">
         <input #downIvat
@@ -168,9 +190,9 @@
       </div>
     </div>
     <!--------------------Deposit Amount------------------------------->
-    <div class="form-group row" [hidden]="bgdetail.fin_typ == '1'" >
+    <div class="form-group row" [hidden]="bgdetail.fin_typ == '1'">
       <div class="col-md-2">
-        <label class="mt-2">Deposit Amount :</label>
+        <label class="mt-2">Deposit Amount</label>
       </div>
       <div class="col-md-2.5">
         <input #depEvat
@@ -199,7 +221,7 @@
     <!--------------------Financing Amt------------------------------->
     <div class="form-group row">
       <div class="col-md-2">
-        <label class="mt-2">Financing Amt :</label>
+        <label class="mt-2">Financing Amt</label>
       </div>
       <div class="col-md-2.5">
         <input #finEvatt
@@ -251,25 +273,80 @@
     </div>
 
   </div>
+  <!-------------------------------------Open LC----------------------------------->
+  <div class="col-md-12 form-group border-isa flex-row mb-1" *ngIf="visiblePanel">
+    <div class="row  form-group col-md-3">
+      <label><b>Open LC</b></label>
+    </div>
+    <div class="row form-group col-md-12">
+      <div class="col-md-3">
+        <label>Asset Price</label><span class="star">*</span>
+        <input appMyCurrency
+               class="form-control"
+               [value]="bgdetail.asst_prce_forgn" (change)="bgdetail.asst_prce_forgn = $event.target.value"/>
+      </div>
+      <div class="col-md-3">
+        <label>&nbsp;</label>
+        <select class="form-control">
+          <option [value]=""></option>
+          <option *ngFor="let list of dataCurType; let i = index"
+                  [value]="list.id_code"
+                  [selected]="bgdetail.curr_type === list.id_code">{{list?.id_code}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row form-group col-md-12">
+      <div class="col-md-3">
+        <label>Currency</label><span class="star">*</span>
+        <input appMyCurrency
+               class="form-control"
+               [value]="bgdetail.currency" (change)="bgdetail.currency = $event.target.value"
+        />
+      </div>
+      <div class="col-md-3">
+        <label>Import Duty(%)</label>
+        <input appMyCurrency
+               class="form-control"
+               (blur)="calculateLc()" [fraction]="0"
+               [value]="bgdetail.duty_pcnt" (change)="bgdetail.duty_pcnt = $event.target.value"
+        />
+      </div>
+      <div class="col-md-3">
+        <label>Installment</label><span class="star">*</span>
+        <input appMyCurrency [fraction]="5"
+               class="form-control"
+               (blur)="calculateLc()"
+               [value]="bgdetail.inst_pcnt_of_asst" (change)="bgdetail.inst_pcnt_of_asst = $event.target.value"
+        />
+      </div>
+      <div class="col-md">
+        <label style="margin-top: 33px;">% Of Asset Price</label>
+      </div>
+    </div>
+  </div>
   <!-------    Term  &  IRR   -------->
   <div class="form-group col-md-12 card pt-1 mb-0">
-    <div class="form-group d-flex">
+    <div class="form-group d-flex" *ngIf="mode !== 'Free Text'">
       <div class="col-md-3">
-        <label>Terms :</label>
+        <label>Terms</label>
+        <span class="star">*</span>
         <input class="form-control" appMyCurrency [fraction]="0"
                [value]="bgdetail.terms" (change)="bgdetail.terms = $event.target.value"
         />
       </div>
       <div class="col-md-3">
-        <label>Flat Rate :</label>
+        <label>Flat Rate</label>
         <input class="form-control" appMyCurrency [fraction]="8"
                [value]="bgdetail.flat_rate" (change)="bgdetail.flat_rate = $event.target.value"
         />
       </div>
       <div class="col-md-3">
-        <label>Net IRR :</label>
+        <label>Net IRR</label>
         <input class="form-control"
                appMyCurrency [fraction]="8"
+               disabled
                [value]="bgdetail.net_irr" (change)="bgdetail.net_irr = $event.target.value"
         />
       </div>
@@ -282,27 +359,28 @@
         />
       </div>
     </div>
+
     <div class="form-group d-flex">
       <div class="col-md-3">
-        <label>Expense :</label>
+        <label>Expense</label>
         <input class="form-control"
                appMyCurrency
                [value]="bgdetail.es_expense" (change)="bgdetail.es_expense = $event.target.value"
         />
       </div>
       <div class="col-md-3">
-        <label>Revenue :</label>
+        <label>Revenue</label>
         <input class="form-control"
                appMyCurrency
                [value]="bgdetail.es_revenue" (change)="bgdetail.es_revenue = $event.target.value"
         />
       </div>
-      <div class="col-md-6 form-group">
+      <div class="col-md-6 form-group" *ngIf="mode !== 'Free Text'">
         <div class="row">
           <div class="col-md-6 ">
             <label>Cal IRR</label>
             <select class="form-control w-100"
-                    [(ngModel)] = "bgdetail.selectForCall">
+                    [(ngModel)]="bgdetail.selectForCall">
               <option [value]="1">1.Calculate Installment + Flat Know Gross IRR , Fin, Term</option>
               <option [value]="2">2.Calculate Installment + IRR Know Fin, Flat, Term</option>
               <option [value]="3">3.Calculate IRR + Flat Know Installment, Fin, Term</option>
@@ -320,38 +398,43 @@
     </div>
   </div>
 </div>
-<div class="form-group col-md-12 border-isa pt-1 mt-1 mb-1">
+<div class="form-group col-md-12 border-isa pt-1 mt-1 mb-1" *ngIf="mode !== 'Free Text'">
   <div class="form-group d-flex mb-0">
     <div class="col-md-4 ">
-      <div class="">
+      <div class="form-inline">
         <label> Disburse </label>
-        <p-calendar dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy" dataType="string"  showButtonBar="true"
+        <span class="star">*</span>
+        <p-calendar dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy" dataType="string" showButtonBar="true"
                     [(ngModel)]="bgdetail.disburse_dt"
-                   ></p-calendar>
-
-
+                    (ngModelChange)="changeDisburseFirst($event)"
+        ></p-calendar>
       </div>
     </div>
     <div class="col-md-4 ">
-      <div class="form-group">
+      <div class="form-inline">
         <label> First Date </label>
-        <p-calendar dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"  dataType="string"   showButtonBar="true"
+        <span class="star">*</span>
+        <p-calendar dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy" dataType="string" showButtonBar="true"
                     [(ngModel)]="bgdetail.first"
-                    ></p-calendar>
+                    (ngModelChange)="changeDisburseFirst($event)"
+        ></p-calendar>
       </div>
     </div>
   </div>
-   <div class="d-flex">
-    <p-tabView class="w-100"  (onChange)="onTabChange($event.index)" >
+  <div class="d-flex">
+    <p-tabView class="w-100" (onChange)="onTabChange($event.index)">
       <p-tabPanel header="Fix">
         <div class="form-group col-md-12 card pt-1">
           <div class="form-group form-inline mt-2">
-            <input type="radio" name="schedule" value="R" [(ngModel)]="bgdetail.schedule" (ngModelChange)="scheduleChange()" > Straight <br>
-            <input type="radio" name="schedule" value="I" [(ngModel)]="bgdetail.schedule" (ngModelChange)="scheduleChange()" > Step
+            <input type="radio" name="schedule" value="R" [(ngModel)]="bgdetail.schedule"
+                   (ngModelChange)="scheduleChange()"> Straight <br>
+            <input type="radio" name="schedule" value="I" [(ngModel)]="bgdetail.schedule"
+                   (ngModelChange)="scheduleChange()"> Step
           </div>
-          <div class="form-group d-flex"  *ngIf="bgdetail.schedule === 'R' " >
+          <div class="form-group d-flex" *ngIf="bgdetail.schedule === 'R' ">
             <div class="col-md-2 mt-3">
-              <label class="mt-3">Installment : </label>
+              <label class="mt-3">Installment </label>
+              <span class="star">*</span>
             </div>
             <div class="col-md-3 text-center">
               <label>Exclude VAT</label>
@@ -378,13 +461,13 @@
               />
             </div>
           </div>
-          <div class="mb-2" *ngIf="bgdetail.schedule === 'I' " >
+          <div class="mb-2" *ngIf="bgdetail.schedule === 'I' ">
             <p-dataTable [value]="bgdetail.listcastep"
                          selectionMode="single"
                          [(selection)]="selectedStep"
                          rows="15" [responsive]="true"
                          (onRowSelect)="onRowSelect($event)"
-                         >
+            >
               <p-header>
                 <app-custom-botton-icon [option]="'new'"
                                         (onBtnClick)="addEditStep('add')"></app-custom-botton-icon>
@@ -423,7 +506,8 @@
         <div class="form-group col-md-12 modal-content pt-1">
           <div class="form-group d-flex">
             <div class="col-md-2">
-              <label class="mt-4 pt-1">Installment :</label>
+              <label class="mt-4 pt-1">Installment</label>
+              <span class="star">*</span>
             </div>
             <div class="col-md-3 text-center">
               <label>Exclude VAT</label>
@@ -449,7 +533,7 @@
           </div>
           <div class="form-group d-flex">
             <div class="col-md-2">
-              <label>Bank :</label>
+              <label>Bank</label>
               <select class="form-control"
                       [(ngModel)]="bgdetail.bank_code"
                       (change)="rateChange()">
@@ -461,7 +545,7 @@
               </select>
             </div>
             <div class="col-md-3">
-              <label>Type :</label>
+              <label>Type</label>
               <select class="form-control"
                       [(ngModel)]="bgdetail.interest_rate_type"
                       (change)="rateChange()">
@@ -473,19 +557,19 @@
               </select>
             </div>
             <div class="col-md-3">
-              <label>Rate :</label>
+              <label>Rate</label>
               <input disabled
                      appMyCurrency
-                     class="form-control"   [fraction]="3"
+                     class="form-control" [fraction]="3"
                      [value]="bgdetail.interest_rate" (change)="bgdetail.interest_rate = $event.target.value"
-                     />
+              />
             </div>
             <div class="col-md-3">
-              <label>Spread :</label>
+              <label>Spread</label>
               <input appMyCurrency
-                     class="form-control"   [fraction]="3"
+                     class="form-control" [fraction]="3"
                      [value]="bgdetail.spread" (change)="bgdetail.spread = $event.target.value"
-                     />
+              />
             </div>
           </div>
         </div>
@@ -494,62 +578,17 @@
   </div>
 </div>
 
-<!-------------------------------------Open LC----------------------------------->
-<div class="col-md-12 form-group border-isa flex-row mb-1" *ngIf="visiblePanel">
-  <div class="row  form-group col-md-3">
-    <label><b>Open LC</b></label>
-  </div>
-  <div class="row form-group col-md-12">
-    <div class="col-md-3">
-      <label>Asset Price</label><span class="star">*</span>
-      <input appMyCurrency
-             class="form-control"
-             [value]="bgdetail.asst_prce_forgn" (change)="bgdetail.asst_prce_forgn = $event.target.value"/>
-    </div>
-    <div class="col-md-3">
-      <label>&nbsp;</label>
-      <select class="form-control">
-        <option [value]=""></option>
-        <option *ngFor="let list of dataCurType; let i = index"
-                [value]="list.id_code"
-                [selected]="bgdetail.curr_type === list.id_code">{{list?.remark}}
-        </option>
-      </select>
-    </div>
-  </div>
-
-  <div class="row form-group col-md-12">
-    <div class="col-md-3">
-      <label>Currency</label><span class="star">*</span>
-      <input appMyCurrency
-             class="form-control"
-             [value]="bgdetail.currency" (change)="bgdetail.currency = $event.target.value"
-             />
-    </div>
-    <div class="col-md-3">
-      <label>Import Duty(%)</label>
-      <input appMyCurrency
-             class="form-control"
-             (blur)="calculateLc()"  [fraction]="0"
-             [value]="bgdetail.duty_pcnt" (change)="bgdetail.duty_pcnt = $event.target.value"
-           />
-    </div>
-    <div class="col-md-3">
-      <label>Installment</label><span class="star">*</span>
-      <input appMyCurrency  [fraction]="5"
-             class="form-control"
-             (blur)="calculateLc()"
-             [value]="bgdetail.inst_pcnt_of_asst" (change)="bgdetail.inst_pcnt_of_asst = $event.target.value"
-             />
-    </div>
-  </div>
+<div class="form-group col-md-12 border-isa pt-1 mt-1 mb-1" *ngIf="mode == 'Free Text'">
+  <label>Free Text</label>
+  <textarea type="text" class="form-control" [(ngModel)]="bgdetail.free_text"></textarea>
 </div>
 
 <!--------------------------------Financing asset-------------------------------->
 <div class="form-group flex-row col-md-12 border-isa">
   <div class="form-group d-flex">
     <div class="col-md-6">
-      <label>Financing Asset :</label>
+      <label>Financing Asset</label>
+      <span class="star">*</span>
       <textarea class="form-control" [(ngModel)]="bgdetail.fin_asst" rows="5"></textarea>
       <br>
     </div>
@@ -568,8 +607,8 @@
 
 <app-action-dialog #actionDialog
                    [showCancel]="true"
-                   [showAdd]="true"
-                   (onAdd)="addClick()">
+                   [showOk]="true"
+                   (onOk)="addClick()">
   <div class="form-group">
     <label>From Term</label>
     <input class="form-control" [(ngModel)]="step.from_term">

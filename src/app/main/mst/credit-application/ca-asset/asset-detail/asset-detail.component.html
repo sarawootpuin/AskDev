@@ -4,7 +4,8 @@
       <div class="row">
         <div class="flex-md-column col-md-6">
           <div class="form-group">
-            <label>Finance Asset Type</label><br>
+            <label [ngClass]="'star'">Finance Asset Type</label>
+            <span class="star">*</span><br>
             <select class="form-control"
                     [ngModel]="bgdetailSub?.asst_type"
                     (ngModelChange)="bgdetailSub.asst_type=$event;onChangeFat('');">
@@ -24,7 +25,8 @@
                     (ngModelChange)="bgdetailSub.asst_code=$event;onChangeFac('');">
               <option></option>
               <option *ngFor="let list of listFAC"
-                      [selected]="list?.id_code == bgdetailSub?.asst_code"
+                      [selected]="list?.id_code == bgdetailSub?.asst_code &&
+                                  list.key == bgdetailSub.asst_type"
                       [value]="list?.id_code">{{list?.remark}}
               </option>
             </select>
@@ -36,21 +38,27 @@
           <div class="form-group">
             <label>Finance Asset Sub Code</label><br>
             <select class="form-control"
+                    [disabled] = "listFAS.length == 0"
                     [ngModel]="bgdetailSub?.asst_sub_code"
                     (ngModelChange)="bgdetailSub.asst_sub_code=$event">
               <option></option>
               <option *ngFor="let list of listFAS"
-                      [selected]="list?.id_code == bgdetailSub?.asst_sub_code"
+                      [selected]="list?.id_code == bgdetailSub?.asst_sub_code &&
+                                  list.key1 == bgdetailSub.asst_type &&
+                                  list.key2 == bgdetailSub.asst_code"
                       [value]="list?.id_code">{{list?.remark}}
               </option>
             </select>
           </div>
         </div>
-        <div class="flex-md-column col-md-6 mt-3">
+        <div class="flex-md-column col-md-6">
           <div class="form-group">
+            <label [ngClass]="'star'">New / Used Asset</label>
+            <span class="star">*</span><br>
             <input type="radio" name="bt" value="N"
                    [ngModel]="bgdetailSub?.asset_status"
                    (ngModelChange)="bgdetailSub.asset_status=$event"> New Asset
+            <br>
             <input type="radio" name="bt" value="U"
                    [ngModel]="bgdetailSub?.asset_status"
                    (ngModelChange)="bgdetailSub.asset_status=$event"> Used Asset
@@ -91,7 +99,8 @@
       <div class="row">
         <div class="flex-md-column col-md-3">
           <div class="form-group">
-            <label>Year</label>
+            <label [ngClass]="'star'">Year</label>
+            <span class="star">*</span>
             <input type="text" class="form-control" [(ngModel)]="bgdetailSub.year" [textMask]="{mask: textmask.yyyy }">
           </div>
         </div>
@@ -119,7 +128,8 @@
       <div class="row">
         <div class="flex-md-column col-md-8">
           <div class="form-group">
-            <label>Dealer Name</label><br>
+            <label [ngClass]="'star'">Dealer Name</label>
+            <span class="star">*</span><br>
             <app-search-un app-search-un inuURL={{OutURL}}
                            title="NAME;CODE;"
                            [iconOnly]="false" [displaycol]="'COL1'" [displaytext]="bgdetailSub.dealer_name"
@@ -152,7 +162,8 @@
       <div class="row">
         <div class="flex-md-column col-md-3">
           <div class="form-group">
-            <label>Equip Type</label><br>
+            <label [ngClass]="'star'">Equip Type</label>
+            <span class="star">*</span><br>
             <select class="form-control"
                     [ngModel]="bgdetailSub?.eqp_ty"
                     (ngModelChange)="bgdetailSub.eqp_ty=$event">
@@ -238,13 +249,110 @@
       <div class="row">
         <div class="flex-md-column col-md-3">
           <div class="form-group">
-            <label>Asset (Exc. VAT)</label>
+            <label [ngClass]="'star'">Asset (Exc. VAT)</label>
+            <span class="star">*</span>
             <input type="text" class="form-control"
                    appMyCurrency
                    [value]="bgdetailSub.asst_amt_e_vat"
                    (change)="bgdetailSub.asst_amt_e_vat = $event.target.value">
           </div>
         </div>
+      </div>
+      <div class="row">
+        <div class="flex-md-column col-md-12">
+          <div class="form-group">
+            <label >Apprisal Price</label>
+            <p-dataTable [value]="listbgdetailappraisal"
+                         [loading]="loading"
+                         [scrollable]="true" scrollHeight="200px"
+                         [responsive]="true"
+                         [immutable]="false"
+                         [editable]="true"
+                         (onRowClick) = "onRowSelect($event.data)" >
+
+              <p-header>
+                <app-custom-botton-icon [option]="'new'" (onBtnClick)="openAddDialog()"></app-custom-botton-icon>
+              </p-header>
+              <p-column  [style]="{'width':'50px'}" header="No.">
+                <ng-template let-i="rowIndex" pTemplate="body">
+                  {{i+1}}
+                </ng-template>
+              </p-column>
+              <p-column field="references_date" header="Date"
+                        [style]="{'width':'150px'}"
+                        [editable]="true"
+                        [style]=" {'overflow':'visible' }"
+                        >
+
+                <ng-template let-col let-row="rowData" pTemplate="editor"  >
+                  <p-calendar [(ngModel)]="row[col.field]"
+                              appendTo="body"
+                              dataType="string"
+                              dateFormat ="dd/mm/yy"
+
+                  ></p-calendar>
+                </ng-template>
+              </p-column>
+              <p-column field="appraisal_amt" header="Appraisal"
+                        [style]="{'width':'120px','text-align':'right'}"
+                        [editable]="true"
+                        >
+                <ng-template let-col let-row="rowData" pTemplate="body"  >
+                  <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+                </ng-template>
+              </p-column>
+              <p-column field="references" header="References"
+                        [editable]="true"
+                        ></p-column>
+
+              <p-column styleClass="col-button" [style]="{'width':'50px'}">
+                <ng-template let-car="rowData" pTemplate="body" >
+                  <app-custom-botton-icon [option]="'delete'" (onBtnClick)="opendeleteDialog()"></app-custom-botton-icon>
+                </ng-template>
+              </p-column>
+            </p-dataTable>
+          </div>
+        </div>
+        <app-action-dialog #addDialog [showCancel]="true" [showAdd]="true" (onAdd)="setDataDetailAppraisal($event)">
+          <div class="container form-group">
+            <div class="row">
+              <div class="col-md-12">
+                <label>Date</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <p-calendar dateFormat="dd/mm/yy"
+                            class="my-1"
+                            placeholder="dd/mm/yyyy"
+                            dataType="string"
+                            showButtonBar="true"
+                            [(ngModel)]="detailappraisal.references_date"
+
+                ></p-calendar>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label>Price</label>
+                <input appMyCurrency [fraction]="2" class="form-control"
+                       [value]="detailappraisal.appraisal_amt"
+                       (change)="detailappraisal.appraisal_amt = $event.target.value"
+                >
+              </div>
+              <div class="col-md-12">
+                <label>References</label>
+                <input type="text" class="form-control"
+                       [(ngModel)]="detailappraisal.references"
+
+                >
+              </div>
+            </div>
+          </div>
+        </app-action-dialog>
+        <app-alert-dialog #deleteDialog (onOK)="deleteSelection()" [action]="'delete'">
+        </app-alert-dialog>
       </div>
     </div>
   </div>

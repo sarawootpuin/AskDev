@@ -1,0 +1,126 @@
+<p-panel header="Amend Temporary Creditline Seller" [toggleable]="false" [style]="{'margin-bottom':'3px'}">
+  <div class="form-group">
+    <app-custom-botton-icon [option]="'new'"
+                            (onBtnClick)="addCaTempCreditLineSeller()"
+                            [disabled]="addMode"></app-custom-botton-icon>
+    <app-custom-botton-icon [option]="'delete'"
+                            (onBtnClick)="deleteWarning()"
+                            [disabled]="!addMode"></app-custom-botton-icon>
+
+
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <label>Requested Credit line</label>
+        <div class="form-inline">
+          <input appMyCurrency
+                 class="form-control"
+                 [fraction]="2"
+                 (change)="caTempCreditLine.temp_sub_ca_amt = $event.target.value"
+                 [value]="caTempCreditLine.temp_sub_ca_amt"
+                 [disabled]="!addMode"
+          >&nbsp;(Baht)
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label>Joint Seller Group</label>
+      </div>
+      <div class="col-md-3">
+        <input class="form-control" type="text" [(ngModel)]="caTempCreditLine.join_grp_code" readonly>
+      </div>
+      <div class="col-md-9">
+        <input class="form-control" type="text" [(ngModel)]="caTempCreditLine.group_name" readonly>
+      </div>
+      <div class="col-md-12">
+        <label>Seller Credit limit</label>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-inline">
+              <input appMyCurrency
+                     class="form-control"
+                     [fraction]="2"
+                     (change)="caTempCreditLine.ca_limit = $event.target.value"
+                     [value]="caTempCreditLine.ca_limit"
+                     [disabled]="!addMode">&nbsp;(Baht)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 2.2rem;">
+      <div class="form-group col-md-12 border-isa">
+        <label><b>Amend Time</b></label>
+        <div class="row">
+          <div class="col-md-3" style="padding-left: 4rem;">
+            <input class="form-check-input" name="amend_seller" type="radio" value="T"
+                   (ngModelChange)="amendChange($event)"
+                   [(ngModel)]="caTempCreditLine.amend_type"
+                   [disabled]="!addMode"
+            >&nbsp;Time
+          </div>
+          <div class="col-md-6">
+            <div class="form-inline">
+              <input
+                appMyCurrency
+                [fraction]="0"
+                class="form-control"
+                type="text"
+                #timeInput
+                [disabled]="checkCalendar || !addMode"
+                [(ngModel)]="caTempCreditLine.time"
+              >&nbsp;&nbsp;Time
+            </div>
+          </div>
+        </div>
+        <div class="row" style="padding-top: 1.0rem;">
+          <div class="col-md-3" style="padding-left: 4rem;">
+            <input class="form-check-input" name="amend_seller" type="radio" value="P"
+                   [(ngModel)]="caTempCreditLine.amend_type"
+                   (ngModelChange)="amendChange($event)"
+                   [disabled]="!addMode"
+            >&nbsp;Period
+          </div>
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-2">
+                <label>Start Date</label>
+              </div>
+              <div class="col-md-6">
+                <p-calendar dateFormat="dd/mm/yy"
+                            class="my-1"
+                            placeholder="dd/mm/yyyy"
+                            dataType="string"
+                            showButtonBar="true"
+                            [disabled]="!checkCalendar || !addMode"
+                            [(ngModel)]="caTempCreditLine.eff_date"
+                ></p-calendar>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <label>Maturity Date</label>
+              </div>
+              <div class="col-md-6" style="padding-top: 10px;">
+                <p-calendar dateFormat="dd/mm/yy"
+                            class="my-1"
+                            placeholder="dd/mm/yyyy"
+                            dataType="string"
+                            showButtonBar="true"
+                            [disabled]="!checkCalendar || !addMode"
+                            [(ngModel)]="caTempCreditLine.expire_date"
+                ></p-calendar>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-panel>
+
+<app-alert-dialog #deleteDialog [action]="'DELETE'" (onOK)="deleteCaTempCreditLineSeller()">
+</app-alert-dialog>
+

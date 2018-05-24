@@ -13,6 +13,9 @@ import {caCollateral} from "./ca-collateral";
 import {caDetail} from "./ca-detail";
 import {caAmendKeyIn} from "./ca-amendkeyin";
 import {caAmendContent} from "./ca-amendcontent";
+import {CaTempCreditLine} from "./ca-temp-credit-line";
+import {CaTempCreditLineGroup} from "./ca-temp-credit-line-group";
+import {CaTempBuyer} from "./ca-temp-buyer";
 export class caHead {
   public com_code;
   public prebranch_code;
@@ -169,6 +172,13 @@ export class caHead {
   public ap_rec_agr_flag;
   public ap_rec_amount;
   public ap_rec_cond;
+  public listbuyertempcreditline: CaTempCreditLine[];
+  public listsellertempcreditline: CaTempCreditLine[];
+  public listbuyertempcreditlinegroup: CaTempCreditLineGroup[];
+  public listsellertempcreditlinegroup: CaTempCreditLineGroup[];
+  public listtempbuyer: CaTempBuyer[];
+  public listtempbuyerg: CaTempBuyer[];
+
 
 
   constructor()
@@ -198,7 +208,13 @@ export class caHead {
     , listcacollateral
     , listcadetail
     , listamendhist
-    , listamendcontent)
+    , listamendcontent
+    ,listbuyertempcreditline
+    ,listsellertempcreditline
+    ,listbuyertempcreditlinegroup
+    ,listsellertempcreditlinegroup
+    ,listtempbuyer
+    ,listtempbuyerg)
 
   constructor(com_code?, prebranch_code?, ca_no?, sale_call_no?, ctrl_no?, cus_status?, cus_code?, grp_code?, joint_seller_group?,
               sbu_typ?, advance_type?, apply_by?, apply_dt?, expire_dt?, contract_no?, contract_date?, contract_expire_date?,
@@ -228,7 +244,13 @@ export class caHead {
     , listcacollateral?
     , listcadetail?
     , listamendhist?
-    , listamendcontent?) {
+    , listamendcontent?
+    ,listbuyertempcreditline?
+    ,listsellertempcreditline?
+    ,listbuyertempcreditlinegroup?
+    ,listsellertempcreditlinegroup?
+    ,listtempbuyer?
+    ,listtempbuyerg?) {
     this.com_code = com_code;
     this.prebranch_code = prebranch_code;
     this.ca_no = ca_no;
@@ -383,6 +405,12 @@ export class caHead {
     this.listcadetail = listcadetail;
     this.listamendhist = listamendhist;
     this.listamendcontent = listamendcontent;
+    this.listbuyertempcreditline =listbuyertempcreditline;
+    this.listsellertempcreditline=listsellertempcreditline;
+    this.listbuyertempcreditlinegroup=listbuyertempcreditlinegroup;
+    this.listsellertempcreditlinegroup=listsellertempcreditlinegroup;
+    this.listtempbuyer=listtempbuyer;
+    this.listtempbuyerg=listtempbuyerg;
   }
 
   static parse(json: any) {
@@ -538,7 +566,13 @@ export class caHead {
       caCollateral.parse(json.listcacollateral),
       caDetail.parse(json.listcadetail),
       caAmendKeyIn.parse(json.listamendhist),
-      caAmendContent.parse(json.listamendcontent)
+      caAmendContent.parse(json.listamendcontent),
+      CaTempCreditLine.parse(json.listbuyertempcreditline),
+      CaTempCreditLine.parse(json.listsellertempcreditline),
+      CaTempCreditLineGroup.parse(json.listbuyertempcreditlinegroup),
+      CaTempCreditLineGroup.parse(json.listsellertempcreditlinegroup),
+      CaTempBuyer.parse(json.listtempbuyer),
+      CaTempBuyer.parse(json.listtempbuyerg)
     )
   }
 }

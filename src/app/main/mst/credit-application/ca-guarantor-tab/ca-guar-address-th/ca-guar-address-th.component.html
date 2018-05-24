@@ -73,6 +73,7 @@
       <div class="flex-md-column col-md-10">
         <div class="form-group">
           <label>Address</label>
+          <button (click)="copyOwner('VAT')"><i class="fa fa-copy"> Duplicate Address from Current </i></button>
           <input type="text" class="form-control" [(ngModel)]="caGua.add_c">
         </div>
       </div>
@@ -121,6 +122,7 @@
       <div class="flex-md-column col-md-10">
         <div class="form-group">
           <label>Address</label>
+          <button (click)="copyOwner('OFFICE')"><i class="fa fa-copy"> Duplicate Address from Current </i></button>
           <input type="text" class="form-control" [(ngModel)]="caGua.add_o">
         </div>
       </div>
@@ -185,6 +187,7 @@
       <div class="flex-md-column col-md-10">
         <div class="form-group">
           <label>Address</label>
+          <button (click)="copyOwner('MAIL')"><i class="fa fa-copy"> Duplicate Address from Current </i></button>
           <input type="text" class="form-control" [(ngModel)]="caGua.add_m">
         </div>
       </div>

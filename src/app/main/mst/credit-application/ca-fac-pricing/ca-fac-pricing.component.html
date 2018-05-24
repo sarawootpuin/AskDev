@@ -7,7 +7,7 @@
 <fieldset [disabled] = "isReadonly">
   <p-tabView>
     <p-tabPanel header="Seller">
-      <app-ca-pricing></app-ca-pricing>
+      <app-ca-pricing [task] = "task"></app-ca-pricing>
     </p-tabPanel>
     <p-tabPanel header="Buyer">
       <app-ca-buyer></app-ca-buyer>

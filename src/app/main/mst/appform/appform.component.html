@@ -359,7 +359,6 @@
           </app-side-tab-level>
 
           <app-side-tab-level [nameMenu]="'Pricing'" *ngIf="data.sbu_typ == 'FDO'">
-
             <app-side-tab-level [nameMenu]="'Seller'">
             </app-side-tab-level>
             <app-side-tab-level [nameMenu]="'Buyers'">
@@ -380,7 +379,9 @@
           <app-side-tab-level [nameMenu]="'Exposure'">
           </app-side-tab-level>
           <app-side-tab-level [nameMenu]="'Reason'"
-                              *ngIf="data.current_task == 'Revise AP'">
+                              *ngIf="data.current_task == 'Revise AP' ||
+                                     data.current_task == 'Checker AP' ||
+                                     data.current_task == 'Scoring Return'">
           </app-side-tab-level>
           <app-side-tab-level [nameMenu]="'Context Data'">
           </app-side-tab-level>
@@ -427,7 +428,9 @@
             <app-exposure></app-exposure>
           </app-side-tab-content>
           <app-side-tab-content [nameContent]="'Reason'"
-                                *ngIf="data.current_task == 'Revise AP'">
+                                *ngIf="data.current_task == 'Revise AP' ||
+                                       data.current_task == 'Checker AP' ||
+                                       data.current_task == 'Scoring Return'">
             <app-reason></app-reason>
           </app-side-tab-content>
           <app-side-tab-content [nameContent]="'Context Data'">
@@ -439,7 +442,8 @@
                                      data.current_task == 'Scoring Return' ||
                                      data.current_task == 'Scoring Approve' ||
                                      this.inquiry">
-            <app-attachment [inquiry]="this.inquiry"></app-attachment>
+            <app-attachment [inquiry]="this.inquiry"
+                            [caNo] = "this.data.ca_no"></app-attachment>
           </app-side-tab-content>
           <app-side-tab-content [nameContent]="'Recommendation'"
                                 *ngIf="data.current_task == 'Scoring Approve' || this.inquiry">

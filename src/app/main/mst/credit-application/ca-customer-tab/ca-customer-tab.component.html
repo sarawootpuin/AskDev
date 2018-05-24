@@ -1,7 +1,7 @@
 <fieldset [disabled]="this.isReadonly">
   <p-tabView>
     <p-tabPanel header="Customer Information">
-      <app-ca-customer></app-ca-customer>
+      <app-ca-customer [business_detail]="business_detail" (business_detail_out)="onEmit($event)"></app-ca-customer>
     </p-tabPanel>
     <p-tabPanel header="Address(TH)">
       <app-ca-address-th></app-ca-address-th>

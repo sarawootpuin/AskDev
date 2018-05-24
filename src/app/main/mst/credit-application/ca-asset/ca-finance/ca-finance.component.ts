@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from "@angular/core";
 import {creditApplicationService} from "../../credit-application.service";
 import {caBgDetail} from "../../model/ca-bgdetail";
 import {UserStorage} from "../../../../../shared/user/user.storage.service";
@@ -10,12 +10,13 @@ import {TabView} from "primeng/primeng";
 import {caStep} from "../../model/ca-step";
 import {ActionDialogComponent} from "../../../../../shared/center/action-dialog/action-dialog.component";
 import {Subscription} from "rxjs/Subscription";
+import {caHead} from "../../model/ca-head";
 
 @Component({
   selector: 'app-ca-finance',
   templateUrl: './ca-finance.component.html'
 })
-export class CaFinanceComponent implements OnInit , OnDestroy {
+export class CaFinanceComponent implements OnInit, OnDestroy {
   subscripData: Subscription;
   subscripMaster: Subscription;
 
@@ -24,9 +25,10 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
   dataSubFinLs: caListMaster[];
   dataLease: caListMaster[];
   dataPaid: caListMaster[];
-  dataBank : caListMaster[];
-  dataBankIntRate : caListMaster[];
-  dataIntRate : caListMaster[];
+  dataBank: caListMaster[];
+  dataBankIntRate: caListMaster[];
+  dataIntRate: caListMaster[];
+  dataCurType: caListMaster[];
 
   @ViewChild(TabView) tabView: TabView;
   @ViewChild('installIvat') installIvat: ElementRef;
@@ -50,10 +52,10 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
 
   visiblePanel: boolean = false;
   checked: boolean = false;
-  bgdetail : caBgDetail =  new caBgDetail()  ;
+  bgdetail: caBgDetail = new caBgDetail();
   vatRate: number;
   checkLoader: boolean = false;
-
+  mode : string;
 
 
   constructor(private creditApplicationService: creditApplicationService,
@@ -63,32 +65,52 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
   }
 
   ngOnInit() {
+
     this.subscripData = this.creditApplicationService.eventBgdetail.subscribe(
-      (value : caBgDetail ) =>
-      {
-         this.bgdetail = value ;
-         if (!this.bgdetail.selectForCall)
-         { this.bgdetail.selectForCall = 1 ; }
-         this.handleChange(this.checked);
+      (value: caBgDetail) => {
+        this.bgdetail = value;
+        if (!this.bgdetail.selectForCall) {
+          this.bgdetail.selectForCall = 1;
+        }
+
+        if (this.creditApplicationService.caHead.ca_type == "1")
+        {
+          this.bgdetail.free_text = "";
+          this.mode = "Normal Mode";
+        }
+        else {
+          if (this.bgdetail.free_text)
+          {
+            this.mode = "Free Text";
+          }
+          else {
+            this.bgdetail.free_text = "";
+            this.mode = "Normal Mode";
+          }
+        }
+
+        this.handleChange(this.checked);
+
       }
     );
 
     //--------- list ans
     this.subscripMaster = this.creditApplicationService.eventListMaster.subscribe(
       (value) => {
-        this.dataFin = this.creditApplicationService.listFIN ;
-        this.dataSubFin = this.creditApplicationService.listSUB_FIN ;
-        this.dataSubFinLs = this.creditApplicationService.listSUB_FINLS ;
-        this.dataLease =  this.creditApplicationService.listLease ;
-        this.dataPaid = this.creditApplicationService.listPAID ;
-        this.dataBank = this.creditApplicationService.listBNK ;
-        this.dataBankIntRate =  this.creditApplicationService.listBANK_INT_RATE ;
-
+        this.dataFin = this.creditApplicationService.listFIN;
+        this.dataSubFin = this.creditApplicationService.listSUB_FIN;
+        this.dataSubFinLs = this.creditApplicationService.listSUB_FINLS;
+        this.dataLease = this.creditApplicationService.listLease;
+        this.dataPaid = this.creditApplicationService.listPAID;
+        this.dataBank = this.creditApplicationService.listBNK;
+        this.dataBankIntRate = this.creditApplicationService.listBANK_INT_RATE;
+        this.dataCurType = this.creditApplicationService.listCUR_TYPE;
+        this.dataIntRate = this.creditApplicationService.listInsRate;
       }
     );
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     if (this.subscripData != null) {
       this.subscripData.unsubscribe();
     }
@@ -112,7 +134,7 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
     this.bgdetail.sub_fin = '';
     this.bgdetail.operating_lease = '';
     this.bgdetail.with_vat = 'Y';
-    this.bgdetail.wh_tax  = 0;
+    this.bgdetail.wh_tax = 0;
   }
 
   subFinChange(index) {
@@ -154,9 +176,9 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
     }
   }
 
-  handleChange(value : boolean) {
+  handleChange(value: boolean) {
     var isChecked = value;
-    if (isChecked){
+    if (isChecked) {
       this.assetEvat.nativeElement.disabled = true;
       this.assetIvat.nativeElement.disabled = false;
       this.finEvatt.nativeElement.disabled = true;
@@ -212,6 +234,9 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
       if (!this.bgdetail.terms) {
         this.warning.addMessage('- Terms');
       }
+      if (this.bgdetail.schedule == 'I') {
+        this.warning.addMessage('- Installment');
+      }
     }
     else if (this.bgdetail.selectForCall == 2) {
       if (!this.bgdetail.fin_amt_e_vat) {
@@ -222,6 +247,9 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
       }
       if (!this.bgdetail.terms) {
         this.warning.addMessage('- Terms');
+      }
+      if (this.bgdetail.schedule == 'I') {
+        this.warning.addMessage('- Installment');
       }
     }
     else if (this.bgdetail.selectForCall == 3) {
@@ -288,10 +316,10 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
         this.warning.addMessage('- Installment');
       }
     }
-    else if ( (this.bgdetail.cal_inst_typ === 'Fix') &&  (!this.bgdetail.schedule)){
+    else if ((this.bgdetail.cal_inst_typ === 'Fix') && (!this.bgdetail.schedule)) {
       this.warning.addMessage('- Schedule');
     }
-    else if (!this.bgdetail.adv_arr){
+    else if (!this.bgdetail.adv_arr) {
       this.warning.addMessage('- ADVANCE/ARR');
     }
 
@@ -305,7 +333,6 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
       this.creditApplicationService.calculateIrr(this.bgdetail.sub_id, this.bgdetail.selectForCall).subscribe(
         (callIrr: any) => {
           if (callIrr.CODE == '200') {
-            console.log("Cal IRR");
             console.log(callIrr);
             this.bgdetail.fin_amt_e_vat = +callIrr.LIST_DATA[0].finExcVat;
             this.bgdetail.fin_amt_vat = +callIrr.LIST_DATA[0].finVat;
@@ -346,7 +373,7 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
       this.bgdetail.fin_amt_vat = '';
       this.bgdetail.fin_amt_e_vat = this.bgdetail.fin_amt_i_vat;
     }
-    if ((this.bgdetail.asst_amt_e_vat)  && (this.bgdetail.fin_amt_e_vat) ) {
+    if ((this.bgdetail.asst_amt_e_vat) && (this.bgdetail.fin_amt_e_vat)) {
       this.bgdetail.fin_ratio = Number(this.bgdetail.fin_amt_e_vat / this.bgdetail.asst_amt_e_vat).toFixed(2);
     }
   }
@@ -354,8 +381,8 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
   calculateAsset(from: string) {
     if (from == 'E') {
       if (this.bgdetail.with_vat === 'Y') {
-        this.bgdetail.asst_amt_vat = Number((this.bgdetail.asst_amt_e_vat ? this.bgdetail.asst_amt_e_vat  : 0) * this.vatRate / 100).toFixed(2);
-        this.bgdetail.asst_amt_i_vat = (Number(this.bgdetail.asst_amt_e_vat ? this.bgdetail.asst_amt_e_vat  : 0) + Number(this.bgdetail.asst_amt_vat)).toFixed(2);
+        this.bgdetail.asst_amt_vat = Number((this.bgdetail.asst_amt_e_vat ? this.bgdetail.asst_amt_e_vat : 0) * this.vatRate / 100).toFixed(2);
+        this.bgdetail.asst_amt_i_vat = (Number(this.bgdetail.asst_amt_e_vat ? this.bgdetail.asst_amt_e_vat : 0) + Number(this.bgdetail.asst_amt_vat)).toFixed(2);
       }
       else {
         this.bgdetail.asst_amt_vat = 0;
@@ -365,14 +392,14 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
     else {
       if (this.bgdetail.with_vat == 'Y') {
         this.bgdetail.asst_amt_e_vat = Number((this.bgdetail.asst_amt_i_vat ? this.bgdetail.asst_amt_i_vat : 0) * 100 / (100 + this.vatRate)).toFixed(2);
-        this.bgdetail.asst_amt_vat = Number((this.bgdetail.asst_amt_i_vat ? this.bgdetail.asst_amt_i_vat : 0)  - this.bgdetail.asst_amt_e_vat).toFixed(2);
+        this.bgdetail.asst_amt_vat = Number((this.bgdetail.asst_amt_i_vat ? this.bgdetail.asst_amt_i_vat : 0) - this.bgdetail.asst_amt_e_vat).toFixed(2);
       }
       else {
         this.bgdetail.asst_amt_vat = 0;
         this.bgdetail.asst_amt_e_vat = this.bgdetail.asst_amt_i_vat ? this.bgdetail.asst_amt_i_vat : 0;
       }
     }
-  //  this.calculatefinfromAsset();
+    //  this.calculatefinfromAsset();
   }
 
   calculateDown(from: any) {
@@ -383,17 +410,17 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
       }
       else {
         this.bgdetail.down_amt_vat = 0;
-        this.bgdetail.down_amt_i_vat = (this.bgdetail.down_amt_e_vat ? this.bgdetail.down_amt_e_vat  : 0);
+        this.bgdetail.down_amt_i_vat = (this.bgdetail.down_amt_e_vat ? this.bgdetail.down_amt_e_vat : 0);
       }
     }
     else {
       if (this.bgdetail.with_vat == 'Y') {
-        this.bgdetail.down_amt_e_vat = Number((this.bgdetail.down_amt_i_vat ? this.bgdetail.down_amt_i_vat  : 0) * 100 / (100 + this.vatRate)).toFixed(2);
-        this.bgdetail.down_amt_vat = Number((this.bgdetail.down_amt_i_vat ? this.bgdetail.down_amt_i_vat  : 0) - this.bgdetail.down_amt_e_vat).toFixed(2);
+        this.bgdetail.down_amt_e_vat = Number((this.bgdetail.down_amt_i_vat ? this.bgdetail.down_amt_i_vat : 0) * 100 / (100 + this.vatRate)).toFixed(2);
+        this.bgdetail.down_amt_vat = Number((this.bgdetail.down_amt_i_vat ? this.bgdetail.down_amt_i_vat : 0) - this.bgdetail.down_amt_e_vat).toFixed(2);
       }
       else {
         this.bgdetail.down_amt_vat = 0;
-        this.bgdetail.down_amt_i_vat = (this.bgdetail.down_amt_e_vat ? this.bgdetail.down_amt_e_vat  : 0);
+        this.bgdetail.down_amt_i_vat = (this.bgdetail.down_amt_e_vat ? this.bgdetail.down_amt_e_vat : 0);
       }
     }
     this.calculatefinfromAsset();
@@ -437,6 +464,7 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
   }
 
   calculateFin() {
+    this.bgdetail.fin_amt_e_vat = this.bgdetail.fin_amt_e_vat ? this.bgdetail.fin_amt_e_vat : 0;
     if (this.bgdetail.with_vat === 'Y') {
       this.bgdetail.fin_amt_vat = Number(this.bgdetail.fin_amt_e_vat * this.vatRate / 100).toFixed(2);
       this.bgdetail.fin_amt_i_vat = (Number(this.bgdetail.fin_amt_e_vat) + Number(this.bgdetail.fin_amt_vat)).toFixed(2);
@@ -446,7 +474,9 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
       this.bgdetail.fin_amt_i_vat = this.bgdetail.fin_amt_e_vat;
     }
     if (this.bgdetail.asst_amt_e_vat) {
-      this.bgdetail.fin_ratio = Number(this.bgdetail.fin_amt_e_vat / this.bgdetail.asst_amt_e_vat).toFixed(2);
+      if (Number(this.bgdetail.asst_amt_e_vat) > 0) {
+        this.bgdetail.fin_ratio = Number(this.bgdetail.fin_amt_e_vat / this.bgdetail.asst_amt_e_vat).toFixed(2);
+      }
     }
   }
 
@@ -499,7 +529,7 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
   }
 
   calculateLc() {
-    this.bgdetail.asst_amt_e_vat = Number(Number(this.bgdetail.asst_prce_forgn) * Number(this.bgdetail.currency) * (100 + Number(this.bgdetail.duty_pcnt)) / 100).toFixed(2);
+    this.bgdetail.asst_amt_e_vat = Number(Number(this.bgdetail.asst_prce_forgn) * Number(this.bgdetail.currency ? this.bgdetail.currency : 0) * (100 + Number(this.bgdetail.duty_pcnt ? this.bgdetail.duty_pcnt : 0)) / 100).toFixed(2);
     if (this.bgdetail.cal_inst_typ === 'Float' || (this.bgdetail.schedule === 'R' && this.bgdetail.cal_inst_typ === 'Fix')) {
       this.bgdetail.installment_e_vat = Number(Number(this.bgdetail.asst_amt_e_vat) * Number(this.bgdetail.inst_pcnt_of_asst) / 100).toFixed(2);
       this.calculateInstallment('eVat');
@@ -513,9 +543,10 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
       this.bgdetail.first = this.bgdetail.disburse_dt;
     }
     else {
-      this.bgdetail.first = this.onSelectMethod(this.dateUtils.addMonth(this.bgdetail.disburse_dt, 1));
+      this.bgdetail.first = this.dateUtils.addMonth(this.bgdetail.disburse_dt, 1);
     }
   }
+
   onSelectMethod(inputDate) {
     return this.dateUtils.dateToString(inputDate, 'dd/MM/yyyy');
   }
@@ -538,24 +569,7 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
   }
 
   onTabChange(index) {
-    // if (this.appFormService.getAppFormData().disabled != 'N') {
-    if ( 1 == 1) {
-      this.bgdetail.cal_inst_typ = this.tabView.tabs[index].header;
-      this.bgdetail.installment_e_vat = '';
-      this.bgdetail.installment_vat = '';
-      this.bgdetail.installment_i_vat = '';
-      if (this.bgdetail.cal_inst_typ === 'Fix') {
-        this.bgdetail.bank_code = '';
-        this.bgdetail.interest_rate = '';
-        // this.bgdetail.int_rate_name = '';
-        this.bgdetail.interest_rate_type = '';
-        this.bgdetail.spread = '';
-      }
-      else {
-        this.bgdetail.schedule = '';
-        this.bgdetail.listcastep = [];
-      }
-    }
+    this.bgdetail.cal_inst_typ = this.tabView.tabs[index].header;
   }
 
   scheduleChange() {
@@ -574,8 +588,9 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
   }
 
   newStep: boolean;
-  step : caStep = new caStep() ;
+  step: caStep = new caStep();
   selectedStep: caStep;
+
   addEditStep(action: string) {
     if (action == 'add') {
       if (this.bgdetail.disburse_dt && this.bgdetail.first) {
@@ -642,4 +657,26 @@ export class CaFinanceComponent implements OnInit , OnDestroy {
     }
     return step;
   }
+
+  changeDisburseFirst(event: string) {
+    if (this.bgdetail.disburse_dt == this.bgdetail.first) {
+      this.bgdetail.adv_arr = 'V';
+    }
+    else {
+      this.bgdetail.adv_arr = 'A';
+    }
+  }
+
+  changeMode(){
+    if(this.mode == "Normal Mode")
+    {
+      this.mode = "Free Text";
+    }
+    else {
+      this.mode = "Normal Mode";
+      this.bgdetail.free_text = "";
+    }
+    // console.log(this.mode);
+  }
+
 }

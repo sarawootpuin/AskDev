@@ -10,6 +10,7 @@ import {ServiceEndpoint} from "../../../../shared/config/service-endpoint";
 })
 export class CaFacPricingComponent implements OnInit {
   @Input() isReadonly : boolean;
+  @Input() task : string;
   caNo : string;
   subParams: Subscription;
   constructor(private route: ActivatedRoute,

@@ -17,7 +17,10 @@ export class ExposureComponent implements OnInit {
   ngOnInit() {
     this.appFormService.eventTabExposure.subscribe(
       (data: any) => {
-        this.exposureService.getExposure("web", this.appFormService.getAppFormData().ca_no, this.appFormService.getAppFormData().new_card_no, 0).subscribe(
+        this.exposureService.getExposure("web",
+                                         this.appFormService.getAppFormData().com_code ,
+                                         this.appFormService.getAppFormData().ca_no,
+                                         this.appFormService.getAppFormData().new_card_no).subscribe(
           (data: any) => {
             console.log(data);
             this.data = ListExposure.parse(data.LIST_DATA);

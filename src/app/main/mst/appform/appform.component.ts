@@ -256,6 +256,10 @@ export class AppFormComponent implements OnInit, OnDestroy {
     }
   }
 
+  okBlacklist(){
+
+  }
+
   verifyBeforeSubmit() {
     console.log('verifyBeforeSubmit');
     this.alertWarning.list_msg = [];

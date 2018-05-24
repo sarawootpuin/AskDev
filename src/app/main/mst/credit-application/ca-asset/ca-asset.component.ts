@@ -3,6 +3,7 @@ import {creditApplicationService} from "../credit-application.service";
 import {caBgDetail} from "../model/ca-bgdetail";
 import {caBgDetailSub} from "../model/ca-bgdetailsub";
 import {Subscription} from "rxjs/Subscription";
+import {CaDetailappraisal} from "../model/ca-bgDetailappraisal";
 
 @Component({
   selector: 'app-ca-asset',
@@ -21,6 +22,10 @@ export class CaAssetComponent implements OnInit , OnDestroy {
   selectbgdetailSub  : caBgDetailSub ;
   newSubAsset : caBgDetailSub ;
 
+  listbgDetailappraisal : CaDetailappraisal[];
+  selectDetailappraisal : CaDetailappraisal ;
+  newDetailappraisal : CaDetailappraisal ;
+
   index: number = 0;
 
 
@@ -31,7 +36,6 @@ export class CaAssetComponent implements OnInit , OnDestroy {
     this.subscripData = this.creditApplicationService.eventCaHead.subscribe(
       (caHead) => {
         this.listbgdetail = caHead.listbgdetail ;
-        //console.log(this.listbgdetail);
 
         if ( (this.listbgdetail) && (this.listbgdetail.length > 0)  )
         {   this.onSelectdetail(this.listbgdetail[0]) ;  }
@@ -53,6 +57,8 @@ export class CaAssetComponent implements OnInit , OnDestroy {
   onSelectdetail(value : caBgDetail){
     this.selectbgdetail = value ;
     this.listbgdetailSub = value.listbgdetailsub ;
+
+
     this.creditApplicationService.setSelectBgdetail(value);
 
     if ( (this.listbgdetailSub) && (this.listbgdetailSub.length > 0)  )
@@ -73,10 +79,17 @@ export class CaAssetComponent implements OnInit , OnDestroy {
 
     this.newAsset.ca_no =  this.creditApplicationService.caHead.ca_no ;
 
-    if ( this.listbgdetail.length > 1){ this.newAsset.sub_id = this.listbgdetail.length +1    }
+    if ( this.listbgdetail.length > 0){ this.newAsset.sub_id = this.listbgdetail.length +1    }
     else {this.newAsset.sub_id = 1  }
 
-    console.log(this.newAsset);
+    this.newAsset.lc_flg = 'N';
+    this.newAsset.with_vat = 'Y';
+    this.newAsset.wh_tax = 0;
+    this.newAsset.cal_inst_typ = 'Fix';
+    this.newAsset.schedule = 'R';
+    this.newAsset.adv_arr = 'V';
+    this.newAsset.selectForCall = '1';
+
     this.listbgdetail = [ ...this.listbgdetail,this.newAsset];
     this.creditApplicationService.caHead.listbgdetail = this.listbgdetail ;
     this.onSelectdetail(this.newAsset);

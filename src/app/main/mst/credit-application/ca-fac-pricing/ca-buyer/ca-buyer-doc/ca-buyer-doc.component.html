@@ -32,23 +32,23 @@
               </p-row>
             </p-headerColumnGroup>
             <p-column field="select_o"   [editable]="true" [style]="{'width':'60px','text-align': 'center'}">
-              <ng-template let-col let-doc="rowData" pTemplate="body">
+              <ng-template let-col let-doc="rowData" let-rowIndex="rowIndex" pTemplate="body">
                 <input type="checkbox"
-                       [checked]="doc[col.field] == 'Y'"      (change)="doc[col.field] = onClickCheck($event,doc)"
+                       [checked]="doc[col.field] == 'Y'"      (change)="doc[col.field] = onClickCheck($event,doc,col.field,listBuyerDoc[rowIndex])"
                 >
               </ng-template>
             </p-column>
             <p-column field="select_p"   [editable]="true"    [style]="{'width':'60px','text-align': 'center'}">
-              <ng-template let-col let-doc="rowData" pTemplate="body">
+              <ng-template let-col let-doc="rowData" let-rowIndex="rowIndex" pTemplate="body">
                 <input type="checkbox"
-                       [checked]="doc[col.field] == 'Y'"      (change)="doc[col.field] = onClickCheck($event,doc)"
+                       [checked]="doc[col.field] == 'Y'"      (change)="doc[col.field] = onClickCheck($event,doc,col.field,listBuyerDoc[rowIndex])"
                 >
               </ng-template>
             </p-column>
             <p-column field="select_c"    [editable]="true"    [style]="{'width':'60px','text-align': 'center'}">
-              <ng-template let-col let-doc="rowData" pTemplate="body">
+              <ng-template let-col let-doc="rowData" let-rowIndex="rowIndex" pTemplate="body">
                 <input type="checkbox"
-                       [checked]="doc[col.field] == 'Y'"  (change)="doc[col.field] = onClickCheck($event,doc)"
+                       [checked]="doc[col.field] == 'Y'"  (change)="doc[col.field] = onClickCheck($event,doc,col.field,listBuyerDoc[rowIndex])"
                 >
               </ng-template>
             </p-column>
@@ -72,7 +72,7 @@
       <div class="col-md-12">
         <div class="form-group">
           <label><b>Other 1</b><br></label>
-          <input class="form-control" [(ngModel)]="selectBuyerDoc.oth1" >
+          <input class="form-control" [(ngModel)]="selectBuyerDoc.oth1">
         </div>
         <div class="form-group">
           <label><b>Other 2</b><br></label>

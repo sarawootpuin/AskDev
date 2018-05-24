@@ -1,14 +1,15 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActionReadExcelComponent} from "../../../../shared/center/action-read-excel/action-read-excel.component";
 import {creditApplicationService} from "../credit-application.service";
 import {caHead} from "../model/ca-head";
 import {AlertDialogComponent} from "../../../../shared/center/alert-dialog/alert-dialog.component";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-ca-attachment',
   templateUrl: './ca-attachment.component.html'
 })
-export class CaAttachmentComponent implements OnInit {
+export class CaAttachmentComponent implements OnInit, OnDestroy {
 
   @ViewChild('actionReadExcel') actionReadExcel: ActionReadExcelComponent;
   @ViewChild('alertFinish') alertFinish : AlertDialogComponent;
@@ -19,20 +20,24 @@ export class CaAttachmentComponent implements OnInit {
   titleDownload = 'Download';
   partDownload = '';
   partDownloadTemp = '';
+  subscription: Subscription;
 
   ngOnInit() {
+    this.subscription =  this.creditApplicationService.eventCaHead.subscribe(
+      (caHead : caHead) => {
+        this.caNo = caHead.ca_no.replace(/\//gi,"_");
+        this.comCode = caHead.com_code;
 
-    this.caNo = this.creditApplicationService.caHead.ca_no.replace(/\//gi,"_");
-    this.comCode = this.creditApplicationService.caHead.com_code;
-    console.log(this.caNo);
-    // this.actionReadExcel.findCaDirectoryPart().subscribe(
-    //   (data: any) => {
-    //     console.log(data);
-    //   }
-    // );
-    this.checkFile(this.comCode, this.caNo);
-    this.directoryTemplate(this.comCode);
+        this.checkFile(this.comCode, this.caNo);
+        this.directoryTemplate(this.comCode);
+      }
+    );
+  }
 
+  ngOnDestroy(){
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
   }
 
   checkFile(comCode, caNo) {

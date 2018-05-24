@@ -41,11 +41,13 @@ export class CaBuyerDocComponent implements OnInit, OnDestroy {
 
   }
 
-  onClickCheck(value , test : any){
+  onClickCheck(value , test: any ,typechk, selrow){
     let data ;
      if (value.target.checked ){
        data = 'Y';
+
        if (test){
+         //console.log('In test')
          test.select_o = 'N';
          test.select_p = 'N';
          test.select_c = 'N';
@@ -53,7 +55,14 @@ export class CaBuyerDocComponent implements OnInit, OnDestroy {
      }else {
        data= 'N';
      }
-     //console.log(data);
+
+
+    this.selectBuyerDoc = selrow;
+
+     if (typechk == "select_o") {this.selectBuyerDoc.factored_doc_type  = "O"}
+     else if (typechk == "select_p") {  this.selectBuyerDoc.factored_doc_type = "P"}
+     else if (typechk == "select_c") { this.selectBuyerDoc.factored_doc_type = "C"}
+    //console.log(this.selectBuyerDoc)
      return data;
   }
 

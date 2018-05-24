@@ -4,7 +4,7 @@
       <div class="flex-md-column col-md-10">
         <div class="form-group">
           <label>Address</label>
-          <input type="text" class="form-control" [(ngModel)]="caGua.address"  >
+          <input type="text" class="form-control" [(ngModel)]="caGua.address">
         </div>
       </div>
     </div>
@@ -45,6 +45,7 @@
       <div class="flex-md-column col-md-10">
         <div class="form-group">
           <label>Address</label>
+          <button (click)="copyOwner('VAT')"><i class="fa fa-copy"> Duplicate Address from Current </i></button>
           <input type="text" class="form-control"  [(ngModel)]="caGua.add_c">
         </div>
       </div>
@@ -66,12 +67,13 @@
     </div>
   </div>
 </p-panel>
-<p-panel header=" Office">
+<p-panel header="Office">
   <div class="col-md-12">
     <div class="d-flex">
       <div class="flex-md-column col-md-10">
         <div class="form-group">
           <label>Address</label>
+          <button (click)="copyOwner('OFFICE')"><i class="fa fa-copy"> Duplicate Address from Current </i></button>
           <input type="text" class="form-control" [(ngModel)]="caGua.add_o" >
         </div>
       </div>
@@ -81,7 +83,6 @@
         <div class="form-group">
           <label>Post Code</label>
           <input type="text" class="form-control"  [(ngModel)]="caGua.post_cd_o" >
-
         </div>
       </div>
       <div class="col-md-7 ">
@@ -107,12 +108,13 @@
     </div>
   </div>
 </p-panel>
-<p-panel header=" Mail">
+<p-panel header="Mail">
   <div class="col-md-12">
     <div class="d-flex">
       <div class="flex-md-column col-md-10">
         <div class="form-group">
           <label>Address</label>
+          <button (click)="copyOwner('MAIL')"><i class="fa fa-copy"> Duplicate Address from Current </i></button>
           <input type="text" class="form-control"  [(ngModel)]="caGua.add_m" >
         </div>
       </div>
@@ -122,18 +124,17 @@
         <div class="form-group">
           <label>Post Code</label>
           <input type="text" class="form-control"  [(ngModel)]="caGua.post_cd_m" >
-
         </div>
       </div>
     </div>
   </div>
 </p-panel>
-<p-panel header=" Telephone">
+<p-panel header="Telephone">
   <div class="col-md-12">
     <div class="d-flex">
       <div class="flex-md-column col-md-3">
         <div class="form-group">
-          <label> Moblie Phone No. </label>
+          <label> Mobile Phone No. </label>
           <input type="text" class="form-control"  [(ngModel)]="caGua.mobile_phone" >
         </div>
       </div>
@@ -151,7 +152,7 @@
       </div>
       <div class="flex-md-column col-md-3">
         <div class="form-group">
-          <label> Emial Address </label>
+          <label> Email Address </label>
           <input type="text" class="form-control" [(ngModel)]="caGua.email_address" >
         </div>
       </div>

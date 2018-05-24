@@ -1,3 +1,4 @@
+import {CaDetailappraisal} from "./ca-bgDetailappraisal";
 export class caBgDetailSub {
   public ca_no;
   public sub_id;
@@ -32,9 +33,13 @@ export class caBgDetailSub {
   public  asset_type ;
   public  dealer_name ;
 
+  public  listbgdetailappraisal : CaDetailappraisal[];
+
   constructor()
-  constructor(ca_no, sub_id, sub_id2, brand_code, model_code, chassis, eng_num, year, reg_num, detail, asst_type, asst_code, asst_sub_code, dealer_code, comm_amt, comm_pcnt, color, cc, eqp_ty, weight, body, miles, seat, enigne_type, accessory, asst_amt_e_vat, asset_status, fin_amt_e_vat, buy_back_grnty_no,asset_type,dealer_name)
-  constructor(ca_no?, sub_id?, sub_id2?, brand_code?, model_code?, chassis?, eng_num?, year?, reg_num?, detail?, asst_type?, asst_code?, asst_sub_code?, dealer_code?, comm_amt?, comm_pcnt?, color?, cc?, eqp_ty?, weight?, body?, miles?, seat?, enigne_type?, accessory?, asst_amt_e_vat?, asset_status?, fin_amt_e_vat?, buy_back_grnty_no?,asset_type?,dealer_name?) {
+  constructor(ca_no, sub_id, sub_id2, brand_code, model_code, chassis, eng_num, year, reg_num, detail, asst_type, asst_code, asst_sub_code, dealer_code, comm_amt, comm_pcnt, color, cc, eqp_ty, weight, body, miles, seat, enigne_type, accessory, asst_amt_e_vat, asset_status, fin_amt_e_vat, buy_back_grnty_no,asset_type,dealer_name,
+              listbgdetailappraisal : CaDetailappraisal[])
+  constructor(ca_no?, sub_id?, sub_id2?, brand_code?, model_code?, chassis?, eng_num?, year?, reg_num?, detail?, asst_type?, asst_code?, asst_sub_code?, dealer_code?, comm_amt?, comm_pcnt?, color?, cc?, eqp_ty?, weight?, body?, miles?, seat?, enigne_type?, accessory?, asst_amt_e_vat?, asset_status?, fin_amt_e_vat?, buy_back_grnty_no?,asset_type?,dealer_name?,
+              listbgdetailappraisal? : CaDetailappraisal[]) {
     this.ca_no = ca_no;
     this.sub_id = sub_id;
     this.sub_id2 = sub_id2;
@@ -66,6 +71,7 @@ export class caBgDetailSub {
     this.buy_back_grnty_no = buy_back_grnty_no;
     this.asset_type = asset_type;
     this.dealer_name = dealer_name;
+    this.listbgdetailappraisal = listbgdetailappraisal;
   }
 
   static
@@ -104,7 +110,8 @@ export class caBgDetailSub {
           json[i].fin_amt_e_vat,
           json[i].buy_back_grnty_no,
           json[i].asset_type,
-          json[i].dealer_name
+          json[i].dealer_name,
+          CaDetailappraisal.parse(json[i].listbgdetailappraisal)
         ))
       }
     }

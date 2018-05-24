@@ -6,31 +6,45 @@
         <input type="radio" name="radioAdvance" [checked]="dataHead?.advance_type==='N'" disabled> With Out Advance
       </div>
       <br>
-      <div class="col-md-4">
-        <label>Requested Credit Line</label>
-        <span class="star">*</span>
-        <div class="form-inline">
-          <input currencyMask
-                 class="form-control"
-                 [(ngModel)]="dataFirst.credit_line_amt"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
-          <div class="col-md-1" style="margin-left: 10px;">
-            <label> Baht. </label>
+      <div class="row">
+        <div class="col-md-4">
+          <label>Requested Credit Line</label>
+          <span class="star">*</span>
+          <div class="form-inline">
+            <input appMyCurrency
+                   class="form-control"
+                   pKeyFilter="pnum"
+                   [fraction]="2"
+                   [value]="dataFirst.credit_line_amt"
+                   (change)="dataFirst.credit_line_amt = $event.target.value"
+                   [disabled]="task == 'AM'"/>
+            <div class="col-md-1" style="margin-left: 10px;">
+              <label> Baht. </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label>Expired date</label>
+          <span class="star">*</span>
+          <div class="form-inline">
+            <p-calendar dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy" dataType="string"
+                        showButtonBar="true"
+                        [(ngModel)]="dataFirst.expire_dt"
+            ></p-calendar>
           </div>
         </div>
       </div>
-
       <div class="border-isa mt-2">
         <label><b>Interest Charge</b></label>
         <div class="col-md-12">
           <div class="d-flex">
             <div class="form-group col-md-6">
-                <input type="radio" name="rate_type" value="Fix"
-                       [(ngModel)]="dataFirst.rate_type"
-                       (ngModelChange)="interestChange($event)"> Fix   &nbsp;
-                <input type="radio" name="rate_type" value="Float"
-                       [(ngModel)]="dataFirst.rate_type"
-                       (ngModelChange)="interestChange($event)"> Float
+              <input type="radio" name="rate_type" value="Fix"
+                     [(ngModel)]="dataFirst.rate_type"
+                     (ngModelChange)="interestChange($event)"> Fix &nbsp;
+              <input type="radio" name="rate_type" value="Float"
+                     [(ngModel)]="dataFirst.rate_type"
+                     (ngModelChange)="interestChange($event)"> Float
             </div>
           </div>
         </div>
@@ -39,11 +53,13 @@
             <div class="form-group col-md-3">
               <label> Interest Rate </label>
               <div class="form-inline">
-                <input currencyMask
+                <input appMyCurrency
                        class="form-control"
+                       [fraction]="2"
+                       pKeyFilter="pnum"
                        [disabled]="dataFirst.rate_type=='Float'"
-                       [(ngModel)]="dataFirst.int_rate"
-                       [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>&nbsp; %
+                       [value]="dataFirst.int_rate"
+                       (change)="dataFirst.int_rate = $event.target.value"/>&nbsp; %
               </div>
             </div>
           </div>
@@ -87,12 +103,14 @@
             </div>
             <div class="form-group col-md-3">
               <label> Spread </label>
-              <input currencyMask
+              <input appMyCurrency
                      class="form-control"
                      #rateSpread
+                     [fraction]="3"
+                     pKeyFilter="pnum"
                      [disabled]="dataFirst.rate_type=='Fix'"
-                     [(ngModel)]="dataFirst.rate_spread"
-                     [options]="{ prefix: '', thousands: ',', decimal: '.' , precision  : '3' }"/>
+                     [value]="dataFirst.rate_spread"
+                     (change)="dataFirst.rate_spread = $event.target.value"/>
             </div>
           </div>
         </div>
@@ -119,11 +137,13 @@
                      [(ngModel)]="dataFirst.factfee_type"
                      (ngModelChange)="factFeeChange($event)"> Per Month
               <div class="col-md-5 form-inline">
-                <input currencyMask
+                <input appMyCurrency
                        class="form-control"
+                       [fraction]="2"
+                       pKeyFilter="pnum"
                        [disabled]="dataFirst.factfee_type==1"
-                       [(ngModel)]="dataFirst.factfee_amt_month"
-                       [options]="{ prefix: '', thousands: ',', decimal: '.' }"/> &nbsp; Baht.
+                       [value]="dataFirst.factfee_amt_month"
+                       (change)="dataFirst.factfee_amt_month = $event.target.value"/> &nbsp; Baht.
               </div>
             </div>
           </div>
@@ -134,10 +154,12 @@
         <div class="col-md-4">
           <label>Front-end Fee </label>
           <div class="form-inline">
-            <input currencyMask
+            <input appMyCurrency
                    class="form-control"
-                   [(ngModel)]="dataFirst.front_end_fee_amt"
-                   [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
+                   [fraction]="2"
+                   pKeyFilter="pnum"
+                   [value]="dataFirst.front_end_fee_amt"
+                   (change)="dataFirst.front_end_fee_amt = $event.target.value"/>
             <div class="col-md-1" style="margin-left: 10px;">
               <label> Baht. </label>
             </div>
@@ -146,10 +168,12 @@
         <div class="col-md-4">
           <label>Handling Fee </label>
           <div class="form-inline">
-            <input currencyMask
+            <input appMyCurrency
                    class="form-control"
-                   [(ngModel)]="dataFirst.handling_fee_amt"
-                   [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>
+                   [fraction]="2"
+                   pKeyFilter="pnum"
+                   [value]="dataFirst.handling_fee_amt"
+                   (change)="dataFirst.handling_fee_amt = $event.target.value"/>
             <div class="col-md-1" style="margin-left: 10px;">
               <label> Baht. </label>
             </div>

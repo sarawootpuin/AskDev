@@ -14,8 +14,8 @@ export class AttachmentComponent implements OnInit ,OnChanges {
   @ViewChild('actionReadExcel') actionReadExcel: ActionReadExcelComponent;
   @ViewChild('alertFinish') alertFinish : AlertDialogComponent;
   @Input() inquiry : boolean = false;
-  caNo: string;
-  comCode: string;
+  @Input() caNo: string;
+  comCode: string = "BGPL";
 
   constructor(private appFormService: AppFormService) {
   }
@@ -25,21 +25,13 @@ export class AttachmentComponent implements OnInit ,OnChanges {
   partDownloadTemp = '';
 
   ngOnInit() {
-    this.caNo = this.appFormService.getAppFormData().ca_no.replace(/\//gi, "_");
-    this.comCode = this.appFormService.getAppFormData().com_code;
 
-    //console.log(this.caNo);
-    // this.actionReadExcel.findCaDirectoryPart().subscribe(
-    //   (data: any) => {
-    //     console.log(data);
-    //   }
-    // );
-    this.checkFile(this.comCode, this.caNo);
-    this.directoryTemplate(this.comCode);
   }
 
   ngOnChanges(){
+    this.caNo = this.caNo.replace(/\//gi, "_");
     this.checkFile(this.comCode, this.caNo);
+    this.directoryTemplate(this.comCode);
   }
 
   checkFile(comCode, caNo) {
@@ -48,12 +40,12 @@ export class AttachmentComponent implements OnInit ,OnChanges {
     this.actionReadExcel.findCaDirectoryPart(comCode, caNo).subscribe(
       (data: any) => {
         //console.log('test');
-        //console.log(data);
+        console.log(data);
         if (data.MSG == "Complete") {
           this.actionReadExcel.fileSelect = data.DATA.fileName;
           this.partDownload = data.DATA.part;
           this.partDownload = "http://picask:DC8C3078BC63EAA@" + this.partDownload.substring(2).replace(/\\/g, '/');
-          //console.log(this.partDownload);
+          console.log(this.partDownload);
         }
         //console.log(this.partDownload);
       }

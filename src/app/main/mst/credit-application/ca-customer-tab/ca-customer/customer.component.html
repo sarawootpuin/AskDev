@@ -5,13 +5,13 @@
         <div class="form-group">
           <label>Customer Code</label>
           <span class="star">*</span>
-          <input type="text" class="form-control"  [(ngModel)]="caEntityDetail.ent_code"  disabled >
+          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.ent_code" disabled>
         </div>
       </div>
       <div class="flex-md-column col-md-6 offset-md-3 ">
         <div class="form-group">
           <label> Company </label>
-          <input type="text" class="form-control"  [(ngModel)]="caEntityDetail.com_code" disabled >
+          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.com_code" disabled>
         </div>
       </div>
     </div>
@@ -19,6 +19,7 @@
       <div class="flex-md-column col-md-3 ">
         <div class="form-group">
           <label> Intial </label>
+          <span class="star">*</span>
           <select class="form-control"
                   [ngModel]="caEntityDetail?.f_name_e"
                   (ngModelChange)="caEntityDetail.f_name_e=$event">
@@ -34,6 +35,7 @@
       <div class="flex-md-column col-md-3 offset-md-3 ">
         <div class="form-group">
           <label> Intial(T) </label>
+          <span class="star">*</span>
           <select class="form-control"
                   [ngModel]="caEntityDetail?.f_name"
                   (ngModelChange)="caEntityDetail.f_name=$event">
@@ -48,14 +50,15 @@
       <div class="flex-md-column col-md-3">
         <div class="form-group">
           <label> Branch No. </label>
-          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.branch_no" disabled >
+          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.branch_no" disabled>
         </div>
       </div>
     </div>
     <div class="d-flex">
       <div class="flex-md-column col-md-6 ">
         <div class="form-group">
-          <label> Name (T)  </label>
+          <label> Name (T) </label>
+          <span class="star">*</span>
           <input type="text" class="form-control" [(ngModel)]="caEntityDetail.f_namet">
         </div>
       </div>
@@ -70,6 +73,7 @@
       <div class="flex-md-column col-md-6 ">
         <div class="form-group">
           <label> Name (E)</label>
+          <span class="star">*</span>
           <input type="text" class="form-control" [(ngModel)]="caEntityDetail.f_namee">
         </div>
       </div>
@@ -84,22 +88,25 @@
       <div class="flex-md-column col-md-2 ">
         <div class="form-group">
           <label>Birth/Register Date</label>
-          <p-calendar  dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"  dataType="string"  showButtonBar="true"
-                       [(ngModel)]="caEntityDetail.birth_d"></p-calendar>
+          <span class="star">*</span>
+          <p-calendar dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy" dataType="string" showButtonBar="true"
+                      [(ngModel)]="caEntityDetail.birth_d"></p-calendar>
 
         </div>
       </div>
       <div class="flex-md-column col-md-2 ">
         <div class="form-group">
-          <label>  Establishment Date</label>
-            <p-calendar  dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy" dataType="string"  showButtonBar="true"
-                         [(ngModel)]="caEntityDetail.birth_d"></p-calendar>
+          <label> Establishment Date</label>
+          <span class="star">*</span>
+          <p-calendar dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy" dataType="string" showButtonBar="true"
+                      [(ngModel)]="caEntityDetail.birth_d"></p-calendar>
         </div>
       </div>
       <div class="flex-md-column col-md-6 offset-2 ">
         <div class="form-group">
-          <label> Card No.  </label>
-          <input type="text" class="form-control"  [(ngModel)]="caEntityDetail.card_no" pKeyFilter="int" >
+          <label> Card No </label>
+          <span class="star">*</span>
+          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.card_no" pKeyFilter="int">
 
         </div>
       </div>
@@ -108,6 +115,7 @@
       <div class="flex-md-column col-md-6 ">
         <div class="form-group">
           <label> Card Type </label>
+          <span class="star">*</span>
           <select class="form-control"
                   [ngModel]="caEntityDetail?.card_type"
                   (ngModelChange)="caEntityDetail.card_type=$event">
@@ -122,17 +130,26 @@
       </div>
       <div class="flex-md-column col-md-6 ">
         <div class="form-group">
-          <label>  Issue At  </label>
+          <label> Issue At </label>
           <input type="text" class="form-control" [(ngModel)]="caEntityDetail.card_by">
         </div>
       </div>
     </div>
     <div class="form-group">
       <div class="flex-md-column col-md-6 ">
-        <p-dataTable selectionMode="single" [(selection)]="selected" (onRowSelect)="onRowSelect($event)" rows="15"
+        <p-dataTable [value]="listNation"
+                     selectionMode = "single"
+                     (onRowSelect)="selectNation($event.data)"
+                     [(selection)]="selectedNation"
+                     [immutable]="false"
                      [responsive]="true">
-          <p-column field="f1" header=" Nation "></p-column>
-          <p-column field="f2" header=" % "></p-column>
+          <p-header>
+            <app-custom-botton-icon [option]="'new'" (onBtnClick)="addOrEditNation('add')"></app-custom-botton-icon>
+            <app-custom-botton-icon [option]="'edit'" (onBtnClick)="addOrEditNation('edit')" ></app-custom-botton-icon>
+            <app-custom-botton-icon [option]="'delete'" (onBtnClick)="deleteNation(selectedNation)"></app-custom-botton-icon>
+          </p-header>
+          <p-column field="nation_full" header="Nation"></p-column>
+          <p-column field="percentage" header="%"></p-column>
           <p-footer>
             <div class="ui-helper-clearfix" style="width:100%">
             </div>
@@ -143,14 +160,14 @@
     <div class="d-flex">
       <div class="flex-md-column col-md-6 ">
         <div class="form-group">
-          <label>  (Authorized Officer)Signed By THAI </label>
-          <input type="text" class="form-control"  [(ngModel)]="caEntityDetail.authorize_by_t"  >
+          <label> (Authorized Officer)Signed By THAI </label>
+          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.authorize_by_t">
         </div>
       </div>
       <div class="flex-md-column col-md-6 ">
         <div class="form-group">
           <label> (Authorized officer)Signed By ENG </label>
-          <input type="text" class="form-control"  [(ngModel)]="caEntityDetail.authorize_by_e">
+          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.authorize_by_e">
         </div>
 
       </div>
@@ -159,11 +176,24 @@
       <div class="flex-md-column col-md-6 ">
         <div class="form-group">
           <label> (Exposure Group) Group Code </label>
-          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.grp_code"  >
+          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.grp_code">
         </div>
       </div>
     </div>
     <div class="d-flex">
+
+      <div class="flex-md-column col-md-2 ">
+        <div class="form-group">
+          <label> Business </label>
+          <input type="text" class="form-control" disabled [(ngModel)]="caEntityDetail.bus_detail">
+        </div>
+      </div>
+      <div class="flex-md-column col-md-6 ">
+        <div class="form-group">
+          <label> Business Detail </label>
+          <input type="text" class="form-control" disabled [(ngModel)]="caEntityDetail.bus_detail_desc">
+        </div>
+      </div>
       <div class="flex-md-column col-md-1 pr-0 ">
         <label> &nbsp; </label>
         <app-search-un app-search-un inuURL={{OutURL}}
@@ -174,23 +204,24 @@
                        (col5)="setBusType($event)">
         </app-search-un>
       </div>
+    </div>
+
+    <div class="d-flex">
       <div class="flex-md-column col-md-4 ">
         <div class="form-group">
-          <label> Business </label>
-          <input type="text" class="form-control" disabled  [(ngModel)]="caEntityDetail.bus_detail_desc"  >
-        </div>
-      </div>
-      <div class="flex-md-column col-md-6 ">
-        <div class="form-group">
-          <label> Business Detail </label>
-          <input type="text" class="form-control" disabled [(ngModel)]="caEntityDetail.bus_detail_desc" >
+          <label> Business description </label>
+          <input type="text" class="form-control"
+          [(ngModel)]="business_detail" (change)="onChange($event.target.value)" >
         </div>
       </div>
     </div>
+
+
     <div class="d-flex">
       <div class="flex-md-column col-md-3 ">
         <div class="form-group">
           <label> Register Capital </label>
+          <span class="star">*</span>
           <div class="form-inline">
             <input appMyCurrency
                    class="form-control"
@@ -203,6 +234,7 @@
       <div class="flex-md-column col-md-3">
         <div class="form-group">
           <label> Paid Up Capital </label>
+          <span class="star">*</span>
           <div class="form-inline">
             <input appMyCurrency
                    class="form-control"
@@ -217,7 +249,8 @@
       <div class="flex-md-column col-md-2 ">
         <div class="form-group">
           <label> Sale ended : Year </label>
-          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.sales_year" pKeyFilter="int" >
+          <span class="star">*</span>
+          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.sales_year" pKeyFilter="int">
         </div>
       </div>
       <div class="flex-md-column col-md-3 ">
@@ -225,10 +258,10 @@
           <label> &nbsp; </label>
           <div class="form-inline">
             - &nbsp;&nbsp; &nbsp;&nbsp;
-          <input appMyCurrency
-                 class="form-control"
-                 (change)="caEntityDetail.sales_amt_mb = $event.target.value;caEntityDetail.sales_amt = caEntityDetail.sales_amt_mb * 1000000 ;"
-                 [value]="caEntityDetail.sales_amt_mb"/>
+            <input appMyCurrency
+                   class="form-control"
+                   (change)="caEntityDetail.sales_amt_mb = $event.target.value;caEntityDetail.sales_amt = caEntityDetail.sales_amt_mb * 1000000 ;"
+                   [value]="caEntityDetail.sales_amt_mb"/>
             &nbsp;MB
           </div>
         </div>
@@ -238,6 +271,7 @@
       <div class="flex-md-column col-md-2 ">
         <div class="form-group">
           <label> Net Worth ended : Year </label>
+          <span class="star">*</span>
           <input type="text" class="form-control" [(ngModel)]="caEntityDetail.net_worth_year" pKeyFilter="int">
         </div>
       </div>
@@ -279,3 +313,29 @@
     </div>
   </div>
 </p-panel>
+
+
+<app-action-dialog #nationDialog
+                   [showCancel]="true"
+                   [showOk]="true"
+                   (onOk)="onOkClick()">
+  <div class="form-group">
+    <label>Nation</label>
+    <select class="form-control"
+            [(ngModel)]="newNation.nationality">
+      <option [value]=""></option>
+      <option *ngFor="let list of listNTN; let i = index"
+              [value]="list.id_code"
+              [selected] = "newNation.nationality == list.id_code">{{list?.remark}}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Percentage</label>
+    <input type= "text"
+           class="form-control"
+           [(ngModel)]="newNation.percentage"
+           pKeyFilter="int">
+  </div>
+</app-action-dialog>
+

@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {creditApplicationService} from "../credit-application.service";
 import {Subscription} from "rxjs/Subscription";
 import {caHead} from "../model/ca-head";
@@ -9,6 +9,8 @@ import {caHead} from "../model/ca-head";
 })
 export class CaCustomerTabComponent implements OnInit, OnDestroy {
   @Input() isReadonly : boolean;
+  @Input('business_detail') business_detail: string;
+  @Output('business_detail_out') business_detail_out:EventEmitter<string> = new EventEmitter<string>();
 
   subscripData: Subscription;
   sbu_type : string ;
@@ -24,6 +26,9 @@ export class CaCustomerTabComponent implements OnInit, OnDestroy {
     );
   }
 
+  onEmit(val) {
+    this.business_detail_out.emit(val);
+  }
 
   ngOnDestroy(){
     if (this.subscripData != null) {
