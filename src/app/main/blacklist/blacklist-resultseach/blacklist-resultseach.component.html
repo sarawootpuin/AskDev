@@ -69,10 +69,14 @@
 
 <br/>
 <p-dataTable [value]="myBlacklistHistory" [lazy]="true" [rows]="10" [paginator]="true"
-            [totalRecords]="totalRecordsHistory" (onLazyLoad)="loadmyBlacklistHistory($event)">
+             [totalRecords]="totalRecordsHistory" (onLazyLoad)="loadmyBlacklistHistory($event)">
     <p-header><i class="fa fa-info-circle"></i> ประวัติการตรวจสอบ</p-header>
     <p-column field="FIRST_NAME" header="ชื่อ"></p-column>
     <p-column field="LAST_NAME" header="นามสกุล"></p-column>
+    <p-column field="ID_CARD" header="เลขที่บัตร"></p-column>
+    <p-column field="ENG_NUM" header="เลขเครื่อง"></p-column>
+    <p-column field="CHASSIS" header="เลขถัง"></p-column>
+    <p-column field="LICENCE" header="ทะเบียน"></p-column>
     <p-column field="CHECK_DATE" header="วันที่เช็คข้อมูล"></p-column>
     <p-column field="CHECK_BY" header="เช็คข้อมูลโดย"></p-column>
 </p-dataTable>

@@ -7,11 +7,12 @@
                             (onSubmit)="questionAction('SUBMIT')" (onSave)="questionAction('SAVE')"
                             (onPrint)="showReport()"
                             (onReject)="questionAction('REJECT')" (onCancel)="questionAction('CANCEL')"
+                            (onEdit)="btnFormEdit = false; isReadonly = false"
                             [showSubmit]="btnFormSubmit" [showSave]="btnFormSave" [showPrint]="true"
-                            [showReject]="btnFormReject" [showCancel]="btnFormCancel"
+                            [showReject]="btnFormReject" [showCancel]="btnFormCancel" [showEdit]="btnFormEdit"
     ></app-action-button-form>
     <div class="p-1 m-1 border-isa">
-      <p-panel [toggleable]="true"
+      <p-panel [toggleable]="true" [style]="{'margin-bottom':'20px'}"
                header="Infomation - {{myCaHead.sbu_type_desc}} ( {{myCaHead.ca_no}} )  - {{myCaHead.current_task}}  ">
         <div class="main-container ">
           <div class="row">
@@ -33,12 +34,10 @@
                 <input type="text" class="form-control" [(ngModel)]="myCaHead.ca_approve_date" readonly>
               </div>
             </div>
-            <div class="col-md-2 ">
-              <div class="d-flex">
-                <div class="form-group">
-                  <label>Total Score</label>
-                  <input type="text" class="form-control text-center" [(ngModel)]="myCaHead.score" readonly>
-                </div>
+            <div class="flex-md-column col-md-3">
+              <div class="form-group" [hidden] = "!caCaption">
+                <label>&nbsp;</label>
+                <input type="text" class="form-control" [(ngModel)]="caCaption" readonly>
               </div>
             </div>
           </div>
@@ -61,16 +60,18 @@
                 <input type="text" class="form-control" [(ngModel)]="myCaHead.team_mkt_leader" readonly>
               </div>
             </div>
-            <div class="col-md-2">
+            <div class="flex-md-column col-md-3">
               <div class="d-flex">
                 <div class="form-group">
-                  <label>Grading Result</label>
-                  <input type="text" class="form-control text-center" [(ngModel)]="myCaHead.grade" readonly
-                         value="A">
+                  <label>Score</label>
+                  <input type="text" class="form-control text-right" [(ngModel)]="myCaHead.score" readonly>
+                </div>
+                <div class="form-group offset-1">
+                  <label>Grade</label>
+                  <input type="text" class="form-control" [(ngModel)]="myCaHead.grade" readonly>
                 </div>
               </div>
             </div>
-
           </div>
           <div class="row">
             <div class="flex-md-column col-md-3">
@@ -156,18 +157,18 @@
 
           </div>
           <div class="row" *ngIf="myCaHead.sbu_typ == 'FDO'">
-            <div class="flex-md-column col-md-3" >
-              <div class="form-group" >
+            <div class="flex-md-column col-md-3">
+              <div class="form-group">
                 <label>Joint Seller Group</label>
                 <div class="input-group">
-                <input type="text" class="form-control" [(ngModel)]="myCaHead.joint_seller_group " readonly>
-                <app-search-un app-search-un [inuURL]="urlSeller"
-                               [servicetype]="'POST'" [objforpost]="dataSeller"
-                               title="Code;Name;Cr.Limit;" [widthcol]="'100;300;100;'"
-                               (col1)="setGroup($event)"
-                               (col2)="setGroupName($event)"
-                               (col3)="setLimit($event)"
-                ></app-search-un>
+                  <input type="text" class="form-control" [(ngModel)]="myCaHead.joint_seller_group " readonly>
+                  <app-search-un app-search-un [inuURL]="urlSeller"
+                                 [servicetype]="'POST'" [objforpost]="dataSeller"
+                                 title="Code;Name;Cr.Limit;" [widthcol]="'100;300;100;'"
+                                 (col1)="setGroup($event)"
+                                 (col2)="setGroupName($event)"
+                                 (col3)="setLimit($event)"
+                  ></app-search-un>
                 </div>
               </div>
             </div>
@@ -190,7 +191,7 @@
       </p-panel>
     </div>
     <div class="m-1 border-isa">
-      <app-side-tab [defaultMenuName]="'Customer'" >
+      <app-side-tab [defaultMenuName]="'Customer'">
         <app-side-tab-panel [scrollable]="true">
           <app-side-tab-level [nameMenu]="'Customer'"></app-side-tab-level>
           <app-side-tab-level [nameMenu]="'Guarantor'"></app-side-tab-level>
@@ -204,7 +205,13 @@
                               *ngIf="myCaHead.sbu_typ == 'HP' || myCaHead.sbu_typ == 'LS' || myCaHead.sbu_typ == 'HPLS' ">
             <!--#Asset (BG)-->
           </app-side-tab-level>
-          <app-side-tab-level [nameMenu]="'Pricing'" [idMenu]="5" *ngIf="myCaHead.sbu_typ == 'FDO'">
+          <!--<app-side-tab-level [nameMenu]="'Pricing'" [idMenu]="5" *ngIf="myCaHead.sbu_typ == 'FDO'">
+          </app-side-tab-level>-->
+          <app-side-tab-level [nameMenu]="'Pricing'" *ngIf="myCaHead.sbu_typ == 'FDO'">
+            <app-side-tab-level [nameMenu]="'Sellers'">
+            </app-side-tab-level>
+            <app-side-tab-level [nameMenu]="'Buyers'">
+            </app-side-tab-level>
           </app-side-tab-level>
           <app-side-tab-level [nameMenu]="'Exposure Detail'">
           </app-side-tab-level>
@@ -212,7 +219,8 @@
           </app-side-tab-level>
           <app-side-tab-level [nameMenu]="'Profile/Report'" *ngIf="false">
           </app-side-tab-level>
-          <app-side-tab-level [nameMenu]="'Collateral'" *ngIf="myCaHead.sbu_typ == 'P' || myCaHead.sbu_typ == 'FDO' && taskShorten != 'AM'">
+          <app-side-tab-level [nameMenu]="'Collateral'"
+                              *ngIf="myCaHead.sbu_typ == 'P' || myCaHead.sbu_typ == 'FDO' && taskShorten != 'AM'">
           </app-side-tab-level>
           <app-side-tab-level [nameMenu]="'Condition Detail'" *ngIf="false">
           </app-side-tab-level>
@@ -222,7 +230,7 @@
           </app-side-tab-level>
           <app-side-tab-level [nameMenu]="'Collection Duty Stamp'" *ngIf="false">
           </app-side-tab-level>
-          <app-side-tab-level [nameMenu]="'ผู้รับชำระเงินแทน/บุคคลอ้างอิง'" *ngIf="false">
+          <app-side-tab-level [nameMenu]="'�?ู�?รั�?�?ำระเ�?ิ�?�?ท�?/�?ุ�?�?ลอ�?า�?อิ�?'" *ngIf="false">
           </app-side-tab-level>
           <app-side-tab-level [nameMenu]="'Approve Level/Comment'">
           </app-side-tab-level>
@@ -237,7 +245,8 @@
           </app-side-tab-level>
           <app-side-tab-level [nameMenu]="'Amend Key In'" *ngIf="taskShorten=='AM'">
           </app-side-tab-level>
-          <app-side-tab-level [nameMenu]="'Temporary Creditline'"*ngIf="taskShorten=='AM' && myCaHead.sbu_typ == 'FDO'">
+          <app-side-tab-level [nameMenu]="'Temporary Creditline'"
+                              *ngIf="taskShorten=='AM' && myCaHead.sbu_typ == 'FDO'">
             <app-side-tab-level [nameMenu]="'Seller'"></app-side-tab-level>
             <app-side-tab-level [nameMenu]="'Seller Group'"></app-side-tab-level>
             <app-side-tab-level [nameMenu]="'Buyer'"></app-side-tab-level>
@@ -247,7 +256,9 @@
         <app-side-tab-main>
           <!--===================customer tab============================-->
           <app-side-tab-content [nameContent]="'Customer'">
-            <app-ca-customer-tab [isReadonly]="this.isReadonly" [business_detail]="myCaHead.business_detail" (business_detail_out)="myCaHead.business_detail = $event" ></app-ca-customer-tab>
+            <app-ca-customer-tab [important]="editImportant"
+                                 [isReadonly]="this.isReadonly" [business_detail]="myCaHead.business_detail"
+                                 (business_detail_out)="this.myCaHead.business_detail = $event"></app-ca-customer-tab>
           </app-side-tab-content>
 
           <!--//=========================================================-->
@@ -272,7 +283,6 @@
           </app-side-tab-content>
 
 
-
           <!--=========================================================================-->
 
           <!--//=====================Guarantor===========================-->
@@ -293,8 +303,18 @@
           <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="4">  <!--#Asset (BG)-->
             <app-ca-asset [isReadonly]="this.isReadonly"></app-ca-asset>
           </app-side-tab-content>
-          <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="5">  <!--#Pricing (Fac)-->
+          <!--<app-side-tab-content [nameContent]="'Pricing'" [idMenu]="5">  &lt;!&ndash;#Pricing (Fac)&ndash;&gt;
             <app-ca-fac-pricing [isReadonly]="this.isReadonly"></app-ca-fac-pricing>
+          </app-side-tab-content>-->
+          <app-side-tab-content [nameContent]="'Sellers'"
+                                *ngIf="myCaHead.sbu_typ == 'FDO'">
+            <app-pricing-normal [isReadonly]="this.isReadonly"
+                                [task]="taskShorten"></app-pricing-normal>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Buyers'"
+                                *ngIf="myCaHead.sbu_typ == 'FDO'">
+            <app-ca-buyer [isReadonly]="this.isReadonly"
+                          [important]="editImportant"></app-ca-buyer>
           </app-side-tab-content>
           <!--//================================End Pricing============================-->
           <app-side-tab-content [nameContent]="'Exposure Detail'">
@@ -338,12 +358,10 @@
           </app-side-tab-content>
 
 
-
-
           <app-side-tab-content [nameContent]="'Collection Duty Stamp'">
             <app-ca-duty-stamp *ngIf="false"></app-ca-duty-stamp>
           </app-side-tab-content>
-          <app-side-tab-content [nameContent]="'ผู้รับชำระเงินแทน/บุคคลอ้างอิง'">
+          <app-side-tab-content [nameContent]="'�?ู�?รั�?�?ำระเ�?ิ�?�?ท�?/�?ุ�?�?ลอ�?า�?อิ�?'">
             <app-ca-ref *ngIf="false"></app-ca-ref>
           </app-side-tab-content>
           <app-side-tab-content [nameContent]="'Attachment'">
@@ -355,7 +373,8 @@
           </app-side-tab-content>
 
           <app-side-tab-content [nameContent]="'Amend Content&Reason'">
-            <app-ca-amend-content-reason [isReadonly]="this.isReadonly" *ngIf="taskShorten == 'AM'"></app-ca-amend-content-reason>
+            <app-ca-amend-content-reason [isReadonly]="this.isReadonly"
+                                         *ngIf="taskShorten == 'AM'"></app-ca-amend-content-reason>
           </app-side-tab-content>
           <app-side-tab-content [nameContent]="'Amend Key In'">
             <app-ca-amend-keyin [isReadonly]="this.isReadonly" *ngIf="taskShorten == 'AM'"></app-ca-amend-keyin>

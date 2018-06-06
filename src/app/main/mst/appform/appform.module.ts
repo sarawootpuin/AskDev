@@ -51,6 +51,8 @@ import {RecommendationComponent} from "./recommendation/recommendation.component
 import {BlacklistModule} from "../../blacklist/blacklist.module";
 import {CardModule} from "primeng/card";
 import {AppFormInQuiryComponent} from "./appform-inquiry/appform-inquiry.component";
+import {AppformReassignComponent} from "./appform-reassign/appform-reassign.component";
+import {AppFormService} from "./appform.service";
 
 @NgModule({
   imports: [/*import module*/
@@ -95,9 +97,10 @@ import {AppFormInQuiryComponent} from "./appform-inquiry/appform-inquiry.compone
     AddressThComponent,
     AddressEnComponent,
     RecommendationComponent,
-    AppFormInQuiryComponent
+    AppFormInQuiryComponent,
+    AppformReassignComponent
   ],
-  providers: [DatePipe]
+  providers: [DatePipe,AppFormService]
 
 })
 export class AppformModule {

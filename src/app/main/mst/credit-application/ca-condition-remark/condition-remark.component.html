@@ -5,7 +5,7 @@
           <!------------------Condition-------------------------->
         <div class="flex-md-column col-md-6">
           <div class="form-group form-inline border-isa">
-            <label> Condition </label>
+            <label> Condition </label> {{ isReadonly}}
             <p-dataTable selectionMode="single" [value]="listCOND_MKT"
                          [scrollable]="true" scrollHeight="200px"
                          [(selection)]="selectCond"
@@ -19,7 +19,9 @@
             </p-dataTable>
           </div>
           <div class="border-isa">
-            <textarea class="form-control" rows="5" style="resize: none" [(ngModel)]="myCaHead.ca_condition"></textarea>
+            <textarea class="form-control" rows="5" style="resize: none"
+                      [(ngModel)]="myCaHead.ca_condition"
+                      [disabled] = "isReadonly"></textarea>
           </div>
         </div>
         <!------------------Remark-------------------------->
@@ -28,8 +30,10 @@
             <label> Remark </label>
             <textarea class="form-control pb-0" rows="10" style="resize: none"  [(ngModel)]="myCaHead.ca_remark"></textarea>
 
-            <label> Previous Condition </label>
-            <textarea class="form-control pb-0" rows="10" style="resize: none" [(ngModel)]="myCaHead.ca_prv_cond"></textarea>
+            <label [hidden] = "myCaHead.sbu_typ != 'FDO'"> Previous Condition </label>
+            <textarea class="form-control pb-0" rows="10" style="resize: none"
+                      [hidden] = "myCaHead.sbu_typ != 'FDO'"
+                      [(ngModel)]="myCaHead.ca_prv_cond"></textarea>
           </div>
         </div>
       </div>

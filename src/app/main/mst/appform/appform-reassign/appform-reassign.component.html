@@ -1,0 +1,58 @@
+<app-action-dialog #dialogReassign
+                   [title]="'Reassign'"
+                   [showOk]="true"
+                   (onOk)="updateReassign()"
+                   [showCancel]="true">
+  <p-dataTable [value]="reassignOfficer" scrollable="true" selectionMode="single" [(selection)]="selectedOfficer">
+    <p-column field="fullname" header="Name"></p-column>
+    <p-column field="code" header="Code"></p-column>
+    <p-column field="layerCode" header="Layer Code"></p-column>
+  </p-dataTable>
+</app-action-dialog>
+
+<div style="background-color: #FFF">
+  <app-action-button-form title="Reassign"
+                          [showSave]="true"
+                          (onSave)="askForSave()"
+  >
+  </app-action-button-form>
+
+  <div class="main-container" style="margin-top: 10px; margin-bottom: 10px; margin-left: 10px; margin-right: 10px">
+
+    <div class="row">
+      <div class="col-md-12">
+        <app-custom-button [option]="'process'" [title]="'Reassign'"
+                           (onBtnClick)="callReassignDialog()"></app-custom-button>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px">
+
+      <div class="col-md-3">
+        <p-dataTable [value]="reassignHead" scrollable="true"
+                     [responsive]="true"
+                     selectionMode="single" [(selection)]="selectedHead" (onRowSelect)="onRowSelect($event)">
+          <p-column field="analystOfficer" header="Analyst Officer"></p-column>
+          <p-column field="code" header="Department"></p-column>
+          <p-column field="todo" header="Todo Number"></p-column>
+        </p-dataTable>
+      </div>
+
+      <div class="col-md-9">
+
+        <p-dataTable [value]="reassignDetail" scrollable="true"
+                     [responsive]="true"
+                     selectionMode="multiple" [(selection)]="selectedDetail">
+          <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
+          <p-column field="caNo" header="CA No."></p-column>
+          <p-column field="cusNameT" header="Customer Name TH"></p-column>
+          <p-column field="cusNameE" header="Customer name EN"></p-column>
+          <p-column field="verifierName" header="Analyst Officer"></p-column>
+        </p-dataTable>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<app-alert-dialog #questionDialog (onOK)="save()"></app-alert-dialog>

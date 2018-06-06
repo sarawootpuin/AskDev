@@ -29,7 +29,7 @@ export class ModelEPS_ASK
           json[i].FIRST,
           json[i].LAST_DUE,
           json[i].FIN_AMT_E_VAT,
-          json[i].OS_PRI
+          json[i].OS_PRI==='-'? '0':json[i].OS_PRI
         )
       )
       // console.log(json[i].FIRST_NAME);

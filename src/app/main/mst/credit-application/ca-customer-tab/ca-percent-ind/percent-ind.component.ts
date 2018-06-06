@@ -135,6 +135,7 @@ export class CaPercentIndComponent implements OnInit,OnDestroy {
   OkPcnt() {
     if (this.pcntAction == 'Add') {
       this.listIndus = [...this.listIndus, this.tempmySelectPCNT];
+      this.creditApplicationService.caHead.listpcnind = this.listIndus;
     } else if (this.pcntAction == 'Edit') {
       this.selectIndus.new_ind_code = this.tempmySelectPCNT.new_ind_code;
       this.selectIndus.new_ind_desc = this.tempmySelectPCNT.new_ind_desc;

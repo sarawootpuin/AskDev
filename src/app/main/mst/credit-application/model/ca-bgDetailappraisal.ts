@@ -15,7 +15,7 @@ export class CaDetailappraisal{
   ){}
 
   static parse(json: any[]) {
-      console.log('bbbbbbbbbbbbbbbbb',json);
+      //console.log('bbbbbbbbbbbbbbbbb',json);
     let data: CaDetailappraisal[] = [];
     if (json) {
       for (let i = 0; i < json.length; i++) {

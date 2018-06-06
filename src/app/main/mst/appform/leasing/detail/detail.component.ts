@@ -140,7 +140,7 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
     let calCheck: boolean = true;
     this.calIrrWarning.list_msg = [];
     this.calIrrWarning.title = 'Calculate Irr Warning';
-    if (this.data.calculateItem == '1') {
+    if (this.data.type_cal_pricing == '1') {
       if (!this.data.disburse_dt) {
         this.calIrrWarning.addMessage('- Disburse');
       }
@@ -160,7 +160,7 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
         this.calIrrWarning.addMessage('- Installment');
       }
     }
-    else if (this.data.calculateItem == '2') {
+    else if (this.data.type_cal_pricing == '2') {
       if (!this.data.fin_amt_e_vat) {
         this.calIrrWarning.addMessage('- Financing Amount');
       }
@@ -173,8 +173,11 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
       if(this.data.schedule == 'I'){
         this.calIrrWarning.addMessage('- Installment');
       }
+      if (!this.data.disburse_dt) {
+        this.calIrrWarning.addMessage('- Disburse');
+      }
     }
-    else if (this.data.calculateItem == '3') {
+    else if (this.data.type_cal_pricing == '3') {
       if (!this.data.disburse_dt) {
         this.calIrrWarning.addMessage('- Disburse Date');
       }
@@ -198,7 +201,7 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
         this.calIrrWarning.addMessage('- Installment');
       }
     }
-    else if (this.data.calculateItem == '4') {
+    else if (this.data.type_cal_pricing == '4') {
       if (!this.data.disburse_dt) {
         this.calIrrWarning.addMessage('- Disburse Date');
       }
@@ -221,7 +224,7 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
         this.calIrrWarning.addMessage('- Installment');
       }
     }
-    else if (this.data.calculateItem == '5') {
+    else if (this.data.type_cal_pricing == '5') {
       if (!this.data.disburse_dt) {
         this.calIrrWarning.addMessage('- Disburse Date');
       }
@@ -244,7 +247,7 @@ export class DetailComponent implements OnInit, AfterContentChecked, OnChanges {
     }
     if (calCheck) {
       this.checkLoader = true;
-      this.appFormService.calculateIrr(this.data.sub_id, this.data.calculateItem).subscribe(
+      this.appFormService.calculateIrr(this.data.sub_id, this.data.type_cal_pricing).subscribe(
         (data: any) => {
           console.log(data);
           if (data.CODE == '200') {

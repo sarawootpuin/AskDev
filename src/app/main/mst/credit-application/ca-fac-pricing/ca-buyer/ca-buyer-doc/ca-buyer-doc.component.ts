@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs/Subscription";
 import {caBuyer} from "../../../model/ca-buyer";
 import {caBuyerDoc} from "../../../model/ca-buyerdoc";
@@ -9,6 +9,7 @@ import {creditApplicationService} from "../../../credit-application.service";
   templateUrl: './ca-buyer-doc.component.html',
 })
 export class CaBuyerDocComponent implements OnInit, OnDestroy {
+  @Input() isReadonly : boolean;
   subscripData: Subscription;
   subscripMaster: Subscription;
 
@@ -16,7 +17,7 @@ export class CaBuyerDocComponent implements OnInit, OnDestroy {
   listBuyerDoc :  caBuyerDoc[] ;
   selectBuyerDoc : caBuyerDoc;
 
-  filterType : string = '' ;
+  filterType : string = 'Factored' ;
 
   constructor(private creditApplicationService: creditApplicationService) {
   }
@@ -24,6 +25,18 @@ export class CaBuyerDocComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.selectBuyerDoc = new caBuyerDoc();
+    if(this.creditApplicationService.getCaHead()) {
+      if(this.creditApplicationService.getCaHead().listcabuyer.length > 0){
+        this.selectBuyer = this.creditApplicationService.getCaHead().listcabuyer[0]
+        if (this.selectBuyer)
+        {
+          this.listBuyerDoc = this.selectBuyer.listcabuyerdoc ;
+          if ((this.listBuyerDoc) && (this.listBuyerDoc.length > 0 ) ){
+            this.selectBuyerDoc = this.listBuyerDoc[0];
+          }
+        }
+      }
+    }
     this.subscripData = this.creditApplicationService.eventcabuyer.subscribe(
       (value : caBuyer ) =>
       {
@@ -62,6 +75,7 @@ export class CaBuyerDocComponent implements OnInit, OnDestroy {
      if (typechk == "select_o") {this.selectBuyerDoc.factored_doc_type  = "O"}
      else if (typechk == "select_p") {  this.selectBuyerDoc.factored_doc_type = "P"}
      else if (typechk == "select_c") { this.selectBuyerDoc.factored_doc_type = "C"}
+     if (data == "N") { this.selectBuyerDoc.factored_doc_type = ""}
     //console.log(this.selectBuyerDoc)
      return data;
   }
@@ -82,6 +96,24 @@ export class CaBuyerDocComponent implements OnInit, OnDestroy {
     //   return '';
     // }
      return 'background-color: red';
+  }
+
+  loopOth1(value : string) {
+    for(let buyerDoc of this.listBuyerDoc) {
+      buyerDoc.oth1 = value;
+    }
+  }
+
+  loopOth2(value : string) {
+    for(let buyerDoc of this.listBuyerDoc) {
+      buyerDoc.oth2 = value;
+    }
+  }
+
+  loopOth3(value : string) {
+    for(let buyerDoc of this.listBuyerDoc) {
+      buyerDoc.oth3 = value;
+    }
   }
 
 }

@@ -50,7 +50,7 @@ export class ListComponent implements OnInit {
     newAsset.adv_arr = 'V';
     newAsset.adv_arr_name = 'Paid In Advance';
     newAsset.inputIvat = false;
-    newAsset.calculateItem = '1';
+    newAsset.type_cal_pricing = '1';
     this.data.push(newAsset);
     this.clickList.emit(newAsset);
   }

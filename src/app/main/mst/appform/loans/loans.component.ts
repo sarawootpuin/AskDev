@@ -76,7 +76,7 @@ export class LoansComponent implements OnInit {
     let calCheck: boolean = true;
     this.calIrrLoanWarning.list_msg = [];
     this.calIrrLoanWarning.title = 'Calculate Irr Warning';
-    if (this.data.calculateItem == '6') {
+    if (this.data.type_cal_pricing == '6') {
       if (!this.data.fin_amt_e_vat) {
         this.calIrrLoanWarning.addMessage('- Request Credit Line');
       }
@@ -96,7 +96,7 @@ export class LoansComponent implements OnInit {
         this.calIrrLoanWarning.addMessage('- Installment Step Not Cal');
       }
     }
-    else if (this.data.calculateItem == '7') {
+    else if (this.data.type_cal_pricing == '7') {
       if (!this.data.fin_amt_e_vat) {
         this.calIrrLoanWarning.addMessage('- Request Credit Line');
       }
@@ -121,7 +121,7 @@ export class LoansComponent implements OnInit {
       this.checkLoader = true;
       console.log("Before");
       console.log(this.data);
-      this.appFormService.calculateIrr(this.data.sub_id, this.data.calculateItem).subscribe(
+      this.appFormService.calculateIrr(this.data.sub_id, this.data.type_cal_pricing).subscribe(
         (data: any) => {
           console.log("After");
           console.log(data);

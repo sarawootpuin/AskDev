@@ -92,7 +92,7 @@
     <div class="col-md-4">
       <input type="checkbox"
              name="noti_type"
-             [checked]="data?.noti_type==='Y'"
+             [checked]="selectBuyer?.noti_type==='Y'"
              (change)="$event.target.checked ? (selectBuyer.noti_type = 'Y') : (selectBuyer.noti_type = 'N')"> Notification
       <div class="mt-radio-inline border-isa">
         <label><b>Advance Condition Code</b></label>
@@ -132,13 +132,13 @@
           <div class="form-group" style="padding: 5px">
             <input type="checkbox"
                    name="direct_payment"
-                   [checked]="data?.drirect_payment === 'Y'"
+                   [checked]="selectBuyer?.drirect_payment === 'Y'"
                    (change)="$event.target.checked ? (selectBuyer.drirect_payment = 'Y') : (selectBuyer.drirect_payment = 'N')"> :
             Direct Payment
             <br>
             <input type="checkbox"
                    name="progress_payment"
-                   [checked]="data?.progress_payment === 'Y'"
+                   [checked]="selectBuyer?.progress_payment === 'Y'"
                    (change)="$event.target.checked ? (selectBuyer.progress_payment = 'Y') : (selectBuyer.progress_payment = 'N')"> :
             Progress Payment
           </div>
@@ -190,7 +190,7 @@
     </div>
     <div class="col-md-4">
       <label><b>Remark</b><br></label>
-      <textarea class="form-control" rows="10" [(ngModel)]="selectBuyer.other_doc"></textarea>
+      <textarea class="form-control" rows="10" [(ngModel)]="selectBuyer.other_doc_remark"></textarea>
     </div>
   </div>
 </div>

@@ -39,6 +39,7 @@ export class PricingComponent implements OnInit {
     this.dataListInsRate = this.appFormService.listInsRate;
     this.dataBankInsRate = this.appFormService.listBankIntRate;
     this.disabled = this.appFormService.getAppFormData().disabled;
+    this.rateChange();
     this.appFormService.eventTabPricing.subscribe(
       (data) => {
         this.data = data;
@@ -50,6 +51,7 @@ export class PricingComponent implements OnInit {
         this.disabled = this.appFormService.getAppFormData().disabled;
         this.interestChange(this.dataFirst.rate_type);
         this.factFeeChange(this.dataFirst.factfee_type);
+        this.rateChange();
 
       }
     )

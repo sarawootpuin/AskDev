@@ -29,6 +29,7 @@ declare var $: any;
   providers: [AppFormService, ExposureService, ApplyNewService]
 })
 export class AppFormComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
   typeBeforeSave: string;
   com_code: string;
   ap_no: string;
@@ -46,7 +47,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
   checkLoader: boolean = false;
   disabled: string = 'N';
   task: string;
-  taskCode : string;
+  taskCode: string;
   comment: string;
   approvePerson: string;
   openTab: string = 'Customer';
@@ -116,6 +117,9 @@ export class AppFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.alertDialog.close();
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
   }
 
   jointChange(index) {
@@ -161,7 +165,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
 
   checkStep(subId: any): boolean {
     let result: boolean = true;
-    let toTerm = 0, fromTerm = 0, term = this.data.listDetail[subId].terms;
+    let toTerm: number = 0, fromTerm: number = 0, term = Number(this.data.listDetail[subId].terms);
     let dataStep = this.data.listDetail[subId].listStep;
     let length = dataStep.length;
     for (let i = 0; i < dataStep.length; i++) {
@@ -171,27 +175,27 @@ export class AppFormComponent implements OnInit, OnDestroy {
           result = false;
         }
       }
-      if (dataStep[i].from_term == toTerm + 1) {
+      if (Number(dataStep[i].from_term) == toTerm + 1) {
         if (dataStep[i].from_term > dataStep[i].to_term) {
-          this.alertWarning.addMessage('- Invalid Period');
+          this.alertWarning.addMessage('- Number of Terms in Table incorrect');
           result = false;
         }
         if (toTerm >= dataStep[i].from_term) {
-          this.alertWarning.addMessage('- Invalid Period');
+          this.alertWarning.addMessage('- Number of Terms in Table incorrect');
           result = false;
         }
       }
       else {
-        this.alertWarning.addMessage('- Invalid Period');
+        this.alertWarning.addMessage('- Number of Terms in Table incorrect');
         result = false;
       }
 
-      toTerm = dataStep[i].to_term;
-      fromTerm = dataStep[i].from_term;
+      toTerm = Number(dataStep[i].to_term);
+      fromTerm = Number(dataStep[i].from_term);
 
       if (i == length - 1) {
         if (dataStep[i].to_term != term) {
-          this.alertWarning.addMessage('- Number of Terms in Table incorrect');
+          this.alertWarning.addMessage('- Invalid Period');
           result = false;
         }
       }
@@ -201,11 +205,11 @@ export class AppFormComponent implements OnInit, OnDestroy {
 
   checkSumStep(subId): boolean {
     let result = true;
-    let sumInstallment = 0, term, finAmtEVat = this.data.listDetail[subId].fin_amt_e_vat;
+    let sumInstallment: number = 0, term: number, finAmtEVat: number = this.data.listDetail[subId].fin_amt_e_vat;
     let dataStep = this.data.listDetail[subId].listStep;
     for (let data of dataStep) {
-      term = data.to_term - data.from_term + 1;
-      sumInstallment = sumInstallment + (term * data.inst_e_vat);
+      term = Number(data.to_term) - Number(data.from_term) + 1;
+      sumInstallment = sumInstallment + (term * Number(data.inst_e_vat));
     }
     if (sumInstallment < finAmtEVat) {
       result = false;
@@ -223,7 +227,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
       this.saveDialog.open();
     }
     else if (this.action == 'Save' && this.applyEmit.type != '') {
-      console.log('เข้า action Save')
+      //console.log('เ�?�?า action Save')
       this.saveData();
     }
     else if (this.action == 'Submit') {
@@ -256,7 +260,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  okBlacklist(){
+  okBlacklist() {
 
   }
 
@@ -328,9 +332,9 @@ export class AppFormComponent implements OnInit, OnDestroy {
           this.alertWarning.addMessage('- Interest Rate > 15');
         }
         if (this.alertWarning.list_msg.length <= 0) {
-          this.appFormService.calculateIrr(detailLoan.sub_id, detailLoan.calculateItem).subscribe(
+          this.appFormService.calculateIrr(detailLoan.sub_id, detailLoan.type_cal_pricing).subscribe(
             (value: any) => {
-              console.log(value);
+              //console.log(value);
               if (value.CODE == '200') {
                 /*detail.fin_amt_e_vat = value.LIST_DATA[0].finExcVat;
                  detail.fin_amt_vat = value.LIST_DATA[0].finVat;
@@ -420,10 +424,10 @@ export class AppFormComponent implements OnInit, OnDestroy {
               break;
             }
             else {
-              console.log(detail.calculateItem);
-              this.appFormService.calculateIrr(detail.sub_id, detail.calculateItem).subscribe(
+              //console.log(detail.type_cal_pricing);
+              this.appFormService.calculateIrr(detail.sub_id, detail.type_cal_pricing).subscribe(
                 (value: any) => {
-                  console.log(value);
+                  //console.log(value);
                   if (value.CODE == '200') {
                     /*detail.fin_amt_e_vat = value.LIST_DATA[0].finExcVat;
                      detail.fin_amt_vat = value.LIST_DATA[0].finVat;
@@ -443,7 +447,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
         }
       }
     }
-    console.log(this.alertWarning.list_msg.length);
+    //console.log(this.alertWarning.list_msg.length);
     if (this.alertWarning.list_msg.length > 0) {
       this.alertWarning.setAction('WARNING');
       this.alertWarning.open();
@@ -454,7 +458,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  showReturnCase(returnCase){
+  showReturnCase(returnCase) {
     this.returnSave = returnCase;
     this.ap_no = this.returnSave.apNo;
     this.com_code = "BGPL";
@@ -488,14 +492,14 @@ export class AppFormComponent implements OnInit, OnDestroy {
       (data: any) => {
         //console.log(data);
         if (data.CODE == "200") {
-          if(this.data.current_task == 'Scoring' && this.action == 'Submit'){
-            this.appFormService.saveAnsWer(this.data.com_code,this.data.ca_no,this.appFormService.getAnsWer()).subscribe(
-              (json : any)=>{
+          if (this.data.current_task == 'Scoring' && this.action == 'Submit') {
+            this.appFormService.saveAnsWer(this.data.com_code, this.data.ca_no, this.appFormService.getAnsWer()).subscribe(
+              (json: any) => {
                 //console.log(json);
-                if(json.CODE == '200'){
+                if (json.CODE == '200') {
                   this.showReturnCase(data.DATA);
                 }
-                else{
+                else {
                   alert(json.MSG);
                   this.checkLoader = false;
                 }
@@ -545,7 +549,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
 
   genDetailAppForm() {
     this.isLoading = true;
-    this.appFormService.getDetailAppForm("web", this.user.getCode(), this.com_code, this.ap_no).subscribe(
+    this.subscription = this.appFormService.getDetailAppForm("web", this.user.getCode(), this.com_code, this.ap_no).subscribe(
       (data: any) => {
         console.log(data);
         if (data.CODE === "200") {
@@ -591,13 +595,14 @@ export class AppFormComponent implements OnInit, OnDestroy {
           this.disabled = this.appFormService.getAppFormData().disabled;
 
           this.inquiry = this.taskCode == 'AP-00' ? true : false;
-          console.log(this.inquiry);
+          //console.log(this.inquiry);
           this.appFormService.inquiry.emit(this.inquiry);
 
+          this.controlIntro(this.data.intro_mthd_cd);
           this.isLoading = false;
           //this.sideTabComponent.openTab(this.openTab);
         }
-        else{
+        else {
           this.isLoading = false;
         }
       }
@@ -840,7 +845,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
       //  this.buttonIntro = false;
       this.OutURL = this.serviceEndPoint.url + this.serviceEndPoint.sale_call_api
         + "/ask/salecall/GetINTRO?device=Web&user=" + this.user.getUserName()
-        + "&Comcode=" + this.user.getComCodePort() + "&INTRO_MTHD_CD=" + source;
+        + "&Comcode=" + this.user.getComCode() + "&INTRO_MTHD_CD=" + source;
     }
     //console.log(this.OutURL);
   }

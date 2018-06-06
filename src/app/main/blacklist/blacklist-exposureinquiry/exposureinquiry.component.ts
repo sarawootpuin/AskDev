@@ -34,6 +34,7 @@ export class ExposureinquiryComponent implements OnInit {
     this.createForm();
   }
   ngOnInit() {
+    'ExposureinquiryComponent'
     this.selectopt = 'fullname';
   }
 
@@ -47,14 +48,16 @@ export class ExposureinquiryComponent implements OnInit {
       firstname:new FormControl(),
       lastname:new FormControl(),
       regisnumber:new FormControl(),
-      agrcode:new FormControl()
+      agrcode:new FormControl(),
+      idcard:new FormControl()
     });
 
   }
 
   onSubmit()
   {
-    let firstname,lastname,regisnumber,agrcode,itype :string;
+
+    let firstname,lastname,regisnumber,agrcode,itype,idcard :string;
     itype = '0';
     let checkValue = 0;
 
@@ -64,7 +67,8 @@ export class ExposureinquiryComponent implements OnInit {
       lastname = this.formexposure.value.lastname ? this.formexposure.value.lastname:'';
       regisnumber = '';
       agrcode = '';
-      itype = '1';
+      idcard = '';
+      itype = '2';
       if(firstname==''&&lastname=='')
         checkValue = 1;
       this.BLService.controlTabBlacklistChecking = 2;
@@ -75,6 +79,7 @@ export class ExposureinquiryComponent implements OnInit {
       lastname = '';
       regisnumber = this.formexposure.value.regisnumber ? this.formexposure.value.regisnumber : '';
       agrcode = '';
+      idcard = '';
       itype = '3';
       if(regisnumber=='')
         checkValue = 1;
@@ -90,6 +95,17 @@ export class ExposureinquiryComponent implements OnInit {
       if(agrcode=='')
         checkValue = 1;
       this.BLService.controlTabBlacklistChecking = 4;
+    }
+    else if(this.selectopt==='idcard')
+    {
+      firstname = '';
+      lastname = '';
+      regisnumber = '';
+      idcard = this.formexposure.value.idcard ? this.formexposure.value.idcard : '';
+      itype = '5'
+      if(idcard=='')
+        checkValue = 1;
+      this.BLService.controlTabBlacklistChecking = 5;
     }
     if (lastname == null)
     {
@@ -115,19 +131,21 @@ export class ExposureinquiryComponent implements OnInit {
       this.modelBLchk.iregisnumber = regisnumber;
       this.modelBLchk.iagr_code = agrcode;
       this.modelBLchk.itype = itype;
+      this.modelBLchk.ID_CARD = idcard;
       // console.log(this.modelBLchk);
       this.BLService.setModelBLchk(this.modelBLchk);
 
       this.subscription = this.BLService.getBlacklistResult("web",this.modelBLchk).subscribe(
         (data: any) => {
 
-          //console.log(data);
+           console.log(data);
 
           //     this.ListBlacklistHistory = BlacklistHistory.parse(data.DATA.HISTORY_LIST);
           //console.log(this.ListBlacklistResult);
+
           if(this.BLService.controlTabBlacklistChecking > 2)
           {
-
+            console.log(data.DATA.RESULT_LIST);
             this.modelExposureHistory = ModelExposureHistory.parse(data.DATA.RESULT_LIST);
             this.BLService.setExposureHistory(this.modelExposureHistory);
           }

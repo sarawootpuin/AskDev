@@ -1,4 +1,4 @@
-<fieldset [disabled]="disabled == 'N'">
+<fieldset [disabled]="isReadonly">
   <div class="border-isa mt-1 form-group col-md-12">
     <div class="container-fluid">
       <div class="col-md-3 border-isa">
@@ -71,12 +71,13 @@
               <label> Bank </label>
               <select class="form-control"
                       #rateBank
+                      [disabled] = "this.dataFirst.rate_type == 'Fix'"
                       (change)="rateChange()"
                       [(ngModel)]="dataFirst.rate_bank">
                 <option [value]="-1"></option>
                 <option *ngFor="let list of dataListBank; let i = index"
                         [value]="list.id_code"
-                        [selected]="dataFirst.rate_bank === list.id_code">{{list?.remark}}
+                        [selected]="dataFirst.rate_bank === list.id_code">{{list?.id_code}}
                 </option>
               </select>
             </div>
@@ -84,6 +85,7 @@
               <label> Type </label>
               <select class="form-control"
                       #rateM
+                      [disabled] = "this.dataFirst.rate_type == 'Fix'"
                       (change)="rateChange()"
                       [(ngModel)]="dataFirst.rate_m">
                 <option [value]="-1"></option>
@@ -106,6 +108,7 @@
               <input appMyCurrency
                      class="form-control"
                      #rateSpread
+                     [disabled] = "this.dataFirst.rate_type == 'Fix'"
                      [fraction]="3"
                      pKeyFilter="pnum"
                      [disabled]="dataFirst.rate_type=='Fix'"

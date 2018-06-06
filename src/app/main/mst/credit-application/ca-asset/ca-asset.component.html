@@ -1,6 +1,6 @@
-<fieldset [disabled]="isReadonly">
-  <div class="d-flex">
-    <div class="col-md-3 mr-1">
+<div class="d-flex">
+  <div class="col-md-3 mr-1">
+    <fieldset [disabled]="isReadonly">
       <!-------------------Asset------------------------------->
       <div class="row">
         <div class="thead-responsive" style="overflow-x: auto;min-height: .01%; padding: 10px">
@@ -24,7 +24,7 @@
       <hr>
       <!-------------------Sub  Asset------------------------------->
       <div class="row">
-        <div class="thead-responsive" style="overflow-x: auto;min-height: .01%; padding: 10px">
+        <div class="thead-responsive" style="overflow-x: auto;min-height: .01%; padding: 10px" [hidden]="caType == '3'">
           <p-dataTable [value]="listbgdetailSub" [(selection)]="selectbgdetailSub"
                        (onRowSelect)="onSelectdetailSub(selectbgdetailSub);index = 1;"
                        scrollable="true" scrollHeight="400px"
@@ -43,18 +43,20 @@
 
         </div>
       </div>
-    </div>
-    <div class="col-md-9 card border-isa">
-      <p-tabView [activeIndex]="index">
-        <p-tabPanel header="Finance">
-          <app-ca-finance></app-ca-finance>
-        </p-tabPanel>
-        <p-tabPanel header="Asset Detail">
-          <fieldset [disabled]="listbgdetailSub?.length == 0">
-            <app-asset-detail></app-asset-detail>
-          </fieldset>
-        </p-tabPanel>
-      </p-tabView>
-    </div>
+    </fieldset>
   </div>
-</fieldset>
+
+  <div class="col-md-9 card border-isa">
+    <p-tabView [activeIndex]="index">
+      <p-tabPanel header="Finance">
+        <fieldset [disabled]="isReadonly">
+          <app-ca-finance></app-ca-finance>
+        </fieldset>
+      </p-tabPanel>
+      <p-tabPanel header="Asset Detail" *ngIf="caType != '3'">
+        <app-asset-detail [isReadonly]="isReadonly"></app-asset-detail>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>
+

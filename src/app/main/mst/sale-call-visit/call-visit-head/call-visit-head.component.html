@@ -2,10 +2,9 @@
 <div class="container-fluid m-2">
   <div class="row">
     <div class="col-md-2">
-      <div class="form-group" *ngIf="comCode != 'BGPL'">
+      <div class="form-group">
         <label>Information   </label>
-        <div class="container"
-             style="border-style: solid; border-width: 1px; border-radius: 10px; padding-top: 5px;">
+        <div class="container form-control" aria-readonly="true">
           <label class="mt-radio">
             <input type="radio" name="radioinfo"
                    [checked]="saleCallH?.dealer_type ==='N'"

@@ -1,33 +1,40 @@
-<br>
+<div class="root d-flex w-100 p-0">
+  <div class="ml-auto p-1">
+    <app-custom-button [option]="'print'" (onBtnClick)="callAttach()">
+    </app-custom-button>
+  </div>
+</div>
 <div class="d-flex">
   <div class="col-md-3 pl-0">
+    <fieldset [disabled]="isReadonly">
       <div class="form-group">
-          <p-dataTable [value]="listBuyer"
-                       selectionMode="single"
-                       [(selection)]="selectBuyer"
-                       (onRowSelect)="onRowSelect(selectBuyer)"
-                       [scrollable]="true"
-                       scrollHeight="300px"
-                       [responsive]="true">
-            <p-header>
-              <app-custom-botton-icon [option]="'new'" (onBtnClick)="openEntity()" ></app-custom-botton-icon>
-              <app-custom-botton-icon [option]="'delete'" (onBtnClick)="deleteWarning()" ></app-custom-botton-icon>
-            </p-header>
-            <p-column field="seq_no" header="No." [style]="{'width':'75px'}"></p-column>
-            <p-column field="buyer_name" header="Buyer Name"></p-column>
-            <p-footer>
-            </p-footer>
+        <p-dataTable [value]="listBuyer"
+                     selectionMode="single"
+                     [(selection)]="selectBuyer"
+                     (onRowSelect)="onRowSelect(selectBuyer)"
+                     [scrollable]="true"
+                     scrollHeight="300px"
+                     [responsive]="true">
+          <p-header>
+            <app-custom-botton-icon [option]="'new'" (onBtnClick)="openEntity()"></app-custom-botton-icon>
+            <app-custom-botton-icon [option]="'delete'" (onBtnClick)="deleteWarning()"></app-custom-botton-icon>
+          </p-header>
+          <p-column field="seq_no" header="No." [style]="{'width':'75px'}"></p-column>
+          <p-column field="buyer_name" header="Buyer Name"></p-column>
+          <p-footer>
+          </p-footer>
 
-          </p-dataTable>
-        </div>
+        </p-dataTable>
       </div>
+    </fieldset>
+  </div>
   <div class="col-md-9 border-isa">
     <div class="row">
       <div class="col-md-2">
         <label style="padding:5px;"><b>Buyer Code :</b></label>
       </div>
       <div class="col-md-3">
-        <input type="text" class="form-control input-small"  [value]="selectBuyer.buyer_code"  readonly>
+        <input type="text" class="form-control input-small" [value]="selectBuyer.buyer_code" readonly>
       </div>
       <div class="col-md-6">
         <input type="text" class="form-control input-small" [value]="selectBuyer.buyer_name" readonly>
@@ -36,10 +43,12 @@
     <br>
     <p-tabView>
       <p-tabPanel header="Buyer Detail">
-        <app-ca-buyer-detail></app-ca-buyer-detail>
+        <fieldset [disabled]="isReadonly">
+          <app-ca-buyer-detail></app-ca-buyer-detail>
+        </fieldset>
       </p-tabPanel>
       <p-tabPanel header="Factored Documents">
-        <app-ca-buyer-doc></app-ca-buyer-doc>
+        <app-ca-buyer-doc [isReadonly]="tabReadonly"></app-ca-buyer-doc>
       </p-tabPanel>
     </p-tabView>
 
@@ -49,6 +58,6 @@
 <app-entity-dialog #entity_dialog title="Buyer"
                    (onEntitySelect)="getEntity($event)"></app-entity-dialog>
 
-<app-alert-dialog #deleteDialog (onOK)="deleteBuyer()" >
+<app-alert-dialog #deleteDialog (onOK)="deleteBuyer()">
 
 </app-alert-dialog>

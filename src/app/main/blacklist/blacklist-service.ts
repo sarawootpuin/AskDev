@@ -148,7 +148,8 @@ export class BlacklistResultService {
         'Content-Type': 'application/json;charset=utf-8'
       }
       };
-      //return this.http.get(url, options).map((res: Response) => res.json());
+    
+    //return this.http.get(url, options).map((res: Response) => res.json());
       return this.http.post(url,JSON.stringify(ExposureJson) ,options);
   }
 
@@ -279,7 +280,7 @@ export class BlacklistResultService {
         'Content-Type': 'application/json;charset=utf-8'
       }
     };
-    console.log(JSON.stringify(json))
+    
     //return this.http.get(url, options).map((res: Response) => res.json());
     return this.http.post(url,JSON.stringify(json) ,options);
   }

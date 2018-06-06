@@ -161,6 +161,8 @@ export class NavMenuComponent implements OnInit, OnDestroy,OnChanges,AfterViewIn
             type: "Renew"
           }
         });
+    } else if (menuCodeSelect == "AP-10") {
+      this.router.navigate(['/appForm/reassign']);
     } else if (menuCodeSelect == "CA-00") {
       this.router.navigate(['/ca/inQuery']);
     } else if (menuCodeSelect == "CA-CRL") {

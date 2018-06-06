@@ -146,10 +146,13 @@
                   <label class="mt-radio" *ngIf="(data.sbu_typ != 'FDO') && (data.sbu_typ != 'P')">
                     <input type="radio" name="ca_type" value="1"
                            [(ngModel)]="data.ca_type"
-                           [disabled]="data.disabled == 'N'"> CA Normal<br>
+                           [disabled]="data.disabled == 'N' || data.ca_type == '3'"> CA Normal<br>
                     <input type="radio" name="ca_type" value="2"
                            [(ngModel)]="data.ca_type"
-                           [disabled]="data.disabled == 'N'"> CA Main Credit Line
+                           [disabled]="data.disabled == 'N' || data.ca_type == '3'"> CA Main Credit Line<br>
+                    <input type="radio" name="ca_type" value="3"
+                           [(ngModel)]="data.ca_type"
+                           [disabled]="data.disabled == 'N' || data.ca_type != '3'"> CA Dealer Buy back Guarantee)
                   </label>
                 </div>
               </div>
@@ -289,6 +292,7 @@
                   </div>
                   <div class="col-md-2" [hidden] = "this.inquiry">
                     <app-search-un inuURL={{this.OutURL}}
+                                   [callApiOnShow]="true"
                                    title="NAME;CODE;"
                                    (col1)="setIntroName($event)"
                                    (col2)="setIntroValue($event)"

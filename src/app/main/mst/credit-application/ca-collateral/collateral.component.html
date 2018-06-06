@@ -55,9 +55,9 @@
                 <label>Collateral Amount</label>
                 <div class="form-inline">
                   <input class="form-control"
-                         [ngModel]="selectCollateral?.clt_amt"
-                         (ngModelChange)="selectCollateral.clt_amt=$event"
-                         currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' ,precision: 2 }">
+                         appMyCurrency
+                         [value]="selectCollateral?.clt_amt"
+                         (change)="selectCollateral.clt_amt=$event.target.value">
                   <label>&nbsp; Baht.</label>
                 </div>
               </div>
@@ -87,9 +87,9 @@
                   <label>Collateral Amount </label>
                   <div class="form-inline">
                     <input class="form-control" (onblur)="callCollateral('colamt')"
-                           [ngModel]="selectCollateral?.clt_amt"
-                           (ngModelChange)="selectCollateral.clt_amt=$event"
-                           currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' ,precision: 2 }">
+                           appMyCurrency
+                           [value]="selectCollateral.clt_amt"
+                           (change)="selectCollateral.clt_amt=$event.target.value">
                     <label>&nbsp; Baht.</label>
                   </div>
                 </div>
@@ -97,9 +97,9 @@
                   <label>Cash </label>
                   <div class="form-inline">
                     <input class="form-control"
-                           [ngModel]="selectCollateral?.clt_cash_rcp"
-                           (ngModelChange)="selectCollateral.clt_cash_rcp=$event"
-                           currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' ,precision: 2 }">
+                           [value]="selectCollateral.clt_cash_rcp"
+                           (change)="selectCollateral.clt_cash_rcp=$event.target.value"
+                           appMyCurrency>
                     <label>&nbsp; Baht.</label>
                   </div>
                 </div>
@@ -107,9 +107,9 @@
                   <label>Balance Amount</label>
                   <div class="form-inline">
                     <input class="form-control"
-                           [ngModel]="selectCollateral?.clt_balance"
-                           (ngModelChange)="selectCollateral.clt_balance=$event"
-                           currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' ,precision: 2 }">
+                           [value]="selectCollateral?.clt_balance"
+                           (change)="selectCollateral.clt_balance=$event.target.value"
+                           appMyCurrency>
                     <label>&nbsp; Baht.</label>
                   </div>
                 </div>
@@ -121,18 +121,18 @@
                     <input type="radio" name="ded_type" [value]="'P'" [(ngModel)]="selectCollateral.deduct_flg">&nbsp;Percent
                   </label>
                   <input class="form-control" [disabled]="selectCollateral.deduct_flg != 'P'"
-                         [ngModel]="selectCollateral?.deduct_pcn"
-                         (ngModelChange)="selectCollateral.deduct_pcn=$event"
-                         currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' ,precision: 2 }">&nbsp;
+                         [value]="selectCollateral.deduct_pcn"
+                         (change)="selectCollateral.deduct_pcn=$event.target.value"
+                         appMyCurrency>&nbsp;
                 </div>
                 <div class="row form-inline">
                   <label class="mt-radio col-md-3">
                     <input type="radio" name="ded_type" [value]="'A'" [(ngModel)]="selectCollateral.deduct_flg">&nbsp;Amount
                   </label>
                   <input class="form-control" [disabled]="selectCollateral.deduct_flg != 'A'"
-                         [ngModel]="selectCollateral?.deduct_amt"
-                         (ngModelChange)="selectCollateral.deduct_amt=$event"
-                         currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' ,precision: 2 }">&nbsp;
+                         [value]="selectCollateral.deduct_amt"
+                         (change)="selectCollateral.deduct_amt=$event.target.value"
+                         appMyCurrency>&nbsp;
                 </div>
               </div>
             </div>
@@ -162,9 +162,9 @@
                     <div class="col-md-2">
                       <label>Interest Rate </label>
                       <input class="form-control" [disabled]="selectCollateral.rate_type != 'Fix'"
-                             [ngModel]="selectCollateral?.int_rate"
-                             (ngModelChange)="selectCollateral.int_rate=$event"
-                             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' ,precision: 2 }">&nbsp;
+                             [value]="selectCollateral.int_rate"
+                             (change)="selectCollateral.int_rate=$event.target.value"
+                             appMyCurrency>&nbsp;
                     </div>
                   </div>
                 </div>
@@ -201,16 +201,16 @@
                     <div class="col-md-2">
                       <label> Spread </label>
                       <input class="form-control" [disabled]="selectCollateral.rate_type != 'Float'"
-                             [ngModel]="selectCollateral?.rate_spread"
-                             (ngModelChange)="selectCollateral.rate_spread=$event"
-                             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' ,precision: 2 }">
+                             [value]="selectCollateral.rate_spread"
+                             (change)="selectCollateral.rate_spread=$event.target.value"
+                             appMyCurrency>
                     </div>
                     <div class="col-md-2">
                       <label> Max Interest Rate </label>
                       <input class="form-control" [disabled]="selectCollateral.rate_type != 'Float'"
-                             [ngModel]="selectCollateral?.max_int_rate"
-                             (ngModelChange)="selectCollateral.max_int_rate=$event"
-                             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.' ,precision: 2 }">
+                             [value]="selectCollateral.max_int_rate"
+                             (change)="selectCollateral.max_int_rate=$event.target.value"
+                             appMyCurrency>
                     </div>
                   </div>
                 </div>

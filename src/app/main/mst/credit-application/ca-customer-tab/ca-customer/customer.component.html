@@ -207,11 +207,16 @@
     </div>
 
     <div class="d-flex">
-      <div class="flex-md-column col-md-4 ">
+      <div class="flex-md-column col-md-6 ">
         <div class="form-group">
           <label> Business description </label>
-          <input type="text" class="form-control"
-          [(ngModel)]="business_detail" (change)="onChange($event.target.value)" >
+          <!--<input type="text" class="form-control"-->
+          <!--[(ngModel)]="business_detail" (change)="onChange($event.target.value)" >-->
+
+          <textarea type="text" class="form-control"
+                    [(ngModel)]="business_detail" (change)="onChange($event.target.value)" >
+
+          </textarea>
         </div>
       </div>
     </div>

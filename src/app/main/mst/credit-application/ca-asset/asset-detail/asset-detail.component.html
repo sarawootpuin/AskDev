@@ -1,5 +1,4 @@
-
-  <div>
+<fieldset [disabled]="bgdetailSub?.length == 0 || isReadonly">
     <div class="flex-column">
       <div class="row">
         <div class="flex-md-column col-md-6">
@@ -38,7 +37,7 @@
           <div class="form-group">
             <label>Finance Asset Sub Code</label><br>
             <select class="form-control"
-                    [disabled] = "listFAS.length == 0"
+                    [disabled]="listFAS.length == 0"
                     [ngModel]="bgdetailSub?.asst_sub_code"
                     (ngModelChange)="bgdetailSub.asst_sub_code=$event">
               <option></option>
@@ -133,10 +132,11 @@
             <app-search-un app-search-un inuURL={{OutURL}}
                            title="NAME;CODE;"
                            [iconOnly]="false" [displaycol]="'COL1'" [displaytext]="bgdetailSub.dealer_name"
-                           [callApiOnShow]="false"
+                           [callApiOnShow]="true"
                            [searchParamName]="'condition'"
                            (col1)="setDealerName($event)"
-                           (col2)="setDealerCode($event)">
+                           (col2)="setDealerCode($event)"
+                           (col3)="setCaNo($event)">
             </app-search-un>
           </div>
         </div>
@@ -156,6 +156,14 @@
             <input class="form-control"
                    appMyCurrency
                    [value]="bgdetailSub?.comm_amt" (change)="bgdetailSub.comm_amt = $event.target.value">
+          </div>
+        </div>
+        <div class="flex-md-column offset-3 col-md-6">
+          <div class="form-group" [hidden]="!bgdetailSub.select_bb">
+            <label>&nbsp;</label><br>
+            <input type="checkbox"
+                   [checked]="bgdetailSub?.buy_back_grnty_no"
+                   (change)="buyBackChange($event.target.checked)">Buy back guarantee
           </div>
         </div>
       </div>
@@ -258,101 +266,106 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="flex-md-column col-md-12">
-          <div class="form-group">
-            <label >Apprisal Price</label>
-            <p-dataTable [value]="listbgdetailappraisal"
-                         [loading]="loading"
-                         [scrollable]="true" scrollHeight="200px"
-                         [responsive]="true"
-                         [immutable]="false"
-                         [editable]="true"
-                         (onRowClick) = "onRowSelect($event.data)" >
+    </div>
+</fieldset>
+<fieldset [disabled]="disabledAppraisal">
+  <div class="row">
+    <div class="flex-md-column col-md-12">
+      <div class="form-group">
+        <label>Appraisal Price</label>
+        <p-dataTable [value]="listbgdetailappraisal"
+                     [loading]="loading"
+                     [scrollable]="true" scrollHeight="200px"
+                     [responsive]="true"
+                     [immutable]="false"
+                     [editable]="true"
+                     (onRowClick)="onRowSelect($event.data)">
 
-              <p-header>
-                <app-custom-botton-icon [option]="'new'" (onBtnClick)="openAddDialog()"></app-custom-botton-icon>
-              </p-header>
-              <p-column  [style]="{'width':'50px'}" header="No.">
-                <ng-template let-i="rowIndex" pTemplate="body">
-                  {{i+1}}
-                </ng-template>
-              </p-column>
-              <p-column field="references_date" header="Date"
-                        [style]="{'width':'150px'}"
-                        [editable]="true"
-                        [style]=" {'overflow':'visible' }"
-                        >
+          <p-header>
+            <app-custom-botton-icon [option]="'new'" (onBtnClick)="openAddDialog()"></app-custom-botton-icon>
+          </p-header>
+          <p-column [style]="{'width':'50px'}" header="No.">
+            <ng-template let-i="rowIndex" pTemplate="body">
+              {{i+1}}
+            </ng-template>
+          </p-column>
+          <p-column field="references_date" header="Date"
+                    [style]="{'width':'150px'}"
+                    [editable]="true"
+                    [style]=" {'overflow':'visible' }"
+          >
 
-                <ng-template let-col let-row="rowData" pTemplate="editor"  >
-                  <p-calendar [(ngModel)]="row[col.field]"
-                              appendTo="body"
-                              dataType="string"
-                              dateFormat ="dd/mm/yy"
+            <ng-template let-col let-row="rowData" pTemplate="editor">
+              <p-calendar [(ngModel)]="row[col.field]"
+                          appendTo="body"
+                          dataType="string"
+                          dateFormat="dd/mm/yy"
 
-                  ></p-calendar>
-                </ng-template>
-              </p-column>
-              <p-column field="appraisal_amt" header="Appraisal"
-                        [style]="{'width':'120px','text-align':'right'}"
-                        [editable]="true"
-                        >
-                <ng-template let-col let-row="rowData" pTemplate="body"  >
-                  <span>{{ row[col.field] |  number:'.2-2'  }}</span>
-                </ng-template>
-              </p-column>
-              <p-column field="references" header="References"
-                        [editable]="true"
-                        ></p-column>
+              ></p-calendar>
+            </ng-template>
+          </p-column>
+          <p-column field="appraisal_amt" header="Appraisal"
+                    [style]="{'width':'120px','text-align':'right'}"
+                    [editable]="true"
+          >
+            <ng-template let-col let-row="rowData" pTemplate="body">
+              <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+            </ng-template>
+          </p-column>
+          <p-column field="references" header="References"
+                    [editable]="true"
+          ></p-column>
 
-              <p-column styleClass="col-button" [style]="{'width':'50px'}">
-                <ng-template let-car="rowData" pTemplate="body" >
-                  <app-custom-botton-icon [option]="'delete'" (onBtnClick)="opendeleteDialog()"></app-custom-botton-icon>
-                </ng-template>
-              </p-column>
-            </p-dataTable>
-          </div>
-        </div>
-        <app-action-dialog #addDialog [showCancel]="true" [showAdd]="true" (onAdd)="setDataDetailAppraisal($event)">
-          <div class="container form-group">
-            <div class="row">
-              <div class="col-md-12">
-                <label>Date</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <p-calendar dateFormat="dd/mm/yy"
-                            class="my-1"
-                            placeholder="dd/mm/yyyy"
-                            dataType="string"
-                            showButtonBar="true"
-                            [(ngModel)]="detailappraisal.references_date"
-
-                ></p-calendar>
-
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <label>Price</label>
-                <input appMyCurrency [fraction]="2" class="form-control"
-                       [value]="detailappraisal.appraisal_amt"
-                       (change)="detailappraisal.appraisal_amt = $event.target.value"
-                >
-              </div>
-              <div class="col-md-12">
-                <label>References</label>
-                <input type="text" class="form-control"
-                       [(ngModel)]="detailappraisal.references"
-
-                >
-              </div>
-            </div>
-          </div>
-        </app-action-dialog>
-        <app-alert-dialog #deleteDialog (onOK)="deleteSelection()" [action]="'delete'">
-        </app-alert-dialog>
+          <p-column styleClass="col-button" [style]="{'width':'50px'}">
+            <ng-template let-car="rowData" pTemplate="body">
+              <app-custom-botton-icon [option]="'delete'"
+                                      (onBtnClick)="opendeleteDialog()"></app-custom-botton-icon>
+            </ng-template>
+          </p-column>
+        </p-dataTable>
       </div>
     </div>
+    <app-action-dialog #addDialog [showCancel]="true" [showAdd]="true" (onAdd)="setDataDetailAppraisal($event)">
+      <div class="container form-group">
+        <div class="row">
+          <div class="col-md-12">
+            <label>Date</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p-calendar dateFormat="dd/mm/yy"
+                        class="my-1"
+                        placeholder="dd/mm/yyyy"
+                        dataType="string"
+                        showButtonBar="true"
+                        [(ngModel)]="detailappraisal.references_date"
+
+            ></p-calendar>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <label>Price</label>
+            <input appMyCurrency [fraction]="2" class="form-control"
+                   [value]="detailappraisal.appraisal_amt"
+                   (change)="detailappraisal.appraisal_amt = $event.target.value"
+            >
+          </div>
+          <div class="col-md-12">
+            <label>References</label>
+            <input type="text" class="form-control"
+                   [(ngModel)]="detailappraisal.references"
+
+            >
+          </div>
+        </div>
+      </div>
+    </app-action-dialog>
+    <app-alert-dialog #deleteDialog (onOK)="deleteSelection()" [action]="'delete'">
+    </app-alert-dialog>
   </div>
+</fieldset>
+
+

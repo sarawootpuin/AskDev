@@ -3,7 +3,7 @@ import {caPcnInd} from "./ca-pcnind";
 import {caGuarantor} from "./ca-guarantor";
 import {caBgDetail} from "./ca-bgdetail";
 import {caContext} from "./ca-context";
-import {caAssersite} from "./ca-assetsite";
+import {cabgassersite} from "./ca-bgassetsite";
 import {caPricing} from "./ca-pricing";
 import {caBuyer} from "./ca-buyer";
 import {caApvHist} from "./ca-apvhist";
@@ -156,7 +156,7 @@ export class caHead {
   public listcaguarantor: caGuarantor[];
   public listbgdetail: caBgDetail[];
   public listcacontext: caContext[];
-  public listassetsite: caAssersite[];
+  public listbgassetsite: cabgassersite[];
   public listcapricing: caPricing[];
   public listcabuyer: caBuyer[];
 
@@ -180,7 +180,6 @@ export class caHead {
   public listtempbuyerg: CaTempBuyer[];
 
 
-
   constructor()
   constructor(com_code, prebranch_code, ca_no, sale_call_no, ctrl_no, cus_status, cus_code, grp_code, joint_seller_group,
               sbu_typ, advance_type, apply_by, apply_dt, expire_dt, contract_no, contract_date, contract_expire_date,
@@ -200,7 +199,7 @@ export class caHead {
               os_ar_ls, os_credit_amt, os_credit_line_amt, reqst_credit_amt, intro_by_cd, mkt_name, cus_name, sbu_type_desc,
               team_mkt_leader, verifier_name, join_group_name, join_group_cr, intro_mthd_desc, intro_by_name, title_authority,
               above_level, rec_agr_flag, rec_cond, rec_usr, rec_upd, ap_rec_agr_flag, ap_rec_amount, ap_rec_cond,
-              caentity, listpcnind, listcaguarantor, listbgdetail, listcacontext, listassetsite
+              caentity, listpcnind, listcaguarantor, listbgdetail, listcacontext, listbgassetsite
     , listcapricing, listcabuyer
     , listcaapvhist
     , listcacapcl
@@ -236,7 +235,7 @@ export class caHead {
               mkt_name?, cus_name?, sbu_type_desc?, team_mkt_leader?, verifier_name?, join_group_name?, join_group_cr?,
               intro_mthd_desc?, intro_by_name?, title_authority?, above_level?, rec_agr_flag?, rec_cond?, rec_usr?, rec_upd?,
               ap_rec_agr_flag?, ap_rec_amount?, ap_rec_cond?,
-              caentity?, listpcnind?, listcaguarantor?, listbgdetail?, listcacontext?, listassetsite?
+              caentity?, listpcnind?, listcaguarantor?, listbgdetail?, listcacontext?, listbgassetsite?
     , listcapricing?, listcabuyer?
     , listcaapvhist?
     , listcacapcl?
@@ -395,7 +394,7 @@ export class caHead {
     this.listcaguarantor = listcaguarantor;
     this.listbgdetail = listbgdetail;
     this.listcacontext = listcacontext;
-    this.listassetsite = listassetsite;
+    this.listbgassetsite = listbgassetsite;
     this.listcapricing = listcapricing;
     this.listcabuyer = listcabuyer;
     this.listcaapvhist = listcaapvhist;
@@ -557,7 +556,7 @@ export class caHead {
       caGuarantor.parse(json.listcaguarantor),
       caBgDetail.parse(json.listbgdetail),
       caContext.parse(json.listcacontext),
-      caAssersite.parse(json.listassetsite),
+      cabgassersite.parse(json.listbgassetsite),
       caPricing.parse(json.listcapricing),
       caBuyer.parse(json.listcabuyer),
       caApvHist.parse(json.listcaapvhist),

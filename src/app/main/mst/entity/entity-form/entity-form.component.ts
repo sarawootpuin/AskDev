@@ -14,6 +14,7 @@ import {EntityAddressEnComponent} from "./entity-address-en/entity-address-en.co
 import {EntityCardComponent} from "./entity-card/entity-card.component";
 import {EntityBankComponent} from "./entity-bank/entity-bank.component";
 import {EntityIndustryComponent} from "./entity-industry/entity-industry.component";
+import * as copy from 'copy-to-clipboard';
 
 @Component({
   selector: 'app-entity-form',
@@ -155,37 +156,37 @@ export class EntityFormComponent implements OnInit, OnDestroy {
     this.askDialog.open();
   }
 
-  validateSave(entityRequest :EntityModel){
+  validateSave(entityRequest: EntityModel) {
     this.alertWarning.list_msg = [];
-    this.alertWarning.single =0;
+    this.alertWarning.single = 0;
     if (!entityRequest.newCardNo) {
       this.alertWarning.addMessage('id card is empty');
     }
-    if (!entityRequest.birthD){
+    if (!entityRequest.birthD) {
       this.alertWarning.addMessage('วันเกิด/จดทะเบียน is empty');
     }
-    if (!entityRequest.fNameCode){
+    if (!entityRequest.fNameCode) {
       this.alertWarning.addMessage('คำนำหน้าชื่อ is empty');
     }
-    if (!entityRequest.fNameT){
+    if (!entityRequest.fNameT) {
       this.alertWarning.addMessage('ชื่อ is empty');
     }
-    if (!entityRequest.fNameECode){
+    if (!entityRequest.fNameECode) {
       this.alertWarning.addMessage('Intial is empty');
     }
-    if (!entityRequest.fNameE){
+    if (!entityRequest.fNameE) {
       this.alertWarning.addMessage('First Name is empty');
     }
-    if (!entityRequest.cardType){
+    if (!entityRequest.cardType) {
       this.alertWarning.addMessage('ประเภทบัตร is empty');
     }
-    if (!entityRequest.address){
+    if (!entityRequest.address) {
       this.alertWarning.addMessage('ที่อยู่ is empty');
     }
-    if (!entityRequest.zip){
+    if (!entityRequest.zip) {
       this.alertWarning.addMessage('ที่อยู่ is empty');
     }
-    return this.alertWarning.list_msg.length >0?false:true;
+    return this.alertWarning.list_msg.length > 0 ? false : true;
   }
 
   saveEntity() {
@@ -240,24 +241,25 @@ export class EntityFormComponent implements OnInit, OnDestroy {
             this.showErrorMsg('Complete');
             setTimeout(() => {
               this.alertDialog.close();
-              //this.router.navigate(['/entity']);
             }, 2000);
 
+            if (!entityRequest.entCode) {copy(data.DATA,{message: 'Press Ctrl+c to copy',});
+              };
 
-            // after save
+            if (data.DATA && !entityRequest.entCode) {window.close();
+              };
+
             this.entityService.setSaveCusCode('');
 
-            // this.router.navigate(['/entity'], {
-            //     fragment: 'success'
-            //   }
-            // );
           } else {
             this.isSaving = false;
             this.showErrorMsg(data.MSG);
           }
         }
       )
-    } else {this.alertWarning.open();}
+    } else {
+      this.alertWarning.open();
+    }
   }
 
   ngOnDestroy() {

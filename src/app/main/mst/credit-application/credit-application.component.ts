@@ -18,9 +18,10 @@ import {caPricing} from "./model/ca-pricing";
 
 })
 export class CreditApplicationComponent implements OnInit, OnDestroy {
-  @Output('business_detail_out') business_detail_out:EventEmitter<string> = new EventEmitter();
+  @Output('business_detail_out') business_detail_out: EventEmitter<string> = new EventEmitter();
   subscripData: Subscription;
   subscripMaster: Subscription;
+  subscription: Subscription;
   myCaHead: caHead;
   comCode: string;
   caNo: string;
@@ -31,8 +32,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
   @ViewChild('blackListDialog') blackListDialog: ActionDialogComponent;
   @ViewChild('validateAlert') validateAlert: AlertDialogComponent;
 
-
-
+  caCaption: string = '';
   task: string = '';
   taskShorten: string = '';
   btnFormSave: boolean = true;
@@ -40,6 +40,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
   btnFormCancel: boolean = true;
   btnFormReject: boolean = true;
   btnFormEdit: boolean = true;
+  editImportant: boolean = true;
   isReadonly: boolean = true;
 
   checkLoader: boolean = false;
@@ -51,8 +52,9 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
   captionsTop: String[] = [];
   captionsBot: String[] = ['Apply CA', 'Revise', 'Checker', 'Scoring', 'Scoring Approve', 'PrintDoc', 'Approve', 'Done'];
 
-  urlSeller  : string ;
-  dataSeller : any;
+  urlSeller: string;
+  dataSeller: any;
+
   constructor(private userStorage: UserStorage,
               private route: ActivatedRoute,
               private router: Router,
@@ -106,6 +108,10 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
     if (this.subscripMaster != null) {
       this.subscripMaster.unsubscribe();
     }
+
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
   }
 
   callOpendata() {
@@ -119,8 +125,23 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
           console.log(json);
           this.checkLoader = false;
           this.myCaHead = caHead.parse(json.DATA);
+          switch (this.myCaHead.ca_type.toString()) {
+            case '1':
+              this.caCaption = 'CA Normal';
+              break;
+            case '2':
+              this.caCaption = 'CA Main Credit Line';
+              break;
+            case '3':
+              this.caCaption = 'CA Dealer Buy Back Guarantee';
+              break;
+            default:
+              this.caCaption = '';
+              break;
+          }
           this.creditApplicationService.setCaHead(this.myCaHead);
           this.index = this.captionsBot.indexOf(this.myCaHead.current_task) + 1;
+
           if (this.myCaHead.caentity.new_card_no) {
             this.creditApplicationService.setNewCardNo(this.myCaHead.caentity.new_card_no);
           }
@@ -136,7 +157,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
       this.submitOrsave = action;
     }
     else if (action == 'SUBMIT') {
-      this.submitOrsave = action;
+      this.submitOrsave = (this.task == 'CA-05' && !this.btnFormEdit) ? 'SUBMITP' : action;
     }
     else if (action == 'REJECT') {
       this.submitOrsave = action;
@@ -154,12 +175,20 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
 
   onConfirmQuest(value: string) {
     this.tmpaction = value;
-    if (value == 'SUBMIT') {
+    if (value == 'SUBMIT' || value == 'SUBMITP') {
       let isPass = this.verification();
       if (this.myCaHead.current_task == 'Approve') {
         this.reaSonDialog.open();
       } else {
-        isPass ? this.processCA(value) : this.validateAlert.open();
+        if (isPass) {
+          if (this.myCaHead.sbu_typ != 'FDO') {
+            this.calIrr(value); // Cal IRR Again
+          } else {
+            this.processCA(value);
+          }
+        } else {
+          this.validateAlert.open()
+        }
       }
     } else if (value == 'SAVE') {
       this.processCA(value);
@@ -225,9 +254,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
           }
         }
         else if (caPricing.rate_type == 'Float') {
-          console.log(caPricing.rate_bank , caPricing.rate_m, caPricing.rate_spread)
           if (!caPricing.rate_bank || !caPricing.rate_m || !caPricing.rate_spread) {
-            console.log('In');
             this.validateAlert.addMessage('- Interest Rate Bank');
           }
         }
@@ -327,23 +354,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
           this.validateAlert.addMessage('- Grace Period > 7');
         }
         if (this.validateAlert.list_msg.length <= 0) {
-          this.creditApplicationService.calculateIrr(detailLoan.sub_id, detailLoan.selectForCall).subscribe(
-            (value: any) => {
-              console.log(value);
-              if (value.CODE == '200') {
-                /*detail.fin_amt_e_vat = value.LIST_DATA[0].finExcVat;
-                 detail.fin_amt_vat = value.LIST_DATA[0].finVat;
-                 detail.fin_amt_i_vat = value.LIST_DATA[0].finIncVat;
-                 detail.installment_e_vat = value.LIST_DATA[0].installmentExcVat;
-                 detail.installment_vat = value.LIST_DATA[0].installmentVat;
-                 detail.installment_i_vat = value.LIST_DATA[0].installmentIncVat;
-                 detail.flat_rate = value.LIST_DATA[0].flatRate;*/
-                detailLoan.gross_irr = value.LIST_DATA[0].grossIrr;
-                detailLoan.net_irr = value.LIST_DATA[0].netIrr;
-                detailLoan.net_irr_inc_deposit = value.LIST_DATA[0].netIrrIncDeposit;
-              }
-            }
-          )
+
         }
       }
       // Hire purchase & Leasing
@@ -370,11 +381,19 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
             if (!detail.fin_amt_e_vat) {
               this.validateAlert.addMessage('- Financing Amount');
             }
-            if (!detail.terms) {
-              this.validateAlert.addMessage('- Terms');
+            if (this.myCaHead.ca_type == '2' && detail.free_text.trim().length > 0) {
+
             }
-            if (!detail.gross_irr) {
-              this.validateAlert.addMessage('- Gross IRR');
+            else {
+              if (!detail.terms) {
+                this.validateAlert.addMessage('- Terms');
+              }
+              if (!detail.gross_irr) {
+                this.validateAlert.addMessage('- Gross IRR');
+              }
+              if ((!detail.installment_e_vat || !detail.installment_i_vat) && detail.listcastep.length == 0) {
+                this.validateAlert.addMessage('- Installment');
+              }
             }
             if (!detail.fin_asst) {
               this.validateAlert.addMessage('- Financing Asset');
@@ -382,31 +401,46 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
             if (!detail.disburse_dt) {
               this.validateAlert.addMessage('- Disburse Date');
             }
-            if ((!detail.installment_e_vat || !detail.installment_i_vat) && detail.listcastep.length == 0) {
-              this.validateAlert.addMessage('- Installment');
-            }
+            let checkDetailSub: boolean = true;
+            if (this.myCaHead.ca_type != '3') {
+              for (let detailSub of detail.listbgdetailsub) {
+                if (!detailSub.asst_type) {
+                  checkDetailSub = false;
+                  this.validateAlert.addMessage('- Finance Asset Type');
+                }
+                if (!detailSub.asset_status) {
+                  checkDetailSub = false;
+                  this.validateAlert.addMessage('- New / Used Asset');
+                }
+                if (!detailSub.year) {
+                  checkDetailSub = false;
+                  this.validateAlert.addMessage('- Year in Asset Detail');
+                }
+                if (!detailSub.dealer_code) {
+                  checkDetailSub = false;
+                  this.validateAlert.addMessage('- Dealer Name');
+                }
+                if (!detailSub.eqp_ty) {
+                  checkDetailSub = false;
+                  this.validateAlert.addMessage('- Equip Type');
+                }
+                if (!detailSub.asst_amt_e_vat) {
+                  checkDetailSub = false;
+                  this.validateAlert.addMessage('- Asset (Exc. VAT)');
+                }
 
+                if (!checkDetailSub) {
+                  break;
+                }
+              }
+            }
             if (this.validateAlert.list_msg.length > 0) {
               break;
             }
             else {
-              this.creditApplicationService.calculateIrr(detail.sub_id, detail.selectForCall).subscribe(
-                (value: any) => {
-                  console.log(value);
-                  if (value.CODE == '200') {
-                    /*detail.fin_amt_e_vat = value.LIST_DATA[0].finExcVat;
-                     detail.fin_amt_vat = value.LIST_DATA[0].finVat;
-                     detail.fin_amt_i_vat = value.LIST_DATA[0].finIncVat;
-                     detail.installment_e_vat = value.LIST_DATA[0].installmentExcVat;
-                     detail.installment_vat = value.LIST_DATA[0].installmentVat;
-                     detail.installment_i_vat = value.LIST_DATA[0].installmentIncVat;
-                     detail.flat_rate = value.LIST_DATA[0].flatRate;*/
-                    detail.gross_irr = value.LIST_DATA[0].grossIrr;
-                    detail.net_irr = value.LIST_DATA[0].netIrr;
-                    detail.net_irr_inc_deposit = value.LIST_DATA[0].netIrrIncDeposit;
-                  }
-                }
-              )
+              if (this.myCaHead.ca_type == '2' && detail.free_text.trim().length > 0) {
+
+              }
             }
           }
           if (!this.costBalance(caDetail)) {
@@ -416,6 +450,33 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
       }
     }
     return this.validateAlert.list_msg.length > 0 ? false : true;
+  }
+
+  calIrr(value: string) {
+    let count: number = 0, length: number = this.myCaHead.listbgdetail.length;
+    for (let detail of this.myCaHead.listbgdetail) {
+      this.subscription = this.creditApplicationService.calculateIrr(detail.sub_id, detail.selectForCall).subscribe(
+        (data: any) => {
+          console.log(data);
+          if (data.CODE == '200') {
+            /*detail.fin_amt_e_vat = value.LIST_DATA[0].finExcVat;
+             detail.fin_amt_vat = value.LIST_DATA[0].finVat;
+             detail.fin_amt_i_vat = value.LIST_DATA[0].finIncVat;
+             detail.installment_e_vat = value.LIST_DATA[0].installmentExcVat;
+             detail.installment_vat = value.LIST_DATA[0].installmentVat;
+             detail.installment_i_vat = value.LIST_DATA[0].installmentIncVat;
+             detail.flat_rate = value.LIST_DATA[0].flatRate;*/
+            detail.gross_irr = data.LIST_DATA[0].grossIrr;
+            detail.net_irr = data.LIST_DATA[0].netIrr;
+            detail.net_irr_inc_deposit = data.LIST_DATA[0].netIrrIncDeposit;
+            count++;
+            if (count == length) {
+              this.processCA(value);
+            }
+          }
+        }
+      )
+    }
   }
 
   clickafReason() {
@@ -451,11 +512,11 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
           if (value == 'SAVE') {
             this.saveComplete = true;
           }
-          ;
-          if (value == 'SUBMIT') {
+
+          if (value == 'SUBMIT' || value == 'SUBMITP') {
             this.submitComplete = true;
           }
-          ;
+
           this.dialogalert.setAction("INFORMATION");
           this.dialogalert.setMessage(json.MSG);
           this.dialogalert.open();
@@ -469,7 +530,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
 
   onOksubmit() {
     if (this.submitComplete) {
-        if (this.task == 'CA-05'){
+      if (this.task == 'CA-05' && this.isReadonly) {
         this.onPrintSubmit();
       }
       this.submitComplete = false;
@@ -547,7 +608,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
         } else {
           strRepNameFr3 = 'CA_AMEND_HPLS_01.fr3';
         }
-        strURL = this.service.url_report + `/result?report=MKT\\${strRepNameFr3}&ca_no=${ca_no}&com_code=${this.comCode}&amend_time=${this.myCaHead.amend_time}&format=pdf&cmd_folder=${ca_no}&cmd_path=1&cmd_pdf=${'AM_'+ca_no+'_T'+this.myCaHead.amend_time}&draft=N`;
+        strURL = this.service.url_report + `/result?report=MKT\\${strRepNameFr3}&ca_no=${ca_no}&com_code=${this.comCode}&amend_time=${this.myCaHead.amend_time}&format=pdf&cmd_folder=${ca_no}&cmd_path=1&cmd_pdf=${'AM_' + ca_no + '_T' + this.myCaHead.amend_time}&draft=N`;
       } else {
         if (this.myCaHead.sbu_typ == 'FDO') {
           strRepNameFr3 = 'CA_DO_01.fr3';
@@ -556,7 +617,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
         } else if ((this.myCaHead.sbu_typ == 'HP') || (this.myCaHead.sbu_typ == 'LS') || (this.myCaHead.sbu_typ == 'HPLS')) {
           strRepNameFr3 = 'CA_HPLS_01.fr3';
         }
-        strURL = this.service.url_report + `/result?report=MKT\\${strRepNameFr3}&p_ca_no=${ca_no}&p_id_card=${this.creditApplicationService.newCardNo}&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf&cmd_folder=${ca_no}&cmd_path=1&cmd_pdf=${'CA_'+ca_no}&draft=N`;
+        strURL = this.service.url_report + `/result?report=MKT\\${strRepNameFr3}&p_ca_no=${ca_no}&p_id_card=${this.creditApplicationService.newCardNo}&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf&cmd_folder=${ca_no}&cmd_path=1&cmd_pdf=${'CA_' + ca_no}&draft=N`;
       }
       console.log(strURL);
       window.open(strURL, '_blank');
@@ -575,16 +636,20 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
         } else {
           strRepNameFr3 = 'CA_AMEND_HPLS_01.fr3';
         }
-        strURL = this.service.url_report + `/result?report=MKT\\${strRepNameFr3}&ca_no=${ca_no}&com_code=${this.comCode}&amend_time=${this.myCaHead.amend_time}&format=pdf&cmd_folder=${ca_no}&cmd_path=1&cmd_pdf=${'AM_'+ca_no+'_T'+this.myCaHead.amend_time}&draft=Y`;
+        strURL = this.service.url_report + `/result?report=MKT\\${strRepNameFr3}&ca_no=${ca_no}&com_code=${this.comCode}&amend_time=${this.myCaHead.amend_time}&format=pdf&cmd_folder=${ca_no}&cmd_path=1&cmd_pdf=${'AM_' + ca_no + '_T' + this.myCaHead.amend_time}&draft=Y`;
       } else {
         if (this.myCaHead.sbu_typ == 'FDO') {
           strRepNameFr3 = 'CA_DO_01.fr3';
         } else if (this.myCaHead.sbu_typ == 'P') {
           strRepNameFr3 = 'CA_DL_01.fr3';
         } else if ((this.myCaHead.sbu_typ == 'HP') || (this.myCaHead.sbu_typ == 'LS') || (this.myCaHead.sbu_typ == 'HPLS')) {
-          strRepNameFr3 = 'CA_HPLS_01.fr3';
+          if (this.myCaHead.ca_type=='1') {
+            strRepNameFr3 = 'CA_HPLS_01.fr3'; //CA type =1
+          } else {
+            strRepNameFr3 = 'CREDITLINE_01.fr3'; // CA type =2
+          }
         }
-        strURL = this.service.url_report + `/result?report=MKT\\${strRepNameFr3}&p_ca_no=${ca_no}&p_id_card=${this.creditApplicationService.newCardNo}&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf&cmd_folder=${ca_no}&cmd_path=1&cmd_pdf=${'CA_'+ca_no}&draft=Y`;
+        strURL = this.service.url_report + `/result?report=MKT\\${strRepNameFr3}&p_ca_no=${ca_no}&p_id_card=${this.creditApplicationService.newCardNo}&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf&cmd_folder=${ca_no}&cmd_path=1&cmd_pdf=${'CA_' + ca_no}&draft=Y`;
       }
       console.log(strURL);
       window.open(strURL, '_blank');
@@ -599,6 +664,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
       this.btnFormReject = false;
       this.btnFormCancel = false;
       this.btnFormEdit = false;
+      this.editImportant = true;
       this.isReadonly = true;
     }
     else if ((task == 'CA-01') || (task == 'CA-01-1') || (task == 'AM-01') || (task == 'AM-01-1')) {
@@ -607,14 +673,16 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
       this.btnFormReject = false;
       this.btnFormCancel = true;
       this.btnFormEdit = false;
+      this.editImportant = false;
       this.isReadonly = false;
     }
-    else if (task == 'CA-05'){
+    else if (task == 'CA-05') {
       this.btnFormSubmit = true;
       this.btnFormSave = false;
-      this.btnFormReject = true;
-      this.btnFormCancel = false;
-      this.btnFormEdit = false;
+      this.btnFormReject = false;
+      this.btnFormCancel = true;
+      this.btnFormEdit = true;
+      this.editImportant = false;
       this.isReadonly = true;
     }
     else {
@@ -623,6 +691,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
       this.btnFormReject = true;
       this.btnFormCancel = false;
       this.btnFormEdit = false;
+      this.editImportant = true;
       this.isReadonly = true;
     }
   }
@@ -637,7 +706,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
 
   checkStep(subId: any): boolean {
     let result: boolean = true;
-    let toTerm : number = 0, fromTerm : number = 0, term = Number(this.myCaHead.listbgdetail[subId].terms);
+    let toTerm: number = 0, fromTerm: number = 0, term = Number(this.myCaHead.listbgdetail[subId].terms);
     let dataStep = this.myCaHead.listbgdetail[subId].listcastep;
     let length = dataStep.length;
     for (let i = 0; i < dataStep.length; i++) {
@@ -648,7 +717,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
         }
       }
 
-      if (Number(dataStep[i].from_term) == toTerm+1) {
+      if (Number(dataStep[i].from_term) == toTerm + 1) {
         if (dataStep[i].from_term > dataStep[i].to_term) {
           this.validateAlert.addMessage('- Number of Terms in Table incorrect');
           result = false;
@@ -677,7 +746,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
 
   checkSumStep(subId): boolean {
     let result = true;
-    let sumInstallment :number = 0, term : number, finAmtEVat : number = this.myCaHead.listbgdetail[subId].fin_amt_e_vat;
+    let sumInstallment: number = 0, term: number, finAmtEVat: number = this.myCaHead.listbgdetail[subId].fin_amt_e_vat;
     let dataStep = this.myCaHead.listbgdetail[subId].listcastep;
     for (let data of dataStep) {
       term = Number(data.to_term) - Number(data.from_term) + 1;
@@ -690,61 +759,56 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
   }
 
   costBalance(caDetail: caBgDetail[]): boolean {
+    //console.log('In')
     let sum = 0, result = true;
 
     for (let detail of caDetail) {
-      if (detail.group_nme) {
+      if (!detail.group_nme) {
         sum = 0;
-        for (let detailSub of detail.listbgdetailsub) {
-          sum += detailSub.asst_amt_e_vat;
-        }
-        if ((sum.toFixed(2) != detail.asst_amt_e_vat.toFixed(2)) && detail.lc_flg == 'N') {
+        detail.listbgdetailsub.forEach((value)=>{
+            sum += Number(value.asst_amt_e_vat);
+        });
+        /*sum = detail.listbgdetailsub.reduce((total,currentValue)=>{
+          console.log(total,currentValue);
+          return 0;
+          //return Number(total.asst_amt_e_vat)+currentValue.asst_amt_e_vat;
+        });*/
+        /*for (let detailSub of detail.listbgdetailsub) {
+          //console.log(typeof detailSub.asst_amt_e_vat, detailSub.asst_amt_e_vat)
+          sum += Number(detailSub.asst_amt_e_vat);
+        }*/
+        //console.log(sum.toFixed(2), Number(detail.asst_amt_e_vat).toFixed(2));
+        if ((sum.toFixed(2) != Number(detail.asst_amt_e_vat).toFixed(2)) && detail.lc_flg == 'N') {
           result = false;
           break;
         }
       }
       else {
-        if(detail.listbgdetailsub.length == 0){
+        if (detail.listbgdetailsub.length == 0) {
           result = false;
           break;
         }
         for (let detailSub of detail.listbgdetailsub) {
-          if (detail.asst_amt_e_vat.toFixed(2) != detailSub.asst_amt_e_vat.toFixed(2)) {
+          if (Number(detail.asst_amt_e_vat) != Number(detailSub.asst_amt_e_vat)) {
             result = false;
             break;
           }
         }
       }
     }
-    /*caDetail.forEach(
-     (value) => {
-     if(value.group_nme){
-     value.listbgdetailsub.forEach(
-     (value) => {
-     sum = sum + value.asst_amt_e_vat
-     })
-
-     if(sum.toFixed(2) != value.asst_amt_e_vat.toFixed(2) && value.lc_flg == 'N') {
-     result = false;
-     }
-     }
-     });*/
-    //console.log(result);
+    //console.log('Out')
     return result;
   }
 
-  setGroup(data: string){
-    {this.myCaHead.joint_seller_group = data;}
-
+  setGroup(data: string) {
+      this.myCaHead.joint_seller_group = data;
   }
 
-  setGroupName(data: string){
-    {this.myCaHead.join_group_name = data;}
-
+  setGroupName(data: string) {
+      this.myCaHead.join_group_name = data;
   }
 
-  setLimit(data: string){
-    {this.myCaHead.join_group_cr = data;}
-
+  setLimit(data: string) {
+      this.myCaHead.join_group_cr = data;
   }
 }

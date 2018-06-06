@@ -33,7 +33,6 @@ export class ExposureComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
     let paramblchk = this.BLService.getModelBLchk();
     this.loadProgressBar = true;
     if(paramblchk) {

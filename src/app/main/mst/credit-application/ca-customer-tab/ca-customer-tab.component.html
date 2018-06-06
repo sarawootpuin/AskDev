@@ -1,6 +1,6 @@
-<fieldset [disabled]="this.isReadonly">
+<fieldset [disabled]="tabReadonly">
   <p-tabView>
-    <p-tabPanel header="Customer Information">
+    <p-tabPanel header="Customer Information" >
       <app-ca-customer [business_detail]="business_detail" (business_detail_out)="onEmit($event)"></app-ca-customer>
     </p-tabPanel>
     <p-tabPanel header="Address(TH)">
@@ -20,11 +20,11 @@
     <p-tabPanel header="Machine Location" *ngIf="sbu_type != 'FDO' && sbu_type != 'P' && sbu_type != 'FIM' && sbu_type != 'FEX' ">
       <app-ca-machine *ngIf="sbu_type != 'FDO' && sbu_type != 'P' && sbu_type != 'FIM' && sbu_type != 'FEX'"></app-ca-machine>
     </p-tabPanel>
-    <p-tabPanel header="Exposure" *ngIf="false">
+    <p-tabPanel header="Esxposure" *ngIf="false">
       <app-ca-exposure *ngIf="false"></app-ca-exposure>
     </p-tabPanel>
     <p-tabPanel header="Condition & Remark">
-      <app-ca-condition-remark></app-ca-condition-remark>
+      <app-ca-condition-remark [isReadonly]="isReadonly"></app-ca-condition-remark>
       <app-asia-condition *ngIf="false"></app-asia-condition>
     </p-tabPanel>
   </p-tabView>

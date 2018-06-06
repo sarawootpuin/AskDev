@@ -32,13 +32,14 @@ export class caBgDetailSub {
 
   public  asset_type ;
   public  dealer_name ;
+  public select_bb;
 
   public  listbgdetailappraisal : CaDetailappraisal[];
 
   constructor()
-  constructor(ca_no, sub_id, sub_id2, brand_code, model_code, chassis, eng_num, year, reg_num, detail, asst_type, asst_code, asst_sub_code, dealer_code, comm_amt, comm_pcnt, color, cc, eqp_ty, weight, body, miles, seat, enigne_type, accessory, asst_amt_e_vat, asset_status, fin_amt_e_vat, buy_back_grnty_no,asset_type,dealer_name,
+  constructor(ca_no, sub_id, sub_id2, brand_code, model_code, chassis, eng_num, year, reg_num, detail, asst_type, asst_code, asst_sub_code, dealer_code, comm_amt, comm_pcnt, color, cc, eqp_ty, weight, body, miles, seat, enigne_type, accessory, asst_amt_e_vat, asset_status, fin_amt_e_vat, buy_back_grnty_no,asset_type,dealer_name,select_bb,
               listbgdetailappraisal : CaDetailappraisal[])
-  constructor(ca_no?, sub_id?, sub_id2?, brand_code?, model_code?, chassis?, eng_num?, year?, reg_num?, detail?, asst_type?, asst_code?, asst_sub_code?, dealer_code?, comm_amt?, comm_pcnt?, color?, cc?, eqp_ty?, weight?, body?, miles?, seat?, enigne_type?, accessory?, asst_amt_e_vat?, asset_status?, fin_amt_e_vat?, buy_back_grnty_no?,asset_type?,dealer_name?,
+  constructor(ca_no?, sub_id?, sub_id2?, brand_code?, model_code?, chassis?, eng_num?, year?, reg_num?, detail?, asst_type?, asst_code?, asst_sub_code?, dealer_code?, comm_amt?, comm_pcnt?, color?, cc?, eqp_ty?, weight?, body?, miles?, seat?, enigne_type?, accessory?, asst_amt_e_vat?, asset_status?, fin_amt_e_vat?, buy_back_grnty_no?,asset_type?,dealer_name?,select_bb?,
               listbgdetailappraisal? : CaDetailappraisal[]) {
     this.ca_no = ca_no;
     this.sub_id = sub_id;
@@ -71,6 +72,7 @@ export class caBgDetailSub {
     this.buy_back_grnty_no = buy_back_grnty_no;
     this.asset_type = asset_type;
     this.dealer_name = dealer_name;
+    this.select_bb = select_bb;
     this.listbgdetailappraisal = listbgdetailappraisal;
   }
 
@@ -111,6 +113,7 @@ export class caBgDetailSub {
           json[i].buy_back_grnty_no,
           json[i].asset_type,
           json[i].dealer_name,
+          json[i].select_bb,
           CaDetailappraisal.parse(json[i].listbgdetailappraisal)
         ))
       }

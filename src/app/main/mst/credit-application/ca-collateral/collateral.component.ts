@@ -103,6 +103,12 @@ export class CaCollateralComponent implements OnInit, OnDestroy {
     }
     this.listcacollateral = [...this.listcacollateral];
     this.creditApplicationService.caHead.listcacollateral = this.listcacollateral;
+    if (this.listcacollateral[0]) {
+      this.selectCollateral = this.listcacollateral[0];
+    }
+    else{
+      this.selectCollateral = new caCollateral();
+    }
   }
 
   getCltTypeDesc(value: string) {

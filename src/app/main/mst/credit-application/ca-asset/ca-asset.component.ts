@@ -25,7 +25,7 @@ export class CaAssetComponent implements OnInit , OnDestroy {
   listbgDetailappraisal : CaDetailappraisal[];
   selectDetailappraisal : CaDetailappraisal ;
   newDetailappraisal : CaDetailappraisal ;
-
+  caType : string;
   index: number = 0;
 
 
@@ -36,7 +36,7 @@ export class CaAssetComponent implements OnInit , OnDestroy {
     this.subscripData = this.creditApplicationService.eventCaHead.subscribe(
       (caHead) => {
         this.listbgdetail = caHead.listbgdetail ;
-
+        this.caType = caHead.ca_type;
         if ( (this.listbgdetail) && (this.listbgdetail.length > 0)  )
         {   this.onSelectdetail(this.listbgdetail[0]) ;  }
 
@@ -130,7 +130,7 @@ export class CaAssetComponent implements OnInit , OnDestroy {
     this.listbgdetailSub.splice(delRow, 1);
     ////  Change  order
     for (let i = 1; i <= this.listbgdetailSub.length; i++) {
-      this.listbgdetailSub[i - 1].sub_id = i;
+      this.listbgdetailSub[i - 1].sub_id2 = i;
     }
     ;
     this.listbgdetailSub = [...this.listbgdetailSub];

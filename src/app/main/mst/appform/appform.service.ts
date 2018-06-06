@@ -15,6 +15,9 @@ import {ApplyEmit} from "./model/applyEmit";
 import {AppFormNew} from "./model/appFormNew";
 import {AppFormRenew} from "./model/appFormRenew";
 import {GetDataCustomer} from "./model/getDataCustomer";
+import {AppformReassignDetail} from "./model/AppformReassignDetail";
+import {AppformReassignOfficer} from "./model/AppformReassignOfficer";
+
 
 @Injectable()
 export class AppFormService {
@@ -106,9 +109,11 @@ export class AppFormService {
   inquiry : EventEmitter<boolean> = new EventEmitter<boolean>();
 
   appFormData: getDataAppForm;
-
+  eventDataHead = new EventEmitter<getDataAppForm>();
   setAppFormData(data: getDataAppForm) {
     this.appFormData = data;
+    //console.log(data);
+    this.eventDataHead.emit(data);
   }
 
   getAppFormData() {
@@ -432,6 +437,41 @@ export class AppFormService {
       "comCode": comCode,
       "caNo": caNo,
       "ansWer": ansWer
+    };
+    console.log(JSON.stringify(data));
+    return this.http.post(url, JSON.stringify(data), options);
+  }
+
+  CallReassign() {
+    const url = this.service.url + this.service.appform_api + `/ask/appForm/AppFormReassign`;
+    //const url = `http://localhost:8080/WebServices_AppForm/ask/appForm/AppFormReassign/`;
+    let options = {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    };
+    let data = {
+      "device": "web",
+      "userCode": this.user.getCode()
+    };
+    console.log(JSON.stringify(data));
+    return this.http.post(url, JSON.stringify(data), options);
+  }
+
+  UpdateReassign(listReassignDetail : AppformReassignDetail[], reassignOfficer : AppformReassignOfficer, taskCode : string) {
+    const url = this.service.url + this.service.appform_api + `/ask/appForm/UpdateAppFormReassign`;
+    //const url = `http://localhost:8080/WebServices_AppForm/ask/appForm/UpdateAppFormReassign/`;
+    let options = {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    };
+    let data = {
+      "device": "web",
+      "userCode": this.user.getCode(),
+      "taskCode": taskCode,
+      "listReassignDetail": listReassignDetail,
+      "reassignOfficer": reassignOfficer
     };
     console.log(JSON.stringify(data));
     return this.http.post(url, JSON.stringify(data), options);

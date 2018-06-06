@@ -10,6 +10,9 @@ import {caBgDetail} from "./model/ca-bgdetail";
 import {caBgDetailSub} from "./model/ca-bgdetailsub";
 import {caBuyer} from "./model/ca-buyer";
 import {caAmendKeyIn} from "./model/ca-amendkeyin";
+import {caNationality} from "./model/ca-nationality";
+import {caPricing} from "./model/ca-pricing";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 @Injectable()
 export class creditApplicationService {
@@ -281,6 +284,7 @@ export class creditApplicationService {
         this.listNTN.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
       }
     }
+    console.log(this.listNTN);
     // console.log('Emit ans');
     this.eventListMaster.emit();
   }
@@ -300,6 +304,10 @@ export class creditApplicationService {
   setCaHead(incaHead: caHead) {
     this.caHead = incaHead;
     this.eventCaHead.emit(incaHead);
+  }
+
+  getCaHead() : caHead{
+    return this.caHead;
   }
 
   newCardNo: string;
@@ -349,6 +357,7 @@ export class creditApplicationService {
   setSelectAmendKeyIn(value : caAmendKeyIn){
     this.eventAmendKeyIn.emit(value);
   }
+
   ////-----------------------End  Event (Emit & subscribtion) ------------------
 
   calculateIrr(subId: any, calType: any) {

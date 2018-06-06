@@ -31,6 +31,7 @@ export class CaCapComponent implements OnInit, OnDestroy {
   selectCapStore: caCapstore;
 
   listcapothstore: caCapOthstore[];
+  listCapOthStore_inApp: caCapOthstore[];
 
   caTotalExposure: number;
   caRequestCap: number = 0;
@@ -60,6 +61,10 @@ export class CaCapComponent implements OnInit, OnDestroy {
         if (value.caentity) {
           this.listCapStore = value.caentity.listcapstore;
           this.listcapothstore = value.caentity.listcapothstore;
+
+          for (let x of this.listCapClOwner ){
+            if ( x.flg_cap =='Y') {this.listCapOthStore_inApp = value.caentity.listcapothstore; break;}
+          }
         }
 
         if ((this.listCapcl) && ( this.listCapcl.length > 0 )) {
@@ -151,12 +156,16 @@ export class CaCapComponent implements OnInit, OnDestroy {
   }
 
   onOkCap() {
-    console.log('TOEY1','caRequestCap',this.caRequestCap);
-    console.log('TOEY2','tempcaRequestCap',this.tempcaRequestCap);
+    // console.log('TOEY1','caRequestCap',this.caRequestCap);
+    // console.log('TOEY2','tempcaRequestCap',this.tempcaRequestCap);
     this.selectedCap = true;
     this.caRequestCap = this.tempcaRequestCap;
     this.caOverCap = this.tempcaOverCap;
     this.listCapClOwner = this.listCapClOwnerFromStore;
+
+    for (let x of this.listCapClOwner ){
+      if ( x.flg_cap =='Y') {this.listCapOthStore_inApp =this.listcapothstore; break;}
+    }
 
     // for(let i = 0; i < this.listCapClOwner.length; i++) {
     //   if (this.listCapClOwner[i].flg_cap == 'Y') {
@@ -167,8 +176,10 @@ export class CaCapComponent implements OnInit, OnDestroy {
     // console.log(this.creditApplicationService.caHead.listcacapclowner);
 
     this.creditApplicationService.caHead.listcacapclowner = this.listCapClOwner;
-
-    if ((this.selectCapcl) && (this.selectCapcl.cancel_by != '')) {
+    //console.log(this.selectCapcl.running_code);
+    //if ((this.selectCapcl) && (this.selectCapcl.cancel_by))
+    if ((this.selectCapcl) && (this.selectCapcl.running_code > 0) && (this.selectCapcl.cancel_by == ''))
+      {
       this.selectCapcl.total_cap_amt = this.caRequestCap ? this.caRequestCap : 0;
       this.selectCapcl.total_exposure = this.caTotalExposure ? this.caTotalExposure : 0;
       this.selectCapcl.over_cap = this.caOverCap ? this.caOverCap : 0;
@@ -196,7 +207,7 @@ export class CaCapComponent implements OnInit, OnDestroy {
     //   }
     // }
 
-    console.log('boss2',this.selectCapcl.total_cap_amt);
+    //console.log('boss2',this.selectCapcl.total_cap_amt);
     //console.log('boss3',this.listCapClOwner);
 
   }
@@ -222,17 +233,22 @@ export class CaCapComponent implements OnInit, OnDestroy {
     if ((this.selectCapcl) && (this.selectCapcl.cancel_by == '')) {
       this.selectCapcl.cancel_by = this.userStorage.getCode();
       this.selectCapcl.cancel_dt = new Date().toLocaleDateString('en-GB');
-
+      this.caRequestCap = 0;
+      this.caOverCap = 0;
       for (let i = 0; i < this.listCapClOwner.length; i++) {
         this.listCapClOwner[i].flg_cap = 'N';
         this.listCapClOwner[i].cancel_by = this.userStorage.getCode();
         this.listCapClOwner[i].cancel_dt = new Date().toLocaleDateString('en-GB');
-      }
-    }
-    ;
 
-    console.log(this.selectCapcl);
-    console.log(this.listCapClOwner);
+      }
+      this.listCapClOwner =[];
+      this.listCapOthStore_inApp = [];
+      this.tempcaOverCap =0
+    }
+
+
+    //console.log(this.selectCapcl);
+    //console.log(this.listCapClOwner);
 
   }
 
