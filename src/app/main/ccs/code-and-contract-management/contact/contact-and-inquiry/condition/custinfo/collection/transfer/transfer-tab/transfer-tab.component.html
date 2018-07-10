@@ -1,0 +1,220 @@
+<form style="padding-right: 10px; padding-left: 10px; font-weight: bold">
+  <div class="form-group row d-flex justify-content-center" style="padding-left: 10px; padding-top: 10px">
+    <label class="col-form-label">Date for Paid Update (ค.ศ.)</label>
+
+    <div class="col">
+      <p-calendar [(ngModel)]="date1" [ngModelOptions]="{standalone: true}" dateFormat="dd/mm/yy"></p-calendar>
+    </div>
+
+    <!--<label class="col-form-label"></label>-->
+
+    <div class="col">
+      <app-custom-button [title]="'Calc'" [option]="'calculate'"></app-custom-button>
+    </div>
+
+    <label class="col-form-label">Advance Installment Term</label>
+
+    <div class="col">
+      <input type="number" class="form-control txt-right" value="">
+    </div>
+
+    <div class="col">
+      <app-custom-button [title]="'Calc'" [option]="'calculate'"></app-custom-button>
+    </div>
+  </div>
+</form>
+<!--</div>-->
+
+<div class="border border-secondary" style="padding-left: 10px; padding-right: 10px;">
+  <br>
+  <form>
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">Paid Term</label>
+      <div class="col-md-1">
+        <input type="text" readonly class="form-control txt-right" value="">
+      </div>
+      <div class="col-md-2"></div>
+      <label class="col-md-2 col-form-label">Paid Amount</label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <input type="text" readonly class="form-control txt-right" value="">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">Exposure Amount</label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <input type="text" readonly class="form-control txt-right" value="">
+      </div>
+      <label class="col-md-2 col-form-label"></label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2"></div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">Balance AR</label>
+      <div class="col-md-1">
+        <input type="text" readonly class="form-control txt-right" value="">
+      </div>
+      <div class="col-md-2">
+        <input type="text" readonly class="form-control txt-right" value="">
+      </div>
+      <label class="col-md-2 col-form-label">Balance VAT</label>
+      <div class="col-md-1">
+        <input type="text" readonly class="form-control txt-right" value="">
+      </div>
+      <div class="col-md-2">
+        <input type="text" readonly class="form-control txt-right" value="">
+      </div>
+    </div>
+
+    <hr style="border-color: #d60c0c; height: 2px">
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">Overdue Installment</label>
+      <div class="col-md-1">
+        <input type="text" readonly class="form-control txt-right" value="">
+      </div>
+      <div class="col-md-2">
+        <input type="text" readonly class="form-control txt-right" value="">
+      </div>
+      <label class="col-md-2 col-form-label"></label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2"></div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">VAT Not Paid</label>
+      <div class="col-md-1">
+        <input type="text" readonly class="form-control txt-right" value="">
+      </div>
+      <div class="col-md-2">
+        <input type="text" readonly class="form-control txt-right" value="">
+      </div>
+      <label class="col-md-2 col-form-label">Sub Total</label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <input type="text" readonly style="font-weight: bold; background-color: #ffdd90"
+               class="form-control txt-right"
+               value="">
+      </div>
+    </div>
+
+    <hr style="border-color: #d60c0c; height: 2px">
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">Total Penalty</label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <input type="text" readonly class="form-control txt-right" value="">
+      </div>
+      <label class="col-md-2 col-form-label">Total Charge</label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <input type="text" readonly class="form-control txt-right" value="">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">Total Expense & Advance</label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <input type="text" readonly class="form-control txt-right" value="">
+      </div>
+      <label class="col-md-2 col-form-label">Total Insurance / Compulsory</label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <input type="text" readonly class="form-control txt-right" value="">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">Total Registration</label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <input type="text" readonly class="form-control txt-right" value="">
+      </div>
+      <label class="col-md-2 col-form-label">Sub Total</label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2"><input type="text" readonly style="font-weight: bold; background-color: #ffdd90"
+                                   class="form-control txt-right"
+                                   value="">
+      </div>
+    </div>
+
+    <hr style="border-color: #d60c0c; height: 2px">
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">Transfer Charge (System Calc)</label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <input currencyMask class="form-control txt-right" readonly
+               [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"
+               value="">
+      </div>
+      <label class="col-md-2 col-form-label">Advance Installment Amount</label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2"><input currencyMask class="form-control txt-right"
+                                   [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"
+                                   value="">
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox"> ขอลดหย่อน
+        </label>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">Duty Stamp</label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <input currencyMask class="form-control txt-right" readonly
+               [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"
+               value="">
+      </div>
+      <label class="col-md-2 col-form-label">Status Charge **</label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <input currencyMask class="form-control txt-right"
+               [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"
+               value="">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">ค่าเปลี่ยนผู้ครอบครอง</label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <input currencyMask class="form-control txt-right"
+               [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"
+               value="">
+      </div>
+      <label class="col-md-2 col-form-label">Sub Total</label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <input type="text" readonly style="font-weight: bold; background-color: #ffdd90"
+               class="form-control txt-right"
+               value="">
+      </div>
+    </div>
+
+    <hr style="border-color: #d60c0c; height: 2px">
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label"></label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2"></div>
+      <label class="col-md-2 col-form-label">Total Payment Amount</label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <input type="text" readonly style="font-weight: bold; background-color: #ffa67d"
+               class="form-control txt-right"
+               value="">
+      </div>
+    </div>
+    <hr style="border-color: #d60c0c; height: 2px">
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">ยอดเงินคงเหลือรับฝาก</label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <input currencyMask class="form-control txt-right" readonly
+               [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"
+               value="">
+      </div>
+      <label class="col-md-2 col-form-label"></label>
+      <div class="col-md-1"></div>
+      <div class="col-md-2"></div>
+    </div>
+  </form>
+</div>

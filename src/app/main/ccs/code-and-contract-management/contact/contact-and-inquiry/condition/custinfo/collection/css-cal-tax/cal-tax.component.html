@@ -1,0 +1,39 @@
+<div class="flex-row border-isa p-3">
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>ลำดับทรัพย์สิน</label>
+      <select class="form-control" >
+        <option></option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label>Date for Paid Registration</label>
+      <br><p-calendar  dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"></p-calendar>
+    </div>
+    <div class="col-md-3 mt-3 pt-1">
+      <app-custom-button [title]="'Calc'" [option]="'calculate'"></app-custom-button>
+    </div>
+  </div>
+</div>
+<div class="flex-row border-isa p-3 mt-1">
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>ค่าต่อภาษี ไม่รวมค่าบริการ</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>ค่าปรับ ค่าต่อภาษี</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>รวมค่าต่อภาษี</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+  </div>
+</div>

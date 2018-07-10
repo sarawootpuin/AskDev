@@ -1,0 +1,261 @@
+/*#sidebar {*/
+  /*overflow: hidden;*/
+  /*z-index: 3;*/
+/*}*/
+/*#sidebar .list-group {*/
+  /*min-width: 400px;*/
+  /*background-color: transparent;*/
+  /*min-height: 80vh;*/
+/*}*/
+/*#sidebar i {*/
+  /*margin-right: 6px;*/
+/*}*/
+
+/*#sidebar .list-group-item {*/
+  /*border-radius: 0;*/
+  /*background-color: #1A237E;*/
+  /*color: #ccc;*/
+  /*border-left: 0;*/
+  /*border-right: 0;*/
+  /*border-color: #ffffff;*/
+  /*white-space: nowrap;*/
+/*}*/
+
+/*!* highlight active menu *!*/
+/*#sidebar .list-group-item:not(.collapsed) {*/
+  /*background-color: #b7b5f3;*/
+/*}*/
+
+/*!* closed state *!*/
+/*#sidebar .list-group .list-group-item[aria-expanded="false"]::after {*/
+  /*content: " \f0d7";*/
+  /*font-family: FontAwesome;*/
+  /*display: inline;*/
+  /*text-align: right;*/
+  /*padding-left: 5px;*/
+/*}*/
+
+/*!* open state *!*/
+/*#sidebar .list-group .list-group-item[aria-expanded="true"] {*/
+  /*background-color: #1A237E;*/
+/*}*/
+/*#sidebar .list-group .list-group-item[aria-expanded="true"]::after {*/
+  /*content: " \f0da";*/
+  /*font-family: FontAwesome;*/
+  /*display: inline;*/
+  /*text-align: right;*/
+  /*padding-left: 5px;*/
+/*}*/
+
+/*!* level 1*!*/
+/*#sidebar .list-group .collapse .list-group-item,*/
+/*#sidebar .list-group .collapsing .list-group-item  {*/
+  /*padding-left: 20px;*/
+  /*color: black;*/
+/*}*/
+
+/*!* level 2*!*/
+/*#sidebar .list-group .collapse > .collapse .list-group-item,*/
+/*#sidebar .list-group .collapse > .collapsing .list-group-item {*/
+  /*padding-left: 30px;*/
+/*}*/
+
+/*!* level 3*!*/
+/*#sidebar .list-group .collapse > .collapse > .collapse .list-group-item {*/
+  /*padding-left: 40px;*/
+/*}*/
+
+/*@media (max-width:768px) {*/
+  /*#sidebar {*/
+    /*min-width: 35px;*/
+    /*max-width: 40px;*/
+    /*overflow-y: auto;*/
+    /*overflow-x: visible;*/
+    /*transition: all 0.25s ease;*/
+    /*transform: translateX(-45px);*/
+    /*position: fixed;*/
+  /*}*/
+
+  /*#sidebar.show {*/
+    /*transform: translateX(0);*/
+  /*}*/
+
+  /*#sidebar::-webkit-scrollbar{ width: 0px; }*/
+
+  /*#sidebar, #sidebar .list-group {*/
+    /*min-width: 35px;*/
+    /*overflow: visible;*/
+  /*}*/
+  /*!* overlay sub levels on small screens *!*/
+  /*#sidebar .list-group .collapse.show, #sidebar .list-group .collapsing {*/
+    /*position: relative;*/
+    /*z-index: 1;*/
+    /*width: 190px;*/
+    /*top: 0;*/
+  /*}*/
+  /*#sidebar .list-group > .list-group-item {*/
+    /*text-align: center;*/
+    /*padding: .75rem .5rem;*/
+  /*}*/
+  /*!* hide caret icons of top level when collapsed *!*/
+  /*#sidebar .list-group > .list-group-item[aria-expanded="true"]::after,*/
+  /*#sidebar .list-group > .list-group-item[aria-expanded="false"]::after {*/
+    /*display:none;*/
+  /*}*/
+/*}*/
+
+/*.collapse.show {*/
+  /*visibility: visible;*/
+/*}*/
+/*.collapsing {*/
+  /*visibility: visible;*/
+  /*height: 0;*/
+  /*-webkit-transition-property: height, visibility;*/
+  /*transition-property: height, visibility;*/
+  /*-webkit-transition-timing-function: ease-out;*/
+  /*transition-timing-function: ease-out;*/
+/*}*/
+/*.collapsing.width {*/
+  /*-webkit-transition-property: width, visibility;*/
+  /*transition-property: width, visibility;*/
+  /*width: 0;*/
+  /*height: 100%;*/
+  /*-webkit-transition-timing-function: ease-out;*/
+  /*transition-timing-function: ease-out;*/
+/*}*/
+
+/*table.infoTable {*/
+  /*!*font-family: FontAwesome;*!*/
+  /*width: 100%;*/
+  /*border-collapse: collapse;*/
+  /*!*background-color: #fff6a6;*!*/
+  /*!*border: 1px solid #555555;*!*/
+/*}*/
+/*table.infoTable td, table.infoTable th {*/
+  /*!*border: 1px dashed #555555;*!*/
+  /*padding: 2px 2px;*/
+/*}*/
+/*table.infoTable tbody td {*/
+  /*!*font-size: 14px;*!*/
+  /*!*font-weight: bold;*!*/
+  /*color: #000000;*/
+/*}*/
+
+/*table.infoTable tr:nth-child(even) {*/
+  /*background: #e6e9e6;*/
+/*}*/
+
+/*table.infoTable td:nth-child(odd) {*/
+  /*!*background: #b9b4bf;*!*/
+  /*font-weight: bold;*/
+  /*text-align: left;*/
+/*}*/
+
+/*table.infoTable thead {*/
+  /*background: #398AA4;*/
+  /*border-bottom: 10px solid #398AA4;*/
+/*}*/
+/*table.infoTable thead th {*/
+  /*font-size: 15px;*/
+  /*font-weight: bold;*/
+  /*color: #FFFFFF;*/
+  /*text-align: left;*/
+  /*border-left: 2px solid #398AA4;*/
+/*}*/
+/*table.infoTable thead th:first-child {*/
+  /*border-left: none;*/
+/*}*/
+
+/*table.infoTable tfoot td {*/
+  /*font-size: 13px;*/
+/*}*/
+/*table.infoTable tfoot .links {*/
+  /*text-align: right;*/
+/*}*/
+/*table.infoTable tfoot .links a{*/
+  /*display: inline-block;*/
+  /*background: #FFFFFF;*/
+  /*color: #398AA4;*/
+  /*padding: 2px 8px;*/
+  /*border-radius: 5px;*/
+/*}*/
+
+/*#navCustinfo .dropdown-menu {*/
+  /*border-radius: 0px;*/
+  /*background-clip: padding-box;*/
+  /*background-color: #ffffff;*/
+  /*border: none;*/
+  /*border-bottom-left-radius: 2px;*/
+  /*border-top: 1px solid #e8e9eb;*/
+  /*box-shadow: 0 4px 16px rgba(20,23,28,.25);*/
+  /*cursor: pointer;*/
+/*}*/
+
+/*#navCustinfo .dropdown-menu > a {*/
+  /*color: #29303b;*/
+/*}*/
+
+/*#navCustinfo .dropdown-menu > a:hover {*/
+  /*color: #007791;*/
+  /*background-color: rgba(161, 167, 179, 0.43);*/
+/*}*/
+
+/*.webnots-notification-box {*/
+  /*-moz-border-radius: 5px;*/
+  /*-webkit-border-radius: 5px;*/
+  /*border-radius: 5px;*/
+  /*color: #ffffff;*/
+  /*font-family: verdana, 'open sans', sans-serif;*/
+  /*margin-bottom: 25px;*/
+  /*padding: 10px 14px 10px 44px;*/
+  /*position: relative;*/
+  /*box-shadow: 0px 1px 5px #999;*/
+  /*!* width: -moz-fit-content;*/
+  /*width: -webkit-fit-content;*/
+  /*width: fit-content; *!*/
+/*}*/
+
+.tab-head {
+  background-color: #1A237E;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #ccc;
+}
+
+.blinkStep {
+  background-color: red;
+}
+
+.labelCaption {
+  text-align: left;
+  font-weight: bold;
+}
+
+.txt-right {
+  text-align: right;
+  /*font-weight: bold;*/
+  /*background-color: #36ffd1;*/
+}
+
+.subTotal {
+  background-color: #ffe9a5;
+  border-style: inherit;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.totalAmt {
+  background-color: #f02b22;
+  color: white;
+  font-weight: bold;
+}
+
+.inputAmt {
+  width: 95%;
+  text-align: right;
+}
+
+

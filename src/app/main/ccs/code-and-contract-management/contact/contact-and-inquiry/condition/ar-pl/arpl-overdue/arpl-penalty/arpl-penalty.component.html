@@ -1,0 +1,111 @@
+<div class="flex-row p-3 border-isa">
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label class="mt-4 pt-2">Follow up debt - PSL actually incurred</label>
+      <label>Follow up debt - PSL as the result of payment as if this payment</label>
+    </div>
+    <div class="col-md-2 text-center">
+      <label>Total</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-2 text-center">
+      <label>Paid Amount</label>
+      <div class="pt-3">
+        <input currencyMask
+               class="form-control"
+               [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+      </div>
+    </div>
+    <div class="col-md-2 text-center">
+      <label>Waive Amount</label>
+      <div class="pt-3">
+        <input currencyMask
+               class="form-control"
+               [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+      </div>
+    </div>
+    <div class="col-md-2 text-center">
+      <label>Net Total</label>
+      <div class="pt-3">
+        <input currencyMask
+               class="form-control"
+               [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>Returned cheque charge</label>
+    </div>
+    <div class="col-md-2">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-2">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-2">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-2">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+
+  </div>
+  <hr>
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>Direct debit charge</label>
+    </div>
+    <div class="col-md-2">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-2">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-2">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-2">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+
+  </div>
+</div>
+<div class="flex-row p-3 border-isa">
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>Net Follow up Debt</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>Net Charge</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+  </div>
+</div>

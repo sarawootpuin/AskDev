@@ -1,0 +1,24 @@
+<div class="border-isa">
+  <p-dataTable [value]="data" [rows]="20">
+      <p-headerColumnGroup>
+        <p-row>
+          <p-column header="Batch Date"></p-column>
+          <p-column header="Receipt No."></p-column>
+          <p-column header="Receipt Date"></p-column>
+          <p-column header="Paid Amount"></p-column>
+          <p-column header="Registration Type"></p-column>
+          <p-column header="Registration Amount"></p-column>
+          <p-column header="VAT Amount"></p-column>
+          <p-column header="Paid Type"></p-column>
+        </p-row>
+      </p-headerColumnGroup>
+      <p-column field="1"></p-column>
+      <p-column field="2"></p-column>
+      <p-column field="3"></p-column>
+      <p-column field="4"></p-column>
+      <p-column field="5"></p-column>
+      <p-column field="6"></p-column>
+      <p-column field="7" [style]="{'text-align':'right'}"></p-column>
+      <p-column field="8"></p-column>
+    </p-dataTable>
+</div>

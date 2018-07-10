@@ -1,0 +1,39 @@
+<div class="form-group row">
+  <div class="col-md-12">
+    <label class="col-md-2">รายการรับชำระ</label>
+    <div class="form-inline pl-3">
+      <input type="text" class="form-control col-md-3 mr-1">
+      <app-custom-button [option]="'process'" [title]="'Receive Type'"></app-custom-button>
+    </div>
+  </div>
+</div>
+<div class="form-group row pl-3">
+  <div class="col-md-4">
+    <label>จำนวนเงิน</label>
+    <div class="form-inline">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+      <label class="pl-1">บาท (RT รวม VAT แล้ว)</label>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <label>Remark</label>
+    <input type="text" class="form-control">
+  </div>
+</div>
+<hr>
+<div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+  <p-dataTable [value]="data" [rows]="20">
+    <p-headerColumnGroup>
+      <p-row>
+        <p-column header="รายการรับชำระ"></p-column>
+        <p-column header="จำนวนเงิน"></p-column>
+        <p-column header="หมายเหตุ"></p-column>
+      </p-row>
+    </p-headerColumnGroup>
+    <p-column field="collection"></p-column>
+    <p-column field="amount"></p-column>
+    <p-column field="remark"></p-column>
+  </p-dataTable>
+</div>

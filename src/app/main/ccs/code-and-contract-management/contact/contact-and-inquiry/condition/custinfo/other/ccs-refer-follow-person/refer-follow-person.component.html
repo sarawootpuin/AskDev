@@ -1,0 +1,60 @@
+<p-panel header="ผู้ชำระเงินแทน">
+  <div class="d-flex">
+    <div class="col-md-4">
+      <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+        <p-table [value]="list_ReferPayPrsn" [(selection)]="vSelected_Prsn" [responsive]="true"
+                 selectionMode="single"
+                 (onRowSelect)="vSelected_Prsn = list_ReferPayPrsn[$event.index]">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>ความสัมพันธ์กับลูกค้า</th>
+              <th>ชื่อ - สกุล</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+            <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+              <td>{{rowData.related_with_cus}}</td>
+              <td>{{rowData.payee_name}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+    </div>
+    <div class="col-md-8 border-isa p-3">
+      <div class="flex-row">
+        <div class="row form-group">
+          <div class="col-md-6">
+            <label>Address</label>
+            <textarea type="text" class="form-control" rows="2" readonly
+                      [value]="vSelected_Prsn.lbl_pay_add1 + '\n' + vSelected_Prsn.lbl_pay_add2"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="row form-group">
+          <div class="col-md-3">
+            <label>Tel</label>
+            <input type="text" class="form-control" readonly
+                   [value]="vSelected_Prsn.lbl_pay_tel">
+          </div>
+          <div class="col-md-3">
+            <label>mobile</label>
+            <input type="text" class="form-control" readonly
+                   [value]="vSelected_Prsn.lbl_pay_mo">
+          </div>
+          <div class="col-md-3">
+            <label>mobile2</label>
+            <input type="text" class="form-control" readonly
+                   [value]="vSelected_Prsn.lbl_pay_mo2">
+          </div>
+          <div class="col-md-3">
+            <label>mobile3</label>
+            <<input type="text" class="form-control" readonly
+                    [value]="vSelected_Prsn.lbl_pay_mo3">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-panel>

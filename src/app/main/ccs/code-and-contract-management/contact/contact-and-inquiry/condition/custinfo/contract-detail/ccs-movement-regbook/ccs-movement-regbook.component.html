@@ -1,0 +1,50 @@
+<p-panel header="Movement Of Registration">
+
+  <dl class="row">
+    <dt class="col-md-2">สถานะเล่มทะเบียน</dt>
+    <dd class="col-md-2">{{vSelect_MMRegTrans.lblMovement_Status}}</dd>
+  </dl>
+
+  <div class="form-group row">
+    <p-table [value]="list_MMReg" [responsive]="true"
+             selectionMode="single"
+             (onRowSelect)="vSelect_MMRegTrans = list_MMRegTrans[$event.index]">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>เลขที่เอกสาร</th>
+          <th>วันที่</th>
+          <th>วันที่เข้าคลัง</th>
+          <th>ผู้นำเข้าคลัง</th>
+          <th>วันที่นำออก</th>
+          <th>ผู้เบิก</th>
+          <th>วัตถุประสงค์</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+        <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+          <td>{{rowData.control_no}}</td>
+          <td>{{rowData.control_date}}</td>
+          <td>{{rowData.in_date}}</td>
+          <td>{{rowData.in_by}}</td>
+          <td>{{rowData.out_date}}</td>
+          <td>{{rowData.out_by}}</td>
+          <td>{{rowData.purpose}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <dl class="row">
+    <dt class="col-md-2">รายละเอียด 1</dt>
+    <dd class="col-md-10">{{vSelect_MMRegTrans.detail_1 || '...'}}</dd>
+
+    <dt class="col-md-2">รายละเอียด 2</dt>
+    <dd class="col-md-10">{{vSelect_MMRegTrans.detail_2 || '...'}}</dd>
+
+    <dt class="col-md-2">รายละเอียดอื่น ๆ</dt>
+    <dd class="col-md-10">{{vSelect_MMRegTrans.detail_oth || '...'}}</dd>
+
+    <dt class="col-md-2">หมายเหตุ</dt>
+    <dd class="col-md-10">{{vSelect_MMRegTrans.remark || '...'}}</dd>
+  </dl>
+</p-panel>

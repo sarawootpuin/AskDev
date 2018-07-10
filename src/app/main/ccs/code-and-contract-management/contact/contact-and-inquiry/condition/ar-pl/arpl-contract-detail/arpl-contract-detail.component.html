@@ -1,0 +1,31 @@
+<div class="flex-row p-3 border-isa">
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>สถานะเล่มทะเบียน</label>
+      <input class="form-control" type="text">
+    </div>
+  </div>
+  <div class="form-group row">
+    <p-dataTable [value]="data" [rows]="20">
+      <p-headerColumnGroup>
+        <p-row>
+          <p-column header="เลขที่ใบเบิก"></p-column>
+          <p-column header="วันที่เบิก"></p-column>
+          <p-column header="ผู้เบิก"></p-column>
+          <p-column header="วัตถุประสงค์ในการเบิก"></p-column>
+          <p-column header="เลขที่ใบคืน"></p-column>
+          <p-column header="วันที่คืน"></p-column>
+          <p-column header="ผู้คืน"></p-column>
+        </p-row>
+      </p-headerColumnGroup>
+      <p-column field="1"></p-column>
+      <p-column field="2"></p-column>
+      <p-column field="3"></p-column>
+      <p-column field="4"></p-column>
+      <p-column field="5"></p-column>
+      <p-column field="6"></p-column>
+      <p-column field="7"></p-column>
+    </p-dataTable>
+  </div>
+</div>
+

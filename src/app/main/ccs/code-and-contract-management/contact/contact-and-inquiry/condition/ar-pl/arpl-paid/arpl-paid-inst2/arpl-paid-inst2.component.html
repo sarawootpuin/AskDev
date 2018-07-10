@@ -1,0 +1,51 @@
+<div class="flex-row p-3 border-isa mb-1">
+  <div class="form-group row">
+    <div class="col-md-6 offset-3 form-inline">
+      <label>จำนวนเงินค่างวดที่ออกใบเสร็จแล้ว</label>
+      <input class="form-control ml-1" type="text" disabled>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <p-dataTable [value]="sales" scrollable="true" frozenWidth="1px" unfrozenWidth="75vmax">
+      <p-headerColumnGroup>
+        <p-row>
+          <p-column header="Paid Amount" [style]="{'width':'150px'}"></p-column>
+          <p-column header="Receipt No." [style]="{'width':'150px'}"></p-column>
+          <p-column header="Receipt Date" [style]="{'width':'150px'}"></p-column>
+          <p-column header="Paid Amount" [style]="{'width':'150px'}"></p-column>
+          <p-column header="Paid Type" [style]="{'width':'150px'}"></p-column>
+          <p-column header="Installment" [style]="{'width':'150px'}"></p-column>
+          <p-column header="Rental Install" [style]="{'width':'150px'}"></p-column>
+          <p-column header="No." [style]="{'width':'150px'}"></p-column>
+          <p-column header="Due" [style]="{'width':'150px'}"></p-column>
+          <p-column header="Day Late" [style]="{'width':'150px'}"></p-column>
+          <p-column header="Follow Up Debt" [style]="{'width':'150px'}"></p-column>
+          <p-column header="Principal" [style]="{'width':'150px'}"></p-column>
+          <p-column header="Fact Fee" [style]="{'width':'150px'}"></p-column>
+          <p-column header="Interest" [style]="{'width':'150px'}"></p-column>
+          <p-column header="OS Loan" [style]="{'width':'150px'}"></p-column>
+          <p-column header="ENTRY_NUMBER" [style]="{'width':'150px'}"></p-column>
+          <p-column header="AT_TERM2" [style]="{'width':'150px'}"></p-column>
+        </p-row>
+      </p-headerColumnGroup>
+      <p-column field="1" [style]="{'width':'150px'}"></p-column>
+      <p-column field="2" [style]="{'width':'150px'}"></p-column>
+      <p-column field="3" [style]="{'width':'150px'}"></p-column>
+      <p-column field="4" [style]="{'width':'150px'}"></p-column>
+      <p-column field="5" [style]="{'width':'150px'}"></p-column>
+      <p-column field="6" [style]="{'width':'150px'}"></p-column>
+      <p-column field="7" [style]="{'width':'150px'}"></p-column>
+      <p-column field="8" [style]="{'width':'150px'}"></p-column>
+      <p-column field="9" [style]="{'width':'150px'}"></p-column>
+      <p-column field="10" [style]="{'width':'150px'}"></p-column>
+      <p-column field="11" [style]="{'width':'150px'}"></p-column>
+      <p-column field="12" [style]="{'width':'150px'}"></p-column>
+      <p-column field="13" [style]="{'width':'150px'}"></p-column>
+      <p-column field="14" [style]="{'width':'150px'}"></p-column>
+      <p-column field="15" [style]="{'width':'150px'}"></p-column>
+      <p-column field="16" [style]="{'width':'150px'}"></p-column>
+      <p-column field="17" [style]="{'width':'150px'}"></p-column>
+    </p-dataTable>
+  </div>
+</div>
+

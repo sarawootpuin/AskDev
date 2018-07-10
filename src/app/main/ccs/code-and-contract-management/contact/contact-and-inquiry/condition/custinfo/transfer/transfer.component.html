@@ -1,0 +1,25 @@
+<div [hidden]="vHide">
+  <app-action-button-form [title]="'Customer Information (Hire Purchase)'" [showPrint]="false" [showCancel]="false"
+                          [showEdit]="true" [showSave]="true" [showBack]="false" [showCalculator]="false"
+                          [showSearch]="true" [showNew]="true"
+                          [titleSave]="'บันทึกผลการเจรจา'" [titleSearch]="'Search'"
+                          [titleNew]="'ดูผลการเจรจา'" [titleEdit]="'Key Customer & Guarantor'"
+                          (onEdit)="openCustGuar()">
+  </app-action-button-form>
+  <app-custinfo>
+    <div class="tab-head">Transfer (For ASK)</div>
+
+    <div style="padding-top: 10px">
+      <p-tabView>
+        <p-tabPanel header="Transfer">
+          <app-transfer-tab></app-transfer-tab>
+        </p-tabPanel>
+        <p-tabPanel header="History">
+          <app-transfer-hist-tab></app-transfer-hist-tab>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </app-custinfo>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,142 @@
+<br>
+
+<div class="container">
+  <div class="col-md-8">
+
+    <form role="form" [formGroup]="vFG_FlowLookUp" (ngSubmit)="onSaveClick()">
+
+      <!-- Save-->
+      <p-dialog header="ต้องการบันทึกข้อมูล ?" [(visible)]="displayDlgNew" modal="modal" width="300"
+                [responsive]="true">
+        <button type="button" pButton icon="fa-check" (click)="onSubmit();displayDlgNew = false;" label="Yes"></button>
+        <button type="button" pButton icon="fa-close" (click)="displayDlgNew=false" label="No"></button>
+      </p-dialog>
+
+      <!-- Delete -->
+      <p-dialog header="ต้องการบลบ?" [(visible)]="displayDlgDelete" modal="modal" width="350" [responsive]="true">
+        <div>
+          <label>Flow ID: {{SelectedID}}</label><br>
+          <label>Flow Name: {{SelectedName}}</label>
+        </div>
+
+        <p-footer>
+          <button type="button" pButton icon="fa-check" (click)="onDeleteItem();displayDlgDelete = false;"
+                  label="Yes"></button>
+          <button type="button" pButton icon="fa-close" (click)="displayDlgDelete=false" label="No"></button>
+        </p-footer>
+      </p-dialog>
+
+      <!-- Error -->
+      <p-dialog header="เกิดข้อผิดพลาด กรุณาติดต่อ ISA" [(visible)]="displayErr" modal="modal" width="350"
+                [responsive]="true">
+        {{msgErr}}
+        <p-footer>
+          <button type="button" pButton icon="fa-check" (click)="displayErr = false;" label="OK"></button>
+        </p-footer>
+      </p-dialog>
+
+      <!-- Success -->
+      <p-dialog header="ทำรายการเสร็จเรียบร้อย" [(visible)]="displaySuccessful" modal="modal" width="350"
+                [responsive]="true">
+        <p-footer>
+          <button type="button" pButton icon="fa-check" (click)="displaySuccessful = false;" label="OK"></button>
+        </p-footer>
+      </p-dialog>
+
+      <div class="form-group">
+        <label>Flow ID:</label>
+        <span style="width:20px; background-color: red;">
+          <input type="text"
+                 class="form-control"
+                 placeholder=""
+                 [(ngModel)]="SelectedID"
+                 formControlName="vFG_id"
+                 id="vFG_id"
+                 [readonly]="true">
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label>Flow Name:</label>
+        <input type="text" class="form-control" placeholder="" [(ngModel)]="SelectedName"
+               formControlName="vFG_name" [readonly]="!saveMode"
+               id="vFG_name">
+      </div>
+      <br>
+
+      <!--Button-->
+      <div class="form-actions">
+        <button *ngIf="CurrMode === 'NEW' || CurrMode === 'START' " type="button"
+                class="btn-nav-newisa" (click)="onNewClick()">
+          <i class="fa fa-plus"></i> NEW
+        </button>
+        <button *ngIf="CurrMode === 'EDIT' || CurrMode === 'START' " type="button"
+                class="btn-nav-editisa" (click)="onEditClick()">
+          <i class="fa fa-edit"></i> EDIT
+        </button>
+        <button *ngIf="CurrMode === 'START'" type="button" class="btn-nav-deleteisa"
+                (click)="onDeleteClick()">
+          <i class="fa fa-remove"></i> DELETE
+        </button>
+
+        <button *ngIf="saveMode===true" type="button"
+                class="btn-nav-cancelisa" style="float: right;"
+                (click)="onCancelClick()">
+          <i class="fa fa-save"></i> CANCEL
+        </button>
+        <button *ngIf="saveMode===true" type="button"
+                class="btn-nav-saveisa" style="float: right;"
+                (click)="onSaveClick()"
+        >
+          <i class="fa fa-save"></i> SAVE
+        </button>
+      </div>
+      <!--End Button-->
+
+    </form>
+
+    <!--<p-growl [value]="msgs" sticky="sticky"></p-growl>-->
+  </div>
+</div>
+
+<div class="container">
+  <div class="col-md-lg-12">
+    <hr>
+  </div>
+</div>
+
+<div class="container">
+  <div class="col-md-8">
+    <p-dataTable [loading]="loading" loadingIcon="fa-spinner" [value]="FlowLookUp" [lazy]="true" [rows]="8"
+                 [paginator]="true" [totalRecords]="totalRecords" (onLazyLoad)="loadFlowLookUp($event)"
+                 selectionMode="single" (onRowSelect)="onSelectedRow($event)">
+      <!--<p-column field="$event.rows" header="No."></p-column>-->
+      <p-column field="id" header="Flow ID" [style]="{'width':'100px','text-align':'center'}"></p-column>
+      <p-column field="name" header="Flow Name"></p-column>
+    </p-dataTable>
+  </div>
+</div>
+
+<br><br>
+
+<!--<div class="container">-->
+<!--<div class="col-md-6">-->
+<!--<table class="table table-striped">-->
+<!--<thead class="thead-inverse">-->
+<!--<tr>-->
+<!--<th>ID</th>-->
+<!--<th>NAME</th>-->
+<!--</tr>-->
+<!--</thead>-->
+<!--<tbody>-->
+<!--<tr *ngFor="let row of FlowLookUp; let i of index" (click)="onSelectedRow(i)">-->
+<!--<th scope="row">{{row?.id}}</th>-->
+<!--<td>{{row?.name}}</td>-->
+<!--</tr>-->
+<!--</tbody>-->
+<!--</table>-->
+<!--</div>-->
+<!--</div>-->
+
+
+

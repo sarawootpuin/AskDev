@@ -1,0 +1,29 @@
+<div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+  <p-dataTable [value]="data" [rows]="20">
+    <p-headerColumnGroup>
+      <p-row>
+        <p-column header="ผลลัพธ์"></p-column>
+        <p-column header="CODE"></p-column>
+        <p-column header="ทีม OUTSOURCE"></p-column>
+        <p-column header="ภูมิภาค"></p-column>
+        <p-column header="จังหวัด"></p-column>
+        <p-column header="วันที่ Apply"></p-column>
+        <p-column header="OwnerApply"></p-column>
+        <p-column header="Collector Apply"></p-column>
+        <p-column header="วนที่ Apporve"></p-column>
+        <p-column header="OwnerApprove"></p-column>
+      </p-row>
+    </p-headerColumnGroup>
+    <p-column field="result"></p-column>
+    <p-column field="code"></p-column>
+    <p-column field="outsource_team"></p-column>
+    <p-column field="region"></p-column>
+    <p-column field="province"></p-column>
+    <p-column field="apply_date"></p-column>
+    <p-column field="owner_apply"></p-column>
+    <p-column field="collector_apply"></p-column>
+    <p-column field="approve_date"></p-column>
+    <p-column field="owner_approve"></p-column>
+
+  </p-dataTable>
+</div>

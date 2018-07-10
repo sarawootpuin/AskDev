@@ -1,0 +1,193 @@
+<p-panel header="Insurance History">
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>เลขที่สัญญา</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+    <div class="col-md-3">
+      <label>ชื่อลูกค้า</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+  </div>
+  <div class="flex-row">
+    <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+      <p-dataTable [value]="data" [rows]="5">
+        <p-headerColumnGroup>
+          <p-row>
+            <p-column header="ชนิดประกันภัย"></p-column>
+            <p-column header="Company Code"></p-column>
+            <p-column header="Insurance Company"></p-column>
+            <p-column header="Policy No."></p-column>
+            <p-column header="Ins. Expiry"></p-column>
+            <p-column header="ประเภท"></p-column>
+            <p-column header="Past Due"></p-column>
+            <p-column header="Paid Amt."></p-column>
+          </p-row>
+        </p-headerColumnGroup>
+        <p-column field="no"></p-column>
+        <p-column field="com_code"></p-column>
+        <p-column field="insurance_com"></p-column>
+        <p-column field="policy_no"></p-column>
+        <p-column field="ins_exp"></p-column>
+        <p-column field="type"></p-column>
+        <p-column field="past_due" [style]="{'text-align':'right'}"></p-column>
+        <p-column field="paid_amt" [style]="{'text-align':'right'}"></p-column>
+      </p-dataTable>
+    </div>
+  </div>
+  <div class="flex-row">
+    <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+      <p-dataTable [value]="data" [rows]="5">
+        <p-headerColumnGroup>
+          <p-row>
+            <p-column header="งวด"></p-column>
+            <p-column header="Company Code"></p-column>
+            <p-column header="วันที่ครบกำหนด"></p-column>
+            <p-column header="เบี้ยประกัน"></p-column>
+            <p-column header="ส่วนลด"></p-column>
+            <p-column header="หัก ณ ที่จ่าย"></p-column>
+            <p-column header="สุทธิ"></p-column>
+            <p-column header="ยอดชำระ"></p-column>
+            <p-column header="คงเหลือ"></p-column>
+            <p-column header="ยอดค้างสะสม"></p-column>
+            <p-column header="Entry_number"></p-column>
+          </p-row>
+        </p-headerColumnGroup>
+        <p-column field="no" [style]="{'text-align':'right'}"></p-column>
+        <p-column field="com_code"></p-column>
+        <p-column field="3" [style]="{'text-align':'right'}"></p-column>
+        <p-column field="4" [style]="{'text-align':'right'}"></p-column>
+        <p-column field="5" [style]="{'text-align':'rigth'}"></p-column>
+        <p-column field="6" [style]="{'text-align':'right'}"></p-column>
+        <p-column field="7" [style]="{'text-align':'right'}"></p-column>
+        <p-column field="8" [style]="{'text-align':'right'}"></p-column>
+        <p-column header="9" [style]="{'text-align':'right'}"></p-column>
+        <p-column header="10" [style]="{'text-align':'right'}"></p-column>
+        <p-column header="11" [style]="{'text-align':'right'}"></p-column>
+      </p-dataTable>
+    </div>
+  </div>
+</p-panel>
+<div class="flex-row p-3 border-isa">
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>ประกันภัยผ่าน</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+    <div class="col-md-3 offset-3">
+      <label>วงเงินคุ้มครอง</label>
+      <input currencyMask
+             class="form-control" disabled
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>ค่าเบี้ยประกัน</label>
+      <input currencyMask
+             class="form-control" disabled
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label>บริษัทประกันภัย</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+    <div class="col-md-3">
+      <label>อากร</label>
+      <input currencyMask
+             class="form-control" disabled
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>ภาษี</label>
+      <input currencyMask
+             class="form-control" disabled
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label>ชนิดประกันภัย</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+    <div class="col-md-3">
+      <label>เบี้ยประกันสุทธิ</label>
+      <input currencyMask
+             class="form-control" disabled
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>หัก ณ ที่จ่าย</label>
+      <input currencyMask
+             class="form-control" disabled
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-4">
+      <label>ประเภทประกันภัย</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+    <div class="col-md-3 offset-2">
+      <label>ส่วนลด</label>
+      <input currencyMask
+             class="form-control" disabled
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>วันคุ้มครอง</label>
+      <br>
+      <p-calendar disabled dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"></p-calendar>
+    </div>
+    <div class="col-md-3">
+      <label>วันหมดอายุประกัน</label>
+      <br>
+      <p-calendar disabled dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"></p-calendar>
+    </div>
+    <div class="col-md-3">
+      <label>เลขที่หัก ณ ที่จ่าย</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+    <div class="col-md-3">
+      <label>วันที่หัก ณ ที่จ่าย</label>
+      <br>
+      <p-calendar disabled dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"></p-calendar>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>เลขที่รับแจ้ง</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+    <div class="col-md-3">
+      <label>กรมธรรม์</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+    <div class="col-md-3">
+      <label>ผู้แจ้งประกัน</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+    <div class="col-md-3">
+      <label>ผู้รับแจ้ง</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>เลขที่สติ๊กเกอร์</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+    <div class="col-md-3 offset-3">
+      <label>วันที่รับแจ้ง</label>
+      <br>
+      <p-calendar disabled dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"></p-calendar>
+    </div>
+    <div class="col-md-3">
+      <label>พนักงานขาย</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+  </div>
+</div>
+

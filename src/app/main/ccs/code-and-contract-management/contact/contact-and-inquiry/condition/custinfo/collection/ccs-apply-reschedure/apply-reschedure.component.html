@@ -1,0 +1,128 @@
+<label class="p-3"><b>เงื่อนไขการ Reschedure Restructure ณ ปัจจุบัน</b></label>
+<div class="flex-row col-md-12">
+  <div class="form-group row">
+    <div class="col-md-6 border-isa p-3">
+      <label><b>Reschedure</b></label><br>
+      <label style="color: green">&#10004;</label>
+      <label style="color: red">&#10006;</label>
+      <label>ไม่มีงวดค้างชำระ</label><br>
+      <label style="color: green">&#10004;</label>
+      <label style="color: red">&#10006;</label>
+      <label>ต้องทำ Reschedure มาแล้วไม่เกิน 2 ครั้งรวมครั้งปัจจุบัน</label>
+    </div>
+    <div class="col-md-6 border-isa p-3">
+      <label><b>Restructure</b></label><br>
+      <label style="color: green">&#10004;</label>
+      <label style="color: red">&#10006;</label>
+      <label>ลูกค้าใหม่ ชำระค่างวดไม่ต่ำกว่า 6 งวด / ลูกค้าเก่า ชำระค่างวดไม่ต่ำกว่า 3 งวด</label><br>
+      <label style="color: green">&#10004;</label>
+      <label style="color: red">&#10006;</label>
+      <label>มียอดค้างชำระไม่เกิน 6 งวด</label><br>
+      <label style="color: green">&#10004;</label>
+      <label style="color: red">&#10006;</label>
+      <label>ต้องไม่เคยทำ Restructure มาก่อน</label>
+    </div>
+  </div>
+</div>
+<div class="flex-row col-md-12">
+  <p-tabView>
+    <p-tabPanel header="Detail Data">
+      <div class="flex-row p-3">
+        <div class="form-group row">
+          <div class="col-md-3">
+            <label>Send To Mtk</label>
+            <input type="text" class="form-control" disabled>
+          </div>
+          <div class="col-md-3">
+            <label>Request Type</label>
+            <select class="form-control">
+              <option></option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label>Request User</label>
+            <input type="text" class="form-control" disabled>
+          </div>
+          <div class="col-md-3">
+            <label>To Mgr CS</label>
+            <select class="form-control">
+              <option></option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-6">
+            <label>Product</label>
+            <input type="text" class="form-control" disabled>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-6">
+            <label>Suggestion</label>
+            <textarea class="form-control" rows="3"></textarea>
+          </div>
+          <div class="col-md-6">
+            <label>Remark For Reject</label>
+            <textarea class="form-control" rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+
+    <p-tabPanel header="Detail Log">
+      <div class="flex-row p-3">
+        <div class="form-group row">
+          <div class="col-md-3">
+            <label>Action Date</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="col-md-6">
+            <label>Action By</label>
+            <input type="text" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-9">
+            <label>Description</label>
+            <textarea class="form-control" rows="5"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="thead-responsive" style="overflow-x: auto;min-height: .01%; padding: 10px">
+        <p-dataTable [value]="data" [rows]="20">
+          <p-headerColumnGroup>
+            <p-row>
+              <p-column header="Action Date"></p-column>
+              <p-column header="Description"></p-column>
+              <p-column header="Action By"></p-column>
+            </p-row>
+          </p-headerColumnGroup>
+          <p-column field="action_date"></p-column>
+          <p-column field="des"></p-column>
+          <p-column field="action_by"></p-column>
+
+        </p-dataTable>
+      </div>
+    </p-tabPanel>
+
+
+    <p-tabPanel header="Detail MKT Reject">
+      <p-dataTable [value]="data" [rows]="20">
+        <p-headerColumnGroup>
+          <p-row>
+            <p-column header="Name got Rejected"></p-column>
+            <p-column header="Reject Detail"></p-column>
+            <p-column header="Reject Type"></p-column>
+            <p-column header="Reject Date"></p-column>
+          </p-row>
+        </p-headerColumnGroup>
+        <p-column field="name_rejected"></p-column>
+        <p-column field="rej_detail"></p-column>
+        <p-column field="rej_type"></p-column>
+        <p-column field="rej_date"></p-column>
+
+      </p-dataTable>
+    </p-tabPanel>
+
+  </p-tabView>
+</div>

@@ -1,0 +1,54 @@
+<div class="flex-row">
+  <div class="form-group d-flex row">
+    <div class="col-md-4 pr-0">
+      <div class="border-isa">
+        <p-dataTable [responsive]="true" [value]="data"  [rows]="10" >
+          <p-headerColumnGroup>
+            <p-row>
+              <p-column header="Name"></p-column>
+              <p-column header="ราย"></p-column>
+              <p-column header="ลูกหนี้รวม"></p-column>
+              <p-column header="เงินต้นรวม"></p-column>
+            </p-row>
+          </p-headerColumnGroup>
+          <p-column field="no" [style]="{'text-align':'center'}"></p-column>
+          <p-column field="2"  [style]="{'text-align':'right'}"></p-column>
+          <p-column field="3"  [style]="{'text-align':'right'}"></p-column>
+          <p-column field="4"  [style]="{'text-align':'right'}"></p-column>
+        </p-dataTable>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="thead-responsive border-isa"  style="overflow-x: auto;min-height: .01%; padding: 10px">
+        <p-dataTable [responsive]="true" [value]="data" [rows]="10">
+          <p-headerColumnGroup>
+            <p-row>
+              <p-column header="ลูกร้า / ผู้ค้ำ"></p-column>
+              <p-column header="รหัส"></p-column>
+              <p-column header="เลขที่สัญญา"></p-column>
+              <p-column header="Due Date"></p-column>
+              <p-column header="Installment"></p-column>
+              <p-column header="Schedule"></p-column>
+              <p-column header="License No"></p-column>
+              <p-column header="Payment Graing"></p-column>
+              <p-column header="Status"></p-column>
+              <p-column header="Owner"></p-column>
+              <p-column header="ลูกหนี้"></p-column>
+            </p-row>
+          </p-headerColumnGroup>
+          <p-column field="1" ></p-column>
+          <p-column field="2"></p-column>
+          <p-column field="3"  [style]="{'text-align':'center'}"></p-column>
+          <p-column field="4"  [style]="{'text-align':'center'}"></p-column>
+          <p-column field="5"  [style]="{'text-align':'rigth'}"></p-column>
+          <p-column field="6" ></p-column>
+          <p-column field="7" ></p-column>
+          <p-column field="8"></p-column>
+          <p-column field="9"></p-column>
+          <p-column field="10"></p-column>
+          <p-column field="11"></p-column>
+        </p-dataTable>
+      </div>
+    </div>
+  </div>
+</div>

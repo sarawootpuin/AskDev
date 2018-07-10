@@ -1,0 +1,73 @@
+<div class="border-isa">
+  <div class="flex-row p-3">
+    <div class="form-group row">
+      <div class="col-md-2">
+        <label class="mt-4 pt-2">Debt Extra Charge</label>
+      </div>
+      <div class="col-md-2">
+        <label>Total</label>
+        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
+               [value]="custService.srviceCustModel.ds_extracharge.lblextra_debt">
+      </div>
+      <div class="col-md-2">
+        <label>Paid Amount</label>
+        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
+               [value]="custService.srviceCustModel.ds_extracharge.lblextra_paid_debt">
+      </div>
+      <div class="col-md-2">
+        <label>Waive Amount</label>
+        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
+               [value]="custService.srviceCustModel.ds_extracharge.lblextra_waive_debt">
+      </div>
+      <div class="col-md-2">
+        <label>Net Total</label>
+        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
+               [value]="custService.srviceCustModel.ds_extracharge.lblextra_debt_total">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-2">
+        <label>Legal Extra Charge</label>
+      </div>
+      <div class="col-md-2">
+        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
+               [value]="custService.srviceCustModel.ds_extracharge.lblextra_legal">
+      </div>
+      <div class="col-md-2">
+        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
+               [value]="custService.srviceCustModel.ds_extracharge.lblextra_paid_legal">
+      </div>
+      <div class="col-md-2">
+        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
+               [value]="custService.srviceCustModel.ds_extracharge.lblextra_waive_legal">
+      </div>
+      <div class="col-md-2">
+        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
+               [value]="custService.srviceCustModel.ds_extracharge.lblextra_legal_total">
+      </div>
+    </div>
+  </div>
+  <div>
+    <p-dataTable [value]="custService.srviceCustModel.list_cdsextracharge" [rows]="20">
+      <p-headerColumnGroup>
+        <p-row>
+          <p-column header="Date"></p-column>
+          <p-column header="Type"></p-column>
+          <p-column header="Amount"></p-column>
+          <p-column header="Staff Code"></p-column>
+          <p-column header="Staff Name"></p-column>
+          <p-column header="Approval By"></p-column>
+          <p-column header="Approval Date"></p-column>
+
+        </p-row>
+      </p-headerColumnGroup>
+      <p-column field="reqst_dt"></p-column>
+      <p-column field="reqst_typ" [style]="{'text-align':'right'}"></p-column>
+      <p-column field="reqst_amt"></p-column>
+      <p-column field="user_alias_cd"></p-column>
+      <p-column field="req_user"></p-column>
+      <p-column field="apprve_user"></p-column>
+      <p-column field="apprve_dt"></p-column>
+    </p-dataTable>
+  </div>
+</div>

@@ -1,0 +1,538 @@
+<app-alert-dialog #alertNew [title]="'Save Information'"
+                  [msg]="'Save Success!!'"></app-alert-dialog>
+
+<app-action-dialog [title]="'Action Dialog'" #actionSave
+                   [showChoose]="true"
+                   [showNo]="true">
+</app-action-dialog>
+
+<div *ngIf="checkLoading" class="text-center my-2">
+  <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>Loading...
+</div>
+<div [hidden]="checkLoading">
+  <app-action-button-form [title]="TITLE" [showReturn]="true" [titleReturn]="'Back'" (onReturn)="onBackPage()">
+
+  </app-action-button-form>
+
+  <!--<div *ngIf="custService.vSelectedMenu === 'Update';then update_id else close_id "></div>-->
+
+  <!--<ng-template #update_id>-->
+  <!--<app-action-button-form [title]="TITLE" [showPrint]="true"-->
+  <!--[showEdit]="true" [showSave]="true" [showCalculator]="true"-->
+  <!--[showSearch]="true" [showNew]="true"-->
+  <!--[titleSave]="'บันทึกผลการเจรจา'" [titlePrint]="'จดหมายแจ้งยอด Update'"-->
+  <!--[titleCalculator]="'ส่ง Collection'" [titleSearch]="'Search'"-->
+  <!--[titleNew]="'ดูผลการเจรจา'" [titleEdit]="'หนังสือยืนยันยอดหนี้'">-->
+  <!--</app-action-button-form>-->
+  <!--</ng-template>-->
+
+  <!--<ng-template #close_id>-->
+  <!--<ng-container *ngIf="custService.vSelectedMenu === 'Close Account';else transfer_id">-->
+  <!--<app-action-button-form [title]="TITLE" [showPrint]="true" [showCalculator]="true"-->
+  <!--[showSearch]="true" [showSave]="true" [showNew]="true"-->
+  <!--[titleSave]="'บันทึกผลการเจรจา'" [titlePrint]="'จดหมายแจ้งยอด Close Acc.'"-->
+  <!--[titleSearch]="'Search'" [titleNew]="'ดูผลการเจรจา'" [titleCalculator]="'Waive / Discount'">-->
+
+  <!--</app-action-button-form>-->
+  <!--</ng-container>-->
+  <!--</ng-template>-->
+
+  <!--<ng-template #transfer_id>-->
+  <!--<ng-container *ngIf="custService.vSelectedMenu === 'Transfer';else nothing_id">-->
+  <!--<app-action-button-form [title]="TITLE"-->
+  <!--[showEdit]="true" [showSave]="true"-->
+  <!--[showSearch]="true" [showNew]="true"-->
+  <!--[titleSave]="'บันทึกผลการเจรจา'" [titleSearch]="'Search'"-->
+  <!--[titleNew]="'ดูผลการเจรจา'" [titleEdit]="'Key Customer & Guarantor'"-->
+  <!--(onEdit)="openCustGuarTest()">-->
+  <!--</app-action-button-form>-->
+  <!--</ng-container>-->
+  <!--</ng-template>-->
+
+  <!--<ng-template #nothing_id>-->
+  <!--<app-action-button-form [title]="TITLE">-->
+  <!--</app-action-button-form>-->
+  <!--</ng-template>-->
+
+  <div class="modal-body m-1" style="border: solid;border-width:thin;border-radius: 5px;border-color: lightgray">
+    <p-panel [toggleable]="true" [collapsed]="true">
+      <p-header>
+        <!--<div style="font-weight: bold; display: inline-block">-->
+        <!--ปิดสัญญาไปทำ RT (10-1234567)-->
+        <!--</div>-->
+        <!--<div style="color: #f3ffea; font-weight: bold; display: inline-block; margin-left: 20px">-->
+        <!--&nbsp;&nbsp;RD&nbsp;&nbsp;-->
+        <!--</div>-->
+        <!--<div-->
+        <!--style="font-weight: bold; display: inline-block; margin-left: 20px">-->
+        <!--&nbsp;&nbsp;STEP&nbsp;&nbsp;-->
+        <!--</div>-->
+        <!--<div-->
+        <!--style="color: white; font-weight: bold; display: inline-block; margin-left: 20px">-->
+        <!--&nbsp;&nbsp;รถตู้ คสช.&nbsp;&nbsp;-->
+        <!--</div>-->
+        <!--<div-->
+        <!--style="color: white; font-weight: bold; display: inline-block; margin-left: 20px">-->
+        <!--&nbsp;&nbsp;น้ำท่วม 2559&nbsp;&nbsp;-->
+        <!--</div>-->
+        <!--<div style="font-weight: bold; display: inline-block; margin-left: 20px" #blink>-->
+        <!--มีงาน Early ค้างอยู่ Owner: คุณภรภัทร ฉินพรรุจี-->
+        <!--</div>-->
+
+        <div style="display: inline-block">
+          {{custService.srviceCustModel.agr_code}} | {{custService.srviceCustModel.ref_code}} |
+          {{custService.srviceCustModel.c_status}} |
+          {{custService.srviceCustModel.collector}} | {{custService.srviceCustModel.lblcust_name}}
+        </div>
+      </p-header>
+      <!--<form>-->
+      <dl class="row">
+        <dt class="col-md-2">Contract Date</dt>
+        <dd class="col-md-1">{{custService.srviceCustModel.first}}</dd>
+
+        <dt class="col-md-2">OS AR</dt>
+        <dd class="col-md-1">{{custService.srviceCustModel.os_ar | number:'.2-2'}}</dd>
+
+        <dt class="col-md-2">Payment Grading</dt>
+        <dd class="col-md-1">{{custService.srviceCustModel.lblpayment_grading}}</dd>
+      </dl>
+
+      <dl class="row">
+        <dt class="col-md-2">Installment</dt>
+        <dd class="col-md-1">{{custService.srviceCustModel.installment_e_vat | number:'.2-2'}}</dd>
+
+        <dt class="col-md-2">Vat</dt>
+        <dd class="col-md-1">{{custService.srviceCustModel.vat | number:'.2-2'}}</dd>
+
+        <dt class="col-md-2">Installment Include Vat</dt>
+        <dd class="col-md-4">{{custService.srviceCustModel.installment_i_vat | number:'.2-2'}}</dd>
+
+        <dt class="col-md-2">Next Due Installment</dt>
+        <dd class="col-md-1">{{custService.srviceCustModel.lbln_due_i}}</dd>
+
+        <dt class="col-md-2">Next Due Vat</dt>
+        <dd class="col-md-1">{{custService.srviceCustModel.lbln_due_v}}</dd>
+
+        <dt class="col-md-2">ค่างวดครบกำหนด</dt>
+        <dd class="col-md-1">{{custService.srviceCustModel.lbln_due_v}}</dd>
+
+        <dt class="col-md-2">VAT ครบกำหนด</dt>
+        <dd class="col-md-1">{{custService.srviceCustModel.lbln_due_v}}</dd>
+      </dl>
+
+      <dl class="row">
+        <dt class="col-md-2">Insurance Expired</dt>
+        <dd class="col-md-1">{{custService.srviceCustModel.ds_ins.lblins_exp || '...'}}</dd>
+
+        <dt class="col-md-2">Compulsory Expired</dt>
+        <dd class="col-md-1">{{custService.srviceCustModel.ds_ins.lblcom_exp || '...'}}</dd>
+
+        <dt class="col-md-2">ค่าเบี้ยประกันภัยค้างชำระ</dt>
+        <dd class="col-md-1">{{custService.srviceCustModel.ds_ins.lblsum_ins_pastdue | number:'.2-2'}}</dd>
+
+        <dt class="col-md-2">ค่าทะเบียน</dt>
+        <dd class="col-md-1">{{asset.lblReg_Amt_I_Service}}</dd>
+
+        <dt class="col-md-2">License Expired</dt>
+        <dd class="col-md-1">{{asset.lblReg_Exp2 || '...'}}</dd>
+
+        <dt class="col-md-2">ค่างวดครบกำหนด</dt>
+        <dd class="col-md-1">{{custService.srviceCustModel.lbln_due_v}}</dd>
+
+        <dt class="col-md-2">License No.</dt>
+        <dd class="col-md-4">{{asset.lblLicense}}</dd>
+      </dl>
+
+      <dl class="row">
+        <!--<dt class="col-md-2">Collector</dt>-->
+        <!--<dd class="col-md-1">{{custService.srviceCustModel.collector}}</dd>-->
+
+        <dt class="col-md-2">ผู้ค้ำ</dt>
+        <dd class="col-md-10">{{guar_name1 || '...'}}</dd>
+
+        <!--<dt class="col-md-2">Related Contact</dt>-->
+        <!--<dd class="col-md-1">5</dd>-->
+
+        <!--<dt class="col-md-2">PDC</dt>-->
+        <!--<dd class="col-md-1">10</dd>-->
+      </dl>
+
+      <!--<div class="card border-light">-->
+        <!--<div class="card-body">-->
+          <!--<div class="card-text">-->
+            <!--<dl class="row">-->
+              <!--<dt class="col-md-2">Contract Date</dt>-->
+              <!--<dd class="col-md-1">{{custService.srviceCustModel.first}}</dd>-->
+
+              <!--<dt class="col-md-2">OS AR</dt>-->
+              <!--<dd class="col-md-1">{{custService.srviceCustModel.os_ar | number:'.2-2'}}</dd>-->
+
+              <!--<dt class="col-md-2">Payment Grading</dt>-->
+              <!--<dd class="col-md-1">...</dd>-->
+            <!--</dl>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="card border-info mb-1">-->
+        <!--<div class="card-body">-->
+          <!--<div class="row">-->
+            <!--<label class="col-md-2 col-form-label font-weight-bold">Contract Date</label>-->
+            <!--<label class="col-md-1 form-control-plaintext text-right" style="color: blue">{{custService.srviceCustModel.first}}</label>-->
+
+            <!--<label class="col-md-1 col-form-label font-weight-bold">OS AR</label>-->
+            <!--<label class="col-md-2 col-form-label text-right">{{custService.srviceCustModel.os_ar | number:'.2-2'}}</label>-->
+
+            <!--<label class="col-md-2 col-form-label font-weight-bold">Payment Grading</label>-->
+            <!--<label class="col-md-1 col-form-label text-right">A</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="card border-info mb-1">-->
+        <!--<div class="card-body">-->
+          <!--<div class="row">-->
+            <!--<label class="col-md-1 col-form-label font-weight-bold">Installment</label>-->
+            <!--<label-->
+              <!--class="col-md-2 col-form-label text-right">{{custService.srviceCustModel.installment_e_vat | number:'.2-2'}}</label>-->
+
+            <!--<label class="col-md-1 col-form-label font-weight-bold">Vat</label>-->
+            <!--<label class="col-md-2 col-form-label text-right">{{custService.srviceCustModel.vat | number:'.2-2'}}</label>-->
+
+            <!--<label class="col-md-2 col-form-label font-weight-bold">Installment Include Vat</label>-->
+            <!--<label-->
+              <!--class="col-md-1 col-form-label text-right">{{custService.srviceCustModel.installment_i_vat | number:'.2-2'}}</label>-->
+          <!--</div>-->
+          <!--<div class="row">-->
+            <!--<label class="col-md-2 col-form-label font-weight-bold">Next Due Installment</label>-->
+            <!--<label class="col-md-1 col-form-label text-right">{{custService.srviceCustModel.lbln_due_i}}</label>-->
+
+            <!--<label class="col-md-2 col-form-label font-weight-bold">Next Due Vat</label>-->
+            <!--<label class="col-md-1 col-form-label text-right">{{custService.srviceCustModel.lbln_due_v}}</label>-->
+
+            <!--<label class="col-md-2 col-form-label font-weight-bold">ค่างวดครบกำหนด</label>-->
+            <!--<label class="col-md-1 col-form-label text-right">{{custService.srviceCustModel.lbln_due_v}}</label>-->
+
+            <!--<label class="col-md-2 col-form-label font-weight-bold">VAT ครบกำหนด</label>-->
+            <!--<label class="col-md-1 col-form-label text-right">{{custService.srviceCustModel.lbln_due_v}}</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="card border-info mb-1">-->
+        <!--<div class="card-body">-->
+          <!--<div class="row">-->
+            <!--<label class="col-md-2 col-form-label font-weight-bold">Insurance Expired</label>-->
+            <!--&lt;!&ndash;<label class="col-md-1 form-control-plaintext text-right">{{custService.srviceCustModel.ds_ins.lblins_exp}}</label>&ndash;&gt;-->
+            <!--<label class="col-md-1 form-control-plaintext text-right">{{custService.srviceCustModel.ds_ins.lblins_exp}}</label>-->
+
+            <!--<label class="col-md-2 col-form-label font-weight-bold">Compulsory Expired</label>-->
+            <!--&lt;!&ndash;<label class="col-md-1 col-form-label text-right">{{custService.srviceCustModel.ds_ins.lblcom_exp}}</label>&ndash;&gt;-->
+            <!--<label class="col-md-1 col-form-label text-right">{{custService.srviceCustModel.ds_ins.lblcom_exp}}</label>-->
+
+            <!--<label class="col-md-2 col-form-label font-weight-bold">ค่าเบี้ยประกันภัยค้างชำระ</label>-->
+            <!--&lt;!&ndash;<label class="col-md-1 col-form-label text-right">{{custService.srviceCustModel.ds_ins.lblsum_ins_pastdue}}</label>&ndash;&gt;-->
+            <!--<label class="col-md-1 col-form-label text-right">{{custService.srviceCustModel.ds_ins.lblsum_ins_pastdue | number:'.2-2'}}</label>-->
+
+            <!--<label class="col-md-2 col-form-label font-weight-bold">ค่าทะเบียน</label>-->
+            <!--<label class="col-md-1 col-form-label text-right">{{asset.lblReg_Amt_I_Service}}</label>-->
+          <!--</div>-->
+          <!--<div class="row">-->
+            <!--<label class="col-md-2 col-form-label font-weight-bold">License Expired</label>-->
+            <!--<label class="col-md-1 col-form-label text-right">{{asset.lblReg_Exp2}}</label>-->
+
+            <!--<label class="col-md-1 col-form-label font-weight-bold">License No.</label>-->
+            <!--<label class="col-md-2 col-form-label text-right">{{asset.lblLicense}}</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="card border-info mb-1">-->
+        <!--<div class="card-body">-->
+          <!--<div class="row">-->
+            <!--<label class="col-md-1 col-form-label font-weight-bold">Collector</label>-->
+            <!--<label class="col-md-2 form-control-plaintext text-right">{{custService.srviceCustModel.collector}} :-->
+              <!--{{custService.srviceCustModel.lblcollector_name}}</label>-->
+
+            <!--<label class="col-md-1 col-form-label font-weight-bold">ผู้ค้ำ</label>-->
+            <!--<label class="col-md-2 col-form-label text-right">{{custService.srviceCustModel.lblcust_name}}</label>-->
+          <!--</div>-->
+          <!--<div class="row">-->
+            <!--<label class="col-md-2 col-form-label font-weight-bold" style="cursor:pointer"><u>Related-->
+              <!--Contact</u></label>-->
+            <!--<label class="col-md-1 col-form-label text-right">5</label>-->
+
+            <!--<label class="col-md-1 col-form-label font-weight-bold" style="cursor:pointer"><u>PDC</u></label>-->
+            <!--<label class="col-md-2 col-form-label text-right">10</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-row">-->
+      <!--<div class="form-group col-md-2">-->
+      <!--<label class="col-form-label">Contract Date</label>-->
+      <!--<input type="text" class="form-control" [value]="custService.srviceCustModel.first" readonly>-->
+      <!--</div>-->
+      <!--<div class="form-group col-md-2">-->
+      <!--<label class="col-form-label">OS AR</label>-->
+      <!--<input type="text" class="form-control" [value]="custService.srviceCustModel.os_ar" readonly>-->
+      <!--</div>-->
+      <!--<div class="form-group col-md-2">-->
+      <!--<label class="col-form-label">Payment Grading</label>-->
+      <!--<input type="text" class="form-control" [value]="custService.srviceCustModel.lblpayment_grading" readonly>-->
+      <!--</div>-->
+      <!--</div>-->
+
+
+
+
+      <!--<div class="form-row">-->
+      <!--<div class="form-group col-md-2">-->
+      <!--<label class="col-form-label">Installment</label>-->
+      <!--<input type="text" class="form-control" [value]="custService.srviceCustModel.installment_e_vat" readonly>-->
+      <!--</div>-->
+      <!--<div class="form-group col-md-2">-->
+      <!--<label class="col-form-label">Installment Include Vat</label>-->
+      <!--<input type="text" class="form-control" [value]="installment_i_vat()" readonly>-->
+      <!--</div>-->
+      <!--<div class="form-group col-md-2">-->
+      <!--<label class="col-form-label">Vat</label>-->
+      <!--<input type="text" class="form-control" [value]="custService.srviceCustModel.vat" readonly>-->
+      <!--</div>-->
+      <!--<div class="form-group col-md-2">-->
+      <!--<label class="col-form-label">Next Due Installment</label>-->
+      <!--<input type="text" class="form-control" [value]="custService.srviceCustModel.lbln_due_i" readonly>-->
+      <!--</div>-->
+      <!--<div class="form-group col-md-2">-->
+      <!--<label class="col-form-label">Next Due Vat</label>-->
+      <!--<input type="text" class="form-control"-->
+      <!--[value]="custService.srviceCustModel.lbln_vat+'  '+custService.srviceCustModel.lbln_due_v"-->
+      <!--readonly>-->
+      <!--</div>-->
+      <!--<div class="form-group col-md-2">-->
+      <!--<label class="col-form-label">ค่างวดครบกำหนด</label>-->
+      <!--<input type="text" class="form-control" value="A" readonly>-->
+      <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="form-row">-->
+      <!--<div class="form-group col-md-2">-->
+      <!--<label class="col-form-label">VAT ครบกำหนด</label>-->
+      <!--<input type="text" class="form-control" value="10 : 04/12/2017" readonly>-->
+      <!--</div>-->
+      <!--<div class="form-group col-md-2">-->
+      <!--<label class="col-form-label">Insurance Expired</label>-->
+      <!--<input type="text" class="form-control" [value]="custService.srviceCustModel.ds_ins.lblins_exp" readonly>-->
+      <!--</div>-->
+      <!--<div class="form-group col-md-2">-->
+      <!--<label class="col-form-label">Compulsory Expired</label>-->
+      <!--<input type="text" class="form-control" [value]="custService.srviceCustModel.ds_ins.lblcom_exp" readonly>-->
+      <!--</div>-->
+      <!--<div class="form-group col-md-2">-->
+      <!--<label class="col-form-label">ค่าเบี้ยประกันภัยค้างชำระ</label>-->
+      <!--<input type="text" class="form-control" [value]="custService.srviceCustModel.ds_ins.lblsum_ins_pastdue"-->
+      <!--readonly>-->
+      <!--</div>-->
+      <!--<div class="form-group col-md-2">-->
+      <!--<label class="col-form-label">ค่าทะเบียน</label>-->
+      <!--<input type="text" class="form-control" value="9,974.00" readonly>-->
+      <!--</div>-->
+      <!--<div class="form-group col-md-2">-->
+      <!--<label class="col-form-label">License Expired</label>-->
+      <!--<input type="text" class="form-control" value="04/12/2017" readonly>-->
+      <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="form-row">-->
+      <!--<div class="form-group col-md-2">-->
+      <!--<label class="col-form-label">License No.</label>-->
+      <!--<input type="text" class="form-control" value="4กต 56 กรุงเทพมหานคร" readonly>-->
+      <!--</div>-->
+      <!--<div class="form-group col-md-2">-->
+      <!--<label class="col-form-label"><a style="cursor: pointer; text-decoration: underline">Related-->
+      <!--Contact</a></label>-->
+      <!--<input type="text" class="form-control" value="1" readonly>-->
+      <!--</div>-->
+      <!--<div class="form-group col-md-2">-->
+      <!--<label class="col-form-label"><a style="cursor: pointer; text-decoration: underline">PDC</a></label>-->
+      <!--<input type="text" class="form-control" value="1" readonly>-->
+      <!--</div>-->
+      <!--<div class="form-group col-md-4">-->
+      <!--<label class="col-form-label">Collector</label>-->
+      <!--<input type="text" class="form-control"-->
+      <!--[value]="custService.srviceCustModel.collector + ' : ' + custService.srviceCustModel.lblcollector_name"-->
+      <!--readonly>-->
+      <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="form-row">-->
+      <!--<div class="form-group col-md-4">-->
+      <!--<label class="col-form-label">ลูกค้า</label>-->
+      <!--<input type="text" class="form-control" [value]="custService.srviceCustModel.lblcust_name" readonly>-->
+      <!--</div>-->
+      <!--<div class="form-group col-md-4">-->
+      <!--<label class="col-form-label">ผู้ค้ำ</label>-->
+      <!--<input type="text" class="form-control" value="นาย1XZ13WILUR VKILHC2A3H" readonly>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</form>-->
+    </p-panel>
+  </div>
+  <div class="m-1 border-isa">
+    <!--Side Bar-->
+    <!--<app-side-tab-level [nameMenu]="'Update'" -->
+    <!--(onMenuClick)="getSelectedMenu($event,'update')"></app-side-tab-level>-->
+    <app-side-tab [defaultMenuName]="'สัญญา'">
+      <app-side-tab-panel [scrollable]="true">
+        <app-side-tab-level [nameMenu]="'ข้อมูลสัญญา'">
+          <app-side-tab-level [nameMenu]="'สัญญา'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'ทรัพย์สิน'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'ยอดคงเหลือ'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'ตารางค่างวด'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'ข้อมูลลูกค้า'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'ข้อมูลผู้ค้ำ'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'ผู้ชำระเงินแทน'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'ประวัติการโอนสัญญา'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Follow Up'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+        </app-side-tab-level>
+        <app-side-tab-level [nameMenu]="'รายการรับชำระ'">
+          <app-side-tab-level [nameMenu]="'Paid Installment'"
+                              (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Paid Vat'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Paid Legal'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Paid Other'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+        </app-side-tab-level>
+        <app-side-tab-level [nameMenu]="'รายการค้างชำระ'">
+          <app-side-tab-level [nameMenu]="'Overdue Installment'"
+                              (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Overdue Vat'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Penalty'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+        </app-side-tab-level>
+        <app-side-tab-level [nameMenu]="'ประกันภัย'">
+          <app-side-tab-level [nameMenu]="'Insurance'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Paid Insurance'"
+                              (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+        </app-side-tab-level>
+        <app-side-tab-level [nameMenu]="'ภาษีรถยนต์'">
+          <app-side-tab-level [nameMenu]="'ประวัติภาษีรถยนต์'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'ชำระภาษีรถยนต์'"
+                              (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'สถานะเล่มทะเบียน'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'ประวัติเบิก-เคลียร์เงิน'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Other Expense'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'ประวัติระงับทะเบียน'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'ค่าโอนทะเบียนรถยนต์'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+        </app-side-tab-level>
+        <app-side-tab-level [nameMenu]="'อื่น ๆ'">
+          <app-side-tab-level [nameMenu]="'ข้อมูล Dealer'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Cheque'" (onMenuClick)="getSelectedMenu($event)"></app-side-tab-level>
+        </app-side-tab-level>
+      </app-side-tab-panel>
+
+      <app-side-tab-main>
+        <!--==================== ข้อมูลสัญญา =========================-->
+        <app-side-tab-content [nameContent]="'สัญญา'">
+          <app-ccs-finance [(list_Custmodel)]="custService.srviceCustModel"></app-ccs-finance>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'ทรัพย์สิน'">
+          <app-ccs-movement-master></app-ccs-movement-master>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'ยอดคงเหลือ'">
+          <app-ccs-os-balance></app-ccs-os-balance>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'ตารางค่างวด'">
+          <app-ccs-repayment></app-ccs-repayment>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'ข้อมูลลูกค้า'">
+          <app-address></app-address>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'ข้อมูลผู้ค้ำ'">
+          <app-ccs-guarantor></app-ccs-guarantor>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'ผู้ชำระเงินแทน'">
+          <app-ccs-payer></app-ccs-payer>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'ประวัติการโอนสัญญา'">
+          <app-transfer></app-transfer>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Follow Up'">
+          <app-ccs-movement-followup [(list_follow_up)]="custService.srviceCustModel.list_cdsfollow_up"
+                                     [qryGuarantor]="custService.srviceCustModel.list_qryGuarantor"
+                                     [list_follow_refer_prsn]="custService.srviceCustModel.list_cdsfol_to_referfolprsn"
+                                     [list_follow_payerinstead]="custService.srviceCustModel.list_cdsfol_to_payerinstead"></app-ccs-movement-followup>
+        </app-side-tab-content>
+        <!--=========================================================-->
+
+        <!--================== รายการรับชำระ ======================-->
+        <app-side-tab-content [nameContent]="'Paid Installment'">
+          <app-ccs-paid-installment></app-ccs-paid-installment>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Paid Vat'">
+          <app-ccs-paid-vat></app-ccs-paid-vat>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Paid Legal'">
+          <app-ccs-paid-legal></app-ccs-paid-legal>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Paid Other'">
+          <app-ccs-paid-other></app-ccs-paid-other>
+        </app-side-tab-content>
+        <!--=========================================================-->
+
+        <!--================== รายการค้างชำระ ======================-->
+        <app-side-tab-content [nameContent]="'Overdue Installment'">
+          <app-ccs-overdue-ins></app-ccs-overdue-ins>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Overdue Vat'">
+          <app-ccs-overdue-vat></app-ccs-overdue-vat>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Penalty'">
+          <app-ccs-penalty></app-ccs-penalty>
+        </app-side-tab-content>
+        <!--=========================================================-->
+
+        <!--================== ประกันภัย ======================-->
+        <app-side-tab-content [nameContent]="'Insurance'">
+          <app-ccs-insurance></app-ccs-insurance>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Paid Insurance'">
+          <app-ccs-paid-insurance></app-ccs-paid-insurance>
+        </app-side-tab-content>
+        <!--=========================================================-->
+
+        <!--================== ภาษีรถยนต์ ======================-->
+        <app-side-tab-content [nameContent]="'ประวัติภาษีรถยนต์'">
+          <app-ccs-vat-car-hist></app-ccs-vat-car-hist>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'ชำระภาษีรถยนต์'">
+          <app-ccs-paid-reg></app-ccs-paid-reg>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'สถานะเล่มทะเบียน'">
+          <app-ccs-movement-regbook></app-ccs-movement-regbook>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'ประวัติเบิก-เคลียร์เงิน'">
+          <app-clr-regis-hist></app-clr-regis-hist>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Other Expense'">
+          <app-ccs-expense></app-ccs-expense>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'ประวัติระงับทะเบียน'">
+          <app-ccs-regsuspend-hist></app-ccs-regsuspend-hist>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'ค่าโอนทะเบียนรถยนต์'">
+          <app-ccs-transfer-regis></app-ccs-transfer-regis>
+        </app-side-tab-content>
+        <!--=========================================================-->
+
+        <!--================== ภาษีรถยนต์ ======================-->
+        <app-side-tab-content [nameContent]="'ข้อมูล Dealer'">
+          <app-ccs-dealer></app-ccs-dealer>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Cheque'">
+          <app-ccs-cheque-pdc></app-ccs-cheque-pdc>
+        </app-side-tab-content>
+        <!--=========================================================-->
+
+      </app-side-tab-main>
+    </app-side-tab>
+
+  </div>
+</div>

@@ -1,0 +1,161 @@
+<div class="flex-row p-3 border-isa">
+  <div class="row form-group">
+    <div class="col-md-3">
+      <label>เลขที่สัญญา</label>
+      <input class="form-control" type="text">
+    </div>
+    <div class="col-md-6">
+      <label>ชื่อลูกค้า</label>
+      <input class="form-control" type="text">
+    </div>
+    <div class="col-md-3">
+      <label>Type</label>
+      <input class="form-control" type="text">
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-md-3">
+      <label>As of</label>
+      <input class="form-control" type="text">
+    </div>
+    <div class="col-md-6">
+      <label>ผู้บันทึก</label>
+      <input class="form-control" type="text">
+    </div>
+    <div class="col-md-3">
+      <label>วันที่บันทึก</label>
+      <br><p-calendar  dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"></p-calendar>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-md-3">
+      <label>Advance Installment Term</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>OS Principal Amount</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>Paid Term</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>Interest</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-md-3">
+      <label>Paid Amount</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>Fact. Fee</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>Overdue Installment Term</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>Follow up debt - PLS & Charge</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-md-3">
+      <label>Overdue Installment Amount</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>Expense Advance</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>OS Principal Term</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>เงินรับฝาก</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-md-3">
+      <label>Legal Expense</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>Other Expense</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+  </div>
+  <hr>
+  <div class="row form-group">
+    <div class="col-md-3 offset-9">
+      <label>Request Follow up debt - PLS & Charge</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+  </div>
+  <hr>
+  <div class="row form-group">
+    <div class="col-md-3 offset-9">
+      <label>Total Payment Amount</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+  </div>
+</div>
+<div class="border-isa">
+  <p-dataTable [value]="data" [rows]="20">
+    <p-headerColumnGroup>
+      <p-row>
+        <p-column header="Type"></p-column>
+        <p-column header="วันที่ดำเนินการ"></p-column>
+        <p-column header="As of"></p-column>
+        <p-column header="ผู้บันทึก"></p-column>
+        <p-column header="ยอดชำระรวม"></p-column>
+        <p-column header="เงินรับฝาก"></p-column>
+      </p-row>
+    </p-headerColumnGroup>
+    <p-column field="1"></p-column>
+    <p-column field="2"></p-column>
+    <p-column field="3"></p-column>
+    <p-column field="4"></p-column>
+    <p-column field="5"></p-column>
+    <p-column field="6"></p-column>
+  </p-dataTable>
+</div>
+

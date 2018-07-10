@@ -1,0 +1,32 @@
+<div class="border-isa">
+  <p-dataTable [value]="data" [rows]="20" [responsive]="true">
+    <p-headerColumnGroup>
+      <p-row>
+        <p-column header="Batch Date"></p-column>
+        <p-column header="Date Paid"></p-column>
+        <p-column header="Paid Amount"></p-column>
+        <p-column header="Paid Type"></p-column>
+        <p-column header="Status"></p-column>
+        <p-column header="Installment"></p-column>
+        <p-column header="Registration"></p-column>
+        <p-column header="Insurance"></p-column>
+        <p-column header="Legal"></p-column>
+        <p-column header="Other"></p-column>
+        <p-column header="Discount/WH Tax"></p-column>
+        <p-column header="Remark"></p-column>
+      </p-row>
+    </p-headerColumnGroup>
+    <p-column field="batch_date"></p-column>
+    <p-column field="receipt_date"></p-column>
+    <p-column field="paid_amt"></p-column>
+    <p-column field="paid_type"></p-column>
+    <p-column field="status"></p-column>
+    <p-column field="installment"></p-column>
+    <p-column field="registration"></p-column>
+    <p-column field="insurance"></p-column>
+    <p-column field="legal"></p-column>
+    <p-column field="other"></p-column>
+    <p-column field="dis_ws"></p-column>
+    <p-column field="remark"></p-column>
+  </p-dataTable>
+</div>

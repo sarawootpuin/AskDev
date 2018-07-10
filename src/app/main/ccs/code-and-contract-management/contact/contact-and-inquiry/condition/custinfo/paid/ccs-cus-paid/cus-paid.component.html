@@ -1,0 +1,60 @@
+<div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+  <p-dataTable [value]="custService.srviceCustModel.list_cdscust_paid">
+    <p-headerColumnGroup>
+      <p-row>
+        <p-column header="Batch Date"></p-column>
+        <p-column header="Date Paid"></p-column>
+        <p-column header="Paid Amount"></p-column>
+        <p-column header="Paid Type"></p-column>
+        <p-column header="Status"></p-column>
+        <p-column header="Installment"></p-column>
+        <p-column header="Registration"></p-column>
+        <p-column header="Insurance"></p-column>
+        <p-column header="Legal"></p-column>
+        <p-column header="Other"></p-column>
+        <p-column header="Discount/WH Tax"></p-column>
+        <p-column header="Remark"></p-column>
+      </p-row>
+    </p-headerColumnGroup>
+    <p-column field="batch_d"></p-column>
+    <p-column field="date_pay"></p-column>
+    <p-column field="amount">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="type_of_payment"></p-column>
+    <p-column field="status_code"></p-column>
+    <p-column field="inst_amt">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="reg_amt">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="ins_amt">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="legal_amt">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="other_amt">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="discount_amt">
+      <ng-template let-col let-row="rowData" pTemplate="body">
+        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="remark"></p-column>
+  </p-dataTable>
+</div>

@@ -1,0 +1,240 @@
+<p-panel [toggleable]="true" [collapsed]="false">
+  <p-header>
+    <!--<div style="font-weight: bold; display: inline-block">-->
+    Current
+    <!--</div>-->
+  </p-header>
+  <form>
+    <!--ที่อยู่-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">ที่อยู่ <span style="color: red">*</span></label>
+      <div class="col-md-7">
+        <input type="text" class="form-control" value="">
+      </div>
+    </div>
+
+    <!--รหัสที่อยู่-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">รหัสที่อยู่ <span style="color: red">*</span></label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" value="123456" readonly>
+      </div>
+      <label class="col-form-label">-</label>
+      <div class="col-md-5">
+        <input type="text" class="form-control" value="" readonly>
+      </div>
+      <!--<app-search-un></app-search-un>-->
+    </div>
+
+    <!--รหัสไปรษณีย์-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">รหัสไปรษณีย์</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" value="41130">
+      </div>
+      <div class="col-md-1"></div>
+      <label class="col-md-2 col-form-label">สถานที่ใกล้เคียง</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" value="">
+      </div>
+    </div>
+
+    <!--โทรศัพท์-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">โทรศัพท์</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" value="">
+      </div>
+      <div class="col-md-1"></div>
+      <label class="col-md-2 col-form-label">โทรสาร</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" value="">
+      </div>
+    </div>
+  </form>
+</p-panel>
+
+<br>
+
+<p-panel [toggleable]="true" [collapsed]="false">
+  <p-header>
+    <!--<div style="font-weight: bold; display: inline-block">-->
+    Card
+    <!--</div>-->
+  </p-header>
+  <form>
+    <!--ที่อยู่-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">ที่อยู่</label>
+      <div class="col-md-6">
+        <input type="text" class="form-control" value="">
+      </div>
+    </div>
+
+    <!--รหัสที่อยู่-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">รหัสที่อยู่</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" value="123456" readonly>
+      </div>
+      <label class="col-form-label">-</label>
+      <div class="col-md-4">
+        <input type="text" class="form-control" value="" readonly>
+      </div>
+      <!--<app-search-un></app-search-un> &emsp;-->
+      <app-custom-button [option]="'process'" [title]="'Duplicate Address From Current'"></app-custom-button>
+    </div>
+
+    <!--รหัสไปรษณีย์-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">รหัสไปรษณีย์</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" value="41130">
+      </div>
+      <div class="col-md-1"></div>
+      <label class="col-md-2 col-form-label">โทรศัพท์</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" value="">
+      </div>
+    </div>
+
+  </form>
+</p-panel>
+
+<br>
+
+<p-panel [toggleable]="true" [collapsed]="false">
+  <p-header>
+    <!--<div style="font-weight: bold; display: inline-block">-->
+    Office
+    <!--</div>-->
+  </p-header>
+  <form>
+    <!--ที่อยู่-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">ที่อยู่</label>
+      <div class="col-md-6">
+        <input type="text" class="form-control" value="">
+      </div>
+    </div>
+
+    <!--รหัสที่อยู่-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">รหัสที่อยู่ </label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" value="123456" readonly>
+      </div>
+      <label class="col-form-label">-</label>
+      <div class="col-md-4">
+        <input type="text" class="form-control" value="" readonly>
+      </div>
+      <!--<app-search-un></app-search-un> &emsp;-->
+      <app-custom-button [option]="'process'" [title]="'Duplicate Address From Current'"></app-custom-button>
+    </div>
+
+    <!--รหัสไปรษณีย์-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">รหัสไปรษณีย์</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" value="41130">
+      </div>
+      <div class="col-md-1"></div>
+      <label class="col-md-2 col-form-label">สถานที่ใกล้เคียง</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" value="">
+      </div>
+    </div>
+
+    <!--โทรศัพท์ที่ทำงาน-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">โทรศัพท์ที่ทำงาน</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" value="">
+      </div>
+      <div class="col-md-1"></div>
+      <label class="col-md-2 col-form-label">โทรสาร</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" value="">
+      </div>
+    </div>
+  </form>
+</p-panel>
+
+<br>
+
+<p-panel [toggleable]="true" [collapsed]="false">
+  <p-header>
+    <!--<div style="font-weight: bold; display: inline-block">-->
+    Mail
+    <!--</div>-->
+  </p-header>
+  <form>
+    <!--ที่อยู่-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">ที่อยู่</label>
+      <div class="col-md-6">
+        <input type="text" class="form-control" value="">
+      </div>
+    </div>
+
+    <!--รหัสที่อยู่-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">รหัสที่อยู่ </label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" value="123456" readonly>
+      </div>
+      <label class="col-form-label">-</label>
+      <div class="col-md-4">
+        <input type="text" class="form-control" value="" readonly>
+      </div>
+      <!--<app-search-un></app-search-un> &emsp;-->
+      <app-custom-button [option]="'process'" [title]="'Duplicate Address From Current'"></app-custom-button>
+    </div>
+
+    <!--รหัสไปรษณีย์-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">รหัสไปรษณีย์</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" value="41130">
+      </div>
+    </div>
+  </form>
+</p-panel>
+
+<br>
+
+<p-panel [toggleable]="true" [collapsed]="false">
+  <p-header>
+    <!--<div style="font-weight: bold; display: inline-block">-->
+    Telephone
+    <!--</div>-->
+  </p-header>
+  <form>
+    <!--โทรศัพท์มือถือ-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">โทรศัพท์มือถือ</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" value="">
+      </div>
+      <label class="col-md-2 col-form-label">Email Address</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" value="">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-2"></div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" value="">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-2"></div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" value="">
+      </div>
+    </div>
+
+  </form>
+</p-panel>

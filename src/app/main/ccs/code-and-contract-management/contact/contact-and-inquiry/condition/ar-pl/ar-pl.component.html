@@ -1,0 +1,300 @@
+<div class="" style="background-color: #FFF">
+  <app-action-button-form title="AR PL"
+                          [showBack]="false"
+                          [showSearch]="false" [showNew]="false"
+                          [showEdit]="false" [showCalculator]="false"
+                          [showCancel]="false"
+  ></app-action-button-form>
+  <div class="modal-body m-1 border-isa">
+    <p-panel [toggleable]="true" header="Customer Information (CL)">
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label class="col-form-label">Agreement</label>
+          <input type="text" class="form-control" value="10-6000001" readonly>
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label">Reference Code</label>
+          <input type="text" class="form-control" value="105912H00248" readonly>
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label">Status Code</label>
+          <input type="text" class="form-control" value="00" readonly>
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label">Contract Date</label>
+          <input type="text" class="form-control" value="04/01/2017" readonly>
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label"><a style="cursor: pointer; text-decoration: underline">Related
+            Contact</a></label>
+          <input type="text" class="form-control" value="1" readonly>
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label"><a style="cursor: pointer; text-decoration: underline">PDC</a></label>
+          <input type="text" class="form-control" value="1" readonly>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label class="col-form-label">Term</label>
+          <input type="text" class="form-control" readonly>
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label">Installment</label>
+          <input type="text" class="form-control" readonly>
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label">Next Due Installment</label>
+          <input type="text" class="form-control" readonly>
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label">ค่างวดครบกำหนด</label>
+          <input type="text" class="form-control" readonly>
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label">OS PRI</label>
+          <input type="text" class="form-control" value="1,234,567.89" readonly>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label class="col-form-label">Insurance Expired</label>
+          <input type="text" class="form-control" value="04/12/2017" readonly>
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label">Compulsory Expired</label>
+          <input type="text" class="form-control" value="04/12/2017" readonly>
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label">ค่าเบี้ยประกันภัยค้างชำระ</label>
+          <input type="text" class="form-control" value="0.00" readonly>
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label">License Expired</label>
+          <input type="text" class="form-control" value="04/12/2017" readonly>
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label">License No.</label>
+          <input type="text" class="form-control" value="4กต 56 กรุงเทพมหานคร" readonly>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label class="col-form-label">ลูกค้า</label>
+          <input type="text" class="form-control" value="นายQ5B5AYIR2W 49IGNWYM3Z" readonly>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="col-form-label">ผู้ค้ำ</label>
+          <input type="text" class="form-control" value="นาย1XZ13WILUR VKILHC2A3H" readonly>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6">
+          <label class="col-form-label">Collector</label>
+          <input type="text" class="form-control" value="1B3 : Q5B5AYIR2W VKILHC2A3H" readonly>
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label">ค่าทะเบียน</label>
+          <input type="text" class="form-control" value="9,974.00" readonly>
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label">สถานะเล่ม</label>
+          <input type="text" class="form-control" value="9,974.00" readonly>
+        </div>
+      </div>
+    </p-panel>
+  </div>
+  <div class="m-1 border-isa">
+    <app-side-tab [defaultMenuName]="'Update'">
+      <app-side-tab-panel [scrollable]="true">
+        <app-side-tab-level [nameMenu]="'Collection'">
+          <app-side-tab-level [nameMenu]="'Update'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Close Account'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'คำนวนค่าต่อภาษี'">
+          </app-side-tab-level>
+        </app-side-tab-level>
+        <app-side-tab-level [nameMenu]="'Paid'">
+          <app-side-tab-level [nameMenu]="'Customer Paid'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Paid Installment'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Paid Register'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Paid Insurance'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Paid Installment ( คิดงวดจากเงินต้น )'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Paid Legal'">
+          </app-side-tab-level>
+
+        </app-side-tab-level>
+        <app-side-tab-level [nameMenu]="'Overdue'">
+          <app-side-tab-level [nameMenu]="'Overdue Installment'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Penalty'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Direct Debit charge'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Extra Charge'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Expense'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Status / Legal / Reposses Charge'">
+          </app-side-tab-level>
+        </app-side-tab-level>
+        <app-side-tab-level [nameMenu]="'Contract Detail'">
+          <app-side-tab-level [nameMenu]="'Follow Up'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Movement Of Registration Book'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Movement of Deposit'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Asset And Guarantor'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Repayment'">
+          </app-side-tab-level>
+        </app-side-tab-level>
+        <app-side-tab-level [nameMenu]="'Other'">
+          <app-side-tab-level [nameMenu]="'Address'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Insurance'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'สินเชื่อรวม'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'PDC'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'ผู้ชำระแทน'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Guarantor'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Direct Debit'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'สินเชื่อ'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Waive / Discount'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Cheque Return'">
+          </app-side-tab-level>
+
+          <app-side-tab-level [nameMenu]="'ชำระบางส่วน'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'ประวัติการส่งยอดเรียกเก็บเงิน'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'ข้อมูลการประสบภัยพิบัติ'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'ผู้มีชื่อให้ทวงถามหนี้ได้'">
+          </app-side-tab-level>
+        </app-side-tab-level>
+      </app-side-tab-panel>
+
+      <app-side-tab-main>
+          <app-side-tab-content [nameContent]="'Update'">
+            <app-arpl-update></app-arpl-update>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Close Account'">
+            <app-arpl-close-account></app-arpl-close-account>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'คำนวนค่าต่อภาษี'">
+            <app-arpl-tax-cal></app-arpl-tax-cal>
+          </app-side-tab-content>
+
+
+          <app-side-tab-content [nameContent]="'Customer Paid'">
+            <app-arpl-cus-paid></app-arpl-cus-paid>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Paid Installment'">
+            <app-arpl-paid-inst></app-arpl-paid-inst>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Paid Register'">
+            <app-arpl-paid-reg></app-arpl-paid-reg>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Paid Installment ( คิดงวดจากเงินต้น )'">
+            <app-arpl-paid-inst2></app-arpl-paid-inst2>
+          </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Paid Legal'">
+          <app-arpl-paid-legal></app-arpl-paid-legal>
+        </app-side-tab-content>
+
+          <app-side-tab-content [nameContent]="'Overdue Installment'">
+            <app-arpl-overdue-inst></app-arpl-overdue-inst>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Penalty'">
+            <app-arpl-penalty></app-arpl-penalty>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Direct Debit charge'">
+            <app-arpl-direct-debit-charge></app-arpl-direct-debit-charge>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Extra Charge'">
+            <app-arpl-extra-charge></app-arpl-extra-charge>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Expense'">
+            <app-arpl-expense></app-arpl-expense>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Follow Up'">
+            <app-arpl-followup></app-arpl-followup>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Movement Of Registration Book'">
+            <app-arpl-movement-reg></app-arpl-movement-reg>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Movement of Deposit'">
+            <app-arpl-movement-deposit></app-arpl-movement-deposit>
+          </app-side-tab-content>
+          <app-side-tab-content [nameContent]="'Asset And Guarantor'">
+            <app-arpl-asset-and-guar></app-arpl-asset-and-guar>
+          </app-side-tab-content>
+
+        <app-side-tab-content [nameContent]="'Repayment'">
+          <app-arpl-repayment></app-arpl-repayment>
+        </app-side-tab-content>
+
+        <app-side-tab-content [nameContent]="'Address'">
+          <app-arpl-addr></app-arpl-addr>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Insurance'">
+          <app-arpl-insurance></app-arpl-insurance>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'สินเชื่อรวม'">
+          <app-arpl-total-loan></app-arpl-total-loan>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'PDC'">
+          <app-arpl-pdc></app-arpl-pdc>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'ผู้ชำระแทน'">
+          <app-arpl-payer></app-arpl-payer>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Guarantor'">
+          <app-arpl-guar></app-arpl-guar>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Direct Debit'">
+          <app-arpl-direct-debit></app-arpl-direct-debit>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'สินเชื่อ'">
+          <app-arpl-finance></app-arpl-finance>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Waive / Discount'">
+          <app-arpl-waive></app-arpl-waive>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Cheque Return'">
+          <app-arpl-cheque-return></app-arpl-cheque-return>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'Status / Legal / Reposses Charge'">
+          <app-arpl-reposses></app-arpl-reposses>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'ชำระบางส่วน'">
+          <app-arpl-paid-partial></app-arpl-paid-partial>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'ประวัติการส่งยอดเรียกเก็บเงิน'">
+          <app-arpl-history-collection></app-arpl-history-collection>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'ข้อมูลการประสบภัยพิบัติ'">
+          <app-arpl-disaster></app-arpl-disaster>
+        </app-side-tab-content>
+        <app-side-tab-content [nameContent]="'ผู้มีชื่อให้ทวงถามหนี้ได้'">
+          <app-arpl-refer-follow-person></app-arpl-refer-follow-person>
+        </app-side-tab-content>
+      </app-side-tab-main>
+    </app-side-tab>
+  </div>
+</div>

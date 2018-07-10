@@ -1,0 +1,54 @@
+<div class="border-isa">
+  <div class="flex-row p-3">
+    <div class="form-group row">
+      <div class="col-md-2 pt-2">
+        <label class="mt-4">Debt Extra Charge</label>
+      </div>
+      <div class="col-md-2 text-center">
+        <label>Total</label>
+        <input class="form-control" type="text">
+      </div>
+      <div class="col-md-2 text-center">
+        <label>Paid Amount</label>
+        <input class="form-control" type="text">
+      </div>
+      <div class="col-md-2 text-center">
+        <label>Waive Amount</label>
+        <input class="form-control" type="text">
+      </div>
+      <div class="col-md-2 text-center">
+        <label>Net Total</label>
+        <input class="form-control" type="text">
+      </div>
+    </div>
+  </div>
+  <div>
+    <p-dataTable [value]="data" [rows]="20">
+      <p-headerColumnGroup>
+        <p-row>
+          <p-column header="Direct/Undeducted Date"></p-column>
+          <p-column header="Due Date"></p-column>
+          <p-column header="Gen. Date"></p-column>
+          <p-column header="Amount"></p-column>
+          <p-column header="Account Name"></p-column>
+          <p-column header="Account Number"></p-column>
+          <p-column header="Bank Name"></p-column>
+          <p-column header="Branch"></p-column>
+          <p-column header="Charge Amt."></p-column>
+          <p-column header="Reason of cheque Return"></p-column>
+
+        </p-row>
+      </p-headerColumnGroup>
+      <p-column field="1"></p-column>
+      <p-column field="2" [style]="{'text-align':'right'}"></p-column>
+      <p-column field="3"></p-column>
+      <p-column field="4"></p-column>
+      <p-column field="5"></p-column>
+      <p-column field="6"></p-column>
+      <p-column field="7"></p-column>
+      <p-column field="8"></p-column>
+      <p-column field="9"></p-column>
+      <p-column field="10"></p-column>
+    </p-dataTable>
+  </div>
+</div>

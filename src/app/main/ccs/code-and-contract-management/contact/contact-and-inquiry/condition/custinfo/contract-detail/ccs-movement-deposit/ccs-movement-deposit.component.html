@@ -1,0 +1,72 @@
+<div class="flex-row p-3 border-isa">
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>ยอดคงเหลือ แผนกทั่วไป</label>
+      <input class="form-control" type="text" disabled>
+    </div>
+  </div>
+  <div class="flex-row p-3 border-isa">
+    <div class="form-group row">
+      <p-dataTable [value]="data" [rows]="20">
+        <p-header>
+          <div class="row pl-2">
+            <div class="col-md-6 form-inline ">
+              <input class="form-check-input" type="checkbox" value="1">
+              <label class="pl-1">Show All</label>
+            </div>
+            <div class="col-md-6 form-inline ">
+              <label class="pr-1">ใบรับฝากประเภท</label>
+              <select class="form-control">
+                <option></option>
+              </select>
+            </div>
+          </div>
+        </p-header>
+        <p-headerColumnGroup>
+          <p-row>
+            <p-column header="วันที่"></p-column>
+            <p-column header="เลขที่เอกสาร"></p-column>
+            <p-column header="ประเภทเงินรับฝาก"></p-column>
+            <p-column header="จำนวนเงิน"></p-column>
+            <p-column header="ยอดคงเหลือ"></p-column>
+          </p-row>
+        </p-headerColumnGroup>
+        <p-column field="1"></p-column>
+        <p-column field="2"></p-column>
+        <p-column field="3"></p-column>
+        <p-column field="4" [style]="{'text-align':'right'}"></p-column>
+        <p-column field="5" [style]="{'text-align':'right'}"></p-column>
+      </p-dataTable>
+    </div>
+  </div>
+  <br>
+  <div class="flex-row p-3 border-isa">
+    <div class="form-group row">
+      <p-dataTable [value]="data" [rows]="20">
+        <p-header>
+          <div class="row pl-2">
+            <div class="offset-4 col-md-6 form-inline ">
+              <label class="pl-1">ใบเบิก (จะขึ้นรายละเอียดต่อเมื่อมีการตัดเงิน)</label>
+            </div>
+          </div>
+        </p-header>
+        <p-headerColumnGroup>
+          <p-row>
+            <p-column header="วันที่"></p-column>
+            <p-column header="เลขที่เอกสาร"></p-column>
+            <p-column header="ใบรับฝากเลขที่"></p-column>
+            <p-column header="จำนวน"></p-column>
+            <p-column header="รายการชำระ"></p-column>
+            <p-column header="Input User"></p-column>
+          </p-row>
+        </p-headerColumnGroup>
+        <p-column field="1"></p-column>
+        <p-column field="2"></p-column>
+        <p-column field="3"></p-column>
+        <p-column field="4" [style]="{'text-align':'right'}"></p-column>
+        <p-column field="5"></p-column>
+        <p-column field="6"></p-column>
+      </p-dataTable>
+    </div>
+  </div>
+</div>

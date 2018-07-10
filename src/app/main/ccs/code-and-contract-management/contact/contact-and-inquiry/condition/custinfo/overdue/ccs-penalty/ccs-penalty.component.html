@@ -1,0 +1,107 @@
+<p-panel header="Penalty">
+  <dl class="row">
+    <dt class="col-md-3"></dt>
+    <dt class="col-md-1 text-center">Total</dt>
+    <dt class="col-md-1 text-center">Paid Amount</dt>
+    <dt class="col-md-1 text-center">Waive Amount</dt>
+    <dt class="col-md-1 text-center">Net Amount</dt>
+  </dl>
+
+  <dl class="row">
+    <dt class="col-md-3">Interest Charge Actually Incurred</dt>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpinterest_actual || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblppaid_interest || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpwaive_interest || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpnet_interest || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-5"></dd>
+
+    <dt class="col-md-3">Interest Charge as the result of payment as of this payment</dt>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpinterest_overdue || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right"></dd>
+    <dd class="col-md-1 txt-right"></dd>
+    <dd class="col-md-1 txt-right"></dd>
+    <dd class="col-md-5"></dd>
+  </dl>
+
+  <dl class="row">
+    <dt class="col-md-3">Late Charge Actually Incurred</dt>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblplate_actual || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblppaid_late || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpwaive_late || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpnet_late || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-5"></dd>
+
+    <dt class="col-md-3">Late Charge as the result of payment as of this payment</dt>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblplate_overdue || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right"></dd>
+    <dd class="col-md-1 txt-right"></dd>
+    <dd class="col-md-1 txt-right"></dd>
+    <dd class="col-md-5"></dd>
+  </dl>
+
+  <dl class="row">
+    <dt class="col-md-3">Returned Cheque Charge</dt>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblprtn_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblppaid_rtn_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpwaive_rtn_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpnet_rtn_charge || 0 | number:'.2-2'}}</dd>
+  </dl>
+
+  <dl class="row">
+    <dt class="col-md-3">Direct Cheque Charge</dt>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpdirect_debit_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblppaid_direct_debit_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpwaive_direct_debit_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpnet_direct_debit_charge || 0 | number:'.2-2'}}</dd>
+  </dl>
+
+  <dl class="row">
+    <dt class="col-md-3">Status Charge</dt>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpstatus_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblppaid_status_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpwaive_status_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpnet_status_charge || 0 | number:'.2-2'}}</dd>
+  </dl>
+
+  <dl class="row">
+    <dt class="col-md-3">Debt Extra Charge</dt>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpdebt_extra_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblppaid_debt_extra_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpwaive_debt_extra_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpnet_debt_extra_charge || 0 | number:'.2-2'}}</dd>
+  </dl>
+
+  <dl class="row">
+    <dt class="col-md-3">Legal Extra Charge</dt>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblplegal_extra_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblppaid_legal_extra_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpwaive_legal_extra_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpnet_legal_extra_charge || 0 | number:'.2-2'}}</dd>
+  </dl>
+
+  <dl class="row">
+    <dt class="col-md-3">Repossess Up Country Charge</dt>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblprepos_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblppaid_repos_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpwaive_repos_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpnet_repos_charge || 0 | number:'.2-2'}}</dd>
+  </dl>
+
+  <dl class="row">
+    <dt class="col-md-3">Legal Charge</dt>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblplegal_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblppaid_legal_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpwaive_legal_charge || 0 | number:'.2-2'}}</dd>
+    <dd class="col-md-1 txt-right">{{ds_penalty.lblpnet_legal_charge || 0 | number:'.2-2'}}</dd>
+  </dl>
+
+  <div class="flex-row p-3 border-isa">
+    <dl class="row">
+      <dt class="col-md-1">Net Penalty</dt>
+      <dd class="col-md-1 text-left">{{ds_penalty.lblpnet_penalty || 0 | number:'.2-2'}}</dd>
+
+      <dt class="col-md-1">Net Charge</dt>
+      <dd class="col-md-1 text-left">{{ds_penalty.lblpnet_charge || 0 | number:'.2-2'}}</dd>
+    </dl>
+  </div>
+</p-panel>

@@ -1,0 +1,352 @@
+<p-panel [toggleable]="true" [collapsed]="false">
+  <p-header>
+    <!--<div style="font-weight: bold; display: inline-block">-->
+    General Information
+    <!--</div>-->
+  </p-header>
+
+  <div class="ml-auto p-1">
+    <app-custom-button [option]="'edit'" [title]="'Blacklist'" (onBtnClick)="openBL()"></app-custom-button>
+  </div>
+
+  <!--Modal-->
+  <app-action-dialog #blDialog [title]="'Blacklist Checking History'" [width]="1000">
+    <p-dataTable [loading]="loading" loadingIcon="fa-spinner" rows="5"
+                 [paginator]="true" [responsive]="true">
+      <p-column field="f1" header="ลำดับ"></p-column>
+      <p-column field="f2" header="รหัส"></p-column>
+      <p-column field="f3" header="ชื่อ - นามสกุล / นิติบุคคล"></p-column>
+      <p-column field="f4" header="ผลการตรวจสอบ"></p-column>
+    </p-dataTable>
+
+    <form>
+      <div class="form-group">
+        <label class="col-form-label"><span style="font-weight: bold">ผลการตรวจสอบ</span></label>
+        <textarea class="form-control" rows="3"></textarea>
+      </div>
+    </form>
+
+  </app-action-dialog>
+
+  <form>
+    <!--บริษัท-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">บริษัท</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" value="ASKH" readonly>
+      </div>
+      <div class="col-md-1"></div>
+      <label class="col-md-2 col-form-label">รหัสลูกค้า/ผู้ค้ำ</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" value="" readonly>
+      </div>
+    </div>
+
+    <!--คำนำหน้าชื่อ-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">คำนำหน้าชื่อ <span style="color: red">*</span></label>
+      <div class="col-md-2">
+        <select class="custom-select">
+          <option selected value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="col-md-1"></div>
+      <label class="col-md-2 col-form-label">Initial</label>
+      <div class="col-md-2">
+        <select class="custom-select">
+          <option selected value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+
+    <!--ชื่อ-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">ชื่อ <span style="color: red">*</span></label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" value="">
+      </div>
+      <!--<div class="col-md-1"></div>-->
+      <label class="col-md-2 col-form-label">Name (E)</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" value="">
+      </div>
+    </div>
+
+    <!--นามสกุล-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">นามสกุล <span style="color: red">*</span></label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" value="">
+      </div>
+      <!--<div class="col-md-1"></div>-->
+      <label class="col-md-2 col-form-label">Last Name</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" value="">
+      </div>
+    </div>
+
+    <!--วันเกิด/จดทะเบียน-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">วันเกิด/จดทะเบียน</label>
+      <div class="col-md-3">
+        <p-calendar [(ngModel)]="date1" [ngModelOptions]="{standalone: true}" dateFormat="dd/mm/yy"></p-calendar>
+      </div>
+      <!--<div class="col-md-1"></div>-->
+      <label class="col-md-2 col-form-label">อายุ</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" value="">
+      </div>
+      <label class="col-md-1 col-form-label">ปี</label>
+    </div>
+
+    <!--เลขบัตร-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">เลขบัตร <span style="color: red">*</span></label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" value="">
+      </div>
+      <!--<div class="col-md-1"></div>-->
+      <label class="col-md-2 col-form-label">ประเภทบัตร</label>
+      <div class="col-md-2">
+        <select class="custom-select">
+          <option selected value="1">N/A</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+
+    <!--วันที่ออกบัตร-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">วันที่ออกบัตร</label>
+      <div class="col-md-3">
+        <p-calendar [(ngModel)]="date1" [ngModelOptions]="{standalone: true}" dateFormat="dd/mm/yy"></p-calendar>
+      </div>
+      <!--<div class="col-md-1"></div>-->
+      <label class="col-md-2 col-form-label">สถานที่ออกบัตร</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" value="">
+      </div>
+    </div>
+
+    <!--วันหมดอายุ-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">วันหมดอายุ</label>
+      <div class="col-md-3">
+        <p-calendar [(ngModel)]="date1" [ngModelOptions]="{standalone: true}" dateFormat="dd/mm/yy"></p-calendar>
+      </div>
+      <!--<div class="col-md-1"></div>-->
+      <label class="col-md-2 col-form-label">สถานะสมรส</label>
+      <div class="col-md-3">
+        <select class="custom-select">
+          <option selected value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+
+    <!--ประเภทการชำระเงิน-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">ประเภทการชำระเงิน</label>
+      <div class="col-md-3">
+        <select class="custom-select">
+          <option selected value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <!--<div class="col-md-1"></div>-->
+      <label class="col-md-2 col-form-label">ผู้มีอำนาจ(นิติบุคคล) T</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" value="">
+      </div>
+    </div>
+
+    <!--ผู้มีอำนาจ(นิติบุคคล) E-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">ผู้มีอำนาจ(นิติบุคคล) E</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" value="">
+      </div>
+      <!--<div class="col-md-1"></div>-->
+      <label class="col-md-2 col-form-label">กลุ่มลูกค้า</label>
+      <div class="col-md-3">
+        <select class="custom-select">
+          <option selected value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</p-panel>
+
+<br>
+
+<p-panel [toggleable]="true" [collapsed]="true">
+  <p-header>
+    <!--<div style="font-weight: bold; display: inline-block">-->
+    อาชีพ
+    <!--</div>-->
+  </p-header>
+  <form>
+    <!--อาชีพ-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">อาชีพ <span style="color: red">*</span></label>
+      <div class="col-md-2">
+        <select class="custom-select">
+          <option selected value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="col-md-1"></div>
+      <label class="col-md-2 col-form-label">ตำแหน่ง</label>
+      <div class="col-md-2">
+        <select class="custom-select">
+          <option selected value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+
+    <!--ประเภทธุรกิจ-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">ประเภทธุรกิจ</label>
+      <div class="col-md-2">
+        <select class="custom-select">
+          <option selected value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="col-md-1"></div>
+      <label class="col-md-2 col-form-label">อุตสาหกรรม</label>
+      <div class="col-md-2">
+        <select class="custom-select">
+          <option selected value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+
+    <!--รายได้-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">รายได้</label>
+      <div class="col-md-2">
+        <input type="number" class="form-control">
+      </div>
+      <label class="col-md-1 col-form-label">บาท / เดือน</label>
+      <label class="col-md-2 col-form-label">รายได้อื่น ๆ</label>
+      <div class="col-md-2">
+        <input type="number" class="form-control">
+      </div>
+    </div>
+
+    <!--บริษัท-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">บริษัท</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control">
+      </div>
+      <label class="col-md-2 col-form-label">แผนก</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+
+    <!--เบอร์โทรศัพท์-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">เบอร์โทรศัพท์</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+  </form>
+</p-panel>
+
+<br>
+
+<p-panel [toggleable]="true">
+  <p-header>
+    <!--<div style="font-weight: bold; display: inline-block">-->
+    คู่สมรส
+    <!--</div>-->
+  </p-header>
+  <form>
+    <!--ชื่อคู่สมรส-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">ชื่อคู่สมรส</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control">
+      </div>
+      <label class="col-md-2 col-form-label">อายุ</label>
+      <div class="col-md-1">
+        <input type="text" class="form-control">
+      </div>
+      <label class="col-md-1 col-form-label">ปี</label>
+    </div>
+
+    <!--อาชีพ-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">อาชีพ</label>
+      <div class="col-md-2">
+        <select class="custom-select">
+          <option selected value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="col-md-1"></div>
+      <label class="col-md-2 col-form-label">ตำแหน่ง</label>
+      <div class="col-md-2">
+        <select class="custom-select">
+          <option selected value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+
+    <!--รายได้-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">รายได้</label>
+      <div class="col-md-2">
+        <input type="number" class="form-control">
+      </div>
+      <label class="col-md-1 col-form-label">บาท / เดือน</label>
+      <label class="col-md-2 col-form-label">รายได้อื่น ๆ</label>
+      <div class="col-md-2">
+        <input type="number" class="form-control">
+      </div>
+    </div>
+
+    <!--บริษัท-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">บริษัท</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control">
+      </div>
+      <label class="col-md-2 col-form-label">แผนก</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+
+    <!--เบอร์โทรศัพท์-->
+    <div class="form-group row">
+      <label class="col-md-2 col-form-label">เบอร์โทรศัพท์</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+  </form>
+</p-panel>
+

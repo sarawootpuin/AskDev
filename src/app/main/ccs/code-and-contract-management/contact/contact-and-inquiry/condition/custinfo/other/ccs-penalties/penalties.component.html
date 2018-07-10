@@ -1,0 +1,33 @@
+<div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+  <p-dataTable [value]="data" [rows]="20">
+    <p-header>
+      <div class="form-group row">
+        <div class="col-md-6">
+          <label>Date for Paid Up Date</label>
+          <p-calendar dateFormat="dd/mm/yy" class="mb-1 mr-1 ml-1" placeholder="dd/mm/yyyy"></p-calendar>
+          <app-custom-button [option]="'calculate'" [title]="'Calculate'"></app-custom-button>
+        </div>
+      </div>
+    </p-header>
+    <p-headerColumnGroup>
+      <p-row>
+        <p-column header="งวดที่"></p-column>
+        <p-column header="Due date"></p-column>
+        <p-column header="วันที่ต้องชำระ"></p-column>
+        <p-column header="วันชำระจริง"></p-column>
+        <p-column header="จำนวนวัน"></p-column>
+        <p-column header="ค่าปรับ"></p-column>
+        <p-column header="งวด"></p-column>
+        <p-column header="เงินเพิ่ม"></p-column>
+      </p-row>
+    </p-headerColumnGroup>
+    <p-column field="ins_no"></p-column>
+    <p-column field="due_date"></p-column>
+    <p-column field="due_paid"></p-column>
+    <p-column field="date"></p-column>
+    <p-column field="day"></p-column>
+    <p-column field="penalties"></p-column>
+    <p-column field="ins"></p-column>
+    <p-column field="addi_amount"></p-column>
+  </p-dataTable>
+</div>

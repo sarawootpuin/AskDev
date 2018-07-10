@@ -1,0 +1,30 @@
+<div class="border-isa">
+  <p-dataTable [responsive]="true" [value]="data" [rows]="20">
+    <p-headerColumnGroup>
+      <p-row>
+        <p-column header="No."></p-column>
+        <p-column header="Paid date"></p-column>
+        <p-column header="Paid"></p-column>
+        <p-column header="Schd. Ind"></p-column>
+        <p-column header="Schd. Fac"></p-column>
+        <p-column header="Principle"></p-column>
+        <p-column header="O/S AR"></p-column>
+        <p-column header="O/S Pri"></p-column>
+        <p-column header="O/S Interest"></p-column>
+        <p-column header="O/S Fac"></p-column>
+      </p-row>
+    </p-headerColumnGroup>
+    <p-column field="ins"></p-column>
+    <p-column field="due_date"></p-column>
+    <p-column field="due_amt"></p-column>
+    <p-column field="vat"></p-column>
+    <p-column field="begin_prin"></p-column>
+    <p-column field="prin"></p-column>
+    <p-column field="interest"></p-column>
+    <p-column field="end_prin"></p-column>
+    <p-column field="os_interest"></p-column>
+    <p-column field="os_ar"></p-column>
+    <p-column field="oa_vat"></p-column>
+
+  </p-dataTable>
+</div>

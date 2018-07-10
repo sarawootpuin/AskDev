@@ -1,0 +1,22 @@
+<div class="border-isa">
+  <p-dataTable [responsive]="true" [value]="data" [rows]="20">
+    <p-headerColumnGroup>
+      <p-row>
+        <p-column header="Batch Date"></p-column>
+        <p-column header="Receipt Date"></p-column>
+        <p-column header="Paid Amount"></p-column>
+        <p-column header="Paid Type"></p-column>
+        <p-column header="Type"></p-column>
+        <p-column header="Amount"></p-column>
+        <p-column header="Remark"></p-column>
+      </p-row>
+    </p-headerColumnGroup>
+    <p-column field="batch_date"></p-column>
+    <p-column field="receipt_date"></p-column>
+    <p-column field="paid_amt"></p-column>
+    <p-column field="paid_type"></p-column>
+    <p-column field="type"></p-column>
+    <p-column field="amount"></p-column>
+    <p-column field="remark"></p-column>
+  </p-dataTable>
+</div>

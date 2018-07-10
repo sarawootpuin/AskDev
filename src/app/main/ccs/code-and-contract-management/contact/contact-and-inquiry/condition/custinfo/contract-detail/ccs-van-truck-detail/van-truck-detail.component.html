@@ -1,0 +1,63 @@
+<div class="d-flex">
+  <div class="col-md-4">
+    <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+      <p-dataTable [value]="data" [rows]="20">
+        <p-headerColumnGroup>
+          <p-row>
+            <p-column header="ชื่อช้อมูล"></p-column>
+            <p-column header="ข้อมูลเก่า"></p-column>
+            <p-column header="ข้อมูลใหม่"></p-column>
+            <p-column header="แก้ไขโดย"></p-column>
+          </p-row>
+        </p-headerColumnGroup>
+        <p-column field="detail_description"></p-column>
+        <p-column field="old_detail"></p-column>
+        <p-column field="new_detail"></p-column>
+        <p-column field="editer"></p-column>
+      </p-dataTable>
+    </div>
+
+  </div>
+  <div class="col-md-8 border-isa p-3">
+    <div class="flex-row">
+      <div class="row form-group">
+        <div class="col-md--">
+          <label>จดทะเบียน</label>
+          <input type="text" class="form-control">
+        </div>
+        <div class="col-md-3">
+          <label>สีป้ายทะเบียน</label>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="flex-row">
+      <div class="row form-group">
+        <div class="col-md-3">
+          <label>1</label>
+          <input type="text" class="form-control">
+        </div>
+        <div class="col-md-3">
+          <label>2</label>
+          <input type="text" class="form-control">
+        </div>
+        <div class="col-md-3">
+          <label>3</label>
+          <input type="text" class="form-control">
+        </div>
+        <div class="col-md-3">
+          <label>4</label>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="flex-row">
+      <div class="row form-group">
+        <div class="col-md-3">
+          <app-custom-button [option]="'submit'" [title]="'Submit'"></app-custom-button>
+          <app-custom-button [option]="'cancel'" [title]="'Cancel'"></app-custom-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

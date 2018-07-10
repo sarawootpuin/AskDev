@@ -1,0 +1,59 @@
+<div class="flex-row p-3 border-isa">
+  <div class="form-group row">
+    <div class="col-md-2 mt-3 pt-3">
+      <label>Cheque Return Charge</label>
+    </div>
+    <div class="col-md-2">
+      <label>Total</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-2">
+      <label>Paid Amount</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-2">
+      <label>Waive Amount</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-2">
+      <label>Net Total</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+  </div>
+  <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+    <p-dataTable [value]="data" [rows]="5">
+      <p-headerColumnGroup>
+        <p-row>
+          <p-column header="Cheque Number"></p-column>
+          <p-column header="Date Cheque"></p-column>
+          <p-column header="Return Date"></p-column>
+          <p-column header="Cheque Return"></p-column>
+          <p-column header="Bank Name"></p-column>
+          <p-column header="Branch"></p-column>
+          <p-column header="Charge Amt."></p-column>
+          <p-column header="Status"></p-column>
+          <p-column header="Reason of cheque Return"></p-column>
+          <p-column header="Receive Type"></p-column>
+        </p-row>
+      </p-headerColumnGroup>
+      <p-column field="1"></p-column>
+      <p-column field="2"></p-column>
+      <p-column field="3"></p-column>
+      <p-column field="4"></p-column>
+      <p-column field="5"></p-column>
+      <p-column field="6"></p-column>
+      <p-column field="7" [style]="{'text-align':'right'}"></p-column>
+      <p-column field="8" [style]="{'text-align':'right'}"></p-column>
+      <p-column field="9" [style]="{'text-align':'right'}"></p-column>
+      <p-column field="10" [style]="{'text-align':'right'}"></p-column>
+    </p-dataTable>
+  </div>
+</div>

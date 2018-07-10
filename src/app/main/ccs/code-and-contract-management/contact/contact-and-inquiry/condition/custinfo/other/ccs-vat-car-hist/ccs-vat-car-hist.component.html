@@ -1,0 +1,24 @@
+<p-panel header="ประวัติภาษีรถยนต์">
+  <p-table [value]="list_VatCarHist" [responsive]="true">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>เลขทะเบียน</th>
+        <th>วันที่ต่อภาษี</th>
+        <th>วันที่หมดอายุ</th>
+        <th>ค่าภาษีรวมค่าบริการและอื่น ๆ</th>
+        <th>ค่าภาษีไม่รวมค่าบริการ</th>
+        <th>ค่าใช้จ่ายอื่น ๆ</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+      <tr [pSelectableRow]="rowData">
+        <td>{{rowData.REG_NUM}}</td>
+        <td>{{rowData.REG_DATE}}</td>
+        <td>{{rowData.REG_EXP}}</td>
+        <td>{{rowData.REG_AMT_I_SERVICE | number:'.2-2'}}</td>
+        <td>{{rowData.REG_AMT_E_SERVICE | number:'.2-2'}}</td>
+        <td>{{rowData.REG_OTHER_EXPENSE | number:'.2-2'}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-panel>

@@ -1,0 +1,269 @@
+<div class="flex-row p-3 border-isa">
+  <label><b>Hire Purchase Contract</b></label>
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>บริษัท</label>
+      <input type="text" class="form-control">
+    </div>
+    <div class="col-md-3">
+      <label>เลขที่อ้างอิง</label>
+      <input type="text" class="form-control">
+    </div>
+    <div class="col-md-3">
+      <label>เลขที่สัญญา</label>
+      <input type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label>รหัสลูกค้า</label>
+      <div class="form-inline">
+        <input type="text" class="form-control col-md-3 mr-1">
+        <input type="text" class="form-control col-md-8">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label>ประเภทสัญญา</label>
+      <div class="form-inline">
+        <input type="text" class="form-control col-md-3 mr-1">
+        <input type="text" class="form-control col-md-8">
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label>Dealer</label>
+      <div class="form-inline">
+        <input type="text" class="form-control col-md-3 mr-1">
+        <input type="text" class="form-control col-md-8">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label>Outlet</label>
+      <div class="form-inline">
+        <input type="text" class="form-control col-md-3 mr-1">
+        <input type="text" class="form-control col-md-8">
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label>Project</label>
+      <div class="form-inline">
+        <input type="text" class="form-control col-md-3 mr-1">
+        <input type="text" class="form-control col-md-8">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label>เลขที่สัญญาเดิม</label>
+      <div class="form-inline">
+        <input type="text" class="form-control col-md-3 mr-1">
+        <input type="text" class="form-control col-md-8">
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label>พนักงานสินเชื่อ</label>
+      <div class="form-inline">
+        <input type="text" class="form-control col-md-3 mr-1">
+        <input type="text" class="form-control col-md-8">
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-6 form-inline">
+      <label>
+        <input class="form-check-input ml-1" type="checkbox" value="1"> ทรัพย์สินใหม่
+        <input class="form-check-input ml-1" type="checkbox" value="2"> VAT
+        <input class="form-check-input ml-1" type="checkbox" value="3"> สคบ.
+      </label>
+    </div>
+  </div>
+</div>
+<div class="flex-row p-3 border-isa">
+  <label><b>รายละเอียดสินเชื่อ</b></label>
+  <div class="form-group row">
+    <div class="col-md-6 form-inline">
+      <label>
+        <input class="form-check-input ml-1" type="checkbox" value="1"> Beginning
+        <input class="form-check-input ml-1" type="checkbox" value="2"> หักค่างวด
+        <input class="form-control ml-1 mr-1" type="text">งวด
+      </label>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-6 form-inline">
+      <label>
+        <input class="form-check-input ml-1" type="checkbox" value="1"> หักค่าเบี้ยประกันภัย
+        <input class="form-check-input ml-1" type="checkbox" value="2"> หักค่าเบี้ย พรบ.
+        <input class="form-check-input ml-1" type="checkbox" value="3"> ออกใบสั่งซื้อ
+      </label>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label>ช่องทางการชำระเงิน</label>
+      <div class="form-inline">
+        <input class="form-control col-md-2" type="text">
+        <input class="form-control col-md-9 ml-1" type="text">
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>วันที่ทำสัญญา</label><br>
+      <p-calendar dateFormat="dd/mm/yy" class="my-1"></p-calendar>
+    </div>
+    <div class="col-md-3">
+      <label>วันที่ชำระงวดแรกสุด</label><br>
+      <p-calendar dateFormat="dd/mm/yy" class="my-1"></p-calendar>
+    </div>
+    <div class="col-md-3">
+      <label>ชำระทุกวันที่</label>
+      <input class="form-control" type="text">
+    </div>
+
+    <div class="col-md-3">
+      <label>Flat Rate</label>
+      <div class="form-inline">
+        <input currencyMask
+               class="form-control"
+               [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+        %
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>วันที่ชำระงวดสุดท้าย</label><br>
+      <p-calendar dateFormat="dd/mm/yy" class="my-1"></p-calendar>
+    </div>
+    <div class="col-md-3">
+      <label>งวดผ่อนชำระ</label>
+      <div class="form-inline">
+        <input currencyMask
+               class="form-control"
+               [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+        งวด
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>ราคาซื้อ(รวมภาษี)</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>VAT</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+    <div class="col-md-3">
+      <label>ราคาซื้อ</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>เงินดาวน์(รวมภาษี)</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>VAT</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+    <div class="col-md-3">
+      <label>เงินดาวน์</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>ยอดสินเชื่อ(รวมภาษี)</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>VAT</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+    <div class="col-md-3">
+      <label>ยอดสินเชื่อ</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>ค่างวด(รวมภาษี)</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>VAT</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+    <div class="col-md-3">
+      <label>ค่างวด</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>งวดแรก(ไม่รวมภาษี)</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>งวดสุดท้าย(ไม่รวมภาษี)</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+    <div class="col-md-3">
+      <label>ยอดลูกหนี้</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+    <div class="col-md-3">
+      <label>รายได้รอตัด</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,507 @@
+<div class="flex-row p-3 border-isa">
+  <div class="form-group row mb-0">
+    <div class="offset-2 col-md-2 text-center">
+      <label>ยอดตั้งต้น</label>
+    </div>
+    <div class="col-md-2 text-center">
+      <label>ยอดเรียกเก็บ</label>
+    </div>
+    <div class="col-md-3 text-center">
+      <label>Request Waive / Discount</label>
+    </div>
+    <div class="col-md-2 text-center">
+      <label>คงเหลือ</label>
+    </div>
+    <div class="col-md-1 text-center">
+      <label>Last User</label>
+    </div>
+
+  </div>
+  <hr class="mt-1" style="background:black;">
+  <div class="form-group row">
+    <div class="col-md-2">
+      <label class="mt-2">Unearned Income</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-3 form-inline">
+      <input type="text" class="form-control col-md-3"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pr-1 pl-1">%</label>
+      <input type="text" class="form-control col-md-6"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pl-1">Baht</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-1">
+      @@@
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-1">
+      <label class="border-isa text-center pl-2 pr-2"
+             style="background-color: #000000cc;color: white"><b>Penalty</b></label>
+    </div>
+    <div class="col-md-11">
+      <hr style="background: #4c4c4c7a;">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-2">
+      <label class="mt-2">Interest Charge</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-3 form-inline">
+      <input type="text" class="form-control col-md-3"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pr-1 pl-1">%</label>
+      <input type="text" class="form-control col-md-6"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pl-1">Baht</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-1">
+      @@@
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-2">
+      <label class="mt-2">Late Charge</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-3 form-inline">
+      <input type="text" class="form-control col-md-3"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pr-1 pl-1">%</label>
+      <input type="text" class="form-control col-md-6"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pl-1">Baht</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-1">
+      <!--<p-overlayPanel #op>
+        Content
+      </p-overlayPanel>
+      <button type="text" pButton label="Basic" (click)="op.toggle($event)"></button>-->
+      @@@
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-2">
+      <label class="mt-2">Int + Late + Unearned</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-3 form-inline">
+      <div class="col-md-3"></div>
+      <input type="text" class="form-control col-md-6" style="margin-left: 19px"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pl-1">Baht</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-1">
+      @@@
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-1">
+      <label class="border-isa text-center pl-2 pr-2"
+             style="background-color: #000000cc;color: white"><b>Charge</b></label>
+    </div>
+    <div class="col-md-11">
+      <hr style="background: #4c4c4c7a;">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-2">
+      <label class="mt-2">Status Charge</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-3 form-inline">
+      <input type="text" class="form-control col-md-3"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pr-1 pl-1">%</label>
+      <input type="text" class="form-control col-md-6"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pl-1">Baht</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-1">
+      @@@
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-2">
+      <label class="mt-2">Debt Extra Charge</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-3 form-inline">
+      <input type="text" class="form-control col-md-3"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pr-1 pl-1">%</label>
+      <input type="text" class="form-control col-md-6"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pl-1">Baht</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-1">
+      @@@
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-2">
+      <label class="mt-2">Legal Extra Charge</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-3 form-inline">
+      <input type="text" class="form-control col-md-3"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pr-1 pl-1">%</label>
+      <input type="text" class="form-control col-md-6"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pl-1">Baht</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-1">
+      @@@
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-2">
+      <label class="mt-2">Legal Charge</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-3 form-inline">
+      <input type="text" class="form-control col-md-3"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pr-1 pl-1">%</label>
+      <input type="text" class="form-control col-md-6"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pl-1">Baht</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-1">
+      @@@
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-2">
+      <label class="mt-2">Return Cheque Charge</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-3 form-inline">
+      <input type="text" class="form-control col-md-3"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pr-1 pl-1">%</label>
+      <input type="text" class="form-control col-md-6"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pl-1">Baht</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-1">
+      @@@
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-2">
+      <label class="mt-2">Direct Debit Charge</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-3 form-inline">
+      <input type="text" class="form-control col-md-3"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pr-1 pl-1">%</label>
+      <input type="text" class="form-control col-md-6"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pl-1">Baht</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-1">
+      @@@
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-2">
+      <label class="mt-2">O/S AR</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-3 form-inline">
+      <input type="text" class="form-control col-md-3"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pr-1 pl-1">%</label>
+      <input type="text" class="form-control col-md-6"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pl-1">Baht</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-1">
+      @@@
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-2">
+      <label class="mt-2">1st Compensation</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-3 form-inline">
+      <input type="text" class="form-control col-md-3"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pr-1 pl-1">%</label>
+      <input type="text" class="form-control col-md-6"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pl-1">Baht</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-1">
+      @@@
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-2">
+      <label class="mt-2">Interest Of Damage</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-3 form-inline">
+      <input type="text" class="form-control col-md-3"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pr-1 pl-1">%</label>
+      <input type="text" class="form-control col-md-6"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pl-1">Baht</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-1">
+      @@@
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-2">
+      <label class="mt-2">Lawyer Fee</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-3 form-inline">
+      <input type="text" class="form-control col-md-3"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pr-1 pl-1">%</label>
+      <input type="text" class="form-control col-md-6"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pl-1">Baht</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-1">
+      @@@
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-2">
+      <label class="mt-2">Court Fee</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-3 form-inline">
+      <input type="text" class="form-control col-md-3"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pr-1 pl-1">%</label>
+      <input type="text" class="form-control col-md-6"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pl-1">Baht</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-1">
+      @@@
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-2">
+      <label class="mt-2">2nd Compensation</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-3 form-inline">
+      <input type="text" class="form-control col-md-3"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pr-1 pl-1">%</label>
+      <input type="text" class="form-control col-md-6"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pl-1">Baht</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+    </div>
+    <div class="col-md-1">
+      @@@
+    </div>
+  </div>
+  <hr style="background: #4c4c4c7a;">
+  <div class="form-group row">
+    <div class="offset-6 col-md-3 form-inline">
+      <label class="col-md-3">Sub Total</label>
+      <label style="padding-right: 15px"> : </label>
+      <input type="text" class="form-control col-md-6"
+             currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}">
+      <label class="pl-1">Baht</label>
+    </div>
+  </div>
+  <div class="form-group row col-md-12">
+    <label>Remark</label>
+    <textarea class="form-control" rows="5"></textarea>
+  </div>
+</div>

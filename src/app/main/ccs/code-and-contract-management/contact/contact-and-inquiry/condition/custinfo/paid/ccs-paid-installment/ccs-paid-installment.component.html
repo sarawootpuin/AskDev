@@ -1,0 +1,116 @@
+<p-panel header="Paid Installlment">
+  <!--<div class="flex-row p-3 border-isa mb-1">-->
+    <dl class="row">
+      <dt class="col-md-2">AR</dt>
+      <dd class="col-md-4">{{custService.srviceCustModel.v_ar | number:'.2-2'}}</dd>
+
+      <dt class="col-md-2">Total Rental Install</dt>
+      <dd class="col-md-4">{{custService.srviceCustModel.lblrental | number:'.2-2'}}</dd>
+    </dl>
+
+    <dl class="row">
+      <dt class="col-md-2">O/S Installment</dt>
+      <dd class="col-md-4">{{custService.srviceCustModel.lblos_inst | number:'.2-2'}}</dd>
+
+      <dt class="col-md-2">O/S Unearn</dt>
+      <dd class="col-md-4">{{custService.srviceCustModel.lblos_unearn | number:'.2-2'}}</dd>
+    </dl>
+  <!--</div>-->
+
+  <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+    <p-table [value]="list_cdspaid_inst" [responsive]="true">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Batch Date</th>
+          <th>Receipt No.</th>
+          <th>Receipt Date</th>
+          <th>Cheque No.</th>
+          <th>Paid Amount</th>
+          <th>Paid Type</th>
+          <th>Installment</th>
+          <th>VAT</th>
+          <th>Rental Install</th>
+          <th>No.</th>
+          <th>Due</th>
+          <th>Day Late</th>
+          <th>Penalty</th>
+          <th>Interest Change</th>
+          <th>Late Change</th>
+          <th>Rate</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+        <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+          <td>{{rowData.str_date_pay}}</td>
+          <td>{{rowData.document_no}}</td>
+          <td>{{rowData.document_date}}</td>
+          <td>{{rowData.cheque_number}}</td>
+          <td>{{rowData.paid_amt | number:'.2-2'}}</td>
+          <td>{{rowData.paid_desc}}</td>
+          <td>{{rowData.inst_amt | number:'.2-2'}}</td>
+          <td>{{rowData.vat_amt | number:'.2-2'}}</td>
+          <td>{{rowData.rental_amt | number:'.2-2'}}</td>
+          <td>{{rowData.at_term}}</td>
+          <td>{{rowData.due_date}}</td>
+          <td>{{rowData.day_late}}</td>
+          <td>{{rowData.penalty | number:'.2-2'}}</td>
+          <td>{{rowData.interest_charge | number:'.2-2'}}</td>
+          <td>{{rowData.late_charge | number:'.2-2'}}</td>
+          <td>{{rowData.rate_pen}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    <!--<p-dataTable [value]="custService.srviceCustModel.list_cdspaid_inst" [rows]="20"-->
+    <!--[scrollable]="true" [resizableColumns]="true">-->
+    <!--<p-column field="str_date_pay"></p-column>-->
+    <!--<p-column field="document_no"></p-column>-->
+    <!--<p-column field="document_date"></p-column>-->
+    <!--<p-column field="cheque_number"></p-column>-->
+    <!--<p-column field="paid_amt">-->
+    <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+    <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
+    <!--</ng-template>-->
+    <!--</p-column>-->
+    <!--<p-column field="paid_desc"></p-column>-->
+    <!--<p-column field="inst_amt">-->
+    <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+    <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
+    <!--</ng-template>-->
+    <!--</p-column>-->
+    <!--<p-column field="vat_amt">-->
+    <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+    <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
+    <!--</ng-template>-->
+    <!--</p-column>-->
+    <!--<p-column field="rental_amt">-->
+    <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+    <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
+    <!--</ng-template>-->
+    <!--</p-column>-->
+    <!--<p-column field="at_term"></p-column>-->
+    <!--<p-column field="due_date"></p-column>-->
+    <!--<p-column field="day_late"></p-column>-->
+    <!--<p-column field="penalty">-->
+    <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+    <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
+    <!--</ng-template>-->
+    <!--</p-column>-->
+    <!--<p-column field="interest_charge">-->
+    <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+    <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
+    <!--</ng-template>-->
+    <!--</p-column>-->
+    <!--<p-column field="late_charge">-->
+    <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+    <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
+    <!--</ng-template>-->
+    <!--</p-column>-->
+    <!--<p-column field="rate_pen">-->
+    <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+    <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
+    <!--</ng-template>-->
+    <!--</p-column>-->
+    <!--</p-dataTable>-->
+  </div>
+</p-panel>

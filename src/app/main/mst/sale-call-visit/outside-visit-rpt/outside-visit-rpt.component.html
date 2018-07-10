@@ -1,0 +1,38 @@
+<app-action-button-form [showPrint]="true" [title]="'Outside Visit Report'"
+                        (onPrint)="onPrint()"></app-action-button-form>
+<div class="card m-1 border-isa " style="position: absolute;left: 50%;top: 15%;transform:translate(-50%,50%);">
+  <p-panel header="Report Condition" [toggleable]="false" [style]="{'margin-bottom':'3px'}">
+    <div class="row" style="padding-top: 1rem;padding-bottom: 1rem;padding-left:5rem;padding-right: 5rem">
+      <div class="col">
+        <div class="d-flex">
+          <div class="flex-md-column col-md-6 ">
+            <label> Start Date </label><br>
+              <p-calendar dateFormat="dd/mm/yy"
+                          class="my-1"
+                          placeholder="dd/mm/yyyy"
+                          dataType="string"
+                          showButtonBar="true"
+                          [(ngModel)]="startDate"
+              ></p-calendar>
+          </div>
+          <div class="flex-md-column col-md-4">
+              <label> End Date</label> <br>
+                <p-calendar dateFormat="dd/mm/yy"
+                            class="my-1"
+                            placeholder="dd/mm/yyyy"
+                            dataType="string"
+                            showButtonBar="true"
+                            [(ngModel)]="endDate"
+                ></p-calendar>
+            </div>
+          </div>
+      </div>
+    </div>
+  </p-panel>
+</div>
+
+<app-alert-dialog #dialogWarining
+                  (onOK)="onCloseDialogWarning()"
+                  [msg]="msg">
+</app-alert-dialog>
+

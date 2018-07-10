@@ -1,0 +1,61 @@
+<app-action-button-form [title]="'Customer and Guarantor Information'" [showPrint]="false" [showCancel]="false"
+                        [showEdit]="false" [showSave]="true" [showCalculator]="false" [showSubmit]="false"
+                        [showSearch]="false" [showNew]="false" [showBack]="true" [showReject]="false"
+                        [titleSearch]="'Condition'"
+                        (onBack)="onBackPage()">
+</app-action-button-form>
+
+
+<!--Modal-->
+<app-action-dialog #blHistDialog [title]="'Blacklist Checking History'" [width]="1000">
+  <p-dataTable [loading]="loading" loadingIcon="fa-spinner" rows="5"
+               [paginator]="true" [responsive]="true">
+    <p-column field="f1" header="ลำดับ"></p-column>
+    <p-column field="f2" header="รหัส"></p-column>
+    <p-column field="f3" header="ชื่อ - นามสกุล / นิติบุคคล"></p-column>
+    <p-column field="f4" header="ผลการตรวจสอบ"></p-column>
+  </p-dataTable>
+
+  <form>
+    <div class="form-group">
+      <label class="col-form-label"><span style="font-weight: bold">ผลการตรวจสอบ</span></label>
+      <textarea class="form-control" rows="3"></textarea>
+    </div>
+  </form>
+
+</app-action-dialog>
+
+<form style="padding-right: 10px; padding-left: 10px; font-weight: bold">
+  <div class="form-group row d-flex" style="padding-left: 10px; padding-top: 10px">
+    <label class="col-form-label">Agreement No.</label>
+
+    <div class="col-md-2">
+      <input type="text" class="form-control txt-right" value="10-6000001" readonly>
+    </div>
+
+    <div class="col-md-2">
+      <app-custom-button [option]="'search'" (onBtnClick)="showDialog()"></app-custom-button>
+    </div>
+
+    <div class="col-md-2">
+      <app-custom-button [option]="'edit'" [title]="'Blacklist Checking History'"
+                         (onBtnClick)="openBLHist()"></app-custom-button>
+    </div>
+  </div>
+</form>
+
+<div class="border border-secondary" style="padding-left: 10px; padding-right: 10px;">
+  <div style="padding-top: 10px">
+
+    <app-entity-dialog #entityDialogComponent [title]="'Search Dialog'"></app-entity-dialog>
+
+    <p-tabView>
+      <p-tabPanel header="Customer">
+        <app-transf-cust></app-transf-cust>
+      </p-tabPanel>
+      <p-tabPanel header="Guarantor">
+        <app-transf-guar></app-transf-guar>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>

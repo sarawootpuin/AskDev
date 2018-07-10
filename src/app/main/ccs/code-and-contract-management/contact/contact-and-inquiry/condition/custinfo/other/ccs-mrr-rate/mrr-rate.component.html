@@ -1,0 +1,12 @@
+<div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+  <p-dataTable [value]="data" [rows]="5">
+    <p-headerColumnGroup>
+      <p-row>
+        <p-column header="Active Date"></p-column>
+        <p-column header="Rate"></p-column>
+      </p-row>
+    </p-headerColumnGroup>
+    <p-column field="active_date"></p-column>
+    <p-column field="rate" [style]="{'text-align':'right'}"></p-column>
+  </p-dataTable>
+</div>

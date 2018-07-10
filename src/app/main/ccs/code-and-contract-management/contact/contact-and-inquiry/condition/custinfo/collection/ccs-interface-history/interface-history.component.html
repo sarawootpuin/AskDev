@@ -1,0 +1,42 @@
+<div class="d-flex">
+  <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px;width: 100%;">
+    <p-dataTable [value]="data" [rows]="20">
+      <p-header>
+        <label><b>Master</b></label>
+      </p-header>
+      <p-headerColumnGroup>
+        <p-row>
+          <p-column header="วันที่ส่งยอด"></p-column>
+          <p-column header="ส่งโดย"></p-column>
+          <p-column header="ประเภท"></p-column>
+          <p-column header="Amount"></p-column>
+          <p-column header="ยอดค้างชำระ"></p-column>
+        </p-row>
+      </p-headerColumnGroup>
+      <p-column field="date"></p-column>
+      <p-column field="sender"></p-column>
+      <p-column field="type"></p-column>
+      <p-column field="amount"></p-column>
+      <p-column field="overdue_amt"></p-column>
+    </p-dataTable>
+  </div>
+  <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px;width: 100%;">
+    <p-dataTable [value]="data" [rows]="20">
+      <p-header>
+        <label><b>Detail</b></label>
+      </p-header>
+      <p-headerColumnGroup>
+        <p-row>
+          <p-column header="ประเภทการรับเงิน"></p-column>
+          <p-column header="ประเภทการรับเงิน(ย่อย)"></p-column>
+          <p-column header="ประเภท"></p-column>
+          <p-column header="ยอดคงเหลือ"></p-column>
+        </p-row>
+      </p-headerColumnGroup>
+      <p-column field="rec_type"></p-column>
+      <p-column field="subrec_type"></p-column>
+      <p-column field="amount"></p-column>
+      <p-column field="net"></p-column>
+    </p-dataTable>
+  </div>
+</div>

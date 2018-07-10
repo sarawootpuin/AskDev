@@ -1,0 +1,15 @@
+<div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+  <p-dataTable [value]="data" [rows]="20">
+    <p-headerColumnGroup>
+      <p-row>
+        <p-column header="Selected" [style]="{'width':'75px'}" ></p-column>
+        <p-column header="ประเภทการรับชำระ"></p-column>
+        <p-column header="Kind Of Document"></p-column>
+      </p-row>
+    </p-headerColumnGroup>
+    <p-column [style]="{'width':'75px'}" selectionMode="multiple"></p-column>
+    <p-column field="rec_type"></p-column>
+    <p-column field="doc_kind"></p-column>
+
+  </p-dataTable>
+</div>

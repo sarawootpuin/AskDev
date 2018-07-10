@@ -1,0 +1,201 @@
+<div class="flex-row p-3 border-isa mb-1">
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>Date for Paid Up Date</label><br>
+      <p-calendar dateFormat="dd/mm/yy" class="mb-1" placeholder="dd/mm/yyyy"></p-calendar>
+    </div>
+    <div class="col-md-3 mt-3 pt-2">
+      <app-custom-button [title]="'Calculate'" [option]="'calculate'" class="mt-2"></app-custom-button>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>Paid Term</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <label>Paid Amount</label>
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+  </div>
+</div>
+<div class="flex-row p-3 border-isa">
+  <div class="row form-group">
+    <div class="col-md-6 offset-6 text-right">
+      <app-custom-button [title]="'ดูผลการเจรจา'" [option]="'process'"></app-custom-button>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-md-2">
+      <label>Overdue Installment</label>
+    </div>
+    <div class="col-md-2">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-3">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-md-2">
+      <label>Interest</label>
+    </div>
+    <div class="col-md-3 offset-2">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-md-2">
+      <label>Fact. Fee</label>
+    </div>
+    <div class="col-md-3 offset-2">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+    <div class="col-md-2">
+      <label>Sub Total</label>
+    </div>
+    <div class="col-md-3 ">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+  </div>
+  <hr>
+  <div class="row form-group">
+    <div class="col-md-2">
+      <label>Follow up debt - PSL</label>
+    </div>
+    <div class="col-md-3 offset-2">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+    <div class="col-md-2">
+      <label>Total Charge</label>
+    </div>
+    <div class="col-md-3 ">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-md-2">
+      <label>Expense Advance</label>
+    </div>
+    <div class="col-md-3 offset-2">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+    <div class="col-md-2">
+      <label>Total Insurance / Compulsory</label>
+    </div>
+    <div class="col-md-3 ">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-md-2">
+      <label>Legal Expense</label>
+    </div>
+    <div class="col-md-3 offset-2">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+
+  </div>
+  <div class="row form-group">
+    <div class="col-md-2">
+      <label>Other Expense</label>
+    </div>
+    <div class="col-md-3 offset-2">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+    <div class="col-md-2">
+      <label>Sub Total</label>
+    </div>
+    <div class="col-md-3 ">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+  </div>
+  <hr>
+  <div class="row form-group">
+    <div class="col-md-2">
+      <label>Total Payment Amount</label>
+    </div>
+    <div class="col-md-3 offset-7">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+  </div>
+  <hr>
+  <div class="row form-group">
+    <div class="col-md-2">
+      <label>ยอดคงเหลือรับฝาก</label>
+    </div>
+    <div class="col-md-3 offset-2">
+      <input currencyMask
+             class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+
+    </div>
+
+  </div>
+  <div class="flex-row border-isa p-3">
+    <div class="form-group form-inline">
+      <input class="form-control" type="checkbox"> ชำระบางส่วน
+    </div>
+    <div class="form-group row">
+      <div class="col-md-3">
+        <label>พรบ.</label>
+        <input currencyMask
+               class="form-control"
+               [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+      </div>
+      <div class="col-md-3">
+        <label>สมัครใจ</label>
+        <input currencyMask
+               class="form-control"
+               [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+      </div>
+      <div class="col-md-6">
+        <label>เหตุผล</label><span class="star">*</span>
+        <textarea class="form-control"></textarea>
+      </div>
+    </div>
+  </div>
+</div>

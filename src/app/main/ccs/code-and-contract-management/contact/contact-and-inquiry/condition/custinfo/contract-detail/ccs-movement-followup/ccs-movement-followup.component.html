@@ -1,0 +1,337 @@
+<div *ngIf="checkLoading" class="text-center my-2">
+  <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>Loading...
+</div>
+<div [hidden]="checkLoading">
+  <p-panel header="Follow Up">
+    <div class="flex-row p-3 border-isa">
+
+      <div class="form-group row p-3">
+        <app-custom-button [option]="'new'" class="pr-1" (onBtnClick)="onNewClicked()"></app-custom-button>
+        <app-custom-button [option]="'edit'" class="pr-1" (onBtnClick)="onEditClicked()"
+                           [hidden]="hidden_btnEdit"></app-custom-button>
+        <app-custom-button [option]="'save'" class="pr-1" (onBtnClick)="onSaveClicked()"
+                           [hidden]="hidden_btnSave"></app-custom-button>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-6">
+          <label>ประเภทของการติดต่อ</label>
+          <select class="form-control col-md-6" [disabled]="readonly_mode"
+                  [(ngModel)]="vSelected_Row.fol_flag_desc">
+            <option *ngFor="let obj of cboCntct_Typ" [selected]="obj.remark == vSelected_Row.fol_flag_desc">
+              {{obj.remark}}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label>เรื่องที่ติดต่อ</label>
+          <div class="form-inline">
+            <select class="form-control mr-1 col-md-6" [disabled]="readonly_mode"
+                    (change)="oncboTopic_CntctChange(vSelected_Row)"
+                    [(ngModel)]="vSelected_Row.fol_s_flag_desc">
+              <option *ngFor="let obj of cboTopic_Cntct" [selected]="obj.remark == vSelected_Row.fol_s_flag_desc">
+                {{obj.remark}}
+              </option>
+            </select>
+            <input *ngIf="vShow_topic_cntct_oth" type="text" class="form-control col-md-5"
+                   [(ngModel)]="vSelected_Row.topic_cntct_oth" [readonly]="readonly_mode">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-6">
+          <label>บุคคลที่ติดต่อ</label>
+          <div class="form-inline">
+            <select class="form-control mr-1 col-md-4" [disabled]="readonly_mode"
+                    (change)="cboFol_ToChange(vSelected_Row)"
+                    [(ngModel)]="vSelected_Row.fol_to_desc">
+              <option *ngFor="let obj of cboFol_To" [selected]="obj.remark == vSelected_Row.fol_to_desc ">
+                {{obj.remark}}
+              </option>
+            </select>
+            <input *ngIf="vShow_fol_to_oth" type="text" class="form-control col-md-7"
+                   [(ngModel)]="vSelected_Row.fol_to_oth"
+                   [readonly]="readonly_oth_mode">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label>วิธีการติดต่อ</label>
+          <div class="form-inline">
+            <select class="form-control mr-1 col-md-4" [disabled]="readonly_mode"
+                    (change)="oncboFol_ByChange(vSelected_Row)"
+                    [(ngModel)]="vSelected_Row.fol_by_desc">
+              <option *ngFor="let obj of cboFol_By" [selected]="obj.remark == vSelected_Row.fol_by_desc">
+                {{obj.remark}}
+              </option>
+            </select>
+            <input *ngIf="vShow_fol_by_oth" type="text" class="form-control col-md-7"
+                   [(ngModel)]="vSelected_Row.fol_by_oth"
+                   [readonly]="readonly_mode">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-6">
+          <label>สถานที่ติดต่อ</label>
+          <div class="form-inline">
+            <select class="form-control mr-1 col-md-4" [disabled]="readonly_mode"
+                    (change)="oncboFol_PlaceChange(vSelected_Row)"
+                    [(ngModel)]="vSelected_Row.fol_place_desc">
+              <option *ngFor="let obj of cboFol_Place" [selected]="obj.remark == vSelected_Row.fol_place_desc">
+                {{obj.remark}}
+              </option>
+            </select>
+            <input *ngIf="vShow_fol_place_oth" type="text" class="form-control col-md-7"
+                   [(ngModel)]="vSelected_Row.fol_place_oth" [readonly]="readonly_mode">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label>วันที่นัดหมาย (ค.ศ)</label><br>
+          <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="vSelected_Row.appmnt_dt"
+                      dataType="string" [disabled]="readonly_mode"></p-calendar>
+        </div>
+        <div class="col-md-3">
+          <label>วันที่ดำเนินการ (ค.ศ.)</label><br>
+          <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="vSelected_Row.action_dt"
+                      dataType="string" [disabled]="readonly_mode"></p-calendar>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-6">
+          <label>สิ่งที่นัดหมาย</label>
+          <textarea class="form-control" [(ngModel)]="vSelected_Row.appmnt_topic"
+                    [disabled]="readonly_mode"></textarea>
+        </div>
+        <div class="col-md-6">
+          <label>ที่อยู่อื่นๆ</label>
+          <textarea class="form-control" [(ngModel)]="vSelected_Row.add_addr" [disabled]="readonly_mode"></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-9">
+          <label>ผลการติดตาม</label>
+          <textarea class="form-control" [(ngModel)]="vSelected_Row.appmnt_dtel"
+                    [disabled]="readonly_mode"></textarea>
+        </div>
+        <div class="col-md-3 form-inline">
+          <label class="radio-inline mr-2">
+            <input type="radio" name="conf_Flg" [value]="'Y'" [(ngModel)]="vSelected_Row.conf_flg"
+                   [checked]="chkConf_Flg_Y" [disabled]="readonly_mode">สมบูรณ์
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="conf_Flg" [value]="'N'" [(ngModel)]="vSelected_Row.conf_flg"
+                   [checked]="chkConf_Flg_N" [disabled]="readonly_mode">ไม่สมบูรณ์
+          </label>
+        </div>
+      </div>
+
+
+      <div class="d-flex flex-column bd-highlight mb-3">
+        <p-table [value]="list_follow_up" [(selection)]="vSelected_Row"  [paginator]="true"
+                 [rows]="5" [responsive]="true"
+                 [scrollable]="true" [resizableColumns]="true" selectionMode="single"
+                 (onRowSelect)="onRowSelected($event.data,$event.index)">
+          <ng-template pTemplate="colgroup">
+            <colgroup>
+              <!--<col style="width:150px">-->
+              <!--<col style="width:100px">-->
+              <!--<col style="width:80px">-->
+              <!--<col style="width:80px">-->
+              <!--<col style="width:80px">-->
+              <!--<col style="width:100px">-->
+              <!--<col style="width:300px">-->
+              <!--<col style="width:100px">-->
+              <!--<col style="width:100px">-->
+              <!--<col style="width:100px">-->
+              <!--<col style="width:100px">-->
+            </colgroup>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pResizableColumn>ประเภทของการติดต่อ</th>
+              <th pResizableColumn>เรื่องที่ติดต่อ</th>
+              <th pResizableColumn>บุคคลที่ติดต่อ</th>
+              <th pResizableColumn>วิธีการติดต่อ</th>
+              <th pResizableColumn>สถานที่ติดต่อ</th>
+              <th pResizableColumn>วันที่นัดหมาย</th>
+              <th pResizableColumn>ที่อยู่อื่น ๆ</th>
+              <th pResizableColumn>วันที่ดำเนินการ</th>
+              <th pResizableColumn>ผู้บันทึกข้อมูล</th>
+              <th pResizableColumn>วันที่แก้ไขล่าสุด</th>
+              <th pResizableColumn>แก้ไขล่าสุดโดย</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+            <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+              <td class="ui-resizable-column" style="text-align: right"> {{rowData.fol_flag_desc}}</td>
+              <td class="ui-resizable-column">{{rowData.fol_s_flag_desc}}</td>
+              <td class="ui-resizable-column">{{rowData.fol_to_desc}}</td>
+              <td class="ui-resizable-column">{{rowData.fol_by_desc}}</td>
+              <td class="ui-resizable-column">{{rowData.fol_place_desc}}</td>
+              <td class="ui-resizable-column">{{rowData.appmnt_dt}}</td>
+              <td class="ui-resizable-column">{{rowData.add_addr_desc}}</td>
+              <td class="ui-resizable-column">{{rowData.action_dt}}</td>
+              <td class="ui-resizable-column">{{rowData.input_user}}</td>
+              <td class="ui-resizable-column">{{rowData.last_upd}}</td>
+              <td class="ui-resizable-column">{{rowData.upd_user}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+      <!--<div class="form-group row">-->
+      <!--<p-table [value]="list_follow_up" [(selection)]="vSelected_Row" [style]="{width: '78vw'}" [paginator]="true"-->
+      <!--[rows]="5"-->
+      <!--[scrollable]="true" [resizableColumns]="true" selectionMode="single"-->
+      <!--(onRowSelect)="onRowSelected($event.data,$event.index)">-->
+      <!--<ng-template pTemplate="colgroup">-->
+      <!--<colgroup>-->
+      <!--<col style="width:150px">-->
+      <!--<col style="width:100px">-->
+      <!--<col style="width:80px">-->
+      <!--<col style="width:80px">-->
+      <!--<col style="width:80px">-->
+      <!--<col style="width:100px">-->
+      <!--<col style="width:300px">-->
+      <!--<col style="width:100px">-->
+      <!--<col style="width:100px">-->
+      <!--<col style="width:100px">-->
+      <!--<col style="width:100px">-->
+      <!--</colgroup>-->
+      <!--</ng-template>-->
+      <!--<ng-template pTemplate="header">-->
+      <!--<tr>-->
+      <!--<th pResizableColumn>ประเภทของการติดต่อ</th>-->
+      <!--<th pResizableColumn>เรื่องที่ติดต่อ</th>-->
+      <!--<th pResizableColumn>บุคคลที่ติดต่อ</th>-->
+      <!--<th pResizableColumn>วิธีการติดต่อ</th>-->
+      <!--<th pResizableColumn>สถานที่ติดต่อ</th>-->
+      <!--<th pResizableColumn>วันที่นัดหมาย</th>-->
+      <!--<th pResizableColumn>ที่อยู่อื่น ๆ</th>-->
+      <!--<th pResizableColumn>วันที่ดำเนินการ</th>-->
+      <!--<th pResizableColumn>ผู้บันทึกข้อมูล</th>-->
+      <!--<th pResizableColumn>วันที่แก้ไขล่าสุด</th>-->
+      <!--<th pResizableColumn>แก้ไขล่าสุดโดย</th>-->
+      <!--</tr>-->
+      <!--</ng-template>-->
+      <!--<ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">-->
+      <!--<tr [pSelectableRowDblClick]="rowData" [pSelectableRowIndex]="rowIndex">-->
+      <!--<td class="ui-resizable-column">{{rowData.fol_flag_desc}}</td>-->
+      <!--<td class="ui-resizable-column">{{rowData.fol_s_flag_desc}}</td>-->
+      <!--<td class="ui-resizable-column">{{rowData.fol_to_desc}}</td>-->
+      <!--<td class="ui-resizable-column">{{rowData.fol_by_desc}}</td>-->
+      <!--<td class="ui-resizable-column">{{rowData.fol_place_desc}}</td>-->
+      <!--<td class="ui-resizable-column">{{rowData.appmnt_dt}}</td>-->
+      <!--<td class="ui-resizable-column">{{rowData.add_addr_desc}}</td>-->
+      <!--<td class="ui-resizable-column">{{rowData.action_dt}}</td>-->
+      <!--<td class="ui-resizable-column">{{rowData.input_user}}</td>-->
+      <!--<td class="ui-resizable-column">{{rowData.last_upd}}</td>-->
+      <!--<td class="ui-resizable-column">{{rowData.upd_user}}</td>-->
+      <!--</tr>-->
+      <!--</ng-template>-->
+      <!--</p-table>-->
+      <!--</div>-->
+
+    </div>
+
+    <!--<div class="flex-row p-3 border-isa">-->
+
+    <!--</div>-->
+
+    <!--ผู้มีชื่อให้ทวงถามหนี้ได้-->
+    <app-action-dialog [title]="'Refer Person'" #search_fol_to
+                       [showChoose]="true" [showNo]="true" (onChoose)="onSubmitReferPrsn()">
+      <p-table [value]="list_follow_refer_prsn" [rows]="5" [responsive]="true" [(selection)]="vSelected_refer_prsn"
+               selectionMode="single" (onRowSelect)="onRowReferPrsnSelected($event)">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>ลูกค้า - ผู้ค้ำ</th>
+            <th>ลำดับที่</th>
+            <th>ชื่อ - สกุล</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+          <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+            <td>{{rowData.guar_level}}</td>
+            <td>{{rowData.responsibility}}</td>
+            <td>{{rowData.payee_name}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+
+    </app-action-dialog>
+
+    <!--ผู้ชำระเงินแทน-->
+    <app-action-dialog [title]="'Instead Payer'" #search_fol_to_instead
+                       [showChoose]="true" [showNo]="true" (onChoose)="onSubmitInstdPrsn()">
+
+      <p-table [value]="list_follow_payerinstead" [rows]="5" [responsive]="true" [(selection)]="vSelected_instd_prsn"
+               selectionMode="single" (onRowSelect)="onRowInstdPrsnSelected($event)">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>ลูกค้า - ผู้ค้ำ</th>
+            <th>ลำดับที่</th>
+            <th>ชื่อ - สกุล</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+          <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+            <td>{{rowData.guar_level}}</td>
+            <td>{{rowData.responsibility}}</td>
+            <td>{{rowData.payee_name}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+
+    </app-action-dialog>
+
+
+    <!--ลูกค้าชุด-->
+    <app-action-dialog [title]="'Information'" #confirm_cust_grp
+                       [showYes]="true" [showNo]="true" (onYes)="onConfirmCustGrp('Y')" (onNo)="onConfirmCustGrp('N')">
+      <p>ระบบพบว่าเลขที่่สัญญานี้เป็นลูกค้าชุด ต้องการบันทึก Followup เป็นลูกค้าชุด หรือไม่</p>
+    </app-action-dialog>
+
+
+    <app-action-dialog [title]="'Group Contract Customer'" #cust_grp [width]="1000"
+                       [showChoose]="true" [showNo]="true" (onChoose)="onChooseCustGrp()">
+      <p-table [value]="list_cdsGroupAgrFollow" [(selection)]="vSelected_CustGrp" [responsive]="true">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 2.4em">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th>No.</th>
+            <th>Owner</th>
+            <th>Status</th>
+            <th>เลขที่สัญญา</th>
+            <th>License No.</th>
+            <th>New-Used</th>
+            <th>Product</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+          <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+            <td>
+              <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+            </td>
+            <td>{{rowIndex + 1}}</td>
+            <td>{{rowData.collector}}</td>
+            <td>{{rowData.c_status}}</td>
+            <td>{{rowData.agr_code}}</td>
+            <td>{{rowData.license_no}}</td>
+            <td>{{rowData.new_use}}</td>
+            <td>{{rowData.product_type}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+
+    </app-action-dialog>
+
+    <app-alert-dialog #validate_dlg></app-alert-dialog>
+
+    <app-alert-dialog #info_dlg></app-alert-dialog>
+  </p-panel>
+</div>

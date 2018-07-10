@@ -1,0 +1,49 @@
+<p-panel header="ตารางค่างวด">
+  <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+    <p-table [value]="list_Repayment" [responsive]="true">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Installmemt</th>
+          <th>Due date</th>
+          <th>Day Amuont</th>
+          <th>VAT</th>
+          <th>Begin Principle</th>
+          <th>Principle</th>
+          <th>Interest</th>
+          <th>End Principal</th>
+          <th>O/S Interest</th>
+          <th>O/S AR</th>
+          <th>O/S VAT</th>
+
+          <!--<th style="width: 10px;">Installmemt</th>-->
+          <!--<th style="width: 20px;">Due date</th>-->
+          <!--<th style="width: 10px;">Day Amuont</th>-->
+          <!--<th style="width: 10px;">VAT</th>-->
+          <!--<th style="width: 10px;">Begin Principle</th>-->
+          <!--<th style="width: 10px;">Principle</th>-->
+          <!--<th style="width: 10px;">Interest</th>-->
+          <!--<th style="width: 10px;">End Principal</th>-->
+          <!--<th style="width: 10px;">O/S Interest</th>-->
+          <!--<th style="width: 10px;">O/S AR</th>-->
+          <!--<th style="width: 10px;">O/S VAT</th>-->
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+        <tr [pSelectableRow]="rowData">
+          <td>{{rowData.no}}</td>
+          <td>{{rowData.due_date}}</td>
+          <td>{{rowData.due_amt |  number:'.2-2'}}</td>
+          <td>{{rowData.vat |  number:'.2-2'}}</td>
+          <td>{{rowData.os_principal |  number:'.2-2'}}</td>
+          <td>{{rowData.principal |  number:'.2-2'}}</td>
+          <td>{{rowData.schd_int |  number:'.2-2'}}</td>
+          <td>{{rowData.os_principal - rowData.principal |  number:'.2-2'}}</td>
+          <td>{{rowData.os_interest |  number:'.2-2'}}</td>
+          <td>{{rowData.os_ar |  number:'.2-2'}}</td>
+          <td>{{rowData.os_vat |  number:'.2-2'}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+  </div>
+</p-panel>

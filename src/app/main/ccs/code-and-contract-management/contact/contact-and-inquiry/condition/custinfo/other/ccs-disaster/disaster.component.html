@@ -1,0 +1,76 @@
+<div class="flex-row p-3">
+  <div class="form-group row ">
+    <div class="col-md-3">
+      <label>ประเภทภัยพิบัติ</label>
+      <select class="form-control">
+        <option></option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label>วันที่ติดต่อ/รับเรื่อง</label>
+      <br>
+      <p-calendar dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"></p-calendar>
+    </div>
+    <div class="col-md-3">
+      <label>บันทึกโดย</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+    <div class="col-md-3">
+      <label>แก้ไข้ล่าสุดโดย</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+  </div>
+  <div class="form-group row ">
+    <div class="col-md-3">
+      <label>Province</label>
+      <select class="form-control">
+        <option></option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label>ประเภทของน้ำท่วม</label>
+      <select class="form-control">
+        <option></option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <label>ที่ตั้งทรัพย์สินปัจจุบัน</label>
+      <input class="form-control" type="text">
+    </div>
+  </div>
+</div>
+<div class="flex-row border-isa p-3">
+  <label class="p-1"><b>ผลกระทบที่เกิดขึ้น</b></label>
+  <div class="form-group row ">
+    <div class="col-md-6">
+      <label>ที่อยู่อาศัย</label>
+      <input class="form-control" type="text">
+    </div>
+    <div class="col-md-6">
+      <label>เส้นทางสัญจร</label>
+      <input class="form-control" type="text">
+    </div>
+  </div>
+  <div class="form-group row ">
+    <div class="col-md-6">
+      <label>ชื่อที่ทำงาน / ที่อยู่</label>
+      <textarea class="form-control" rows="5"></textarea>
+    </div>
+    <div class="col-md-6">
+      <label>สิ่งที่ลูกค้าร้องขอ</label>
+      <textarea class="form-control" rows="5"></textarea>
+    </div>
+  </div>
+  <div class="form-group row ">
+    <div class="col-md-6">
+      <label>รวมความเสียหาย</label>
+      <input currencyMask class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+    <div class="col-md-6">
+      <label>จำนวนเงินที่คาดว่าจะเก็บได้</label>
+      <input currencyMask class="form-control"
+             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+<div class="border-isa">
+  <div class="flex-row p-3">
+    <div class="form-group row ">
+      <div class="col-md-6">
+        <label>Insurance Company</label>
+        <select class="form-control">
+          <option></option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label>Cover Amount</label>
+        <input currencyMask class="form-control"
+               [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+      </div>
+    </div>
+    <div class="form-group row ">
+      <div class="col-md-3">
+        <label>Policy No.</label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="col-md-3 offset-3">
+        <label>Insurance Expiry Date</label>
+        <br>
+        <p-calendar dateFormat="dd/mm/yy" class="mb-1" placeholder="dd/mm/yyyy"></p-calendar>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="flex-row p-3">
+    <div class="form-group row ">
+      <div class="col-md-3">
+        <label>วันที่เกิดเหตุ</label>
+        <br>
+        <p-calendar dateFormat="dd/mm/yy" class="mb-1" placeholder="dd/mm/yyyy"></p-calendar>
+      </div>
+      <div class="col-md-3">
+        <label>วันที่บริษัทรับเรื่อง</label>
+        <br>
+        <p-calendar dateFormat="dd/mm/yy" class="mb-1" placeholder="dd/mm/yyyy"></p-calendar>
+      </div>
+      <div class="col-md-3">
+        <label>วันที่ตำรวจรับเรื่อง</label>
+        <br>
+        <p-calendar dateFormat="dd/mm/yy" class="mb-1" placeholder="dd/mm/yyyy"></p-calendar>
+      </div>
+      <div class="col-md-3">
+        <label>สถานีตำรวจที่รับเรื่อง</label>
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row ">
+      <div class="col-md-3">
+        <label>วันที่บริษัทประกันภัยรับเคลม</label>
+        <br>
+        <p-calendar dateFormat="dd/mm/yy" class="mb-1" placeholder="dd/mm/yyyy"></p-calendar>
+      </div>
+      <div class="col-md-6">
+        <label>เลขที่รับเคลม</label>
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row ">
+      <div class="col-md-3">
+        <label>วันที่คาดว่าจะได้รับค่าสินไหม</label>
+        <br>
+        <p-calendar dateFormat="dd/mm/yy" class="mb-1" placeholder="dd/mm/yyyy"></p-calendar>
+      </div>
+      <div class="col-md-3">
+        <label>วันที่ได้รับค่าสินไหมจริง</label>
+        <br>
+        <p-calendar dateFormat="dd/mm/yy" class="mb-1" placeholder="dd/mm/yyyy"></p-calendar>
+      </div>
+    </div>
+    <div class="form-group row ">
+      <div class="col-md-3">
+        <label>ค่าซาก</label>
+        <input currencyMask class="form-control"
+               [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+      </div>
+      <div class="col-md-3">
+        <label>ค่าสินไหม</label>
+        <input currencyMask class="form-control"
+               [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+      </div>
+      <div class="col-md-3">
+        <label>ทุนประกัน</label>
+        <input currencyMask class="form-control"
+               [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
+      </div>
+    </div>
+  </div>
+</div>

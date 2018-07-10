@@ -1,0 +1,91 @@
+<div class="border-isa">
+  <div class="flex-row p-3">
+    <div class="form-group row">
+      <div class="col-md-2">
+        <label class="mt-4 pt-2">Status Charge</label>
+      </div>
+      <div class="col-md-2">
+        <label>Total</label>
+        <input class="form-control" type="text">
+      </div>
+      <div class="col-md-2">
+        <label>Paid Amount</label>
+        <input class="form-control" type="text">
+      </div>
+      <div class="col-md-2">
+        <label>Waive Amount</label>
+        <input class="form-control" type="text">
+      </div>
+      <div class="col-md-2">
+        <label>Net Total</label>
+        <input class="form-control" type="text">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-2">
+        <label>Legal Charge</label>
+      </div>
+      <div class="col-md-2">
+        <input class="form-control" type="text">
+      </div>
+      <div class="col-md-2">
+        <input class="form-control" type="text">
+      </div>
+      <div class="col-md-2">
+        <input class="form-control" type="text">
+      </div>
+      <div class="col-md-2">
+        <input class="form-control" type="text">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-2">
+        <label>Reposses Up Country Charge</label>
+      </div>
+      <div class="col-md-2">
+        <input class="form-control" type="text">
+      </div>
+      <div class="col-md-2">
+        <input class="form-control" type="text">
+      </div>
+      <div class="col-md-2">
+        <input class="form-control" type="text">
+      </div>
+      <div class="col-md-2">
+        <input class="form-control" type="text">
+      </div>
+    </div>
+  </div>
+  <div>
+    <p-dataTable [responsive]="true" [value]="data" [rows]="20">
+      <p-headerColumnGroup>
+        <p-row>
+          <p-column header="Status Date"></p-column>
+          <p-column header="Old Status"></p-column>
+          <p-column header="New Status"></p-column>
+          <p-column header="Status"></p-column>
+          <p-column header="Legal"></p-column>
+          <p-column header="Repossesion"></p-column>
+          <p-column header="Over due Terms"></p-column>
+          <p-column header="Change Owner"></p-column>
+          <p-column header="Old Owner"></p-column>
+          <p-column header="New Owner"></p-column>
+          <p-column header="Appr. Owner"></p-column>
+          <p-column header="Request Date"></p-column>
+        </p-row>
+      </p-headerColumnGroup>
+      <p-column field="1"></p-column>
+      <p-column field="2"></p-column>
+      <p-column field="3"></p-column>
+      <p-column field="4" [style]="{'text-align':'right'}"></p-column>
+      <p-column field="5" [style]="{'text-align':'right'}"></p-column>
+      <p-column field="6" [style]="{'text-align':'right'}"></p-column>
+      <p-column field="7" [style]="{'text-align':'right'}"></p-column>
+      <p-column field="8"></p-column>
+      <p-column field="9"></p-column>
+      <p-column field="10"></p-column>
+      <p-column field="11"></p-column>
+      <p-column field="12"></p-column>
+    </p-dataTable>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<p-panel header="Change Address Follow Up">
+  <div class="flex-row">
+    <div class="form-group d-flex row">
+      <div class="col-md-6">
+        <label>ชื่อลูกค้า</label>
+        <input type="text" class="form-control" disabled>
+      </div>
+    </div>
+    <div class="form-group d-flex row">
+      <div class="col-md-6">
+        <label>ที่อยู่ </label>
+        <textarea class="form-control" rows="5"></textarea>
+      </div>
+      <div class="col-md-3">
+        <label>จังหวัด</label>
+        <select class="form-control">
+          <option></option>
+        </select>
+      </div>
+      <div class="col-md-3 mt-4">
+        <app-custom-button [option]="'calculate'" [title]="'Duplicate Address'"></app-custom-button>
+      </div>
+    </div>
+    <div class="form-group d-flex row">
+      <div class="col-md-6">
+        <label>Remark ผู้ขอ : </label>
+        <textarea class="form-control" rows="5"></textarea>
+      </div>
+      <div class="col-md-6">
+        <label>Remark ผู้ขอ : </label>
+        <textarea class="form-control" rows="5" disabled></textarea>
+      </div>
+    </div>
+  </div>
+</p-panel>
+<div class="flex-row">
+  <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+    <p-dataTable [value]="data" [rows]="10">
+      <p-header>
+        <app-custom-button [option]="'process'" [title]="'Apply'"></app-custom-button>
+        <app-custom-button [option]="'cancel'" [title]="'Cancel'"></app-custom-button>
+        <app-custom-button [option]="'submit'" [title]="'Submit'"></app-custom-button>
+        <app-custom-button [option]="'reject'" [title]="'Reject'"></app-custom-button>
+      </p-header>
+      <p-headerColumnGroup>
+        <p-row>
+          <p-column header="เลขที่สัญญา"></p-column>
+          <p-column header="Company Code"></p-column>
+          <p-column header="Collector"></p-column>
+          <p-column header="Status"></p-column>
+          <p-column header="Pastdue Amt."></p-column>
+          <p-column header="Pastdue No."></p-column>
+          <p-column header="Next Due Date"></p-column>
+          <p-column header="ที่อยู่ติดตามหนี้ปัจจุบัน"></p-column>
+        </p-row>
+      </p-headerColumnGroup>
+      <p-column field="no" [style]="{'text-align':'center'}"></p-column>
+      <p-column field="com_code"  [style]="{'text-align':'center'}"></p-column>
+      <p-column field="collector"  [style]="{'text-align':'center'}"></p-column>
+      <p-column field="status"  [style]="{'text-align':'center'}"></p-column>
+      <p-column field="pastdue_amt"  [style]="{'text-align':'rigth'}"></p-column>
+      <p-column field="pastdue_no"  [style]="{'text-align':'right'}"></p-column>
+      <p-column field="due_date"  [style]="{'text-align':'center'}"></p-column>
+      <p-column field="cur_addr" ></p-column>
+    </p-dataTable>
+  </div>
+</div>

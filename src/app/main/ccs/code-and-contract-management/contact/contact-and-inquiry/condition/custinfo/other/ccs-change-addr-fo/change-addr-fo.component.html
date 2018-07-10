@@ -1,0 +1,20 @@
+<div class="flex-row">
+  <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+    <p-dataTable selectionMode="single" rows="15"
+                 [value]="listcaexposure"
+                 [responsive]="true">
+      <p-column field="approve_date" header="วันที่อนุมัติ">
+      </p-column>
+      <p-column field="approver" header="คนที่อนุมัติ">
+      </p-column>
+      <p-column field="old_acc_holder" header="เจ้าของบัญชีคนเก่า">
+      </p-column>
+      <p-column field="new_acc_holder" header="เจ้าของบัญชีคนใหม่">
+      </p-column>
+      <p-column field="addr_old" header="ที่อยู่ติดตามหนี้เก่า">
+      </p-column>
+      <p-column field="addr_new" header="ที่อยู่ติดตามหนี้ใหม่">
+      </p-column>
+    </p-dataTable>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<p-panel header="Paid Legal">
+  <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
+    <p-table [value]="list_cdspaid_legal" [responsive]="true">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Batch Date</th>
+          <th>Receipt Number</th>
+          <th>Receipt Date</th>
+          <th>Paid Amount</th>
+          <th>Paid Type</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>หมายเหตุ</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+        <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+          <td>{{rowData.date_pay}}</td>
+          <td>{{rowData.document_no}}</td>
+          <td>{{rowData.document_date}}</td>
+          <td>{{rowData.amount | number:'.2-2'}}</td>
+          <td>{{rowData.paid_desc}}</td>
+          <td>{{rowData.receive_name}}</td>
+          <td>{{rowData.amount | number:'.2-2'}}</td>
+          <td>{{rowData.remark}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    <!--<p-dataTable [value]="custService.srviceCustModel.list_cdspaid_legal" [rows]="20">-->
+    <!--<p-headerColumnGroup>-->
+    <!--<p-row>-->
+    <!--<p-column header="Batch Date"></p-column>-->
+    <!--<p-column header="Receipt Number"></p-column>-->
+    <!--<p-column header="Receipt Date"></p-column>-->
+    <!--<p-column header="Paid Amount"></p-column>-->
+    <!--<p-column header="Paid Type"></p-column>-->
+    <!--<p-column header="Type"></p-column>-->
+    <!--<p-column header="Amount"></p-column>-->
+    <!--<p-column header="หมายเหตุ"></p-column>-->
+    <!--</p-row>-->
+    <!--</p-headerColumnGroup>-->
+    <!--<p-column field="date_pay"></p-column>-->
+    <!--<p-column field="document_no"></p-column>-->
+    <!--<p-column field="document_date"></p-column>-->
+    <!--<p-column field="amount"></p-column>-->
+    <!--<p-column field="paid_desc"></p-column>-->
+    <!--<p-column field="receive_name"></p-column>-->
+    <!--<p-column field="amount"></p-column>-->
+    <!--<p-column field="remark"></p-column>-->
+    <!--</p-dataTable>-->
+  </div>
+</p-panel>

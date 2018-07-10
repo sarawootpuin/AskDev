@@ -1,0 +1,47 @@
+<div class="flex-row">
+  <div class="form-group d-flex row">
+    <div class="col-md-4 pr-0">
+      <div class="border-isa">
+        <p-dataTable [responsive]="true" [value]="data" [rows]="10">
+          <p-headerColumnGroup>
+            <p-row>
+              <p-column header="Name - Last name"></p-column>
+              <p-column header="Relation"></p-column>
+            </p-row>
+          </p-headerColumnGroup>
+          <p-column field="full_name"></p-column>
+          <p-column field="relation"></p-column>
+
+        </p-dataTable>
+      </div>
+    </div>
+    <div class="col-md-8 border-isa">
+      <div class="form-group row">
+        <div class="col-md-12">
+          <label>Address</label>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label>Tel</label>
+          <input type="text" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label>Mobile</label>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label>Moile 2</label>
+          <input type="text" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label>Mobile 3</label>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

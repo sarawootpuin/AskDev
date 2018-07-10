@@ -1,0 +1,258 @@
+<app-action-button-form [title]="'Customer Information (Hire Purchase)'" [showPrint]="false" [showCancel]="false"
+                        [showEdit]="true" [showSave]="false" [showBack]="false" [showCalculator]="false"
+                        [showSearch]="false" [showNew]="false"
+                        [titleEdit]="'แจ้งเปลี่ยนที่อยู่ติดตามหนี้'">
+</app-action-button-form>
+<app-custinfo>
+  <div class="tab-head">ข้อมูลลูกค้า</div>
+  <br>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card border-info mb-3">
+        <div class="card-header bg-transparent border-info"><h5><b>ชื่อ - นามสกุล</b></h5></div>
+        <div class="card-body">
+          <div class="card-text">
+            <form>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">คำนำหน้าชื่อ</label>
+                <div class="col-md-4">
+                  <input type="text" readonly class="form-control" value="บริษัท">
+                </div>
+                <label class="col-md-2 col-form-label">อายุ</label>
+                <div class="col-md-4">
+                  <input type="text" readonly class="form-control" value="...">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">ชื่อ-สกุล</label>
+                <div class="col-md-10">
+                  <input type="text" readonly class="form-control" value="Q5B5AYIR2W 49IGNWYM3Z">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">เลขที่บัตร</label>
+                <div class="col">
+                  <input type="text" readonly class="form-control" value="0105548018611">
+                </div>
+                <div class="col">
+                  <input type="text" readonly class="form-control" value="สำนักงานใหญ่">
+                </div>
+                <div class="col-4">
+                  <input type="text" readonly class="form-control" value="จดผู้ประกอบการ VAT">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card border-info mb-3">
+        <div class="card-header bg-transparent border-info"><h5><b>Current&emsp;&emsp;&emsp; <span style="color:red">ที่อยู่ในใบกำกับภาษี</span></b>
+        </h5></div>
+        <div class="card-body">
+          <div class="card-text">
+            <form>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">ที่อยู่</label>
+                <div class="col-md-10">
+                  <input type="text" readonly class="form-control"
+                         value="187/35 ม.1 ซ.เสรีไทย25 ถ.เสรีไทย แขวงคลองกุ่ม เขตบึงกุ่ม กทม. 10230">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">สถานที่ใกล้เคียง</label>
+                <div class="col-md-10">
+                  <input type="text" readonly class="form-control" value="...">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">ชื่อผู้ติดต่อ</label>
+                <div class="col-md-10">
+                  <input type="text" readonly class="form-control" value="...">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">Tel</label>
+                <div class="col-md-8">
+                  <input type="text" readonly class="form-control" value="027325337,027324467">
+                </div>
+                <label class="col-md-2 col-form-label-sm" style="cursor: pointer">History Tel.</label>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card border-info mb-3">
+        <div class="card-header bg-transparent border-info"><h5><b>Card&emsp;&emsp;&emsp; <span style="color:red">ที่อยู่ในใบเสร็จรับเงิน และใบกำกับภาษี</span></b>
+        </h5></div>
+        <div class="card-body">
+          <div class="card-text">
+            <form>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">ที่อยู่</label>
+                <div class="col-md-10">
+                  <input type="text" readonly class="form-control"
+                         value="187/35 ม.1 ซ.เสรีไทย25 ถ.เสรีไทย แขวงคลองกุ่ม เขตบึงกุ่ม กทม. 10230">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">Tel.</label>
+                <div class="col-md-8">
+                  <input type="text" readonly class="form-control" value="">
+                </div>
+                <label class="col-md-2 col-form-label-sm" style="cursor: pointer">History Tel.</label>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card border-info mb-3">
+        <div class="card-header bg-transparent border-info"><h5><b>ติดต่ออื่น ๆ</b></h5></div>
+        <div class="card-body">
+          <div class="card-text">
+            <form>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">SMS (Mobile 1)</label>
+                <div class="col-md-6">
+                  <input type="text" readonly class="form-control" value="0845356544">
+                </div>
+                <label class="col-md-4 col-form-label-sm" style="cursor: pointer">History Tel.(Mobile & SMS)</label>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">Mobile Phone</label>
+                <div class="col-md-10">
+                  <input type="text" readonly class="form-control" value="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">E-Mail Address</label>
+                <div class="col-md-10">
+                  <input type="text" readonly class="form-control" value="">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card border-info mb-3">
+        <div class="card-header bg-transparent border-info"><h5><b>Office</b></h5></div>
+        <div class="card-body">
+          <div class="card-text">
+            <form>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">ที่อยู่</label>
+                <div class="col-md-10">
+                  <input type="text" readonly class="form-control"
+                         value="187/35 ม.1 ซ.เสรีไทย25 ถ.เสรีไทย แขวงคลองกุ่ม เขตบึงกุ่ม กทม. 10230">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">บริษัท</label>
+                <div class="col-md-10">
+                  <input type="text" readonly class="form-control" value="Q5B5AYIR2W 49IGNWYM3Z">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">แผนก</label>
+                <div class="col-md-10">
+                  <input type="text" readonly class="form-control" value="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">อาชีพ</label>
+                <div class="col-md-10">
+                  <input type="text" readonly class="form-control" value="นิติบุคคล">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">ตำแหน่ง</label>
+                <div class="col-md-10">
+                  <input type="text" readonly class="form-control" value="นิติบุคคล - บริษัทจำกัด">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">สถานที่ใกล้เคียง</label>
+                <div class="col-md-10">
+                  <input type="text" readonly class="form-control" value="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">Tel. (ที่ทำงาน)</label>
+                <div class="col-md-8">
+                  <input type="text" readonly class="form-control" value="027325337,0845356544#คุณธนิตศักดิ์">
+                </div>
+                <label class="col-md-2 col-form-label-sm" style="cursor: pointer">History Tel.</label>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card border-info mb-3">
+        <div class="card-header bg-transparent border-info"><h5><b>Mail&emsp;&emsp;&emsp; <span style="color:red">ที่อยู่ในใบเสร็จ</span></b>
+        </h5></div>
+        <div class="card-body">
+          <div class="card-text">
+            <form>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">ที่อยู่</label>
+                <div class="col-md-10">
+                  <input type="text" readonly class="form-control"
+                         value="187/35 ม.1 ซ.เสรีไทย25 ถ.เสรีไทย แขวงคลองกุ่ม เขตบึงกุ่ม กทม. 10230">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card border-info mb-3">
+        <div class="card-header bg-transparent border-info"><h5><b>รายละเอียดการส่งใบเสร็จ</b></h5></div>
+        <div class="card-body">
+          <div class="card-text">
+            <form>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">ประเภทการส่งใบเสร็จรับเงิน</label>
+                <div class="col-md-10">
+                  <input type="text" readonly class="form-control" value="ส่งใบเสร็จแบบธรรมดา">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">เริ่มวันที่</label>
+                <div class="col-md-10">
+                  <input type="text" readonly class="form-control" value="04/01/2017">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card border-info mb-3">
+        <div class="card-header bg-transparent border-info"><h5><b>ที่อยู่ติดตามหนี้</b></h5></div>
+        <div class="card-body">
+          <div class="card-text">
+            <form>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">ที่อยู่</label>
+                <div class="col-md-10">
+                  <input type="text" readonly class="form-control"
+                         value="187/35 ม.1 ซ.เสรีไทย25 ถ.เสรีไทย แขวงคลองกุ่ม เขตบึงกุ่ม กทม. 10230">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">จังหวัด</label>
+                <div class="col-md-4">
+                  <input type="text" readonly class="form-control" value="กรุงเทพมหานคร">
+                </div>
+                <label class="col-md-6 col-form-label-sm" style="cursor: pointer">History Change Regional</label>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!--<div class="card-footer bg-transparent border-info">-->
+          <!--<app-custom-button [title]="'แจ้งเปลี่ยนที่อยู่ติดตามหนี้'" [option]="'process'"></app-custom-button>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+</app-custinfo>

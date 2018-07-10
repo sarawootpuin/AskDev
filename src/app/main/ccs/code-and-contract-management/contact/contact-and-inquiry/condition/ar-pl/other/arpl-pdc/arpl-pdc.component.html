@@ -1,0 +1,36 @@
+<div class="border-isa">
+  <div class="flex-row p-3">
+  <div class="form-group d-flex row col-md-3">
+    <label>จำนวนเช็ค PDC คงเหลือ</label>
+    <input type="text" class="form-control" disabled>
+  </div>
+</div>
+  <p-dataTable [responsive]="true" [value]="data" [rows]="10">
+    <p-headerColumnGroup>
+      <p-row>
+        <p-column header="เลขที่เช็ค"></p-column>
+        <p-column header="เลขที่ในเช็ค"></p-column>
+        <p-column header="ธนาคาร"></p-column>
+        <p-column header="สาขา"></p-column>
+        <p-column header="จำนวนเงิน"></p-column>
+        <p-column header="รายการชำระ"></p-column>
+        <p-column header="วันที่รับเช็ค"></p-column>
+        <p-column header="วันที่นำฝากธนาคาร"></p-column>
+        <p-column header="เลขที่ใบรับ"></p-column>
+        <p-column header="ชื่อผู้รับ"></p-column>
+        <p-column header="ช่องทางรับ"></p-column>
+      </p-row>
+    </p-headerColumnGroup>
+    <p-column field="1"></p-column>
+    <p-column field="2"></p-column>
+    <p-column field="3" [style]="{'text-align':'center'}"></p-column>
+    <p-column field="4" [style]="{'text-align':'center'}"></p-column>
+    <p-column field="5" [style]="{'text-align':'rigth'}"></p-column>
+    <p-column field="6"></p-column>
+    <p-column field="7"></p-column>
+    <p-column field="8"></p-column>
+    <p-column field="9"></p-column>
+    <p-column field="10"></p-column>
+    <p-column field="11"></p-column>
+  </p-dataTable>
+</div>

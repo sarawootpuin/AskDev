@@ -1,0 +1,253 @@
+<!--<app-action-button-form [title]="TITLE" [showPrint]="true" [showCalculator]="true"-->
+<!--[showSearch]="true" [showSave]="true" [showNew]="true"-->
+<!--[titleSave]="'บันทึกผลการเจรจา'" [titlePrint]="'จดหมายแจ้งยอด Close Acc.'"-->
+<!--[titleSearch]="'Search'" [titleNew]="'ดูผลการเจรจา'" [titleCalculator]="'Waive / Discount'">-->
+
+<!--</app-action-button-form>-->
+
+<p-panel header="Close Account">
+  <!--<app-custom-button [option]="'print'" [title]="'จดหมายแจ้งยอด Close Acc.'"></app-custom-button>-->
+  <!--<app-custom-button [option]="'save'" [title]="'บันทึกผลการเจรจา'"></app-custom-button>-->
+  <!--<app-custom-button [option]="'calculate'" [title]="'Waive / Discount'"></app-custom-button>-->
+  <!--<app-custom-button [option]="'new'" [title]="'ดูผลการเจรจา'"></app-custom-button>-->
+
+  <!--<div class="root d-flex w-100 p-2 ">-->
+  <!--<div class="ml-auto p-1">-->
+  <!--<app-custom-button [title]="'บันทึกผลการเจรจา'" [option]="'save'" (onBtnClick)="onTest('save')"-->
+  <!--[disabled]="true"></app-custom-button>-->
+
+  <!--<app-custom-button [title]="'ดูผลการเจรจา'" [option]="'search'"-->
+  <!--(onBtnClick)="onTest('search')"></app-custom-button>-->
+
+  <!--<app-custom-button [title]="'จดหมายแจ้งยอด Close Acc.'" [option]="'print'"></app-custom-button>-->
+
+  <!--<app-custom-button [title]="'Waive / Discount'" [option]="'process'"></app-custom-button>-->
+  <!--</div>-->
+  <!--</div>-->
+
+
+  <!--<div class="border border-secondary"-->
+  <!--style="font-weight: bold;padding-left: 10px; padding-right: 10px; padding-top: 5px;">-->
+  <!--<br>-->
+  <!--<div class="d-flex align-content-center flex-wrap">-->
+  <!--<form style="font-weight: bold;padding-left: 10px; padding-right: 10px; padding-top: 10px">-->
+
+    <div class="form-group row">
+
+      <label class="col-md-2 col-form-label">Close Date: (ค.ศ.)</label>
+
+      <div class="col-md-2">
+        <p-calendar [(ngModel)]="date1 " [ngModelOptions]="{standalone: true}" dateFormat="dd/mm/yy"></p-calendar>
+      </div>
+
+      <div class="col-md-1">
+        <app-custom-button [title]="'Calc'" [option]="'calculate'"></app-custom-button>
+      </div>
+
+      <div class="col-md-1"></div>
+
+      <label class="col-md-1 col-form-label">Discount (%):</label>
+
+      <div class="col-md-1">
+        <input currencyMask class="form-control"
+               [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"
+               value="">
+      </div>
+
+      <div class="col-md-1">
+        <app-custom-button [title]="'Calc'" [option]="'calculate'"></app-custom-button>
+      </div>
+
+      <label class="col-md-1 col-form-label">Discount Amount:</label>
+
+
+      <div class="col-md-2">
+        <input currencyMask class="form-control txt-right"
+               [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"
+               value="">
+      </div>
+    </div>
+  <!--</form>-->
+  <!--</div>-->
+  <!--</div>-->
+
+  <div class="border border-secondary" style="padding-left: 10px; padding-right: 10px;">
+    <br>
+    <form>
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label">Paid Term</label>
+        <div class="col-md-1">
+          <input type="text" readonly class="form-control txt-right" value="">
+        </div>
+        <div class="col-md-2"></div>
+        <label class="col-md-2 col-form-label">Paid Amount</label>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+          <input type="text" readonly class="form-control txt-right" value="">
+        </div>
+      </div>
+      <hr style="border-color: #d60c0c; height: 2px">
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label">Balance AR</label>
+        <div class="col-md-1">
+          <input type="text" readonly class="form-control txt-right" value="">
+        </div>
+        <div class="col-md-2">
+          <input type="text" readonly class="form-control txt-right" value="">
+        </div>
+        <label class="col-md-2 col-form-label">Balance VAT</label>
+        <div class="col-md-1">
+          <input type="text" readonly class="form-control txt-right" value="">
+        </div>
+        <div class="col-md-2">
+          <input type="text" readonly class="form-control txt-right" value="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label">Discount Amount</label>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-2">
+          <input type="text" readonly class="form-control txt-right" value="">
+        </div>
+        <label class="col-md-2 col-form-label">Sub Total</label>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+          <input type="text" readonly style="font-weight: bold; background-color: #ffdd90"
+                 class="form-control txt-right"
+                 value="">
+        </div>
+      </div>
+      <hr style="border-color: #d60c0c; height: 2px">
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label">Total Penalty</label>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+          <input type="text" readonly class="form-control txt-right" value="">
+        </div>
+        <label class="col-md-2 col-form-label">Total Charge</label>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+          <input type="text" readonly class="form-control txt-right" value="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label">Total Expense & Advance</label>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+          <input type="text" readonly class="form-control txt-right" value="">
+        </div>
+        <label class="col-md-2 col-form-label">Total Insurance / Compulsory</label>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+          <input type="text" readonly class="form-control txt-right" value="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label">Total Registration</label>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+          <input type="text" readonly class="form-control txt-right" value="">
+        </div>
+        <label class="col-md-2 col-form-label">Status Charge **</label>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+          <input currencyMask class="form-control txt-right"
+                 [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"
+                 value="">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label">Legal Expense</label>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+          <input currencyMask class="form-control txt-right"
+                 [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"
+                 value="">
+        </div>
+        <label class="col-md-2 col-form-label">Other Expense</label>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+          <input currencyMask class="form-control txt-right"
+                 [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"
+                 value="">
+          <!--[(ngModel)]=""-->
+        </div>
+      </div>
+
+      <!--ชำระประกันบางส่วน-->
+      <div class="form-group row">
+        <div class="form-check col-md-2" data-toggle="collapse" href="#collapseInsClose" aria-expanded="false"
+             aria-controls="collapseInsClose">
+          <label class="form-check-label form-inline">
+            <input class="form-check-input" type="checkbox" value="">
+            ชำระประกันบางส่วน
+          </label>
+        </div>
+        <div class="collapse col-md-8" id="collapseInsClose">
+          <div class="card card-body">
+            <div class="form-group row">
+              <label class="col-form-label col-md-2">พ.ร.บ.</label>
+              <div class="col-md-4">
+                <input class="form-control" appMyCurrency [fraction]="2"
+                       value="0.00">
+              </div>
+              <label class="col-form-label col-md-2">สมัครใจ</label>
+              <div class="col-md-4">
+                <input class="form-control" appMyCurrency [fraction]="2"
+                       value="0.00">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-form-label col-md-2">เหตุผล</label>
+              <div class="col-md-10">
+                <textarea class="form-control" rows="1"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label"></label>
+        <div class="col-md-1"></div>
+        <div class="col-md-2"></div>
+        <label class="col-md-2 col-form-label">Sub Total</label>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+          <input type="text" readonly style="font-weight: bold; background-color: #ffdd90"
+                 class="form-control txt-right"
+                 value="">
+        </div>
+      </div>
+      <hr style="border-color: #d60c0c; height: 2px">
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label"></label>
+        <div class="col-md-1"></div>
+        <div class="col-md-2"></div>
+        <label class="col-md-2 col-form-label">Total Payment Amount</label>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+          <input type="text" readonly style="font-weight: bold; background-color: #ffa67d"
+                 class="form-control txt-right"
+                 value="">
+        </div>
+      </div>
+      <hr style="border-color: #d60c0c; height: 2px">
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label">ยอดเงินคงเหลือรับฝาก</label>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+          <input currencyMask class="form-control txt-right"
+                 [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"
+                 value="">
+        </div>
+        <label class="col-md-2 col-form-label"></label>
+        <div class="col-md-1"></div>
+        <div class="col-md-2"></div>
+      </div>
+    </form>
+  </div>
+</p-panel>

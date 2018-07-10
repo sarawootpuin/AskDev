@@ -1,0 +1,221 @@
+<p-panel header="Master">
+  <div class="flex-row p-3 border-isa">
+
+    <dl class="row">
+      <dt class="col-md-2">ทรัพย์สิน</dt>
+      <dd>
+        <select class="form-control" [value]="vSelected_list_Asset.lblA_Order"
+                (change)="vSelected_list_Asset = list_Asset[$event.target.value - 1]">
+          <option *ngFor="let obj of list_Asset">{{obj.lblA_Order}}</option>
+        </select>
+      </dd>
+    </dl>
+
+    <dl class="row">
+      <dt class="col-md-2">ประเภททรัพย์สิน</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblBody + &nbsp; + vSelected_list_Asset.lblBody_Desc || '...'}}</dd>
+
+      <dt class="col-md-2">รุ่นรถ</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblModel || '...'}}</dd>
+
+      <dt class="col-md-2">ยี่ห้อ</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblBrand + &nbsp; + vSelected_list_Asset.lblBrand_Desc || '...'}}</dd>
+
+      <dt class="col-md-2">ลักษณะรถ</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblAsset_Description || '...'}}</dd>
+
+      <dt class="col-md-2">ประเภททรัพย์สิน</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblBody + &nbsp; + vSelected_list_Asset.lblBody_Desc || '...'}}</dd>
+
+      <dt class="col-md-2">อุปกรณ์</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblAccessory || '...'}}</dd>
+
+      <dt class="col-md-2">สี</dt>
+      <dd class="col-md-2">{{(vSelected_list_Asset.lblColor + &nbsp; + vSelected_list_Asset.lblColor_Desc) || '...'}}</dd>
+
+      <dt class="col-md-2">ปี</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblYear || '...'}}</dd>
+
+      <dt class="col-md-2">CC</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblCC || '...'}}</dd>
+
+      <dt class="col-md-2">น้ำหนัก</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblWeight || '...'}}</dd>
+
+      <dt class="col-md-2">ระยะทางที่ใช้รถ(ก.ม)</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblMiles || '...'}}</dd>
+
+      <dt class="col-md-2">เลขเครื่อง</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblEng_Num || '...'}}</dd>
+
+      <dt class="col-md-2">เลขถัง</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblChassis || '...'}}</dd>
+
+      <dt class="col-md-2">จำนวนที่นั่ง</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblSeat + &nbsp; + vSelected_list_Asset.lblSeat_Desc || '...'}}</dd>
+
+      <dt class="col-md-2">เครื่องยนต์</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblEngine_Type + &nbsp; + vSelected_list_Asset.lblEngine_Desc || '...'}}</dd>
+
+      <dt class="col-md-2">ประเภทการใช้</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblVehicle_Used + &nbsp; + vSelected_list_Asset.lblVehical_Desc || '...'}}</dd>
+
+      <dt class="col-md-2">รหัสประกัน</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblInsure_Code || '...'}}</dd>
+
+      <dt class="col-md-2">รหัส พรบ</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblCode + '-' + vSelected_list_Asset.lblSub_Code || '...'}}</dd>
+
+      <dt class="col-md-2">Q.Matrix</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblQuantity_Matrix + &nbsp; + vSelected_list_Asset.lblQ_Matrix_Desc || '...'}}</dd>
+
+      <dt class="col-md-2">เลขที่ทะเบียน</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblReg_Num || '...'}}</dd>
+
+      <dt class="col-md-2">วันที่ต่อภาษี</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblReg_Date || '...'}}</dd>
+
+      <dt class="col-md-2">ภาษีหมดอายุ</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblReg_Exp || '...'}}</dd>
+
+      <dt class="col-md-2">ภาษีไม่รวมค่าบริการ</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblReg_Amt_E_Service || '0' | number:'.2-2'}}</dd>
+
+      <dt class="col-md-2">ภาษีสุทธิรวมค่าบริการ</dt>
+      <dd class="col-md-2">{{vSelected_list_Asset.lblReg_Amt_I_Service || '0' | number:'.2-2'}}</dd>
+    </dl>
+
+  </div>
+</p-panel>
+
+<!--backup-->
+<!--<div class="form-group row">-->
+  <!--<div class="col-md-3">-->
+    <!--<label>ประเภททรัพย์สิน</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblBody + ' : ' + vSelected_list_Asset.lblBody_Desc">-->
+  <!--</div>-->
+  <!--<div class="col-md-3">-->
+    <!--<label>รุ่นรถ</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblModel">-->
+  <!--</div>-->
+  <!--<div class="col-md-3">-->
+    <!--<label>ยี่ห้อ</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblBrand + ' : ' + vSelected_list_Asset.lblBrand_Desc">-->
+  <!--</div>-->
+  <!--<div class="col-md-3">-->
+    <!--<label>ลักษณะรถ</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblAsset_Description">-->
+  <!--</div>-->
+<!--</div>-->
+
+<!--<div class="form-group row">-->
+  <!--<div class="col-md-2">-->
+    <!--<label>อุปกรณ์</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblAccessory">-->
+  <!--</div>-->
+  <!--<div class="col-md-1">-->
+    <!--<label>สี</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblColor + ' : ' + vSelected_list_Asset.lblColor_Desc ">-->
+  <!--</div>-->
+  <!--<div class="col-md-1">-->
+    <!--<label>ปี</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblYear">-->
+  <!--</div>-->
+  <!--<div class="col-md-1">-->
+    <!--<label>CC</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblCC">-->
+  <!--</div>-->
+  <!--<div class="col-md-1">-->
+    <!--<label>น้ำหนัก</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblWeight">-->
+  <!--</div>-->
+  <!--<div class="col-md-2">-->
+    <!--<label>ระยะทางที่ใช้รถ(ก.ม)</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblMiles">-->
+  <!--</div>-->
+  <!--<div class="col-md-2">-->
+    <!--<label>เลขเครื่อง</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblEng_Num">-->
+  <!--</div>-->
+  <!--<div class="col-md-2">-->
+    <!--<label>เลขถัง</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblChassis">-->
+  <!--</div>-->
+<!--</div>-->
+
+<!--<div class="form-group row">-->
+  <!--<div class="col-md-2">-->
+    <!--<label>จำนวนที่นั่ง</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblSeat + ' : ' + vSelected_list_Asset.lblSeat_Desc">-->
+  <!--</div>-->
+  <!--<div class="col-md-3">-->
+    <!--<label>เครื่องยนต์</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblEngine_Type + ' : ' + vSelected_list_Asset.lblEngine_Desc + ' : ' + vSelected_list_Asset.lblEng_Num">-->
+  <!--</div>-->
+  <!--<div class="col-md-3">-->
+    <!--<label>ประเภทการใช้</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblVehicle_Used + ' : ' + vSelected_list_Asset.lblVehical_Desc">-->
+  <!--</div>-->
+  <!--<div class="col-md-1">-->
+    <!--<label>รหัสประกัน</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblInsure_Code">-->
+  <!--</div>-->
+  <!--<div class="col-md-3">-->
+    <!--<label>รหัส พรบ</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblCode + ' - ' + vSelected_list_Asset.lblSub_Code">-->
+  <!--</div>-->
+<!--</div>-->
+
+<!--<div class="form-group row">-->
+  <!--<div class="col-md-3">-->
+    <!--<label>Q.Matrix</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblQuantity_Matrix + ' : ' + vSelected_list_Asset.lblQ_Matrix_Desc">-->
+  <!--</div>-->
+
+  <!--<div class="col-md-2">-->
+    <!--<label>เลขที่ทะเบียน</label>-->
+    <!--<input class="form-control mr-1" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblReg_Num">-->
+  <!--</div>-->
+<!--</div>-->
+
+<!--<div class="form-group row">-->
+  <!--<div class="col-md-3">-->
+    <!--<label>วันที่ต่อภาษี</label><br>-->
+    <!--<p-calendar dateFormat="dd/mm/yy" [(ngModel)]="vSelected_list_Asset.lblReg_Date"-->
+                <!--dataType="string" disabled></p-calendar>-->
+  <!--</div>-->
+  <!--<div class="col-md-3">-->
+    <!--<label>ภาษีหมดอายุ</label><br>-->
+    <!--<p-calendar dateFormat="dd/mm/yy" [(ngModel)]="vSelected_list_Asset.lblReg_Exp"-->
+                <!--dataType="string" disabled></p-calendar>-->
+  <!--</div>-->
+  <!--<div class="col-md-3">-->
+    <!--<label>ภาษีไม่รวมค่าบริการ</label>-->
+    <!--<input class="form-control mr-1 col-md-3" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblReg_Amt_E_Service">-->
+  <!--</div>-->
+  <!--<div class="col-md-3">-->
+    <!--<label>ภาษีสุทธิรวมค่าบริการ</label>-->
+    <!--<input class="form-control mr-1 col-md-3" type="text" readonly-->
+           <!--[value]="vSelected_list_Asset.lblReg_Amt_I_Service">-->
+  <!--</div>-->
+<!--</div>-->

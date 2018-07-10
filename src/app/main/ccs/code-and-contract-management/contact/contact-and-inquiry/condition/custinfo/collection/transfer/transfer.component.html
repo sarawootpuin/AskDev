@@ -1,0 +1,32 @@
+<!--&lt;!&ndash;<div *ngIf="vSwitchPageTransfer == 'content1';then content1 else content2"></div>&ndash;&gt;-->
+
+<!--<div *ngIf="!vSwitchPageTransfer; else another_page">-->
+<!--<p-panel header="Transfer (For ASK)">-->
+<!--<app-custom-button [option]="'edit'" [title]="'Key Customer & Guarantor'" (onBtnClick)="openCustGuar()"></app-custom-button>-->
+<!--<app-custom-button [option]="'save'" [title]="'บันทึกผลการเจรจา'"></app-custom-button>-->
+<!--<app-custom-button [option]="'calculate'" [title]="'Waive / Discount'"></app-custom-button>-->
+<!--<app-custom-button [option]="'new'" [title]="'ดูผลการเจรจา'"></app-custom-button>-->
+
+<!--<div style="padding-top: 10px">-->
+<!--<p-tabView>-->
+<!--<p-tabPanel header="Transfer">-->
+<!--<app-transfer-tab></app-transfer-tab>-->
+<!--</p-tabPanel>-->
+<!--<p-tabPanel header="History">-->
+<!--<app-transfer-hist-tab></app-transfer-hist-tab>-->
+<!--</p-tabPanel>-->
+<!--</p-tabView>-->
+<!--</div>-->
+<!--</p-panel>-->
+<!--</div>-->
+
+<!--<ng-template #another_page>-->
+<!--<app-transfer-customer-guarantor></app-transfer-customer-guarantor>-->
+<!--</ng-template>-->
+
+<!--&lt;!&ndash;<router-outlet></router-outlet>&ndash;&gt;-->
+
+<!--AR Enquiry-->
+<p-panel header="ประวัติการโอนสัญญา">
+  <app-transfer-hist-tab></app-transfer-hist-tab>
+</p-panel>

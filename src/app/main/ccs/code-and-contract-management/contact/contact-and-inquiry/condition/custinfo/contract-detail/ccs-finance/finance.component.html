@@ -1,0 +1,483 @@
+<div class="flex-row p-3 border-isa">
+  <p-tabView>
+    <p-tabPanel header="Hire Purchase Contract">
+      <dl class="row">
+        <dt class="col-md-2">บริษัท</dt>
+        <dd class="col-md-10">{{list_Custmodel.agr_com_code}}</dd>
+
+        <dt class="col-md-2">เลขที่อ้างอิง</dt>
+        <dd class="col-md-10">{{list_Custmodel.ref_code}}</dd>
+
+        <dt class="col-md-2">เลขที่สัญญา</dt>
+        <dd class="col-md-10">{{list_Custmodel.agr_code}}</dd>
+
+        <dt class="col-md-2">รหัสลูกค้า</dt>
+        <dd class="col-md-10">{{list_Custmodel.cus_code}} &nbsp; {{list_Custmodel.lblcust_name}}</dd>
+
+        <dt class="col-md-2">ประเภทสัญญา</dt>
+        <dd class="col-md-10">{{list_Custmodel.new_tr}} &nbsp; {{list_Custmodel.lblnew_tr_desc}}</dd>
+
+        <dt class="col-md-2">Dealer</dt>
+        <dd class="col-md-10">{{list_Custmodel.lbldealer_code}} &nbsp; {{list_Custmodel.lbldealer_name}}</dd>
+
+        <dt class="col-md-2">Outlet</dt>
+        <dd class="col-md-10">{{list_Custmodel.lbloutlet}} &nbsp; {{list_Custmodel.lbloutlet_desc}}</dd>
+
+        <dt class="col-md-2">Project</dt>
+        <dd class="col-md-10">{{list_Custmodel.lblprj_code}} &nbsp; {{list_Custmodel.lblprj_desc}}</dd>
+
+        <dt class="col-md-2">เลขที่สัญญาเดิม</dt>
+        <dd class="col-md-10">{{list_Custmodel.lblrefer_old_agr}} &nbsp; {{list_Custmodel.lblold_cust_name}}</dd>
+
+        <dt class="col-md-2">พนักงานสินเชื่อ</dt>
+        <dd class="col-md-10">{{list_Custmodel.lblsalesexe}} &nbsp; {{list_Custmodel.lblsale_name}}</dd>
+
+        <dd class="col-md-2">
+          <i *ngIf="list_Custmodel.pnlasset_status === 'N'" class="fa fa-check-square"></i>
+          <i *ngIf="list_Custmodel.pnlasset_status !== 'N'" class="fa fa-square"></i>
+          ทรัพย์สินใหม่</dd>
+
+        <dd class="col-md-2">
+          <i *ngIf="list_Custmodel.pnlwith_vat === 'Y'" class="fa fa-check-square"></i>
+          <i *ngIf="list_Custmodel.pnlwith_vat !== 'Y'" class="fa fa-square"></i>
+          VAT</dd>
+
+        <dd class="col-md-2">
+          <i *ngIf="list_Custmodel.pnlnew_reg === 'Y'" class="fa fa-check-square"></i>
+          <i *ngIf="list_Custmodel.pnlnew_reg !== 'Y'" class="fa fa-square"></i>
+          สคบ.</dd>
+      </dl>
+    </p-tabPanel>
+
+    <p-tabPanel header="รายละเอียดสินเชื่อ">
+      <dl class="row">
+        <dt class="col-md-2">ช่องทางการชำระเงิน</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.lblmet_pay2}} &nbsp; {{list_Custmodel.lblmet_pay_desc2}}</dd>
+
+        <dt class="col-md-2">วันที่ทำสัญญา</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.lblfin_date2}}</dd>
+
+        <dt class="col-md-2">วันที่ชำระงวดแรกสุด</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.first}}</dd>
+
+        <dt class="col-md-2">ชำระทุกวันที่</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.due_day}}</dd>
+
+        <dt class="col-md-2">Flat Rate (%)</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.lblflat_rate}}</dd>
+
+        <dt class="col-md-2">วันที่ชำระงวดสุดท้าย</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.lbllast_due}}</dd>
+
+        <dt class="col-md-2">วันที่เช็คจ่าย</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.disbursement_date}}</dd>
+
+        <dt class="col-md-2">งวดผ่อนชำระ</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.term}}</dd>
+      </dl>
+
+      <dl class="row">
+        <dt class="col-md-2">ราคาซื้อ(รวมภาษี)</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.lblcost_i_vat |  number:'.2-2'}}</dd>
+
+        <dt class="col-md-2">VAT</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.lblcost_vat |  number:'.2-2'}}</dd>
+
+        <dt class="col-md-2">ราคาซื้อ</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.lblcost_e_vat |  number:'.2-2'}}</dd>
+
+        <dt class="col-md-2" *ngIf="list_Custmodel.sub_fin == '2'|| list_Custmodel.sub_fin == '3';else lbldown_i_vatID">เงินดาวน์(รวมภาษี)</dt>
+        <ng-template #lbldown_i_vatID>
+          <dt class="col-md-2">เงินรับฝาก(รวมภาษี)</dt>
+        </ng-template>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.lbldown_i_vat |  number:'.2-2'}}</dd>
+
+        <dt class="col-md-2">VAT</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.lbldown_vat |  number:'.2-2'}}</dd>
+
+        <dt class="col-md-2" *ngIf="list_Custmodel.sub_fin == '2'|| list_Custmodel.sub_fin == '3';else lbldownID">เงินดาวน์</dt>
+        <ng-template #lbldownID>
+          <dt class="col-md-2">เงินรับฝาก</dt>
+        </ng-template>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.lbldown_e_vat |  number:'.2-2'}}</dd>
+
+        <dt class="col-md-2">ยอดสินเชื่อ(รวมภาษี)</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.lblfin_amt_i_vat |  number:'.2-2'}}</dd>
+
+        <dt class="col-md-2">VAT</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.lblfin_vat |  number:'.2-2'}}</dd>
+
+        <dt class="col-md-2">ยอดสินเชื่อ</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.lblfin_amt_e_vat |  number:'.2-2'}}</dd>
+
+        <dt class="col-md-2">ค่างวด(รวมภาษี)</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.installment_i_vat |  number:'.2-2'}}</dd>
+
+        <dt class="col-md-2">VAT</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.vat |  number:'.2-2'}}</dd>
+
+        <dt class="col-md-2">ค่างวด</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.installment_e_vat |  number:'.2-2'}}</dd>
+      </dl>
+
+      <dl class="row">
+        <dt class="col-md-2">งวดแรก(ไม่รวมภาษี)</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.lblfirst_installment_e_vat |  number:'.2-2'}}</dd>
+        <dd class="col-md-8"></dd>
+
+        <dt class="col-md-2">งวดสุดท้าย(ไม่รวมภาษี)</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.lbllast_installment_e_vat |  number:'.2-2'}}</dd>
+        <dd class="col-md-8"></dd>
+
+        <dt class="col-md-2">ยอดลูกหนี้</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.v_ar |  number:'.2-2'}}</dd>
+        <dd class="col-md-8"></dd>
+
+        <dt class="col-md-2">รายได้รอตัด</dt>
+        <dd class="col-md-2 txt-right">{{list_Custmodel.unearn |  number:'.2-2'}}</dd>
+        <dd class="col-md-8"></dd>
+      </dl>
+
+      <dl class="row">
+        <dd class="col-md-2">
+          <i *ngIf="list_Custmodel.pnladv_arr === 'V'" class="fa fa-check-square"></i>
+          <i *ngIf="list_Custmodel.pnladv_arr !== 'V'" class="fa fa-square"></i>
+          Beginning</dd>
+
+        <dd class="col-md-2">
+          <i *ngIf="list_Custmodel.pnldeduct_installment === 'Y'" class="fa fa-check-square"></i>
+          <i *ngIf="list_Custmodel.pnldeduct_installment !== 'Y'" class="fa fa-square"></i>
+          หักค่างวด
+          <label *ngIf="list_Custmodel.pnldeduct_installment === 'Y'">
+            {{list_Custmodel.lbldeduct_install_term}} งวด
+          </label>
+        </dd>
+      </dl>
+
+      <dl class="row">
+        <dd class="col-md-2">
+          <i *ngIf="list_Custmodel.pnldeduct_voluntory === 'Y'" class="fa fa-check-square"></i>
+          <i *ngIf="list_Custmodel.pnldeduct_voluntory !== 'Y'" class="fa fa-square"></i>
+          หักค่าเบี้ยประกันภัย</dd>
+
+        <dd class="col-md-2">
+          <i *ngIf="list_Custmodel.pnldeduct_compulsory === 'Y'" class="fa fa-check-square"></i>
+          <i *ngIf="list_Custmodel.pnldeduct_compulsory !== 'Y'" class="fa fa-square"></i>
+          หักค่าเบี้ย พรบ.</dd>
+
+        <dd class="col-md-2">
+          <i *ngIf="list_Custmodel.pnlpur_op === 'Y'" class="fa fa-check-square"></i>
+          <i *ngIf="list_Custmodel.pnlpur_op !== 'Y'" class="fa fa-square"></i>
+          ออกใบสั่งซื้อ</dd>
+      </dl>
+    </p-tabPanel>
+  </p-tabView>
+</div>
+
+
+
+<!--BackUp-->
+<!--<div class="flex-row p-3 border-isa">-->
+  <!--<p-tabView>-->
+    <!--<p-tabPanel header="Hire Purchase Contract">-->
+      <!--<dl class="row">-->
+        <!--<dt class="col-md-1">บริษัท</dt>-->
+        <!--<dd class="col-md-1">{{list_Custmodel.agr_com_code}}</dd>-->
+
+        <!--<dt class="col-md-1">เลขที่อ้างอิง</dt>-->
+        <!--<dd class="col-md-2">{{list_Custmodel.ref_code}}</dd>-->
+
+        <!--<dt class="col-md-1">เลขที่สัญญา</dt>-->
+        <!--<dd class="col-md-2">{{list_Custmodel.agr_code}}</dd>-->
+      <!--</dl>-->
+
+      <!--<div class="form-group row">-->
+        <!--&lt;!&ndash;<div class="col-md-3">&ndash;&gt;-->
+        <!--<label class="col-form-label col-md-1">บริษัท</label>-->
+        <!--<div class="col-md-1">-->
+          <!--<input type="text" class="form-control" readonly-->
+                 <!--[value]="list_Custmodel.agr_com_code">-->
+        <!--</div>-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--<div class="col-md-3">-->
+          <!--<label>เลขที่อ้างอิง</label>-->
+          <!--<input type="text" class="form-control" readonly-->
+                 <!--[value]="list_Custmodel.ref_code">-->
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<label>เลขที่สัญญา</label>-->
+          <!--<input type="text" class="form-control" readonly-->
+                 <!--[value]="list_Custmodel.agr_code">-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="form-group row">-->
+        <!--<div class="col-md-6">-->
+          <!--<label>รหัสลูกค้า</label>-->
+          <!--<div class="form-inline">-->
+            <!--<input type="text" class="form-control col-md-3 mr-1"-->
+                   <!--[value]="list_Custmodel.cus_code">-->
+            <!--<input type="text" class="form-control col-md-8"-->
+                   <!--[value]="list_Custmodel.lblcust_name">-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-md-6">-->
+          <!--<label>ประเภทสัญญา</label>-->
+          <!--<div class="form-inline">-->
+            <!--<input type="text" class="form-control col-md-3 mr-1"-->
+                   <!--[value]="list_Custmodel.new_tr">-->
+            <!--<input type="text" class="form-control col-md-8"-->
+                   <!--[value]="list_Custmodel.lblnew_tr_desc">-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group row">-->
+        <!--<div class="col-md-6">-->
+          <!--<label>Dealer</label>-->
+          <!--<div class="form-inline">-->
+            <!--<input type="text" class="form-control col-md-3 mr-1"-->
+                   <!--[value]="list_Custmodel.lbldealer_code">-->
+            <!--<input type="text" class="form-control col-md-8"-->
+                   <!--[value]="list_Custmodel.lbldealer_name">-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-md-6">-->
+          <!--<label>Outlet</label>-->
+          <!--<div class="form-inline">-->
+            <!--<input type="text" class="form-control col-md-3 mr-1"-->
+                   <!--[value]="list_Custmodel.lbloutlet">-->
+            <!--<input type="text" class="form-control col-md-8"-->
+                   <!--[value]="list_Custmodel.lbloutlet_desc">-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group row">-->
+        <!--<div class="col-md-6">-->
+          <!--<label>Project</label>-->
+          <!--<div class="form-inline">-->
+            <!--<input type="text" class="form-control col-md-3 mr-1"-->
+                   <!--[value]="list_Custmodel.lblprj_code">-->
+            <!--<input type="text" class="form-control col-md-8"-->
+                   <!--[value]="list_Custmodel.lblprj_desc">-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-md-6">-->
+          <!--<label>เลขที่สัญญาเดิม</label>-->
+          <!--<div class="form-inline">-->
+            <!--<input type="text" class="form-control col-md-3 mr-1"-->
+                   <!--[value]="list_Custmodel.lblrefer_old_agr">-->
+            <!--<input type="text" class="form-control col-md-8"-->
+                   <!--[value]="list_Custmodel.lblold_cust_name">-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group row">-->
+        <!--<div class="col-md-6">-->
+          <!--<label>พนักงานสินเชื่อ</label>-->
+          <!--<div class="form-inline">-->
+            <!--<input type="text" class="form-control col-md-3 mr-1"-->
+                   <!--[value]="list_Custmodel.lblsalesexe">-->
+            <!--<input type="text" class="form-control col-md-8"-->
+                   <!--[value]="list_Custmodel.lblsale_name">-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group row">-->
+        <!--<div class="col-md-6 form-inline">-->
+          <!--<label>-->
+            <!--<input class="form-check-input ml-1" type="checkbox" value="1"> ทรัพย์สินใหม่-->
+            <!--<input class="form-check-input ml-1" type="checkbox" value="2"> VAT-->
+            <!--<input class="form-check-input ml-1" type="checkbox" value="3"> สคบ.-->
+          <!--</label>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</p-tabPanel>-->
+    <!--<p-tabPanel header="รายละเอียดสินเชื่อ">-->
+      <!--<div class="form-group row">-->
+        <!--<div class="col-md-6 form-inline">-->
+          <!--<label>-->
+            <!--<input class="form-check-input ml-1" type="checkbox" value="1"> Beginning-->
+            <!--<input class="form-check-input ml-1" type="checkbox" value="2"> หักค่างวด-->
+            <!--<input class="form-control ml-1 mr-1" type="text">งวด-->
+          <!--</label>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group row">-->
+        <!--<div class="col-md-6 form-inline">-->
+          <!--<label>-->
+            <!--<input class="form-check-input ml-1" type="checkbox" value="1"> หักค่าเบี้ยประกันภัย-->
+            <!--<input class="form-check-input ml-1" type="checkbox" value="2"> หักค่าเบี้ย พรบ.-->
+            <!--<input class="form-check-input ml-1" type="checkbox" value="3"> ออกใบสั่งซื้อ-->
+          <!--</label>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group row">-->
+        <!--<div class="col-md-6">-->
+          <!--<label>ช่องทางการชำระเงิน</label>-->
+          <!--<div class="form-inline">-->
+            <!--<input class="form-control col-md-2" type="text"-->
+                   <!--[value]="list_Custmodel.lblmet_pay2">-->
+            <!--<input class="form-control col-md-9 ml-1" type="text"-->
+                   <!--[value]="list_Custmodel.lblmet_pay_desc2">-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group row">-->
+        <!--<div class="col-md-3">-->
+          <!--<label>วันที่ทำสัญญา</label><br>-->
+          <!--<input class="form-control" type="text" readonly-->
+                 <!--[value]="list_Custmodel.lblfin_date2">-->
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<label>วันที่ชำระงวดแรกสุด</label><br>-->
+          <!--<input class="form-control" type="text" readonly-->
+                 <!--[value]="list_Custmodel.first">-->
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<label>ชำระทุกวันที่</label>-->
+          <!--<input class="form-control" type="text" readonly-->
+                 <!--[value]="list_Custmodel.due_day">-->
+        <!--</div>-->
+
+        <!--<div class="col-md-3">-->
+          <!--<label>Flat Rate</label>-->
+          <!--<div class="form-inline">-->
+            <!--<input class="form-control" type="text" readonly-->
+                   <!--[value]="list_Custmodel.lblflat_rate">-->
+            <!--%-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group row">-->
+        <!--<div class="col-md-3">-->
+          <!--<label>วันที่ชำระงวดสุดท้าย</label><br>-->
+          <!--<input class="form-control" type="text" readonly-->
+                 <!--[value]="list_Custmodel.lbllast_due">-->
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<label>วันที่เช็คจ่าย</label>-->
+          <!--<div class="form-inline">-->
+            <!--<input class="form-control" type="text" readonly-->
+                   <!--[value]="list_Custmodel.disbursement_date">-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<label>งวดผ่อนชำระ</label>-->
+          <!--<div class="form-inline">-->
+            <!--<input class="form-control" type="text" readonly-->
+                   <!--[value]="list_Custmodel.term">-->
+            <!--งวด-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group row">-->
+        <!--<div class="col-md-3">-->
+          <!--<label>ราคาซื้อ(รวมภาษี)</label>-->
+          <!--<input class="form-control" type="text" readonly appMyCurrency [fraction]="2"-->
+                 <!--[value]="list_Custmodel.lblcost_i_vat">-->
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<label>VAT</label>-->
+          <!--<input class="form-control" type="text" readonly appMyCurrency [fraction]="2"-->
+                 <!--[value]="list_Custmodel.lblcost_vat">-->
+
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<label>ราคาซื้อ</label>-->
+          <!--<input class="form-control" type="text" readonly appMyCurrency [fraction]="2"-->
+                 <!--[value]="list_Custmodel.lblcost_e_vat">-->
+
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group row">-->
+        <!--<div class="col-md-3">-->
+          <!--<label *ngIf="list_Custmodel.sub_fin == '2'|| list_Custmodel.sub_fin == '3';else lbldownID">เงินดาวน์(รวมภาษี)</label>-->
+          <!--<ng-template #lbldownID>-->
+            <!--<label>เงินรับฝาก(รวมภาษี)</label>-->
+          <!--</ng-template>-->
+          <!--<input class="form-control" type="text" readonly appMyCurrency [fraction]="2"-->
+                 <!--[value]="list_Custmodel.lbldown_i_vat">-->
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<label>VAT</label>-->
+          <!--<input class="form-control" type="text" readonly appMyCurrency [fraction]="2"-->
+                 <!--[value]="list_Custmodel.lbldown_vat">-->
+
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<label *ngIf="list_Custmodel.sub_fin == '2'|| list_Custmodel.sub_fin == '3';else lbldownID">เงินดาวน์</label>-->
+          <!--<ng-template #lbldownID>-->
+            <!--<label>เงินรับฝาก</label>-->
+          <!--</ng-template>-->
+          <!--<input class="form-control" type="text" readonly appMyCurrency [fraction]="2"-->
+                 <!--[value]="list_Custmodel.lbldown_e_vat">-->
+
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group row">-->
+        <!--<div class="col-md-3">-->
+          <!--<label>ยอดสินเชื่อ(รวมภาษี)</label>-->
+          <!--<input class="form-control" type="text" readonly appMyCurrency [fraction]="2"-->
+                 <!--[value]="list_Custmodel.lblfin_amt_i_vat">-->
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<label>VAT</label>-->
+          <!--<input class="form-control" type="text" readonly appMyCurrency [fraction]="2"-->
+                 <!--[value]="list_Custmodel.lblfin_vat">-->
+
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<label>ยอดสินเชื่อ</label>-->
+          <!--<input class="form-control" type="text" readonly appMyCurrency [fraction]="2"-->
+                 <!--[value]="list_Custmodel.lblfin_amt_e_vat">-->
+
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group row">-->
+        <!--<div class="col-md-3">-->
+          <!--<label>ค่างวด(รวมภาษี)</label>-->
+          <!--<input class="form-control" type="text" readonly appMyCurrency [fraction]="2"-->
+                 <!--[value]="list_Custmodel.installment_i_vat">-->
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<label>VAT</label>-->
+          <!--<input class="form-control" type="text" readonly appMyCurrency [fraction]="2"-->
+                 <!--[value]="list_Custmodel.vat">-->
+
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<label>ค่างวด</label>-->
+          <!--<input class="form-control" type="text" readonly appMyCurrency [fraction]="2"-->
+                 <!--[value]="list_Custmodel.installment_e_vat">-->
+
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group row">-->
+        <!--<div class="col-md-3">-->
+          <!--<label>งวดแรก(ไม่รวมภาษี)</label>-->
+          <!--<input class="form-control" type="text" readonly appMyCurrency [fraction]="2"-->
+                 <!--[value]="list_Custmodel.lblfirst_installment_e_vat">-->
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<label>งวดสุดท้าย(ไม่รวมภาษี)</label>-->
+          <!--<input class="form-control" type="text" readonly appMyCurrency [fraction]="2"-->
+                 <!--[value]="list_Custmodel.lbllast_installment_e_vat">-->
+
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<label>ยอดลูกหนี้</label>-->
+          <!--<input class="form-control" type="text" readonly appMyCurrency [fraction]="2"-->
+                 <!--[value]="list_Custmodel.v_ar">-->
+
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<label>รายได้รอตัด</label>-->
+          <!--<input class="form-control" type="text" readonly appMyCurrency [fraction]="2"-->
+                 <!--[value]="list_Custmodel.unearn">-->
+
+        <!--</div>-->
+      <!--</div>-->
+    <!--</p-tabPanel>-->
+  <!--</p-tabView>-->
+<!--</div>-->
+

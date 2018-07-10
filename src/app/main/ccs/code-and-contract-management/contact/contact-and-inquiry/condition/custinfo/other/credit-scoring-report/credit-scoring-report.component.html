@@ -1,0 +1,20 @@
+<div class="flex-row">
+  <div class="thead-responsive" style="overflow-x: auto;min-height: .01%; padding: 10px">
+    <p-dataTable [value]="data" [rows]="5" [loading]="loading" [immutable]=false>
+      <p-headerColumnGroup>
+        <p-row>
+          <p-column header="ประเภท"></p-column>
+          <p-column header="รหัสผู้ค้ำประกัน"></p-column>
+          <p-column header="ชื่อผู้ค้ำประกัน"></p-column>
+          <p-column header="ความสัมพันธ์กับลูกค้า"></p-column>
+          <p-column header="Grade"></p-column>
+        </p-row>
+      </p-headerColumnGroup>
+      <p-column field="type"></p-column>
+      <p-column field="guar_code"></p-column>
+      <p-column field="guar_name"></p-column>
+      <p-column field="relation"></p-column>
+      <p-column field="grade" [style]="{'text-align':'center'}"></p-column>
+    </p-dataTable>
+  </div>
+</div>

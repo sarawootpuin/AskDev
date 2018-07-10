@@ -1,0 +1,126 @@
+<!--<br>-->
+
+<!--<div class="container">-->
+  <!--<div class="col-md-8">-->
+    <!--<form role="form" [formGroup]="vFG_FlowStageLookUp">-->
+
+      <!--&lt;!&ndash; Save&ndash;&gt;-->
+      <!--<p-dialog header="ต้องการบันทึกข้อมูล ?" [(visible)]="displayDlgNew" modal="modal" width="300"-->
+                <!--[responsive]="true">-->
+        <!--<button type="button" pButton icon="fa-check" (click)="onSubmit();displayDlgNew = false;" label="Yes"></button>-->
+        <!--<button type="button" pButton icon="fa-close" (click)="displayDlgNew=false" label="No"></button>-->
+      <!--</p-dialog>-->
+
+      <!--&lt;!&ndash; Delete &ndash;&gt;-->
+      <!--<p-dialog header="ต้องการบลบ?" [(visible)]="displayDlgDelete" modal="modal" width="350" [responsive]="true">-->
+        <!--<div>-->
+          <!--<label>Stage ID: {{SelectedStageID}}</label><br>-->
+          <!--<label>Stage Name: {{SelectedStageName}}</label>-->
+        <!--</div>-->
+
+        <!--<p-footer>-->
+          <!--<button type="button" pButton icon="fa-check" (click)="onDeleteItem();displayDlgDelete = false;"-->
+                  <!--label="Yes"></button>-->
+          <!--<button type="button" pButton icon="fa-close" (click)="displayDlgDelete=false" label="No"></button>-->
+        <!--</p-footer>-->
+      <!--</p-dialog>-->
+
+      <!--&lt;!&ndash; Error &ndash;&gt;-->
+      <!--<p-dialog header="เกิดข้อผิดพลาด กรุณาติดต่อ ISA" [(visible)]="displayErr" modal="modal" width="350"-->
+                <!--[responsive]="true">-->
+        <!--{{msgErr}}-->
+        <!--<p-footer>-->
+          <!--<button type="button" pButton icon="fa-check" (click)="displayErr = false;" label="OK"></button>-->
+        <!--</p-footer>-->
+      <!--</p-dialog>-->
+
+      <!--&lt;!&ndash; Success &ndash;&gt;-->
+      <!--<p-dialog header="ทำรายการเสร็จเรียบร้อย" [(visible)]="displaySuccessful" modal="modal" width="350"-->
+                <!--[responsive]="true">-->
+        <!--<p-footer>-->
+          <!--<button type="button" pButton icon="fa-check" (click)="displaySuccessful = false;" label="OK"></button>-->
+        <!--</p-footer>-->
+      <!--</p-dialog>-->
+
+      <!--<div class="form-group">-->
+        <!--<label>Flow Name</label>-->
+        <!--<select class="form-control" #FC_FLOWID (change)="onSelectFlow(FC_FLOWID.value)">-->
+          <!--<option *ngFor="let obj of dsFlowLookUp" [value]="obj.id">-->
+            <!--({{obj.id}}) {{obj.name}}-->
+          <!--</option>-->
+        <!--</select>-->
+      <!--</div>-->
+
+      <!--<div class="form-group">-->
+        <!--<label>Stage ID:</label>-->
+        <!--<span style="width:20px; background-color: red;">-->
+          <!--<input type="text"-->
+                 <!--class="form-control"-->
+                 <!--placeholder=""-->
+                 <!--[(ngModel)]="SelectedStageID"-->
+                 <!--formControlName="vFG_StageID"-->
+                 <!--id="vFG_id"-->
+                 <!--[readonly]="true">-->
+        <!--</span>-->
+      <!--</div>-->
+
+      <!--<div class="form-group">-->
+        <!--<label>Stage Name:</label>-->
+        <!--<input type="text" class="form-control" placeholder="" [(ngModel)]="SelectedStageName"-->
+               <!--formControlName="vFG_StageName" [readonly]="!saveMode"-->
+               <!--id="vFG_name">-->
+      <!--</div>-->
+      <!--<br>-->
+
+      <!--&lt;!&ndash;Button&ndash;&gt;-->
+      <!--<div class="form-actions">-->
+        <!--<button *ngIf="CurrMode === 'NEW' || CurrMode === 'START' " type="button"-->
+                <!--class="btn-nav-newisa" (click)="onNewClick()">-->
+          <!--<i class="fa fa-plus"></i> NEW-->
+        <!--</button>-->
+        <!--<button *ngIf="CurrMode === 'EDIT' || CurrMode === 'START' " type="button"-->
+                <!--class="btn-nav-editisa" (click)="onEditClick()">-->
+          <!--<i class="fa fa-edit"></i> EDIT-->
+        <!--</button>-->
+        <!--<button *ngIf="CurrMode === 'START'" type="button" class="btn-nav-deleteisa"-->
+                <!--(click)="onDeleteClick()">-->
+          <!--<i class="fa fa-remove"></i> DELETE-->
+        <!--</button>-->
+
+        <!--<button *ngIf="saveMode===true" type="button"-->
+                <!--class="btn-nav-cancelisa" style="float: right;"-->
+                <!--(click)="onCancelClick()">-->
+          <!--<i class="fa fa-save"></i> CANCEL-->
+        <!--</button>-->
+        <!--<button *ngIf="saveMode===true" type="button"-->
+                <!--class="btn-nav-saveisa" style="float: right;"-->
+                <!--(click)="onSaveClick()"-->
+        <!--&gt;-->
+          <!--<i class="fa fa-save"></i> SAVE-->
+        <!--</button>-->
+      <!--</div>-->
+      <!--&lt;!&ndash;End Button&ndash;&gt;-->
+
+    <!--</form>-->
+  <!--</div>-->
+<!--</div>-->
+
+<!--<div class="container">-->
+  <!--<div class="col-md-lg-8">-->
+    <!--<hr>-->
+  <!--</div>-->
+<!--</div>-->
+
+<!--<div class="container">-->
+  <!--<div class="col-md-8">-->
+    <!--<p-dataTable [loading]="loading" loadingIcon="fa-spinner" [value]="FlowStageLookUp" [lazy]="true" [rows]="8"-->
+                 <!--[paginator]="true" [totalRecords]="totalRecords" (onLazyLoad)="loadFlowStageLookUp($event)"-->
+                 <!--selectionMode="single" (onRowSelect)="onSelectedRow($event)">-->
+      <!--&lt;!&ndash;<p-column field="$event.rows" header="No."></p-column>&ndash;&gt;-->
+      <!--<p-column field="StageID" header="Stage ID" [style]="{'width':'100px','text-align':'center'}"></p-column>-->
+      <!--<p-column field="StageName" header="Stage Name"></p-column>-->
+    <!--</p-dataTable>-->
+  <!--</div>-->
+<!--</div>-->
+
+<!--<br><br>-->
