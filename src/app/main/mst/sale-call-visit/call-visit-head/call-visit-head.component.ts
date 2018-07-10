@@ -1,3 +1,5 @@
+import { FormControl } from '@angular/forms';
+import { ElementRef, NgZone } from '@angular/core';
 import {Component, Input, OnChanges, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {SaleCallHead} from "../model/Sale-Call-Head";
 import {ObjTemp} from "../model/ObjTemp";
@@ -13,7 +15,10 @@ import {DatePipe} from "@angular/common";
 import {TextMaskType} from "../../../../shared/config/text-mask-type";
 import {AlertDialogComponent} from "../../../../shared/center/alert-dialog/alert-dialog.component";
 import {ActivatedRoute, Params} from "@angular/router";
-
+import { ClassGetter } from '@angular/compiler/src/output/output_ast';
+import { MapsAPILoader } from '@agm/core';
+import {} from '@types/googlemaps';
+import { zip } from 'rxjs/observable/zip';
 @Component({
   selector: 'app-call-visit-head',
   templateUrl: './call-visit-head.component.html',
@@ -25,7 +30,6 @@ export class CallVisitHeadComponent implements OnInit, OnDestroy {
   @ViewChild('Questiondialog') Questiondialog: AlertDialogComponent;
   @ViewChild('QuestionAfnewcard') QuestionAfnewcard: AlertDialogComponent;
   @ViewChild('Aleartdialog') Aleartdialog: AlertDialogComponent;
-
   subParams: Subscription;
   subscription: Subscription;
   subscriptionCheckEntity: Subscription;
@@ -54,14 +58,22 @@ export class CallVisitHeadComponent implements OnInit, OnDestroy {
   vsale_no: string = '';
   vcard_no: string = '';
   vtask_code : string = '' ;
+  amend : string
   componentReadOnly : boolean = false ;
-
+  latitude = 13.720439
+  longtidue = 100.532809
+  locationChosen = false
+  zoom = 12
+  @ViewChild("search") public searchElementRef: ElementRef
+  public searchControl: FormControl;
   constructor(private saleCallVisitService: SaleCallVisitService,
               private serviceEndPoint: ServiceEndpoint,
               private route: ActivatedRoute,
               private dataPipe: DatePipe,
               private textmask : TextMaskType,
-              private userStorage: UserStorage) {
+              private userStorage: UserStorage,
+              private mapsAPILoader : MapsAPILoader,
+              private ngZone : NgZone) {
   }
 
   ngOnInit() {
@@ -71,6 +83,7 @@ export class CallVisitHeadComponent implements OnInit, OnDestroy {
         this.vsale_no = params['sale_call_no'];
         this.vcard_no = params['card_no'];
         this.vtask_code = params['task'];
+        this.amend = params['amend']
       }
     );
     if (this.vtask_code == 'Cross Expense'){
@@ -109,6 +122,44 @@ export class CallVisitHeadComponent implements OnInit, OnDestroy {
         }
       }
     )
+
+    /*this.searchControl = new FormControl();
+    this.setCurrentPosition();
+
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["address"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+  
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          
+          //set latitude, longitude and zoom
+          this.latitude = place.geometry.location.lat();
+          this.longtidue = place.geometry.location.lng();
+          this.zoom = 12;
+        });
+      });
+    });*/
+  }
+  private setCurrentPosition() {
+    console.log('test');
+    if ("geolocation" in navigator) {
+      console.log('test2');
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
+        this.latitude = position.coords.latitude;
+        this.longtidue = position.coords.longitude;
+        this.zoom = 12;
+      });
+    }
+    
   }
 
   ngOnDestroy() {
@@ -162,7 +213,7 @@ export class CallVisitHeadComponent implements OnInit, OnDestroy {
     this.saleCallH.intro_by_cd = data;
   }
 
-  private selectEntity : EntityModel ;
+  selectEntity : EntityModel ;
   fromSelectEntity : boolean = false ;
   checkEntity(entityModel:EntityModel){
     this.selectEntity = entityModel ;
@@ -324,7 +375,7 @@ export class CallVisitHeadComponent implements OnInit, OnDestroy {
       );
     }
   }
-
+  
   onCompareSaleCall(){
 
     this.saleCallH.comp_ent_code = this.comparesaleCallH.comp_ent_code ;
@@ -366,4 +417,12 @@ export class CallVisitHeadComponent implements OnInit, OnDestroy {
 
     this.saleCallH.listPCNT = this.comparesaleCallH.listPCNT ;
   }
+
+  onChoseLocation(event){
+    this.latitude = event.coords.lat;
+    this.longtidue = event.coords.lng;
+    this.locationChosen = true;
+    
+  }
+
 }

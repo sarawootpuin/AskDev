@@ -7,7 +7,9 @@
     </div>
     <div class="card-body">
       <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fa fa-search"></i></span>
+        </div>
         <input #searchInput class="form-control" type="text" pInputText size="50" placeholder="Search">
       </div>
       <div class="my-3">
@@ -24,7 +26,7 @@
                        [globalFilter]="searchInput"
                        (onRowSelect)="rowSelectList($event.data)">
             <p-column field="caNo" header="CA No"></p-column>
-            <p-column field="apNo" header="AP No"></p-column>
+            <p-column field="caApproveDate" header="Approve Date"></p-column>
             <p-column field="sbuType" header="Credit Type"></p-column>
             <p-column field="custName" header="Customer Name"></p-column>
             <p-column field="expireDt" header="Exp. Date"></p-column>

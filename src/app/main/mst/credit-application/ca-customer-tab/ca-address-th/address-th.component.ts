@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {caEntity} from "../../model/ca-entity";
 import {UserStorage} from "../../../../../shared/user/user.storage.service";
 import {creditApplicationService} from "../../credit-application.service";
@@ -9,6 +9,7 @@ import {ServiceEndpoint} from "../../../../../shared/config/service-endpoint";
   templateUrl: './address-th.component.html'
 })
 export class CaAddressThComponent implements OnInit {
+  @Input() isReadOnly : boolean;
   caEntityDetail:caEntity;
   urlAddress : string ;
   dataAddress : any;

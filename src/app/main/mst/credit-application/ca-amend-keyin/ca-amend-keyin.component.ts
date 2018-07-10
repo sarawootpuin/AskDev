@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from "@angular/core";
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from "@angular/core";
 import {Subscription} from "rxjs/Subscription";
 import {creditApplicationService} from "../credit-application.service";
 import {caAmendKeyIn} from "../model/ca-amendkeyin";
@@ -7,10 +7,10 @@ import {caAmendKeyIn} from "../model/ca-amendkeyin";
   selector: 'app-ca-amend-keyin',
   templateUrl: './ca-amend-keyin.component.html'
 })
-export class CaAmendKeyinComponent implements OnInit, OnDestroy {
+export class CaAmendKeyinComponent implements OnInit, OnDestroy, OnChanges {
   @Input() isReadonly : boolean;
   subscription: Subscription;
-  listAmendKeyIn: caAmendKeyIn[];
+  listAmendKeyIn: caAmendKeyIn[] = [];
   selectValue: caAmendKeyIn = new caAmendKeyIn();
 
   constructor(private creditApplicationService: creditApplicationService) {
@@ -56,6 +56,12 @@ export class CaAmendKeyinComponent implements OnInit, OnDestroy {
     this.creditApplicationService.caHead.listamendhist =  this.listAmendKeyIn;
     if (this.listAmendKeyIn[0]) {
       this.selectValue = this.listAmendKeyIn[0];
+    } else {
+      this.selectValue = new caAmendKeyIn();
     }
+  }
+
+  ngOnChanges(changes : SimpleChanges){
+
   }
 }

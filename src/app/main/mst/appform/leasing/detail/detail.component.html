@@ -1,15 +1,8 @@
-<app-action-lock-screen *ngIf="checkLoader"
-                        [spinner]="true"
-                        [showCancel]="true"
-                        (onCancel)="checkLoader = false"
-                        #lockScreen></app-action-lock-screen>
+<app-action-lock-screen *ngIf="checkLoader" [spinner]="true" [showCancel]="true" (onCancel)="checkLoader = false" #lockScreen></app-action-lock-screen>
 
 <app-alert-dialog [mode_single]="0" #calIrrWarning></app-alert-dialog>
 
-<app-action-dialog #actionDialog
-                   [showCancel]="true"
-                   [showOk]="true"
-                   (onOk)="addClick()">
+<app-action-dialog #actionDialog [showCancel]="true" [showOk]="true" (onOk)="addClick()">
   <div class="form-group">
     <label>From Term</label>
     <input class="form-control" [(ngModel)]="step.from_term">
@@ -30,41 +23,25 @@
       <label class="">Credit Type</label>
       <span class="star pr-1">*</span>
 
-      <select class="form-control"
-              (change)="creditTypeChange($event.target.value)"
-              [(ngModel)]="data.fin_typ">
+      <select class="form-control" (change)="creditTypeChange($event.target.value)" [(ngModel)]="data.fin_typ">
         <option [value]=""></option>
-        <option *ngFor="let list of dataFin; let i = index"
-                [value]="i+1"
-                [selected]="data.fin_typ === list.id_code">{{list?.remark}}
+        <option *ngFor="let list of dataFin; let i = index;" [value]="i+1" [selected]="data.fin_typ === list.id_code">{{list?.remark}}
         </option>
       </select>
-      <select class="form-control"
-              *ngIf="data.fin_typ == 1"
-              (change)="subFinChange($event.target.value)">
+      <select class="form-control" *ngIf="data.fin_typ == 1" (change)="subFinChange($event.target.value)">
         <option [value]="-1"></option>
-        <option *ngFor="let list of dataSubFin; let i = index "
-                [value]="i"
-                [selected]="data.sub_fin === list.id_code &&
+        <option *ngFor="let list of dataSubFin; let i = index " [value]="i" [selected]="data.sub_fin === list.id_code &&
               data.buy_back_flg === list.remark1">{{list?.remark}}
         </option>
       </select>
-      <select class="form-control"
-              *ngIf="data.fin_typ == 2"
-              (change)="subFinChange($event.target.value)">
+      <select class="form-control" *ngIf="data.fin_typ == 2" (change)="subFinChange($event.target.value)">
         <option [value]="-1"></option>
-        <option *ngFor="let list of dataSubFinLs; let i = index "
-                [value]="i"
-                [selected]="data.sub_fin === list.id_code">{{list?.remark}}
+        <option *ngFor="let list of dataSubFinLs; let i = index " [value]="i" [selected]="data.sub_fin === list.id_code">{{list?.remark}}
         </option>
       </select>
-      <select class="form-control"
-              *ngIf="data.fin_typ == 2"
-              (change)="operatingLeaseChange($event.target.value)">
+      <select class="form-control" *ngIf="data.fin_typ == 2" (change)="operatingLeaseChange($event.target.value)">
         <option [value]="-1"></option>
-        <option *ngFor="let list of dataLease; let i = index"
-                [value]="i"
-                [selected]="data.operating_lease === list.remark1 &&
+        <option *ngFor="let list of dataLease; let i = index" [value]="i" [selected]="data.operating_lease === list.remark1 &&
                             data.buy_back_flg === list.key1">{{list?.remark}}
         </option>
       </select>
@@ -80,8 +57,7 @@
       <div class="col-md-9 ">
         <div class="row form-inline form-group">
           &nbsp;
-          <input type="checkbox" name="group_flg" [checked]="data?.group_flg === 'Y'"
-                 (change)="$event.target.checked ? (data.group_flg = 'Y') : (data.group_flg = 'N')"> Project &nbsp;
+          <input type="checkbox" name="group_flg" [checked]="data?.group_flg === 'Y'" (change)="$event.target.checked ? (data.group_flg = 'Y') : (data.group_flg = 'N')"> Project &nbsp;
           <input type="text" class="form-control" [(ngModel)]="data.group_nme" *ngIf="data?.group_flg === 'Y'">
         </div>
       </div>
@@ -92,46 +68,30 @@
       <div class="col-md-12">
         <div class="row form-inline">
           <div class="col-md-3 form-group ">
-            <input type="checkbox"
-                   [checked]="data?.with_vat === 'Y'"
-                   (change)="$event.target.checked ? (data.with_vat = 'Y') : (data.with_vat = 'N')">With VAT
+            <input type="checkbox" [checked]="data?.with_vat === 'Y'" (change)="$event.target.checked ? (data.with_vat = 'Y') : (data.with_vat = 'N')">With VAT
           </div>
           <div class="col-md-9 form-inline form-group">
             <div *ngIf="data.fin_typ === '2'">
-              <input type="checkbox"
-                     [checked]="data?.wh_tax_flg === 'Y'"
-                     (change)="$event.target.checked ? (data.wh_tax_flg = 'Y') : (data.wh_tax_flg = 'N')">W/H Tax
-              <input appMyCurrency
-                     class="form-control"
-                     [fraction]="0"
-                     pKeyFilter="pnum"
-                     (change)="data.wh_tax = $event.target.value"
-                     [value]="data.wh_tax">
+              <input type="checkbox" [checked]="data?.wh_tax_flg === 'Y'" (change)="$event.target.checked ? (data.wh_tax_flg = 'Y') : (data.wh_tax_flg = 'N')">W/H Tax
+              <input appMyCurrency class="form-control" [fraction]="0" pKeyFilter="pnum" (change)="data.wh_tax = $event.target.value" [value]="data.wh_tax">
             </div>
           </div>
         </div>
-      </div> <!--with VAT-->
+      </div>
+      <!--with VAT-->
       <div class="row mt-1">
         <div class="col-md-3 form-group">
           <label>Estimated Disburse Date</label>
           <span class="star">*</span>
-          <p-calendar #disburse
-                      inputStyleClass="form-control"
-                      [(ngModel)]="data.disburse_dt"
-                      (ngModelChange)="changeFirst($event)"
-                      dateFormat="dd/mm/yy"
-                      dataType="string"></p-calendar>
+          <p-calendar #disburse inputStyleClass="form-control" [(ngModel)]="data.disburse_dt" (ngModelChange)="changeFirst($event)"
+            dateFormat="dd/mm/yy" dataType="string"></p-calendar>
         </div>
         <div class="col-md-3 form-group">
           <label>Advance / Rear</label>
           <span class="star">*</span>
-          <select class="form-control"
-                  [(ngModel)]="data.adv_arr"
-                  (ngModelChange)="advChange()">
+          <select class="form-control" [(ngModel)]="data.adv_arr" (ngModelChange)="advChange()">
             <option [value]="-1"></option>
-            <option *ngFor="let list of dataPaid; let i = index "
-                    [value]="list.id_code"
-                    [selected]="data.adv_arr === list.id_code">{{list?.remark}}
+            <option *ngFor="let list of dataPaid; let i = index " [value]="list.id_code" [selected]="data.adv_arr === list.id_code">{{list?.remark}}
             </option>
           </select>
         </div>
@@ -145,16 +105,24 @@
 
         </div>
         <div class="col-md-3 d-flex justify-content-center form-group">
-          <label><b> Exclude VAT </b></label>
+          <label>
+            <b> Exclude VAT </b>
+          </label>
         </div>
         <div class="col-md-2  d-flex justify-content-center form-group">
-          <label><b> VAT </b></label>
+          <label>
+            <b> VAT </b>
+          </label>
         </div>
         <div class="col-md-3  d-flex justify-content-center form-group">
-          <label><b> Include VAT </b></label>
+          <label>
+            <b> Include VAT </b>
+          </label>
         </div>
         <div class="col-md-2  d-flex justify-content-center form-group">
-          <label><b> Ratio </b></label>
+          <label>
+            <b> Ratio </b>
+          </label>
         </div>
       </div>
 
@@ -164,34 +132,16 @@
           <span class="star">*</span>
         </div>
         <div class="col-md-3">
-          <input appMyCurrency
-                 #assetEvat
-                 class="form-control"
-                 [fraction]="2"
-                 pKeyFilter="pnum"
-                 (blur)="calculateAsset('E')"
-                 (change)="data.asst_amt_e_vat = $event.target.value"
-                 [value]="data.asst_amt_e_vat">
+          <input appMyCurrency #assetEvat class="form-control" [fraction]="2" pKeyFilter="pnum" (blur)="calculateAsset('E')" (change)="data.asst_amt_e_vat = $event.target.value"
+            [value]="data.asst_amt_e_vat">
         </div>
         <div class="col-md-2">
-          <input appMyCurrency
-                 disabled
-                 class="form-control"
-                 [fraction]="2"
-                 pKeyFilter="pnum"
-                 (change)="data.asst_amt_vat = $event.target.value"
-                 [value]="data.asst_amt_vat">
+          <input appMyCurrency disabled class="form-control" [fraction]="2" pKeyFilter="pnum" (change)="data.asst_amt_vat = $event.target.value"
+            [value]="data.asst_amt_vat">
         </div>
         <div class="col-md-3">
-          <input appMyCurrency
-                 #assetIvat
-                 disabled
-                 class="form-control"
-                 [fraction]="2"
-                 pKeyFilter="pnum"
-                 (blur)="calculateAsset('I')"
-                 (change)="data.asst_amt_i_vat = $event.target.value"
-                 [value]="data.asst_amt_i_vat">
+          <input appMyCurrency #assetIvat disabled class="form-control" [fraction]="2" pKeyFilter="pnum" (blur)="calculateAsset('I')"
+            (change)="data.asst_amt_i_vat = $event.target.value" [value]="data.asst_amt_i_vat">
         </div>
         <div class="col-md-2">
         </div>
@@ -202,35 +152,17 @@
           <label>Down Amount</label>
         </div>
         <div class="col-md-3">
-          <input appMyCurrency
-                 #downEvat
-                 pKeyFilter="pnum"
-                 class="form-control"
-                 [fraction]="2"
-                 (blur)="calculateDown('E')"
-                 (change)="data.down_amt_e_vat = $event.target.value"
-                 [value]="data.down_amt_e_vat">
+          <input appMyCurrency #downEvat pKeyFilter="pnum" class="form-control" [fraction]="2" (blur)="calculateDown('E')" (change)="data.down_amt_e_vat = $event.target.value"
+            [value]="data.down_amt_e_vat">
 
         </div>
         <div class="col-md-2">
-          <input appMyCurrency
-                 disabled
-                 pKeyFilter="pnum"
-                 class="form-control"
-                 [fraction]="2"
-                 (change)="data.down_amt_vat = $event.target.value"
-                 [value]="data.down_amt_vat">
+          <input appMyCurrency disabled pKeyFilter="pnum" class="form-control" [fraction]="2" (change)="data.down_amt_vat = $event.target.value"
+            [value]="data.down_amt_vat">
         </div>
         <div class="col-md-3">
-          <input appMyCurrency
-                 #downIvat
-                 pKeyFilter="pnum"
-                 disabled
-                 (blur)="calculateDown('I')"
-                 class="form-control"
-                 [fraction]="2"
-                 (change)="data.down_amt_i_vat = $event.target.value"
-                 [value]="data.down_amt_i_vat">
+          <input appMyCurrency #downIvat pKeyFilter="pnum" disabled (blur)="calculateDown('I')" class="form-control" [fraction]="2"
+            (change)="data.down_amt_i_vat = $event.target.value" [value]="data.down_amt_i_vat">
         </div>
       </div>
 
@@ -239,34 +171,16 @@
           <label>Deposit Amount</label>
         </div>
         <div class="col-md-3">
-          <input appMyCurrency
-                 #depositEvat
-                 pKeyFilter="pnum"
-                 class="form-control"
-                 [fraction]="2"
-                 (blur)="calculateDep('E')"
-                 (change)="data.dep_amt_e_vat = $event.target.value"
-                 [value]="data.dep_amt_e_vat">
+          <input appMyCurrency #depositEvat pKeyFilter="pnum" class="form-control" [fraction]="2" (blur)="calculateDep('E')" (change)="data.dep_amt_e_vat = $event.target.value"
+            [value]="data.dep_amt_e_vat">
         </div>
         <div class="col-md-2">
-          <input appMyCurrency
-                 disabled
-                 class="form-control"
-                 pKeyFilter="pnum"
-                 [fraction]="2"
-                 (change)="data.dep_amt_vat = $event.target.value"
-                 [value]="data.dep_amt_vat">
+          <input appMyCurrency disabled class="form-control" pKeyFilter="pnum" [fraction]="2" (change)="data.dep_amt_vat = $event.target.value"
+            [value]="data.dep_amt_vat">
         </div>
         <div class="col-md-3">
-          <input appMyCurrency
-                 #depositIvat
-                 disabled
-                 pKeyFilter="pnum"
-                 class="form-control"
-                 [fraction]="2"
-                 (blur)="calculateDep('I')"
-                 (change)="data.dep_amt_i_vat = $event.target.value"
-                 [value]="data.dep_amt_i_vat">
+          <input appMyCurrency #depositIvat disabled pKeyFilter="pnum" class="form-control" [fraction]="2" (blur)="calculateDep('I')"
+            (change)="data.dep_amt_i_vat = $event.target.value" [value]="data.dep_amt_i_vat">
         </div>
       </div>
 
@@ -276,43 +190,20 @@
           <span class="star">*</span>
         </div>
         <div class="col-md-3">
-          <input appMyCurrency
-                 #finEvatt
-                 pKeyFilter="pnum"
-                 class="form-control"
-                 [fraction]="2"
-                 (blur)="calculateFin('E')"
-                 (change)="data.fin_amt_e_vat = $event.target.value"
-                 [value]="data.fin_amt_e_vat">
+          <input appMyCurrency #finEvatt pKeyFilter="pnum" class="form-control" [fraction]="2" (blur)="calculateFin('E')" (change)="data.fin_amt_e_vat = $event.target.value"
+            [value]="data.fin_amt_e_vat">
         </div>
         <div class="col-md-2">
-          <input appMyCurrency
-                 disabled
-                 pKeyFilter="pnum"
-                 class="form-control"
-                 [fraction]="2"
-                 (change)="data.fin_amt_vat = $event.target.value"
-                 [value]="data.fin_amt_vat">
+          <input appMyCurrency disabled pKeyFilter="pnum" class="form-control" [fraction]="2" (change)="data.fin_amt_vat = $event.target.value"
+            [value]="data.fin_amt_vat">
         </div>
         <div class="col-md-3">
-          <input appMyCurrency
-                 #finIvatt
-                 pKeyFilter="pnum"
-                 disabled
-                 class="form-control"
-                 [fraction]="2"
-                 (blur)="calculateFin('I')"
-                 (change)="data.fin_amt_i_vat = $event.target.value"
-                 [value]="data.fin_amt_i_vat">
+          <input appMyCurrency #finIvatt pKeyFilter="pnum" disabled class="form-control" [fraction]="2" (blur)="calculateFin('I')"
+            (change)="data.fin_amt_i_vat = $event.target.value" [value]="data.fin_amt_i_vat">
         </div>
         <div class="col-md-2">
-          <input appMyCurrency
-                 class="form-control"
-                 [fraction]="2"
-                 pKeyFilter="pnum"
-                 (blur)="calculateRatio()"
-                 (change)="data.fin_ratio = $event.target.value"
-                 [value]="data.fin_ratio">
+          <input appMyCurrency class="form-control" [fraction]="2" pKeyFilter="pnum" (blur)="calculateRatio()" (change)="data.fin_ratio = $event.target.value"
+            [value]="data.fin_ratio">
         </div>
       </div>
 
@@ -321,34 +212,16 @@
           <label>Purchase Option</label>
         </div>
         <div class="col-md-3">
-          <input appMyCurrency
-                 #rvEvat
-                 (blur)="calculateRv('E')"
-                 class="form-control"
-                 [fraction]="2"
-                 pKeyFilter="pnum"
-                 (change)="data.rv_amt_e_vat = $event.target.value"
-                 [value]="data.rv_amt_e_vat">
+          <input appMyCurrency #rvEvat (blur)="calculateRv('E')" class="form-control" [fraction]="2" pKeyFilter="pnum" (change)="data.rv_amt_e_vat = $event.target.value"
+            [value]="data.rv_amt_e_vat">
         </div>
         <div class="col-md-2">
-          <input appMyCurrency
-                 class="form-control"
-                 [fraction]="2"
-                 pKeyFilter="pnum"
-                 disabled
-                 (change)="data.rv_amt_vat = $event.target.value"
-                 [value]="data.rv_amt_vat">
+          <input appMyCurrency class="form-control" [fraction]="2" pKeyFilter="pnum" disabled (change)="data.rv_amt_vat = $event.target.value"
+            [value]="data.rv_amt_vat">
         </div>
         <div class="col-md-3">
-          <input appMyCurrency
-                 #rvIvat
-                 class="form-control"
-                 [fraction]="2"
-                 disabled
-                 pKeyFilter="pnum"
-                 (blur)="calculateRv('I')"
-                 (change)="data.rv_amt_i_vat = $event.target.value"
-                 [value]="data.rv_amt_i_vat">
+          <input appMyCurrency #rvIvat class="form-control" [fraction]="2" disabled pKeyFilter="pnum" (blur)="calculateRv('I')" (change)="data.rv_amt_i_vat = $event.target.value"
+            [value]="data.rv_amt_i_vat">
 
         </div>
         <div class="col-md-2">
@@ -357,28 +230,23 @@
     </div>
     <div class="col-md-12 form-group  border-isa mt-1" *ngIf="visiblePanel">
       <div class="row form-inline form-group col-md-3">
-        <label *ngIf="data?.lc_flg === 'Y'"><b>Open LC</b></label><br>
+        <label *ngIf="data?.lc_flg === 'Y'">
+          <b>Open LC</b>
+        </label>
+        <br>
       </div>
       <div class="row form-group col-md-12">
         <div class="col-md-3">
           <label>Asset Price</label>
           <span class="star">*</span>
-          <input appMyCurrency
-                 (blur)="calculateLc()"
-                 class="form-control"
-                 [fraction]="2"
-                 pKeyFilter="pnum"
-                 (change)="data.asst_prce_forgn = $event.target.value"
-                 [value]="data.asst_prce_forgn">
+          <input appMyCurrency (blur)="calculateLc()" class="form-control" [fraction]="2" pKeyFilter="pnum" (change)="data.asst_prce_forgn = $event.target.value"
+            [value]="data.asst_prce_forgn">
         </div>
         <div class="col-md-3">
           <label>&nbsp;</label>
-          <select class="form-control"
-                  [(ngModel)]="data.curr_type">
+          <select class="form-control" [(ngModel)]="data.curr_type">
             <option [value]=""></option>
-            <option *ngFor="let list of dataCurType; let i = index"
-                    [value]="list.id_code"
-                    [selected]="data.curr_type === list.id_code">{{list?.id_code}}
+            <option *ngFor="let list of dataCurType; let i = index" [value]="list.id_code" [selected]="data.curr_type === list.id_code">{{list?.id_code}}
             </option>
           </select>
         </div>
@@ -387,123 +255,22 @@
         <div class="col-md-3">
           <label>Currency</label>
           <span class="star">*</span>
-          <input appMyCurrency
-                 class="form-control"
-                 [fraction]="2"
-                 pKeyFilter="pnum"
-                 (change)="data.currency = $event.target.value"
-                 [value]="data.currency">
+          <input appMyCurrency class="form-control" (blur)= "calculateLc()" [fraction]="2" pKeyFilter="pnum" (change)="data.currency = $event.target.value"
+            [value]="data.currency">
         </div>
         <div class="col-md-3">
           <label>Import Duty(%)</label>
-          <input appMyCurrency
-                 (blur)="calculateLc()"
-                 class="form-control"
-                 [fraction]="0"
-                 pKeyFilter="pnum"
-                 (change)="data.duty_pcnt = $event.target.value"
-                 [value]="data.duty_pcnt">
+          <input appMyCurrency (blur)="calculateLc()" class="form-control" [fraction]="0" pKeyFilter="pnum" (change)="data.duty_pcnt = $event.target.value"
+            [value]="data.duty_pcnt">
         </div>
         <div class="col-md-3">
           <label>Installment</label>
           <span class="star">*</span>
-          <input appMyCurrency
-                 (blur)="calculateLc()"
-                 pKeyFilter="pnum"
-                 class="form-control"
-                 [fraction]="5"
-                 (change)="data.inst_pcnt_of_asst = $event.target.value"
-                 [value]="data.inst_pcnt_of_asst">
+          <input appMyCurrency (blur)="calculateLc()" pKeyFilter="pnum" class="form-control" [fraction]="5" (change)="data.inst_pcnt_of_asst = $event.target.value"
+            [value]="data.inst_pcnt_of_asst">
         </div>
         <div class="col-md">
-          <label style="margin-top: 33px;">% Of Asset Price</label>
-        </div>
-      </div>
-    </div>
-    <div class="form-group col-md-12 card p-1">
-      <div class="d-flex form-group">
-        <div class="col-md-3 form-group">
-          <label>Terms</label>
-          <span class="star">*</span>
-          <input appMyCurrency
-                 class="form-control"
-                 [fraction]="0"
-                 pKeyFilter="pnum"
-                 (change)="data.terms = $event.target.value"
-                 [value]="data.terms">
-        </div>
-        <div class="col-md-3 form-group">
-          <label>Flat Rate</label>
-          <input appMyCurrency
-                 class="form-control"
-                 [fraction]="2"
-                 pKeyFilter="pnum"
-                 (change)="data.flat_rate = $event.target.value"
-                 [value]="data.flat_rate">
-        </div>
-        <div class="col-md-3 form-group">
-          <label>Net IRR</label>
-          <input appMyCurrency
-                 class="form-control"
-                 [fraction]="8"
-                 pKeyFilter="pnum"
-                 disabled
-                 (change)="data.net_irr = $event.target.value"
-                 [value]="data.net_irr">
-        </div>
-        <div class="col-md-3 form-group">
-          <label>Gross IRR</label>
-          <span class="star">*</span>
-          <input appMyCurrency
-                 class="form-control"
-                 [fraction]="8"
-                 pKeyFilter="pnum"
-                 (change)="data.gross_irr = $event.target.value"
-                 [value]="data.gross_irr">
-        </div>
-      </div>
-      <div class="d-flex form-group">
-        <div class="col-md-3 form-group">
-          <label>Expense</label>
-          <input appMyCurrency
-                 class="form-control"
-                 [fraction]="2"
-                 pKeyFilter="pnum"
-                 (change)="data.es_expense = $event.target.value"
-                 [value]="data.es_expense">
-          <!--<input currencyMask
-                 class="form-control"
-                 [(ngModel)]="data.es_expense"
-                 [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
-        </div>
-        <div class="col-md-3 form-group">
-          <label>Revenue</label>
-          <input appMyCurrency
-                 class="form-control"
-                 [fraction]="2"
-                 pKeyFilter="pnum"
-                 (change)="data.es_revenue = $event.target.value"
-                 [value]="data.es_revenue">
-        </div>
-        <div class="col-md-6 form-group">
-          <div class="row">
-            <div class="col-md-6 ">
-              <label>Cal IRR</label>
-              <select class="form-control w-100"
-                      [(ngModel)]="data.type_cal_pricing">
-                <option [value]="1">1.Calculate Installment + Flat Know Gross IRR , Fin, Term</option>
-                <option [value]="2">2.Calculate Installment + IRR Know Fin, Flat, Term</option>
-                <option [value]="3">3.Calculate IRR + Flat Know Installment, Fin, Term</option>
-                <option [value]="4">4.Calculate Finance + Flat Know Installment, Gross IRR, Term</option>
-                <option [value]="5">5.Calculate Flat Know Installment, Fin, Term</option>
-              </select>
-            </div>
-            <div class="col-md-6 mt-4 pt-1">
-              <button type="button" pButton style="float:left"
-                      (click)="calculateClick()"
-                      label="Calculate"></button>
-            </div>
-          </div>
+          <label style="margin-top: 25px;">% Of Asset Price</label>
         </div>
       </div>
     </div>
@@ -516,22 +283,13 @@
             <div class="mt-radio-inline border-isa">
               <div class="form-group">
                 <div class="form-inline p-1">
-                  <input type="radio"
-                         name="schedule_ls"
-                         value='R'
-                         [(ngModel)]="data.schedule"
-                         (ngModelChange)="scheduleChange()"> Straight
-                  <input type="radio"
-                         name="schedule_ls"
-                         value='I'
-                         [(ngModel)]="data.schedule"
-                         (ngModelChange)="scheduleChange()"> Step
+                  <input type="radio" name="schedule_ls" value='R' [(ngModel)]="data.schedule" (ngModelChange)="scheduleChange()"> Straight
+                  <input type="radio" name="schedule_ls" value='I' [(ngModel)]="data.schedule" (ngModelChange)="scheduleChange()"> Step
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-10 form-group"
-               *ngIf="data.schedule==='R'">
+          <div class="col-md-10 form-group" *ngIf="data.schedule==='R'">
             <div class="form-group d-flex">
               <div class="col-md-2 mt-4 pt-1">
                 <label> Installment </label>
@@ -539,49 +297,29 @@
               </div>
               <div class="col-md-3 text-center">
                 <label>Exclude VAT</label>
-                <input appMyCurrency
-                       (blur)="calculateInstallment('eVat')"
-                       class="form-control"
-                       [fraction]="2"
-                       pKeyFilter="pnum"
-                       (change)="data.installment_e_vat = $event.target.value"
-                       [value]="data.installment_e_vat">
+                <input appMyCurrency (blur)="calculateInstallment('eVat')" class="form-control" [fraction]="2" pKeyFilter="pnum" (change)="data.installment_e_vat = $event.target.value"
+                  [value]="data.installment_e_vat">
               </div>
               <div class="col-md-3 text-center">
                 <label>VAT</label>
-                <input appMyCurrency
-                       disabled
-                       class="form-control mr-1 ml-1"
-                       [fraction]="2"
-                       pKeyFilter="pnum"
-                       (change)="data.installment_vat = $event.target.value"
-                       [value]="data.installment_vat">
+                <input appMyCurrency disabled class="form-control mr-1 ml-1" [fraction]="2" pKeyFilter="pnum" (change)="data.installment_vat = $event.target.value"
+                  [value]="data.installment_vat">
 
               </div>
               <div class="col-md-3 text-center">
                 <label>Include VAT</label>
-                <input appMyCurrency
-                       pKeyFilter="pnum"
-                       (blur)="calculateInstallment('iVat');"
-                       class="form-control"
-                       [fraction]="2"
-                       (change)="data.installment_i_vat = $event.target.value"
-                       [value]="data.installment_i_vat">
+                <input appMyCurrency pKeyFilter="pnum" (blur)="calculateInstallment('iVat');" class="form-control" [fraction]="2" (change)="data.installment_i_vat = $event.target.value"
+                  [value]="data.installment_i_vat">
               </div>
             </div>
           </div>
 
-          <p-dataTable [value]="data.listStep" selectionMode="single" [(selection)]="selected"
-                       rows="15" [responsive]="true"
-                       (onRowSelect)="onRowSelect($event)"
-                       *ngIf="data.schedule == 'I'" [responsive]="true">
+          <p-dataTable [value]="data.listStep" selectionMode="single" [(selection)]="selected" rows="15" [responsive]="true" (onRowSelect)="onRowSelect($event)"
+            *ngIf="data.schedule == 'I'" [responsive]="true">
             <p-header>
-              <app-custom-botton-icon [option]="'new'"
-                                      (onBtnClick)="addEditStep('add')"></app-custom-botton-icon>
-              <app-custom-botton-icon [option]="'edit'"
-                                      (onBtnClick)="addEditStep('edit')"></app-custom-botton-icon>
-              <app-custom-botton-icon [option]="'delete'"
-                                      (onBtnClick)="delete()"></app-custom-botton-icon>
+              <app-custom-botton-icon [option]="'new'" (onBtnClick)="addEditStep('add')"></app-custom-botton-icon>
+              <app-custom-botton-icon [option]="'edit'" (onBtnClick)="addEditStep('edit')"></app-custom-botton-icon>
+              <app-custom-botton-icon [option]="'delete'" (onBtnClick)="delete()"></app-custom-botton-icon>
             </p-header>
             <p-headerColumnGroup>
               <p-row>
@@ -592,17 +330,17 @@
             </p-headerColumnGroup>
             <p-column field="from_term" [style]="{'text-align':'right'}">
               <ng-template let-col let-row="rowData" pTemplate="body">
-                <span>{{ row[col.field] |  number:'.'  }}</span>
+                <span>{{ row[col.field] | number:'.' }}</span>
               </ng-template>
             </p-column>
             <p-column field="to_term" [style]="{'text-align':'right'}">
               <ng-template let-col let-row="rowData" pTemplate="body">
-                <span>{{ row[col.field] |  number:'.'  }}</span>
+                <span>{{ row[col.field] | number:'.' }}</span>
               </ng-template>
             </p-column>
             <p-column field="inst_e_vat" [style]="{'text-align':'right'}">
               <ng-template let-col let-row="rowData" pTemplate="body">
-                <span>{{ row[col.field] |  number:'.2-2'  }}</span>
+                <span>{{ row[col.field] | number:'.2-2' }}</span>
               </ng-template>
             </p-column>
           </p-dataTable>
@@ -616,91 +354,115 @@
           </div>
           <div class="col-md-3 text-center">
             <label>Exclude VAT</label>
-            <input appMyCurrency
-                   (blur)="calculateInstallment('eVat');"
-                   class="form-control"
-                   [fraction]="2"
-                   pKeyFilter="pnum"
-                   (change)="data.installment_e_vat = $event.target.value"
-                   [value]="data.installment_e_vat">
+            <input appMyCurrency (blur)="calculateInstallment('eVat');" class="form-control" [fraction]="2" pKeyFilter="pnum" (change)="data.installment_e_vat = $event.target.value"
+              [value]="data.installment_e_vat">
           </div>
           <div class="col-md-3 text-center">
             <label>VAT</label>
-            <input appMyCurrency
-                   disabled
-                   pKeyFilter="pnum"
-                   class="form-control"
-                   [fraction]="2"
-                   (change)="data.installment_vat = $event.target.value"
-                   [value]="data.installment_vat">
+            <input appMyCurrency disabled pKeyFilter="pnum" class="form-control" [fraction]="2" (change)="data.installment_vat = $event.target.value"
+              [value]="data.installment_vat">
           </div>
           <div class="col-md-3 text-center">
             <label>Include VAT</label>
-            <input appMyCurrency
-                   (blur)="calculateInstallment('iVat');"
-                   class="form-control"
-                   [fraction]="2"
-                   pKeyFilter="pnum"
-                   (change)="data.installment_i_vat = $event.target.value"
-                   [value]="data.installment_i_vat">
+            <input appMyCurrency (blur)="calculateInstallment('iVat');" class="form-control" [fraction]="2" pKeyFilter="pnum" (change)="data.installment_i_vat = $event.target.value"
+              [value]="data.installment_i_vat">
           </div>
         </div>
         <div class="col-md-12 d-flex form-group">
           <div class="col-md-2">
             <label>Bank</label>
-            <select class="form-control"
-                    [(ngModel)]="data.bank_code"
-                    (change)="rateChange()">
+            <select class="form-control" [(ngModel)]="data.bank_code" (change)="rateChange()">
               <option [value]=""></option>
-              <option *ngFor="let list of dataBank; let i = index"
-                      [value]="list.id_code"
-                      [selected]="data.bank_code === list.id_code">{{list?.remark}}
+              <option *ngFor="let list of dataBank; let i = index" [value]="list.id_code" [selected]="data.bank_code === list.id_code">{{list?.remark}}
               </option>
             </select>
           </div>
           <div class="col-md-3">
             <label>Type</label>
-            <select class="form-control"
-                    [(ngModel)]="data.interest_rate_type"
-                    (change)="rateChange()">
+            <select class="form-control" [(ngModel)]="data.interest_rate_type" (change)="rateChange()">
               <option [value]=""></option>
-              <option *ngFor="let list of dataIntRate; let i = index"
-                      [value]="list.id_code"
-                      [selected]="data.interest_rate_type === list.id_code">{{list?.remark}}
+              <option *ngFor="let list of dataIntRate; let i = index" [value]="list.id_code" [selected]="data.interest_rate_type === list.id_code">{{list?.remark}}
               </option>
             </select>
           </div>
           <div class="col-md-3">
             <label>Rate</label>
-            <input appMyCurrency
-                   readonly
-                   class="form-control"
-                   [fraction]="3"
-                   pKeyFilter="pnum"
-                   (change)="data.interest_rate = $event.target.value"
-                   [value]="data.interest_rate">
+            <input appMyCurrency readonly class="form-control" [fraction]="3" pKeyFilter="pnum" (change)="data.interest_rate = $event.target.value"
+              [value]="data.interest_rate">
           </div>
           <div class="col-md-3">
             <label>Spread</label>
-            <input appMyCurrency
-                   readonly
-                   class="form-control"
-                   [fraction]="3"
-                   pKeyFilter="pnum"
-                   (change)="data.spread = $event.target.value"
-                   [value]="data.spread">
+            <input appMyCurrency readonly class="form-control" [fraction]="3" pKeyFilter="pnum" (change)="data.spread = $event.target.value"
+              [value]="data.spread">
           </div>
         </div>
       </p-tabPanel>
     </p-tabView>
   </div>
+  <div class="border-isa mt-1 mb-1 p-3">
+    <div class="d-flex form-group">
+      <div class="col-md-3 form-group">
+        <label>Terms</label>
+        <span class="star">*</span>
+        <input appMyCurrency class="form-control" [fraction]="0" pKeyFilter="pnum" (change)="data.terms = $event.target.value" [value]="data.terms">
+      </div>
+      <div class="col-md-3 form-group">
+        <label>Flat Rate</label>
+        <input appMyCurrency class="form-control" [fraction]="2" pKeyFilter="pnum" (change)="data.flat_rate = $event.target.value"
+          [value]="data.flat_rate">
+      </div>
+      <div class="col-md-3 form-group">
+        <label>Net IRR</label>
+        <input appMyCurrency class="form-control" [fraction]="8" pKeyFilter="pnum" disabled (change)="data.net_irr = $event.target.value"
+          [value]="data.net_irr">
+      </div>
+      <div class="col-md-3 form-group">
+        <label>Gross IRR</label>
+        <span class="star">*</span>
+        <input appMyCurrency class="form-control" [fraction]="8" pKeyFilter="pnum" (change)="data.gross_irr = $event.target.value"
+          [value]="data.gross_irr">
+      </div>
+    </div>
+    <div class="d-flex form-group">
+      <div class="col-md-3 form-group">
+        <label>Expense</label>
+        <input appMyCurrency class="form-control" [fraction]="2" pKeyFilter="pnum" (change)="data.es_expense = $event.target.value"
+          [value]="data.es_expense">
+        <!--<input currencyMask
+               class="form-control"
+               [(ngModel)]="data.es_expense"
+               [options]="{ prefix: '', thousands: ',', decimal: '.' }"/>-->
+      </div>
+      <div class="col-md-3 form-group">
+        <label>Revenue</label>
+        <input appMyCurrency class="form-control" [fraction]="2" pKeyFilter="pnum" (change)="data.es_revenue = $event.target.value"
+          [value]="data.es_revenue">
+      </div>
+      <div class="col-md-6 form-group">
+        <div class="row">
+          <div class="col-md-6 ">
+            <label>Cal IRR</label>
+            <select class="form-control w-100" [(ngModel)]="data.type_cal_pricing">
+              <option [value]="1">1.Calculate Installment + Flat Know Gross IRR , Fin, Term</option>
+              <option [value]="2">2.Calculate Installment + IRR Know Fin, Flat, Term</option>
+              <option [value]="3">3.Calculate IRR + Flat Know Installment, Fin, Term</option>
+              <option [value]="4">4.Calculate Finance + Flat Know Installment, Gross IRR, Term</option>
+              <option [value]="5">5.Calculate Flat Know Installment, Fin, Term</option>
+            </select>
+          </div>
+          <div class="col-md-6 mt-4 pt-1">
+            <button type="button" pButton style="float:left" (click)="calculateClick()" label="Calculate"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="flex-row border-isa col-md-12 form-group p-3">
     <div class="col-md-6 form-group">
       <label>Financing Asset</label>
-      <span class="star">*</span><br>
-      <textarea class="form-control"
-                rows="10"
-                [(ngModel)]="data.fin_asst"></textarea>
+      <span class="star">*</span>
+      <br>
+      <textarea class="form-control" rows="10" [(ngModel)]="data.fin_asst"></textarea>
     </div>
   </div>
 </div>

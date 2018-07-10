@@ -3,7 +3,20 @@
     {{title}}
   </div>
   <div class="ml-auto p-1">
-
+    <!--new 5/6/61-->
+    <button type="button" class="btn btn-primary" *ngIf="showSubmitOnlySelect"
+            (click)="onSubmitOnlySelectClick()">
+      <i class="fa fa-check" ></i> {{titleSubmitOnlySelect}}
+    </button>
+    <button type="button" class="btn btn-success" *ngIf="showSubmitAll"
+            (click)="onSubmitAllClick()">
+      <i class="fa fa-check" ></i> {{titleSubmitAll}}
+    </button>
+    <button type="button" class="btn btn-process" *ngIf="showProcess"
+            (click)="onProcessClick()">
+      <i class="fa fa-sitemap" ></i> {{titleProcess}}
+    </button>
+    <!--new-->
     <button type="button" class="btn btn-back" *ngIf="showBack"
             (click)="onBackClick()">
       <i class="fa fa-undo"></i> {{titleBack}}
@@ -36,9 +49,25 @@
             (click)="onReturnClick()">
       {{titleReturn}}
     </button>
+    <button type="button" class="btn btn-renew" *ngIf="showRenew"
+            (click)="onRenewClick()">
+      <i class="fa fa-hand-o-down"></i> {{titleRenew}}
+    </button>
+    <button type="button" class="btn btn-email" *ngIf="showEmail"
+            (click)="onEmailClick()">
+      <i class="fa fa-envelope"></i> {{titleEmail}}
+    </button>
+    <button type="button" class="btn btn-importEx" *ngIf="showImportEx"
+            (click)="onImportExClick()">
+      <i class="fa fa-file-excel-o"></i> {{titleImportEx}}
+    </button>
     <button type="button" class="btn btn-print" *ngIf="showPrint"
             (click)="onPrintClick()">
       <i class="fa fa-print" ></i> {{titlePrint}}
+    </button>
+    <button type="button" class="btn btn-clear" *ngIf="showClear"
+            (click)="onClearClick()">
+      <i class="fa fa-eraser" ></i> {{titleClear}}
     </button>
     <button type="button" class="btn btn-cancel" *ngIf="showCancel"
             (click)="onCancelClick()">
@@ -47,6 +76,10 @@
     <button type="button" class="btn btn-calculator" *ngIf="showCalculator"
             (click)="onCalculatorClick()">
       <i class="fa fa-calculator" ></i> {{titleCalculator}}
+    </button>
+    <button type="button" class="btn btn-payment" *ngIf="showPayment"
+            (click)="onPaymentClick()">
+      <i class="fa fa-credit-card" ></i> {{titlePayment}}
     </button>
     <button type="button" class="btn btn-danger" *ngIf="showExit"
             (click)="onExit()">

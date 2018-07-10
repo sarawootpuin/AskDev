@@ -1,11 +1,13 @@
 <p-panel header="Amend Temporary Creditline Seller Group" [toggleable]="false" [style]="{'margin-bottom':'3px'}">
   <div class="form-group">
+    <fieldset [disabled] = "caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend'">
     <app-custom-botton-icon [option]="'new'"
                             (onBtnClick)="addCaTempCreditLineGroupSeller()"
                             [disabled]="addMode"></app-custom-botton-icon>
     <app-custom-botton-icon [option]="'delete'"
                             (onBtnClick)="deleteWarning()"
                             [disabled]="!addMode"></app-custom-botton-icon>
+    </fieldset>
   </div>
   <div class="container">
     <div class="row">
@@ -17,7 +19,7 @@
                  [fraction]="2"
                  (change)="caTempCreditLineGroup.temp_sub_ca_amt_group = $event.target.value"
                  [value]="caTempCreditLineGroup.temp_sub_ca_amt_group"
-                 [disabled]="!addMode"
+                 [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' ||!addMode"
           >&nbsp;(Baht)
         </div>
       </div>
@@ -45,6 +47,7 @@
                      class="form-control"
                      [fraction]="2"
                      (change)="caTempCreditLineGroup.group_name = $event.target.value"
+                     [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' "
                      [value]="caTempCreditLineGroup.group_name" readonly>&nbsp;(Baht)
             </div>
           </div>
@@ -59,14 +62,14 @@
             <input class="form-check-input" name="amend_seller_group" type="radio" value="T"
                    [(ngModel)]="caTempCreditLineGroup.amend_type"
                    (ngModelChange)="amendChange($event)"
-                   [disabled]="!addMode"
+                   [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' ||!addMode"
             >&nbsp;Time
           </div>
           <div class="col-md-6">
             <div class="form-inline">
               <input appMyCurrency [fraction]="0" class="form-control" type="text" #timeInput
-                     [disabled]="checkCalendar || !addMode"
-                     [(ngModel)]="caTempCreditLineGroup.time">&nbsp;&nbsp;Time {{checkCalendar}}
+                     [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' ||checkCalendar || !addMode"
+                     [(ngModel)]="caTempCreditLineGroup.time">&nbsp;&nbsp;Time
             </div>
           </div>
         </div>
@@ -75,7 +78,7 @@
             <input class="form-check-input" name="amend_seller_group" type="radio" value="P"
                    [(ngModel)]="caTempCreditLineGroup.amend_type"
                    (ngModelChange)="amendChange($event)"
-                   [disabled]="!addMode"
+                   [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' ||!addMode"
             >&nbsp;Period
           </div>
           <div class="col-md-9">
@@ -89,7 +92,7 @@
                             placeholder="dd/mm/yyyy"
                             dataType="string"
                             showButtonBar="true"
-                            [disabled]="!checkCalendar || !addMode"
+                            [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' ||!addMode"
                             [(ngModel)]="caTempCreditLineGroup.eff_date"
                 ></p-calendar>
               </div>
@@ -104,7 +107,7 @@
                             placeholder="dd/mm/yyyy"
                             dataType="string"
                             showButtonBar="true"
-                            [disabled]="!checkCalendar || !addMode"
+                            [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' ||!addMode"
                             [(ngModel)]="caTempCreditLineGroup.expire_date"
                 ></p-calendar>
               </div>

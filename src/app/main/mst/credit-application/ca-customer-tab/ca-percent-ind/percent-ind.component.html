@@ -1,3 +1,4 @@
+<fieldset [disabled]="isReadOnly">
 <div class="form-group">
   <p-dataTable [value]="listIndus"
                 selectionMode="single" [(selection)]="selectIndus"
@@ -17,6 +18,7 @@
 
   </p-dataTable>
 </div>
+</fieldset>
 
 
 <app-action-dialog   #actiondialog

@@ -1,13 +1,15 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from "@angular/core";
+import {Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from "@angular/core";
 import {AppFormService} from "../../appform.service";
 import {ListCollateral} from "../../model/getDataCollateral";
 import {AlertDialogComponent} from "../../../../../shared/center/alert-dialog/alert-dialog.component";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-collateral-list',
   templateUrl: './collateral-list.component.html'
 })
-export class CollateralListComponent implements OnInit {
+export class CollateralListComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
   data: ListCollateral[] = [];
   dataSelect: ListCollateral;
   @Output("clickList") clickList = new EventEmitter<ListCollateral>();
@@ -24,12 +26,18 @@ export class CollateralListComponent implements OnInit {
     else {
       this.data = [];
     }
-    this.appFormService.eventTabCollateral.subscribe(
+    this.subscription = this.appFormService.eventTabCollateral.subscribe(
       (data: any) => {
         this.data = data;
         this.selectList(this.data[0]);
       }
     )
+  }
+
+  ngOnDestroy() {
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
   }
 
   selectList(selectedData) {
@@ -69,7 +77,7 @@ export class CollateralListComponent implements OnInit {
     }
   }
 
-  deleteWarning(){
+  deleteWarning() {
     this.deleteDialog.setAction("DELETE");
     this.deleteDialog.open();
   }

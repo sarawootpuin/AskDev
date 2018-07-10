@@ -1,63 +1,66 @@
-import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from "@angular/core";
 import {AppFormService} from "../appform.service";
 import {ApplyNewService} from "./applysalecall.service";
 import {AppFormNew} from "../model/appFormNew";
 import {AppFormRenew} from "../model/appFormRenew";
 import {DataTable} from "primeng/primeng";
+import {Subscription} from "rxjs/Subscription";
 import apply = Reflect.apply;
 
 @Component({
   selector: 'app-applysalecall',
   templateUrl: './applysalecall.component.html'
 })
-export class ApplySaleCallComponent implements OnInit {
+export class ApplySaleCallComponent implements OnInit, OnDestroy {
 
   cols: any[];
   colsNew: any[] = [
-    {field: 'sale_call_no', header: 'Call No.',  hidden: false, width: "100px"},
-    {field: 'comp_eng_nme', header: 'Cust Name',  hidden: false, width: "300px"},
-    {field: 'credit_type', header: 'Credit type',  hidden: true, width: "300px"},
-    {field: 'owner_name', header: 'Owner Name',  hidden: false, width: "300px"},
-    {field: 'comp_ent_code', header: 'Cust Code',  hidden: false, width: "100px"},
-    {field: 'ownr', header: 'Owner Code',  hidden: false, width: "150px"},
-    {field: 'intro_mthd_cd', header: 'Intro Mthd Cd',  hidden: false, width: "150px"},
-    {field: 'intro_by_cd', header: 'Intro By Cd',  hidden: false, width: "150px"},
-    {field: 'intro_mthd_desc', header: 'Intro Mthd Desc',  hidden: false, width: "300px"},
-    {field: 'intro_by_name', header: 'Intro By Name',  hidden: false, width: "300px"},
-    {field: 'connect_since', header: 'Connect Since',  hidden: false, width: "150px"},
-    {field: 'cus_status', header: 'Cus Status',  hidden: false, width: "150px"},
-    {field: 'com_code', header: 'Company Code',  hidden: true, width: "150px"},
+    {field: 'sale_call_no', header: 'Call No.', hidden: false, width: "100px"},
+    {field: 'comp_eng_nme', header: 'Cust Name', hidden: false, width: "300px"},
+    {field: 'credit_type', header: 'Credit type', hidden: true, width: "300px"},
+    {field: 'owner_name', header: 'Owner Name', hidden: false, width: "300px"},
+    {field: 'comp_ent_code', header: 'Cust Code', hidden: false, width: "100px"},
+    {field: 'ownr', header: 'Owner Code', hidden: false, width: "150px"},
+    {field: 'intro_mthd_cd', header: 'Intro Mthd Cd', hidden: false, width: "150px"},
+    {field: 'intro_by_cd', header: 'Intro By Cd', hidden: false, width: "150px"},
+    {field: 'intro_mthd_desc', header: 'Intro Mthd Desc', hidden: false, width: "300px"},
+    {field: 'intro_by_name', header: 'Intro By Name', hidden: false, width: "300px"},
+    {field: 'connect_since', header: 'Connect Since', hidden: false, width: "150px"},
+    {field: 'cus_status', header: 'Cus Status', hidden: false, width: "150px"},
+    {field: 'com_code', header: 'Company Code', hidden: true, width: "150px"},
     {field: 'cus_code', header: 'Cus Code', hidden: true, width: "150px"},
     {field: 'new_card_no', header: 'New Card No.', hidden: true, width: "150px"}
   ];
   colsRenew: any[] = [
-    {field: 'ca_no', header: 'CA No.',  hidden: false, width: "150px"},
-    {field: 'cust_name', header: 'Cust Name',  hidden: false, width: "300px"},
-    {field: 'prd_type', header: 'Credit type',  hidden: false, width: "200px"},
-    {field: 'expire_dt', header: 'Expire Date',  hidden: false, width: "150px"},
-    {field: 'mkt_name', header: 'Owner Name',  hidden: false, width: "300px"},
-    {field: 'sbu_typ', header: 'Type',  hidden: false, width: "100px"},
-    {field: 'ori_ca', header: 'Original CA',  hidden: false, width: "150px"},
-    {field: 'mkt_code', header: 'Marketing Code',  hidden: false, width: "150px"},
-    {field: 'contract_no', header: 'Contract No',  hidden: false, width: "150px"},
-    {field: 'contract_date', header: 'Contract Date',  hidden: false, width: "150px"},
-    {field: 'contract_expire_date', header: 'Contract Expire Date',  hidden: false, width: "150px"},
+    {field: 'ca_no', header: 'CA No.', hidden: false, width: "150px"},
+    {field: 'cust_name', header: 'Cust Name', hidden: false, width: "300px"},
+    {field: 'prd_type', header: 'Credit type', hidden: false, width: "200px"},
+    {field: 'expire_dt', header: 'Expire Date', hidden: false, width: "150px"},
+    {field: 'mkt_name', header: 'Owner Name', hidden: false, width: "300px"},
+    {field: 'sbu_typ', header: 'Type', hidden: false, width: "100px"},
+    {field: 'ori_ca', header: 'Original CA', hidden: false, width: "150px"},
+    {field: 'mkt_code', header: 'Marketing Code', hidden: false, width: "150px"},
+    {field: 'contract_no', header: 'Contract No', hidden: false, width: "150px"},
+    {field: 'contract_date', header: 'Contract Date', hidden: false, width: "150px"},
+    {field: 'contract_expire_date', header: 'Contract Expire Date', hidden: false, width: "150px"},
     {field: 'cus_code', header: 'Cus Code', hidden: true, width: "150px"},
     {field: 'new_card_no', header: 'New Card No.', hidden: true, width: "150px"}
   ];
   colsRenewOld: any[] = [
-    {field: 'ca_no', header: 'CA No.',  hidden: false, width: "150px"},
-    {field: 'cust_name', header: 'Cust Name',  hidden: false, width: "300px"},
-    {field: 'prd_type', header: 'Credit type',  hidden: false, width: "200px"},
-    {field: 'expire_dt', header: 'Expire Date',  hidden: false, width: "150px"},
-    {field: 'mkt_name', header: 'Owner Name',  hidden: false, width: "300px"},
-    {field: 'sbu_typ', header: 'Type',  hidden: false, width: "100px"},
-    {field: 'ori_ca', header: 'Original CA',  hidden: false, width: "150px"},
-    {field: 'mkt_code', header: 'Marketing Code',  hidden: false, width: "150px"},
+    {field: 'ca_no', header: 'CA No.', hidden: false, width: "150px"},
+    {field: 'cust_name', header: 'Cust Name', hidden: false, width: "300px"},
+    {field: 'prd_type', header: 'Credit type', hidden: false, width: "200px"},
+    {field: 'expire_dt', header: 'Expire Date', hidden: false, width: "150px"},
+    {field: 'mkt_name', header: 'Owner Name', hidden: false, width: "300px"},
+    {field: 'sbu_typ', header: 'Type', hidden: false, width: "100px"},
+    {field: 'ori_ca', header: 'Original CA', hidden: false, width: "150px"},
+    {field: 'mkt_code', header: 'Marketing Code', hidden: false, width: "150px"},
     {field: 'cus_code', header: 'Cus Code', hidden: true, width: "150px"},
     {field: 'new_card_no', header: 'New Card No.', hidden: true, width: "150px"}
   ];
 
+  subscription: Subscription;
+  subscriptionNew: Subscription;
   @ViewChild('table') table: DataTable;
   dataTable: any[];
   selected: any;
@@ -74,11 +77,20 @@ export class ApplySaleCallComponent implements OnInit {
     this.dataTable = null;
     this.selected = null;
 
-    this.appFormService.applyEmit.subscribe(
+    this.subscription = this.appFormService.applyEmit.subscribe(
       (applyEmit: any) => {
         this.getApplyEmit(applyEmit);
       }
     );
+  }
+
+  ngOnDestroy() {
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
+    if (this.subscriptionNew != null) {
+      this.subscriptionNew.unsubscribe();
+    }
   }
 
   getApplyEmit(applyEmit) {
@@ -95,10 +107,10 @@ export class ApplySaleCallComponent implements OnInit {
   }
 
   getDataTable(applyEmit) {
-    this.applyNewService.getNewRenew(applyEmit.type).subscribe(
+    this.subscriptionNew = this.applyNewService.getNewRenew(applyEmit.type).subscribe(
       (data: any) => {
-        console.log('GetDataTable');
-        console.log(data);
+        //console.log('GetDataTable');
+        //console.log(data);
         if (data.MSG == "Complete") {
           this.dataTable = null;
           this.cols = null;

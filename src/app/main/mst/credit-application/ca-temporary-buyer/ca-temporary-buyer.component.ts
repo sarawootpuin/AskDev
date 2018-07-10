@@ -35,7 +35,10 @@ export class CaTemporaryBuyerComponent implements OnInit {
         this.caHead = value;
         this.listBuyer = this.caHead.listtempbuyer;
         this.listCaTempCreditLine = this.caHead.listbuyertempcreditline;
-      }
+          if ((this.listCaTempCreditLine) && (this.listCaTempCreditLine.length > 0)) {
+            this. selectedCaTempCreditLine = this. listCaTempCreditLine[0];
+          }
+        }
     );
   }
 
@@ -43,12 +46,12 @@ export class CaTemporaryBuyerComponent implements OnInit {
     if (type === 'T') {
       this.checkCalendar = false;
       /*clear value period*/
-      this.selectedCaTempCreditLine.eff_date = null;
-      this.selectedCaTempCreditLine.expire_date = null;
+      //this.selectedCaTempCreditLine.eff_date = null;
+      //this.selectedCaTempCreditLine.expire_date = null;
 
     } else if (type === 'P') {
       this.checkCalendar = true;
-      this.selectedCaTempCreditLine.time = null;
+      this.selectedCaTempCreditLine.time = 0;
     }
   }
 
@@ -74,6 +77,7 @@ export class CaTemporaryBuyerComponent implements OnInit {
     caTempCreditLine.join_grp_code = this.selectedBuyer.join_grp_code;
     caTempCreditLine.group_name = this.selectedBuyer.group_name;
     caTempCreditLine.ca_limit = this.selectedBuyer.ca_limit;
+    caTempCreditLine.sbu_type = this.caHead.sbu_typ;
 
     this.listCaTempCreditLine.push(caTempCreditLine);
     this.selectedCaTempCreditLine = caTempCreditLine;
@@ -91,6 +95,8 @@ export class CaTemporaryBuyerComponent implements OnInit {
   deleteWarning() {
     this.deleteDialog.open();
   }
+
+
 
 }
 

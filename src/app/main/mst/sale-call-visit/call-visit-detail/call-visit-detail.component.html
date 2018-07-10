@@ -2,16 +2,16 @@
 <div class="container-fluid border-isa">
   <!--<app-custom-botton-icon [option]="'new'"   (onBtnClick)="newDetail()"  >   </app-custom-botton-icon>-->
 
-  <app-custom-button [option]="'new'"   (onBtnClick)="newDetail()"   ></app-custom-button>
+  <app-custom-button [option]="'new'" [disabled]="amend === 'Y'"  (onBtnClick)="newDetail()"   ></app-custom-button>
 
   <div class="row"  style="min-height: 450px"  >
     <div class="col-md-12">
       <p-tabView>
         <p-tabPanel header="Call Visit"   >
-          <app-call-visit-result></app-call-visit-result>
+          <app-call-visit-result [amend]="amend"></app-call-visit-result>
         </p-tabPanel>
         <p-tabPanel header="Credit Type/Asset">
-          <app-call-visit-credit-type-asset></app-call-visit-credit-type-asset>
+          <app-call-visit-credit-type-asset [amend]="amend"></app-call-visit-credit-type-asset>
         </p-tabPanel>
         <p-tabPanel header="Personal Loan"  *ngIf="comCode != 'BGPL'" >
           <app-call-visti-telesale></app-call-visti-telesale>

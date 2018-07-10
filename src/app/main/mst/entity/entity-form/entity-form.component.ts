@@ -73,6 +73,7 @@ export class EntityFormComponent implements OnInit, OnDestroy {
     this.hiddenExit = false;
     this.isLoading = true
     this.userCode = this.userStorage.getCode();
+    //console.log('user code -->'+this.userCode);
     this.comCode = this.userStorage.getComCodePort();
     this.subscription = this.route.params.subscribe(
       (params: Params) => {
@@ -159,32 +160,40 @@ export class EntityFormComponent implements OnInit, OnDestroy {
   validateSave(entityRequest: EntityModel) {
     this.alertWarning.list_msg = [];
     this.alertWarning.single = 0;
+    let isCheck : boolean = true ;
+    let isNotCust : string = this.userStorage.getnewEntType();
+    //console.log(isNotCust);
+     if (isNotCust=='G') { isCheck= false } ;
+
     if (!entityRequest.newCardNo) {
-      this.alertWarning.addMessage('id card is empty');
+      this.alertWarning.addMessage('Id card is empty');
     }
-    if (!entityRequest.birthD) {
-      this.alertWarning.addMessage('วันเกิด/จดทะเบียน is empty');
+    if ((!entityRequest.birthD) &&(isCheck)) {
+      this.alertWarning.addMessage('Birth/Register Date is empty');
     }
     if (!entityRequest.fNameCode) {
-      this.alertWarning.addMessage('คำนำหน้าชื่อ is empty');
+      this.alertWarning.addMessage('Intial(T) name is empty');
     }
     if (!entityRequest.fNameT) {
-      this.alertWarning.addMessage('ชื่อ is empty');
+      this.alertWarning.addMessage('Name Thai is empty');
     }
     if (!entityRequest.fNameECode) {
-      this.alertWarning.addMessage('Intial is empty');
+      this.alertWarning.addMessage('Intial(E) is empty');
     }
     if (!entityRequest.fNameE) {
       this.alertWarning.addMessage('First Name is empty');
     }
-    if (!entityRequest.cardType) {
-      this.alertWarning.addMessage('ประเภทบัตร is empty');
+    if ((!entityRequest.cardType)&&(isCheck)) {
+      this.alertWarning.addMessage('Card type is empty');
     }
-    if (!entityRequest.address) {
-      this.alertWarning.addMessage('ที่อยู่ is empty');
+    if ((!entityRequest.address)&&(isCheck)) {
+      this.alertWarning.addMessage('Address is empty');
     }
-    if (!entityRequest.zip) {
-      this.alertWarning.addMessage('ที่อยู่ is empty');
+    if ((!entityRequest.zip)&&(isCheck)) {
+      this.alertWarning.addMessage('Address code is empty');
+    }
+    if ((!entityRequest.posi)) {
+      this.alertWarning.addMessage('Position is empty');
     }
     return this.alertWarning.list_msg.length > 0 ? false : true;
   }
@@ -273,6 +282,7 @@ export class EntityFormComponent implements OnInit, OnDestroy {
     if (this.subscriptionDetail != null) {
       this.subscriptionDetail.unsubscribe();
     }
+
   }
 
 }

@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from "@angular/core";
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild, OnChanges} from "@angular/core";
 import {creditApplicationService} from "../../credit-application.service";
 import {caBgDetail} from "../../model/ca-bgdetail";
 import {UserStorage} from "../../../../../shared/user/user.storage.service";
@@ -16,7 +16,7 @@ import {caHead} from "../../model/ca-head";
   selector: 'app-ca-finance',
   templateUrl: './ca-finance.component.html'
 })
-export class CaFinanceComponent implements OnInit, OnDestroy {
+export class CaFinanceComponent implements OnInit, OnDestroy ,OnChanges {
   subscripData: Subscription;
   subscripMaster: Subscription;
 
@@ -69,8 +69,9 @@ export class CaFinanceComponent implements OnInit, OnDestroy {
     this.subscripData = this.creditApplicationService.eventBgdetail.subscribe(
       (value: caBgDetail) => {
         this.bgdetail = value;
-        if (!this.bgdetail.selectForCall) {
-          this.bgdetail.selectForCall = 1;
+        this.openLc();
+        if (!this.bgdetail.type_cal_pricing) {
+          this.bgdetail.type_cal_pricing = 1;
         }
 
         if (this.creditApplicationService.caHead.ca_type == "1")
@@ -120,10 +121,17 @@ export class CaFinanceComponent implements OnInit, OnDestroy {
     }
   }
 
+  ngOnChanges(): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+    console.log(this.bgdetail);
+    
+  }
+
   creditTypeChange(dataSelect: any) {
     if (dataSelect) {
-      console.log(dataSelect);
-      console.log(this.dataFin);
+      //console.log(dataSelect);
+      //console.log(this.dataFin);
       this.bgdetail.credit_type = this.dataFin.find(
         (i) => dataSelect === i.id_code
       ).remark;
@@ -214,11 +222,51 @@ export class CaFinanceComponent implements OnInit, OnDestroy {
     }
   }
 
+  checkStep(): boolean {
+    let result: boolean = true;
+    let toTerm: number = 0, fromTerm: number = 0, term = Number(this.bgdetail.terms);
+    let dataStep = this.bgdetail.listcastep;
+    let length = dataStep.length;
+    for (let i = 0; i < dataStep.length; i++) {
+      if (i == 0) {
+        if (dataStep[i].from_term != '1') {
+          this.warning.addMessage('- First Step Must Be 1');
+          result = false;
+        }
+      }
+
+      if (Number(dataStep[i].from_term) == toTerm + 1) {
+        if (dataStep[i].from_term > dataStep[i].to_term) {
+          this.warning.addMessage('- Number of Terms in Table incorrect');
+          result = false;
+        }
+        if (toTerm >= dataStep[i].from_term) {
+          this.warning.addMessage('- Number of Terms in Table incorrect');
+          result = false;
+        }
+      }
+      else {
+        this.warning.addMessage('- Number of Terms in Table incorrect');
+        result = false;
+      }
+
+      toTerm = Number(dataStep[i].to_term);
+      fromTerm = Number(dataStep[i].from_term);
+      if (i == length - 1) {
+        if (dataStep[i].to_term != term) {
+          this.warning.addMessage('- Invalid Period');
+          result = false;
+        }
+      }
+    }
+    return result;
+  }
+
   calculateClick() {
     let calCheck: boolean = true;
     this.warning.list_msg = [];
     this.warning.title = 'Calculate Irr Warning';
-    if (this.bgdetail.selectForCall == 1) {
+    if (this.bgdetail.type_cal_pricing == 1) {
       if (!this.bgdetail.disburse_dt) {
         this.warning.addMessage('- Disburse');
       }
@@ -238,7 +286,13 @@ export class CaFinanceComponent implements OnInit, OnDestroy {
         this.warning.addMessage('- Installment');
       }
     }
-    else if (this.bgdetail.selectForCall == 2) {
+    else if (this.bgdetail.type_cal_pricing == 2) {
+      if (!this.bgdetail.disburse_dt) {
+        this.warning.addMessage('- Disburse');
+      }
+      if (!this.bgdetail.first) {
+        this.warning.addMessage('- First');
+      }
       if (!this.bgdetail.fin_amt_e_vat) {
         this.warning.addMessage('- Financing Amount');
       }
@@ -252,7 +306,7 @@ export class CaFinanceComponent implements OnInit, OnDestroy {
         this.warning.addMessage('- Installment');
       }
     }
-    else if (this.bgdetail.selectForCall == 3) {
+    else if (this.bgdetail.type_cal_pricing == 3) {
       if (!this.bgdetail.disburse_dt) {
         this.warning.addMessage('- Disburse Date');
       }
@@ -275,8 +329,9 @@ export class CaFinanceComponent implements OnInit, OnDestroy {
       else if (this.bgdetail.cal_inst_typ == 'Float' && !this.bgdetail.installment_e_vat) {
         this.warning.addMessage('- Installment');
       }
+
     }
-    else if (this.bgdetail.selectForCall == 4) {
+    else if (this.bgdetail.type_cal_pricing == 4) {
       if (!this.bgdetail.disburse_dt) {
         this.warning.addMessage('- Disburse Date');
       }
@@ -299,7 +354,7 @@ export class CaFinanceComponent implements OnInit, OnDestroy {
         this.warning.addMessage('- Installment');
       }
     }
-    else if (this.bgdetail.selectForCall == 5) {
+    else if (this.bgdetail.type_cal_pricing == 5) {
       if (!this.bgdetail.disburse_dt) {
         this.warning.addMessage('- Disburse Date');
       }
@@ -323,17 +378,20 @@ export class CaFinanceComponent implements OnInit, OnDestroy {
       this.warning.addMessage('- ADVANCE/ARR');
     }
 
+    if(this.bgdetail.schedule == 'I'){
+      this.checkStep();
+    }
     if (this.warning.list_msg.length > 0) {
       calCheck = false;
       this.warning.open();
     }
     if (calCheck) {
-      console.log(this.bgdetail.selectForCall);
+      //console.log(this.bgdetail.type_cal_pricing);
       this.checkLoader = true;
-      this.creditApplicationService.calculateIrr(this.bgdetail.sub_id, this.bgdetail.selectForCall).subscribe(
+      this.creditApplicationService.calculateIrr(this.bgdetail.sub_id, this.bgdetail.type_cal_pricing).subscribe(
         (callIrr: any) => {
           if (callIrr.CODE == '200') {
-            console.log(callIrr);
+            //console.log(callIrr);
             this.bgdetail.fin_amt_e_vat = +callIrr.LIST_DATA[0].finExcVat;
             this.bgdetail.fin_amt_vat = +callIrr.LIST_DATA[0].finVat;
             this.bgdetail.fin_amt_i_vat = +callIrr.LIST_DATA[0].finIncVat;
@@ -447,7 +505,7 @@ export class CaFinanceComponent implements OnInit, OnDestroy {
         this.bgdetail.dep_amt_e_vat = this.bgdetail.dep_amt_i_vat;
       }
     }
-    console.log(this.bgdetail.dep_amt_i_vat);
+    //console.log(this.bgdetail.dep_amt_i_vat);
     this.calculatefinfromAsset();
   }
 
@@ -529,7 +587,10 @@ export class CaFinanceComponent implements OnInit, OnDestroy {
   }
 
   calculateLc() {
-    this.bgdetail.asst_amt_e_vat = Number(Number(this.bgdetail.asst_prce_forgn) * Number(this.bgdetail.currency ? this.bgdetail.currency : 0) * (100 + Number(this.bgdetail.duty_pcnt ? this.bgdetail.duty_pcnt : 0)) / 100).toFixed(2);
+    this.bgdetail.currency = this.bgdetail.currency ? this.bgdetail.currency : 0
+    this.bgdetail.duty_pcnt = this.bgdetail.duty_pcnt ? this.bgdetail.duty_pcnt : 0;
+    this.bgdetail.inst_pcnt_of_asst = this.bgdetail.inst_pcnt_of_asst ? this.bgdetail.inst_pcnt_of_asst : 0
+    this.bgdetail.asst_amt_e_vat = Number(Number(this.bgdetail.asst_prce_forgn) * Number(this.bgdetail.currency) * (100 + Number(this.bgdetail.duty_pcnt)) / 100).toFixed(2);
     if (this.bgdetail.cal_inst_typ === 'Float' || (this.bgdetail.schedule === 'R' && this.bgdetail.cal_inst_typ === 'Fix')) {
       this.bgdetail.installment_e_vat = Number(Number(this.bgdetail.asst_amt_e_vat) * Number(this.bgdetail.inst_pcnt_of_asst) / 100).toFixed(2);
       this.calculateInstallment('eVat');
@@ -619,7 +680,7 @@ export class CaFinanceComponent implements OnInit, OnDestroy {
   }
 
   addClick() {
-    console.log(this.step);
+    //console.log(this.step);
     if (this.step.inst_e_vat) {
       this.step.inst_vat = String((Number(this.step.inst_e_vat) * this.vatRate / 100).toFixed(2));
     }

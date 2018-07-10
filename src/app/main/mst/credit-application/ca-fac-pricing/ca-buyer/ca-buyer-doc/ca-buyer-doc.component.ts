@@ -3,6 +3,7 @@ import {Subscription} from "rxjs/Subscription";
 import {caBuyer} from "../../../model/ca-buyer";
 import {caBuyerDoc} from "../../../model/ca-buyerdoc";
 import {creditApplicationService} from "../../../credit-application.service";
+import {getHostElement} from "@angular/core/src/render3";
 
 @Component({
   selector: 'app-ca-buyer-doc',
@@ -14,7 +15,8 @@ export class CaBuyerDocComponent implements OnInit, OnDestroy {
   subscripMaster: Subscription;
 
   selectBuyer   :caBuyer ;
-  listBuyerDoc :  caBuyerDoc[] ;
+  listBuyerDoc :  caBuyerDoc[];
+  listBuyerDocTmp :  caBuyerDoc[];
   selectBuyerDoc : caBuyerDoc;
 
   filterType : string = 'Factored' ;
@@ -31,12 +33,17 @@ export class CaBuyerDocComponent implements OnInit, OnDestroy {
         if (this.selectBuyer)
         {
           this.listBuyerDoc = this.selectBuyer.listcabuyerdoc ;
+          this.listBuyerDocTmp = JSON.parse(JSON.stringify(this.listBuyerDoc));
+          //console.log('11111111',this.listBuyerDocTmp);
+          this.onFilter('Factored');
           if ((this.listBuyerDoc) && (this.listBuyerDoc.length > 0 ) ){
             this.selectBuyerDoc = this.listBuyerDoc[0];
+            // this.selectBuyerDoc = JSON.parse(JSON.stringify(this.listBuyerDoc[0]));
           }
         }
       }
     }
+
     this.subscripData = this.creditApplicationService.eventcabuyer.subscribe(
       (value : caBuyer ) =>
       {
@@ -44,10 +51,18 @@ export class CaBuyerDocComponent implements OnInit, OnDestroy {
         if (this.selectBuyer)
         {
             this.listBuyerDoc = this.selectBuyer.listcabuyerdoc ;
+            this.listBuyerDocTmp = JSON.parse(JSON.stringify(this.listBuyerDoc));
+            //console.log(this.listBuyerDocTmp);
+            this.onFilter('Factored');
             if ((this.listBuyerDoc) && (this.listBuyerDoc.length > 0 ) ){
               this.selectBuyerDoc = this.listBuyerDoc[0];
+              // this.selectBuyerDoc = JSON.parse(JSON.stringify(this.listBuyerDoc[0]));
             }
         }
+        //this.listBuyerDoc = this.listBuyerDoc.filter((element)=>{
+        //  return element.factored_doc_type == this.filterType
+        //})
+
       }
     );
 
@@ -73,10 +88,23 @@ export class CaBuyerDocComponent implements OnInit, OnDestroy {
     this.selectBuyerDoc = selrow;
 
      if (typechk == "select_o") {this.selectBuyerDoc.factored_doc_type  = "O"}
-     else if (typechk == "select_p") {  this.selectBuyerDoc.factored_doc_type = "P"}
-     else if (typechk == "select_c") { this.selectBuyerDoc.factored_doc_type = "C"}
+     else if (typechk == "select_p") {this.selectBuyerDoc.factored_doc_type = "P"}
+     else if (typechk == "select_c") {this.selectBuyerDoc.factored_doc_type = "C"}
      if (data == "N") { this.selectBuyerDoc.factored_doc_type = ""}
-    //console.log(this.selectBuyerDoc)
+
+     for(let j=0; j < this.listBuyerDoc.length; j++) {
+       for(let k=0; k < this.listBuyerDocTmp.length; k++) {
+         if (this.listBuyerDoc[j].doc_code == this.listBuyerDocTmp[k].doc_code) {
+           this.listBuyerDocTmp[k] = this.listBuyerDoc[j];
+         }
+
+       }
+     }
+
+     this.selectBuyer.listcabuyerdoc = this.listBuyerDocTmp;
+     //console.log('after',this.listBuyerDoc);
+     //console.log('after',this.listBuyerDocTmp);
+
      return data;
   }
 
@@ -116,4 +144,44 @@ export class CaBuyerDocComponent implements OnInit, OnDestroy {
     }
   }
 
+  onFilter(pType) {
+    if (pType !== 'ALL' ) {
+      this.listBuyerDoc = JSON.parse(JSON.stringify(this.listBuyerDocTmp.filter(
+        (data: any) => data.forfilter == pType
+      )));
+    } else {
+      this.listBuyerDoc = JSON.parse(JSON.stringify(this.listBuyerDocTmp));
+    }
+
+    //console.log('222222',this.selectBuyer.listcabuyerdoc);
+  }
+
+  onClickCheckbox(value, selrow){
+    let data ;
+    if (value.target.checked)
+      {
+        data = 'Y';
+      }
+    else
+      {
+        data= 'N';
+      }
+
+    this.selectBuyerDoc = selrow;
+    this.selectBuyerDoc.factored_ifany  = data;
+    //console.log(this.listBuyerDoc);
+
+    for(let j=0; j < this.listBuyerDoc.length; j++) {
+      for(let k=0; k < this.listBuyerDocTmp.length; k++) {
+        if (this.listBuyerDoc[j].doc_code == this.listBuyerDocTmp[k].doc_code) {
+          this.listBuyerDocTmp[k] = this.listBuyerDoc[j];
+        }
+
+      }
+    }
+
+    this.selectBuyer.listcabuyerdoc = this.listBuyerDocTmp;
+   // console.log(this.listBuyerDocTmp);
+    return data;
+  }
 }

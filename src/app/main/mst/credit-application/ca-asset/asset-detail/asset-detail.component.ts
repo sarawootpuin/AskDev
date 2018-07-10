@@ -9,7 +9,8 @@ import {AlertDialogComponent} from "../../../../../shared/center/alert-dialog/al
 import {caBgDetailSub} from "../../model/ca-bgdetailsub";
 import {CaDetailappraisal} from "../../model/ca-bgDetailappraisal";
 import {Subscription} from "rxjs/Subscription";
-
+import {searchobj} from "../../../../../shared/center/search-un/search-un-model/searchobj";
+import { caBgDetail } from "../../model/ca-bgdetail";
 
 @Component({
   selector: 'app-asset-detail',
@@ -24,27 +25,28 @@ export class AssetDetailComponent implements OnInit, OnChanges, OnDestroy {
   listEQP: caListMaster[] = [];
   listBDY: caListMaster[] = [];
   listENG_TYPE: caListMaster[] = [];
-  listbgdetailappraisal : CaDetailappraisal[];
+  listData = [];
+  listDealer: searchobj[] = [];
+  osCreditLine: string;
 
+  listbgdetailappraisal: CaDetailappraisal[];
   detailappraisal: CaDetailappraisal = new CaDetailappraisal();
   bgdetailSub: caBgDetailSub = new caBgDetailSub();
-  subscription : Subscription = null;
-  subscriptionList : Subscription = null;
-  currentTask : string;
-  disabledAppraisal : boolean = true;
+  subscription: Subscription = null;
+  subscriptionList: Subscription = null;
+  currentTask: string;
+  disabledAppraisal: boolean = true;
   OutURL: string;
-
-  @Input ('caDetailappraisal') caDetailappraisal = new CaDetailappraisal();
-  @ViewChild ('addDialog') addDialog : ActionDialogComponent;
-  @ViewChild ('deleteDialog') deleteDialog : AlertDialogComponent;
+  disabledGuarantee: boolean = true;
+  @Input('caDetailappraisal') caDetailappraisal = new CaDetailappraisal();
+  @ViewChild('addDialog') addDialog: ActionDialogComponent;
+  @ViewChild('deleteDialog') deleteDialog: AlertDialogComponent;
 
   constructor(private creditApplicationService: creditApplicationService,
               private serviceEndPoint: ServiceEndpoint,
               private textmask: TextMaskType,
               private userStorage: UserStorage) {
-    this.OutURL = this.serviceEndPoint.url + this.serviceEndPoint.sale_call_api
-      + "/ask/salecall/GetINTRO?device=web&user=" + this.userStorage.getUserName()
-      + "&Comcode=" + this.userStorage.getComCode() + "&INTRO_MTHD_CD=20&condition";
+
   }
 
   ngOnChanges(simpleChanges: SimpleChanges) {
@@ -62,8 +64,19 @@ export class AssetDetailComponent implements OnInit, OnChanges, OnDestroy {
         if (!this.bgdetailSub.listbgdetailappraisal) {
           this.bgdetailSub.listbgdetailappraisal = [];
         }
+
         //console.log(this.bgdetailSub);
         this.listbgdetailappraisal = this.bgdetailSub.listbgdetailappraisal;
+        this.listDealer = this.bgdetailSub.listdetailsubdealer;
+        if (this.listDealer) {
+          this.listDealer.forEach((value) => {
+            value.col3 ? this.disabledGuarantee = false : this.disabledGuarantee = true;
+          });
+        }
+        this.OutURL = this.serviceEndPoint.url + this.serviceEndPoint.sale_call_api
+          + "/ask/salecall/GetINTRO?device=web&user=" + this.userStorage.getUserName()
+          + "&Comcode=" + this.userStorage.getComCode() + "&INTRO_MTHD_CD=20&condition"+ "&ca_no="+ this.bgdetailSub.ca_no;
+
         this.onChangeFat('');
         this.onChangeFac('');
       }
@@ -121,19 +134,41 @@ export class AssetDetailComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
+  
+  clearValueCaDetail = () =>{
+    let detail : caBgDetail = this.creditApplicationService.getCaHead().listbgdetail[this.bgdetailSub.sub_id-1]
+    detail.dealer_code = '';
+    detail.buy_back_amt = 0;
+  }
+
   setDealerName(value: string) {
     this.bgdetailSub.dealer_name = value;
   }
 
   setDealerCode(value: string) {
     this.bgdetailSub.dealer_code = value;
+    this.listDealer = this.listData.filter((member) => {
+      return member.col2 == this.bgdetailSub.dealer_code;
+    });
+    //console.log(this.listDealer);
+    this.listDealer.forEach((value) => {
+      value.col3 ? this.disabledGuarantee = false : this.disabledGuarantee = true;
+    });
+    this.bgdetailSub.listdetailsubdealer = this.listDealer;
+    this.clearValueCaDetail()
+    //console.log(this.bgdetailSub.listdetailsubdealer);
+    //this.creditApplicationService.setSelectBgdetailSub(this.bgdetailSub);
   }
 
   setCaNo(value: string) {
-    this.bgdetailSub.select_bb = value;
+    this.bgdetailSub.buy_back_grnty_no = '';
     //console.log(value);
     //this.bgdetailSub.buy_back_grnty_no = value;
     //value.length > 0 ? this.bgdetailSub.selectbb = 'Y' : this.bgdetailSub.selectbb = 'N';
+  }
+
+  setOs(value: string) {
+    this.bgdetailSub.osCreditLine = '0';
   }
 
   openAddDialog() {
@@ -144,8 +179,6 @@ export class AssetDetailComponent implements OnInit, OnChanges, OnDestroy {
     //console.log(this.detailappraisal);
     this.addDialog.setTitle('Add Pricing');
     this.addDialog.open();
-
-
   }
 
   setDataDetailAppraisal(event) {
@@ -172,15 +205,24 @@ export class AssetDetailComponent implements OnInit, OnChanges, OnDestroy {
     //console.log(event)
   }
 
-  buyBackChange(value: boolean) {
-    if (!value) {
-      //this.bgdetailSub.buy_back_grnty_no = '';
-      this.bgdetailSub.buy_back_grnty_no = '';
-    }
-    else {
-      //this.bgdetailSub.buy_back_grnty_no = this.tempBuyBack;
-      this.bgdetailSub.buy_back_grnty_no = this.bgdetailSub.select_bb;
-      //console.log(this.bgdetailSub.buy_back_grnty_no);
+  setListData(value: searchobj[]) {
+    this.listData = value;
+  }
+
+  
+  buybackChange(value: string) {
+    let detail : caBgDetail = this.creditApplicationService.getCaHead().listbgdetail[this.bgdetailSub.sub_id-1]
+    if (value) {
+      this.bgdetailSub.osCreditLine = this.listDealer.find((element) => {
+        return element.col3 == value;
+      }).col4;
+      detail.dealer_code = this.bgdetailSub.dealer_code
+      detail.buy_back_amt = this.bgdetailSub.osCreditLine;
+    } else {
+      this.bgdetailSub.osCreditLine = '0';
+      detail.dealer_code = '';
+      detail.buy_back_amt = '';
     }
   }
+
 }

@@ -17,7 +17,7 @@ export class CaDirectloansComponent implements OnInit , OnDestroy {
   @Input() task : string;
   subscripData: Subscription;
   subscripMaster: Subscription;
-
+  subscription: Subscription;
   listbgdetail : caBgDetail[];
   selectbgdetail : caBgDetail =  new caBgDetail();
   step: caStep = new caStep();
@@ -50,9 +50,6 @@ export class CaDirectloansComponent implements OnInit , OnDestroy {
           this.listbgdetail = caHead.listbgdetail ;
           if ( (this.listbgdetail) && (this.listbgdetail.length > 0)  )
           {   this.selectbgdetail = this.listbgdetail[0] ;
-              if ( caHead.sbu_typ =='P' ){
-                 this.selectbgdetail.selectForCall = 6;
-              }
               this.disburseChange( this.selectbgdetail.disburse_dt);
               this.disabledForm = 'Y';
           }
@@ -68,6 +65,10 @@ export class CaDirectloansComponent implements OnInit , OnDestroy {
 
     if (this.subscripMaster != null) {
       this.subscripMaster.unsubscribe();
+    }
+
+    if(this.subscription != null){
+      this.subscription.unsubscribe();
     }
   }
 
@@ -103,7 +104,7 @@ export class CaDirectloansComponent implements OnInit , OnDestroy {
     let calCheck: boolean = true;
     this.calIrrLoanWarning.list_msg = [];
     this.calIrrLoanWarning.title = 'Calculate Irr Warning';
-    if (this.selectbgdetail.selectForCall == 6) {
+    if (this.selectbgdetail.type_cal_pricing == 6) {
       if (!this.selectbgdetail.fin_amt_e_vat) {
         this.calIrrLoanWarning.addMessage('- Request Credit Line');
       }
@@ -123,7 +124,7 @@ export class CaDirectloansComponent implements OnInit , OnDestroy {
         this.calIrrLoanWarning.addMessage('- Installment Step Not Cal');
       }
     }
-    else if (this.selectbgdetail.selectForCall == 7) {
+    else if (this.selectbgdetail.type_cal_pricing == 7) {
       if (!this.selectbgdetail.fin_amt_e_vat) {
         this.calIrrLoanWarning.addMessage('- Request Credit Line');
       }
@@ -139,6 +140,17 @@ export class CaDirectloansComponent implements OnInit , OnDestroy {
       if(this.selectbgdetail.schedule == 'R' && !this.selectbgdetail.installment_e_vat){
         this.calIrrLoanWarning.addMessage('- Installment');
       }
+      if (this.selectbgdetail.schedule == 'I'){
+        if (this.selectbgdetail.listcastep.length == 0) {
+          this.calIrrLoanWarning.addMessage('- Installment Step');
+        }
+        if (!this.checkStep(1)) {
+  
+        }
+        if (!this.checkSumStep(0)) {
+          this.calIrrLoanWarning.addMessage('- Installment * Term < Request Credit Line');
+        }
+      }
     }
     if (this.calIrrLoanWarning.list_msg.length > 0) {
       calCheck = false;
@@ -146,7 +158,7 @@ export class CaDirectloansComponent implements OnInit , OnDestroy {
     }
     if (calCheck) {
       this.checkLoader = true;
-      this.creditApplicationService.calculateIrr(this.selectbgdetail.sub_id, this.selectbgdetail.selectForCall).subscribe(
+      this.subscription = this.creditApplicationService.calculateIrr(this.selectbgdetail.sub_id, this.selectbgdetail.type_cal_pricing).subscribe(
         (data: any) => {
           if (data.CODE == '200') {
             this.selectbgdetail.fin_amt_e_vat = data.LIST_DATA[0].finExcVat;
@@ -161,38 +173,6 @@ export class CaDirectloansComponent implements OnInit , OnDestroy {
             this.selectbgdetail.net_irr_inc_deposit = data.LIST_DATA[0].netIrrIncDeposit;
             this.checkLoader = false;
           }
-        }
-      )
-    }
-  }
-
-  calInstallment() {
-    this.alertDialog.reset();
-    this.alertDialog.setModeSingle(0);
-    this.alertDialog.setTitle('Calculate Installment');
-    if (this.selectbgdetail.fin_amt_e_vat <= 0 || !this.selectbgdetail.fin_amt_e_vat) {
-      this.alertDialog.list_msg.push('Request Credit Line must be greater than 0');
-    }
-    if (this.selectbgdetail.flat_rate <= 0 || !this.selectbgdetail.flat_rate) {
-      this.alertDialog.list_msg.push('Interest Rate must be greater than 0');
-    }
-    if (this.selectbgdetail.terms <= 0 || !this.selectbgdetail.terms) {
-      this.alertDialog.list_msg.push('Terms must be greater than 0');
-    }
-    if (!this.selectbgdetail.disburse_dt) {
-      this.alertDialog.list_msg.push('กรุณาระบุวันที่ Disburse Date');
-    }
-    if (this.selectbgdetail.schedule === 'I') {
-      this.alertDialog.list_msg.push('ค่างวดแบบ Step ไม่สามารถระบุโดยระบบได้!')
-    }
-
-    if (this.alertDialog.list_msg.length > 0) {
-      this.alertDialog.open();
-    }
-    else {
-      this.creditApplicationService.calInstallment(this.selectbgdetail.fin_amt_e_vat, this.selectbgdetail.terms, this.selectbgdetail.flat_rate).subscribe(
-        (data: any) => {
-          this.selectbgdetail.installment_e_vat = data.MSG;
         }
       )
     }
@@ -259,6 +239,60 @@ export class CaDirectloansComponent implements OnInit , OnDestroy {
       step[i] = list[i];
     }
     return step;
+  }
+  checkStep(subId: any): boolean {
+    let result: boolean = true;
+    let toTerm: number = 0, fromTerm: number = 0, term = Number(this.creditApplicationService.caHead.listbgdetail[subId-1].terms);
+    let dataStep = this.creditApplicationService.caHead.listbgdetail[subId-1].listcastep;
+    let length = dataStep.length;
+    for (let i = 0; i < dataStep.length; i++) {
+      if (i == 0) {
+        if (dataStep[i].from_term != '1') {
+          this.calIrrLoanWarning.addMessage('- First Step Must Be 1');
+          result = false;
+        }
+      }
+
+      if (Number(dataStep[i].from_term) == toTerm + 1) {
+        if (dataStep[i].from_term > dataStep[i].to_term) {
+          this.calIrrLoanWarning.addMessage('- Number of Terms in Table incorrect');
+          result = false;
+        }
+        if (toTerm >= dataStep[i].from_term) {
+          this.calIrrLoanWarning.addMessage('- Number of Terms in Table incorrect');
+          result = false;
+        }
+      }
+      else {
+        this.calIrrLoanWarning.addMessage('- Number of Terms in Table incorrect');
+        result = false;
+      }
+
+      toTerm = Number(dataStep[i].to_term);
+      fromTerm = Number(dataStep[i].from_term);
+      if (i == length - 1) {
+        if (dataStep[i].to_term != term) {
+          this.calIrrLoanWarning.addMessage('- Invalid Period');
+          result = false;
+        }
+      }
+    }
+    return result;
+  }
+
+  checkSumStep(subId): boolean {
+    let result = true;
+    let sumInstallment: number = 0, term: number, 
+        finAmtEVat: number = this.creditApplicationService.caHead.listbgdetail[subId].fin_amt_e_vat;
+    let dataStep = this.creditApplicationService.caHead.listbgdetail[subId].listcastep;
+    for (let data of dataStep) {
+      term = Number(data.to_term) - Number(data.from_term) + 1;
+      sumInstallment = sumInstallment + (term * Number(data.inst_e_vat));
+    }
+    if (sumInstallment < finAmtEVat) {
+      result = false;
+    }
+    return result;
   }
 
 

@@ -1,6 +1,7 @@
 <div class="col-md-6">
   <p-card title="Upload File">
     <app-action-read-excel (onAfterOpen)="checkValueExcel()"
+                           (partDownload) = "partDownload = $event"
                            [caNo]="caNo"
                            [comCode]="comCode"
                            [openButton]="!inquiry"
@@ -8,11 +9,11 @@
     </app-action-read-excel>
 
     <p-footer>
-      <!--<a class="btn btn-primary" *ngIf ='this.partDownload' [href]="this.partDownload" target="_blank"> {{titleDownload}}</a>-->
-      <button type="button" *ngIf='this.partDownload'
-              class="btn btn-print" (click)="downloadFile()">
-        <i class="fa fa-print"></i> {{titleDownload}}
-      </button>
+      <!-- <a class="btn btn-primary" *ngIf ='this.partDownload' [href]="this.partDownload" target="_blank"> {{titleDownload}}</a>-->
+       <button type="button" *ngIf='this.partDownload'
+               class="btn btn-print" (click)="downloadFile()">
+         <i class="fa fa-print"></i> {{titleDownload}}
+       </button>
     </p-footer>
   </p-card>
 </div>

@@ -1,5 +1,6 @@
 .root {
-  background-color: #cccccc;
+  /*New color*/
+  background-color: #b4b7d6;
 }
 .btn {
   min-width: 100px;
@@ -84,6 +85,54 @@
 
 .btn-return:hover {
   background-color: #e8b15a;
+}
+
+.btn-process {
+  background-color: #73C6B6;
+}
+
+.btn-payment {
+  background-color: #FAC804 ;
+}
+
+.btn-payment:hover {
+  background-color: #C8A726   ;
+}
+
+.btn-importEx {
+  background-color: #23A168;
+}
+
+.btn-importEx:hover {
+  background-color: #208A5A  ;
+}
+
+.btn-process:hover {
+  background-color: #45B39D;
+}
+
+.btn-clear {
+  background-color: #F4D03F;
+}
+
+.btn-clear:hover {
+  background-color: #D4AC0D;
+}
+
+.btn-email {
+  background-color: #00A6FF  ;
+}
+
+.btn-email:hover {
+  background-color: #00669C  ;
+}
+
+.btn-renew {
+  background-color: #A751D1;
+}
+
+.btn-renew:hover {
+  background-color: #6A3585;
 }
 
 .btn-nav-submitisa {

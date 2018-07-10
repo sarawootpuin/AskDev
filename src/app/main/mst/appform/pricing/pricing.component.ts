@@ -1,14 +1,15 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from "@angular/core";
+import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from "@angular/core";
 import {AppFormService} from "../appform.service";
 import {ListPricing} from "../model/getDataPricing";
 import {getDataAppForm} from "../model/getDataAppForm";
 import {ListAnswer} from "../model/getListAnswer";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-pricing',
   templateUrl: './pricing.component.html'
 })
-export class PricingComponent implements OnInit {
+export class PricingComponent implements OnInit,OnDestroy {
   dataHead: getDataAppForm;
   data: ListPricing[];
   dataFirst: ListPricing;
@@ -22,6 +23,7 @@ export class PricingComponent implements OnInit {
   @ViewChild('rateM') rateM: ElementRef;
   @ViewChild('rateSpread') rateSpread: ElementRef;
   @ViewChild('facFeeAmt') facFeeAmt: ElementRef;
+  subscription: Subscription;
 
   constructor(private appFormService: AppFormService) {
   }
@@ -40,7 +42,7 @@ export class PricingComponent implements OnInit {
     this.dataBankInsRate = this.appFormService.listBankIntRate;
     this.disabled = this.appFormService.getAppFormData().disabled;
     this.rateChange();
-    this.appFormService.eventTabPricing.subscribe(
+    this.subscription = this.appFormService.eventTabPricing.subscribe(
       (data) => {
         this.data = data;
         this.dataFirst = data[0];
@@ -55,6 +57,12 @@ export class PricingComponent implements OnInit {
 
       }
     )
+  }
+
+  ngOnDestroy(){
+    if(this.subscription != null){
+      this.subscription.unsubscribe();
+    }
   }
 
   rateChange() {

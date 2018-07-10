@@ -7,8 +7,8 @@
         <p-column header="Company" rowspan="2"></p-column>
         <p-column header="Hire Purchase" colspan="2"></p-column>
         <p-column header="Leasing" colspan="2"></p-column>
-        <p-column header="Floor Plan" colspan="2"></p-column>
-        <p-column header="Personal" colspan="2"></p-column>
+        <p-column header="Floor Plan" colspan="1"></p-column>
+        <p-column header="Personal/Direct Loan" colspan=" 1"></p-column>
         <p-column header="Factoring" colspan="1"></p-column>
         <p-column header="Total" colspan="1"></p-column>
       </p-row>
@@ -17,9 +17,9 @@
         <p-column header="O/S Principle"></p-column>
         <p-column header="Highest Amt."></p-column>
         <p-column header="O/S Principle"></p-column>
-        <p-column header="Highest Amt."></p-column>
+        <!--<p-column header="Highest Amt."></p-column>-->
         <p-column header="O/S Principle"></p-column>
-        <p-column header="Highest Amt."></p-column>
+        <!--<p-column header="Highest Amt."></p-column>-->
         <p-column header="O/S Principle"></p-column>
         <p-column header="O/S Balance"></p-column>
         <p-column header="O/S Print/Bal."></p-column>
@@ -47,21 +47,21 @@
         <span>{{ row[col.field] |  number:'.2-2'  }}</span>
       </ng-template>
     </p-column>
-    <p-column field="HI_FP" [bodyStyle]="{'text-align':'right'}">
-      <ng-template let-col let-row="rowData" pTemplate="body">
-        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
-      </ng-template>
-    </p-column>
+    <!--<p-column field="HI_FP" [bodyStyle]="{'text-align':'right'}">-->
+      <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+        <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
+      <!--</ng-template>-->
+    <!--</p-column>-->
     <p-column field="OS_FP" [bodyStyle]="{'text-align':'right'}">
       <ng-template let-col let-row="rowData" pTemplate="body">
         <span>{{ row[col.field] |  number:'.2-2'  }}</span>
       </ng-template>
     </p-column>
-    <p-column field="HI_PL" [bodyStyle]="{'text-align':'right'}">
-      <ng-template let-col let-row="rowData" pTemplate="body">
-        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
-      </ng-template>
-    </p-column>
+    <!--<p-column field="HI_PL" [bodyStyle]="{'text-align':'right'}">-->
+      <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+        <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
+      <!--</ng-template>-->
+    <!--</p-column>-->
     <p-column field="OS_PL" [bodyStyle]="{'text-align':'right'}">
       <ng-template let-col let-row="rowData" pTemplate="body">
         <span>{{ row[col.field] |  number:'.2-2'  }}</span>
@@ -93,8 +93,8 @@
         <p-column header="Company" rowspan="2"></p-column>
         <p-column header="Hire Purchase" colspan="2"></p-column>
         <p-column header="Leasing" colspan="2"></p-column>
-        <p-column header="Floor Plan" colspan="2"></p-column>
-        <p-column header="Personal" colspan="2"></p-column>
+        <p-column header="Floor Plan" colspan="1"></p-column>
+        <p-column header="Personal/Direct Loan" colspan="1"></p-column>
         <p-column header="Factoring" colspan="1"></p-column>
         <p-column header="Total" colspan="1"></p-column>
       </p-row>
@@ -103,9 +103,9 @@
         <p-column header="O/S Principle"></p-column>
         <p-column header="Highest Amt."></p-column>
         <p-column header="O/S Principle"></p-column>
-        <p-column header="Highest Amt."></p-column>
+        <!--<p-column header="Highest Amt."></p-column>-->
         <p-column header="O/S Principle"></p-column>
-        <p-column header="Highest Amt."></p-column>
+        <!--<p-column header="Highest Amt."></p-column>-->
         <p-column header="O/S Principle"></p-column>
         <p-column header="O/S Balance"></p-column>
         <p-column header="O/S Print/Bal."></p-column>
@@ -133,21 +133,21 @@
         <span>{{ row[col.field] |  number:'.2-2'  }}</span>
       </ng-template>
     </p-column>
-    <p-column field="HI_FP" [bodyStyle]="{'text-align':'right'}">
-      <ng-template let-col let-row="rowData" pTemplate="body">
-        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
-      </ng-template>
-    </p-column>
+    <!--<p-column field="HI_FP" [bodyStyle]="{'text-align':'right'}">-->
+      <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+        <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
+      <!--</ng-template>-->
+    <!--</p-column>-->
     <p-column field="OS_FP" [bodyStyle]="{'text-align':'right'}">
       <ng-template let-col let-row="rowData" pTemplate="body">
         <span>{{ row[col.field] |  number:'.2-2'  }}</span>
       </ng-template>
     </p-column>
-    <p-column field="HI_PL" [bodyStyle]="{'text-align':'right'}">
-      <ng-template let-col let-row="rowData" pTemplate="body">
-        <span>{{ row[col.field] |  number:'.2-2'  }}</span>
-      </ng-template>
-    </p-column>
+    <!--<p-column field="HI_PL" [bodyStyle]="{'text-align':'right'}">-->
+      <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
+        <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
+      <!--</ng-template>-->
+    <!--</p-column>-->
     <p-column field="OS_PL" [bodyStyle]="{'text-align':'right'}">
       <ng-template let-col let-row="rowData" pTemplate="body">
         <span>{{ row[col.field] |  number:'.2-2'  }}</span>

@@ -60,11 +60,11 @@
 </app-alert-dialog>
 
 <app-alert-dialog #warningBlacklist
-                  (onOK)="verifyBeforeSubmit()">
+                  (onOK)="processBeforeSubmit()">
 </app-alert-dialog>
 
 <app-alert-dialog #warningGuarantor
-                  (onCancel)="verifyBeforeSubmit()">
+                  (onCancel)="processBeforeSubmit()">
 </app-alert-dialog>
 
 <app-action-dialog [title]="applyEmit.type" #newRenewDialog
@@ -152,7 +152,7 @@
                            [disabled]="data.disabled == 'N' || data.ca_type == '3'"> CA Main Credit Line<br>
                     <input type="radio" name="ca_type" value="3"
                            [(ngModel)]="data.ca_type"
-                           [disabled]="data.disabled == 'N' || data.ca_type != '3'"> CA Dealer Buy back Guarantee)
+                           [disabled]="data.disabled == 'N' || data.ca_type != '3'"> CA Dealer Buy back Guarantee
                   </label>
                 </div>
               </div>

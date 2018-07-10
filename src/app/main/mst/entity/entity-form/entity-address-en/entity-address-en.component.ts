@@ -51,4 +51,23 @@ export class EntityAddressEnComponent implements OnInit, OnChanges {
     entityRequest.addMEng2 = this.inputAddressMEng2.nativeElement.value;
     return entityRequest;
   }
+
+
+  copyOwnr(panel : string){
+    if (panel == 'VAT'){
+      this.inputAddressCEng.nativeElement.value = this.inputAddressEng.nativeElement.value;
+      this.inputAddressCEng2.nativeElement.value = this.inputAddressEng2.nativeElement.value;
+
+    }else if (panel == 'OFFICE'){
+
+      this.inputAddressOEng.nativeElement.value = this.inputAddressEng.nativeElement.value;
+      this.inputAddressOEng2.nativeElement.value = this.inputAddressEng2.nativeElement.value;
+
+    }else if (panel == 'MAIL'){
+
+      this.inputAddressMEng.nativeElement.value = this.inputAddressEng.nativeElement.value;
+      this.inputAddressMEng2.nativeElement.value = this.inputAddressEng2.nativeElement.value;
+
+    }
+  }
 }

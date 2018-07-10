@@ -19,6 +19,8 @@ export class CaSearchAmendComponent implements OnInit, OnDestroy {
   msg: string;
   caNo: string;
   comCode: string;
+  task: string;
+  isAmend: boolean = false;
   @ViewChild('alertDialog') alertDialog: AlertDialogComponent;
 
   constructor(private creditApplicationService: creditApplicationService,
@@ -29,10 +31,12 @@ export class CaSearchAmendComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.msg = '';
     this.isLoading = true;
-    this.subscription = this.creditApplicationService.listSearchAmend().subscribe(
+    this.isAmend = this.router.url.includes("amend");
+    this.isAmend ? this.task = 'AM-00' : this.task = 'RV-00';
+    this.subscription = this.creditApplicationService.listSearch(this.task).subscribe(
       (json: any) => {
         if (json.CODE == '200') {
-          this.title = 'Search CA For Amend';
+          this.isAmend ? this.title = 'Search CA For Amend' : this.title = 'Search CA For Revise AttachSheet';
           this.listCaTodo = CaTodoBgpl.parse(json.LIST_DATA);
           this.isLoading = false;
         }
@@ -57,25 +61,42 @@ export class CaSearchAmendComponent implements OnInit, OnDestroy {
   selectedRow(value: CaTodoBgpl) {
     this.comCode = value.comCode;
     this.caNo = value.caNo;
-    this.msg = 'Do you want to Amend CA : ' + this.caNo + ' ?';
+    this.isAmend ? this.msg = 'Do you want to Amend CA : ' + this.caNo + ' ?' :
+      this.msg = 'Do you want to Revise AttachSheet : ' + this.caNo + ' ?';
     this.alertDialog.setAction('SUBMIT');
     this.alertDialog.setMessage(this.msg);
     this.alertDialog.open();
   }
 
-  confirmAmendCa() {
-    this.subscriptionAmend = this.creditApplicationService.amendCa("web", this.user.getUserName(), this.comCode, this.caNo).subscribe(
-      (json: any) => {
-        if (json.CODE == '200') {
-          this.router.navigate(['/ca'], {
-            queryParams: {
-              com_code: this.comCode,
-              ca_no: this.caNo,
-              task: 'AM-01'
-            }
-          });
+  confirm() {
+    if (this.isAmend) {
+      this.subscriptionAmend = this.creditApplicationService.amendCa("web", this.user.getUserName(), this.comCode, this.caNo).subscribe(
+        (json: any) => {
+          if (json.CODE == '200') {
+            this.router.navigate(['/ca'], {
+              queryParams: {
+                com_code: this.comCode,
+                ca_no: this.caNo,
+                task: 'AM-01'
+              }
+            });
+          }
         }
-      }
-    );
+      );
+    } else {
+      this.subscriptionAmend = this.creditApplicationService.reviseCa("web", this.user.getUserName(), this.comCode, this.caNo).subscribe(
+        (json: any) => {
+          if (json.CODE == '200') {
+            this.router.navigate(['/ca'], {
+              queryParams: {
+                com_code: this.comCode,
+                ca_no: this.caNo,
+                task: 'RV-01'
+              }
+            });
+          }
+        }
+      );
+    }
   }
 }

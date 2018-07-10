@@ -1,6 +1,6 @@
 <div class="root d-flex w-100 p-0">
   <div class="ml-auto p-1">
-    <app-custom-button [option]="'print'" (onBtnClick)="callAttach()">
+    <app-custom-button [option]="'print'" (onBtnClick)="callAttach()" [hidden] = "taskShorten == 'RV'">
     </app-custom-button>
   </div>
 </div>
@@ -18,6 +18,7 @@
           <p-header>
             <app-custom-botton-icon [option]="'new'" (onBtnClick)="openEntity()"></app-custom-botton-icon>
             <app-custom-botton-icon [option]="'delete'" (onBtnClick)="deleteWarning()"></app-custom-botton-icon>
+            <app-custom-botton-icon [option]="'edit'" (onBtnClick)="editEntity()"></app-custom-botton-icon>
           </p-header>
           <p-column field="seq_no" header="No." [style]="{'width':'75px'}"></p-column>
           <p-column field="buyer_name" header="Buyer Name"></p-column>
@@ -43,9 +44,8 @@
     <br>
     <p-tabView>
       <p-tabPanel header="Buyer Detail">
-        <fieldset [disabled]="isReadonly">
-          <app-ca-buyer-detail></app-ca-buyer-detail>
-        </fieldset>
+          <app-ca-buyer-detail [isReadOnly] = "isReadonly"
+                               [tabReadOnly] = "tabReadonly"></app-ca-buyer-detail>
       </p-tabPanel>
       <p-tabPanel header="Factored Documents">
         <app-ca-buyer-doc [isReadonly]="tabReadonly"></app-ca-buyer-doc>
@@ -55,7 +55,7 @@
   </div>
 </div>
 
-<app-entity-dialog #entity_dialog title="Buyer"
+<app-entity-dialog #entity_dialog title="Buyer" [btnnew]="true"
                    (onEntitySelect)="getEntity($event)"></app-entity-dialog>
 
 <app-alert-dialog #deleteDialog (onOK)="deleteBuyer()">

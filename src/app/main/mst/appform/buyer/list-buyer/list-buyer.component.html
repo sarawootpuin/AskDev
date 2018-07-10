@@ -1,5 +1,5 @@
 <app-alert-dialog  #deleteDialog
-                   (onOK)="this.deleteBuyer()">
+                   (onOK)="deleteBuyer()">
 </app-alert-dialog>
 
 <div class="row">
@@ -16,6 +16,7 @@
 
 
     <app-entity-dialog #entity_dialog title="Buyer"
+                       [btnnew]=true
                        (onEntitySelect)="getEntity($event)"></app-entity-dialog>
   </div>
 </div>

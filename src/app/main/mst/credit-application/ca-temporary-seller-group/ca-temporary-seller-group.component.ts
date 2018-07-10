@@ -43,11 +43,11 @@ export class CaTemporarySellerGroupComponent implements OnInit {
     if (type === 'T') {
       this.checkCalendar = false;
       /*clear value period*/
-      this.caTempCreditLineGroup.eff_date = null;
-      this.caTempCreditLineGroup.expire_date = null;
+      //this.caTempCreditLineGroup.eff_date = null;
+      //this.caTempCreditLineGroup.expire_date = null;
     } else if (type === 'P') {
       this.checkCalendar = true;
-      this.caTempCreditLineGroup.time = null;
+      this.caTempCreditLineGroup.time = 0;
     }
   }
 
@@ -76,6 +76,7 @@ export class CaTemporarySellerGroupComponent implements OnInit {
     this.caTempCreditLineGroup.join_grp_code = this.caHead.joint_seller_group;
     this.caTempCreditLineGroup.group_name = this.caHead.join_group_name;
     this.caTempCreditLineGroup.ca_limit = this.caHead.join_group_cr;
+    this.caTempCreditLineGroup.sbu_type = this.caHead.sbu_typ;
     this.addMode = true;
   }
 

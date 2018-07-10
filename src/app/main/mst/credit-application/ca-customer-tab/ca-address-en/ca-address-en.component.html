@@ -1,3 +1,4 @@
+<fieldset [disabled]="isReadOnly">
 <p-panel header="Current Address / Company Certificate">
   <div class="col-md-12">
     <div class="d-flex">
@@ -52,7 +53,8 @@
       <div class="flex-md-column col-md-6">
         <div class="form-group">
           <label>Address</label>
-          <button (click)="copyOwner('VAT')"><i class="fa fa-copy"> Duplicate Address from Current </i></button>
+          <button class="btn btn-outline-info"
+                  (click)="copyOwner('VAT')"><i class="fa fa-copy"> Duplicate Address </i></button>
           <input type="text" class="form-control" [(ngModel)]="caEntityDetail.add_c_eng">
         </div>
       </div>
@@ -86,7 +88,8 @@
       <div class="flex-md-column col-md-6">
         <div class="form-group">
           <label>Address</label>
-          <button (click)="copyOwner('OFFICE')"><i class="fa fa-copy"> Duplicate Address from Current </i></button>
+          <button class="btn btn-outline-info"
+                  (click)="copyOwner('OFFICE')"><i class="fa fa-copy"> Duplicate Address </i></button>
           <input type="text" class="form-control" [(ngModel)]="caEntityDetail.add_o_eng">
         </div>
       </div>
@@ -134,7 +137,8 @@
       <div class="flex-md-column col-md-6">
         <div class="form-group">
           <label>Address</label>
-          <button (click)="copyOwner('MAIL')"><i class="fa fa-copy"> Duplicate Address from Current </i></button>
+          <button class="btn btn-outline-info"
+                  (click)="copyOwner('MAIL')"><i class="fa fa-copy"> Duplicate Address</i></button>
           <input type="text" class="form-control" [(ngModel)]="caEntityDetail.add_m_eng">
         </div>
       </div>
@@ -186,3 +190,4 @@
     </div>
   </div>
 </p-panel>
+</fieldset>

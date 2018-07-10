@@ -119,7 +119,8 @@ export class BgplComponent implements OnInit {
       this.HI_BGP_HP = this.ModelEPS_HIGHEST[0].HI_BGP_HP;
       this.HI_BGP_LS = this.ModelEPS_HIGHEST[0].HI_BGP_LS;
       this.HI_BGP_PL = '0';
-      this.TOTAL_HI = String(Number(this.HI_BGP_HP)+Number(this.HI_BGP_LS));
+      this.TOTAL_HI ='0';
+      // this.TOTAL_HI = String(Number(this.HI_BGP_HP)+Number(this.HI_BGP_LS));
     }
     else
     {

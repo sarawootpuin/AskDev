@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Input} from "@angular/core";
 import {caEntity} from "../../model/ca-entity";
 import {creditApplicationService} from "../../credit-application.service";
 
@@ -7,7 +7,7 @@ import {creditApplicationService} from "../../credit-application.service";
   templateUrl: './ca-address-en.component.html'
 })
 export class CaAddressEnComponent implements OnInit {
-
+  @Input() isReadOnly : boolean;
   caEntityDetail: caEntity;
 
   constructor(private creditApplicationService: creditApplicationService) {

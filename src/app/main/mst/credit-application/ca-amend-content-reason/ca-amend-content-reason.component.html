@@ -3,17 +3,37 @@
     <div class="row">
       <div class="col-md-2 form-group">
         <label>Amend Time</label>
-        <input appMyCurrency
-               #assetIvat
-               disabled
-               class="form-control"
-               [fraction]="0"
-               pKeyFilter="pnum"
-               [value]="amendContent.amend_time">
+        <input appMyCurrency disabled class="form-control" [fraction]="0" pKeyFilter="pnum" [value]="amendContent.amend_time">
+      </div>
+      <div class="col-md-2">
+
+      </div>
+      <div class="col-md-2 form-group">
+        <label>Expire Date</label>
+        <p-calendar dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy" dataType="string" showButtonBar="true"
+          [(ngModel)]="myCaHead.expire_dt"
+        ></p-calendar>
       </div>
     </div>
-
-    <div class="row">
+    <div class="row" [hidden]="creditType != 'FDO'">
+      <div class="col-md-6 form-group">
+          <p-card>
+              <div class="col-md-6 form-group">
+                <label>Times of line increased</label>
+                <input appMyCurrency class="form-control" [fraction]="0" pKeyFilter="pnum" 
+                       [value]="amendContent.num_line"
+                       (change)="amendContent.num_line = $event.target.value">
+              </div>
+              <div class="col-md-6 form-group"> 
+                <label>Times of non-line increased</label>
+                <input appMyCurrency class="form-control" [fraction]="0" pKeyFilter="pnum" 
+                       [value]="amendContent.num_non_line"
+                       (change)="amendContent.num_non_line = $event.target.value">
+              </div>
+            </p-card>
+      </div>  
+    </div>
+    <div class="row"> 
       <div class="col-md-6 form-group">
         <label>Content</label>
         <textarea pInputTextarea class="form-control" [(ngModel)]="amendContent.content"></textarea>

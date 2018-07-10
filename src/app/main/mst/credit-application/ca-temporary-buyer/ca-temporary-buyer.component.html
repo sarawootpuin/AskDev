@@ -10,8 +10,11 @@
                      [(selection)]="selectedCaTempCreditLine"
                      [immutable]="false">
           <p-header>
-            <app-custom-botton-icon [option]="'new'" (onBtnClick)="addDialog()"></app-custom-botton-icon>
-            <app-custom-botton-icon [option]="'delete'" (onBtnClick)="deleteWarning()"></app-custom-botton-icon>
+
+            <fieldset [disabled] = "caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend'">
+              <app-custom-botton-icon [option]="'new'" (onBtnClick)="addDialog()"></app-custom-botton-icon >
+              <app-custom-botton-icon [option]="'delete'" (onBtnClick)="deleteWarning()"></app-custom-botton-icon>
+            </fieldset>
           </p-header>
           <p-column header="Seq No." field="sub_id" [style]="{'width':'75px'}"></p-column>
           <p-column header="Buyer Name" field="cust_name"></p-column>
@@ -27,6 +30,7 @@
                      class="form-control"
                      [fraction]="2"
                      (change)="selectedCaTempCreditLine.temp_sub_ca_amt = $event.target.value"
+                     [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' "
                      [value]="selectedCaTempCreditLine.temp_sub_ca_amt">&nbsp;(Baht)
             </div>
           </div>
@@ -49,6 +53,7 @@
                   <input appMyCurrency
                          class="form-control"
                          [fraction]="2"
+                         [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' "
                          (change)="selectedCaTempCreditLine.ca_limit = $event.target.value"
                          [value]="selectedCaTempCreditLine.ca_limit">&nbsp;(Baht)
                 </div>
@@ -62,6 +67,7 @@
             <div class="row">
               <div class="col-md-3" style="padding-left: 4rem;">
                 <input class="form-check-input" name="amend_buyer" type="radio" value="T"
+                       [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' "
                        [(ngModel)]="selectedCaTempCreditLine.amend_type"
                        (ngModelChange)="amendChange($event)"
                 >&nbsp;Time
@@ -74,7 +80,7 @@
                     class="form-control"
                     type="text"
                     #timeInput
-                    [disabled]="checkCalendar"
+                    [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' ||checkCalendar"
                     [(ngModel)]="selectedCaTempCreditLine.time"
                   >&nbsp;&nbsp;Time
                 </div>
@@ -84,6 +90,7 @@
               <div class="col-md-3" style="padding-left: 4rem;">
                 <input class="form-check-input" name="amend_buyer" type="radio" value="P"
                        [(ngModel)]="selectedCaTempCreditLine.amend_type"
+                       [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend'"
                        (ngModelChange)="amendChange($event)"
                 >&nbsp;Period
               </div>
@@ -98,7 +105,7 @@
                                 placeholder="dd/mm/yyyy"
                                 dataType="string"
                                 showButtonBar="true"
-                                [disabled]="!checkCalendar"
+                                [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend'"
                                 [(ngModel)]="selectedCaTempCreditLine.eff_date"
                     ></p-calendar>
                   </div>
@@ -113,7 +120,7 @@
                                 placeholder="dd/mm/yyyy"
                                 dataType="string"
                                 showButtonBar="true"
-                                [disabled]="!checkCalendar"
+                                [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend'"
                                 [(ngModel)]="selectedCaTempCreditLine.expire_date"
                     ></p-calendar>
                   </div>

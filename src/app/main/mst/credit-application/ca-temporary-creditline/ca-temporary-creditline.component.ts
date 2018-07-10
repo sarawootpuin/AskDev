@@ -38,12 +38,13 @@ export class CaTemporaryCreditlineComponent implements OnInit {
   amendChange(type) {
     if (type === 'T') {
       this.checkCalendar = false;
+      //this.checkCalendar = true;
       /*clear value period*/
-      this.caTempCreditLine.eff_date = null;
-      this.caTempCreditLine.expire_date = null;
+      //this.caTempCreditLine.eff_date = null;
+      //this.caTempCreditLine.expire_date = null;
     } else if (type === 'P') {
       this.checkCalendar = true;
-      this.caTempCreditLine.time = null;
+      this.caTempCreditLine.time = 0;
     }
   }
 
@@ -71,6 +72,7 @@ export class CaTemporaryCreditlineComponent implements OnInit {
     this.caTempCreditLine.join_grp_code = this.caHead.joint_seller_group;
     this.caTempCreditLine.group_name = this.caHead.join_group_name;
     this.caTempCreditLine.ca_limit = this.caHead.join_group_cr;
+    this.caTempCreditLine.sbu_type = this.caHead.sbu_typ;
     this.addMode = true;
     // add  value
 

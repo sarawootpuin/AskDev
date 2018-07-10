@@ -1,5 +1,4 @@
 <div class="container"  >
-  <fieldset [disabled]="componentReadOnly" >
    <div class="row">
     <div class="col-md-6">
       <div class="row">
@@ -35,16 +34,17 @@
           </div>
         </div>
         <div class="col-md-5 form-group">
-          <label class="col-form-label">Call/Visit Date</label>
+          <label class="col-form-label">Call/Visit Date</label> {{amend}} {{componentReadOnly}}
           <span class="text-danger">*</span>
           <p-calendar dateFormat="dd/mm/yy"  inputStyleClass="form-control" dataType="string"  showButtonBar="true"
                       [(ngModel)]="thisSaleCallD.sale_call_dt"
-                      [disabled]="componentReadOnly"
+                      [disabled]="componentReadOnly && amend != 'Y'"
           ></p-calendar>
         </div>
         <div class="col-md-12 form-group" *ngIf="thisSaleCallD?.sale_call_type == 'V' " >
           <label>Visit Purpose</label>
           <select class="form-control w-50"
+                  [disabled]="componentReadOnly && amend != 'Y'"
                   [ngModel]="thisSaleCallD?.purpose"
                   (ngModelChange)="thisSaleCallD.purpose =$event;">
             <option></option>
@@ -60,7 +60,7 @@
           <textarea class="form-control"   [maxlength]="500"
                     [ngModel]="thisSaleCallD?.sale_call_note"
                     (ngModelChange)="thisSaleCallD.sale_call_note=$event"
-                    [disabled]="componentReadOnly">
+                    [disabled]="componentReadOnly && amend != 'Y'">
           </textarea>
         </div>
         <div class="col-md-6 form-group">
@@ -69,7 +69,7 @@
             <input type="text" class="form-control" style="display: inline;width: auto;text-align: right;"
                    [ngModel]="thisSaleCallD?.interview"  pKeyFilter="int"
                    (ngModelChange)="thisSaleCallD.interview=$event"
-                   [disabled]="componentReadOnly" >
+                   [disabled]="componentReadOnly && amend != 'Y'">
             <label>&nbsp; Minute</label>
           </div>
         </div>
@@ -79,7 +79,7 @@
           <input type="text" class="form-control"  style="text-align: right;"
                  [ngModel]="thisSaleCallD?.traffic" pKeyFilter="int"
                  (ngModelChange)="thisSaleCallD.traffic=$event"
-                 [disabled]="componentReadOnly" >
+                 [disabled]="componentReadOnly && amend != 'Y'">
           <label>&nbsp; Minute</label>
           </div>
         </div>
@@ -126,7 +126,7 @@
         </div>
         <div class="col-md-12 form-group" *ngIf="ReasonShow">
           <label>Reason</label>
-          <select class="form-control" (change)="selectResult($event.target.value)"  [disabled]="componentReadOnly" >
+          <select class="form-control" (change)="selectResult($event.target.value)"  [disabled]="componentReadOnly && amend != 'Y'">
             <option></option>
             <option *ngFor="let ansREASON of ListReason"
                     [selected]="ansREASON?.id == thisSaleCallD?.call_result_detail"
@@ -170,9 +170,11 @@
       <label>Contact Person</label>
       <div class="row  border-isa">
         <div class="col-md-12">
-          <app-custom-botton-icon [option]="'new'" (onBtnClick)="openContract()"  ></app-custom-botton-icon>
-          <app-contactperson #dialogcontactperson     (onContactSelect)="getContact($event)" ></app-contactperson>
-          <app-custom-botton-icon [option]="'delete'" (onBtnClick)="clearContact()"  ></app-custom-botton-icon>
+          <fieldset [disabled]="componentReadOnly">
+            <app-custom-botton-icon   [option]="'new'" (onBtnClick)="openContract()"  ></app-custom-botton-icon>
+            <app-contactperson #dialogcontactperson     (onContactSelect)="getContact($event)" ></app-contactperson>
+            <app-custom-botton-icon    [option]="'delete'" (onBtnClick)="clearContact()"  ></app-custom-botton-icon>
+          </fieldset>  
         </div>
         <div class="col-md-2 form-group">
           <label>Contact Code</label>
@@ -211,6 +213,5 @@
     </div>
 
   </div>
-  </fieldset>
 </div>
 

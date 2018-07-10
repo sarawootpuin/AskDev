@@ -107,6 +107,7 @@ export class BlacklistcheckingComponent implements OnInit {
             // this.alertDialogComponent.setTitle('Message Information');
             // this.alertDialogComponent.setTitle('พบสินเชื่อกับบริษัท!!');
             // if(!this.alertDialogComponent.open())
+            this.BLService.tabName='Blacklist Checking';
             if (this.BLService.blShared) {
               this.BLService.setComponentNameOnShow('checking');
             }

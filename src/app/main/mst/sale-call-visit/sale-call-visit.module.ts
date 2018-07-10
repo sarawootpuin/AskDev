@@ -17,7 +17,7 @@ import {CallVisitAttendeesComponent} from "./call-visit-detail/call-visit-attend
 import {CallVisitExpenseComponent} from "./call-visit-detail/call-visit-expense/call-visit-expense.component";
 import {CallVisitExposureComponent} from "./call-visit-detail/call-visit-exposure/call-visit-exposure.component";
 import {CallVisitCallingHistoryComponent} from "./call-visit-detail/call-visit-calling-history/call-visit-calling-history.component";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {EntityModule} from "../entity/entity.module";
 import {PanelModule} from 'primeng/primeng';
 import {TextMaskModule} from "angular2-text-mask";
@@ -25,9 +25,8 @@ import {ContactpersonModule} from "../contactperson/contactperson.module";
 import {CallVistiTelesaleComponent} from "./call-visit-detail/call-visit-telesale/call-visti-telesale.component";
 import {CallVisitInqueryComponent} from "./call-visit-inquery/call-visit-inquery.component";
 import {CallVisitCrossExpenseComponent} from "./call-visit-cross-expense/call-visit-cross-expense.component";
-
-
-// import {AgmCoreModule} from "@agm/core";
+import { AgmCoreModule } from '@agm/core';
+import {OutsideVisitRptComponent} from "./outside-visit-rpt/outside-visit-rpt.component";
 //
 //
 // const googleMapsCore = AgmCoreModule.forRoot({
@@ -47,7 +46,12 @@ import {CallVisitCrossExpenseComponent} from "./call-visit-cross-expense/call-vi
     TextMaskModule,
     DataTableModule,
     SharedModule,KeyFilterModule,
-    EntityModule,PanelModule,TooltipModule,ContactpersonModule
+    EntityModule,PanelModule,TooltipModule,ContactpersonModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBPLkQAslJ7_67GjXm7AmEV6qFoxt1P6Vg',
+      libraries: ["places"]
+    }),
+    ReactiveFormsModule
    // ,googleMapsCore
   ],
   declarations: [SaleCallVisitComponent, CallVisitHeadComponent,
@@ -55,7 +59,7 @@ import {CallVisitCrossExpenseComponent} from "./call-visit-cross-expense/call-vi
     CallVisitResultComponent, CallVisitCreditTypeAssetComponent,
     CallVisitAttendeesComponent, CallVisitExpenseComponent,
     CallVisitExposureComponent, CallVisitCallingHistoryComponent, CallVistiTelesaleComponent,
-    CallVisitInqueryComponent,CallVisitCrossExpenseComponent]
+    CallVisitInqueryComponent,CallVisitCrossExpenseComponent,OutsideVisitRptComponent]
 })
 export class SaleCallVisitModule {
 }

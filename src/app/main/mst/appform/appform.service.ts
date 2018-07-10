@@ -335,24 +335,6 @@ export class AppFormService {
     this.eventTabCustomer.emit(data);
   }
 
-  calInstallment(finAmtEVat, term, flatRate) {
-    const url = this.service.url + this.service.appform_api + '/ask/appForm/calInstallment?device=web&userName=' + this.user.getUserName() +
-      '&finAmtEVat=' + finAmtEVat +
-      '&term=' + term +
-      '&flatRate=' + flatRate;
-
-    /*const url = 'http://localhost:8080/MKS_WebServices/ask/appForm/calInstallment?device=web&userName=' + this.user.getUserName() +
-     '&finAmtEVat=' + finAmtEVat +
-     '&term=' + term +
-     '&flatRate=' + flatRate;*/
-    let options = {
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8'
-      }
-    };
-    return this.http.get(url, options);
-  }
-
   calculateIrr(subId: any, calType: any) {
     const url = this.service.url + this.service.appform_api + `/ask/appForm/CalculateIrr`;
     //const url = 'http://localhost:8080/MKS_WebServices/ask/appForm/CalculateIrr';

@@ -78,6 +78,7 @@ export class EntityDialogComponent implements OnInit, OnDestroy {
       }
     );
 
+    this.userStorage.removeStorageNewEntType();
   }
 
   showDialog() {
@@ -125,7 +126,10 @@ export class EntityDialogComponent implements OnInit, OnDestroy {
     this.loading = false;
      let strURL = this.ServiceEndpoint.url + this.ServiceEndpoint.app_name + "/#/newEntity/new?from=New";
     //let strURL = 'http://localhost:4200' + "/#/newEntity/new?from=New";
+    location.hash.search('appForm') > 0 ? this.userStorage.setTypeNewEntCode('NEW','G') : this.userStorage.setTypeNewEntCode('NEW','')
     window.open(strURL);
+
+    this.userStorage.removeStorageNewEntType();
   }
 
   loadEntityLazy(event: LazyLoadEvent) {

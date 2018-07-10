@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from "@angular/core";
 import {AppformReassignHead} from "../model/AppformReassignHead";
 import {AppformReassignDetail} from "../model/AppformReassignDetail";
 import {AppformReassignOfficer} from "../model/AppformReassignOfficer";
@@ -12,10 +12,11 @@ import {AlertDialogComponent} from "../../../../shared/center/alert-dialog/alert
   selector: 'app-appform-reassign',
   templateUrl: './appform-reassign.component.html'
 })
-export class AppformReassignComponent implements OnInit , OnDestroy {
-  subscription : Subscription;
-  subscriptionRe : Subscription;
+export class AppformReassignComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
+  subscriptionRe: Subscription;
   @ViewChild('questionDialog') questionDialog: AlertDialogComponent;
+
   constructor(private appformService: AppFormService,
               private Route: ActivatedRoute) {
     this.taskCode = this.Route.snapshot.queryParams['task_code'];
@@ -30,25 +31,24 @@ export class AppformReassignComponent implements OnInit , OnDestroy {
   reassignOfficer: AppformReassignOfficer[] = [];
   selectedOfficer: AppformReassignOfficer = null;
 
-  taskCode : string;
+  taskCode: string;
 
   @ViewChild('dialogReassign') dialogReassign: ActionDialogComponent;
 
   ngOnInit() {
     this.subscription = this.appformService.CallReassign().subscribe(
       (data: any) => {
-        console.log(data);
-
+        //console.log(data);
         this.reassignHead = AppformReassignHead.parse(data.LIST_DATA);
       }
     );
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     if (this.subscription != null)
       this.subscription.unsubscribe();
 
-    if(this.subscriptionRe != null)
+    if (this.subscriptionRe != null)
       this.subscriptionRe.unsubscribe();
   }
 
@@ -75,13 +75,14 @@ export class AppformReassignComponent implements OnInit , OnDestroy {
       );
     }
   }
-  askForSave(){
+
+  askForSave() {
     this.questionDialog.reset();
     this.questionDialog.setAction('SAVE');
     this.questionDialog.open();
   }
 
-  save(){
+  save() {
     window.location.reload()
   }
 }

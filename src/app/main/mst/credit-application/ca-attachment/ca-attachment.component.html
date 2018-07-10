@@ -1,40 +1,45 @@
-<div class="col-md-6">
-  <p-card title="Upload File">
-    <app-action-read-excel (onAfterOpen)="checkValueExcel()"
+<div class="row">
+  <div class="col-md-6">
+    <p-card title="Upload File">
+      <app-action-read-excel (onAfterOpen)="checkValueExcel()"
+                           (partDownload) = "partDownload = $event"
                            [caNo]="caNo"
                            [comCode]="comCode"
                            [openButton]="!inquiry"
                            #actionReadExcel>
     </app-action-read-excel>
 
-    <p-footer>
-      <button type="button" *ngIf='this.partDownload'
-              class="btn btn-print" (click)="downloadFile()">
-        <i class="fa fa-print"></i> {{titleDownload}}
-      </button>
-    </p-footer>
-  </p-card>
+      <p-footer>
+        <button type="button" *ngIf='this.partDownload' class="btn btn-print" (click)="downloadFile()">
+          <i class="fa fa-print"></i> {{titleDownload}}
+        </button>
+      </p-footer>
+    </p-card>
+  </div>
+  <div class="col-md-6">
+    <button type="button" class="btn btn-success" style="float: right;" (click) = "reportCompare()">
+      Compare AP/CA
+    </button>
+  </div>
 </div>
 <br>
-<div class="col-md-6">
-  <p-card title="Download File Template">
-    <select class="form-control" id="select">
-      <option selected>CREDIT_REPORT_FORM.xlsm</option>
-      <option>CREDIT_REPORT_FORM.xlsx</option>
-      <option>CREDIT_REPORT_FORM_SHORT_FORM.xlsx</option>
-      <option>Individual_Leasing_Concise_Credit_Report.xlsx</option>
-      <option>Individual_Leasing_Full_Credit_Report.xlsx</option>
-    </select>
+<div class="row">
+  <div class="col-md-6">
+    <p-card title="Download File Template">
+      <select class="form-control" id="select">
+        <option selected>CREDIT_REPORT_FORM.xlsm</option>
+        <option>CREDIT_REPORT_FORM.xlsx</option>
+        <option>CREDIT_REPORT_FORM_SHORT_FORM.xlsx</option>
+        <option>Individual_Leasing_Concise_Credit_Report.xlsx</option>
+        <option>Individual_Leasing_Full_Credit_Report.xlsx</option>
+      </select>
 
-    <p-footer>
-      <button type="button"
-              (click)="downloadFileTemplate()"
-              class="btn btn-print">
-        <i class="fa fa-print"></i> {{titleDownload}}
-      </button>
-    </p-footer>
-  </p-card>
+      <p-footer>
+        <button type="button" (click)="downloadFileTemplate()" class="btn btn-print">
+          <i class="fa fa-print"></i> {{titleDownload}}
+        </button>
+      </p-footer>
+    </p-card>
+  </div>
 </div>
-
-<app-alert-dialog [mode_single]="0"
-                  #alertFinish></app-alert-dialog>
+<app-alert-dialog [mode_single]="0" #alertFinish></app-alert-dialog>

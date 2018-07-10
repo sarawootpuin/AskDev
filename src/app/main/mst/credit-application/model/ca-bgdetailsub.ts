@@ -1,4 +1,5 @@
 import {CaDetailappraisal} from "./ca-bgDetailappraisal";
+import {searchobj} from "../../../../shared/center/search-un/search-un-model/searchobj";
 export class caBgDetailSub {
   public ca_no;
   public sub_id;
@@ -32,15 +33,16 @@ export class caBgDetailSub {
 
   public  asset_type ;
   public  dealer_name ;
-  public select_bb;
-
+  public osCreditLine;
+  public subIdDisplay;
   public  listbgdetailappraisal : CaDetailappraisal[];
+  public listdetailsubdealer : searchobj[];
 
   constructor()
-  constructor(ca_no, sub_id, sub_id2, brand_code, model_code, chassis, eng_num, year, reg_num, detail, asst_type, asst_code, asst_sub_code, dealer_code, comm_amt, comm_pcnt, color, cc, eqp_ty, weight, body, miles, seat, enigne_type, accessory, asst_amt_e_vat, asset_status, fin_amt_e_vat, buy_back_grnty_no,asset_type,dealer_name,select_bb,
-              listbgdetailappraisal : CaDetailappraisal[])
-  constructor(ca_no?, sub_id?, sub_id2?, brand_code?, model_code?, chassis?, eng_num?, year?, reg_num?, detail?, asst_type?, asst_code?, asst_sub_code?, dealer_code?, comm_amt?, comm_pcnt?, color?, cc?, eqp_ty?, weight?, body?, miles?, seat?, enigne_type?, accessory?, asst_amt_e_vat?, asset_status?, fin_amt_e_vat?, buy_back_grnty_no?,asset_type?,dealer_name?,select_bb?,
-              listbgdetailappraisal? : CaDetailappraisal[]) {
+  constructor(ca_no, sub_id, sub_id2, brand_code, model_code, chassis, eng_num, year, reg_num, detail, asst_type, asst_code, asst_sub_code, dealer_code, comm_amt, comm_pcnt, color, cc, eqp_ty, weight, body, miles, seat, enigne_type, accessory, asst_amt_e_vat, asset_status, fin_amt_e_vat, buy_back_grnty_no,asset_type,dealer_name,
+              osCreditLine,subIdDisplay,listbgdetailappraisal : CaDetailappraisal[],listdetailsubdealer:searchobj[])
+  constructor(ca_no?, sub_id?, sub_id2?, brand_code?, model_code?, chassis?, eng_num?, year?, reg_num?, detail?, asst_type?, asst_code?, asst_sub_code?, dealer_code?, comm_amt?, comm_pcnt?, color?, cc?, eqp_ty?, weight?, body?, miles?, seat?, enigne_type?, accessory?, asst_amt_e_vat?, asset_status?, fin_amt_e_vat?, buy_back_grnty_no?,asset_type?,dealer_name?,
+              osCreditLine?,subIdDisplay?,listbgdetailappraisal? : CaDetailappraisal[],listdetailsubdealer? :searchobj[]) {
     this.ca_no = ca_no;
     this.sub_id = sub_id;
     this.sub_id2 = sub_id2;
@@ -72,8 +74,10 @@ export class caBgDetailSub {
     this.buy_back_grnty_no = buy_back_grnty_no;
     this.asset_type = asset_type;
     this.dealer_name = dealer_name;
-    this.select_bb = select_bb;
+    this.osCreditLine = osCreditLine;
+    this.subIdDisplay = subIdDisplay;
     this.listbgdetailappraisal = listbgdetailappraisal;
+    this.listdetailsubdealer = listdetailsubdealer;
   }
 
   static
@@ -81,6 +85,12 @@ export class caBgDetailSub {
     let data: caBgDetailSub[] = [];
     if (json) {
       for (let i = 0; i < json.length; i++) {
+        let osDealer : number = 0;
+        if(json[i].buy_back_grnty_no){
+          osDealer = json[i].listdetailsubdealer.find((value)=>{
+            return value.col3 == json[i].buy_back_grnty_no
+          }).col4;
+        }
         data.push(new caBgDetailSub(
           json[i].ca_no,
           json[i].sub_id,
@@ -113,8 +123,10 @@ export class caBgDetailSub {
           json[i].buy_back_grnty_no,
           json[i].asset_type,
           json[i].dealer_name,
-          json[i].select_bb,
-          CaDetailappraisal.parse(json[i].listbgdetailappraisal)
+          osDealer,
+          json[i].sub_id + '.' +json[i].sub_id2,
+          CaDetailappraisal.parse(json[i].listbgdetailappraisal),
+          searchobj.parse(json[i].listdetailsubdealer)
         ))
       }
     }

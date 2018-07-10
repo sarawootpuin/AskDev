@@ -235,6 +235,7 @@ export class CaCapComponent implements OnInit, OnDestroy {
       this.selectCapcl.cancel_dt = new Date().toLocaleDateString('en-GB');
       this.caRequestCap = 0;
       this.caOverCap = 0;
+      this.tempcaOverCap =0;
       for (let i = 0; i < this.listCapClOwner.length; i++) {
         this.listCapClOwner[i].flg_cap = 'N';
         this.listCapClOwner[i].cancel_by = this.userStorage.getCode();
@@ -243,9 +244,8 @@ export class CaCapComponent implements OnInit, OnDestroy {
       }
       this.listCapClOwner =[];
       this.listCapOthStore_inApp = [];
-      this.tempcaOverCap =0
     }
-
+    ;
 
     //console.log(this.selectCapcl);
     //console.log(this.listCapClOwner);

@@ -9,7 +9,7 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewEncapsula
 
 export class CustomButtonComponent implements OnInit, OnChanges {
   @Input('option') option;
-  @Input('disabled') disabled;
+  @Input('disabled') disabled : boolean = false;
   @Input() title:string;
   @Output() onBtnClick: EventEmitter<any> = new EventEmitter();
   btnNew = {'name': 'NEW', 'icon': 'fa-plus', 'style': 'btn-nav-newisa'};
@@ -23,13 +23,13 @@ export class CustomButtonComponent implements OnInit, OnChanges {
   btnCalculate = {'name': 'CALCULATE', 'icon': 'fa-calculator', 'style': 'btn-nav-calculateisa'};
   btnSubmit = {'name': 'SUBMIT', 'icon': 'fa-thumbs-up', 'style': 'btn-nav-submitisa'};
   btnReject = {'name': 'REJECT', 'icon': 'fa-thumbs-down', 'style': 'btn-nav-rejectisa'};
-  btnSelect = {};
+  btnSelect = { 'name': '','style': '','icon': ''};
 
   constructor() {
   }
 
   ngOnInit() {
-    this.disabled = false;
+    //this.disabled = false;
   }
 
   ngOnChanges() {

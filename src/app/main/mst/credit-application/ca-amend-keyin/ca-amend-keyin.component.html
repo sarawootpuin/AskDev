@@ -27,6 +27,7 @@
           <textarea class="form-control"
                     pInputTextarea
                     [rows]="10"
+                    [disabled]="this.listAmendKeyIn.length <= 0"
                     [(ngModel)]="selectValue.old_data">
         </textarea>
         </div>
@@ -35,6 +36,7 @@
           <textarea class="form-control"
                     pInputTextarea
                     [rows]="10"
+                    [disabled]="this.listAmendKeyIn.length <= 0"
                     [(ngModel)]="selectValue.new_data">
         </textarea>
         </div>

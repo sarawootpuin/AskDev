@@ -41,9 +41,13 @@
       <div class="row">
         <div class="col-md-12 form-group">
           <label>Address</label>
-          <input type="text" class="form-control"
+          <button class="btn btn-outline-info"
+            (click)="copyOwnr('OFFICE')" > <i class="fa fa-copy">  Duplicate Address from Current </i> </button>
+          <div class="input-group">
+            <input type="text" class="form-control"
                  #inputAddressOEng
                  [value]="entityModel?.addOEng">
+          </div>
         </div>
         <div class="col-md-12 form-group">
           <input type="text" class="form-control"
@@ -80,9 +84,13 @@
       <div class="row">
         <div class="col-md-12 form-group">
           <label>Address</label>
-          <input type="text" class="form-control"
+          <button class="btn btn-outline-info"
+            (click)="copyOwnr('VAT')" > <i class="fa fa-copy">  Duplicate Address from Current </i> </button>
+          <div class="input-group">
+              <input type="text" class="form-control"
                  #inputAddressCEng
                  [value]="entityModel?.addCEng">
+          </div>
         </div>
         <div class="col-md-12 form-group">
           <input type="text" class="form-control"
@@ -103,9 +111,13 @@
       <div class="row">
         <div class="col-md-12 form-group">
           <label>Address</label>
-          <input type="text" class="form-control"
+          <button class="btn btn-outline-info"
+            (click)="copyOwnr('MAIL')" > <i class="fa fa-copy">  Duplicate Address from Current </i> </button>
+          <div class="input-group">
+            <input type="text" class="form-control"
                  #inputAddressMEng
                  [value]="entityModel?.addMEng">
+          </div>
         </div>
         <div class="col-md-12 form-group">
           <input type="text" class="form-control"

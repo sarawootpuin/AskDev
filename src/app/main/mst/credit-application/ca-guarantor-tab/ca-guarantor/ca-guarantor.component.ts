@@ -18,7 +18,7 @@ export class CaGuarantorComponent implements OnInit,OnDestroy {
   listFNME : caListMaster[];
   listCRD  : caListMaster[];
   listNTY  : caListMaster[];
-
+  listPOS_BG: caListMaster[];
   constructor(private creditApplicationService: creditApplicationService) { }
 
   ngOnInit() {
@@ -35,8 +35,9 @@ export class CaGuarantorComponent implements OnInit,OnDestroy {
         //console.log('subscribe');
         this.listFNMT = this.creditApplicationService.listFNM ;
         this.listFNME = this.creditApplicationService.listFNME;
-        this.listCRD = this.creditApplicationService.listCRD ;
-        this.listNTY  = this.creditApplicationService.listNTY ;
+        this.listCRD = this.creditApplicationService.listCRD;
+        this.listNTY  = this.creditApplicationService.listNTY;
+        this.listPOS_BG = this.creditApplicationService.listPOS_BG;
       }
     );
   }

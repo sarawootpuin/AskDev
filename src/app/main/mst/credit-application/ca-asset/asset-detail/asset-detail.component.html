@@ -1,4 +1,4 @@
-<fieldset [disabled]="bgdetailSub?.length == 0 || isReadonly">
+<fieldset [disabled]="!bgdetailSub?.ca_no || isReadonly">
     <div class="flex-column">
       <div class="row">
         <div class="flex-md-column col-md-6">
@@ -134,9 +134,11 @@
                            [iconOnly]="false" [displaycol]="'COL1'" [displaytext]="bgdetailSub.dealer_name"
                            [callApiOnShow]="true"
                            [searchParamName]="'condition'"
+                           (cloneValue)="setListData($event)"
                            (col1)="setDealerName($event)"
                            (col2)="setDealerCode($event)"
-                           (col3)="setCaNo($event)">
+                           (col3)="setCaNo($event)"
+                           (col4)="setOs($event)">
             </app-search-un>
           </div>
         </div>
@@ -155,16 +157,23 @@
             <label>O/S Credit Line</label>
             <input class="form-control"
                    appMyCurrency
-                   [value]="bgdetailSub?.comm_amt" (change)="bgdetailSub.comm_amt = $event.target.value">
+                   disabled
+                   [value]="bgdetailSub.osCreditLine">
           </div>
         </div>
-        <div class="flex-md-column offset-3 col-md-6">
-          <div class="form-group" [hidden]="!bgdetailSub.select_bb">
-            <label>&nbsp;</label><br>
-            <input type="checkbox"
-                   [checked]="bgdetailSub?.buy_back_grnty_no"
-                   (change)="buyBackChange($event.target.checked)">Buy back guarantee
-          </div>
+        <div class="flex-md-column offset-3 col-md-3">
+          <label>Buy back guarantee</label><br>
+          <select class="form-control"
+                  [disabled] = "disabledGuarantee"
+                  [ngModel]="bgdetailSub?.buy_back_grnty_no"
+                  (ngModelChange)="bgdetailSub.buy_back_grnty_no=$event; buybackChange($event)">
+            <option [value]="''">No Guarantee</option>
+            <option *ngFor="let list of listDealer"
+                    [selected]="list?.col2 == bgdetailSub.dealer_code &&
+                                  list.col3 == bgdetailSub.buy_back_grnty_no"
+                    [value]="list?.col3">{{list?.col3}}
+            </option>
+          </select>
         </div>
       </div>
       <div class="row">

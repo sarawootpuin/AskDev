@@ -24,6 +24,16 @@ export class ActionButtonFormComponent implements OnInit {
   @Input() showReturn: boolean;
   @Input() showExit: boolean ;
   @Input() showClose: boolean ;
+  // new-----------
+  @Input() showSubmitOnlySelect: boolean ;
+  @Input() showSubmitAll: boolean ;
+  @Input() showProcess: boolean ;
+  @Input() showClear: boolean ;
+  @Input() showPayment: boolean;
+  @Input() showImportEx : boolean;
+  @Input() showEmail : boolean;
+  @Input() showRenew : boolean;
+  // new-----------
 
   @Input() titleSubmit: string;
   @Input() titleReject: string;
@@ -47,6 +57,24 @@ export class ActionButtonFormComponent implements OnInit {
   @Output() onBack: EventEmitter<any> = new EventEmitter();
   @Output() onCalculator: EventEmitter<any> = new EventEmitter();
   @Output() onReturn: EventEmitter<any> = new EventEmitter();
+  // new-----------
+  @Input() titleSubmitOnlySelect: string ;
+  @Input() titleSubmitAll: string ;
+  @Input() titleProcess: string ;
+  @Input() titleClear: string ;
+  @Input() titlePayment: string;
+  @Input() titleImportEx: string;
+  @Input() titleEmail : string;
+  @Input() titleRenew : string;
+  @Output() onSubmitOnlySelect: EventEmitter<any> = new EventEmitter();
+  @Output() onSubmitAll: EventEmitter<any> = new EventEmitter();
+  @Output() onProcess: EventEmitter<any> = new EventEmitter();
+  @Output() onClear: EventEmitter<any> = new EventEmitter();
+  @Output() onPayment: EventEmitter<any> = new EventEmitter();
+  @Output() onImportEx: EventEmitter<any> = new EventEmitter();
+  @Output() onEmail: EventEmitter<any> = new EventEmitter();
+  @Output() onRenew: EventEmitter<any> = new EventEmitter();
+  // new-----------
 
   @ViewChild('Questiondialog') Questiondialog: AlertDialogComponent;
 
@@ -64,18 +92,38 @@ export class ActionButtonFormComponent implements OnInit {
     this.showReturn = false;
     this.showExit = true;  ////////////  true
     this.showClose = false;
+    //new --------
+    this.showSubmitOnlySelect = false;
+    this.showSubmitAll = false;
+    this.showProcess = false;
+    this.showClear = false;
+    this.showPayment = false;
+    this.showImportEx = false;
+    this.showEmail = false;
+    this.showRenew = false;
+    //new --------
 
     this.titleSubmit = 'Submit';
     this.titleReject = 'Reject';
     this.titleNew = 'New';
     this.titleEdit = 'Edit';
     this.titleSearch = 'Search';
-    this.titleSave = 'Save'
-    this.titlePrint = 'Print'
-    this.titleCancel = 'Cancel'
-    this.titleBack = 'Back'
-    this.titleCalculator = 'Calculator'
-    this.titleReturn = 'Return'
+    this.titleSave = 'Save';
+    this.titlePrint = 'Print';
+    this.titleCancel = 'Cancel';
+    this.titleBack = 'Back';
+    this.titleCalculator = 'Calculator';
+    this.titleReturn = 'Return';
+    //new --------
+    this.titleSubmitOnlySelect = 'Submit Only Select';
+    this.titleSubmitAll = 'Submit All';
+    this.titleProcess = 'Process';
+    this.titleClear = 'Clear';
+    this.titlePayment = 'Payment';
+    this.titleImportEx = 'Import Excel File';
+    this.titleEmail = 'Send Mail';
+    this.titleRenew = 'Renew';
+    //new --------
   }
 
   ngOnInit() {
@@ -124,6 +172,34 @@ export class ActionButtonFormComponent implements OnInit {
   onReturnClick() {
     this.onReturn.emit();
   }
+
+  // new ------
+  onSubmitOnlySelectClick() {
+    this.onSubmitOnlySelect.emit();
+  }
+  onSubmitAllClick(){
+    this.onSubmitAll.emit();
+  }
+  onProcessClick(){
+    this.onProcess.emit();
+  }
+  onClearClick(){
+    this.onClear.emit();
+  }
+  onPaymentClick(){
+    this.onPayment.emit();
+  }
+  onImportExClick(){
+    this.onImportEx.emit();
+  }
+  onEmailClick(){
+    this.onEmail.emit();
+  }
+  onRenewClick(){
+    this.onRenew.emit();
+  }
+
+  // new ------
 
   onExit(){
     this.Questiondialog.reset();

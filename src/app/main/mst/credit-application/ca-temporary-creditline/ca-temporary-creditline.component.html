@@ -1,5 +1,6 @@
 <p-panel header="Amend Temporary Creditline Seller" [toggleable]="false" [style]="{'margin-bottom':'3px'}">
   <div class="form-group">
+    <fieldset [disabled] = "caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend'">
     <app-custom-botton-icon [option]="'new'"
                             (onBtnClick)="addCaTempCreditLineSeller()"
                             [disabled]="addMode"></app-custom-botton-icon>
@@ -7,7 +8,7 @@
                             (onBtnClick)="deleteWarning()"
                             [disabled]="!addMode"></app-custom-botton-icon>
 
-
+    </fieldset>
   </div>
   <div class="container">
     <div class="row">
@@ -19,7 +20,8 @@
                  [fraction]="2"
                  (change)="caTempCreditLine.temp_sub_ca_amt = $event.target.value"
                  [value]="caTempCreditLine.temp_sub_ca_amt"
-                 [disabled]="!addMode"
+                 [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' ||!addMode"
+
           >&nbsp;(Baht)
         </div>
       </div>
@@ -44,7 +46,8 @@
                      [fraction]="2"
                      (change)="caTempCreditLine.ca_limit = $event.target.value"
                      [value]="caTempCreditLine.ca_limit"
-                     [disabled]="!addMode">&nbsp;(Baht)
+                     [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend'||!addMode "
+                     >&nbsp;(Baht)
             </div>
           </div>
         </div>
@@ -58,7 +61,7 @@
             <input class="form-check-input" name="amend_seller" type="radio" value="T"
                    (ngModelChange)="amendChange($event)"
                    [(ngModel)]="caTempCreditLine.amend_type"
-                   [disabled]="!addMode"
+                   [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend'||!addMode "
             >&nbsp;Time
           </div>
           <div class="col-md-6">
@@ -69,7 +72,7 @@
                 class="form-control"
                 type="text"
                 #timeInput
-                [disabled]="checkCalendar || !addMode"
+                [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' ||checkCalendar || !addMode"
                 [(ngModel)]="caTempCreditLine.time"
               >&nbsp;&nbsp;Time
             </div>
@@ -80,7 +83,7 @@
             <input class="form-check-input" name="amend_seller" type="radio" value="P"
                    [(ngModel)]="caTempCreditLine.amend_type"
                    (ngModelChange)="amendChange($event)"
-                   [disabled]="!addMode"
+                   [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' ||!addMode"
             >&nbsp;Period
           </div>
           <div class="col-md-9">
@@ -94,7 +97,7 @@
                             placeholder="dd/mm/yyyy"
                             dataType="string"
                             showButtonBar="true"
-                            [disabled]="!checkCalendar || !addMode"
+                            [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' ||!addMode"
                             [(ngModel)]="caTempCreditLine.eff_date"
                 ></p-calendar>
               </div>
@@ -109,7 +112,7 @@
                             placeholder="dd/mm/yyyy"
                             dataType="string"
                             showButtonBar="true"
-                            [disabled]="!checkCalendar || !addMode"
+                            [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' ||!addMode"
                             [(ngModel)]="caTempCreditLine.expire_date"
                 ></p-calendar>
               </div>

@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit, Input} from "@angular/core";
 import {Subscription} from "rxjs/Subscription";
 import {creditApplicationService} from "../../credit-application.service";
 import {caHead} from "../../model/ca-head";
@@ -11,6 +11,7 @@ import {cabgassersite} from "../../model/ca-bgassetsite";
   templateUrl: './machine.component.html',
 })
 export class CaMachineComponent implements OnInit, OnDestroy {
+  @Input() isReadOnly :boolean;
   subscripData: Subscription;
   subscripMaster: Subscription;
 

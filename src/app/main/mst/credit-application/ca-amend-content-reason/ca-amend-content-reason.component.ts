@@ -13,17 +13,21 @@ export class CaAmendContentReasonComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   listAmendContent: caAmendContent[];
   amendContent: caAmendContent = new caAmendContent();
-
+  creditType : string;
+  myCaHead : caHead = new caHead();
   constructor(private creditApplicationService: creditApplicationService) {
   }
 
   ngOnInit() {
     this.subscription = this.creditApplicationService.eventCaHead.subscribe(
       (caHead: caHead) => {
+        this.myCaHead = caHead
+        
         this.listAmendContent = caHead.listamendcontent;
         if(this.listAmendContent && this.listAmendContent.length > 0){
           this.amendContent = this.listAmendContent[0];
         }
+        this.creditType = caHead.sbu_typ;
       }
     )
   }

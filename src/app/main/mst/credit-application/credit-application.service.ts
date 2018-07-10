@@ -80,6 +80,9 @@ export class creditApplicationService {
       else if (taskCode == 'AM') {
         url = this.service.url + this.service.ca_api + `/ask/ca/CancelAmend`;
       }
+      else if (taskCode == 'RV'){
+        url = this.service.url + this.service.ca_api + `/ask/ca/ReviseRollbackData`;
+      }
     }
 
 
@@ -180,6 +183,9 @@ export class creditApplicationService {
   listCUR_TYPE: caListMaster[] = [];
   listRMK_ATT: caListMaster[] = [];
   listNTN: caListMaster[] = [];
+  listAPV_REVISE: caListMaster[] = [];
+  listINTRO: caListMaster[] =[];
+
   eventListMaster = new EventEmitter();
 
   setListMaster(json: any[]) {
@@ -216,6 +222,8 @@ export class creditApplicationService {
     this.listCUR_TYPE = [];
     this.listRMK_ATT = [];
     this.listNTN = [];
+    this.listAPV_REVISE = [];
+    this.listINTRO = [];
 
     for (let i = 0; i < json.length; i++) {
       if (json[i].type == 'FNM') {
@@ -282,10 +290,13 @@ export class creditApplicationService {
         this.listRMK_ATT.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
       } else if (json[i].type == 'NTN'){
         this.listNTN.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
+      } else if (json[i].type == 'APV_REVISE'){
+        this.listAPV_REVISE.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
+      } else if (json[i].type == 'INTRO'){
+        this.listINTRO.push(new caListMaster(json[i].id_code, json[i].key1, json[i].key2, json[i].remark, json[i].remark_e, json[i].type));
       }
     }
-    console.log(this.listNTN);
-    // console.log('Emit ans');
+    //console.log(this.listAPV_REVISE);
     this.eventListMaster.emit();
   }
 
@@ -458,8 +469,8 @@ export class creditApplicationService {
     return this.http.get(url, options);
   }
 
-  listSearchAmend() {
-    const url = this.service.url + this.service.ca_api + `/ask/ca/TodoCA?device=web&user=${this.userStorage.getCode()}&comcode=${this.userStorage.getComCode()}&task=AM-00`;
+  listSearch(task : string) {
+    const url = this.service.url + this.service.ca_api + `/ask/ca/TodoCA?device=web&user=${this.userStorage.getCode()}&comcode=${this.userStorage.getComCode()}&task=${task}`;
     // const url = const url = this.service.url + this.service.ca_api + `/ask/ca/TodoCA?device=${device}&user=${userCode}&comcode=${comCode}&task=${task}`;
     let options = {
       headers: {
@@ -506,4 +517,57 @@ export class creditApplicationService {
     return this.http.post(url, data, options);
   }
 
+  reviseCa(device: string, userName: string, comCode: string, caNo: string) {
+    const url = this.service.url + this.service.ca_api + '/ask/ca/ReviseInsertTempData';
+
+    let data = {
+      "device": device,
+      "username": userName,
+      "comcode": comCode,
+      "cano": caNo
+    };
+    let options = {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    };
+    //console.log(data);
+    return this.http.post(url, data, options);
+  }
+
+  findCaDirectoryPart(comCode : string, caNo : string) {
+    const url = this.service.url + this.service.appform_api + `/ask/common/FindCaDirectoryPart`;
+    const data =
+      {
+        "device": "web",
+        "userCode": this.userStorage.getCode(),
+        "comCode": comCode,
+        "caNo": caNo
+      };
+
+    let options = {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    };
+
+    return this.http.post(url, data, options);
+  }
+
+  getCaDirectoryPart(comCode : string) {
+    const url = this.service.url + this.service.appform_api + `/ask/common/GetCaDirectoryPart`;
+    const data =
+      {
+        "device": "web",
+        "userCode": this.userStorage.getCode(),
+        "comCode": comCode
+      };
+
+    let options = {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    };
+    return this.http.post(url, data, options);
+  }
 }

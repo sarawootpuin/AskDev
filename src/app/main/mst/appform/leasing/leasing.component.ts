@@ -1,14 +1,15 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, Input, OnDestroy, OnInit} from "@angular/core";
 import {AppFormService} from "../appform.service";
 import {ListDetail} from "../model/getDataDetail";
 import {ListAnswer} from "../model/getListAnswer";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-leasing',
   templateUrl: './leasing.component.html'
 })
-export class LeasingComponent implements OnInit {
-
+export class LeasingComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
   data: ListDetail[] = [];
   dataSelect: ListDetail = new ListDetail();
   dataListFin: ListAnswer[] = [];
@@ -39,7 +40,7 @@ export class LeasingComponent implements OnInit {
     this.dataListBankIntRate = this.appFormService.listBankIntRate;
 
     this.disabled = this.appFormService.getAppFormData().disabled;
-    this.appFormService.eventListTabLeasing.subscribe(
+    this.subscription = this.appFormService.eventListTabLeasing.subscribe(
       (data) => {
         this.data = data;
         this.dataListFin = this.appFormService.listFin;
@@ -55,6 +56,12 @@ export class LeasingComponent implements OnInit {
         this.disabled = this.appFormService.getAppFormData().disabled;
       }
     )
+  }
+
+  ngOnDestroy() {
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
   }
 
   setDataSelect(data: ListDetail) {

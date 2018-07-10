@@ -19,6 +19,5 @@ export class GuarantorDetailComponent implements OnInit, OnChanges {
     if (this.data == null) {
       this.data = new ListGuarantor();
     }
-    console.log(this.data);
   }
 }

@@ -18,7 +18,7 @@
             (change)="subFinChange($event.target.value)">
       <option [value]="-1"></option>
       <option *ngFor="let list of dataSubFin; let i = index "
-              [value]="list.id_code"
+              [value]="i"
               [selected]="bgdetail.sub_fin === list.id_code &&
                           bgdetail.buy_back_flg === list.key2">{{list?.remark}}
       </option>
@@ -276,12 +276,15 @@
   <!-------------------------------------Open LC----------------------------------->
   <div class="col-md-12 form-group border-isa flex-row mb-1" *ngIf="visiblePanel">
     <div class="row  form-group col-md-3">
-      <label><b>Open LC</b></label>
+      <label *ngIf="bgdetail?.lc_flg === 'Y'">
+        <b>Open LC</b>
+      </label>
     </div>
     <div class="row form-group col-md-12">
       <div class="col-md-3">
         <label>Asset Price</label><span class="star">*</span>
         <input appMyCurrency
+               (blur)="calculateLc()" 
                class="form-control"
                [value]="bgdetail.asst_prce_forgn" (change)="bgdetail.asst_prce_forgn = $event.target.value"/>
       </div>
@@ -301,6 +304,7 @@
       <div class="col-md-3">
         <label>Currency</label><span class="star">*</span>
         <input appMyCurrency
+               (blur)="calculateLc()" 
                class="form-control"
                [value]="bgdetail.currency" (change)="bgdetail.currency = $event.target.value"
         />
@@ -323,77 +327,6 @@
       </div>
       <div class="col-md">
         <label style="margin-top: 33px;">% Of Asset Price</label>
-      </div>
-    </div>
-  </div>
-  <!-------    Term  &  IRR   -------->
-  <div class="form-group col-md-12 card pt-1 mb-0">
-    <div class="form-group d-flex" *ngIf="mode !== 'Free Text'">
-      <div class="col-md-3">
-        <label>Terms</label>
-        <span class="star">*</span>
-        <input class="form-control" appMyCurrency [fraction]="0"
-               [value]="bgdetail.terms" (change)="bgdetail.terms = $event.target.value"
-        />
-      </div>
-      <div class="col-md-3">
-        <label>Flat Rate</label>
-        <input class="form-control" appMyCurrency [fraction]="8"
-               [value]="bgdetail.flat_rate" (change)="bgdetail.flat_rate = $event.target.value"
-        />
-      </div>
-      <div class="col-md-3">
-        <label>Net IRR</label>
-        <input class="form-control"
-               appMyCurrency [fraction]="8"
-               disabled
-               [value]="bgdetail.net_irr" (change)="bgdetail.net_irr = $event.target.value"
-        />
-      </div>
-      <div class="col-md-3">
-        <label>Gross IRR</label>
-        <span class="star">*</span>
-        <input class="form-control"
-               appMyCurrency [fraction]="8"
-               [value]="bgdetail.gross_irr" (change)="bgdetail.gross_irr = $event.target.value"
-        />
-      </div>
-    </div>
-
-    <div class="form-group d-flex">
-      <div class="col-md-3">
-        <label>Expense</label>
-        <input class="form-control"
-               appMyCurrency
-               [value]="bgdetail.es_expense" (change)="bgdetail.es_expense = $event.target.value"
-        />
-      </div>
-      <div class="col-md-3">
-        <label>Revenue</label>
-        <input class="form-control"
-               appMyCurrency
-               [value]="bgdetail.es_revenue" (change)="bgdetail.es_revenue = $event.target.value"
-        />
-      </div>
-      <div class="col-md-6 form-group" *ngIf="mode !== 'Free Text'">
-        <div class="row">
-          <div class="col-md-6 ">
-            <label>Cal IRR</label>
-            <select class="form-control w-100"
-                    [(ngModel)]="bgdetail.selectForCall">
-              <option [value]="1">1.Calculate Installment + Flat Know Gross IRR , Fin, Term</option>
-              <option [value]="2">2.Calculate Installment + IRR Know Fin, Flat, Term</option>
-              <option [value]="3">3.Calculate IRR + Flat Know Installment, Fin, Term</option>
-              <option [value]="4">4.Calculate Finance + Flat Know Installment, Gross IRR, Term</option>
-              <option [value]="5">5.Calculate Flat Know Installment, Fin, Term</option>
-            </select>
-          </div>
-          <div class="col-md-6 mt-4 pt-1">
-            <button type="button" pButton style="float:left"
-                    (click)="calculateClick()"
-                    label="Calculate"></button>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -583,6 +516,77 @@
   <textarea type="text" class="form-control" [(ngModel)]="bgdetail.free_text"></textarea>
 </div>
 
+<!-------    Term  &  IRR   -------->
+<div class="form-group col-md-12 card pt-1 mb-1 border-isa">
+  <div class="form-group d-flex" *ngIf="mode !== 'Free Text'">
+    <div class="col-md-3">
+      <label>Terms</label>
+      <span class="star">*</span>
+      <input class="form-control" appMyCurrency [fraction]="0"
+             [value]="bgdetail.terms" (change)="bgdetail.terms = $event.target.value"
+      />
+    </div>
+    <div class="col-md-3">
+      <label>Flat Rate</label>
+      <input class="form-control" appMyCurrency [fraction]="8"
+             [value]="bgdetail.flat_rate" (change)="bgdetail.flat_rate = $event.target.value"
+      />
+    </div>
+    <div class="col-md-3">
+      <label>Net IRR</label>
+      <input class="form-control"
+             appMyCurrency [fraction]="8"
+             disabled
+             [value]="bgdetail.net_irr" (change)="bgdetail.net_irr = $event.target.value"
+      />
+    </div>
+    <div class="col-md-3">
+      <label>Gross IRR</label>
+      <span class="star">*</span>
+      <input class="form-control"
+             appMyCurrency [fraction]="8"
+             [value]="bgdetail.gross_irr" (change)="bgdetail.gross_irr = $event.target.value"
+      />
+    </div>
+  </div>
+
+  <div class="form-group d-flex">
+    <div class="col-md-3">
+      <label>Expense</label>
+      <input class="form-control"
+             appMyCurrency
+             [value]="bgdetail.es_expense" (change)="bgdetail.es_expense = $event.target.value"
+      />
+    </div>
+    <div class="col-md-3">
+      <label>Revenue</label>
+      <input class="form-control"
+             appMyCurrency
+             [value]="bgdetail.es_revenue" (change)="bgdetail.es_revenue = $event.target.value"
+      />
+    </div>
+    <div class="col-md-6 form-group" *ngIf="mode !== 'Free Text'">
+      <div class="row">
+        <div class="col-md-6 ">
+          <label>Cal IRR</label>
+          <select class="form-control w-100"
+                  [(ngModel)]="bgdetail.type_cal_pricing">
+            <option [value]="1">1.Calculate Installment + Flat Know Gross IRR , Fin, Term</option>
+            <option [value]="2">2.Calculate Installment + IRR Know Fin, Flat, Term</option>
+            <option [value]="3">3.Calculate IRR + Flat Know Installment, Fin, Term</option>
+            <option [value]="4">4.Calculate Finance + Flat Know Installment, Gross IRR, Term</option>
+            <option [value]="5">5.Calculate Flat Know Installment, Fin, Term</option>
+          </select>
+        </div>
+        <div class="col-md-6 mt-4 pt-1">
+          <button type="button" pButton style="float:left"
+                  (click)="calculateClick()"
+                  label="Calculate"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <!--------------------------------Financing asset-------------------------------->
 <div class="form-group flex-row col-md-12 border-isa">
   <div class="form-group d-flex">

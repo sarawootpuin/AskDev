@@ -1,5 +1,6 @@
 <app-alert-dialog #alertDialogComponent [msg]="'โปรดใส่ข้อมูลก่อนเพื่อค้นหา'"></app-alert-dialog>
-<app-action-button-form [showSearch]="true" [showCancel]="true" [showReject]="false" [showSubmit]="false"  [showNew]="false" (onSearch)="onSubmit()" (onCancel)="cancelButton()" [showCalculator]="false" [showBack]="false"  [showEdit]="false" (onBack)="backPage()" [showPrint]="false" [showSave]="false"  [title]="'Blacklist Checking'"></app-action-button-form>
+<app-action-button-form [showSearch]="true" [showCancel]="true" [showReject]="false"
+                        [showSubmit]="false"  [showNew]="false" (onSearch)="onSubmit()" (onCancel)="cancelButton()" [showCalculator]="false" [showBack]="false"  [showEdit]="false" (onBack)="backPage()" [showPrint]="false" [showSave]="false"  [title]="'Blacklist Checking'"></app-action-button-form>
 <div class="card m-4">
   <div class="card-header">
 <form [formGroup]="blacklistchecking" (ngSubmit)="onSubmit()">

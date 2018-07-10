@@ -1,3 +1,4 @@
+<fieldset [disabled]= "isReadOnly">
 <p-panel header="Customer Information">
   <div class="main-container">
     <div class="d-flex">
@@ -96,7 +97,7 @@
       </div>
       <div class="flex-md-column col-md-2 ">
         <div class="form-group">
-          <label> Establishment Date</label>
+          <label>Establishment Date</label>
           <span class="star">*</span>
           <p-calendar dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy" dataType="string" showButtonBar="true"
                       [(ngModel)]="caEntityDetail.birth_d"></p-calendar>
@@ -173,10 +174,22 @@
       </div>
     </div>
     <div class="d-flex">
-      <div class="flex-md-column col-md-6 ">
+      <div class="flex-md-column col-md-6">
         <div class="form-group">
           <label> (Exposure Group) Group Code </label>
-          <input type="text" class="form-control" [(ngModel)]="caEntityDetail.grp_code">
+          <div class="row">
+            <div class="flex-md-column col-md">
+               <input type="text" class="form-control" [(ngModel)]="caEntityDetail.grp_name" readonly>
+            </div>
+            <div class="flex-md-column col-md-1" >
+                 <app-search-un app-search-un [inuURL]="urlGroupCus"
+                         [servicetype]="'POST'" [objforpost]="dataGroupCus"
+                         title="Code;Name;" [widthcol]="'100;300;'"
+                         (col1)="setGroup($event)"
+                         (col2)="setGroupName($event)"
+                 ></app-search-un>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -188,22 +201,36 @@
           <input type="text" class="form-control" disabled [(ngModel)]="caEntityDetail.bus_detail">
         </div>
       </div>
-      <div class="flex-md-column col-md-6 ">
+
+      <div class="flex-md-column col-md-9">
         <div class="form-group">
           <label> Business Detail </label>
-          <input type="text" class="form-control" disabled [(ngModel)]="caEntityDetail.bus_detail_desc">
+          <div class="row">
+            <div class="flex-md-column col-md">
+               <input type="text" class="form-control" disabled [(ngModel)]="caEntityDetail.bus_detail_desc">
+            </div>
+            <div class="flex-md-column col-md-2" >
+            <app-search-un app-search-un inuURL={{OutURL}}
+                         title="Business Type;Specifies;DBD CODE;"
+                         (col1)="setBusName($event)"
+                         (col3)="setBuscode($event)"
+                         (col3)="setCluster($event)"
+                         (col5)="setBusType($event)">
+            </app-search-un>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="flex-md-column col-md-1 pr-0 ">
-        <label> &nbsp; </label>
-        <app-search-un app-search-un inuURL={{OutURL}}
-                       title="Business Type;Specifies;DBD CODE;"
-                       (col1)="setBusName($event)"
-                       (col3)="setBuscode($event)"
-                       (col3)="setCluster($event)"
-                       (col5)="setBusType($event)">
-        </app-search-un>
-      </div>
+      <!--<div class="flex-md-column col-md-1 pr-0 ">-->
+        <!--<label> &nbsp; </label>-->
+        <!--<app-search-un app-search-un inuURL={{OutURL}}-->
+                       <!--title="Business Type;Specifies;DBD CODE;"-->
+                       <!--(col1)="setBusName($event)"-->
+                       <!--(col3)="setBuscode($event)"-->
+                       <!--(col3)="setCluster($event)"-->
+                       <!--(col5)="setBusType($event)">-->
+        <!--</app-search-un>-->
+      <!--</div>-->
     </div>
 
     <div class="d-flex">
@@ -249,6 +276,23 @@
           </div>
         </div>
       </div>
+
+      <div class="flex-md-column col-md-3">
+        <div class="form-group">
+
+          <label> Position </label>
+          <select class="form-control"
+                  [ngModel]="caEntityDetail?.posi"
+                  (ngModelChange)="caEntityDetail.posi=$event">
+            <option></option>
+            <option *ngFor="let ansPOS_BG of this.listPOS_BG"
+                    [selected]="ansPOS_BG?.id_code == caEntityDetail?.posi"
+                    [value]="ansPOS_BG?.id_code">{{ansPOS_BG?.remark}}
+            </option>
+          </select>
+        </div>
+      </div>
+
     </div>
     <div class="d-flex">
       <div class="flex-md-column col-md-2 ">
@@ -318,7 +362,7 @@
     </div>
   </div>
 </p-panel>
-
+</fieldset>
 
 <app-action-dialog #nationDialog
                    [showCancel]="true"

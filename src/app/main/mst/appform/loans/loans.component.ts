@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from "@angular/core";
+import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from "@angular/core";
 import {AppFormService} from "../appform.service";
 import {ListDetail} from "../model/getDataDetail";
 import {ListStep} from "../model/getDataStep";
@@ -6,12 +6,13 @@ import {DateUtils} from "../../../../shared/center/utils/date-utils";
 import {UserStorage} from "../../../../shared/user/user.storage.service";
 import {AlertDialogComponent} from "../../../../shared/center/alert-dialog/alert-dialog.component";
 import {ActionDialogComponent} from "../../../../shared/center/action-dialog/action-dialog.component";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-loans',
   templateUrl: './loans.component.html'
 })
-export class LoansComponent implements OnInit {
+export class LoansComponent implements OnInit, OnDestroy {
   data: ListDetail = new ListDetail();
   displayDialog: boolean;
   newStep: boolean;
@@ -25,6 +26,8 @@ export class LoansComponent implements OnInit {
   @ViewChild('insEVatLoan') insEVatLoan: ElementRef;
   @ViewChild('actionDialog') actionDialog: ActionDialogComponent;
   @Input() inquiry: boolean;
+  subscription: Subscription;
+  subscriptionIrr: Subscription;
 
   constructor(private appFormService: AppFormService,
               private dateUtils: DateUtils,
@@ -37,13 +40,22 @@ export class LoansComponent implements OnInit {
       this.data = this.appFormService.dataLoan;
     }
     this.disabled = this.appFormService.getAppFormData().disabled;
-    this.appFormService.eventTabLoan.subscribe(
+    this.subscription = this.appFormService.eventTabLoan.subscribe(
       (data) => {
         this.data = data;
         this.scheduleChange();
         this.disabled = this.appFormService.getAppFormData().disabled;
       }
     )
+  }
+
+  ngOnDestroy() {
+    if (this.subscriptionIrr != null) {
+      this.subscriptionIrr.unsubscribe();
+    }
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
   }
 
   scheduleChange() {
@@ -119,14 +131,14 @@ export class LoansComponent implements OnInit {
     }
     if (calCheck) {
       this.checkLoader = true;
-      console.log("Before");
-      console.log(this.data);
-      this.appFormService.calculateIrr(this.data.sub_id, this.data.type_cal_pricing).subscribe(
+      //console.log("Before");
+      //console.log(this.data);
+      this.subscriptionIrr = this.appFormService.calculateIrr(this.data.sub_id, this.data.type_cal_pricing).subscribe(
         (data: any) => {
-          console.log("After");
-          console.log(data);
+          //console.log("After");
+          //console.log(data);
           if (data.CODE == '200') {
-            console.log(data.LIST_DATA[0]);
+            //console.log(data.LIST_DATA[0]);
             this.data.fin_amt_e_vat = data.LIST_DATA[0].finExcVat;
             this.data.fin_amt_vat = data.LIST_DATA[0].finVat;
             this.data.fin_amt_i_vat = data.LIST_DATA[0].finIncVat;
@@ -138,40 +150,8 @@ export class LoansComponent implements OnInit {
             this.data.net_irr = data.LIST_DATA[0].netIrr;
             this.data.net_irr_inc_deposit = data.LIST_DATA[0].netIrrIncDeposit;
             this.checkLoader = false;
-            console.log(this.data.gross_irr);
+            //console.log(this.data.gross_irr);
           }
-        }
-      )
-    }
-  }
-
-  calInstallment() {
-    this.alertDialog.reset();
-    this.alertDialog.setModeSingle(0);
-    this.alertDialog.setTitle('Calculate Installment');
-    if (this.data.fin_amt_e_vat <= 0 || !this.data.fin_amt_e_vat) {
-      this.alertDialog.list_msg.push('Request Credit Line must be greater than 0');
-    }
-    if (this.data.flat_rate <= 0 || !this.data.flat_rate) {
-      this.alertDialog.list_msg.push('Interest Rate must be greater than 0');
-    }
-    if (this.data.terms <= 0 || !this.data.terms) {
-      this.alertDialog.list_msg.push('Terms must be greater than 0');
-    }
-    if (!this.data.disburse_dt) {
-      this.alertDialog.list_msg.push('กรุณาระบุวันที่ Disburse Date');
-    }
-    if (this.data.schedule === 'I') {
-      this.alertDialog.list_msg.push('ค่างวดแบบ Step ไม่สามารถระบุโดยระบบได้!')
-    }
-
-    if (this.alertDialog.list_msg.length > 0) {
-      this.alertDialog.open();
-    }
-    else {
-      this.appFormService.calInstallment(this.data.fin_amt_e_vat, this.data.terms, this.data.flat_rate).subscribe(
-        (data: any) => {
-          this.data.installment_e_vat = data.MSG;
         }
       )
     }

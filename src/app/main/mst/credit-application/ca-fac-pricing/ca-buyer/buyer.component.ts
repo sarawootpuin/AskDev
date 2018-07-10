@@ -17,6 +17,7 @@ import {ServiceEndpoint} from "../../../../../shared/config/service-endpoint";
 export class CaBuyerComponent implements OnInit, OnDestroy, OnChanges {
   @Input() isReadonly: boolean;
   @Input() important: boolean;
+  @Input() taskShorten: string;
   tabReadonly: boolean;
   subscripData: Subscription;
   subscripMaster: Subscription;
@@ -24,13 +25,14 @@ export class CaBuyerComponent implements OnInit, OnDestroy, OnChanges {
   listBuyer: caBuyer[];
   selectBuyer: caBuyer = new caBuyer();
   masterBuyerDoc: caBuyerDoc[];
-
+  loading: boolean;
   @ViewChild("entity_dialog") entity_dialog: EntityDialogComponent;
   @ViewChild('deleteDialog') deleteDialog: AlertDialogComponent;
 
   constructor(private creditApplicationService: creditApplicationService,
               private service: ServiceEndpoint,
-              private userStorage: UserStorage) {
+              private userStorage: UserStorage,
+              private ServiceEndpoint: ServiceEndpoint) {
   }
 
   ngOnInit() {
@@ -79,7 +81,7 @@ export class CaBuyerComponent implements OnInit, OnDestroy, OnChanges {
         this.masterBuyerDoc[i].select_c = 'N';
         this.masterBuyerDoc[i].remark = '';
       }
-      console.log(this.masterBuyerDoc);
+      //console.log(this.masterBuyerDoc);
     }
   }
 
@@ -154,8 +156,17 @@ export class CaBuyerComponent implements OnInit, OnDestroy, OnChanges {
 
   callAttach() {
     let ca_no: string = this.creditApplicationService.caHead.ca_no.replace("/", "_");
-    let strAttach = this.service.url_report + `/result?report=MKT\\Attach_Sheet_01.fr3&ca_no=${ca_no}&com_code=${this.userStorage.getComCode()}&format=pdf`;
+    //let strAttach = this.service.url_report + `/result?report=MKT\\Attach_Sheet_01.fr3&ca_no=${ca_no}&com_code=${this.userStorage.getComCode()}&format=pdf`;
+    let rv_time = this.creditApplicationService.caHead.revise_time;
+    let strAttach = this.service.url_report + `/result?report=MKT\\Attach_Sheet_01.fr3&ca_no=${ca_no}&com_code=${this.userStorage.getComCode()}&format=pdf&cmd_folder=${ca_no}&cmd_path=1&cmd_pdf=${'ATT_' + ca_no + '_RV'+rv_time }&draft=${'N'}`;
     window.open(strAttach, '_blank');
   }
 
+  editEntity(){
+    this.loading = false;
+    let strURL = this.ServiceEndpoint.url + this.ServiceEndpoint.app_name + "/#/editEntity/edit/"+this.selectBuyer.buyer_code;
+    //let strURL = 'http://localhost:4200' + "/#/editEntity/edit/"+this.selectBuyer.buyer_code;
+    window.open(strURL);
+
+  }
 }

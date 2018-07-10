@@ -141,4 +141,31 @@ export class EntityAddressThComponent implements OnInit, OnChanges {
     entityRequest.postCdM = this.zip_cd_address_mail;
     return entityRequest;
   }
+
+  copyOwnr(panel : string){
+    if (panel == 'VAT'){
+      //console.log(this.c_address);
+      //console.log(this.zip_cd_address);
+      //console.log(this.cd_address);
+      this.inputAddressC.nativeElement.value = this.inputAddress.nativeElement.value;
+      this.c_address_20 = this.c_address;
+      this.cd_address_20 = this.cd_address;
+      this.zip_cd_address_20 = this.zip_cd_address;
+
+    }else if (panel == 'OFFICE'){
+
+      this.inputAddressO.nativeElement.value = this.inputAddress.nativeElement.value;
+      this.c_address_office = this.c_address;
+      this.cd_address_office = this.cd_address;
+      this.zip_cd_address_office = this.zip_cd_address;
+
+    }else if (panel == 'MAIL'){
+
+      this.inputAddressM.nativeElement.value = this.inputAddress.nativeElement.value;
+      this.c_address_mail = this.c_address;
+      this.zip_cd_address_mail = this.zip_cd_address;
+      this.cd_address_mail = this.cd_address;
+
+    }
+  }
 }

@@ -16,7 +16,8 @@ const routes: Route[] = [
   },
   {
     path: 'amend', component: CaSearchAmendComponent
-  }
+  },
+  { path: 'reviseAttachSheet', component: CaSearchAmendComponent}
 
 
 

@@ -1,20 +1,22 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from "@angular/core";
+import {Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from "@angular/core";
 import {AppFormService} from "../../appform.service";
 import {ListGuarantor} from "../../model/getDataGuarantor";
 import {EntityDialogComponent} from "../../../entity/entity-dialog/entity-dialog.component";
 import {EntityModel} from "../../../entity/model/entity-model";
 import {UserStorage} from "../../../../../shared/user/user.storage.service";
 import {AlertDialogComponent} from "../../../../../shared/center/alert-dialog/alert-dialog.component";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-guarantor-list',
   templateUrl: './guarantor-list.component.html'
 })
-export class GuarantorListComponent implements OnInit {
-
+export class GuarantorListComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
+  subscriptionFac: Subscription;
+  subscriptionBL : Subscription;
   @ViewChild("entity_dialog") entity_dialog: EntityDialogComponent;
   @ViewChild('deleteDialog') deleteDialog: AlertDialogComponent;
-
 
   data: ListGuarantor[] = [];
   selectedData: ListGuarantor;
@@ -27,12 +29,24 @@ export class GuarantorListComponent implements OnInit {
 
   ngOnInit() {
     this.data = this.appFormService.listTabGuarantor;
-    this.appFormService.eventTabGuarantor.subscribe(
+    this.subscription = this.appFormService.eventTabGuarantor.subscribe(
       (data) => {
         this.data = data;
         this.selectList(this.data[0]);
       }
     )
+  }
+
+  ngOnDestroy() {
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
+    if (this.subscriptionBL != null) {
+      this.subscriptionBL.unsubscribe();
+    }
+    if (this.subscriptionFac != null) {
+      this.subscriptionFac.unsubscribe();
+    }
   }
 
   selectList(selectedData: any) {
@@ -51,7 +65,7 @@ export class GuarantorListComponent implements OnInit {
     guarantor.com_code = entityModel.comCode;
     guarantor.ap_no = this.appFormService.getAppFormData().ap_no;
     guarantor.ref_code = this.appFormService.getAppFormData().ca_no;
-    this.appFormService.checkFactoring(entityModel.entCode, entityModel.newCardNo).subscribe(
+    this.subscriptionFac = this.appFormService.checkFactoring(entityModel.entCode, entityModel.newCardNo).subscribe(
       (data: any) => {
         if (data.CODE === "200" && data.LIST_DATA.length > 0) {
           guarantor.guar_code = data.LIST_DATA[0].entCode;
@@ -104,12 +118,12 @@ export class GuarantorListComponent implements OnInit {
     guarantor.tel = entityModel.tel;
     guarantor.input_by = this.user.getCode();
 
-    this.appFormService.checkBlackList(entityModel.newCardNo).subscribe(
+    this.subscriptionBL = this.appFormService.checkBlackList(entityModel.newCardNo).subscribe(
       (data: any) => {
         if (data.CODE === "200" && data.LIST_DATA.length > 0) {
           guarantor.bl_flag = 'Y';
         }
-        else{
+        else {
           guarantor.bl_flag = 'N';
         }
         guarantor.blackList = (guarantor.bl_flag == 'Y') ? 'Found BlackList Record' : 'Not Found BlackList Record';
@@ -139,7 +153,7 @@ export class GuarantorListComponent implements OnInit {
     }
   }
 
-  deleteWarning(){
+  deleteWarning() {
     this.deleteDialog.setAction("DELETE");
     this.deleteDialog.open();
   }

@@ -13,6 +13,7 @@ const routes: Route[] = [
     component: MainComponent, children: [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'home', loadChildren: './home/home.module#HomeModule'},
+    {path: 'setup', loadChildren: './home/setup/setup.module#SetupModule'},
     {path: 'SaleCall',loadChildren:'./mst/sale-call-visit/sale-call-visit.module#SaleCallVisitModule'},
     {path: 'appForm', loadChildren:'./mst/appform/appform.module#AppformModule'},
     {path: 'ca',loadChildren:'./mst/credit-application/credit-application.module#CreditApplicationModule'},
@@ -20,6 +21,8 @@ const routes: Route[] = [
     {path: 'scoring', loadChildren:'./scoring/scoring.module#ScoringModule'},
     {path: 'entity', loadChildren:'./mst/entity/entity.module#EntityModule'},
     {path: 'reassign',loadChildren:'./mst/reassign/reassign.module#ReassignModule'},
+    {path: 'ccs',loadChildren:'./ccs/customerservice.module#CustomerserviceModule'}
+
     /*{path: 'monitorSMS',loadChildren:'./mst/monitor/monitor.module#MonitorModule'}
     {path: 'subordinate', component: SubordinateComponent},
     {path: 'IncompleteDoc',loadChildren:'./incomplete-doc/incomplete-doc.module#IncompleteDocModule'},
@@ -27,7 +30,8 @@ const routes: Route[] = [
     */
   ]
   },
-  {path: 'newEntity', loadChildren:'./mst/entity/entity.module#EntityModule'}
+  {path: 'newEntity', loadChildren:'./mst/entity/entity.module#EntityModule'},
+  {path: 'editEntity', loadChildren:'./mst/entity/entity.module#EntityModule'}
 ];
 
 @NgModule({

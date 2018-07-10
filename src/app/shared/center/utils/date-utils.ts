@@ -30,11 +30,32 @@ export class DateUtils {
         dateOutput = this.addMonths(dateInput, count);
       }
     }
-    console.log(dateOutput);
+    //console.log(dateOutput);
     return dateOutput;
   }
 
   dateToString(date: Date, format: string) {
     return this.datePipe.transform(date, format);
   }
+
+  currentDate() {
+    return new Date().toLocaleDateString('en-GB');
+  }
+
+  compareDate(dateInput1 : string, dateInput2 : string) : number{
+    let result : number;
+    let dateParts1 = dateInput1.split("/");
+    let dateParts2 = dateInput2.split("/");
+    let dateObject1 : number = new Date(+dateParts1[2], +dateParts1[1] - 1, +dateParts1[0]).valueOf();
+    let dateObject2 : number = new Date(+dateParts2[2], +dateParts2[1] - 1, +dateParts2[0]).valueOf();
+    if(dateObject1 < dateObject2){
+      result = -1; // less than
+    } else if(dateObject1 === dateObject2){
+      result = 0; // equal
+    } else {
+      result = 1; // more than
+    }
+    return result;
+  }
+
 }

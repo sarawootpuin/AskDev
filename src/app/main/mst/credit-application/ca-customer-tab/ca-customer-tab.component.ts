@@ -10,6 +10,8 @@ import {caHead} from "../model/ca-head";
 export class CaCustomerTabComponent implements OnInit, OnDestroy {
   @Input() isReadonly : boolean;
   @Input() important : boolean;
+  @Input() task: string;
+  @Input() taskShorten : string;
   @Input('business_detail') business_detail: string;
   @Output('business_detail_out') business_detail_out:EventEmitter<string> = new EventEmitter<string>();
   tabReadonly : boolean;
@@ -32,6 +34,7 @@ export class CaCustomerTabComponent implements OnInit, OnDestroy {
     this.business_detail_out.emit(val);
   }
   ngOnChanges(){
+    this.taskShorten == 'RV' ? this.tabReadonly = true :
     this.tabReadonly = ((this.isReadonly == false) || (this.important == false)) ? false : true;
   }
 

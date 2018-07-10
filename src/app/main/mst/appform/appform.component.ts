@@ -30,6 +30,7 @@ declare var $: any;
 })
 export class AppFormComponent implements OnInit, OnDestroy {
   subscription: Subscription;
+  subscriptionIrr: Subscription;
   typeBeforeSave: string;
   com_code: string;
   ap_no: string;
@@ -120,6 +121,9 @@ export class AppFormComponent implements OnInit, OnDestroy {
     if (this.subscription != null) {
       this.subscription.unsubscribe();
     }
+    if (this.subscriptionIrr != null) {
+      this.subscriptionIrr.unsubscribe();
+    }
   }
 
   jointChange(index) {
@@ -165,8 +169,8 @@ export class AppFormComponent implements OnInit, OnDestroy {
 
   checkStep(subId: any): boolean {
     let result: boolean = true;
-    let toTerm: number = 0, fromTerm: number = 0, term = Number(this.data.listDetail[subId].terms);
-    let dataStep = this.data.listDetail[subId].listStep;
+    let toTerm: number = 0, fromTerm: number = 0, term = Number(this.data.listDetail[subId-1].terms);
+    let dataStep = this.data.listDetail[subId-1].listStep;
     let length = dataStep.length;
     for (let i = 0; i < dataStep.length; i++) {
       if (i == 0) {
@@ -227,10 +231,10 @@ export class AppFormComponent implements OnInit, OnDestroy {
       this.saveDialog.open();
     }
     else if (this.action == 'Save' && this.applyEmit.type != '') {
-      //console.log('เ�?�?า action Save')
       this.saveData();
     }
     else if (this.action == 'Submit') {
+      let isPass: boolean;
       if (this.data.current_task == 'Apply AP' || this.data.current_task == 'Revise AP') {
         if (this.data.bl_flag == 'Y') {
           this.warningBlacklist.setAction("CUSTOM");
@@ -243,29 +247,57 @@ export class AppFormComponent implements OnInit, OnDestroy {
           this.warningGuarantor.open();
         }
         else {
-          this.verifyBeforeSubmit();
+          this.processBeforeSubmit();
         }
       }
       else {
-        this.verifyBeforeSubmit();
+        this.processBeforeSubmit();
       }
     }
   }
 
-  verifyGuarantor() {
-    if (this.data.listGuarantor.length == 0) {
-      console.log('Information');
-      this.warningGuarantor.setAction("INFORMATION");
-      this.warningGuarantor.open();
+  calIrr() {
+    let count: number = 0, length: number = this.data.listDetail.length;
+    for (let detail of this.data.listDetail) {
+      this.subscriptionIrr = this.appFormService.calculateIrr(detail.sub_id, detail.type_cal_pricing).subscribe(
+        (data: any) => {
+          //console.log(data);
+          if (data.CODE == '200') {
+            detail.gross_irr = data.LIST_DATA[0].grossIrr;
+            detail.net_irr = data.LIST_DATA[0].netIrr;
+            detail.net_irr_inc_deposit = data.LIST_DATA[0].netIrrIncDeposit;
+            count++;
+            if (count == length) {
+              this.processSubmit();
+            }
+          }
+        }
+      )
+
     }
   }
 
-  okBlacklist() {
-
+  processBeforeSubmit() {
+    let isPass = this.verifyBeforeSubmit();
+    if (isPass) {
+      if (this.data.sbu_typ != 'FDO') {
+        this.calIrr();
+      } else {
+        this.processSubmit();
+      }
+    } else {
+      this.alertWarning.setAction('WARNING');
+      this.alertWarning.open();
+    }
   }
 
-  verifyBeforeSubmit() {
-    console.log('verifyBeforeSubmit');
+  processSubmit() {
+    this.saveDialog.setAction('SUBMIT');
+    this.saveDialog.open();
+  }
+
+  verifyBeforeSubmit(): boolean {
+    //console.log('verifyBeforeSubmit');
     this.alertWarning.list_msg = [];
     this.alertWarning.single = 0;
     if (this.data.current_task == 'Scoring Assign') {
@@ -319,36 +351,21 @@ export class AppFormComponent implements OnInit, OnDestroy {
         if (detailLoan.schedule == 'I' && detailLoan.listStep.length == 0) {
           this.alertWarning.addMessage('- Installment Step');
         }
-        if (detailLoan.schedule == 'I' && !this.checkStep(0)) {
+        if (detailLoan.schedule == 'I' && !this.checkStep(1)) {
 
         }
         if (detailLoan.schedule == 'I' && !this.checkSumStep(0)) {
           this.alertWarning.addMessage('- Installment * Term < Request Credit Line');
         }
-        if (detailLoan.first < detailLoan.disburse_dt) {
+        if(this.dateUtils.compareDate(detailLoan.first,detailLoan.disburse_dt) == -1) {
+        //if (detailLoan.first < detailLoan.disburse_dt) {
           this.alertWarning.addMessage('- First Due More than equal Disburse Date');
         }
         if (detailLoan.flat_rate > 15) {
           this.alertWarning.addMessage('- Interest Rate > 15');
         }
         if (this.alertWarning.list_msg.length <= 0) {
-          this.appFormService.calculateIrr(detailLoan.sub_id, detailLoan.type_cal_pricing).subscribe(
-            (value: any) => {
-              //console.log(value);
-              if (value.CODE == '200') {
-                /*detail.fin_amt_e_vat = value.LIST_DATA[0].finExcVat;
-                 detail.fin_amt_vat = value.LIST_DATA[0].finVat;
-                 detail.fin_amt_i_vat = value.LIST_DATA[0].finIncVat;
-                 detail.installment_e_vat = value.LIST_DATA[0].installmentExcVat;
-                 detail.installment_vat = value.LIST_DATA[0].installmentVat;
-                 detail.installment_i_vat = value.LIST_DATA[0].installmentIncVat;
-                 detail.flat_rate = value.LIST_DATA[0].flatRate;*/
-                detailLoan.gross_irr = value.LIST_DATA[0].grossIrr;
-                detailLoan.net_irr = value.LIST_DATA[0].netIrr;
-                detailLoan.net_irr_inc_deposit = value.LIST_DATA[0].netIrrIncDeposit;
-              }
-            }
-          )
+        
         }
       }
       else if (this.data.sbu_typ == 'FDO') {
@@ -419,43 +436,23 @@ export class AppFormComponent implements OnInit, OnDestroy {
             if ((!detail.installment_e_vat || !detail.installment_i_vat) && detail.listStep.length == 0) {
               this.alertWarning.addMessage('- Installment');
             }
-
+            
+            if(detail.schedule == 'I'){
+              this.checkStep(detail.sub_id);
+              if(detail.type_cal_pricing == '1' || detail.type_cal_pricing == '2'){
+                this.alertWarning.addMessage("- Step Installment Can't Calculated");
+              }
+            }
             if (this.alertWarning.list_msg.length > 0) {
               break;
             }
             else {
-              //console.log(detail.type_cal_pricing);
-              this.appFormService.calculateIrr(detail.sub_id, detail.type_cal_pricing).subscribe(
-                (value: any) => {
-                  //console.log(value);
-                  if (value.CODE == '200') {
-                    /*detail.fin_amt_e_vat = value.LIST_DATA[0].finExcVat;
-                     detail.fin_amt_vat = value.LIST_DATA[0].finVat;
-                     detail.fin_amt_i_vat = value.LIST_DATA[0].finIncVat;
-                     detail.installment_e_vat = value.LIST_DATA[0].installmentExcVat;
-                     detail.installment_vat = value.LIST_DATA[0].installmentVat;
-                     detail.installment_i_vat = value.LIST_DATA[0].installmentIncVat;
-                     detail.flat_rate = value.LIST_DATA[0].flatRate;*/
-                    detail.gross_irr = value.LIST_DATA[0].grossIrr;
-                    detail.net_irr = value.LIST_DATA[0].netIrr;
-                    detail.net_irr_inc_deposit = value.LIST_DATA[0].netIrrIncDeposit;
-                  }
-                }
-              )
             }
           }
         }
       }
     }
-    //console.log(this.alertWarning.list_msg.length);
-    if (this.alertWarning.list_msg.length > 0) {
-      this.alertWarning.setAction('WARNING');
-      this.alertWarning.open();
-    }
-    else {
-      this.saveDialog.setAction('SUBMIT');
-      this.saveDialog.open();
-    }
+    return this.alertWarning.list_msg.length > 0 ? false : true;
   }
 
   showReturnCase(returnCase) {
@@ -551,7 +548,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.subscription = this.appFormService.getDetailAppForm("web", this.user.getCode(), this.com_code, this.ap_no).subscribe(
       (data: any) => {
-        console.log(data);
+        //console.log(data);
         if (data.CODE === "200") {
           this.data = new getDataAppForm();
           this.data = getDataAppForm.parse(data.DATA);
@@ -852,7 +849,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
 
   showReport() {
     let ap_no: string = this.data.ap_no.replace("/", "_");
-
+    //new_card_no 
     window.open(this.serviceEndPoint.url_report + '/result?report=MKT\\App_form_01.fr3&ApNo=' + ap_no + '&format=pdf', '_blank');
   }
 
@@ -881,5 +878,13 @@ export class AppFormComponent implements OnInit, OnDestroy {
       this.blackListDialog.open();
     }, 200);
 
+  }
+
+  test1(){
+    console.log('object');
+  }
+
+  test2(){
+    console.log('object2');
   }
 }

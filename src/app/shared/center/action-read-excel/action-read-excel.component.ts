@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from "@angular/core";
+import {Component, EventEmitter, Input, OnDestroy, OnChanges,OnInit, Output, ViewEncapsulation} from "@angular/core";
 import * as XLSX from "xlsx";
 import "rxjs";
 import {Subscription} from "rxjs/Subscription";
@@ -17,8 +17,10 @@ type AOA = Array<Array<any>>;
   styleUrls: ['./action-read-excel.component.css'],
   encapsulation: ViewEncapsulation.Emulated
 })
-export class ActionReadExcelComponent implements OnInit {
-
+export class ActionReadExcelComponent implements OnInit, OnDestroy , OnChanges {
+  subscriptionUpload: Subscription;
+  subscriptionPart: Subscription;
+  subscription: Subscription;
   modelReadExcel: any;
   public fileSelect: any = '';
   @Input('titleButton') titleButton = 'Browse File';
@@ -28,7 +30,7 @@ export class ActionReadExcelComponent implements OnInit {
   @Input('comCode') comCode: any;
   @Output() onAfterOpen: EventEmitter<any> = new EventEmitter();
   @Input('openButton') openButton : boolean = true;
-
+  @Output() partDownload : EventEmitter<string> = new EventEmitter();
   valueManager: any;
 
   workBook: XLSX.WorkBook;
@@ -47,7 +49,6 @@ export class ActionReadExcelComponent implements OnInit {
   data: any[] = [];
   dataExcel: any[] = [];
   tabSheet: string[] = [];
-  subscription: Subscription[];
 
   part: ReturnPart;
 
@@ -62,6 +63,22 @@ export class ActionReadExcelComponent implements OnInit {
     //this.onCheckFile();
   }
 
+  ngOnDestroy(){
+    if(this.subscription != null){
+      this.subscription.unsubscribe();
+    }
+    if(this.subscriptionPart != null){
+      this.subscriptionPart.unsubscribe();
+    }
+    if(this.subscriptionUpload != null){
+      this.subscriptionUpload.unsubscribe();
+    }
+  }
+
+  ngOnChanges(){
+    this.onCheckFile();
+  }
+
   onFindNameManager(nameManager: any) {
 
     this.workSheet = "";
@@ -71,7 +88,7 @@ export class ActionReadExcelComponent implements OnInit {
     //console.log(nameManager);
 
     const findName = this.nameManager.filter(name => name.Name == nameManager);
-    console.log(findName);
+    //console.log(findName);
     for (let name of findName) {
       //console.log(name);
       this.tmpIndex = name.Ref.indexOf('!'); // Find Position Of ! //
@@ -79,7 +96,7 @@ export class ActionReadExcelComponent implements OnInit {
 
       this.workSheet = name.Ref.slice(0, this.tmpIndex); // First Path Is Sheet Name //
       this.cell1 = name.Ref.slice(this.tmpIndex + 1); // Second Path Is Cell Position //
-      console.log(this.cell1);
+      //console.log(this.cell1);
       this.tmpIndex = this.cell1.indexOf(':'); // Some Cell Position Has Range From : To //
       if (this.tmpIndex != -1) {
         this.cell2 = this.cell1.slice(this.tmpIndex + 1);
@@ -317,12 +334,17 @@ export class ActionReadExcelComponent implements OnInit {
   }
 
   onCheckFile() {
-
-    this.findCaDirectoryPart(this.comCode, this.caNo).subscribe(
+    console.log('onCheckFile')
+    console.log(this.comCode,this.caNo)
+    this.subscription = this.findCaDirectoryPart(this.comCode, this.caNo).subscribe(
       (data: any) => {
         console.log(data);
         if (data.MSG == "Complete") {
           this.part = ReturnPart.parse(data.DATA);
+          this.fileSelect = data.DATA.fileName;
+          let partString = data.DATA.part;
+          partString = "http://picask:DC8C3078BC63EAA@" + partString.substring(2).replace(/\\/g, '/');
+          this.partDownload.emit(partString);
         }
       }
     );
@@ -336,25 +358,25 @@ export class ActionReadExcelComponent implements OnInit {
 
       let part = new ReturnPart();
 
-      this.getCaDirectoryPart().subscribe(
+      this.subscriptionPart = this.getCaDirectoryPart().subscribe(
         (data: any) => {
-          console.log(data);
+          //console.log(data);
           if (data.MSG == "Complete") {
             part = ReturnPart.parse(data.DATA);
-
-            console.log("Upload File");
-            this.onUpload(evt.target.files[0], part.part).subscribe(
+            console.log(evt.target.files[0],part.part);
+            this.subscriptionUpload = this.onUpload(evt.target.files[0], part.part).subscribe(
               (data: any) => {
-                console.log(data);
+                console.log('In',data);
                 this.selected = data.fileName;
                 this.fileSelect = this.selected;
+                this.onCheckFile();
               }, error => {
-                console.log(error);
+                console.log('errorUpload',error);
               }
             );
           }
         }, error => {
-          console.log(error);
+          console.log('errorPart',error);
         }
       );
     }
@@ -391,7 +413,7 @@ export class ActionReadExcelComponent implements OnInit {
       }
     };
 
-    console.log('onUpload');
+    //console.log('onUpload');
 
     // return this.http
     //   .post(url, formData)
@@ -429,6 +451,7 @@ export class ActionReadExcelComponent implements OnInit {
     // console.log(this.caNo)
     const url = this.service.url + this.service.appform_api + `/ask/common/FindCaDirectoryPart`;
     //const url = `http://localhost:8080/AppForm_WebServices/ask/common/FindCaDirectoryPart`;
+    console.log(this.userStorage.getCode());
     const data =
       {
         "device": "web",

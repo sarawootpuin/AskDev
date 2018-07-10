@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild, Input} from '@angular/core';
 import {caPcnInd} from "../../model/ca-pcnind";
 import {creditApplicationService} from "../../credit-application.service";
 import {caHead} from "../../model/ca-head";
@@ -11,7 +11,7 @@ import {ActionDialogComponent} from "../../../../../shared/center/action-dialog/
   templateUrl: './percent-ind.component.html',
 })
 export class CaPercentIndComponent implements OnInit,OnDestroy {
-
+  @Input() isReadOnly : boolean;
   subscripData: Subscription;
   subscripMaster: Subscription;
 

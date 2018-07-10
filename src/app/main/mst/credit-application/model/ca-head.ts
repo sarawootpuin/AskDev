@@ -16,6 +16,8 @@ import {caAmendContent} from "./ca-amendcontent";
 import {CaTempCreditLine} from "./ca-temp-credit-line";
 import {CaTempCreditLineGroup} from "./ca-temp-credit-line-group";
 import {CaTempBuyer} from "./ca-temp-buyer";
+import {CaRevise} from "./ca-revise";
+import { CaApproveAmend } from "./ca-approve-amend";
 export class caHead {
   public com_code;
   public prebranch_code;
@@ -172,13 +174,15 @@ export class caHead {
   public ap_rec_agr_flag;
   public ap_rec_amount;
   public ap_rec_cond;
+  public main_amount;
   public listbuyertempcreditline: CaTempCreditLine[];
   public listsellertempcreditline: CaTempCreditLine[];
   public listbuyertempcreditlinegroup: CaTempCreditLineGroup[];
   public listsellertempcreditlinegroup: CaTempCreditLineGroup[];
   public listtempbuyer: CaTempBuyer[];
   public listtempbuyerg: CaTempBuyer[];
-
+  public listrevise: CaRevise[];
+  public listapvamend : CaApproveAmend[];
 
   constructor()
   constructor(com_code, prebranch_code, ca_no, sale_call_no, ctrl_no, cus_status, cus_code, grp_code, joint_seller_group,
@@ -198,7 +202,7 @@ export class caHead {
               highest_ls_amt, highest_hp_amt, highest_ls_amt_grp, highest_hp_amt_grp, last_due_ls, last_due_hp, mkt_grp, os_ar_hp,
               os_ar_ls, os_credit_amt, os_credit_line_amt, reqst_credit_amt, intro_by_cd, mkt_name, cus_name, sbu_type_desc,
               team_mkt_leader, verifier_name, join_group_name, join_group_cr, intro_mthd_desc, intro_by_name, title_authority,
-              above_level, rec_agr_flag, rec_cond, rec_usr, rec_upd, ap_rec_agr_flag, ap_rec_amount, ap_rec_cond,
+              above_level, rec_agr_flag, rec_cond, rec_usr, rec_upd, ap_rec_agr_flag, ap_rec_amount, ap_rec_cond,main_amount,
               caentity, listpcnind, listcaguarantor, listbgdetail, listcacontext, listbgassetsite
     , listcapricing, listcabuyer
     , listcaapvhist
@@ -208,12 +212,13 @@ export class caHead {
     , listcadetail
     , listamendhist
     , listamendcontent
-    ,listbuyertempcreditline
-    ,listsellertempcreditline
-    ,listbuyertempcreditlinegroup
-    ,listsellertempcreditlinegroup
-    ,listtempbuyer
-    ,listtempbuyerg)
+    , listbuyertempcreditline
+    , listsellertempcreditline
+    , listbuyertempcreditlinegroup
+    , listsellertempcreditlinegroup
+    , listtempbuyer
+    , listtempbuyerg
+    , listrevise, listapvamend)
 
   constructor(com_code?, prebranch_code?, ca_no?, sale_call_no?, ctrl_no?, cus_status?, cus_code?, grp_code?, joint_seller_group?,
               sbu_typ?, advance_type?, apply_by?, apply_dt?, expire_dt?, contract_no?, contract_date?, contract_expire_date?,
@@ -234,7 +239,7 @@ export class caHead {
               last_due_hp?, mkt_grp?, os_ar_hp?, os_ar_ls?, os_credit_amt?, os_credit_line_amt?, reqst_credit_amt?, intro_by_cd?,
               mkt_name?, cus_name?, sbu_type_desc?, team_mkt_leader?, verifier_name?, join_group_name?, join_group_cr?,
               intro_mthd_desc?, intro_by_name?, title_authority?, above_level?, rec_agr_flag?, rec_cond?, rec_usr?, rec_upd?,
-              ap_rec_agr_flag?, ap_rec_amount?, ap_rec_cond?,
+              ap_rec_agr_flag?, ap_rec_amount?, ap_rec_cond?,main_amount?,
               caentity?, listpcnind?, listcaguarantor?, listbgdetail?, listcacontext?, listbgassetsite?
     , listcapricing?, listcabuyer?
     , listcaapvhist?
@@ -244,12 +249,12 @@ export class caHead {
     , listcadetail?
     , listamendhist?
     , listamendcontent?
-    ,listbuyertempcreditline?
-    ,listsellertempcreditline?
-    ,listbuyertempcreditlinegroup?
-    ,listsellertempcreditlinegroup?
-    ,listtempbuyer?
-    ,listtempbuyerg?) {
+    , listbuyertempcreditline?
+    , listsellertempcreditline?
+    , listbuyertempcreditlinegroup?
+    , listsellertempcreditlinegroup?
+    , listtempbuyer?
+    , listtempbuyerg?, listrevise?, listapvamend?) {
     this.com_code = com_code;
     this.prebranch_code = prebranch_code;
     this.ca_no = ca_no;
@@ -388,7 +393,7 @@ export class caHead {
     this.ap_rec_agr_flag = ap_rec_agr_flag;
     this.ap_rec_amount = ap_rec_amount;
     this.ap_rec_cond = ap_rec_cond;
-
+    this.main_amount = main_amount;
     this.caentity = caentity;
     this.listpcnind = listpcnind;
     this.listcaguarantor = listcaguarantor;
@@ -404,12 +409,14 @@ export class caHead {
     this.listcadetail = listcadetail;
     this.listamendhist = listamendhist;
     this.listamendcontent = listamendcontent;
-    this.listbuyertempcreditline =listbuyertempcreditline;
-    this.listsellertempcreditline=listsellertempcreditline;
-    this.listbuyertempcreditlinegroup=listbuyertempcreditlinegroup;
-    this.listsellertempcreditlinegroup=listsellertempcreditlinegroup;
-    this.listtempbuyer=listtempbuyer;
-    this.listtempbuyerg=listtempbuyerg;
+    this.listbuyertempcreditline = listbuyertempcreditline;
+    this.listsellertempcreditline = listsellertempcreditline;
+    this.listbuyertempcreditlinegroup = listbuyertempcreditlinegroup;
+    this.listsellertempcreditlinegroup = listsellertempcreditlinegroup;
+    this.listtempbuyer = listtempbuyer;
+    this.listtempbuyerg = listtempbuyerg;
+    this.listrevise = listrevise;
+    this.listapvamend = listapvamend;
   }
 
   static parse(json: any) {
@@ -551,6 +558,7 @@ export class caHead {
       json.ap_rec_agr_flag,
       json.ap_rec_amount,
       json.ap_rec_cond,
+      json.main_amount,
       caEntity.parse(json.caentity),
       caPcnInd.parse(json.listpcnind),
       caGuarantor.parse(json.listcaguarantor),
@@ -571,7 +579,9 @@ export class caHead {
       CaTempCreditLineGroup.parse(json.listbuyertempcreditlinegroup),
       CaTempCreditLineGroup.parse(json.listsellertempcreditlinegroup),
       CaTempBuyer.parse(json.listtempbuyer),
-      CaTempBuyer.parse(json.listtempbuyerg)
+      CaTempBuyer.parse(json.listtempbuyerg),
+      CaRevise.parse(json.listrevise),
+      CaApproveAmend.parse(json.listapvamend)
     )
   }
 }

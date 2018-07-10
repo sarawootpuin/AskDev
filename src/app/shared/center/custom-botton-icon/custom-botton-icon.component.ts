@@ -19,7 +19,8 @@ export class CustomBottonIconComponent implements OnInit, OnChanges {
   btnPrint = { 'icon': 'fa-print', 'style': 'btn-nav-printisa'};
   btnDelete = { 'icon': 'fa-trash', 'style': 'btn-nav-deleteisa'};
   btnProcess = { 'icon': 'fa-clock-o', 'style': 'btn-nav-processisa'};
-  btnSelect = {};
+  btnCopy = { 'icon': 'fa-copy', 'style': 'btn-nav-copyisa'};
+  btnSelect = {'icon':'','style': ''};
   constructor() { }
 
   ngOnInit() {
@@ -43,6 +44,8 @@ export class CustomBottonIconComponent implements OnInit, OnChanges {
       this.btnSelect = this.btnDelete;
     } else if (this.option == 'process') {
       this.btnSelect = this.btnProcess;
+    } else if (this.option == 'copy') {
+      this.btnSelect = this.btnCopy;
     }
   }
 

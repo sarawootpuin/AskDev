@@ -1,31 +1,32 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {GetDataCustomer} from "../../model/getDataCustomer";
 import {AppFormService} from "../../appform.service";
 import {Card} from "../../model/card";
 import {Bank} from "../../model/bank";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-bank-card',
   templateUrl: './bank-card.component.html'
 })
-export class BankCardComponent implements OnInit {
+export class BankCardComponent implements OnInit,OnDestroy {
   data: GetDataCustomer;
   cardTable: Card[] = [];
   selectedCard: Card = new Card();
 
   bankTable: Bank[] = [];
   selectedBank: Bank = new Bank();
-
+  subscription : Subscription;
   constructor(private appFormService: AppFormService) {
   }
 
   ngOnInit() {
-    this.appFormService.eventTabCustomer.subscribe(
+    this.subscription = this.appFormService.eventTabCustomer.subscribe(
       (json: any) => {
-        console.log(json);
+        //console.log(json);
         this.data = json;
         this.cardTable = this.data.card;
-        console.log(this.cardTable);
+        //console.log(this.cardTable);
         if (this.cardTable) {
           if (this.cardTable.length > 0) {
             this.selectedCard = this.cardTable[0];
@@ -40,6 +41,12 @@ export class BankCardComponent implements OnInit {
         }
       }
     )
+  }
+
+  ngOnDestroy() {
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
   }
 
   selectCard(event) {

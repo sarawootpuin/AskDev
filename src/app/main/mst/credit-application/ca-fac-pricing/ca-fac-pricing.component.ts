@@ -24,7 +24,7 @@ export class CaFacPricingComponent implements OnInit {
         this.caNo = params['ca_no'];
       }
     );
-    console.log(this.isReadonly);
+    //console.log(this.isReadonly);
   }
 
   ngOnDestroy(){
@@ -35,12 +35,14 @@ export class CaFacPricingComponent implements OnInit {
 
 
 
-  callAttach(){
-    if (this.caNo){
-      let ca_no: string = this.caNo.replace("/", "_");
-      let strAttach = this.service.url_report +`/result?report=MKT\\Attach_Sheet_01.fr3&ca_no=${ca_no}&com_code=${this.userStorage.getComCode()}&format=pdf`;
-      window.open(strAttach, '_blank');
-    }
-  }
+  // callAttach(){
+  //   if (this.caNo){
+  //     let ca_no: string = this.caNo.replace("/", "_");
+  //     let strAttach = this.service.url_report +`/result?report=MKT\\Attach_Sheet_01.fr3&ca_no=${ca_no}&com_code=${this.userStorage.getComCode()}&format=pdf=${'Att_RV' + ca_no}`;
+  //     //let strAttach = this.service.url_report + `/result?report=MKT\\Attach_Sheet_01.fr3&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf&cmd_folder=${ca_no}&cmd_path=1&cmd_pdf=${'ATT_' + ca_no + '_RV'+this.myCaHead.revise_time }&draft=${draft}`;
+  //     console.log(strAttach);
+  //     window.open(strAttach, '_blank');
+  //   }
+  // }
 
 }

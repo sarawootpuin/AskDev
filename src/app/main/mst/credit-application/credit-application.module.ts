@@ -6,7 +6,7 @@ import {CreditApplicationRoutingModule} from "./credit-application.routing.modul
 import {CreditApplicationComponent} from "./credit-application.component";
 import {
   ButtonModule, DialogModule, FileUploadModule, PanelModule, TabViewModule, DataTableModule, SharedModule,
-  CalendarModule, GalleriaModule, LightboxModule, SidebarModule, KeyFilterModule
+  CalendarModule, GalleriaModule, LightboxModule, SidebarModule, KeyFilterModule, DropdownModule
 } from 'primeng/primeng';
 import {TooltipModule} from 'primeng/primeng';
 import {AccordionModule} from 'primeng/primeng';
@@ -20,7 +20,7 @@ import {CaMachineComponent} from "./ca-customer-tab/ca-machine/machine.component
 import {CaExposureComponent} from "./ca-customer-tab/ca-exposure/exposure.component";
 import {CaCustomerComponent} from "./ca-customer-tab/ca-customer/customer.component";
 import {CaConditionRemarkComponent} from "./ca-condition-remark/condition-remark.component";
-import {CaSubcaComponent} from "./ca-subca/ca-subca.component";
+import {CaSubcaComponent} from "./ca-pricing-subca/ca-pricing-subca.component";
 import {CaProfileComponent} from "./ca-profile/profile.component";
 import {CaApproveLvComponent} from "./ca-approve-lv/ca-approve-lv.component";
 import {CaOpinionComponent} from "./ca-opinion/opinion.component";
@@ -86,7 +86,7 @@ import {TableModule} from "primeng/table";
     CreditApplicationRoutingModule,
     CurrencyMaskModule,CenterModule,
     GalleriaModule,LightboxModule,SidebarModule, FormsModule,PanelMenuModule,TooltipModule
-    ,EntityModule,InputSwitchModule,TextMaskModule,KeyFilterModule,CardModule,TableModule
+    ,EntityModule,InputSwitchModule,TextMaskModule,KeyFilterModule,CardModule,TableModule,DropdownModule
   ],
   declarations: [CreditApplicationComponent,CaAddressThComponent,CaAddressEnComponent,CaPercentIndComponent
   ,CaMachineComponent,CaExposureComponent,CaCustomerComponent,CaConditionRemarkComponent,CaSubcaComponent,CaProfileComponent

@@ -14,6 +14,7 @@
               <app-custom-botton-icon [option]="'new'" (onBtnClick)="onAddAsset();index = 0;"></app-custom-botton-icon>
               <app-custom-botton-icon [option]="'delete'"
                                       (onBtnClick)="onDeleteAsset(selectbgdetail)"></app-custom-botton-icon>
+              <app-custom-botton-icon [option]="'copy'" (onBtnClick) = "howManyCopy()" ></app-custom-botton-icon>
             </p-header>
             <p-column field="sub_id" header="No." [style]="{'width':'75px'}"></p-column>
             <p-column field="credit_type" header="Credit Type"></p-column>
@@ -37,8 +38,8 @@
               <app-custom-botton-icon [option]="'delete'"
                                       (onBtnClick)="onDeleteSubAsset(selectbgdetailSub)"></app-custom-botton-icon>
             </p-header>
-            <p-column field="sub_id2" header="No." [style]="{'width':'75px'}"></p-column>
-            <p-column field="asset_type" header="Asset Code"></p-column>
+            <p-column field="subIdDisplay" header="No." [style]="{'width':'75px'}"></p-column>
+            <p-column field="asset_type" header="Asset Type"></p-column>
           </p-dataTable>
 
         </div>
@@ -60,3 +61,17 @@
   </div>
 </div>
 
+
+
+<app-action-dialog [title]="'Number Of Copies'" #copyDialog
+                   [showCancel]="true"
+                   [showOk]="true"
+                   (onOk)="onCopy()">
+  <label> Specify number </label>
+  <input class="form-control"
+               appMyCurrency
+               [value] = "numberOfCopy"
+               (change) = "numberOfCopy = $event.target.value"
+               [fraction]="0"
+               pKeyFilter="pnum"/>
+</app-action-dialog>

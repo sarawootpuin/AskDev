@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation, Input} from '@angular/core';
 import {ObjTemp} from "../../model/ObjTemp";
 import {SaleCallDetail} from "../../model/Sale-Call-Detail";
 import {DatePipe} from "@angular/common";
@@ -14,7 +14,7 @@ import {ContactPersonModel} from "../../../contactperson/model/ContactPerson-mod
   encapsulation: ViewEncapsulation.None
 })
 export class CallVisitResultComponent implements OnInit, OnDestroy {
-
+  @Input() amend : string;
   componentReadOnly : boolean = true ;
 
   subscription: Subscription;

@@ -229,6 +229,7 @@ export class ExposureReportService
       }
     };
     console.log(url);
+    
     //return this.http.get(url, options).map((res: Response) => res.json());
     return this.http.post(url,JSON.stringify(ExposureJson) ,options);
   }

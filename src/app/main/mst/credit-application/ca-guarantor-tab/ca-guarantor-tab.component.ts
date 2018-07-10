@@ -70,8 +70,8 @@ export class CaGuarantorTabComponent implements OnInit ,OnDestroy {
     newGuaran.f_name_e = entityModel.fNameECode;
     newGuaran.f_namee  = entityModel.fNameE ;
     newGuaran.l_namee  = entityModel.lNameE;
-    newGuaran.address  = entityModel.address ;
-    newGuaran.zip      = entityModel.zip ;
+    newGuaran.address  = entityModel.address;
+    newGuaran.zip      = entityModel.zip;
     newGuaran.post_cd  = entityModel.postCd;
     newGuaran.contract = entityModel.contract;
     newGuaran.address_eng = entityModel.addressEng;
@@ -200,7 +200,7 @@ export class CaGuarantorTabComponent implements OnInit ,OnDestroy {
     // newGuaran.title_thi =
     newGuaran.card_type_desc = entityModel.cardTypeDesc ;
     // newGuaran.bus_detail_desc = entityModel.bus
-    newGuaran.zip_desc = entityModel.zipCDesc ;
+    newGuaran.zip_desc = entityModel.zipDesc ;
     // newGuaran.grp_name =  entityModel.grpCode ;
     // newGuaran.bus_ty_desc =
     newGuaran.regis_capital_mb   = entityModel.regisCapital ;

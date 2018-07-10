@@ -36,7 +36,9 @@ export class CaTemporaryBuyerGroupComponent implements OnInit {
         this.caHead = value;
         this.listBuyer = this.caHead.listtempbuyerg;
         this.listCaTempCreditLineGroup = this.caHead.listbuyertempcreditlinegroup;
-
+        if ((this.listCaTempCreditLineGroup) && (this.listCaTempCreditLineGroup.length > 0)) {
+          this. selectedCaTempCreditLineGroup = this. listCaTempCreditLineGroup[0];
+        }
       }
     );
   }
@@ -45,11 +47,11 @@ export class CaTemporaryBuyerGroupComponent implements OnInit {
     if (type === 'T') {
       this.checkCalendar = false;
       /*clear value period*/
-      this.selectedCaTempCreditLineGroup.eff_date = null;
-      this.selectedCaTempCreditLineGroup.expire_date = null;
+      //this.selectedCaTempCreditLineGroup.eff_date = null;
+      //this.selectedCaTempCreditLineGroup.expire_date = null;
     } else if (type === 'P') {
       this.checkCalendar = true;
-      this.selectedCaTempCreditLineGroup.time = null;
+      this.selectedCaTempCreditLineGroup.time = 0;
     }
   }
 
@@ -73,6 +75,7 @@ export class CaTemporaryBuyerGroupComponent implements OnInit {
     caTempCreditLineGroup.join_grp_code = this.selectedBuyer.join_grp_code;
     caTempCreditLineGroup.group_name = this.selectedBuyer.group_name;
     caTempCreditLineGroup.ca_limit = this.selectedBuyer.ca_limit;
+    caTempCreditLineGroup.sbu_type = this.caHead.sbu_typ;
 
     this.listCaTempCreditLineGroup.push(caTempCreditLineGroup);
     this.selectedCaTempCreditLineGroup = caTempCreditLineGroup;

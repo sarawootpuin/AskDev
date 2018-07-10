@@ -2,11 +2,13 @@
   <div class="border-isa p-2">
     <div class="row">
       <div class="flex-md-column col-md-7">
-        <div class="form-group mb-1" (change)="dt.filter(filterType,'forfilter','equals')">
-          <input type="radio" name="bt" value="Factored" checked [(ngModel)]="filterType"> Factored &nbsp;
-          <input type="radio" name="bt" value="Collection" [(ngModel)]="filterType"> Collection &nbsp;
-          <input type="radio" name="bt" value="" [(ngModel)]="filterType"> All &nbsp;
-        </div>
+        <!--<div class="form-group mb-1" (change)="dt.filter(filterType,'forfilter','equals')">-->
+        <div class="form-group mb-1">
+        <!--<input type="radio" name="bt" value="Factored" checked [(ngModel)]="filterType" (change)="onFilter(filterType)"> Factored &nbsp;-->
+        <input type="radio" name="bt" value="Factored" checked [(ngModel)]="filterType" (change)="onFilter(filterType)"> Factored &nbsp;
+        <input type="radio" name="bt" value="Collection" [(ngModel)]="filterType" (change)="onFilter(filterType)" > Collection &nbsp;
+        <!--<input type="radio" name="bt" value="" [(ngModel)]="filterType" (change)="onFilter('ALL')"> All &nbsp;-->
+      </div>
         <div class="form-group mb-1">
           <label style="color:gray"> click column title select all If any (Must = /)</label>
         </div>
@@ -59,7 +61,8 @@
               <p-column field="factored_ifany" [editable]="true" [style]="{'width':'50px','text-align': 'center'}">
                 <ng-template let-col let-doc="rowData" pTemplate="body">
                   <input type="checkbox"
-                         [checked]="doc[col.field] == 'Y'" (change)="doc[col.field] = onClickCheck($event)"
+                         [checked]="doc[col.field] == 'Y'"
+                         (change)="doc[col.field] = onClickCheckbox($event,doc,listBuyerDoc[rowIndex])"
                   >
                 </ng-template>
               </p-column>

@@ -17,7 +17,7 @@ import {ActionDialogComponent} from "../../../../../shared/center/action-dialog/
 export class CaCustomerComponent implements OnInit, OnDestroy {
   @Input('business_detail') business_detail: string;
   @Output('business_detail_out') business_detail_out:EventEmitter<string> = new EventEmitter<string>();
-
+  @Input() isReadOnly : boolean;
   caEntityDetail: caEntity = new caEntity();
   listNation: caNationality[] = [];
   selectedNation: caNationality;
@@ -32,19 +32,29 @@ export class CaCustomerComponent implements OnInit, OnDestroy {
   listCRD: caListMaster[];
   listNTY: caListMaster[];
   listNTN: caListMaster[];
+  listPOS_BG: caListMaster[];
 
+  urlGroupCus: string;
+  dataGroupCus: any;
   OutURL: string;
   @ViewChild('nationDialog') nationDialog: ActionDialogComponent;
 
   constructor(private creditApplicationService: creditApplicationService,
               private serviceEndPoint: ServiceEndpoint,
-              private userStorage: UserStorage) {
+              private userStorage: UserStorage,
+              private service: ServiceEndpoint,) {
 
     this.OutURL = this.serviceEndPoint.url
       + this.serviceEndPoint.sale_call_api
       + "/ask/salecall/GetDBD?device=Web&user="
       + this.userStorage.getUserName() + "&Comcode=" + this.userStorage.getComCode()
       + "&dbdcode=" + "No";
+    this.urlGroupCus = this.service.url + this.service.ca_api + '/ask/ca/GetListSearchUn';
+    this.dataGroupCus = {
+      "device": "web",
+      "username": this.userStorage.getUserName(),
+      "action": "GROUPCUS"
+    }
 
   }
 
@@ -58,7 +68,7 @@ export class CaCustomerComponent implements OnInit, OnDestroy {
       (obj) => {
         this.caEntityDetail = obj.caentity;
         this.listNation = this.caEntityDetail.listentitynation;
-        console.log(this.listNation);
+        //console.log(this.listNation);
         if (this.listNation.length > 0) {
           this.selectNation(this.listNation[0]);
         }
@@ -73,6 +83,7 @@ export class CaCustomerComponent implements OnInit, OnDestroy {
         this.listCRD = this.creditApplicationService.listCRD;
         this.listNTY = this.creditApplicationService.listNTY;
         this.listNTN = this.creditApplicationService.listNTN;
+        this.listPOS_BG = this.creditApplicationService.listPOS_BG;
       }
     );
   }
@@ -164,5 +175,13 @@ export class CaCustomerComponent implements OnInit, OnDestroy {
 
   findSelectedIndex(): number {
     return this.listNation.indexOf(this.selectedNation);
+  }
+
+  setGroup(data: string) {
+    this.caEntityDetail.grp_code = data;
+  }
+
+  setGroupName(data: string) {
+    this.caEntityDetail.grp_name = data;
   }
 }

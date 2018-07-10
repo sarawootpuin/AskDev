@@ -79,21 +79,21 @@
         </div>
       </div>
       <div class="d-flex">
-        <div class="flex-md-column col-md-2 ">
+        <div class="flex-md-column col-md-3 ">
           <div class="form-group">
             <label>Birth/Register Date</label>
             <p-calendar dateFormat="dd/mm/yy" class="my-1" [(ngModel)]="caGua.birth_d" dataType="string" showButtonBar="true"
                         placeholder="dd/mm/yyyy"></p-calendar>
           </div>
         </div>
-        <div class="flex-md-column col-md-2 ">
+        <div class="flex-md-column col-md-3 ">
           <div class="form-group">
-            <label>  Establishment Date</label>
+            <label>Establishment Date</label>
             <p-calendar dateFormat="dd/mm/yy" class="my-1"  [(ngModel)]="caGua.establish_date" dataType="string"
                         showButtonBar="true" placeholder="dd/mm/yyyy"></p-calendar>
           </div>
         </div>
-        <div class="flex-md-column col-md-6 offset-2 ">
+        <div class="flex-md-column col-md-6 ">
           <div class="form-group">
             <label>Registered Capital</label>
             <input type="text" class="form-control"  [(ngModel)]="caGua.regis_capital" >
@@ -151,7 +151,7 @@
                         showButtonBar="true" placeholder="dd/mm/yyyy"></p-calendar>
           </div>
         </div>
-        <div class="flex-md-column col-md-3 offset-2">
+        <div class="flex-md-column col-md-2 offset-2">
           <div class="form-group">
             <label>Sex</label>
             <select class="form-control"
@@ -164,6 +164,22 @@
             </select>
           </div>
         </div>
+        <div class="flex-md-column col-md-4">
+          <div class="form-group">
+
+            <label> Position </label>
+            <select class="form-control"
+                    [ngModel]="caGua?.posi"
+                    (ngModelChange)="caGua.posi=$event">
+              <option></option>
+              <option *ngFor="let ansPOS_BG of this.listPOS_BG"
+                      [selected]="ansPOS_BG?.id_code == caGua?.posi"
+                      [value]="ansPOS_BG?.id_code">{{ansPOS_BG?.remark}}
+              </option>
+            </select>
+          </div>
+        </div>
+
       </div>
       <div class="d-flex">
         <div class="flex-md-column col-md-6 ">

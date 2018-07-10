@@ -27,9 +27,9 @@
     <div class="flex-row form-inline border-isa col-md-6">
       <div class="col-md-9">
         <select class="form-control"
-                [(ngModel)]="selectbgdetail.selectForCall">
-          <option [value]="6">1.Calculate Installment: Know Interest,Fin,Term</option>
-          <option [value]="7">2.Calculate Interest: Know Installment,Fin,Term</option>
+                [(ngModel)]="selectbgdetail.type_cal_pricing">
+          <option [hidden]="selectbgdetail.schedule == 'I'" [value]="6">1.Calculate Installment: Know Interest,Fin,Term</option>
+          <option [selected]="selectbgdetail.schedule == 'I'" [value]="7">2.Calculate Interest: Know Installment,Fin,Term</option>
         </select>
       </div>
       <div class="col-md-3">

@@ -5,14 +5,15 @@
   <div class="" style="background-color: #FFF">
     <app-action-button-form title="Credit Application Form"
                             (onSubmit)="questionAction('SUBMIT')" (onSave)="questionAction('SAVE')"
-                            (onPrint)="showReport()"
+                            (onPrint)="showReport('Y')"
                             (onReject)="questionAction('REJECT')" (onCancel)="questionAction('CANCEL')"
-                            (onEdit)="btnFormEdit = false; isReadonly = false"
+                            (onEdit)="onClickEdit()"
                             [showSubmit]="btnFormSubmit" [showSave]="btnFormSave" [showPrint]="true"
                             [showReject]="btnFormReject" [showCancel]="btnFormCancel" [showEdit]="btnFormEdit"
     ></app-action-button-form>
     <div class="p-1 m-1 border-isa">
-      <p-panel [toggleable]="true" [style]="{'margin-bottom':'20px'}"
+      <p-panel [toggleable]="true"
+               [style]="{'margin-bottom':'20px'}"
                header="Infomation - {{myCaHead.sbu_type_desc}} ( {{myCaHead.ca_no}} )  - {{myCaHead.current_task}}  ">
         <div class="main-container ">
           <div class="row">
@@ -102,10 +103,37 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="flex-md-column col-md-3">
               <div class="form-group">
                 <label>Introduced By</label>
-                <input type="text" class="form-control" [(ngModel)]="myCaHead.intro_by_name" readonly>
+                <select class="form-control"
+                        [disabled] = "!this.checkTask.includes(this.task)"
+                        [(ngModel)] = "myCaHead.intro_mthd_cd"
+                        (ngModelChange) = "sourceChange()">
+                  <option [value]=""></option>
+                  <option *ngFor="let list of listINTRO"
+                          [value]="list.id_code"
+                          [selected]="myCaHead.intro_mthd_cd === list.id_code">{{list.remark}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="flex-md-column col-md-3">
+              <div class="form-group">
+                <label>&nbsp;</label>
+                <div class="row">
+                  <div class="flex-md-column col-md">
+                    <input type="text" class="form-control" [(ngModel)]="myCaHead.intro_by_name" readonly>
+                  </div>
+                  <div class="flex-md-column col-md-2" [hidden]="!this.checkTask.includes(this.task)">
+                      <app-search-un inuURL={{this.OutURL}}
+                                     [callApiOnShow]="true"
+                                     title="NAME;CODE;"
+                                     (col1)="setIntroName($event)"
+                                     (col2)="setIntroValue($event)">
+                       </app-search-un>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="flex-md-column col-md-3">
@@ -182,12 +210,16 @@
             <div class="flex-md-column col-md-3">
               <div class="form-group">
                 <label>Joint Seller CR. Amount (Baht)</label>
-                <input type="text" class="form-control" [(ngModel)]="myCaHead.join_group_cr" readonly>
+                <input  currencyMask [options]="{ prefix: '', thousands: ',', decimal: '.'}"
+                  type="text" class="form-control" [(ngModel)]="myCaHead.join_group_cr" readonly>
               </div>
             </div>
 
           </div>
         </div>
+
+
+
       </p-panel>
     </div>
     <div class="m-1 border-isa">
@@ -258,6 +290,8 @@
           <app-side-tab-content [nameContent]="'Customer'">
             <app-ca-customer-tab [important]="editImportant"
                                  [isReadonly]="this.isReadonly" [business_detail]="myCaHead.business_detail"
+                                 [task] = "task"
+                                 [taskShorten] = "taskShorten"
                                  (business_detail_out)="this.myCaHead.business_detail = $event"></app-ca-customer-tab>
           </app-side-tab-content>
 
@@ -297,8 +331,8 @@
           <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="2" *ngIf="false">  <!--#floor plan-->
             <app-ca-floor-plan></app-ca-floor-plan>
           </app-side-tab-content>
-          <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="3" *ngIf="false">  <!--#Sub ca (Asia)-->
-            <app-ca-subca></app-ca-subca>
+          <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="3" *ngIf="myCaHead.com_code != 'BGPL'">  <!--#Sub ca (Asia)-->
+            <app-ca-pricing-subca></app-ca-pricing-subca>
           </app-side-tab-content>
           <app-side-tab-content [nameContent]="'Pricing'" [idMenu]="4">  <!--#Asset (BG)-->
             <app-ca-asset [isReadonly]="this.isReadonly"></app-ca-asset>
@@ -314,6 +348,7 @@
           <app-side-tab-content [nameContent]="'Buyers'"
                                 *ngIf="myCaHead.sbu_typ == 'FDO'">
             <app-ca-buyer [isReadonly]="this.isReadonly"
+                          [taskShorten] = "taskShorten"
                           [important]="editImportant"></app-ca-buyer>
           </app-side-tab-content>
           <!--//================================End Pricing============================-->
@@ -324,7 +359,8 @@
             <app-ca-cap [isReadonly]="this.isReadonly"></app-ca-cap>
           </app-side-tab-content>
           <app-side-tab-content [nameContent]="'Approve Level/Comment'">
-            <app-ca-approve-lv></app-ca-approve-lv>
+            <app-ca-approve-lv [task] = "task"
+                               [taskShorten] = "taskShorten"></app-ca-approve-lv>
           </app-side-tab-content>
 
           <!--//=========================================================-->
@@ -365,7 +401,9 @@
             <app-ca-ref *ngIf="false"></app-ca-ref>
           </app-side-tab-content>
           <app-side-tab-content [nameContent]="'Attachment'">
-            <app-ca-attachment *ngIf="task == 'CA-04-2' ||task == 'CA-04-3'"></app-ca-attachment>
+            <app-ca-attachment [caNo] = "this.caNo"
+                               [comCode] = "this.comCode"
+                               *ngIf="task == 'CA-04-2' ||task == 'CA-04-3'"></app-ca-attachment>
           </app-side-tab-content>
 
           <app-side-tab-content [nameContent]="'Recommend'">
@@ -424,5 +462,22 @@
         <textarea class="col-md" style="height: 200px" [(ngModel)]="comment"></textarea>
       </div>
     </div>
+  </div>
+</app-action-dialog>
+
+<app-alert-dialog #warning
+                  [mode_single]=0
+                  [action]="'CUSTOM'"
+                  (onCancel)="isPassWarning(this.tmpaction)">
+</app-alert-dialog>
+
+<app-action-dialog #listFileDialog
+                   [width]="600">
+  <div class="container list-group">
+    <ul class="list-group list-group-item-action" *ngFor="let file of this.listFileCa; let i = index">
+        <li class= "list-group-item list-group-item-action" style="cursor:pointer" (click)="clickFile(i)">
+          {{file}}
+        </li>
+    </ul>
   </div>
 </app-action-dialog>

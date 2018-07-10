@@ -1,13 +1,16 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, Input, OnDestroy, OnInit} from "@angular/core";
 import {AppFormService} from "../appform.service";
 import {ListBuyer} from "../model/getDataBuyer";
 import {ListAnswer} from "../model/getListAnswer";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-buyer',
   templateUrl: './buyer.component.html'
 })
-export class BuyerComponent implements OnInit {
+export class BuyerComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
+  subscriptionEdit: Subscription;
   dataSelect: ListBuyer = new ListBuyer();
   data: ListBuyer[] = [];
   dataListAnswer: ListAnswer[] = [];
@@ -24,7 +27,7 @@ export class BuyerComponent implements OnInit {
     this.dataListJointBuyer = this.appFormService.listJointBuyer;
     this.disabled = this.appFormService.getAppFormData().disabled;
 
-    this.appFormService.eventTabBuyer.subscribe(
+    this.subscription = this.appFormService.eventTabBuyer.subscribe(
       (listTab) => {
         this.data = listTab;
         this.dataListAnswer = this.appFormService.listApplicationType;
@@ -33,7 +36,7 @@ export class BuyerComponent implements OnInit {
       }
     );
 
-    this.appFormService.editEvent.subscribe(
+    this.subscriptionEdit = this.appFormService.editEvent.subscribe(
       (flag) => {
         if (flag) {
           for (let index in this.data) {
@@ -44,6 +47,15 @@ export class BuyerComponent implements OnInit {
         }
       }
     )
+  }
+
+  ngOnDestroy() {
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
+    if (this.subscriptionEdit != null) {
+      this.subscriptionEdit.unsubscribe();
+    }
   }
 
   setDataSelect(data: ListBuyer) {

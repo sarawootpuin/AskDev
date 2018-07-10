@@ -1,11 +1,8 @@
-<app-action-button-form [showBack]="true" [showReject]="false" [showSubmit]="false" [showNew]="false" [showCalculator]="false" [showSearch]="false" (onBack)="backPage()" [showEdit]="false"
-                        [showPrint]="false" [showSave]="false" [showCancel]="false"
-                        [title]="'Blacklist Checking.'"></app-action-button-form>
+<app-action-button-form [showBack]="true" (onBack)="backPage()"
+                        [title]="this.tabName">
 
+</app-action-button-form>
 <p-tabView>
-
-
-
   <p-tabPanel header="ยอดสินเชื่อ" *ngIf="controlTabBlacklistChecking == 1 &&controlTabBlacklistChecking<3" [selected]="false">
     <app-exposure></app-exposure>
   </p-tabPanel>

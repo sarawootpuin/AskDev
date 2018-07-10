@@ -3,6 +3,7 @@ import {BlacklistResultService} from "../blacklist-service";
 import {Router} from "@angular/router";
 import { Location } from '@angular/common';
 import {ExposureComponent} from "../blacklist-exposure/blacklist-exposure.component";
+import {Input} from "@angular/compiler/src/core";
 
 @Component({
   selector: 'app-tabvwblchecking',
@@ -17,9 +18,11 @@ export class TabvwblcheckingComponent implements OnInit {
   controlTabBlacklistChecking : number;
   blShared:boolean;
   componentOnShow:string;
+  tabName:string;
+
 
   ngOnInit() {
-
+     this.tabName =  this.blackListService.tabName;
     this.controlTabBlacklistChecking  = this.blackListService.controlTabBlacklistChecking;
     if(!this.controlTabBlacklistChecking)
     {

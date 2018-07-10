@@ -1,13 +1,15 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, Input, OnDestroy, OnInit} from "@angular/core";
 import {ListBuyer} from "../../model/getDataBuyer";
 import {AppFormService} from "../../appform.service";
 import {ListAnswer} from "../../model/getListAnswer";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-detail-buyer',
   templateUrl: './detail-buyer.component.html'
 })
-export class DetailBuyerComponent implements OnInit {
+export class DetailBuyerComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
   @Input("data") data: ListBuyer = new ListBuyer();
   @Input("lists") lists: ListAnswer[];
   @Input("listsJointB") listsJointB: ListAnswer[];
@@ -17,11 +19,17 @@ export class DetailBuyerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.appFormService.editEvent.subscribe(
+    this.subscription = this.appFormService.editEvent.subscribe(
       (flag) => {
         this.editable = flag;
       }
     )
+  }
+
+  ngOnDestroy() {
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
   }
 
   onBuyerGroupChange(index: any) {

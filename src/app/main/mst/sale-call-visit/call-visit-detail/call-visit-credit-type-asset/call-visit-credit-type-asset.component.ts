@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import {SaleCallVisitService} from "../../sale-call-visit.service";
 import {SaleCallAsset} from "../../model/Sale-Call-Asset";
 import {SaleCallDetail} from "../../model/Sale-Call-Detail";
@@ -13,6 +13,7 @@ import {Subscription} from "rxjs/Subscription";
   encapsulation: ViewEncapsulation.None
 })
 export class CallVisitCreditTypeAssetComponent implements OnInit,OnDestroy {
+  @Input() amend : string;
   mySaleCallVisitAsset: SaleCallAsset;
 
   subscription: Subscription;

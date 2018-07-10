@@ -1,14 +1,15 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, Input, OnDestroy, OnInit} from "@angular/core";
 import {AppFormService} from "../appform.service";
 import {ListCollateral} from "../model/getDataCollateral";
 import {ListAnswer} from "../model/getListAnswer";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-collateral',
   templateUrl: './collateral.component.html'
 })
-export class CollateralComponent implements OnInit {
-
+export class CollateralComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
   data: ListCollateral[] = [];
   dataSelect: ListCollateral = new ListCollateral();
   dataListPayInterest: ListAnswer[] = [];
@@ -22,7 +23,7 @@ export class CollateralComponent implements OnInit {
     this.data = this.appFormService.listTabCollateral;
     this.dataListPayInterest = this.appFormService.listPayInterestMethod;
     this.disabled = this.appFormService.getAppFormData().disabled;
-    this.appFormService.eventTabCollateral.subscribe(
+    this.subscription = this.appFormService.eventTabCollateral.subscribe(
       (data) => {
         this.data = data;
         this.dataListPayInterest = this.appFormService.listPayInterestMethod;
@@ -31,10 +32,15 @@ export class CollateralComponent implements OnInit {
     )
   }
 
+  ngOnDestroy() {
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
+  }
+
   setDataSelect(data: ListCollateral) {
     if (data) {
       this.dataSelect = data;
-      console.log(this.dataSelect);
     }
   }
 

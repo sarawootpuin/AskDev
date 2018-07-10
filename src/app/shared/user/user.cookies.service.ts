@@ -1,10 +1,12 @@
 import {Injectable} from '@angular/core';
-import {CookieOptions, CookieService} from "ngx-cookie";
+import {CookieOptions, CookieService, cookieServiceFactory} from "ngx-cookie";
 
 @Injectable()
 export class UserCookies {
   public authen_key: string = 'isLogin';
   public remember_key: string = 'isRemember';
+  public code: string = 'u_code';
+  public comCode: string = 'u_comcode';
 
   constructor(private _cookieService: CookieService) {
   }
@@ -21,6 +23,12 @@ export class UserCookies {
 
     //this._cookieService.put(this.authen_key, 'Y', options);
     sessionStorage.setItem(this.authen_key, 'Y')
+  }
+
+  getUserStoreToCookise(userCode:string,comCode:string){
+    this._cookieService.put(this.code,userCode);
+    this._cookieService.put(this.comCode,comCode)
+    console.log(userCode , comCode);
   }
 
   storeRemember(remember: boolean|false) {

@@ -157,9 +157,11 @@ export class ExposureinquiryComponent implements OnInit {
 
           //    this.BLService.setBlacklistHistory(this.ListBlacklistHistory);
           //
-          if (data.MSG == 'Complete')
-            this.router.navigate(['blacklist/checking']);
-          else
+          this.BLService.tabName='Exposure Inquiry';
+          if (data.MSG == 'Complete'){
+
+            this.router.navigate(['blacklist/checking']);}
+            else
             this.router.navigate(['blacklist/blacklist-exposureinquiry']);
         }
       );

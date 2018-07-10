@@ -1,17 +1,19 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from "@angular/core";
+import {Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from "@angular/core";
 import {ListDetail} from "../../model/getDataDetail";
 import {AppFormService} from "../../appform.service";
 import {AlertDialogComponent} from "../../../../../shared/center/alert-dialog/alert-dialog.component";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html'
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, OnDestroy {
   data: ListDetail[] = [];
   dataSelect: ListDetail;
   @Output("clickList") clickList = new EventEmitter<ListDetail>();
   @ViewChild('deleteDialog') deleteDialog: AlertDialogComponent;
+  subscription: Subscription;
 
   constructor(private appFormService: AppFormService) {
   }
@@ -23,12 +25,18 @@ export class ListComponent implements OnInit {
         this.selectList(this.data[0]);
       }
     }
-    this.appFormService.eventListTabLeasing.subscribe(
+    this.subscription = this.appFormService.eventListTabLeasing.subscribe(
       (data: any) => {
         this.data = data;
         this.selectList(this.data[0]);
       }
     )
+  }
+
+  ngOnDestroy() {
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
   }
 
   selectList(selectedData) {
@@ -73,7 +81,7 @@ export class ListComponent implements OnInit {
     }
   }
 
-  deleteWarning(){
+  deleteWarning() {
     this.deleteDialog.setAction("DELETE");
     this.deleteDialog.open();
   }

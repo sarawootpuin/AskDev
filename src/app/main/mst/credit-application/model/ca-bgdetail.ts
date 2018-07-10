@@ -58,12 +58,14 @@ export class caBgDetail {
   public   pen_rate;
   public   great_period;
   public   net_irr_inc_deposit;
+  public   type_cal_pricing;
+  public   buy_back_amt;
+  public   dealer_code;
   public   fin_name;
   public   credit_type;
   public   drawdown_flg;
   public   listbgdetailsub :caBgDetailSub[] ;
   public   listcastep :caStep[] ;
-  public   selectForCall;
 
 
   constructor()
@@ -73,8 +75,8 @@ export class caBgDetail {
               installment_i_vat, bank_code, interest_rate_type, interest_rate, terms, flat_rate, gross_irr, net_irr, spread,
               currency, disburse_dt, first, operating_lease, wh_tax, lc_flg, fin_asst, group_flg, group_nme, asst_prce_forgn,
               curr_type, duty_pcnt, inst_pcnt_of_asst, with_vat, free_text, es_expense, es_revenue, cancel_date, cancel_no,
-              pen_rate, great_period, net_irr_inc_deposit, fin_name, credit_type, drawdown_flg, listbgdetailsub ,listcastep,
-              selectForCall)
+              pen_rate, great_period, net_irr_inc_deposit, type_cal_pricing , buy_back_amt, dealer_code,
+              fin_name, credit_type, drawdown_flg, listbgdetailsub , listcastep)
   constructor(ca_no ?, sub_id ?, fin_typ ?, sub_fin ?, buy_back_flg ?, adv_arr ?, schedule ?, asst_amt_e_vat ?, asst_amt_vat ?,
               asst_amt_i_vat ?, fin_amt_e_vat ?, fin_amt_vat ?, fin_amt_i_vat ?, fin_ratio ?, down_amt_e_vat ?, down_amt_vat ?,
               down_amt_i_vat ?, dep_amt_e_vat ?, dep_amt_vat ?, dep_amt_i_vat ?, rv_amt_e_vat ?, rv_amt_vat ?, rv_amt_i_vat ?,
@@ -82,8 +84,8 @@ export class caBgDetail {
               interest_rate ?, terms ?, flat_rate ?, gross_irr ?, net_irr ?, spread ?, currency ?, disburse_dt ?, first ?,
               operating_lease ?, wh_tax ?, lc_flg ?, fin_asst ?, group_flg ?, group_nme ?, asst_prce_forgn ?, curr_type ?,
               duty_pcnt ?, inst_pcnt_of_asst ?, with_vat ?, free_text ?, es_expense ?, es_revenue ?, cancel_date ?, cancel_no ?,
-              pen_rate ?, great_period ?, net_irr_inc_deposit ?, fin_name ?, credit_type ?, drawdown_flg ?
-              , listbgdetailsub? ,listcastep ?,selectForCall?) {
+              pen_rate ?, great_period ?, net_irr_inc_deposit ?, type_cal_pricing ?, buy_back_amt?, dealer_code?,
+              fin_name ?, credit_type ?, drawdown_flg ?, listbgdetailsub? ,listcastep ?) {
     this.ca_no = ca_no;
     this.sub_id = sub_id;
     this.fin_typ = fin_typ;
@@ -141,12 +143,14 @@ export class caBgDetail {
     this.pen_rate = pen_rate;
     this.great_period = great_period;
     this.net_irr_inc_deposit = net_irr_inc_deposit;
+    this.type_cal_pricing = type_cal_pricing;
+    this.buy_back_amt = buy_back_amt;
+    this.dealer_code = dealer_code;
     this.fin_name = fin_name;
     this.credit_type = credit_type;
     this.drawdown_flg = drawdown_flg;
     this.listbgdetailsub = listbgdetailsub ? listbgdetailsub : [];
     this.listcastep = listcastep ?listcastep : [];
-    this.selectForCall = selectForCall;
   }
 
   static
@@ -212,12 +216,14 @@ export class caBgDetail {
           json[i].pen_rate,
           json[i].great_period,
           json[i].net_irr_inc_deposit,
+          json[i].type_cal_pricing,
+          json[i].buy_back_amt,
+          json[i].dealer_code,
           json[i].fin_name,
           json[i].credit_type,
           json[i].drawdown_flg,
           caBgDetailSub.parse(json[i].listbgdetailsub),
-          caStep.parse(json[i].listcastep),
-          1
+          caStep.parse(json[i].listcastep)
         ))
       }
     }

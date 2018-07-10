@@ -30,6 +30,8 @@ export class BlacklistResultService {
    eventComponentNameOnShow = new EventEmitter<string>();
    componentNameOnShow :string = '';
    blShared :boolean = false;
+   tabName :string = '';
+
 
    _url : string;
    _bl_tps : string;
@@ -141,6 +143,7 @@ export class BlacklistResultService {
     //  console.log(JSON.stringify(ExposureJson));
       //const url = `http://javadev01:8095/blacklist_test/ask/blacklist/BlacklistExposure`;
 
+
         const url = this._url+this._bl_tps+`/ask/blacklist/BlacklistExposure`;
       //const url = `http://localhost:8080/MKS_WebServices/ask/blacklist/BlacklistExposure`;
       let options = {
@@ -148,7 +151,7 @@ export class BlacklistResultService {
         'Content-Type': 'application/json;charset=utf-8'
       }
       };
-    
+
     //return this.http.get(url, options).map((res: Response) => res.json());
       return this.http.post(url,JSON.stringify(ExposureJson) ,options);
   }
@@ -280,7 +283,7 @@ export class BlacklistResultService {
         'Content-Type': 'application/json;charset=utf-8'
       }
     };
-    
+
     //return this.http.get(url, options).map((res: Response) => res.json());
     return this.http.post(url,JSON.stringify(json) ,options);
   }

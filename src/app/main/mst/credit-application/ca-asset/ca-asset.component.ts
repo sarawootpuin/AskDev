@@ -1,6 +1,7 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import { caBgDetail } from './../model/ca-bgdetail';
+import { ActionDialogComponent } from './../../../../shared/center/action-dialog/action-dialog.component';
+import {Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {creditApplicationService} from "../credit-application.service";
-import {caBgDetail} from "../model/ca-bgdetail";
 import {caBgDetailSub} from "../model/ca-bgdetailsub";
 import {Subscription} from "rxjs/Subscription";
 import {CaDetailappraisal} from "../model/ca-bgDetailappraisal";
@@ -28,7 +29,8 @@ export class CaAssetComponent implements OnInit , OnDestroy {
   caType : string;
   index: number = 0;
 
-
+  @ViewChild('copyDialog') copyDialog : ActionDialogComponent;
+  numberOfCopy : number = 0;
   constructor(private creditApplicationService: creditApplicationService) { }
 
   ngOnInit() {
@@ -88,23 +90,42 @@ export class CaAssetComponent implements OnInit , OnDestroy {
     this.newAsset.cal_inst_typ = 'Fix';
     this.newAsset.schedule = 'R';
     this.newAsset.adv_arr = 'V';
-    this.newAsset.selectForCall = '1';
+    this.newAsset.type_cal_pricing = '1';
 
     this.listbgdetail = [ ...this.listbgdetail,this.newAsset];
     this.creditApplicationService.caHead.listbgdetail = this.listbgdetail ;
     this.onSelectdetail(this.newAsset);
   }
+
   onDeleteAsset( selectasset :caBgDetail ){
     let delRow = this.listbgdetail.indexOf(selectasset);
     this.listbgdetail.splice(delRow, 1);
     ////  Change  order
     for (let i = 1; i <= this.listbgdetail.length; i++) {
       this.listbgdetail[i - 1].sub_id = i;
+      this.listbgdetail[i - 1].listbgdetailsub.forEach(
+        value => {
+          value.sub_id = i
+          value.subIdDisplay = i + '.' + value.sub_id2
+          value.listbgdetailappraisal.forEach(
+            detail => detail.sub_id = i
+          )
+        }
+      )
+      this.listbgdetail[i - 1].listcastep.forEach(
+        value => value.sub_id = i
+      )
     }
-    ;
+
     this.listbgdetail = [...this.listbgdetail];
-    if (this.listbgdetail[0])
-    { this.selectbgdetail = this.listbgdetail[0]; }
+    //console.log(this.listbgdetail)
+    this.creditApplicationService.caHead.listbgdetail = this.listbgdetail;
+    if (this.listbgdetail[0]){
+      this.onSelectdetail(this.listbgdetail[0]);
+    // { this.selectbgdetail = this.listbgdetail[0];
+    //   if(this.listbgdetailSub[0])
+    //   {  this.onSelectdetail(this.listbgdetail[0]); }
+    }
   }
 
   onAddSubAsset(){
@@ -116,10 +137,12 @@ export class CaAssetComponent implements OnInit , OnDestroy {
 
     if ( (this.listbgdetailSub) && (this.listbgdetailSub.length) )  {
         this.newSubAsset.sub_id2 = this.listbgdetailSub.length + 1 ;
+        this.newSubAsset.subIdDisplay = this.newSubAsset.sub_id + '.' + this.newSubAsset.sub_id2;
         this.listbgdetailSub = [ ...this.listbgdetailSub,this.newSubAsset];
     }
     else {
-        this.newSubAsset.sub_id2 = 1;
+      this.newSubAsset.sub_id2 = 1;
+      this.newSubAsset.subIdDisplay = this.newSubAsset.sub_id + '.' + this.newSubAsset.sub_id2;
       this.listbgdetailSub = [this.newSubAsset];
     }
     this.selectbgdetail.listbgdetailsub = this.listbgdetailSub ;
@@ -132,10 +155,44 @@ export class CaAssetComponent implements OnInit , OnDestroy {
     for (let i = 1; i <= this.listbgdetailSub.length; i++) {
       this.listbgdetailSub[i - 1].sub_id2 = i;
     }
-    ;
+
     this.listbgdetailSub = [...this.listbgdetailSub];
 
     if(this.listbgdetailSub[0])
     {  this.selectbgdetailSub = this.listbgdetailSub[0] }
+  }
+
+  howManyCopy(){
+    this.numberOfCopy = 0;
+    this.copyDialog.open();
+  }
+
+  onCopy(){
+    for(let i = 0; i < this.numberOfCopy ; i++){
+      this.copyAsset()
+    }
+  }
+
+  copyAsset(){
+    let objBgDetail : caBgDetail = JSON.parse(JSON.stringify(this.selectbgdetail));//Object.assign({},this.selectbgdetail)
+    objBgDetail.sub_id = this.listbgdetail.length + 1;
+    objBgDetail.listbgdetailsub.forEach(
+      value => {
+        value.sub_id = objBgDetail.sub_id
+        value.subIdDisplay = value.sub_id + '.' + value.sub_id2;
+        value.listbgdetailappraisal.forEach(
+          element => {
+            element.sub_id = value.sub_id
+            element.sub_id2 = value.sub_id2
+          }
+        )
+      }
+    )
+    objBgDetail.listcastep.forEach(
+      value => value.sub_id = objBgDetail.sub_id
+    )
+    this.listbgdetail = [ ...this.listbgdetail,objBgDetail];
+    this.creditApplicationService.caHead.listbgdetail = this.listbgdetail;
+    //console.log(this.listbgdetail);
   }
 }

@@ -1,5 +1,5 @@
 import {
-  Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, ViewChild,
+  Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import {searchobj} from "./search-un-model/searchobj";
@@ -34,6 +34,8 @@ export class SearchUnComponent implements OnInit, OnChanges ,OnDestroy {
   @Input('servicetype') private servicetype : string ;
   @Input('objforpost') private  objforpost : any ;
 
+  @ViewChild('gb') private gb;
+
   @ViewChild('searchdialog') searchdialog: ActionDialogComponent;
 
   defaultText: string = "";
@@ -54,12 +56,11 @@ export class SearchUnComponent implements OnInit, OnChanges ,OnDestroy {
   @Output() col4: EventEmitter<string> = new EventEmitter<string>();
   @Output() col5: EventEmitter<string> = new EventEmitter<string>();
 
-  @Output()
-  change: EventEmitter<number> = new EventEmitter<number>();
+  @Output() change: EventEmitter<number> = new EventEmitter<number>();
 
 
   Listselect: searchobj[] = [new searchobj("", "", "", "", "")];
-
+  @Output() cloneValue : EventEmitter<searchobj[]> = new EventEmitter<searchobj[]>();
   SelectRow: searchobj;
 
   btnChoose : boolean = false ;
@@ -78,11 +79,12 @@ export class SearchUnComponent implements OnInit, OnChanges ,OnDestroy {
     this.setUpColumn(this.title);
   }
 
-  ngOnChanges() {
+  ngOnChanges(simpleChanges : SimpleChanges) {
+    //console.log(simpleChanges);
   }
 
   ngOnDestroy() {
-    console.log('Destroy Search Un');
+    //console.log('Destroy Search Un');
     if (this.subscription != null) {
       this.subscription.unsubscribe();
     }
@@ -98,6 +100,7 @@ export class SearchUnComponent implements OnInit, OnChanges ,OnDestroy {
       this.subscription = this.pService.getListSelect(this.inuURL,  this.servicetype.toUpperCase() ,this.objforpost).subscribe(
           (data: any) => {
             this.Listselect = searchobj.parse(data.LIST_DATA);
+            this.cloneValue.emit(this.Listselect);
           }
         );
     }
@@ -132,9 +135,9 @@ export class SearchUnComponent implements OnInit, OnChanges ,OnDestroy {
         this.subscription =  this.pService.getListSelect(newStr,this.servicetype.toUpperCase() ,this.objforpost).subscribe(
           (data: any) => {
             this.Listselect = searchobj.parse(data.LIST_DATA);
+            this.cloneValue.emit(this.Listselect);
            }
           );
-
       }
 
     }

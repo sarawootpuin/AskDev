@@ -9,7 +9,7 @@
                  [ngModel]="Credit_P"
                  (ngModelChange)="Credit_P=!Credit_P"
                  (change)="setCredit()"
-                 [disabled]="componentReadOnly"
+                 [disabled]="componentReadOnly && amend != 'Y'"
           >DirectLoan
           <span></span>
         </label>
@@ -18,7 +18,7 @@
                  [ngModel]="Credit_HP"
                  (ngModelChange)="Credit_HP=!Credit_HP"
                  (change)="setCredit()"
-                 [disabled]="componentReadOnly"
+                 [disabled]="componentReadOnly && amend != 'Y'"
           >Hire Purchase
           <span></span>
         </label>
@@ -27,7 +27,7 @@
                  [ngModel]="Credit_LS"
                  (ngModelChange)="Credit_LS=!Credit_LS"
                  (change)="setCredit()"
-                 [disabled]="componentReadOnly"
+                 [disabled]="componentReadOnly && amend != 'Y'"
           >Leasing
           <span></span>
         </label>
@@ -36,7 +36,7 @@
                  [ngModel]="Credit_FIM"
                  (ngModelChange)="Credit_FIM=!Credit_FIM"
                  (change)="setCredit()"
-                 [disabled]="componentReadOnly"
+                 [disabled]="componentReadOnly && amend != 'Y'"
           >Import Factoring
           <span></span>
         </label>
@@ -45,7 +45,7 @@
                  [ngModel]="Credit_FEX"
                  (ngModelChange)="Credit_FEX=!Credit_FEX"
                  (change)="setCredit()"
-                 [disabled]="componentReadOnly"
+                 [disabled]="componentReadOnly && amend != 'Y'"
           >Export Factoring
           <span></span>
         </label>
@@ -54,7 +54,7 @@
                  [ngModel]="Credit_FDO"
                  (ngModelChange)="Credit_FDO=!Credit_FDO"
                  (change)="setCredit()"
-                 [disabled]="componentReadOnly"
+                 [disabled]="componentReadOnly && amend != 'Y'"
           >Domestic Factoring
           <span></span>
         </label>
@@ -69,7 +69,7 @@
                  [ngModel]="this.FinnanAsset_M"
                  (ngModelChange)="this.FinnanAsset_M=!this.FinnanAsset_M"
                  (change)="setFinanAsset()"
-                 [disabled]="componentReadOnly"
+                 [disabled]="componentReadOnly && amend != 'Y'"
           >Machine
           <span></span>
         </label><br>
@@ -78,7 +78,7 @@
                  [ngModel]="this.FinnanAsset_V"
                  (ngModelChange)="this.FinnanAsset_V=!this.FinnanAsset_V"
                  (change)="setFinanAsset()"
-                 [disabled]="componentReadOnly"
+                 [disabled]="componentReadOnly && amend != 'Y'"
           >Vehicle
           <span></span>
         </label>
@@ -93,7 +93,7 @@
                  value="Y"
                  [ngModel]="mySaleCallVisitAsset?.open_lc"
                  (ngModelChange)="mySaleCallVisitAsset.open_lc=$event"
-                 [disabled]="componentReadOnly">Yes
+                 [disabled]="componentReadOnly && amend != 'Y'">Yes
           <span></span>
         </label><br>
         <label class="mt-radio">
@@ -101,7 +101,7 @@
                  value="N"
                  [ngModel]="mySaleCallVisitAsset?.open_lc"
                  (ngModelChange)="mySaleCallVisitAsset.open_lc=$event"
-                 [disabled]="componentReadOnly">No
+                 [disabled]="componentReadOnly && amend != 'Y'">No
           <span></span>
         </label>
       </div>
@@ -115,7 +115,7 @@
              appMyCurrency
              [value]="mySaleCallVisitAsset?.fin_amt"
              (change)="mySaleCallVisitAsset.fin_amt = $event.target.value"
-             [disabled]="componentReadOnly">
+             [disabled]="componentReadOnly && amend != 'Y'">
       <label>MB.</label>
     </div>
     <div class="col-md-6 form-group" style="padding-left: 0px">
@@ -123,14 +123,14 @@
       <input class="form-control" type="text" class="form-control"  [maxlength]="40"
              [ngModel]="mySaleCallVisitAsset?.brand"
              (ngModelChange)="mySaleCallVisitAsset.brand=$event"
-             [disabled]="componentReadOnly">
+             [disabled]="componentReadOnly && amend != 'Y'">
     </div>
     <div class="col-md-6 form-group" style="padding-left: 0px">
       <label>Specifies</label><br>
       <input class="form-control" type="text"  [maxlength]="200"
              [ngModel]="mySaleCallVisitAsset?.asset_detail"
              (ngModelChange)="mySaleCallVisitAsset.asset_detail=$event"
-             [disabled]="componentReadOnly">
+             [disabled]="componentReadOnly && amend != 'Y'">
     </div>
     <div class="col-md-12 " style="padding-left: 0px">
       <label>Credit Note</label>
@@ -147,7 +147,7 @@
                        [ngModel]="Purpose_R"
                        (ngModelChange)="Purpose_R=!Purpose_R"
                        (change)="setPurpose()"
-                       [disabled]="componentReadOnly"
+                       [disabled]="componentReadOnly && amend != 'Y'"
                 >Replace the old one
                 <span></span>
               </label>
@@ -156,7 +156,7 @@
                        [ngModel]="Purpose_S"
                        (ngModelChange)="Purpose_S=!Purpose_S"
                        (change)="setPurpose()"
-                       [disabled]="componentReadOnly"
+                       [disabled]="componentReadOnly && amend != 'Y'"
                 > Support new order
                 <span></span>
               </label>
@@ -165,7 +165,7 @@
                        [ngModel]="Purpose_H"
                        (ngModelChange)="Purpose_H=!Purpose_H"
                        (change)="setPurpose()"
-                       [disabled]="componentReadOnly"
+                       [disabled]="componentReadOnly && amend != 'Y'"
                 > Hiring replacement
                 <span></span>
               </label>
@@ -174,7 +174,7 @@
                        [ngModel]="Purpose_O"
                        (ngModelChange)="Purpose_O=!Purpose_O"
                        (change)="setPurpose()"
-                       [disabled]="componentReadOnly"
+                       [disabled]="componentReadOnly && amend != 'Y'"
                 > Other
                 <span></span>
               </label>
@@ -185,7 +185,7 @@
                    [disabled]="!this.Purpose_O"
                    [(ngModel)]="Purpose_O_note"
                    (focusout)="setPurpose()"
-                   [disabled]="componentReadOnly">
+                   [disabled]="componentReadOnly && amend != 'Y'">
           </div>
           <div class="col-md-12 form-group">
             <label>-Our competitor</label>
@@ -195,11 +195,11 @@
             <input type="text" class="form-control"
                    [ngModel]="mySaleCallVisitAsset?.competitor_lease"
                    (ngModelChange)="mySaleCallVisitAsset.competitor_lease=$event"
-                   [disabled]="componentReadOnly">
+                   [disabled]="componentReadOnly && amend != 'Y'">
           </div>
           <div class="col-md-4  form-group">
             <label>Bank Name</label>
-            <select class="form-control"  [disabled]="componentReadOnly"
+            <select class="form-control"  [disabled]="componentReadOnly && amend != 'Y'"
                     [ngModel]="mySaleCallVisitAsset?.competitor_bank"
                     (ngModelChange)="mySaleCallVisitAsset.competitor_bank =$event">
               <option> </option>
@@ -213,7 +213,7 @@
             <input type="text" class="form-control"
                    [ngModel]="mySaleCallVisitAsset?.competitor_other"
                    (ngModelChange)="mySaleCallVisitAsset.competitor_other=$event"
-                   [disabled]="componentReadOnly">
+                   [disabled]="componentReadOnly && amend != 'Y'">
           </div>
           <div class="col-md-12 form-group">
             <label>-Competitor condition</label>
@@ -223,7 +223,7 @@
             <input type="text" class="form-control" style="display: inline;width: 50%"  pKeyFilter="pnum"
                    [ngModel]="mySaleCallVisitAsset?.competitor_irr"
                    (ngModelChange)="mySaleCallVisitAsset.competitor_irr=$event"
-                   [disabled]="componentReadOnly">
+                   [disabled]="componentReadOnly && amend != 'Y'">
             <label>%</label>
           </div>
           <div class="col-md-3  form-group">
@@ -231,14 +231,14 @@
             <input type="text" class="form-control" style="display: inline;width: 50%"  pKeyFilter="int"
                    [ngModel]="mySaleCallVisitAsset?.competitor_term"
                    (ngModelChange)="mySaleCallVisitAsset.competitor_term=$event"
-                   [disabled]="componentReadOnly">
+                   [disabled]="componentReadOnly && amend != 'Y'">
           </div>
           <div class="col-md-5  form-group">
             <label>Financing Amount</label>
             <input type="text" class="form-control" style="display: inline;width: 50%"  pKeyFilter="pnum"
                    [ngModel]="mySaleCallVisitAsset?.competitor_fin_pcnt"
                    (ngModelChange)="mySaleCallVisitAsset.competitor_fin_pcnt=$event"
-                   [disabled]="componentReadOnly">
+                   [disabled]="componentReadOnly && amend != 'Y'">
             <label>%</label>
           </div>
         </div>

@@ -7,8 +7,10 @@
                      [(selection)]="selectedCaTempCreditLineGroup"
                      [immutable]="false">
           <p-header>
-            <app-custom-botton-icon [option]="'new'" (onBtnClick)="openDialogBuyer()"></app-custom-botton-icon>
-            <app-custom-botton-icon [option]="'delete'" (onBtnClick)="deleteWarning()"></app-custom-botton-icon>
+            <fieldset [disabled] = "caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend'">
+              <app-custom-botton-icon [option]="'new'" (onBtnClick)="openDialogBuyer()"></app-custom-botton-icon>
+              <app-custom-botton-icon [option]="'delete'" (onBtnClick)="deleteWarning()"></app-custom-botton-icon>
+            </fieldset>
           </p-header>
           <p-column header="Seq No." field="sub_id" [style]="{'width':'75px'}"></p-column>
           <p-column header="Buyer Group Name" field="group_name"></p-column>
@@ -23,6 +25,7 @@
                      class="form-control"
                      [fraction]="2"
                      (change)="selectedCaTempCreditLineGroup.temp_sub_ca_amt_group = $event.target.value"
+                     [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' "
                      [value]="selectedCaTempCreditLineGroup.temp_sub_ca_amt_group">&nbsp;(Baht)
             </div>
           </div>
@@ -46,6 +49,7 @@
                          class="form-control"
                          [fraction]="2"
                          (change)="selectedCaTempCreditLineGroup.ca_limit = $event.target.value"
+                         [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' "
                          [value]="selectedCaTempCreditLineGroup.ca_limit">&nbsp;(Baht)
                 </div>
               </div>
@@ -58,6 +62,7 @@
             <div class="row">
               <div class="col-md-3" style="padding-left: 4rem;">
                 <input class="form-check-input" name="amend_buyer_group" type="radio" value="T"
+                       [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' "
                        (ngModelChange)="amendChange($event)"
                        [(ngModel)]="selectedCaTempCreditLineGroup.amend_type"
                 >&nbsp;Time
@@ -70,7 +75,7 @@
                     class="form-control"
                     type="text"
                     #timeInput
-                    [disabled]="checkCalendar"
+                    [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend' ||checkCalendar"
                     [(ngModel)]="selectedCaTempCreditLineGroup.time"
                   >&nbsp;&nbsp;Time
                 </div>
@@ -80,6 +85,7 @@
               <div class="col-md-3" style="padding-left: 4rem;">
                 <input class="form-check-input" name="amend_buyer_group" type="radio" value="P"
                        [(ngModel)]="selectedCaTempCreditLineGroup.amend_type"
+                       [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend'"
                        (ngModelChange)="amendChange($event)"
                 >&nbsp;Period
               </div>
@@ -94,7 +100,7 @@
                                 placeholder="dd/mm/yyyy"
                                 dataType="string"
                                 showButtonBar="true"
-                                [disabled]="!checkCalendar"
+                                [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend'"
                                 [(ngModel)]="selectedCaTempCreditLineGroup.eff_date"
                     ></p-calendar>
                   </div>
@@ -109,7 +115,7 @@
                                 placeholder="dd/mm/yyyy"
                                 dataType="string"
                                 showButtonBar="true"
-                                [disabled]="!checkCalendar"
+                                [disabled]="caHead.current_task != 'Apply Amend' && caHead.current_task != 'Revise Amend'"
                                 [(ngModel)]="selectedCaTempCreditLineGroup.expire_date"
                     ></p-calendar>
                   </div>

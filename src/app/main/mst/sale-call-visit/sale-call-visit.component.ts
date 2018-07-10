@@ -36,7 +36,7 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
   username: string = "";
   comCode: string = "";
   task : string = "" ;
-
+  amend : string = '';
   checkLoader : boolean = true ;
 
   btnFormSave : boolean = false ;
@@ -62,7 +62,7 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
         this.vsale_no = params['sale_call_no'];
         this.vcard_no = params['card_no'];
         this.task     = params['task'];
-
+        this.amend    = params['amend']
 
         this.controlActionForm(this.task);
         if (this.vcard_no) {
@@ -154,7 +154,11 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
       this.dialogalert.reset() ;
       this.dialogalert.setModeSingle(1);
       this.msgs = [];
-      this.msgs = this.saleCallVisitService.validationOnSave();
+      if ( this.amend == 'Y'){
+
+      } else {
+        this.msgs = this.saleCallVisitService.validationOnSave();
+      }
       if (this.msgs.length > 1){
         this.dialogalert.setModeSingle(0);
         for (let i = 0; i < this.msgs.length; i++){
@@ -211,6 +215,10 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
     if (task == 'Wait For Apply CA'){
       this.btnFormSubmit = false ;
       this.btnFormSave   = false ;
+    }
+    if(this.amend == 'Y'){
+      this.btnFormSave = true
+      this.btnFormSubmit = false
     }
   }
 

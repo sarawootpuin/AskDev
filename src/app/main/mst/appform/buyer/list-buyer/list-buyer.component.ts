@@ -1,16 +1,18 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from "@angular/core";
+import {Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from "@angular/core";
 import {ListBuyer} from "../../model/getDataBuyer";
 import {AppFormService} from "../../appform.service";
 import {EntityDialogComponent} from "../../../entity/entity-dialog/entity-dialog.component";
 import {EntityModel} from "../../../entity/model/entity-model";
 import {AlertDialogComponent} from "../../../../../shared/center/alert-dialog/alert-dialog.component";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-list-buyer',
   templateUrl: './list-buyer.component.html'
 })
-export class ListBuyerComponent implements OnInit {
-
+export class ListBuyerComponent implements OnInit , OnDestroy{
+  subscription: Subscription;
+  subscriptionBuyer: Subscription;
   @Output("clickList") clickList = new EventEmitter<ListBuyer>();
   @ViewChild("entity_dialog") entity_dialog: EntityDialogComponent;
   @ViewChild('deleteDialog') deleteDialog: AlertDialogComponent;
@@ -29,7 +31,7 @@ export class ListBuyerComponent implements OnInit {
       this.data = [];
     }
 
-    this.appFormService.eventTabBuyer.subscribe(
+    this.subscription = this.appFormService.eventTabBuyer.subscribe(
       (listTab) => {
         this.data = listTab;
         if (this.data.length > 0) {
@@ -37,6 +39,15 @@ export class ListBuyerComponent implements OnInit {
         }
       }
     );
+  }
+
+  ngOnDestroy(){
+    if(this.subscription != null){
+      this.subscription.unsubscribe();
+    }
+    if(this.subscriptionBuyer != null){
+      this.subscriptionBuyer.unsubscribe();
+    }
   }
 
   selectList(selectedData: any) {
@@ -57,7 +68,7 @@ export class ListBuyerComponent implements OnInit {
     newBuyer.ver_waive = 'N';
     newBuyer.app_type = '2';
     newBuyer.app_type_desc = 'WITH RECOURSE';
-    this.appFormService.checkFactoring(entityModel.entCode, entityModel.newCardNo).subscribe(
+    this.subscriptionBuyer = this.appFormService.checkFactoring(entityModel.entCode, entityModel.newCardNo).subscribe(
       (data: any) => {
         if (data.CODE === "200" && data.LIST_DATA.length > 0) {
           newBuyer.buyer_code = data.LIST_DATA[0].entCode;

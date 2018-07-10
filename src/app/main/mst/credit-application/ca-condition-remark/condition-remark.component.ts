@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from "@angular/core";
+import {Component, Input, OnDestroy, OnInit, OnChanges} from "@angular/core";
 import {creditApplicationService} from "../credit-application.service";
 import {Subscription} from "rxjs/Subscription";
 import {caHead} from "../model/ca-head";
@@ -9,9 +9,9 @@ import {caPricing} from "../model/ca-pricing";
   selector: 'app-ca-condition-remark',
   templateUrl: './condition-remark.component.html',
 })
-export class CaConditionRemarkComponent implements OnInit, OnDestroy {
+export class CaConditionRemarkComponent implements OnInit, OnDestroy, OnChanges {
   @Input() isReadonly: boolean;
-
+  @Input() task: string;
   subscripData: Subscription;
   subscripMaster: Subscription;
 
@@ -23,8 +23,9 @@ export class CaConditionRemarkComponent implements OnInit, OnDestroy {
   listRMK_ATT: caListMaster[] = [];
   selectCond: caListMaster;
   selectRemark: caListMaster;
-
-
+  readOnlyRemarkAttchSheet : boolean;
+  readOnlyPrvCondition : boolean;
+  taskReadOnly: string[] = ["CA-01","CA-01-1","CA-05","AM-01","AM-01-1","RV-01"];
   constructor(private creditApplicationService: creditApplicationService) {
   }
 
@@ -57,6 +58,20 @@ export class CaConditionRemarkComponent implements OnInit, OnDestroy {
     }
   }
 
+  ngOnChanges(){
+    if(this.taskReadOnly.includes(this.task)){ 
+      this.readOnlyRemarkAttchSheet = false 
+      this.readOnlyPrvCondition = false
+      if(this.task = 'RV-01') {
+        this.readOnlyPrvCondition = true
+      }
+    } else {
+      this.readOnlyRemarkAttchSheet = true
+    }
+    //console.log(this.readOnlyRemarkAttchSheet);
+    //console.log(this.task);
+    //console.log(this.isReadonly);
+  }
 
   onDbClickCondition(select: caListMaster) {
     if (!this.isReadonly) {
@@ -70,14 +85,14 @@ export class CaConditionRemarkComponent implements OnInit, OnDestroy {
   }
 
   onRowSelect(selectCol: caListMaster) {
-    if (this.myCaPricing.remark_attached_sheet.length > 1) {
-      this.myCaPricing.remark_attached_sheet += '\n' + selectCol.remark;
+    if(!this.readOnlyRemarkAttchSheet){
+      if (this.myCaPricing.remark_attached_sheet.length > 1) {
+        this.myCaPricing.remark_attached_sheet += '\n' + selectCol.remark;
+      }
+      else {
+        this.myCaPricing.remark_attached_sheet += selectCol.remark;
+      }
     }
-    else {
-      this.myCaPricing.remark_attached_sheet += selectCol.remark;
-    }
-    console.log(this.myCaPricing);
-
+    //console.log(this.myCaPricing);
   }
-
 }

@@ -1,4 +1,5 @@
 <div class="border-isa p-2">
+  <fieldset [disabled] = "isReadOnly">
   <div class="row">
     <div class="col-md-4">
       <label>Application Type</label>
@@ -63,38 +64,50 @@
     <div class="col-md-4">
       <label>Join Buyer Group</label>
       <div class="form-group">
-        <select class="form-control"
-                (change)="onBuyerGroupChange($event.target.value)">
-          <option [value]="-1"></option>
-          <option *ngFor="let list of listsJointB; let i = index"
-                  [selected]="selectBuyer.joint_buyer_group === list.id_code"
-                  [value]="i"
-          >{{list.id_code}} : {{list.remark}}
-          </option>
-        </select>
+        <div class="input-group">
+          <input type="text" class="form-control" [(ngModel)]="selectBuyer.join_group_name " readonly>
+          <app-search-un app-search-un [inuURL]="urlBuyer"
+                         [servicetype]="'POST'" [objforpost]="dataBuyer"
+                         title="Code;Name;Cr.Limit;" [widthcol]="'100;300;100;'"
+                         (col1)="setGroup($event)"
+                         (col2)="setGroupName($event)"
+                         (col3)="setLimit($event)"
+          ></app-search-un>
+        </div>
+        <!--<select class="form-control"-->
+                <!--(change)="onBuyerGroupChange($event.target.value)">-->
+          <!--<option [value]="-1"></option>-->
+          <!--<option *ngFor="let list of listsJointB; let i = index"-->
+                  <!--[selected]="selectBuyer.joint_buyer_group === list.id_code"-->
+                  <!--[value]="i"-->
+          <!--&gt;{{list.id_code}} : {{list.remark}}-->
+          <!--</option>-->
+        <!--</select>-->
       </div>
     </div>
     <div class="col-md-4">
       <label>Join Buyer CR. Amount </label>
       <div class="form-group">
-        <input appMyCurrency
+        <input disabled
+               appMyCurrency
                [fraction]="2"
-               disabled
                class="form-control"
                [value]="selectBuyer.cr_limit"
                (change)="selectBuyer.cr_limit = $event.target.value">
       </div>
     </div>
   </div>
-
+  </fieldset>
   <hr>
   <div class="row">
     <div class="col-md-4">
       <input type="checkbox"
              name="noti_type"
+             [disabled] = "isReadOnly"
              [checked]="selectBuyer?.noti_type==='Y'"
              (change)="$event.target.checked ? (selectBuyer.noti_type = 'Y') : (selectBuyer.noti_type = 'N')"> Notification
       <div class="mt-radio-inline border-isa">
+        <fieldset [disabled] = "isReadOnly">
         <label><b>Advance Condition Code</b></label>
         <div class="form-group">
           <div class="mt-radio-inline" style="padding: 5px">
@@ -124,10 +137,12 @@
                    [(ngModel)]="selectBuyer.advance_code"> 06 : After Shipment
           </div>
         </div>
+        </fieldset>
       </div>
       <br>
       <div class="form-group">
         <div class="mt-radio-inline border-isa">
+		  <fieldset [disabled] = "tabReadOnly">
           <label><b>Payment Type</b></label>
           <div class="form-group" style="padding: 5px">
             <input type="checkbox"
@@ -142,6 +157,7 @@
                    (change)="$event.target.checked ? (selectBuyer.progress_payment = 'Y') : (selectBuyer.progress_payment = 'N')"> :
             Progress Payment
           </div>
+		  </fieldset>
         </div>
       </div>
     </div>
@@ -149,7 +165,7 @@
       <label>Factoring Fee</label>
       <span class="star">*</span>
       <div class="form-group">
-        <input [disabled]="editable"
+        <input [disabled]="isReadOnly"
                appMyCurrency
                [fraction]="2"
                class="form-control"
@@ -158,7 +174,7 @@
       </div>
       <label>Minimum Factoring Fee</label>
       <div class="form-group">
-        <input [disabled]="editable"
+        <input [disabled]="isReadOnly"
                appMyCurrency
                [fraction]="0"
                class="form-control"
@@ -167,7 +183,7 @@
       </div>
       <label>Max Factoring Fee</label>
       <div class="form-group">
-        <input [disabled]="editable"
+        <input [disabled]="isReadOnly"
                appMyCurrency
                [fraction]="0"
                class="form-control"
@@ -176,21 +192,23 @@
       </div>
       <br>
       <div class="mt-radio-inline border-isa">
-        <label><b>Payment Method</b></label>
-        <div class="form-group">
-          <div class="mt-radio-inline" style="padding: 5px">
-            <input type="radio" name="pay_mthd" value="CH" [(ngModel)]="selectBuyer.pay_mthd"> CH : Cheque Collection
-            <br>
-            <input type="radio" name="pay_mthd" value="TR" [(ngModel)]="selectBuyer.pay_mthd"> TR : Wire Tranfer
-            <br>
-            <input type="radio" name="pay_mthd" value="PDC" [(ngModel)]="selectBuyer.pay_mthd"> PDC : Post Date Cheque
+        <fieldset [disabled] = "tabReadOnly"> 
+          <label><b>Payment Method</b></label>
+          <div class="form-group">
+            <div class="mt-radio-inline" style="padding: 5px">
+              <input type="radio" name="pay_mthd" value="CH" [(ngModel)]="selectBuyer.pay_mthd"> CH : Cheque Collection
+              <br>
+              <input type="radio" name="pay_mthd" value="TR" [(ngModel)]="selectBuyer.pay_mthd"> TR : Wire Tranfer
+              <br>
+              <input type="radio" name="pay_mthd" value="PDC" [(ngModel)]="selectBuyer.pay_mthd"> PDC : Post Date Cheque
+            </div>
           </div>
-        </div>
+        </fieldset>
       </div>
     </div>
     <div class="col-md-4">
       <label><b>Remark</b><br></label>
-      <textarea class="form-control" rows="10" [(ngModel)]="selectBuyer.other_doc_remark"></textarea>
+      <textarea class="form-control" rows="10" [disabled] = "tabReadOnly" [(ngModel)]="selectBuyer.other_doc_remark"></textarea>
     </div>
   </div>
 </div>
