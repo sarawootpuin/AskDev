@@ -1,66 +1,117 @@
-<div class="flex-row">
-  <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
-    <p-dataTable [value]="data" [rows]="5">
-      <p-headerColumnGroup>
-        <p-row>
-          <p-column header="TERM"></p-column>
-          <p-column header="Due Date"></p-column>
-          <p-column header="Commission"></p-column>
-          <p-column header="O/S Commission"></p-column>
-          <p-column header="O/S Principal"></p-column>
-        </p-row>
-      </p-headerColumnGroup>
-      <p-column field="term"></p-column>
-      <p-column field="due_date"></p-column>
-      <p-column field="comm" [style]="{'text-align':'right'}"></p-column>
-      <p-column field="os_comm" [style]="{'text-align':'right'}"></p-column>
-      <p-column field="os_prin" [style]="{'text-align':'right'}"></p-column>
-    </p-dataTable>
+<p-panel header="Realized Commission">
+  <div class="py-3 border-isa">
+    <div class="container-fluid" style="word-break: break-all">
+      <dl class="row row--sm-gap">
+        <div class="col-12 col-12--sm-gap col-lg-8 col-lg-8--sm-gap">
+          <p-table [value]="">
+            <ng-template pTemplate="colgroup">
+              <colgroup>
+                <col style="width:80px">
+                <col style="width:80px">
+                <col style="width:100px">
+                <col style="width:110px">
+                <col style="width:100px">
+              </colgroup>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th class="text-center">TERM</th>
+                <th class="text-center">Due Date</th>
+                <th class="text-center">Commission</th>
+                <th class="text-center">O/S Commission</th>
+                <th class="text-center">O/S Principal</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData>
+              <td class="text-center">{{rowData.term}}</td>
+              <td class="text-center">{{rowData.due_date}}</td>
+              <td class="text-right">{{rowData.comm || 0 | number:'.2-2'}}</td>
+              <td class="text-right">{{rowData.os_comm || 0 | number:'.2-2'}}</td>
+              <td class="text-right">{{rowData.os_prin || 0 | number:'.2-2'}}</td>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <th colspan="5">
+                  No Record Found
+                </th>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </dl>
+
+      <dl class="row row--sm-gap">
+        <div class="col-lg-2 col-lg-2--sm-gap col-3 col-3--sm-gap text-right">
+          <dt>Accru Income</dt>
+        </div>
+        <div class="text-center col-lg-2 col-lg-2--sm-gap col-3 col-3--sm-gap">
+          <dd class="highlighter-blue">...</dd>
+        </div>
+
+        <div class="col-lg-2 col-lg-2--sm-gap col-3 col-3--sm-gap text-right">
+          <dt>Accru VAT</dt>
+        </div>
+        <div class="text-center col-lg-2 col-lg-2--sm-gap col-3 col-3--sm-gap">
+          <dd class="highlighter-blue">...</dd>
+        </div>
+      </dl>
+      <dl class="row row--sm-gap">
+        <div class="col-lg-2 col-lg-2--sm-gap col-3 col-3--sm-gap text-right">
+          <dt>Deferred Income</dt>
+        </div>
+        <div class="text-center col-lg-2 col-lg-2--sm-gap col-3 col-3--sm-gap">
+          <dd class="highlighter-blue">...</dd>
+        </div>
+        <div class="col-lg-2 col-lg-2--sm-gap col-3 col-3--sm-gap text-right">
+          <dt>Deferred Commission</dt>
+        </div>
+        <div class="text-center col-lg-2 col-lg-2--sm-gap col-3 col-3--sm-gap">
+          <dd class="highlighter-blue">...</dd>
+        </div>
+        <div class="col-lg-2 col-lg-2--sm-gap col-3 col-3--sm-gap text-right">
+          <dt>Deferred Subsidize</dt>
+        </div>
+        <div class="text-center col-lg-2 col-lg-2--sm-gap col-3 col-3--sm-gap">
+          <dd class="highlighter-blue">...</dd>
+        </div>
+      </dl>
+
+      <dl class="row row--sm-gap">
+        <p-table [value]="">
+          <ng-template pTemplate="colgroup">
+            <colgroup>
+              <col style="width:80px">
+              <col style="width:80px">
+              <col style="width:100px">
+              <col style="width:80px">
+              <col style="width:110px">
+            </colgroup>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th class="text-center">SEQ</th>
+              <th class="text-center">TERM</th>
+              <th class="text-center">DUE_DATE</th>
+              <th class="text-center">AMOUNT</th>
+              <th class="text-center">OS_SUBSIDIZE</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData>
+            <td class="text-center">{{rowData.seq || 0 | number:'.2-2'}}</td>
+            <td class="text-center">{{rowData.term || 0 | number:'.2-2'}}</td>
+            <td class="text-center">{{rowData.due_date || 0 | number:'.2-2'}}</td>
+            <td class="text-right">{{rowData.amt || 0 | number:'.2-2'}}</td>
+            <td class="text-right">{{rowData.os_sub || 0 | number:'.2-2'}}</td>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <th colspan="5">
+                No Record Found
+              </th>
+            </tr>
+          </ng-template>
+        </p-table>
+      </dl>
+    </div>
   </div>
-</div>
-<div class="flex-row border-isa mt-1 p-3">
-  <div class="form-group row">
-    <div class="col-md-3">
-      <label>Accru Income</label>
-      <input type="text" class="form-control" disabled>
-    </div>
-    <div class="col-md-3">
-      <label>Accru VAT</label>
-      <input type="text" class="form-control" disabled>
-    </div>
-    <div class="col-md-3">
-      <label>Deferred Income</label>
-      <input type="text" class="form-control" disabled>
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-md-3">
-      <label>Deferred Commission</label>
-      <input type="text" class="form-control" disabled>
-    </div>
-    <div class="col-md-3">
-      <label>Deferred Subsidize</label>
-      <input type="text" class="form-control" disabled>
-    </div>
-  </div>
-  <div class="flex-row">
-    <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
-      <p-dataTable [value]="data" [rows]="5">
-        <p-headerColumnGroup>
-          <p-row>
-            <p-column header="Seq"></p-column>
-            <p-column header="Term"></p-column>
-            <p-column header="Due Date"></p-column>
-            <p-column header="Amount"></p-column>
-            <p-column header="O/S Subsidize"></p-column>
-          </p-row>
-        </p-headerColumnGroup>
-        <p-column field="seq"></p-column>
-        <p-column field="term"></p-column>
-        <p-column field="due_date"></p-column>
-        <p-column field="amt" [style]="{'text-align':'right'}"></p-column>
-        <p-column field="os_sub" [style]="{'text-align':'right'}"></p-column>
-      </p-dataTable>
-    </div>
-  </div>
-</div>
+</p-panel>

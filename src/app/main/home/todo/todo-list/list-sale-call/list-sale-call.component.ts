@@ -49,7 +49,6 @@ export class ListSaleCallComponent implements OnInit, OnChanges, OnDestroy,
     let code = this.userStorage.getCode();
     this.listSalecallTodo = [];
     this.resetSearchInput();
-
     if (this.task != undefined && this.task != null) {
       this.isLoading = true;
       this.subscription = this.todoService.getListSaleCall(

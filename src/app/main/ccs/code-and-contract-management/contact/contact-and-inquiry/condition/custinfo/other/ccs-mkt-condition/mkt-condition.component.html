@@ -1,12 +1,21 @@
-<div class="flex-row border-isa p-3">
-  <div class="form-group row">
-    <div class="col-md-6">
-      <label>Condition</label>
-      <textarea class="form-control" rows="5"></textarea>
-    </div>
-    <div class="col-md-6">
-      <label>Remark</label>
-      <textarea class="form-control" rows="5"></textarea>
+<p-panel header="MKT Condition / Remark">
+  <div class="py-3 border-isa">
+    <div class="container-fluid" style="word-break: break-all">
+      <div class="d-flex flex-row justify-content-center">
+        <div class="p-1 flex-md-column">
+          <app-custom-button [option]="'save'" [title]="'บันทึกข้อมูล'"></app-custom-button>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-md-12 col-lg-6">
+          <dt>Condition</dt>
+          <textarea class="form-control" rows="6"></textarea>
+        </div>
+        <div class="col-md-12 col-lg-6">
+          <dt>Remark</dt>
+          <textarea class="form-control" rows="6"></textarea>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</p-panel>

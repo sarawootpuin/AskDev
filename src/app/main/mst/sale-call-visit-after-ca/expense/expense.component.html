@@ -1,0 +1,120 @@
+<div class="container-fluid border-isa">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label><b>Travel By</b></label>
+          <div class="form-inline">
+            <div class="form-check" style="padding-right:1rem;">
+              <input class="form-check-input" type="radio" name="travelBy" value="O"
+                     [(ngModel)]="ListSelectData.visitOutSide.travel_by"
+                     (change)="clearInput()">
+              <label class="form-check-label">
+                Own Car
+              </label>
+            </div>
+            <div class="form-check" style="padding-right:1rem;">
+              <input class="form-check-input" type="radio" name="travelBy" value="C" [(ngModel)]="ListSelectData.visitOutSide.travel_by" (change)="clearInput()">
+              <label class="form-check-label">
+                Company Car
+              </label>
+            </div>
+            <div class="form-check" style="padding-right:1rem;">
+              <input class="form-check-input" type="radio" name="travelBy" value="NE" [(ngModel)]="ListSelectData.visitOutSide.travel_by" (change)="clearInput()">
+              <label class="form-check-label">
+                No Expense
+              </label>
+            </div>
+            <div class="form-check" style="padding-right:1rem;">
+              <input class="form-check-input" type="radio" name="travelBy" value="OTH" [(ngModel)]="ListSelectData.visitOutSide.travel_by" (change)="clearInput()">
+              <label class="form-check-label">
+                Other MKT
+              </label>
+            </div>
+            <select class="form-control"     [disabled]="ListSelectData.visitOutSide.travel_by != 'OTH'"
+                    [ngModel]="mySaleCallVisitOutside?.travel_name"
+                    (ngModelChange)="mySaleCallVisitOutside.travel_name =$event;" >
+              <option [value]=""></option>
+              <option *ngFor="let ansOFFICER of ListMKT "
+                      [selected]="ansOFFICER?.id == mySaleCallVisitOutside?.travel_name"
+                      [value]="ansOFFICER?.id">{{ansOFFICER?.display}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3 form-group">
+          <label><b>From Time</b></label>
+          <div><p-calendar [(ngModel)]="ListSelectData.visitOutSide.from_time"
+                           [disabled]="ListSelectData.visitOutSide.travel_by != 'O'"
+                           [timeOnly]="true" datatype="string"
+                           dateFormat="HH:mm"
+                          ></p-calendar></div>
+
+        </div>
+        <div class="col-md-3 form-group">
+          <label><b>To Time</b></label>
+          <div>
+            <p-calendar [(ngModel)]="ListSelectData.visitOutSide.to_time" [timeOnly]="true"
+                        [disabled]="ListSelectData.visitOutSide.travel_by != 'O'"
+                        datatype="string" dateFormat="HH:mm"></p-calendar>
+          </div>
+
+        </div>
+        <div class="col-md-3 form-group" style="padding-right: 0.4rem">
+          <label><b>Mile Start</b></label>
+          <input class="form-control" [(ngModel)]="ListSelectData.visitOutSide.mile_start"
+                 [disabled]="ListSelectData.visitOutSide.travel_by != 'O'"
+                 appMyCurrency [fraction]="0"
+                 pKeyFilter="pnum">
+        </div>
+        <div class="col-md-3 form-group" style="padding-left: 0.3rem">
+          <label><b>Mile End</b></label>
+          <input class="form-control" [(ngModel)]="ListSelectData.visitOutSide.mile_end"
+                 [disabled]="ListSelectData.visitOutSide.travel_by != 'O'" (change)="calExpenseAmount()"
+                 appMyCurrency [fraction]="0"
+                 pKeyFilter="pnum">
+        </div>
+        <div class="col-md-4 form-group">
+          <label><b>Mile Total</b></label>
+          <input class="form-control" appMyCurrency [fraction]="0" [value]="miletotal" disabled>
+        </div>
+        <div class="col-md-4 form-group">
+          <label><b>Amount(Baht/km.)</b></label>
+          <input class="form-control" type="text" appMyCurrency [fraction]="0" [(ngModel)] = "mySaleCallVisitOutside.prce_per_km" disabled>
+        </div>
+        <div class="col-md-4 form-group">
+          <label><b>Total Amount(Baht)</b></label>
+          <input class="form-control" type="text" appMyCurrency [fraction]="0"
+                 [(ngModel)]="ListSelectData.visitOutSide.withdraw_amt" disabled>
+        </div>
+        <div class="col-md-12 form-group">
+          <label><b>Joiner List</b></label>
+          <div class="form-control" >
+
+            <app-custom-botton-icon [option]="'new'" (onBtnClick)="openDialogAttendees()"  [disabled]="ListSelectData.visitOutSide.travel_by != 'O'"> </app-custom-botton-icon>
+            <app-custom-botton-icon [option]="'delete'" (onBtnClick)="deleteJoiner()"  [disabled]="ListSelectData.visitOutSide.travel_by != 'O'"> </app-custom-botton-icon>
+            <p-dataTable [value]="joinerList"
+                         scrollHeight="100px"
+                         [responsive]="true"
+                         selectionMode="single"
+                         [(selection)]="selectjoinerList"
+                         (disabled)="ListSelectData.visitOutSide.travel_by != 'O'"
+                         >
+              <p-column field="display" header="Name"></p-column>
+            </p-dataTable>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label><b>Address Description</b></label>
+      <textarea class="form-control" style="height:18rem;" [(ngModel)]="ListSelectData.visitOutSide.visit_detail" [disabled]="ListSelectData.visitOutSide.travel_by != 'O'"></textarea>
+    </div>
+  </div>
+</div>
+
+<app-action-dialog  [title]="'Question ? '"  #listAttendee
+                    [showAdd]="true"  (onAdd)="okAddAttendees()"
+                    [showCancel]="true" >
+  <label> ยืนยันการดึงรายชื่อจาก Attendess </label>
+</app-action-dialog>

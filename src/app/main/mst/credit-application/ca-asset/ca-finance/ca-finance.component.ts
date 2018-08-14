@@ -19,7 +19,7 @@ import {caHead} from "../../model/ca-head";
 export class CaFinanceComponent implements OnInit, OnDestroy ,OnChanges {
   subscripData: Subscription;
   subscripMaster: Subscription;
-
+  subscription :Subscription
   dataFin: caListMaster[];
   dataSubFin: caListMaster[];
   dataSubFinLs: caListMaster[];
@@ -119,6 +119,10 @@ export class CaFinanceComponent implements OnInit, OnDestroy ,OnChanges {
     if (this.subscripMaster != null) {
       this.subscripMaster.unsubscribe();
     }
+
+    if(this.subscription){
+      this.subscription.unsubscribe()
+    }
   }
 
   ngOnChanges(): void {
@@ -143,6 +147,19 @@ export class CaFinanceComponent implements OnInit, OnDestroy ,OnChanges {
     this.bgdetail.operating_lease = '';
     this.bgdetail.with_vat = 'Y';
     this.bgdetail.wh_tax = 0;
+    if(this.bgdetail.fin_typ == 1) {
+      this.bgdetail.dep_amt_e_vat = 0
+      this.bgdetail.dep_amt_i_vat = 0
+      this.bgdetail.dep_amt_vat = 0
+      this.bgdetail.rv_amt_e_vat = 0
+      this.bgdetail.rv_amt_i_vat = 0
+      this.bgdetail.rv_amt_vat = 0
+    }
+    else if( this.bgdetail.fin_typ == 2){
+      this.bgdetail.down_amt_e_vat = 0
+      this.bgdetail.down_amt_i_vat = 0
+      this.bgdetail.down_amt_vat = 0
+    }
   }
 
   subFinChange(index) {
@@ -388,7 +405,7 @@ export class CaFinanceComponent implements OnInit, OnDestroy ,OnChanges {
     if (calCheck) {
       //console.log(this.bgdetail.type_cal_pricing);
       this.checkLoader = true;
-      this.creditApplicationService.calculateIrr(this.bgdetail.sub_id, this.bgdetail.type_cal_pricing).subscribe(
+      this.subscription = this.creditApplicationService.calculateIrr(this.bgdetail.sub_id, this.bgdetail.type_cal_pricing).subscribe(
         (callIrr: any) => {
           if (callIrr.CODE == '200') {
             //console.log(callIrr);
@@ -462,62 +479,32 @@ export class CaFinanceComponent implements OnInit, OnDestroy ,OnChanges {
 
   calculateDown(from: any) {
     if (from == 'E') {
-      if (this.bgdetail.with_vat === 'Y') {
-        this.bgdetail.down_amt_vat = Number((this.bgdetail.down_amt_e_vat ? this.bgdetail.down_amt_e_vat : 0) * this.vatRate / 100).toFixed(2);
-        this.bgdetail.down_amt_i_vat = (Number(this.bgdetail.down_amt_e_vat ? this.bgdetail.down_amt_e_vat : 0) + Number(this.bgdetail.down_amt_vat)).toFixed(2);
-      }
-      else {
-        this.bgdetail.down_amt_vat = 0;
-        this.bgdetail.down_amt_i_vat = (this.bgdetail.down_amt_e_vat ? this.bgdetail.down_amt_e_vat : 0);
-      }
+      this.bgdetail.down_amt_vat = Number((this.bgdetail.down_amt_e_vat ? this.bgdetail.down_amt_e_vat : 0) * this.vatRate / 100).toFixed(2);
+      this.bgdetail.down_amt_i_vat = (Number(this.bgdetail.down_amt_e_vat ? this.bgdetail.down_amt_e_vat : 0) + Number(this.bgdetail.down_amt_vat)).toFixed(2);
     }
     else {
-      if (this.bgdetail.with_vat == 'Y') {
-        this.bgdetail.down_amt_e_vat = Number((this.bgdetail.down_amt_i_vat ? this.bgdetail.down_amt_i_vat : 0) * 100 / (100 + this.vatRate)).toFixed(2);
-        this.bgdetail.down_amt_vat = Number((this.bgdetail.down_amt_i_vat ? this.bgdetail.down_amt_i_vat : 0) - this.bgdetail.down_amt_e_vat).toFixed(2);
-      }
-      else {
-        this.bgdetail.down_amt_vat = 0;
-        this.bgdetail.down_amt_i_vat = (this.bgdetail.down_amt_e_vat ? this.bgdetail.down_amt_e_vat : 0);
-      }
+      this.bgdetail.down_amt_e_vat = Number((this.bgdetail.down_amt_i_vat ? this.bgdetail.down_amt_i_vat : 0) * 100 / (100 + this.vatRate)).toFixed(2);
+      this.bgdetail.down_amt_vat = Number((this.bgdetail.down_amt_i_vat ? this.bgdetail.down_amt_i_vat : 0) - this.bgdetail.down_amt_e_vat).toFixed(2);
     }
     this.calculatefinfromAsset();
   }
 
   calculateDep(from: any) {
     if (from == 'E') {
-      if (this.bgdetail.with_vat === 'Y') {
-        this.bgdetail.dep_amt_vat = Number(this.bgdetail.dep_amt_e_vat * this.vatRate / 100).toFixed(2);
-        this.bgdetail.dep_amt_i_vat = (Number(this.bgdetail.dep_amt_e_vat) + Number(this.bgdetail.dep_amt_vat)).toFixed(2);
-      }
-      else {
-        this.bgdetail.dep_amt_e_vat = '';
-        this.bgdetail.dep_amt_i_vat = this.bgdetail.dep_amt_e_vat;
-      }
+      this.bgdetail.dep_amt_vat = Number(this.bgdetail.dep_amt_e_vat * this.vatRate / 100).toFixed(2);
+      this.bgdetail.dep_amt_i_vat = (Number(this.bgdetail.dep_amt_e_vat) + Number(this.bgdetail.dep_amt_vat)).toFixed(2);
     }
     else {
-      if (this.bgdetail.with_vat == 'Y') {
-        this.bgdetail.dep_amt_e_vat = Number(this.bgdetail.dep_amt_i_vat * 100 / (100 + this.vatRate)).toFixed(2);
-        this.bgdetail.dep_amt_vat = (Number(this.bgdetail.dep_amt_i_vat) - Number(this.bgdetail.dep_amt_e_vat)).toFixed(2);
-      }
-      else {
-        this.bgdetail.dep_amt_vat = 0;
-        this.bgdetail.dep_amt_e_vat = this.bgdetail.dep_amt_i_vat;
-      }
+      this.bgdetail.dep_amt_e_vat = Number(this.bgdetail.dep_amt_i_vat * 100 / (100 + this.vatRate)).toFixed(2);
+      this.bgdetail.dep_amt_vat = (Number(this.bgdetail.dep_amt_i_vat) - Number(this.bgdetail.dep_amt_e_vat)).toFixed(2);
     }
     //console.log(this.bgdetail.dep_amt_i_vat);
     this.calculatefinfromAsset();
   }
 
   calculateRv() {
-    if (this.bgdetail.with_vat === 'Y') {
-      this.bgdetail.rv_amt_vat = Number(this.bgdetail.rv_amt_e_vat * this.vatRate / 100).toFixed(2);
-      this.bgdetail.rv_amt_i_vat = (Number(this.bgdetail.rv_amt_e_vat) + Number(this.bgdetail.rv_amt_vat)).toFixed(2);
-    }
-    else {
-      this.bgdetail.rv_amt_vat = '';
-      this.bgdetail.rv_amt_i_vat = this.bgdetail.rv_amt_e_vat;
-    }
+    this.bgdetail.rv_amt_vat = Number(this.bgdetail.rv_amt_e_vat * this.vatRate / 100).toFixed(2);
+    this.bgdetail.rv_amt_i_vat = (Number(this.bgdetail.rv_amt_e_vat) + Number(this.bgdetail.rv_amt_vat)).toFixed(2);
     this.calculatefinfromAsset();
   }
 
@@ -546,31 +533,19 @@ export class CaFinanceComponent implements OnInit, OnDestroy ,OnChanges {
         this.bgdetail.fin_amt_i_vat = (Number(this.bgdetail.fin_amt_e_vat) + Number(this.bgdetail.fin_amt_vat)).toFixed(2);
       }
       else {
-        this.bgdetail.fin_amt_vat = '';
+        this.bgdetail.fin_amt_vat = 0;
         this.bgdetail.fin_amt_i_vat = this.bgdetail.fin_amt_e_vat;
       }
 
       if (this.bgdetail.fin_typ === '1') {
         this.bgdetail.down_amt_e_vat = this.bgdetail.asst_amt_e_vat - this.bgdetail.fin_amt_e_vat;
-        if (this.bgdetail.with_vat === 'Y') {
-          this.bgdetail.down_amt_vat = Number(this.bgdetail.down_amt_e_vat * this.vatRate / 100).toFixed(2);
-          this.bgdetail.down_amt_i_vat = Number(this.bgdetail.down_amt_e_vat) + Number(this.bgdetail.down_amt_vat);
-        }
-        else {
-          this.bgdetail.down_amt_vat = '';
-          this.bgdetail.down_amt_i_vat = this.bgdetail.down_amt_e_vat;
-        }
+        this.bgdetail.down_amt_vat = Number(this.bgdetail.down_amt_e_vat * this.vatRate / 100).toFixed(2);
+        this.bgdetail.down_amt_i_vat = Number(this.bgdetail.down_amt_e_vat) + Number(this.bgdetail.down_amt_vat)        
       }
       else if (this.bgdetail.fin_typ === '2') {
         this.bgdetail.dep_amt_e_vat = this.bgdetail.asst_amt_e_vat - this.bgdetail.fin_amt_e_vat;
-        if (this.bgdetail.with_vat === 'Y') {
-          this.bgdetail.dep_amt_vat = Number(this.bgdetail.dep_amt_e_vat * this.vatRate / 100).toFixed(2);
-          this.bgdetail.dep_amt_i_vat = Number(this.bgdetail.dep_amt_e_vat) + Number(this.bgdetail.dep_amt_vat);
-        }
-        else {
-          this.bgdetail.dep_amt_vat = '';
-          this.bgdetail.dep_amt_i_vat = this.bgdetail.dep_amt_e_vat;
-        }
+        this.bgdetail.dep_amt_vat = Number(this.bgdetail.dep_amt_e_vat * this.vatRate / 100).toFixed(2);
+        this.bgdetail.dep_amt_i_vat = Number(this.bgdetail.dep_amt_e_vat) + Number(this.bgdetail.dep_amt_vat);
       }
     }
   }

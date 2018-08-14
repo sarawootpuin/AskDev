@@ -1,6 +1,12 @@
 <app-alert-dialog #alertDialogComponent [msg]="'โปรดใส่ข้อมูลก่อนเพื่อค้นหา'"></app-alert-dialog>
-<app-action-button-form [showSearch]="true" [showCancel]="true" [showReject]="false"
-                        [showSubmit]="false"  [showNew]="false" (onSearch)="onSubmit()" (onCancel)="cancelButton()" [showCalculator]="false" [showBack]="false"  [showEdit]="false" (onBack)="backPage()" [showPrint]="false" [showSave]="false"  [title]="'Blacklist Checking'"></app-action-button-form>
+<app-action-button-form [showSearch]="true"
+                        [showCancel]="true"
+                        [showPrint]="true"
+                        (onSearch)="onSubmit()"
+                        (onCancel)="cancelButton()"
+                        (onBack)="backPage()"
+                        (onPrint)="handelPrint()"
+                        [title]="'Blacklist Checking'"></app-action-button-form>
 <div class="card m-4">
   <div class="card-header">
 <form [formGroup]="blacklistchecking" (ngSubmit)="onSubmit()">
@@ -89,40 +95,29 @@
 
         <div class="container-fluid" >
 
-            <div class="form-group">
+          <div class="col-md-3 border-isa p-3" style="background-color: #9e9d9d">
+            <input type="radio" name="radioAdvance"
+                   value="n/a"
+                   [checked]="CHECK_GROUP==='n/a'"
+                   (change)="CHECK_GROUP=$event.target.value"
+            >
 
-                 <div class="col-md-3 alert alert-info" style="background-color: #777b79;border-color: #979b9c ;color: white" role="alert">
-                  <div class="mt-radio-inline">
-                <label class="mt-radio">
-                  <input type="radio" name="optionsRadios" id="optionsRadios4" value="option1" checked> ไม่ระบุ
-                  <span></span>
-                </label>
-                <label class="mt-radio">
-                  <input type="radio" name="optionsRadios" id="optionsRadios5" value="option2"> บุคคลธรรมดา
-                  <span></span>
-                </label>
-                <label class="mt-radio">
-                  <input type="radio" name="optionsRadios" id="optionsRadios6" value="option2"> นิติบุคคล
-                  <span></span>
-                </label>
-              </div>
-              </div>
+            ไม่ระบุ &nbsp;
+            <input type="radio" name="radioAdvance"
+                   value="individual"
+                   [checked]="CHECK_GROUP==='individual'"
+                   (change)="CHECK_GROUP=$event.target.value"
+            >
 
-            </div>
+            บุคคลธรรมดา &nbsp;
+            <input type="radio" name="radioAdvance"
+                   value="juristic"
+                   [checked]="CHECK_GROUP==='juristic'"
+                   (change)="CHECK_GROUP=$event.target.value">
 
-
-
-
-            <!--<div class="form-actions">-->
-                <!--<div class="col-md-12">-->
-                  <!--&lt;!&ndash;<a routerLink="../result" class="btn btn-primary btn-sm">Submit</a>&ndash;&gt;-->
-                  <!--<button type="submit" class="btn btn-primary ">Submit</button>-->
-                  <!--&lt;!&ndash;<button type="button" class="btn btn-primary btn-sm" ng-click="go('/result')">Submit</button>&ndash;&gt;-->
-                  <!--<button type="button"  class="btn btn-default " >Reject</button>-->
-                  <!--<button type="button"  class="btn btn-default " (click)="cancelButton()" >Cancel</button>-->
-                <!--</div>-->
-            <!--</div>-->
-
+            นิติบุคคล &nbsp;
+          </div>
+          <br>
           <label style="color: red">**สามารถสืบค้นข้อมูล Exposure ได้จากการ Search ผ่านชื่อ และ นามสกุล เท่านั้น **</label>
         </div>
       </div>  <!-- <div class="col-md-12" id="p2" style="padding: 10px">  -->
@@ -133,6 +128,7 @@
   </div>
 </div>
 </form>
+
 
   </div>
 </div>

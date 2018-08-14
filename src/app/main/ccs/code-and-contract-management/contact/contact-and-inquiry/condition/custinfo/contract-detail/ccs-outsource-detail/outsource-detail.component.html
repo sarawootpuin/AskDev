@@ -1,29 +1,66 @@
-<div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
-  <p-dataTable [value]="data" [rows]="20">
-    <p-headerColumnGroup>
-      <p-row>
-        <p-column header="ผลลัพธ์"></p-column>
-        <p-column header="CODE"></p-column>
-        <p-column header="ทีม OUTSOURCE"></p-column>
-        <p-column header="ภูมิภาค"></p-column>
-        <p-column header="จังหวัด"></p-column>
-        <p-column header="วันที่ Apply"></p-column>
-        <p-column header="OwnerApply"></p-column>
-        <p-column header="Collector Apply"></p-column>
-        <p-column header="วนที่ Apporve"></p-column>
-        <p-column header="OwnerApprove"></p-column>
-      </p-row>
-    </p-headerColumnGroup>
-    <p-column field="result"></p-column>
-    <p-column field="code"></p-column>
-    <p-column field="outsource_team"></p-column>
-    <p-column field="region"></p-column>
-    <p-column field="province"></p-column>
-    <p-column field="apply_date"></p-column>
-    <p-column field="owner_apply"></p-column>
-    <p-column field="collector_apply"></p-column>
-    <p-column field="approve_date"></p-column>
-    <p-column field="owner_approve"></p-column>
-
-  </p-dataTable>
-</div>
+<p-panel header="ข้อมูลรายละเอียด OUTSOURCE">
+  <div class="p-3 border-isa">
+    <div class="container-fluid" style="word-break: break-all">
+      <div class="row">
+        <p-table [value]="" [scrollable]="true" [style]="{'width':'990px'}">
+          <ng-template pTemplate="colgroup">
+            <colgroup>
+              <col style="width:80px">
+              <col style="width:80px">
+              <col style="width:110px">
+              <col style="width:80px">
+              <col style="width:80px">
+              <col style="width:80px">
+              <col style="width:80px">
+              <col style="width:100px">
+              <col style="width:80px">
+              <col style="width:100px">
+              <col style="width:110px">
+              <col style="width:110px">
+              <col style="width:120px">
+            </colgroup>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <th class="text-center">ผลลัพธ์</th>
+            <th class="text-center">CODE</th>
+            <th class="text-center">ทีม OUTSOURCE</th>
+            <th class="text-center">ภูมิภาค</th>
+            <th class="text-center">จังหวัด</th>
+            <th class="text-center">วันที่ Apply</th>
+            <th class="text-center">OwnerApply</th>
+            <th class="text-center">Collector Apply</th>
+            <th class="text-center">วันที่ Apporve</th>
+            <th class="text-center">OwnerApprove</th>
+            <th class="text-center">CollectorApprove</th>
+            <th class="text-center">รอบในการส่ง Mail</th>
+            <th class="text-center">สถานะการ Gen Excel</th>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData>
+            <tr>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <th colspan="13">
+                No Record Found
+              </th>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</p-panel>

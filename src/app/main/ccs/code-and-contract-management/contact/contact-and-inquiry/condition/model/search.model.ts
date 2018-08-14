@@ -5,7 +5,7 @@ export class Search {
 
   constructor(public com_code, public agr_code, public cus_code, public ent_code, public f_namet, public l_namet,
               public new_tr, public ent_type_desc, public cus_name, public card_no, public reg_num, public ref_code, public owner,
-              public full_status, public found_agr) {
+              public full_status, public found_agr, public mkt_namet) {
   }
 
   static parse(json: any[]) {
@@ -27,7 +27,8 @@ export class Search {
         json[i].REF_CODE,
         json[i].OWNER,
         json[i].FULL_STATUS,
-        json[i].FOUND_AGR
+        json[i].FOUND_AGR,
+        json[i].MKT_NAMET
       ))
     }
 

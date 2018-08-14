@@ -25,6 +25,7 @@ export class ExposureinquiryComponent implements OnInit {
   ListBlacklistResult:BlacklistResult[]=[];
   modelExposureHistory:ModelExposureHistory[]=[];
   ListBlacklistHistory:BlacklistHistory[]=[];
+  isLoading : boolean
   constructor(private formexp: FormBuilder,private userStorage: UserStorage,
               private  BLService : BlacklistResultService,
               private router: Router,
@@ -117,6 +118,7 @@ export class ExposureinquiryComponent implements OnInit {
       this.alertDialogComponent.open();
     }
     else {
+
       this.modelBLchk = new BlacklistChk();
       this.modelBLchk.FIRST_NAME = firstname;
       this.modelBLchk.LAST_NAME = lastname;
@@ -134,7 +136,7 @@ export class ExposureinquiryComponent implements OnInit {
       this.modelBLchk.ID_CARD = idcard;
       // console.log(this.modelBLchk);
       this.BLService.setModelBLchk(this.modelBLchk);
-
+      this.isLoading = true
       this.subscription = this.BLService.getBlacklistResult("web",this.modelBLchk).subscribe(
         (data: any) => {
 
@@ -158,6 +160,7 @@ export class ExposureinquiryComponent implements OnInit {
           //    this.BLService.setBlacklistHistory(this.ListBlacklistHistory);
           //
           this.BLService.tabName='Exposure Inquiry';
+          this.isLoading = false
           if (data.MSG == 'Complete'){
 
             this.router.navigate(['blacklist/checking']);}

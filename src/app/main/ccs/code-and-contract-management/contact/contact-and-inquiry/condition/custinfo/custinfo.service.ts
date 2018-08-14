@@ -38,8 +38,9 @@ export class CustinfoService {
   }
 
   getShowAll(device: string, userCode: string, agr_code: string, com_code: string) {
-    // const url = `http://localhost:8080/WebServices_CCS/ask/CCS/Custinfo_ShowAll?device=${device}&user=${userCode}&AgrCode=${agr_code}&AccessCompany=${com_code}`;
-    const url = this.service.url + this.service.ccs_tps + `/ask/CCS/Custinfo_ShowAll?device=${device}&user=${userCode}&AgrCode=${agr_code}&AccessCompany=${com_code}`;
+    // const url = `http://localhost:8080/WebServices_Custinfo/ask/CCS/Custinfo_ShowAll?device=${device}&user=${userCode}&AgrCode=${agr_code}&AccessCompany=${com_code}`;
+    const url = this.service.url + this.service.custinfo_api + `/ask/CCS/Custinfo_ShowAll?device=${device}&user=${userCode}&AgrCode=${agr_code}&AccessCompany=${com_code}`;
+    // const url = '';
     let options = {
       headers: {
         'Content-Type': 'application/json;charset=utf-8'

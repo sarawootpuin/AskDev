@@ -102,6 +102,19 @@ export class DetailComponent
     this.data.operating_lease = "";
     this.data.with_vat = "Y";
     this.data.wh_tax_flg = "N";
+    if(this.data.fin_typ == 1) {
+      this.data.dep_amt_e_vat = 0
+      this.data.dep_amt_i_vat = 0
+      this.data.dep_amt_vat = 0
+      this.data.rv_amt_e_vat = 0
+      this.data.rv_amt_i_vat = 0
+      this.data.rv_amt_vat = 0
+    }
+    else if( this.data.fin_typ == 2){
+      this.data.down_amt_e_vat = 0
+      this.data.down_amt_i_vat = 0
+      this.data.down_amt_vat = 0
+    }
     this.inputChange();
     //this.handleChange(!this.isChecked);
   }
@@ -452,117 +465,35 @@ export class DetailComponent
 
   calculateDown(from: any) {
     if (from == "E") {
-      if (this.data.with_vat === "Y") {
-        this.data.down_amt_vat = Number(
-          ((this.data.down_amt_e_vat ? this.data.down_amt_e_vat : 0) *
-            this.vatRate) /
-            100
-        ).toFixed(2);
-        this.data.down_amt_i_vat = (
-          Number(this.data.down_amt_e_vat ? this.data.down_amt_e_vat : 0) +
-          Number(this.data.down_amt_vat)
-        ).toFixed(2);
-      } else {
-        this.data.down_amt_vat = 0;
-        this.data.down_amt_i_vat = this.data.down_amt_e_vat
-          ? this.data.down_amt_e_vat
-          : 0;
-      }
+      this.data.down_amt_vat = Number(((this.data.down_amt_e_vat ? this.data.down_amt_e_vat : 0) * this.vatRate) / 100).toFixed(2);
+      this.data.down_amt_i_vat = (Number(this.data.down_amt_e_vat ? this.data.down_amt_e_vat : 0) + Number(this.data.down_amt_vat)).toFixed(2);
     } else {
-      if (this.data.with_vat == "Y") {
-        this.data.down_amt_e_vat = Number(
-          ((this.data.down_amt_i_vat ? this.data.down_amt_i_vat : 0) * 100) /
-            (100 + this.vatRate)
-        ).toFixed(2);
-        this.data.down_amt_vat = Number(
-          (this.data.down_amt_i_vat ? this.data.down_amt_i_vat : 0) -
-            this.data.down_amt_e_vat
-        ).toFixed(2);
-      } else {
-        this.data.down_amt_vat = 0;
-        this.data.down_amt_i_vat = this.data.down_amt_e_vat
-          ? this.data.down_amt_e_vat
-          : 0;
-      }
+      this.data.down_amt_e_vat = Number(((this.data.down_amt_i_vat ? this.data.down_amt_i_vat : 0) * 100) / (100 + this.vatRate)).toFixed(2);
+      this.data.down_amt_vat = Number((this.data.down_amt_i_vat ? this.data.down_amt_i_vat : 0) - this.data.down_amt_e_vat).toFixed(2);
     }
     this.calculatefinfromAsset();
   }
 
   calculateDep(from: any) {
     if (from == "E") {
-      if (this.data.with_vat === "Y") {
-        this.data.dep_amt_vat = Number(
-          ((this.data.dep_amt_e_vat ? this.data.dep_amt_e_vat : 0) *
-            this.vatRate) /
-            100
-        ).toFixed(2);
-        this.data.dep_amt_i_vat = (
-          Number(this.data.dep_amt_e_vat ? this.data.dep_amt_e_vat : 0) +
-          Number(this.data.dep_amt_vat)
-        ).toFixed(2);
-      } else {
-        this.data.dep_amt_e_vat = 0;
-        this.data.dep_amt_i_vat = this.data.dep_amt_e_vat
-          ? this.data.dep_amt_e_vat
-          : 0;
-      }
+      this.data.dep_amt_vat = Number(((this.data.dep_amt_e_vat ? this.data.dep_amt_e_vat : 0) * this.vatRate) / 100).toFixed(2);
+      this.data.dep_amt_i_vat = (Number(this.data.dep_amt_e_vat ? this.data.dep_amt_e_vat : 0) + Number(this.data.dep_amt_vat)).toFixed(2);
     } else {
-      if (this.data.with_vat == "Y") {
-        this.data.dep_amt_e_vat = Number(
-          ((this.data.dep_amt_i_vat ? this.data.dep_amt_i_vat : 0) * 100) /
-            (100 + this.vatRate)
-        ).toFixed(2);
-        this.data.dep_amt_vat = Number(
-          (this.data.dep_amt_i_vat ? this.data.dep_amt_i_vat : 0) -
-            this.data.dep_amt_e_vat
-        ).toFixed(2);
-      } else {
-        this.data.dep_amt_vat = 0;
-        this.data.dep_amt_e_vat = this.data.dep_amt_i_vat
-          ? this.data.dep_amt_i_vat
-          : 0;
-      }
+      this.data.dep_amt_e_vat = Number(((this.data.dep_amt_i_vat ? this.data.dep_amt_i_vat : 0) * 100) / (100 + this.vatRate)).toFixed(2);
+      this.data.dep_amt_vat = Number((this.data.dep_amt_i_vat ? this.data.dep_amt_i_vat : 0) - this.data.dep_amt_e_vat).toFixed(2);
     }
     this.calculatefinfromAsset();
   }
 
   calculateRv(from: any) {
     if (from == "E") {
-      if (this.data.with_vat === "Y") {
-        this.data.rv_amt_e_vat = this.data.rv_amt_e_vat
-          ? this.data.rv_amt_e_vat
-          : 0;
-        this.data.rv_amt_vat = Number(
-          (this.data.rv_amt_e_vat * this.vatRate) / 100
-        ).toFixed(2);
-        this.data.rv_amt_i_vat = (
-          Number(this.data.rv_amt_e_vat) + Number(this.data.rv_amt_vat)
-        ).toFixed(2);
-      } else {
-        this.data.rv_amt_e_vat = this.data.rv_amt_e_vat
-          ? this.data.rv_amt_e_vat
-          : 0;
-        this.data.rv_amt_vat = 0;
-        this.data.rv_amt_i_vat = this.data.rv_amt_e_vat;
-      }
+      this.data.rv_amt_e_vat = this.data.rv_amt_e_vat ? this.data.rv_amt_e_vat : 0;
+      this.data.rv_amt_vat = Number((this.data.rv_amt_e_vat * this.vatRate) / 100).toFixed(2);
+      this.data.rv_amt_i_vat = (Number(this.data.rv_amt_e_vat) + Number(this.data.rv_amt_vat)).toFixed(2);
     } else {
-      if (this.data.with_vat === "Y") {
-        this.data.rv_amt_i_vat = this.data.rv_amt_i_vat
-          ? this.data.rv_amt_i_vat
-          : 0;
-        this.data.rv_amt_e_vat = Number(
-          (this.data.rv_amt_i_vat * 100) / (100 + this.vatRate)
-        ).toFixed(2);
-        this.data.rv_amt_vat = Number(
-          this.data.rv_amt_i_vat - this.data.rv_amt_e_vat
-        ).toFixed(2);
-      } else {
-        this.data.rv_amt_i_vat = this.data.rv_amt_i_vat
-          ? this.data.rv_amt_i_vat
-          : 0;
-        this.data.rv_amt_vat = 0;
-        this.data.rv_amt_e_vat = this.data.rv_amt_i_vat;
-      }
+      this.data.rv_amt_i_vat = this.data.rv_amt_i_vat ? this.data.rv_amt_i_vat : 0;
+      this.data.rv_amt_e_vat = Number((this.data.rv_amt_i_vat * 100) / (100 + this.vatRate)).toFixed(2);
+      this.data.rv_amt_vat = Number(this.data.rv_amt_i_vat - this.data.rv_amt_e_vat).toFixed(2);
     }
     this.calculatefinfromAsset();
   }
@@ -618,43 +549,21 @@ export class DetailComponent
     if (this.data.asst_amt_e_vat) {
       this.data.fin_amt_e_vat = this.data.fin_ratio * this.data.asst_amt_e_vat;
       if (this.data.with_vat === "Y") {
-        this.data.fin_amt_vat = Number(
-          (this.data.fin_amt_e_vat * this.vatRate) / 100
-        ).toFixed(2);
-        this.data.fin_amt_i_vat = (
-          Number(this.data.fin_amt_e_vat) + Number(this.data.fin_amt_vat)
-        ).toFixed(2);
+        this.data.fin_amt_vat = Number((this.data.fin_amt_e_vat * this.vatRate) / 100).toFixed(2);
+        this.data.fin_amt_i_vat = (Number(this.data.fin_amt_e_vat) + Number(this.data.fin_amt_vat)).toFixed(2);
       } else {
         this.data.fin_amt_vat = "";
         this.data.fin_amt_i_vat = this.data.fin_amt_e_vat;
       }
 
       if (this.data.fin_typ === "1") {
-        this.data.down_amt_e_vat =
-          this.data.asst_amt_e_vat - this.data.fin_amt_e_vat;
-        if (this.data.with_vat === "Y") {
-          this.data.down_amt_vat = Number(
-            (this.data.down_amt_e_vat * this.vatRate) / 100
-          ).toFixed(2);
-          this.data.down_amt_i_vat =
-            Number(this.data.down_amt_e_vat) + Number(this.data.down_amt_vat);
-        } else {
-          this.data.down_amt_vat = "";
-          this.data.down_amt_i_vat = this.data.down_amt_e_vat;
-        }
+        this.data.down_amt_e_vat = this.data.asst_amt_e_vat - this.data.fin_amt_e_vat;
+        this.data.down_amt_vat = Number((this.data.down_amt_e_vat * this.vatRate) / 100).toFixed(2);
+        this.data.down_amt_i_vat = Number(this.data.down_amt_e_vat) + Number(this.data.down_amt_vat);
       } else if (this.data.fin_typ === "2") {
-        this.data.dep_amt_e_vat =
-          this.data.asst_amt_e_vat - this.data.fin_amt_e_vat;
-        if (this.data.with_vat === "Y") {
-          this.data.dep_amt_vat = Number(
-            (this.data.dep_amt_e_vat * this.vatRate) / 100
-          ).toFixed(2);
-          this.data.dep_amt_i_vat =
-            Number(this.data.dep_amt_e_vat) + Number(this.data.dep_amt_vat);
-        } else {
-          this.data.dep_amt_vat = "";
-          this.data.dep_amt_i_vat = this.data.dep_amt_e_vat;
-        }
+        this.data.dep_amt_e_vat = this.data.asst_amt_e_vat - this.data.fin_amt_e_vat;
+        this.data.dep_amt_vat = Number((this.data.dep_amt_e_vat * this.vatRate) / 100).toFixed(2);
+        this.data.dep_amt_i_vat = Number(this.data.dep_amt_e_vat) + Number(this.data.dep_amt_vat);
       }
     }
   }

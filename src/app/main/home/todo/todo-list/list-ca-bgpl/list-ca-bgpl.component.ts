@@ -11,14 +11,14 @@ import {Router} from "@angular/router";
   templateUrl: './list-ca-bgpl.component.html',
   styleUrls: ['./list-ca-bgpl.component.css']
 })
-export class ListCaBgplComponent implements OnInit, OnChanges, OnDestroy,
-  AfterViewInit {
+export class ListCaBgplComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
   subscription: Subscription;
   @Input() task: TaskItem;
   listCaTodoBgpl: CaTodoBgpl[] = [];
   isLoading: boolean = false;
   @ViewChild('searchInput') searchInput: ElementRef;
   cols: any[];
+  subscriptionAmend : Subscription
 
   constructor(private todoService: TodoService,
               private userStorage: UserStorage,
@@ -32,7 +32,8 @@ export class ListCaBgplComponent implements OnInit, OnChanges, OnDestroy,
       {field: 'sbuType', header: 'Credit Type'},
       {field: 'custName', header: 'Customer Name'},
       {field: 'applyDt', header: 'Apply Date'},
-      {field: 'mktName', header: 'Mkt. Name'}
+      {field: 'mktName', header: 'Mkt. Name'},
+      {field: 'expireDt', header: 'Expire Date'}
     ];
   }
 
@@ -70,6 +71,9 @@ export class ListCaBgplComponent implements OnInit, OnChanges, OnDestroy,
     if (this.subscription != null) {
       this.subscription.unsubscribe();
     }
+    if(this.subscriptionAmend){
+      this.subscriptionAmend.unsubscribe()
+    }
   }
 
   resetSearchInput() {
@@ -79,12 +83,29 @@ export class ListCaBgplComponent implements OnInit, OnChanges, OnDestroy,
   }
 
   rowSelectList(caTodoBgpl: CaTodoBgpl) {
-    this.router.navigate(['/ca'], {
-      queryParams: {
-        ca_no: caTodoBgpl.caNo,
-        task : this.task.taskCode
-      }
-    });
-
+    if (this.task.taskCode !== 'CA-01-4') { 
+      this.router.navigate(['/ca'], {
+        queryParams: {
+          ca_no: caTodoBgpl.caNo,
+          task : this.task.taskCode
+        }
+      });
+    } else {
+      this.subscriptionAmend = this.todoService.amendCa("web", this.userStorage.getUserName(), caTodoBgpl.comCode, caTodoBgpl.caNo).subscribe(
+        (json: any) => {
+          const {data} = json;
+          console.log(data);
+          if (json.CODE == '200') {
+            this.router.navigate(['/ca'], {
+              queryParams: {
+                com_code: caTodoBgpl.comCode,
+                ca_no: caTodoBgpl.caNo,
+                task: 'AM-01'
+              }
+            });
+          }
+        }
+      );
+    }
   }
 }

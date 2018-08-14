@@ -356,7 +356,7 @@
   </div>
   <div class="d-flex">
     <p-tabView class="w-100" (onChange)="onTabChange($event.index)">
-      <p-tabPanel header="Fix">
+      <p-tabPanel header="Fix" [selected]="!this.bgdetail.tabFloat">
         <div class="form-group col-md-12 card pt-1">
           <div class="form-group form-inline mt-2">
             <input type="radio" name="schedule" value="R" [(ngModel)]="bgdetail.schedule"
@@ -435,7 +435,7 @@
           </div>
         </div>
       </p-tabPanel>
-      <p-tabPanel header="Float">
+      <p-tabPanel header="Float"  [selected]="this.bgdetail.tabFloat">
         <div class="form-group col-md-12 modal-content pt-1">
           <div class="form-group d-flex">
             <div class="col-md-2">

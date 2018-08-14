@@ -21,8 +21,10 @@
                        [value]="listSalecallTodo" [responsive]="true"
                        selectionMode="single"
                        [rows]="10"
+
                        paginatorPosition="both"
                        [paginator]="true"
+
                        [globalFilter]="searchInput"
                        (onRowSelect)="rowSelectList($event.data)">
             <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"

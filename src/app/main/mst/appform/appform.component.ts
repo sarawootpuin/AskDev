@@ -323,6 +323,12 @@ export class AppFormComponent implements OnInit, OnDestroy {
       if (this.data.rec_agr_flag == 'AC' && !this.data.rec_cond.trim()) {
         this.alertWarning.addMessage('- Condition');
       }
+
+      if(this.data.rec_agr_flag == 'AC' || this.data.rec_agr_flag == 'A') {
+        if(!this.data.recAmount || this.data.recAmount == 0){
+          this.alertWarning.addMessage('- Approve Amount');
+        }
+      }
     }
     else {
       if (this.data.sbu_typ == 'P') {
@@ -365,7 +371,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
           this.alertWarning.addMessage('- Interest Rate > 15');
         }
         if (this.alertWarning.list_msg.length <= 0) {
-        
+
         }
       }
       else if (this.data.sbu_typ == 'FDO') {
@@ -436,7 +442,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
             if ((!detail.installment_e_vat || !detail.installment_i_vat) && detail.listStep.length == 0) {
               this.alertWarning.addMessage('- Installment');
             }
-            
+
             if(detail.schedule == 'I'){
               this.checkStep(detail.sub_id);
               if(detail.type_cal_pricing == '1' || detail.type_cal_pricing == '2'){
@@ -849,7 +855,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
 
   showReport() {
     let ap_no: string = this.data.ap_no.replace("/", "_");
-    //new_card_no 
+    //new_card_no
     window.open(this.serviceEndPoint.url_report + '/result?report=MKT\\App_form_01.fr3&ApNo=' + ap_no + '&format=pdf', '_blank');
   }
 

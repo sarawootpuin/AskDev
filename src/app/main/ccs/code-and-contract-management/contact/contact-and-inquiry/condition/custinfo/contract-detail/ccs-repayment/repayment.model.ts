@@ -18,11 +18,20 @@ export class RepaymentModel {
   public day: any;
   public vat: any;
   public os_vat: any;
-
+  public installment: any;
+  public begin_pri: any;
+  public interest: any;
+  public paid_price: any;
+  public act_int: any;
+  public accru_int: any;
+  public act_fac: any;
+  public accru_fac: any;
 
   constructor(no?: any, agr_code?: any, due_date?: any, due_amt?: any, cal_rate?: any, pen_rate?: any,
               os_ar?: any, schd_int?: any, schd_fac?: any, os_principal?: any, os_interest?: any,
-              os_fac?: any, principal?: any, day?: any, vat?: any, os_vat?: any) {
+              os_fac?: any, principal?: any, day?: any, vat?: any, os_vat?: any, installment?: any,
+              begin_pri?: any, interest?: any, paid_price?: any, act_int?: any, accru_int?: any,
+              act_fac?: any, accru_fac?: any) {
     this.no = no;
     this.agr_code = agr_code;
     this.due_date = due_date;
@@ -39,6 +48,14 @@ export class RepaymentModel {
     this.day = day;
     this.vat = vat;
     this.os_vat = os_vat;
+    this.installment = installment;
+    this.begin_pri = begin_pri;
+    this.interest = interest;
+    this.paid_price = paid_price;
+    this.act_int = act_int;
+    this.accru_int = accru_int;
+    this.act_fac = act_fac;
+    this.accru_fac = accru_fac;
   }
 
   static parse(json:any[]) {
@@ -61,7 +78,15 @@ export class RepaymentModel {
         json[i].principal,
         json[i].day,
         json[i].vat,
-        json[i].os_vat
+        json[i].os_vat,
+        json[i].installment,
+        json[i].begin_pri,
+        json[i].interest,
+        json[i].paid_price,
+        json[i].act_int,
+        json[i].accru_int,
+        json[i].act_fac,
+        json[i].accru_fac
       ))
     }
 

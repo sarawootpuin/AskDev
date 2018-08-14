@@ -18,19 +18,21 @@ export class CcsMovementFollowupService {
   }
 
   Get_Group_Customer(device: string, userCode: string, com_code: string, agr_code: string) {
-    const url = `http://localhost:8080/WebServices_CCS/ask/CCS/Custinfo_GetGroupCustomer?device=${device}&user=${userCode}&ComCode=${com_code}&AgrCode=${agr_code}`;
-    console.log(url);
+    // const url = `http://localhost:8080/WebServices_Custinfo/ask/CCS/Custinfo_GetGroupCustomer?device=${device}&user=${userCode}&ComCode=${com_code}&AgrCode=${agr_code}`;
+    const url = this.service.url + this.service.custinfo_api + `/ask/CCS/Custinfo_GetGroupCustomer?device=${device}&user=${userCode}&ComCode=${com_code}&AgrCode=${agr_code}`;
+    // console.log(url);
     let options = {
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
       }
     };
+
     return this.http.get(url, options);
   }
 
   SaveFollowUp(data : saveFollowUpModel[], device: string, userCode: string) {
-    const url = `http://localhost:8080/WebServices_CCS/ask/CCS/Custinfo_SaveFollowUp?device=${device}&user=${userCode}`;
-    // const url = this.service.url + this.service.ccs_tps + `/ask/CCS/Custinfo_SaveFollowUp?device=${device}&user=${userCode}`;
+    // const url = `http://localhost:8080/WebServices_Custinfo/ask/CCS/Custinfo_SaveFollowUp?device=${device}&user=${userCode}`;
+    const url = this.service.url + this.service.custinfo_api + `/ask/CCS/Custinfo_SaveFollowUp?device=${device}&user=${userCode}`;
 
     let options = {
       headers: {
@@ -41,8 +43,8 @@ export class CcsMovementFollowupService {
   }
 
   UpdateFollowUp(data : saveFollowUpModel[], device: string, userCode: string) {
-    const url = `http://localhost:8080/WebServices_CCS/ask/CCS/Custinfo_UpdateFollowUp?device=${device}&user=${userCode}`;
-    // const url = this.service.url + this.service.ccs_tps + `/ask/CCS/Custinfo_SaveFollowUp?device=${device}&user=${userCode}`;
+    // const url = `http://localhost:8080/WebServices_Custinfo/ask/CCS/Custinfo_UpdateFollowUp?device=${device}&user=${userCode}`;
+    const url = this.service.url + this.service.custinfo_api + `/ask/CCS/Custinfo_SaveFollowUp?device=${device}&user=${userCode}`;
 
     let options = {
       headers: {

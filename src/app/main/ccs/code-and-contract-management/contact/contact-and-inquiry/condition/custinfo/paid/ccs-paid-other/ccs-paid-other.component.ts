@@ -26,10 +26,10 @@ export class CcsPaidOtherComponent implements OnInit {
       {field: 'document_no', header: 'Receipt No.'},
       {field: 'date_pay', header: 'Receipt Date'},
       {field: 'amount', header: 'Paid Amount'},
-      {field: 'receive_type', header: 'Paid Type'},
+      {field: 'paid_desc', header: 'Paid Type'},
       {field: 'receive_name', header: 'Type'},
       {field: 'amount', header: 'Amount'},
-      {field: 'paid_desc', header: 'Remark'},
+      {field: 'remark', header: 'Remark'},
       {field: 'entry_number', header: 'ENTRY_NUMBER'}
     ];
 
@@ -40,8 +40,8 @@ export class CcsPaidOtherComponent implements OnInit {
 
         for (let i = 0; i < this.list_cdspaid_other.length; i++) {
           this.receiveType_item = {
-            label: this.list_cdspaid_other[i].receive_type,
-            value: this.list_cdspaid_other[i].receive_type
+            label: this.list_cdspaid_other[i].receive_name,
+            value: this.list_cdspaid_other[i].receive_name
           };
           this.receiveType.push(this.receiveType_item);
         }

@@ -66,7 +66,7 @@ export class caBgDetail {
   public   drawdown_flg;
   public   listbgdetailsub :caBgDetailSub[] ;
   public   listcastep :caStep[] ;
-
+  public   tabFloat : boolean
 
   constructor()
   constructor(ca_no, sub_id, fin_typ, sub_fin, buy_back_flg, adv_arr, schedule, asst_amt_e_vat, asst_amt_vat, asst_amt_i_vat,
@@ -76,7 +76,7 @@ export class caBgDetail {
               currency, disburse_dt, first, operating_lease, wh_tax, lc_flg, fin_asst, group_flg, group_nme, asst_prce_forgn,
               curr_type, duty_pcnt, inst_pcnt_of_asst, with_vat, free_text, es_expense, es_revenue, cancel_date, cancel_no,
               pen_rate, great_period, net_irr_inc_deposit, type_cal_pricing , buy_back_amt, dealer_code,
-              fin_name, credit_type, drawdown_flg, listbgdetailsub , listcastep)
+              fin_name, credit_type, drawdown_flg, listbgdetailsub , listcastep, tabFloat)
   constructor(ca_no ?, sub_id ?, fin_typ ?, sub_fin ?, buy_back_flg ?, adv_arr ?, schedule ?, asst_amt_e_vat ?, asst_amt_vat ?,
               asst_amt_i_vat ?, fin_amt_e_vat ?, fin_amt_vat ?, fin_amt_i_vat ?, fin_ratio ?, down_amt_e_vat ?, down_amt_vat ?,
               down_amt_i_vat ?, dep_amt_e_vat ?, dep_amt_vat ?, dep_amt_i_vat ?, rv_amt_e_vat ?, rv_amt_vat ?, rv_amt_i_vat ?,
@@ -85,7 +85,7 @@ export class caBgDetail {
               operating_lease ?, wh_tax ?, lc_flg ?, fin_asst ?, group_flg ?, group_nme ?, asst_prce_forgn ?, curr_type ?,
               duty_pcnt ?, inst_pcnt_of_asst ?, with_vat ?, free_text ?, es_expense ?, es_revenue ?, cancel_date ?, cancel_no ?,
               pen_rate ?, great_period ?, net_irr_inc_deposit ?, type_cal_pricing ?, buy_back_amt?, dealer_code?,
-              fin_name ?, credit_type ?, drawdown_flg ?, listbgdetailsub? ,listcastep ?) {
+              fin_name ?, credit_type ?, drawdown_flg ?, listbgdetailsub? ,listcastep ?, tabFloat?) {
     this.ca_no = ca_no;
     this.sub_id = sub_id;
     this.fin_typ = fin_typ;
@@ -151,6 +151,7 @@ export class caBgDetail {
     this.drawdown_flg = drawdown_flg;
     this.listbgdetailsub = listbgdetailsub ? listbgdetailsub : [];
     this.listcastep = listcastep ?listcastep : [];
+    this.tabFloat = this.cal_inst_typ == 'Float' ? true : false
   }
 
   static
@@ -223,7 +224,8 @@ export class caBgDetail {
           json[i].credit_type,
           json[i].drawdown_flg,
           caBgDetailSub.parse(json[i].listbgdetailsub),
-          caStep.parse(json[i].listcastep)
+          caStep.parse(json[i].listcastep),
+          json[i].cal_inst_typ == 'Flaot' ? true : false
         ))
       }
     }

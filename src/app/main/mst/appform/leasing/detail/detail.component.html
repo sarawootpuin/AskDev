@@ -277,7 +277,7 @@
   </div>
   <div class="border-isa mt-1 mb-1 p-3">
     <p-tabView (onChange)="onTabChange($event.index)">
-      <p-tabPanel header="Fix">
+      <p-tabPanel header="Fix" [selected]="!this.data.tabFloat">
         <div class="row">
           <div class="col-md-3 m-1">
             <div class="mt-radio-inline border-isa">
@@ -346,7 +346,7 @@
           </p-dataTable>
         </div>
       </p-tabPanel>
-      <p-tabPanel header="Float">
+      <p-tabPanel header="Float" [selected]="this.data.tabFloat">
         <div class="col-md-12 form-group d-flex">
           <div class="col-md-2">
             <label class="mt-4 pt-1">Installment </label>

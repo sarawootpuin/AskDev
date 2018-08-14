@@ -14,7 +14,7 @@ export class cdsPaid_OtherModel {
 
   constructor(public document_date?: string, public document_no?: string, public date_pay?: string,
               public amount?: string, public receive_type?: string, public receive_name?: string,
-              public paid_desc?: string, public entry_number?: string) {
+              public paid_desc?: string, public entry_number?: string, public remark?: string) {
   }
 
   static parse(json:any[]) {
@@ -29,7 +29,8 @@ export class cdsPaid_OtherModel {
         json[i].RECEIVE_TYPE,
         json[i].RECEIVE_NAME,
         json[i].PAID_DESC,
-        json[i].ENTRY_NUMBER
+        json[i].ENTRY_NUMBER,
+        json[i].REMARK,
       ))
     }
 

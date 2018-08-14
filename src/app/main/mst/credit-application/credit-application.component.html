@@ -182,7 +182,14 @@
                 </div>
               </div>
             </div>
-
+            <div class="flex-md-column col-md-3">
+              <div class="form-group">
+                <label>Connect Since</label>
+                <input type="text" class="form-control" pTooltip="01/2017" [textMask]="{mask: textmask.mm_yyyy }" [ngModel]="myCaHead?.connect_since"
+                       (ngModelChange)="myCaHead.connect_since =$event"
+                       [disabled] = "!this.checkTask.includes(this.task)">
+              </div>
+            </div>
           </div>
           <div class="row" *ngIf="myCaHead.sbu_typ == 'FDO'">
             <div class="flex-md-column col-md-3">
@@ -268,9 +275,12 @@
           </app-side-tab-level>
           <app-side-tab-level [nameMenu]="'Context Data'">
           </app-side-tab-level>
+
           <app-side-tab-level [nameMenu]="'Attachment'" *ngIf="task == 'CA-04-2' ||task == 'CA-04-3'">
           </app-side-tab-level>
           <app-side-tab-level [nameMenu]="'Recommend'">
+          </app-side-tab-level>
+          <app-side-tab-level [nameMenu]="'Credit Scoring Sheet'">
           </app-side-tab-level>
 
           <app-side-tab-level [nameMenu]="'Amend Content&Reason'" *ngIf="taskShorten=='AM'">
@@ -284,6 +294,8 @@
             <app-side-tab-level [nameMenu]="'Buyer'"></app-side-tab-level>
             <app-side-tab-level [nameMenu]="'Buyer Group'"></app-side-tab-level>
           </app-side-tab-level>
+
+
         </app-side-tab-panel>
         <app-side-tab-main>
           <!--===================customer tab============================-->
@@ -417,6 +429,10 @@
           <app-side-tab-content [nameContent]="'Amend Key In'">
             <app-ca-amend-keyin [isReadonly]="this.isReadonly" *ngIf="taskShorten == 'AM'"></app-ca-amend-keyin>
           </app-side-tab-content>
+
+          <app-side-tab-content [nameContent]="'Credit Scoring Sheet'">
+            <app-ca-credit-rating></app-ca-credit-rating>
+          </app-side-tab-content>
         </app-side-tab-main>
       </app-side-tab>
     </div>
@@ -425,7 +441,7 @@
 
 <app-alert-dialog #Questiondialog (onOK)="onConfirmQuest(submitOrsave)"></app-alert-dialog>
 
-<app-alert-dialog #dialogalert (onOK)="onOksubmit()"></app-alert-dialog>
+<app-alert-dialog #dialogalert (onOK)="onOksubmit()" (onCloseDialog)="onOksubmit()"></app-alert-dialog>
 
 <app-alert-dialog #validateAlert></app-alert-dialog>
 

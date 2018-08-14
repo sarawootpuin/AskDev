@@ -1,0 +1,235 @@
+<p-panel header="Search" [toggleable]="true" [collapsed]="openSearch">
+  <div class="row">
+    <div class="col-md-4 form-group">
+      <label><b>Search</b></label>
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="fa fa-search"></i></span>
+        <input #gb type="text" pInputText size="50" placeholder="Search">
+      </div>
+    </div>
+    <div class="col-md-8 form-group">
+      <label><b>Apply Date</b></label>
+      <div class="form-inline">
+        <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="fromDate"
+                    dataType="string" showButtonBar="true" id="from"
+                    placeholder="dd/mm/yyyy"
+                    (ngModelChange)= "sendConditions('from')"
+        ></p-calendar>
+        <span>&nbsp;-&nbsp;</span>
+        <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="toDate"
+                    placeholder="dd/mm/yyyy"
+                    dataType="string" showButtonBar="true" id="to"
+                    (ngModelChange) = "sendConditions('to')"></p-calendar>
+
+        <!--<div class="form-check" style="padding-right:1rem;padding-left: 1rem">-->
+        <!--<input class="form-check-input" type="radio" value="showAll" name="condition"-->
+        <!--[(ngModel)]="showType"-->
+        <!--(ngModelChange)="setType()" checked>-->
+        <!--<label class="form-check-label">-->
+        <!--Show All-->
+        <!--</label>-->
+        <!--</div>-->
+        <!--<div class="form-check" style="padding-right:1rem;">-->
+        <!--<input class="form-check-input" type="radio" value="Factoring" name="condition"-->
+        <!--[(ngModel)]="showType" (ngModelChange)="setType()">-->
+        <!--<label class="form-check-label">-->
+        <!--Factoring-->
+        <!--</label>-->
+        <!--</div>-->
+        <!--<div class="form-check" style="padding-right:1rem;">-->
+        <!--<input class="form-check-input" type="radio" value="Leasing" name="condition"-->
+        <!--[(ngModel)]="showType" (ngModelChange)="setType()">-->
+        <!--<label class="form-check-label">-->
+        <!--Leasing-->
+        <!--</label>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+</p-panel>
+<div class="detail-container">
+  <div class="card m-1">
+    <div class="card-body p-1">
+      <div class="card p-1">
+        <div *ngIf="isLoading" class="text-center">
+          <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>Loading...
+        </div>
+        <div *ngIf="!isLoading">
+          <!--<p-dataTable [value]="listMonitor"-->
+                       <!--scrollable="true" scrollHeight="17rem"-->
+                       <!--selectionMode="single"-->
+                       <!--(onRowSelect)="onRowSelect($event)"-->
+                       <!--[(selection)]="SelectMonitor"-->
+                       <!--[globalFilter]="gb" #dt-->
+                       <!--[paginator]="true"-->
+                       <!--[rows]="10"-->
+                       <!--[responsive]="true"-->
+                       <!--sortField="team_code"-->
+                       <!--rowGroupMode="subheader"-->
+                       <!--groupField="team_code"-->
+                       <!--expandableRowGroups="true"-->
+                       <!--[sortableRowGroup]="false"-->
+                       <!--[rowsPerPageOptions]="[5,10,20,30,40]">-->
+            <!--<p-headerColumnGroup >-->
+              <!--<p-row>-->
+                <!--&lt;!&ndash;<p-column header="Team"           rowspan="3"></p-column>&ndash;&gt;-->
+                <!--<p-column header="Name"           rowspan="3" [style]="{'width':'200px'}" ></p-column>-->
+                <!--<p-column header="Total Task"     rowspan="3"></p-column>-->
+                <!--<p-column header="Reject Task"    rowspan="3"></p-column>-->
+                <!--<p-column header="Call Result"    colspan="4" rowspan="2"></p-column>-->
+                <!--<p-column header="Activity"       colspan="4"></p-column>-->
+                <!--<p-column header="Undo (All)"     rowspan="3"></p-column>-->
+                <!--<p-column header="Join Visit"     rowspan="3"></p-column>-->
+                <!--<p-column header="Visit Warning"  rowspan="3"></p-column>-->
+              <!--</p-row>-->
+              <!--<p-row>-->
+                <!--<p-column header="Call Type" colspan="2"></p-column>-->
+                <!--<p-column header="Visit"     colspan="1" rowspan="2"></p-column>-->
+                <!--<p-column header="Undo"      colspan="1" rowspan="2"></p-column>-->
+              <!--</p-row>-->
+              <!--<p-row>-->
+                <!--<p-column header="Reject" colspan="1" rowspan="1"></p-column>-->
+                <!--<p-column header="Recall" colspan="1" rowspan="1"></p-column>-->
+                <!--<p-column header="Follow Up" colspan="1" rowspan="1"></p-column>-->
+                <!--<p-column header="Prepare CA" colspan="1" rowspan="1"></p-column>-->
+                <!--<p-column header="Call Found"     colspan="1"></p-column>-->
+                <!--<p-column header="Call Not Found" colspan="1"></p-column>-->
+              <!--</p-row>-->
+            <!--</p-headerColumnGroup>-->
+
+            <!--<ng-template pTemplate="rowgroupheader" let-rowData>{{rowData['team_code']}}</ng-template>-->
+            <!--&lt;!&ndash;<p-column field="team_code"   ></p-column>&ndash;&gt;-->
+            <!--<p-column field="mkt_name"  [style]="{'width':'200px'}"   ></p-column>-->
+            <!--<p-column field="total_task"  [style]="{'text-align':'center'}"  ></p-column>-->
+            <!--<p-column field="reject_task" [style]="{'text-align':'center'}"></p-column>-->
+            <!--<p-column field="result_reject" [style]="{'text-align':'center'}"></p-column>-->
+            <!--<p-column field="result_recall" [style]="{'text-align':'center'}" ></p-column>-->
+            <!--<p-column field="result_follow" [style]="{'text-align':'center'}" ></p-column>-->
+            <!--<p-column field="result_prepare" [style]="{'text-align':'center'}" ></p-column>-->
+            <!--<p-column field="activity_cf" [style]="{'text-align':'center'}" ></p-column>-->
+            <!--<p-column field="activity_cnf" [style]="{'text-align':'center'}" ></p-column>-->
+            <!--<p-column field="activity_visit" [style]="{'text-align':'center'}" ></p-column>-->
+            <!--<p-column field="activity_undo" [style]="{'text-align':'center'}" ></p-column>-->
+            <!--<p-column field="undo" [style]="{'text-align':'center'}" ></p-column>-->
+            <!--<p-column field="join_visit" [style]="{'text-align':'center'}" ></p-column>-->
+            <!--<p-column field="visitwarning" [style]="{'text-align':'center'}" ></p-column>-->
+
+            <!--<ng-template pTemplate="rowgroupfooter" let-total>-->
+              <!--<td colspan="1" style="text-align:right;font-weight: bold">Total Team</td>-->
+              <!--<td style="text-align:center;font-weight: bold">{{calculateSubTotal(total['team_code'],'field1') | number :'':'':'.0-0'}}</td>-->
+              <!--<td style="text-align:center;font-weight: bold">{{calculateSubTotal(total['team_code'],'field2') | number :'':'':'.0-0'}}</td>-->
+              <!--<td style="text-align:center;font-weight: bold">{{calculateSubTotal(total['team_code'],'field3') | number :'':'':'.0-0'}}</td>-->
+              <!--<td style="text-align:center;font-weight: bold">{{calculateSubTotal(total['team_code'],'field4') | number :'':'':'.0-0'}}</td>-->
+              <!--<td style="text-align:center;font-weight: bold">{{calculateSubTotal(total['team_code'],'field5') | number :'':'':'.0-0'}}</td>-->
+              <!--<td style="text-align:center;font-weight: bold">{{calculateSubTotal(total['team_code'],'field6') | number :'':'':'.0-0'}}</td>-->
+              <!--<td style="text-align:center;font-weight: bold">{{calculateSubTotal(total['team_code'],'field7') | number :'':'':'.0-0'}}</td>-->
+              <!--<td style="text-align:center;font-weight: bold">{{calculateSubTotal(total['team_code'],'field8') | number :'':'':'.0-0'}}</td>-->
+              <!--<td style="text-align:center;font-weight: bold">{{calculateSubTotal(total['team_code'],'field9') | number :'':'':'.0-0'}}</td>-->
+              <!--<td style="text-align:center;font-weight: bold">{{calculateSubTotal(total['team_code'],'field10') | number :'':'':'.0-0'}}</td>-->
+              <!--<td style="text-align:center;font-weight: bold">{{calculateSubTotal(total['team_code'],'field11') | number :'':'':'.0-0'}}</td>-->
+              <!--<td style="text-align:center;font-weight: bold">{{calculateSubTotal(total['team_code'],'field12') | number :'':'':'.0-0'}}</td>-->
+              <!--<td style="text-align:center;font-weight: bold">{{calculateSubTotal(total['team_code'],'field13') | number :'':'':'.0-0'}}</td>-->
+            <!--</ng-template>-->
+
+            <!--<p-footerColumnGroup>-->
+              <!--<p-row>-->
+                <!--<p-column footer="Total" [style]="{'width':'200px','text-align':'right'}"></p-column>-->
+                <!--<p-column footer="{{task | number :'':'':'.0-0'}}"></p-column>-->
+                <!--<p-column footer="{{reJect_task | number :'':'':'.0-0'}}"></p-column>-->
+                <!--<p-column footer="{{reJect | number :'':'':'.0-0'}}"></p-column>-->
+                <!--<p-column footer="{{reCall | number :'':'':'.0-0'}}"></p-column>-->
+                <!--<p-column footer="{{follow_u | number :'':'':'.0-0'}}"></p-column>-->
+                <!--<p-column footer="{{prePare | number :'':'':'.0-0'}}"></p-column>-->
+                <!--<p-column footer="{{call_found | number :'':'':'.0-0'}}"></p-column>-->
+                <!--<p-column footer="{{call_not_found | number :'':'':'.0-0'}}"></p-column>-->
+                <!--<p-column footer="{{visit | number :'':'':'.0-0'}}"></p-column>-->
+                <!--<p-column footer="{{undo | number :'':'':'.0-0'}}"></p-column>-->
+                <!--<p-column footer="{{undo_all | number :'':'':'.0-0'}}"></p-column>-->
+                <!--<p-column footer="{{join_visit | number :'':'':'.0-0'}}"></p-column>-->
+                <!--<p-column footer="{{visit_warning | number :'':'':'.0-0'}}"></p-column>-->
+              <!--</p-row>-->
+            <!--</p-footerColumnGroup>-->
+          <!--</p-dataTable>-->
+
+          <p-dataTable [value]="listMonitor"
+                       id = "table"
+                       scrollable="true" scrollHeight="22.5rem"
+                       selectionMode="single"
+                       (onRowSelect)="onRowSelect($event)"
+                       [(selection)]="SelectMonitor"
+                       [globalFilter]="gb" #dt
+                       [paginator]="true"
+                       [rows]="11"
+                       [responsive]="true"
+                       sortField="team_code"
+          >
+            <p-headerColumnGroup>
+              <p-row>
+                <p-column header="Team"           rowspan="3"></p-column>
+                <p-column header="Name"           rowspan="3" [style]="{'width':'200px'}" ></p-column>
+                <p-column header="Total Task"     rowspan="3"></p-column>
+                <p-column header="Reject Task"    rowspan="3"></p-column>
+                <p-column header="Call Result" colspan="4" rowspan="2"></p-column>
+                <p-column header="Activity"    colspan="4"></p-column>
+                <p-column header="Undo (All)"    rowspan="3"></p-column>
+                <p-column header="Join Visit"    rowspan="3"></p-column>
+                <p-column header="Visit Warning"    rowspan="3"></p-column>
+              </p-row>
+              <p-row>
+                <p-column header="Call Type" colspan="2"></p-column>
+                <p-column header="Visit"     colspan="1" rowspan="2"></p-column>
+                <p-column header="Undo"      colspan="1" rowspan="2"></p-column>
+              </p-row>
+              <p-row>
+                <p-column header="Reject" colspan="1" rowspan="1"></p-column>
+                <p-column header="Recall" colspan="1" rowspan="1"></p-column>
+                <p-column header="Follow Up" colspan="1" rowspan="1"></p-column>
+                <p-column header="Prepare CA" colspan="1" rowspan="1"></p-column>
+                <p-column header="Call Found"     colspan="1"></p-column>
+                <p-column header="Call Not Found" colspan="1"></p-column>
+              </p-row>
+            </p-headerColumnGroup>
+            <p-column field="team_code"   ></p-column>
+            <p-column field="mkt_name"  [style]="{'width':'200px'}"   ></p-column>
+            <p-column field="total_task"  [style]="{'text-align':'center'}"  ></p-column>
+            <p-column field="reject_task" [style]="{'text-align':'center'}"></p-column>
+            <p-column field="result_reject" [style]="{'text-align':'center'}"></p-column>
+            <p-column field="result_recall" [style]="{'text-align':'center'}" ></p-column>
+            <p-column field="result_follow" [style]="{'text-align':'center'}" ></p-column>
+            <p-column field="result_prepare" [style]="{'text-align':'center'}" ></p-column>
+            <p-column field="activity_cf" [style]="{'text-align':'center'}" ></p-column>
+            <p-column field="activity_cnf" [style]="{'text-align':'center'}" ></p-column>
+            <p-column field="activity_visit" [style]="{'text-align':'center'}" ></p-column>
+            <p-column field="activity_undo" [style]="{'text-align':'center'}" ></p-column>
+            <p-column field="undo" [style]="{'text-align':'center'}" ></p-column>
+            <p-column field="join_visit" [style]="{'text-align':'center'}" ></p-column>
+            <p-column field="visitwarning" [style]="{'text-align':'center'}" ></p-column>
+
+
+            <p-footerColumnGroup>
+              <p-row>
+                <p-column footer= ""  ></p-column>
+                <p-column footer="Total" [style]="{'width':'200px','text-align':'right'}"></p-column>
+                <p-column footer="{{task | number :'':'':'.0-0'}}"></p-column>
+                <p-column footer="{{reJect_task | number :'':'':'.0-0'}}"></p-column>
+                <p-column footer="{{reJect | number :'':'':'.0-0'}}"></p-column>
+                <p-column footer="{{reCall | number :'':'':'.0-0'}}"></p-column>
+                <p-column footer="{{follow_u | number :'':'':'.0-0'}}"></p-column>
+                <p-column footer="{{prePare | number :'':'':'.0-0'}}"></p-column>
+                <p-column footer="{{call_found | number :'':'':'.0-0'}}"></p-column>
+                <p-column footer="{{call_not_found | number :'':'':'.0-0'}}"></p-column>
+                <p-column footer="{{visit | number :'':'':'.0-0'}}"></p-column>
+                <p-column footer="{{undo | number :'':'':'.0-0'}}"></p-column>
+                <p-column footer="{{undo_all | number :'':'':'.0-0'}}"></p-column>
+                <p-column footer="{{join_visit | number :'':'':'.0-0'}}"></p-column>
+                <p-column footer="{{visit_warning | number :'':'':'.0-0'}}"></p-column>
+
+              </p-row>
+            </p-footerColumnGroup>
+          </p-dataTable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

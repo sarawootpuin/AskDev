@@ -23,6 +23,7 @@ export class CcsMovementMasterComponent implements OnInit {
   ngOnInit() {
     this.subscription = this.custService.emitMainJSON.subscribe(
       (data) => {
+        // console.log(data.list_Asset);
         this.list_Asset = data.list_Asset;
 
         if (this.list_Asset.length > 0) {

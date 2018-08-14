@@ -1,34 +1,93 @@
 <p-panel header="Dealer">
-  <dl class="row">
-    <dt class="col-md-2">Name</dt>
-    <dd class="col-md-4">{{ds_Dealer.name || '...'}}</dd>
+  <div class="py-3 border-isa">
+    <div class="row row--sm-gap">
+      <div class="col-lg-6">
+        <div class="card border-light">
+          <div class="card-header bg-transparent border-light card-header--blue">
+            <b>ชื่อ - สกุล</b>
+          </div>
+          <div class=" card-body card-body--sm-gap ">
+            <div class="card-text ">
+              <div class="row row--sm-gap">
+                <div class="col-md-3 col-md-3--sm-gap">
+                  <dt>Name</dt>
+                </div>
+                <div class="col-md-9 col-md-9--sm-gap">
+                  <dd class="highlighter-white">{{ds_Dealer.name || '...'}}</dd>
+                </div>
 
-    <dt class="col-md-2">Card No</dt>
-    <dd class="col-md-4">{{ds_Dealer.card_no || '...'}}</dd>
+                <div class="col-md-3 col-md-3--sm-gap">
+                  <dt>Card No</dt>
+                </div>
+                <div class="col-md-9 col-md-9--sm-gap">
+                  <dd class="highlighter-white">{{ds_Dealer.card_no || '...'}}</dd>
+                </div>
 
-    <dt class="col-md-2">Branch No</dt>
-    <dd class="col-md-4">{{ds_Dealer.branch_no || '...'}}</dd>
+                <div class="col-md-3 col-md-3--sm-gap">
+                  <dt>Branch No</dt>
+                </div>
+                <div class="col-md-9 col-md-9--sm-gap">
+                  <dd class="highlighter-white">{{ds_Dealer.branch_no || '...'}}</dd>
+                </div>
 
-    <dt class="col-md-2">EMail</dt>
-    <dd class="col-md-4">{{ds_Dealer.email || '...'}}</dd>
-  </dl>
+                <div class="col-md-3 col-md-3--sm-gap">
+                  <dt>E-Mail</dt>
+                </div>
+                <div class="col-md-9 col-md-9--sm-gap">
+                  <dd class="highlighter-white">{{ds_Dealer.email || '...'}}</dd>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 ">
+        <div class="card border-light">
+          <div class="card-header bg-transparent border-light card-header--blue">
+            <b>ข้อมูลอื่นๆ</b>
+          </div>
+          <div class=" card-body card-body--sm-gap ">
+            <div class="card-text ">
+              <div class="row row--sm-gap">
+                <div class="col-md-3 col-md-3--sm-gap">
+                  <dt>Pay Type</dt>
+                </div>
+                <div class="col-md-9 col-md-9--sm-gap">
+                  <dd class="highlighter-white">{{ds_Dealer.pay_type || '...'}}</dd>
+                </div>
 
-  <dl class="row">
-    <dt class="col-md-2">Pay Type</dt>
-    <dd class="col-md-4">{{ds_Dealer.pay_type || '...'}}</dd>
+                <div class="col-md-3 col-md-3--sm-gap">
+                  <dt>Bank</dt>
+                </div>
+                <div class="col-md-9 col-md-9--sm-gap">
+                  <dd class="highlighter-white">{{ds_Dealer.bank || '...'}}</dd>
+                </div>
 
-    <dt class="col-md-2">Bank</dt>
-    <dd class="col-md-4">{{ds_Dealer.bank || '...'}}</dd>
+                <div class="col-md-3 col-md-3--sm-gap">
+                  <dt>Branch</dt>
+                </div>
+                <div class="col-md-9 col-md-9--sm-gap">
+                  <dd class="highlighter-white">{{ds_Dealer.branch || '...'}}</dd>
+                </div>
 
-    <dt class="col-md-2">Branch</dt>
-    <dd class="col-md-4">{{ds_Dealer.branch || '...'}}</dd>
+                <div class="col-md-3 col-md-3--sm-gap">
+                  <dt>Account No</dt>
+                </div>
+                <div class="col-md-9 col-md-9--sm-gap">
+                  <dd class="highlighter-white">{{ds_Dealer.account_no || '...'}}</dd>
+                </div>
 
-    <dt class="col-md-2">Account No</dt>
-    <dd class="col-md-4">{{ds_Dealer.account_no || '...'}}</dd>
-  </dl>
-
-  <dl class="row">
-    <dt class="col-md-2">Address</dt>
-    <dd class="col-md-10">{{ds_Dealer.address || '...'}}</dd>
-  </dl>
+                <div class="col-md-3 col-md-3--sm-gap">
+                  <dt>Address</dt>
+                </div>
+                <div class="col-md-9 col-md-9--sm-gap">
+                  <dd class="highlighter-white">{{ds_Dealer.address || '...'}}</dd>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </p-panel>

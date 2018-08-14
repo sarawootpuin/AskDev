@@ -1,283 +1,352 @@
 <!--<app-alert-dialog #alertSendInterface [title]="'Save Information'" [action]="INFORMATION"-->
-                  <!--[msg]="'การทำรายการเสร็จเรียบร้อย'"></app-alert-dialog>-->
-
+<!--[msg]="'การทำรายการเสร็จเรียบร้อย'"></app-alert-dialog>-->
 <p-panel header="Update">
-    <!--<app-custom-button [option]="'print'" [title]="'จดหมายแจ้งยอด Update'"></app-custom-button>-->
-    <!--<app-custom-button [option]="'edit'" [title]="'หนังสือยืนยันยอดหนี้'"></app-custom-button>-->
-    <!--<app-custom-button [option]="'save'" [title]="'บันทึกผลการเจรจา'"></app-custom-button>-->
-    <!--<app-custom-button [option]="'calculate'" [title]="'ส่ง Collection'" (onBtnClick)="sendInterface()"></app-custom-button>-->
-    <!--<app-custom-button [option]="'new'" [title]="'ดูผลการเจรจา'"></app-custom-button>-->
-
-  <!--<div class="root d-flex w-100 p-2 ">-->
-  <!--<div class="ml-auto p-1">-->
-  <!--<app-custom-button [title]="'บันทึกผลการเจรจา'" [option]="'save'" (onBtnClick)="onTest('save')"-->
-  <!--[disabled]="true"></app-custom-button>-->
-
-  <!--<app-custom-button [title]="'ดูผลการเจรจา'" [option]="'search'"-->
-  <!--(onBtnClick)="onTest('search')"></app-custom-button>-->
-
-  <!--<app-custom-button [title]="'จดหมายแจ้งยอด Update'" [option]="'print'"></app-custom-button>-->
-
-  <!--<app-custom-button [title]="'หนังสือยืนยันยอดหนี้'" [option]="'print'" [disabled]="true"></app-custom-button>-->
-
-  <!--<app-custom-button [title]="'ส่ง Collection'" [option]="'process'"></app-custom-button>-->
-  <!--</div>-->
-  <!--</div>-->
-
-  <!--<div class="border border-secondary" style="padding-top: 13px; padding-left: 13px; font-weight: bold">-->
-  <!--<form style="padding-right: 10px; padding-left: 10px; font-weight: bold">-->
-    <div class="form-group row d-flex justify-content-center" style="padding-left: 10px; padding-top: 10px">
-      <label class="col-form-label">Date for Paid Update (ค.ศ.)</label>
-
-      <div class="col">
-        <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="custService.srviceCustModel.mskcalc_date"
-                    dataType="string"
-                    [ngModelOptions]="{standalone: true}" ></p-calendar>
-      </div>
-
-      <!--<label class="col-form-label"></label>-->
-
-      <div class="col">
-        <app-custom-button [title]="'Calc'" [option]="'calculate'"></app-custom-button>
-      </div>
-
-      <label class="col-form-label">Advance Installment Term</label>
-
-      <div class="col">
-        <input type="text" class="form-control" appMyCurrency [fraction]="2"
-               [value]="custService.srviceCustModel.edtup_advance_term">
-      </div>
-
-      <div class="col">
-        <app-custom-button [title]="'Calc'" [option]="'calculate'"></app-custom-button>
-      </div>
-    </div>
-  <!--</form>-->
-  <!--</div>-->
-
-  <div class="border-isa p-2">
-    <br>
-    <form>
-      <div class="form-group row">
-        <label class="col-md-2 col-form-label">Paid Term</label>
-        <div class="col-md-1">
-          <input type="text" readonly class="form-control" appMyCurrency [fraction]="2"
-                 [value]="custService.srviceCustModel.lbln_term1">
+  <div class="p-3 border-isa">
+    <div class="container-fluid" style="word-break: break-all">
+      <div class="d-flex flex-row justify-content-center">
+        <!-- <app-custom-button [option]="'print'" [title]="'จดหมายแจ้งยอด Update'"></app-custom-button> -->
+        <div class="p-1 flex-md-column">
+          <app-custom-button [option]="'save'" [title]="'บันทึกผลการเจรจา'"></app-custom-button>
         </div>
-        <div class="col-md-2"></div>
-        <label class="col-md-2 col-form-label">Paid Amount</label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <input type="text" readonly class="form-control" appMyCurrency [fraction]="2"
-                 [value]="custService.srviceCustModel.lblpaid_amount">
+        <div class="p-1">
+          <app-custom-button [option]="'new'" [title]="'ดูผลการเจรจา'"></app-custom-button>
+        </div>
+        <div class="p-1">
+          <app-custom-button [option]="'edit'" [title]="'หนังสือยืนยันยอดหนี้'"></app-custom-button>
+        </div>
+        <div class="p-1">
+          <app-custom-button [option]="'calculate'" [title]="'ส่ง Collection'" (onBtnClick)="sendInterface()"></app-custom-button>
         </div>
       </div>
-      <div class="form-group row">
-        <label class="col-md-2 col-form-label">Balance AR</label>
-        <div class="col-md-1">
-          <input type="text" readonly class="form-control" appMyCurrency [fraction]="2"
-                 [value]="custService.srviceCustModel.pnlup_bal_i_term">
-        </div>
-        <div class="col-md-2">
-          <input type="text" readonly class="form-control" appMyCurrency [fraction]="2"
-                 [value]="custService.srviceCustModel.pnlup_bal_i_amt">
-        </div>
-        <label class="col-md-2 col-form-label">Balance VAT</label>
-        <div class="col-md-1">
-          <input type="text" readonly class="form-control" appMyCurrency [fraction]="2"
-                 [value]="custService.srviceCustModel.pnlup_bal_v_term">
-        </div>
-        <div class="col-md-2">
-          <input type="text" readonly class="form-control" appMyCurrency [fraction]="2"
-                 [value]="custService.srviceCustModel.pnlup_bal_v_amt">
-        </div>
-      </div>
-      <hr style="border-color: #d60c0c; height: 2px">
-      <div class="form-group row">
-        <label class="col-md-2 col-form-label">Overdue Installment</label>
-        <div class="col-md-1">
-          <input type="text" readonly class="form-control" appMyCurrency [fraction]="2" [ngModelOptions]="{standalone: true}"
-                 [(ngModel)]="custService.srviceCustModel.ds_overdue.pnlcal_i_term">
-        </div>
-        <div class="col-md-2">
-          <input type="text" readonly class="form-control" appMyCurrency [fraction]="2"
-                 [value]="custService.srviceCustModel.ds_overdue.pnlcal_pastdue">
-        </div>
-        <label class="col-md-2 col-form-label">VAT Not Paid</label>
-        <div class="col-md-1">
-          <input type="text" readonly class="form-control" appMyCurrency [fraction]="2"
-                 [value]="custService.srviceCustModel.ds_overvat.pnlcal_v_term">
-        </div>
-        <div class="col-md-2">
-          <input type="text" readonly class="form-control" appMyCurrency [fraction]="2"
-                 [value]="custService.srviceCustModel.ds_overvat.pnlcal_pastdue_vat">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-md-2 col-form-label offset-5"><u>Sub Total</u></label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <input type="text" readonly style="font-weight: bold;"
-                 class="form-control" appMyCurrency [fraction]="2"
-                 [value]="custService.srviceCustModel.pnlsub1">
-        </div>
-      </div>
-      <hr style="border-color: #d60c0c; height: 2px">
-      <div class="form-group row">
-        <label class="col-md-2 col-form-label">Total Penalty</label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <input type="text" readonly class="form-control" appMyCurrency [fraction]="2"
-                 [value]="custService.srviceCustModel.ds_overdue.pnlup_penalty">
-        </div>
-        <label class="col-md-2 col-form-label">Total Charge</label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <input type="text" readonly class="form-control" appMyCurrency [fraction]="2"
-                 [value]="custService.srviceCustModel.pnlup_charge">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-md-2 col-form-label">Total Expense & Advance</label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <input type="text" readonly class="form-control" appMyCurrency [fraction]="2"
-                 [value]="custService.srviceCustModel.pnlexpense">
-        </div>
-        <label class="col-md-2 col-form-label">Total Insurance / Compulsory</label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <input type="text" readonly class="form-control" appMyCurrency [fraction]="2"
-                 [value]="custService.srviceCustModel.ds_ins.pnlinsurance_complusory">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-md-2 col-form-label">Total Registration</label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <input type="text" readonly class="form-control" appMyCurrency [fraction]="2"
-                 [value]="custService.srviceCustModel.pnlregistration">
-        </div>
-        <label class="col-md-2 col-form-label"></label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2"></div>
-      </div>
-      <div class="form-group row">
-        <label class="col-md-2 col-form-label">Advance Installment Amount</label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <input class="form-control" appMyCurrency [fraction]="2"
-                 value="0.00">
-        </div>
-        <label class="col-md-2 col-form-label">Status Charge **</label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <input class="form-control" appMyCurrency [fraction]="2"
-                 value="0.00">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-md-2 col-form-label">Legal Expense</label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <input class="form-control" appMyCurrency [fraction]="2"
-                 value="0.00">
-        </div>
-        <label class="col-md-2 col-form-label">Other Expense</label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <input class="form-control" appMyCurrency [fraction]="2"
-                 value="0.00">
-          <!--[(ngModel)]=""-->
-        </div>
-      </div>
+      <!--<div class="root d-flex w-100 p-2 ">-->
+      <!--<div class="ml-auto p-1">-->
+      <!--<app-custom-button [title]="'บันทึกผลการเจรจา'" [option]="'save'" (onBtnClick)="onTest('save')"-->
+      <!--[disabled]="true"></app-custom-button>-->
 
-      <!-- ชำระประกันบางส่วน -->
-      <div class="form-group row">
-        <div class="form-check col-md-2" data-toggle="collapse" href="#collapseInsUpdate" aria-expanded="false"
-             aria-controls="collapseInsUpdate">
-          <label class="form-check-label form-inline">
-            <input class="form-check-input" type="checkbox" value="">
-            ชำระประกันบางส่วน
-          </label>
-        </div>
-        <div class="collapse col-md-8" id="collapseInsUpdate">
-          <div class="card card-body">
-            <div class="form-group row">
-              <label class="col-form-label col-md-2">พ.ร.บ.</label>
-              <div class="col-md-4">
-                <input class="form-control" appMyCurrency [fraction]="2"
-                       value="0.00">
-              </div>
-              <label class="col-form-label col-md-2">สมัครใจ</label>
-              <div class="col-md-4">
-                <input class="form-control" appMyCurrency [fraction]="2"
-                       value="0.00">
-              </div>
+      <!--<app-custom-button [title]="'ดูผลการเจรจา'" [option]="'search'"-->
+      <!--(onBtnClick)="onTest('search')"></app-custom-button>-->
+
+      <!--<app-custom-button [title]="'จดหมายแจ้งยอด Update'" [option]="'print'"></app-custom-button>-->
+
+      <!--<app-custom-button [title]="'หนังสือยืนยันยอดหนี้'" [option]="'print'" [disabled]="true"></app-custom-button>-->
+
+      <!--<app-custom-button [title]="'ส่ง Collection'" [option]="'process'"></app-custom-button>-->
+      <!--</div>-->
+      <!--</div>-->
+      <dl class="row row--sm-gap mt-3">
+        <div class="col-xl-6 col-xl-6--sm-gap col-md-12 col-md-12--sm-gap">
+          <div class="row row--sm-gap">
+            <div class="col-4 col-4--sm-gap">
+              <dt class="col-form-label">Date for Paid Update (ค.ศ.)</dt>
             </div>
-            <div class="form-group row">
-              <label class="col-form-label col-md-2">เหตุผล</label>
-              <div class="col-md-10">
-                <textarea class="form-control" rows="1"></textarea>
+            <div class="col-5 col-5--sm-gap">
+              <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="custService.srviceCustModel.mskcalc_date" dataType="string" [ngModelOptions]="{standalone: true}"></p-calendar>
+            </div>
+            <div class="col-3 col-3--sm-gap">
+              <app-custom-button [title]="'Calc'" [option]="'calculate'"></app-custom-button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-6 col-xl-6--sm-gap col-md-12 col-md-12--sm-gap">
+          <div class="d-xl-none mt-1"></div>
+          <div class="row row--sm-gap">
+            <div class="col-4 col-4--sm-gap">
+              <dt class="col-form-label">Advance Installment Term</dt>
+            </div>
+            <div class="col-5 col-5--sm-gap">
+              <input type="text" class="form-control" appMyCurrency [fraction]="2" [value]="custService.srviceCustModel.edtup_advance_term">
+            </div>
+            <div class="col-3 col-3--sm-gap">
+              <app-custom-button [title]="'Calc'" [option]="'calculate'"></app-custom-button>
+            </div>
+          </div>
+        </div>
+      </dl>
+      <br>
+      <dl class="row row--sm-gap">
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+          <dt>Paid Term</dt>
+        </div>
+        <div class="col-3 col-3--sm-gap text-right">
+          <div>
+            <dd class="highlighter-blue">{{custService.srviceCustModel.lbln_term1 | number:'.2-2' }}</dd>
+          </div>
+        </div>
+        <div class="offset-xl-1"></div>
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+          <dt>Paid Amount</dt>
+        </div>
+        <div class="col-3 col-3--sm-gap text-right">
+          <div>
+            <dd class="highlighter-blue">{{custService.srviceCustModel.lblpaid_amount | number:'.2-2' }}</dd>
+          </div>
+        </div>
+        <div class="offset-xl-1"></div>
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+          <dt>Balance AR</dt>
+        </div>
+        <div class="col-3 col-3--sm-gap">
+          <div class="row row--sm-gap">
+            <div class="col-4 col-4--sm-gap text-right">
+              <dd class="highlighter-blue">{{custService.srviceCustModel.pnlup_bal_i_term | number:'.2-2' }}</dd>
+            </div>
+            <div class="col-8 col-8--sm-gap text-right">
+              <dd class="highlighter-blue">{{custService.srviceCustModel.pnlup_bal_i_amt | number:'.2-2' }}</dd>
+            </div>
+          </div>
+        </div>
+        <div class="offset-xl-1"></div>
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+          <dt>Balance VAT</dt>
+        </div>
+        <div class="col-3 col-3--sm-gap">
+          <div class="row row--sm-gap">
+            <div class="col-4 col-4--sm-gap text-right">
+              <dd class="highlighter-blue">{{custService.srviceCustModel.pnlup_bal_v_term | number:'.2-2' }}</dd>
+            </div>
+            <div class="col-8 col-8--sm-gap text-right">
+              <dd class="highlighter-blue">{{custService.srviceCustModel.pnlup_bal_v_amt | number:'.2-2' }}</dd>
+            </div>
+          </div>
+        </div>
+      </dl>
+      <hr style="border-color: #64789c">
+      <dl class="row row--sm-gap">
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+          <dt (click)="openMenu('Overdue Installment')">
+            <u style="cursor: pointer;color: blue">
+              Overdue Installment
+            </u>
+          </dt>
+        </div>
+        <div class="col-3 col-3--sm-gap">
+          <div class="row row--sm-gap">
+            <div class="col-4 col-4--sm-gap text-right">
+              <dd class="highlighter-blue">{{custService.srviceCustModel.ds_overdue.pnlcal_i_term | number:'.2-2' }}</dd>
+            </div>
+            <div class="col-8 col-8--sm-gap text-right">
+              <dd class="highlighter-blue">{{custService.srviceCustModel.ds_overdue.pnlcal_pastdue | number:'.2-2' }}</dd>
+            </div>
+          </div>
+        </div>
+        <div class="offset-xl-7 offset-6"></div>
+
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+          <dt (click)="openMenu('Overdue Vat')">
+            <u style="cursor: pointer;color: blue">
+              VAT Not Paid
+            </u>
+          </dt>
+        </div>
+        <div class="col-3 col-3--sm-gap">
+          <div class="row row--sm-gap">
+            <div class="col-4 col-4--sm-gap text-right">
+              <dd class="highlighter-blue">{{custService.srviceCustModel.ds_overvat.pnlcal_v_term | number:'.2-2' }}</dd>
+            </div>
+            <div class="col-8 col-8--sm-gap text-right">
+              <dd class="highlighter-blue">{{custService.srviceCustModel.ds_overvat.pnlcal_pastdue_vat | number:'.2-2' }}</dd>
+            </div>
+          </div>
+        </div>
+        <div class="offset-xl-1"></div>
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+          <dt>Sub Total</dt>
+        </div>
+        <div class="col-3 col-3--sm-gap text-right">
+          <div>
+            <dd style="font-weight: bold; background-color: #ffdd90">{{custService.srviceCustModel.pnlsub1 | number:'.2-2' }}</dd>
+          </div>
+        </div>
+      </dl>
+      <hr style="border-color: #64789c">
+
+      <div class="row row--sm-gap">
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+          <dt (click)="openMenu('Penalty')">
+            <u style="cursor: pointer;color: blue">
+              Total Penalty
+            </u>
+          </dt>
+        </div>
+        <div class="col-3 col-3--sm-gap text-right">
+          <div>
+            <dd class="highlighter-blue">{{custService.srviceCustModel.ds_overdue.pnlup_penalty | number:'.2-2' }}</dd>
+          </div>
+        </div>
+        <div class="offset-xl-1"></div>
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+          <dt (click)="openMenu('Penalty')">
+            <u style="cursor: pointer;color: blue">
+              Total Charge
+            </u>
+          </dt>
+        </div>
+        <div class="col-3 col-3--sm-gap text-right">
+          <div>
+            <dd class="highlighter-blue">{{custService.srviceCustModel.pnlup_charge | number:'.2-2' }}</dd>
+          </div>
+        </div>
+        <div class="offset-xl-1"></div>
+
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+          <dt (click)="openMenu('Other Expense')">
+            <u style="cursor: pointer;color: blue">
+              Total Expense & Advance
+            </u>
+          </dt>
+        </div>
+        <div class="col-3 col-3--sm-gap text-right">
+          <div>
+            <dd class="highlighter-blue">{{custService.srviceCustModel.pnlexpense | number:'.2-2' }}</dd>
+          </div>
+        </div>
+        <div class="offset-xl-1"></div>
+        <div class="col-3 col-3--sm-gap">
+          <dt (click)="openMenu('Insurance')">
+            <u style="cursor: pointer;color: blue">
+              Total Insurance / Compulsory
+            </u>
+          </dt>
+        </div>
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap text-right">
+          <div>
+            <dd class="highlighter-blue">{{custService.srviceCustModel.ds_ins.pnlinsurance_complusory | number:'.2-2' }}</dd>
+          </div>
+        </div>
+        <div class="offset-xl-1"></div>
+
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+          <dt (click)="openMenu('Other Expense')">
+            <u style="cursor: pointer;color: blue">
+              Total Registration
+            </u>
+          </dt>
+        </div>
+        <div class="col-3 col-3--sm-gap text-right">
+          <div>
+            <dd class="highlighter-blue">{{custService.srviceCustModel.pnlregistration | number:'.2-2' }}</dd>
+          </div>
+        </div>
+        <div class="offset-xl-7 offset-6"></div>
+
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+          <dt class="col-form-label">Advance Installment Amount</dt>
+        </div>
+        <div class="col-3 col-3--sm-gap">
+          <input class="form-control" appMyCurrency [fraction]="2" value="0.00">
+        </div>
+        <div class="offset-xl-1"></div>
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+          <dt class="col-form-label">Status Charge **</dt>
+        </div>
+        <div class="col-3 col-3--sm-gap">
+          <input class="form-control" appMyCurrency [fraction]="2" value="0.00">
+        </div>
+        <div class="offset-xl-1"></div>
+
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap mt-1">
+          <dt class="col-form-label">Legal Expense</dt>
+        </div>
+        <div class="col-3 col-3--sm-gap mt-1">
+          <input class="form-control" appMyCurrency [fraction]="2" value="0.00">
+        </div>
+        <div class="offset-xl-1"></div>
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap mt-1">
+          <dt class="col-form-label">Other Expense</dt>
+        </div>
+        <div class="col-3 col-3--sm-gap mt-1">
+          <input class="form-control" appMyCurrency [fraction]="2" value="0.00">
+        </div>
+        <div class="offset-xl-1"></div>
+
+        <div class="col-3 col-3--sm-gap">
+          <br>
+          <div class="form-check" data-toggle="collapse" href="#collapseInsUpdate" aria-expanded="false" aria-controls="collapseInsUpdate">
+            <label class="form-check-label form-inline">
+              <input class="form-check-input" type="checkbox" value=""> ชำระประกันบางส่วน
+            </label>
+          </div>
+        </div>
+        <div class="offset-3"></div>
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+          <br>
+          <dt>Sub Total</dt>
+        </div>
+        <div class="col-3 col-3--sm-gap text-right">
+          <br>
+          <dd style="font-weight: bold; background-color: #ffdd90">{{custService.srviceCustModel.pnlsub2 | number:'.2-2' }}</dd>
+        </div>
+        <div class="offset-xl-1"></div>
+
+        <div class="col-12 col-md-12--sm-gap">
+          <div class="collapse" id="collapseInsUpdate">
+            <div class="card card-body mt-4">
+              <div class="form-group row">
+                <label class="col-form-label col-md-2">พ.ร.บ.</label>
+                <div class="col-md-4">
+                  <input class="form-control" appMyCurrency [fraction]="2" value="0.00">
+                </div>
+                <label class="col-form-label col-md-2">สมัครใจ</label>
+                <div class="col-md-4">
+                  <input class="form-control" appMyCurrency [fraction]="2" value="0.00">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-form-label col-md-2">เหตุผล</label>
+                <div class="col-md-10">
+                  <textarea class="form-control" rows="1"></textarea>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <hr style="border-color: #64789c">
+      <dl class="row row--sm-gap">
+        <div class="offset-6"></div>
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+          <dt>Total Payment Amount</dt>
+        </div>
+        <div class="col-3 col-3--sm-gap text-right">
+          <dd class="font-weight-bold" style="background-color: #ffa67d">
+            {{custService.srviceCustModel.pnltotal | number:'.2-2' }}
+          </dd>
+        </div>
+        <div class="offset-xl-1"></div>
+      </dl>
+      <hr style="border-color: #64789c">
 
+      <dl class="row row--sm-gap">
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+          <dt>P/O Amount (Exc.VAT)</dt>
+        </div>
+        <div class="col-3 col-3--sm-gap text-right">
+          <div>
+            <dd class="highlighter-blue">{{custService.srviceCustModel.pnlup_rv_amt | number:'.2-2' }}</dd>
+          </div>
+        </div>
+        <div class="offset-xl-1"></div>
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+          <dt>VAT P/O</dt>
+        </div>
+        <div class="col-3 col-3--sm-gap text-right">
+          <div>
+            <dd class="highlighter-blue">{{custService.srviceCustModel.pnlup_rv_vat | number:'.2-2' }}</dd>
+          </div>
+        </div>
+        <div class="offset-xl-1"></div>
 
-      <div class="form-group row">
-        <label class="col-md-2 col-form-label"></label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2"></div>
-        <label class="col-md-2 col-form-label"><u>Sub Total</u></label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <input type="text" readonly style="font-weight: bold;"
-                 class="form-control" appMyCurrency [fraction]="2"
-                 [value]="custService.srviceCustModel.pnlsub2">
+        <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+          <dt>ยอดเงินคงเหลือรับฝาก</dt>
         </div>
-      </div>
-      <hr style="border-color: #d60c0c; height: 2px">
-      <div class="form-group row">
-        <label class="col-md-2 col-form-label"></label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2"></div>
-        <label class="col-md-2 col-form-label"><u>Total Payment Amount</u></label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <input type="text" readonly style="font-weight: bold;"
-                 class="form-control" appMyCurrency [fraction]="2"
-                 [value]="custService.srviceCustModel.pnltotal">
+        <div class="col-3 col-3--sm-gap text-right">
+          <div>
+            <dd class="highlighter-blue">0.00</dd>
+          </div>
         </div>
-      </div>
-      <hr style="border-color: #d60c0c; height: 2px">
-      <div class="form-group row">
-        <label class="col-md-2 col-form-label">P/O Amount (Exc.VAT) :</label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <input class="form-control" appMyCurrency [fraction]="2"
-                 [value]="custService.srviceCustModel.pnlup_rv_amt">
-        </div>
-        <label class="col-md-2 col-form-label">VAT P/O :</label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2"><input class="form-control" appMyCurrency [fraction]="2"
-                                     [value]="custService.srviceCustModel.pnlup_rv_vat">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-md-2 col-form-label">ยอดเงินคงเหลือรับฝาก</label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <input class="form-control" appMyCurrency [fraction]="2"
-                 value="0.00">
-        </div>
-        <label class="col-md-2 col-form-label"></label>
-        <div class="col-md-1"></div>
-        <div class="col-md-2"></div>
-      </div>
-    </form>
+        <div class="offset-xl-1"></div>
+      </dl>
+    </div>
   </div>
 </p-panel>
-
-

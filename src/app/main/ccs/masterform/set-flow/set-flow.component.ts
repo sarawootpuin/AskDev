@@ -58,7 +58,7 @@ export class SetFlowComponent implements OnInit, OnDestroy {
     this.code = this.userStorage.getCode();
 
     this.onGetFlow();
-    console.log('onInit:set-flow');
+    // console.log('onInit:set-flow');
 
   }
 
@@ -145,15 +145,15 @@ export class SetFlowComponent implements OnInit, OnDestroy {
             this.vMsg = data.CODE;
 
             if (this.vMsg === "200") {
-              console.log('success');
+              // console.log('success');
               this.displaySuccessful = true;
               // this.msgs = [];
               // this.msgs.push({severity: 'info', summary: 'Success', detail: 'Form Submitted'});
             } else {
-              console.log('fail');
+              // console.log('fail');
               this.displayErr = true;
               this.msgErr = data.MSG;
-              console.log(this.msgErr);
+              // console.log(this.msgErr);
               // this.msgs = [];
               // this.msgs.push({severity: 'info', summary: 'Fail', detail: 'Form Submitted'});
             }

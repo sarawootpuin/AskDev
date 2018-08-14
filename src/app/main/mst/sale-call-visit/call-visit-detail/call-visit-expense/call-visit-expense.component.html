@@ -13,7 +13,7 @@
                 <input type="radio" name="optionsRadios"  [disabled]="!closeKeyExpense"
                        value="O"
                        [ngModel]="mySaleCallVisitOutside?.travel_by"
-                       (ngModelChange)="mySaleCallVisitOutside.travel_by=$event"
+                       (ngModelChange)="mySaleCallVisitOutside.travel_by=$event;clearValue();"
                 >Own Car
                 <span></span>
               </label>
@@ -21,7 +21,7 @@
                 <input type="radio" name="optionsRadios"  [disabled]="!closeKeyExpense"
                        value="C"
                        [ngModel]="mySaleCallVisitOutside?.travel_by"
-                       (ngModelChange)="mySaleCallVisitOutside.travel_by=$event"
+                       (ngModelChange)="mySaleCallVisitOutside.travel_by=$event;clearValue();"
                 > Company Car
                 <span></span>
               </label>
@@ -29,7 +29,7 @@
                 <input type="radio" name="optionsRadios"  [disabled]="!closeKeyExpense"
                        value="NE"
                        [ngModel]="mySaleCallVisitOutside?.travel_by"
-                       (ngModelChange)="mySaleCallVisitOutside.travel_by=$event"
+                       (ngModelChange)="mySaleCallVisitOutside.travel_by=$event;clearValue();"
                 > No
                 Expense
                 <span></span>
@@ -38,7 +38,7 @@
                 <input type="radio" name="optionsRadios"  [disabled]="!closeKeyExpense"
                        value="OTH"
                        [ngModel]="mySaleCallVisitOutside?.travel_by"
-                       (ngModelChange)="mySaleCallVisitOutside.travel_by=$event"
+                       (ngModelChange)="mySaleCallVisitOutside.travel_by=$event;clearValue();"
                 >Other MKT
                 <span></span>
               </label>

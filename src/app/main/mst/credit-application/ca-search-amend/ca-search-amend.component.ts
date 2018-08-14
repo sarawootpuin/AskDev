@@ -21,6 +21,7 @@ export class CaSearchAmendComponent implements OnInit, OnDestroy {
   comCode: string;
   task: string;
   isAmend: boolean = false;
+  isEditCa: boolean = false
   @ViewChild('alertDialog') alertDialog: AlertDialogComponent;
 
   constructor(private creditApplicationService: creditApplicationService,
@@ -32,19 +33,31 @@ export class CaSearchAmendComponent implements OnInit, OnDestroy {
     this.msg = '';
     this.isLoading = true;
     this.isAmend = this.router.url.includes("amend");
-    this.isAmend ? this.task = 'AM-00' : this.task = 'RV-00';
+    this.isEditCa = this.router.url.includes("edit")
+    if(this.isAmend) {
+      this.task = 'AM-00' 
+    } else if (this.isEditCa) {
+      this.task = 'CA-00-1'
+    } else { 
+      this.task = 'RV-00'
+    }
     this.subscription = this.creditApplicationService.listSearch(this.task).subscribe(
       (json: any) => {
         if (json.CODE == '200') {
-          this.isAmend ? this.title = 'Search CA For Amend' : this.title = 'Search CA For Revise AttachSheet';
+          if(this.isAmend) {
+            this.title = 'Search CA For Amend'
+          } else if (this.isEditCa) {
+            this.title = 'Search CA For Edit CA'
+          } else { 
+            this.title = 'Search CA For Revise AttachSheet'
+          }
           this.listCaTodo = CaTodoBgpl.parse(json.LIST_DATA);
-          this.isLoading = false;
         }
         else {
           console.log(json);
           this.title = 'Error Service';
-          this.isLoading = false;
         }
+        this.isLoading = false;
       }
     )
   }
@@ -63,9 +76,13 @@ export class CaSearchAmendComponent implements OnInit, OnDestroy {
     this.caNo = value.caNo;
     this.isAmend ? this.msg = 'Do you want to Amend CA : ' + this.caNo + ' ?' :
       this.msg = 'Do you want to Revise AttachSheet : ' + this.caNo + ' ?';
-    this.alertDialog.setAction('SUBMIT');
-    this.alertDialog.setMessage(this.msg);
-    this.alertDialog.open();
+    if (this.isEditCa){
+      this.confirm()
+    } else {
+      this.alertDialog.setAction('SUBMIT');
+      this.alertDialog.setMessage(this.msg);
+      this.alertDialog.open();
+    }
   }
 
   confirm() {
@@ -83,6 +100,14 @@ export class CaSearchAmendComponent implements OnInit, OnDestroy {
           }
         }
       );
+    } else if (this.isEditCa) {
+      this.router.navigate(['/ca'], {
+        queryParams : {
+          com_code: this.comCode,
+          ca_no: this.caNo,
+          task : 'CA-00-1'
+        }
+      })
     } else {
       this.subscriptionAmend = this.creditApplicationService.reviseCa("web", this.user.getUserName(), this.comCode, this.caNo).subscribe(
         (json: any) => {

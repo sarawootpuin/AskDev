@@ -1,71 +1,97 @@
-<div class="border-isa">
-  <div class="flex-row p-3">
-    <div class="form-group row">
-      <div class="col-md-2">
-        <label class="mt-4 pt-2">Debt Extra Charge</label>
-      </div>
-      <div class="col-md-2">
-        <label>Total</label>
-        <input class="form-control" type="text">
-      </div>
-      <div class="col-md-2">
-        <label>Paid Amount</label>
-        <input class="form-control" type="text">
-      </div>
-      <div class="col-md-2">
-        <label>Waive Amount</label>
-        <input class="form-control" type="text">
-      </div>
-      <div class="col-md-2">
-        <label>Net Total</label>
-        <input class="form-control" type="text">
-      </div>
-    </div>
-    <div class="form-group row">
-      <div class="col-md-2">
-        <label>Legal Extra Charge</label>
-      </div>
-      <div class="col-md-2">
-        <input class="form-control" type="text">
-      </div>
-      <div class="col-md-2">
-        <input class="form-control" type="text">
-      </div>
-      <div class="col-md-2">
-        <input class="form-control" type="text">
-      </div>
-      <div class="col-md-2">
-        <input class="form-control" type="text">
-      </div>
-    </div>
-  </div>
-  <div>
-    <p-dataTable [value]="custService.srviceCustModel.list_cdsdirect_debit" [rows]="20">
-      <p-headerColumnGroup>
-        <p-row>
-          <p-column header="Direct/Undeduct Date"></p-column>
-          <p-column header="Due Date"></p-column>
-          <p-column header="Gen. Date"></p-column>
-          <p-column header="Amount"></p-column>
-          <p-column header="Account Name"></p-column>
-          <p-column header="Account Number"></p-column>
-          <p-column header="Bank Name"></p-column>
-          <p-column header="Branch"></p-column>
-          <p-column header="Charge Amt."></p-column>
-          <p-column header="Reason of cheque Return"></p-column>
+<p-panel header="Direct Debit Charge">
+  <div class="p-3 border-isa">
+    <div class="container-fluid" style="word-break: break-all">
+      <dl class="row">
+        <p-table [value]="list_array">
+          <ng-template pTemplate="header">
+            <tr>
+              <th class="text-center">Category</th>
+              <th class="text-center">Total</th>
+              <th class="text-center">Paid Amount</th>
+              <th class="text-center">Waive Amount</th>
+              <th class="text-center">Net Amount</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData>
+            <tr>
+              <td class="text-left">
+                <!-- <span class="ui-column-title">Category</span> -->
+                <label>{{rowData.category}}</label>
+              </td>
+              <td class="text-right">
+                <!-- <span class="ui-column-title">Total</span> -->
+                {{rowData.total || '0' | number:'.2-2'}}
+              </td>
+              <td class="text-right">
+                <!-- <span class="ui-column-title">Paid Amount</span> -->
+                {{rowData.paid_amt || '0' | number:'.2-2'}}
+              </td>
+              <td class="text-right">
+                <!-- <span class="ui-column-title">Net Amount</span> -->
+                {{rowData.waive_amt || '0' | number:'.2-2'}}
+              </td>
+              <td class="text-right">
+                <!-- <span class="ui-column-title">Net Amount</span> -->
+                {{rowData.net_amt || '0' | number:'.2-2'}}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </dl>
 
-        </p-row>
-      </p-headerColumnGroup>
-      <p-column field="direct_date"></p-column>
-      <p-column field="due_date" [style]="{'text-align':'right'}"></p-column>
-      <p-column field="deduct_date"></p-column>
-      <p-column field="amount"></p-column>
-      <p-column field="acc_name"></p-column>
-      <p-column field="acc_no"></p-column>
-      <p-column field="bank"></p-column>
-      <p-column field="bank_branch"></p-column>
-      <p-column field="charge_amount"></p-column>
-      <p-column field="undeduct_reason"></p-column>
-    </p-dataTable>
+      <div class="row">
+        <p-table [value]="custService.srviceCustModel.list_cdsdirect_debit">
+          <ng-template pTemplate="colgroup">
+            <colgroup>
+              <col style="width:137px">
+              <col style="width:80px">
+              <col style="width:80px">
+              <col style="width:90px">
+              <col style="width:110px">
+              <col style="width:110px">
+              <col style="width:110px">
+              <col style="width:110px">
+              <col style="width:110px">
+              <col style="width:155px">
+            </colgroup>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th class="text-center">Direct/Undeduct Date</th>
+              <th class="text-center">Due Date</th>
+              <th class="text-center">Gen. Date</th>
+              <th class="text-center">Amount</th>
+              <th class="text-center">Account Name</th>
+              <th class="text-center">Account Number</th>
+              <th class="text-center">Bank Name</th>
+              <th class="text-center">Branch</th>
+              <th class="text-center">Charge Amt.</th>
+              <th class="text-center">Reason of cheque Return</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData>
+            <tr>
+              <td class="text-center">{{rowData.direct_date}}</td>
+              <td class="text-right">{{rowData.due_date}}</td>
+              <td class="text-center">{{rowData.deduct_date}}</td>
+              <td class="text-right">{{rowData.amount | number:'.2-2'}}</td>
+              <td class="text-right">{{rowData.acc_name}}</td>
+              <td class="text-right">{{rowData.acc_no }}</td>
+              <td class="text-right">{{rowData.bank}}</td>
+              <td class="text-center">{{rowData.bank_branch}}</td>
+              <td class="text-center">{{rowData.charge_amount}}</td>
+              <td class="text-center">{{rowData.undeduct_reason}}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <th colspan="10">
+                No Record Found
+              </th>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
   </div>
-</div>
+</p-panel>

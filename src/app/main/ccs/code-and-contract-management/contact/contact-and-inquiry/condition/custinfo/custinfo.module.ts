@@ -90,14 +90,17 @@ import {CcsOsBalanceComponent} from "./contract-detail/ccs-os-balance/ccs-os-bal
 import {RegHistService} from "./other/reg-hist/reg-hist.service";
 import {RegHistComponent} from "./other/reg-hist/reg-hist.component";
 import {CcsTelHistComponent} from "./other/ccs-tel-hist/ccs-tel-hist.component";
+import {CcsCalcExtendVatComponent} from "./other/ccs-calc-extend-vat/ccs-calc-extend-vat.component";
+import {CcsRelateComponent} from "./other/ccs-relate/ccs-relate.component";
+import {CcsChqGuaranteeComponent} from "./other/ccs-chq-guarantee/ccs-chq-guarantee.component";
 
 @NgModule({
   imports: [
     CommonModule,OverlayPanelModule,
     CustinfoRoutingModule,
     CenterModule, CalendarModule, FormsModule, SidebarModule, PanelModule, LightboxModule, TooltipModule,
-    CurrencyMaskModule, TabViewModule, DataTableModule, EntityModule, DropdownModule,AccordionModule,DataGridModule,
-    TreeTableModule, TableModule
+    CurrencyMaskModule, TabViewModule, DataTableModule, EntityModule, TableModule, DropdownModule,AccordionModule,DataGridModule,
+    TreeTableModule
   ],
   declarations: [CustinfoComponent, UpdateComponent, AddressComponent, BlinkDirective, CloseAccountComponent,
     TransferComponent, TransferTabComponent, TransferHistTabComponent, TransferCustomerGuarantorComponent,
@@ -112,7 +115,8 @@ import {CcsTelHistComponent} from "./other/ccs-tel-hist/ccs-tel-hist.component";
   ,CcsExtraChargeComponent,CcsMovementDepositComponent,CcsMovementFollowupComponent,CcsMovementMasterComponent,CcsMovementRegbookComponent
   ,CcsOverdueInsComponent,CcsOverdueVatComponent,CcsPaidInstallmentComponent,CcsPaidInsuranceComponent,CcsPaidRegComponent,CcsPaidOtherComponent
   ,CcsPaidVatComponent,CcsPenaltyComponent,CcsRepossesChargeComponent,CcsExpenseComponent,CcsRegsuspendHistComponent,CcsVatCarHistComponent,
-    CcsDealerComponent,CcsTransferRegisComponent,CcsOsBalanceComponent,RegHistComponent,CcsTelHistComponent],
+    CcsDealerComponent,CcsTransferRegisComponent,CcsOsBalanceComponent,RegHistComponent,CcsTelHistComponent,CcsCalcExtendVatComponent
+  ,CcsRelateComponent,CcsChqGuaranteeComponent],
   providers: [CustinfoService,UpdateService,CcsMovementFollowupService,RegHistService]
 })
 export class CustinfoModule {

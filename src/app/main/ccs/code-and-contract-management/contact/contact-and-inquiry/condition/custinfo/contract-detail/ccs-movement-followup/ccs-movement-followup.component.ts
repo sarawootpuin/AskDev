@@ -90,13 +90,14 @@ export class CcsMovementFollowupComponent implements OnInit, OnDestroy {
         this.cboFol_To = this.onFilterDropDown("cboFol_To");
 
         // console.log(data.list_cdsfollow_up[0]);
-        this.Show_RowSelect(data.list_cdsfollow_up[0]);
+        if (data.list_cdsfollow_up.length) {
+          this.Show_RowSelect(data.list_cdsfollow_up[0]);
 
-        if ( (data.agr_com_code === 'BGPL') &&
-             (this.custService.srviceCustModel.usercode == this.custService.srviceCustModel.usercode_collector) ) {
-          this.hidden_btnEdit = false;
+          if ( (data.agr_com_code === 'BGPL') &&
+            (this.custService.srviceCustModel.usercode == this.custService.srviceCustModel.usercode_collector) ) {
+            this.hidden_btnEdit = false;
+          }
         }
-
       }
     );
   }
@@ -284,11 +285,14 @@ export class CcsMovementFollowupComponent implements OnInit, OnDestroy {
     } else if (this.vSelected_Row.appmnt_dtel.length > 2000) {
       this.vMSG_Wrn = 'รายละเอียดการ FOLLOWUP เกิน 2000 ตัวอักษร';
     }
+
+
     // else if (this.custService.srviceCustModel.usercode != this.custService.srviceCustModel.usercode_collector) {
     //   this.vMSG_Wrn =  'User Loggin ไม่ตรงกับ Collector ' + '\n' +
     //                    'User Loggin: ' + this.custService.srviceCustModel.usercode +
     //                    'Collector: ' + this.custService.srviceCustModel.usercode_collector;
     // }
+
 
     if (this.vMSG_Wrn == '') {
       this.SaveData();
@@ -306,7 +310,7 @@ export class CcsMovementFollowupComponent implements OnInit, OnDestroy {
 
       this.subscription2 = this.followUpService.Get_Group_Customer('web', this.custService.userCode, this.custService.com_code, this.custService.srviceCustModel.agr_code).subscribe(
         (data: any) => {
-          console.log(data);
+          // console.log(data);
           if ((data.MSG == 'Complete')) {
 
             this.list_cdsGroupAgrFollow = cdsGroupAgrFollowModel.parse(data.LIST_DATA);
@@ -325,7 +329,7 @@ export class CcsMovementFollowupComponent implements OnInit, OnDestroy {
       this.readonly_mode = true;
       this.InsertThisAgrToListSave();
 
-      console.log(JSON.stringify(this.listSaveFollowUp));
+      // console.log(JSON.stringify(this.listSaveFollowUp));
       this.followUpService.UpdateFollowUp(this.listSaveFollowUp, 'web', this.custService.userCode).subscribe(
         (data: any) => {
           this.info_dlg.setTitle('Information');
@@ -421,12 +425,12 @@ export class CcsMovementFollowupComponent implements OnInit, OnDestroy {
       this.custService.srviceCustModel.usercode,
       this.vSelected_Row));
 
-    console.log(this.listSaveFollowUp);
+    // console.log(this.listSaveFollowUp);
   }
 
   private SaveFollowUpData() {
 
-    console.log(JSON.stringify(this.listSaveFollowUp));
+    // console.log(JSON.stringify(this.listSaveFollowUp));
     this.checkLoading = true;
     this.followUpService.SaveFollowUp(this.listSaveFollowUp, 'web', this.custService.userCode).subscribe(
       (data: any) => {

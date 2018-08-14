@@ -1,63 +1,119 @@
-<div class="d-flex">
-  <div class="col-md-4">
-    <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
-      <p-dataTable [value]="data" [rows]="20">
-        <p-headerColumnGroup>
-          <p-row>
-            <p-column header="ชื่อช้อมูล"></p-column>
-            <p-column header="ข้อมูลเก่า"></p-column>
-            <p-column header="ข้อมูลใหม่"></p-column>
-            <p-column header="แก้ไขโดย"></p-column>
-          </p-row>
-        </p-headerColumnGroup>
-        <p-column field="detail_description"></p-column>
-        <p-column field="old_detail"></p-column>
-        <p-column field="new_detail"></p-column>
-        <p-column field="editer"></p-column>
-      </p-dataTable>
-    </div>
+<p-panel header="ข้อมูล Van และ Truck เพิ่มเติม">
+  <div class="p-3 border-isa">
+    <div class="container-fluid" style="word-break: break-all">
+      <dl class="row row--sm-gap">
+        <div class="col-lg-6 col-lg-6--sm-gap col-8 col-8--sm-gap">
+          <p-table [value]="">
+            <ng-template pTemplate="colgroup">
+              <colgroup>
+                <col style="width:80px">
+                <col style="width:80px">
+                <col style="width:80px">
+                <col style="width:80px">
+                <col style="width:80px">
+              </colgroup>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <th class="text-center">ชื่อข้อมูล</th>
+              <th class="text-center">ข้อมูลเก่า</th>
+              <th class="text-center">ข้อมูลใหม่</th>
+              <th class="text-center">แก้ไขโดย</th>
+              <th class="text-center">วันที่แก้ไข</th>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData>
+              <tr>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <th colspan="5">
+                  No Record Found
+                </th>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </dl>
 
+      <dl class="row row--sm-gap">
+        <div class="col-xl-8 col-xl-8--sm-gap col-lg-12 col-lg-12--sm-gap my-auto">
+          <div class="row row--sm-gap">
+            <div class="col-lg-2 col-lg-2--sm-gap">
+              <dt>จดทะเบียน</dt>
+            </div>
+            <div class="col-lg-4 col-lg-4--sm-gap">
+              <dd class="highlighter-blue">...</dd>
+            </div>
+            <div class="col-lg-2 col-lg-2--sm-gap">
+              <dt>สีป้ายทะเบียน</dt>
+            </div>
+            <div class="col-lg-4 col-lg-4--sm-gap">
+              <dd class="highlighter-blue">...</dd>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-xl-4--sm-gap col-lg-12 col-lg-12--sm-gap">
+          <div class="row row--sm-gap">
+            <div class="d-none d-xl-block pl-4"></div>
+            <div class="col-3--sm-gap col-3--sm-gap">
+              <app-custom-button [option]="'submit'" [title]="'บันทึกข้อมูล'"></app-custom-button>
+            </div>
+            <div class="col-3--sm-gap col-3--sm-gap  text-center">
+              <app-custom-button [option]="'cancel'" [title]="'ขอแก้ไข'"></app-custom-button>
+            </div>
+          </div>
+        </div>
+      </dl>
+      <dl class="row row--sm-gap">
+        <div class="col-lg-2 col-lg-2--sm-gap col-md-4 col-md-6--sm-gap">
+          <dt>เดินรถ (Van)</dt>
+        </div>
+        <div class="col-lg-3 col-lg-3--sm-gap col-md-8 col-md-6--sm-gap">
+          <p-dropdown [options]="cols" optionLabel="header" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+        </div>
+        <div class="offset-lg-1"></div>
+        <div class="col-lg-2 col-lg-2--sm-gap col-md-4 col-md-6--sm-gap">
+          <div class="d-none d-md-block d-lg-none mt-1"></div>
+          <dt>เส้นทางเดินรถ (Van)</dt>
+        </div>
+        <div class="col-lg-3 col-lg-3--sm-gap col-md-8 col-md-6--sm-gap">
+          <div class="d-none d-md-block d-lg-none mt-1"></div>
+          <p-dropdown [options]="cols" optionLabel="header" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+        </div>
+        <div class="offset-lg-1"></div>
+      </dl>
+      <hr style="border-color: #64789c">
+      <dl class="row row--sm-gap">
+        <div class="col-lg-3 col-lg-3--sm-gap col-md-4 col-md-6--sm-gap">
+          <dt>ใช้งานเพื่อ (Truck)</dt>
+        </div>
+        <div class="col-lg-3 col-lg-3--sm-gap col-md-8 col-md-6--sm-gap">
+          <p-dropdown [options]="cols" optionLabel="header" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+        </div>
+        <div class="col-lg-2 col-lg-2--sm-gap col-md-4 col-md-6--sm-gap">
+          <div class="d-none d-md-block d-lg-none mt-1"></div>
+          <dt>สัญญาการรับจ้าง (Truck)</dt>
+        </div>
+        <div class="col-lg-3 col-lg-3--sm-gap col-md-8 col-md-6--sm-gap">
+          <div class="d-none d-md-block d-lg-none mt-1"></div>
+          <p-dropdown [options]="cols" optionLabel="header" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+        </div>
+        <div class="offset-lg-1"></div>
+
+        <div class="col-lg-3 col-lg-3--sm-gap col-md-4 col-md-6--sm-gap">
+          <div class="d-none d-lg-block d-xl-block mt-1"></div>
+          <dt>Withholding Tax รับจ้าง (Truck)</dt>
+        </div>
+        <div class="col-lg-3 col-lg-3--sm-gap col-md-8 col-md-6--sm-gap">
+          <div class="d-none d-lg-block d-xl-block mt-1"></div>
+          <p-dropdown [options]="cols" optionLabel="header" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+        </div>
+      </dl>
+    </div>
   </div>
-  <div class="col-md-8 border-isa p-3">
-    <div class="flex-row">
-      <div class="row form-group">
-        <div class="col-md--">
-          <label>จดทะเบียน</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="col-md-3">
-          <label>สีป้ายทะเบียน</label>
-          <input type="text" class="form-control">
-        </div>
-      </div>
-    </div>
-    <div class="flex-row">
-      <div class="row form-group">
-        <div class="col-md-3">
-          <label>1</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="col-md-3">
-          <label>2</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="col-md-3">
-          <label>3</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="col-md-3">
-          <label>4</label>
-          <input type="text" class="form-control">
-        </div>
-      </div>
-    </div>
-    <div class="flex-row">
-      <div class="row form-group">
-        <div class="col-md-3">
-          <app-custom-button [option]="'submit'" [title]="'Submit'"></app-custom-button>
-          <app-custom-button [option]="'cancel'" [title]="'Cancel'"></app-custom-button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+</p-panel>

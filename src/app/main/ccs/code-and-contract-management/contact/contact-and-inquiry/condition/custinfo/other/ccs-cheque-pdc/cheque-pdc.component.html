@@ -1,75 +1,109 @@
 <p-panel header="Cheque">
-  <!--<div class="flex-row p-3">-->
-  <!--<div class="form-group d-flex row col-md-3">-->
-  <!--<label>จำนวนเช็ค PDC คงเหลือ</label>-->
-  <!--<input type="text" class="form-control" disabled>-->
-  <!--</div>-->
-  <!--</div>-->
+  <div class="p-3 border-isa">
+    <div class="container-fluid" style="word-break: break-all">
 
-  <dl class="row">
-    <dd class="col-md-2">
-      <div class="form-check form-check-inline">
-        <input type="radio" name="CHQ" id="rdALL" (change)="onFilterCheque('ALL')" checked>
-        <label for="rdALL">All</label>
+      <!--<dl class="row text-left">-->
+      <!--<dd class="col-md-2">-->
+      <!--<div class="form-check form-check-inline">-->
+      <!--<input type="radio" name="CHQ" id="rdALL" (change)="onFilterCheque('ALL')" checked>-->
+      <!--<label for="rdALL">All</label>-->
+      <!--</div>-->
+      <!--</dd>-->
+
+      <!--<dd class="col-md-2">-->
+      <!--<div class="form-check form-check-inline">-->
+      <!--<input type="radio" name="CHQ" id="rdPDC" (change)="onFilterCheque('PDC')">-->
+      <!--<label for="rdPDC">PDC</label>-->
+      <!--</div>-->
+      <!--</dd>-->
+
+      <!--<dd class="col-md-2">-->
+      <!--<div class="form-check form-check-inline">-->
+      <!--<input type="radio" name="CHQ" id="rdRTN" (change)="onFilterCheque('RETURN')">-->
+      <!--<label for="rdRTN">Returned</label>-->
+      <!--</div>-->
+      <!--</dd>-->
+
+      <!--<dd class="col-md-2">-->
+      <!--<div class="form-check form-check-inline">-->
+      <!--<input type="radio" name="CHQ" id="rdPAY" (change)="onFilterCheque('PAYIN')">-->
+      <!--<label for="rdPAY">Pay In</label>-->
+      <!--</div>-->
+      <!--</dd>-->
+
+      <!--<dd class="col-md-2">-->
+      <!--<div class="form-check form-check-inline">-->
+      <!--<input type="radio" name="CHQ" id="rdCLR" (change)="onFilterCheque('CLRING')">-->
+      <!--<label for="rdCLR">Clearing</label>-->
+      <!--</div>-->
+      <!--</dd>-->
+      <!--</dl>-->
+
+
+      <dl class="col-md-2">
+        <select class="form-control" #pdc (change)="onFilterCheque(pdc.value)">
+          <option *ngFor="let obj of cols">{{obj.value}}</option>
+        </select>
+      </dl>
+
+      <div class="row">
+        <p-table #dt [value]="list_Cheque" [rows]="10" [paginator]="true" [style]="{width:'72vw'}"
+                 selectionMode="single"
+                 [scrollable]="true" scrollHeight="50vh" [resizableColumns]="true" columnResizeMode="expand">
+          <ng-template pTemplate="colgroup">
+            <colgroup>
+              <col style="width: 100px;">
+              <col style="width: 100px;">
+              <col style="width: 100px;">
+              <col style="width: 100px;">
+              <col style="width: 100px;">
+              <col style="width: 100px;">
+              <col style="width: 100px;">
+              <col style="width: 100px;">
+              <col style="width: 250px;">
+            </colgroup>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <!--<tr style="background-color: #64789c">-->
+            <!--<th colspan="9" class="text-center">-->
+            <!--<div class="container-fluid">-->
+            <!--<div class="row">-->
+            <!--<div class="col-md-6 p-1">-->
+            <!--<span>ประเภทเช็ค</span>-->
+            <!--</div>-->
+            <!--<div class="col-md-6"><p-dropdown [options]="cols" optionLabel="header" [showClear]="true" [style]="{'width':'70%'}"></p-dropdown></div>-->
+            <!---->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</th>-->
+            <!--</tr>-->
+            <tr class="text-center">
+              <th pResizableColumn>เลขที่เช็ค</th>
+              <th pResizableColumn>จำนวนเงิน</th>
+              <th pResizableColumn>วันที่เช็ค</th>
+              <th pResizableColumn>วันที่นำฝากธนาคาร</th>
+              <th pResizableColumn>วันที่ผ่านธนาคาร</th>
+              <th pResizableColumn>วันที่เช็คคืน</th>
+              <th pResizableColumn>ธนาคาร</th>
+              <th pResizableColumn>เหตุผลเช็คคืน</th>
+              <th pResizableColumn>Pay For</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+            <tr [pSelectableRow]="rowData">
+              <td class="text-center">{{rowData.cheque_number}}</td>
+              <td class="text-right">{{rowData.amount | number:'.2-2'}}</td>
+              <td class="text-center">{{rowData.date_cheque}}</td>
+              <td class="text-center">{{rowData.date_pay_in}}</td>
+              <td class="text-center">{{rowData.date_clear}}</td>
+              <td class="text-center">{{rowData.date_return}}</td>
+              <td class="text-center">{{rowData.bankname}}</td>
+              <td class="text-left">{{rowData.remark}}</td>
+              <td class="text-left">{{rowData.pay_for}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
       </div>
-    </dd>
-
-    <dd class="col-md-2">
-      <div class="form-check form-check-inline">
-        <input type="radio" name="CHQ" id="rdPDC" (change)="onFilterCheque('PDC')">
-        <label for="rdPDC">PDC</label>
-      </div>
-    </dd>
-
-    <dd class="col-md-2">
-      <div class="form-check form-check-inline">
-        <input type="radio" name="CHQ" id="rdRTN" (change)="onFilterCheque('RETURN')">
-        <label for="rdRTN">Returned</label>
-      </div>
-    </dd>
-
-    <dd class="col-md-2">
-      <div class="form-check form-check-inline">
-        <input type="radio" name="CHQ" id="rdPAY" (change)="onFilterCheque('PAYIN')">
-        <label for="rdPAY">Pay In</label>
-      </div>
-    </dd>
-
-    <dd class="col-md-2">
-      <div class="form-check form-check-inline">
-        <input type="radio" name="CHQ" id="rdCLR" (change)="onFilterCheque('CLRING')">
-        <label for="rdCLR">Clearing</label>
-      </div>
-    </dd>
-
-  </dl>
-
-  <p-table #dt [value]="list_Cheque" [responsive]="true">
-    <ng-template pTemplate="header">
-      <tr>
-        <th>เลขที่เช็ค</th>
-        <th>จำนวนเงิน</th>
-        <th>วันที่เช็ค</th>
-        <th>วันที่นำฝากธนาคาร</th>
-        <th>วันที่ผ่านธนาคาร</th>
-        <th>วันที่เช็คคืน</th>
-        <th>ธนาคาร</th>
-        <th>เหตุผลเช็คคืน</th>
-        <th>Pay For</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
-      <tr [pSelectableRow]="rowData">
-        <td>{{rowData.cheque_number}}</td>
-        <td>{{rowData.amount | number:'.2-2'}}</td>
-        <td>{{rowData.date_cheque}}</td>
-        <td>{{rowData.date_pay_in}}</td>
-        <td>{{rowData.date_clear}}</td>
-        <td>{{rowData.date_return}}</td>
-        <td>{{rowData.bankname}}</td>
-        <td>{{rowData.remark}}</td>
-        <td>{{rowData.pay_for}}</td>
-      </tr>
-    </ng-template>
-  </p-table>
+    </div>
+  </div>
 </p-panel>

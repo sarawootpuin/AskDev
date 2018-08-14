@@ -1,32 +1,44 @@
 <p-panel header="Insurance">
-  <div class="flex-row p-3 border-isa">
+  <div class="container-fluid p-3 border-isa" style="word-break: break-all">
     <div class="row">
-      <div class="col-md-6">
-        <p-table [value]="list_InsTrans" [responsive]="true" [(selection)]="vSelected_InsTrans"
-                 selectionMode="single" [metaKeySelection]="true"
-                 (onRowSelect)="vSelected_InsTrans = list_InsTrans[$event.index];list_InsVolun = list_InsTrans[$event.index].list_InsVolun">
-          <ng-template pTemplate="header">
+      <div class="col-xl-6 col-lg-12">
+        <p-table #dt [columns]="cols" [value]="list_InsTrans" [responsive]="true" [(selection)]="vSelected_InsTrans" selectionMode="single"
+          [metaKeySelection]="true" (onRowSelect)="vSelected_InsTrans = list_InsTrans[$event.index];list_InsVolun = list_InsTrans[$event.index].list_InsVolun">
+          <ng-template pTemplate="header" let-columns>
             <tr>
-              <th>รหัสบริษัท</th>
-              <th>วันที่คุ้มครอง</th>
-              <th>ชนิดประกันภัย</th>
-              <th>สถานะ</th>
-              <th>วันที่ยกเลิก</th>
+              <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                <p-dropdown *ngSwitchCase="'status_flg'" [options]="statusType" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
+              </th>
+            </tr>
+            <tr>
+              <th *ngFor="let col of columns">
+                {{col.header}}
+              </th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+          <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-columns="columns">
             <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
-              <td>{{rowData.com_code}}</td>
-              <td>{{rowData.lblIns_Date}}</td>
-              <td>{{rowData.lblKind_Of_Insurance}}</td>
-              <td>{{rowData.status_flg}}</td>
-              <td>{{rowData.cancel_date}}</td>
+              <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <th colspan="5">
+                No Record Found
+              </th>
             </tr>
           </ng-template>
         </p-table>
       </div>
-      <div class="col-md-6">
+
+      <div class="col-xl-6 col-lg-12">
+        <div class="d-xl-none mt-3"></div>
         <p-table [value]="list_InsVolun" [responsive]="true">
+          <ng-template pTemplate="caption">
+            <p class="my-auto">Insurance Repayment</p>
+          </ng-template>
           <ng-template pTemplate="header">
             <tr>
               <th>วันครบกำหนด</th>
@@ -41,14 +53,21 @@
           </ng-template>
           <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
             <tr [pSelectableRow]="rowData">
-              <td>{{rowData.due_date}}</td>
-              <td>{{rowData.payment_amount | number:'.2-2'}}</td>
-              <td>{{rowData.discount | number:'.2-2'}}</td>
-              <td>{{rowData.wht_amt | number:'.2-2'}}</td>
-              <td>{{rowData.net_amt | number:'.2-2'}}</td>
-              <td>{{rowData.paid_amount | number:'.2-2'}}</td>
-              <td>{{rowData.past_due | number:'.2-2'}}</td>
-              <td>{{rowData.total_pastdue | number:'.2-2'}}</td>
+              <td class="text-center">{{rowData.due_date}}</td>
+              <td class="text-right">{{rowData.payment_amount | number:'.2-2'}}</td>
+              <td class="text-right">{{rowData.discount | number:'.2-2'}}</td>
+              <td class="text-right">{{rowData.wht_amt | number:'.2-2'}}</td>
+              <td class="text-right">{{rowData.net_amt | number:'.2-2'}}</td>
+              <td class="text-right">{{rowData.paid_amount | number:'.2-2'}}</td>
+              <td class="text-right">{{rowData.past_due | number:'.2-2'}}</td>
+              <td class="text-right">{{rowData.total_pastdue | number:'.2-2'}}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <th colspan="8">
+                No Record Found
+              </th>
             </tr>
           </ng-template>
         </p-table>
@@ -57,136 +76,160 @@
 
     <br>
 
-    <dl class="row">
-      <dt class="col-md-2">ประกันภัยผ่าน</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblInform}}</dd>
+    <dl class="row row--sm-gap">
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap col-md-5 col-md-5--sm-gap text-right">
+        <dt>ประกันภัยผ่าน</dt>
+      </div>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap text-center">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblInform || '...'}}</dd>
+      </div>
 
-      <dt class="col-md-2">บริษัทประกันภัย</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblIns_Com}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-5 col-md-5--sm-gap text-right">
+        <dt>บริษัทประกันภัย</dt>
+      </div>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap text-center">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblIns_Com || '...'}}</dd>
+      </div>
 
-      <dt class="col-md-2">วงเงินคุ้มครอง</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblCov_Amt | number:'.2-2'}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-5 col-md-5--sm-gap text-right">
+        <dt>วงเงินคุ้มครอง</dt>
+      </div>
+      <div class="text-right col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblCov_Amt || '0' | number:'.2-2' }}</dd>
+      </div>
 
-      <dt class="col-md-2">ค่าเบี้ยประกันรวม</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblTotal_Prem | number:'.2-2'}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-5 col-md-5--sm-gap text-right">
+        <dt>ค่าเบี้ยประกันรวม</dt>
+      </div>
+      <div class="text-right col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblTotal_Prem || '0' | number:'.2-2' }}</dd>
+      </div>
 
-      <dt class="col-md-2">ชนิดประกันภัย</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblKind_Of_Insurance}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-5 col-md-5--sm-gap text-right">
+        <dt>ชนิดประกันภัย</dt>
+      </div>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap text-center">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblKind_Of_Insurance || '...'}}</dd>
+      </div>
 
-      <dt class="col-md-2">ประเภทประกันภัย</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblType_Of_Insurance}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap col-md-5 col-md-5--sm-gap text-right">
+        <dt>ประเภทประกันภัย</dt>
+      </div>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap text-center">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblType_Of_Insurance || '...'}}</dd>
+      </div>
 
-      <dt class="col-md-2">อากร</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblDuty | number:'.2-2'}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap col-md-5 col-md-5--sm-gap text-right">
+        <dt>อากร</dt>
+      </div>
+      <div class="text-right col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblDuty || '0' | number:'.2-2' }}</dd>
+      </div>
 
-      <dt class="col-md-2">ภาษี</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblIns_Vat | number:'.2-2'}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap col-md-5 col-md-5--sm-gap text-right">
+        <dt>ภาษี</dt>
+      </div>
+      <div class="text-right col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblIns_Vat || '0' | number:'.2-2' }}</dd>
+      </div>
 
-      <dt class="col-md-2">วันคุ้มครอง</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblIns_Date}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap col-md-5 col-md-5--sm-gap text-right">
+        <dt>วันคุ้มครอง</dt>
+      </div>
+      <div class="text-center col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblIns_Date || '...'}}</dd>
+      </div>
 
-      <dt class="col-md-2">วันหมดอายุประกัน</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblIns_Exp2}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap col-md-5 col-md-5--sm-gap text-right">
+        <dt>วันหมดอายุประกัน</dt>
+      </div>
+      <div class="text-center col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblIns_Exp2 || '...'}}</dd>
+      </div>
 
-      <dt class="col-md-2">เบี้ยประกันสุทธิ</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblNet_Prem | number:'.2-2'}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap col-md-5 col-md-5--sm-gap text-right">
+        <dt>เบี้ยประกันสุทธิ</dt>
+      </div>
+      <div class="text-right col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblNet_Prem || '0' | number:'.2-2' }}</dd>
+      </div>
 
-      <dt class="col-md-2">หัก ณ ที่จ่าย</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblWht_Amount | number:'.2-2'}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap col-md-5 col-md-5--sm-gap text-right">
+        <dt>หัก ณ ที่จ่าย</dt>
+      </div>
+      <div class="text-right col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblWht_Amount || '0' | number:'.2-2' }}</dd>
+      </div>
 
-      <dt class="col-md-2">เลขที่รับแจ้ง</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblIns_Date}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap col-md-5 col-md-5--sm-gap text-right">
+        <dt>เลขที่รับแจ้ง</dt>
+      </div>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap  text-center">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblIns_Num || '...'}}</dd>
+      </div>
 
-      <dt class="col-md-2">กรมธรรม์</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblIns_Exp2}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap col-md-5 col-md-5--sm-gap text-right">
+        <dt>กรมธรรม์</dt>
+      </div>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap  text-center">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblPol_Num || '...'}}</dd>
+      </div>
 
-      <dt class="col-md-2">ส่วนลด</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblNet_Prem | number:'.2-2'}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap col-md-5 col-md-5--sm-gap text-right">
+        <dt>ส่วนลด</dt>
+      </div>
+      <div class="text-right col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblDiscount_Amount || '0' | number:'.2-2' }}</dd>
+      </div>
 
-      <dt class="col-md-2">เลขที่หัก ณ ที่จ่าย</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblWht_No | number:'.2-2'}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap col-md-5 col-md-5--sm-gap text-right">
+        <dt>เลขที่หัก ณ ที่จ่าย</dt>
+      </div>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap  text-center">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblWht_No || '...' }}</dd>
+      </div>
 
-      <dt class="col-md-2">วันที่หัก ณ ที่จ่าย</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblIns_Date}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap col-md-5 col-md-5--sm-gap text-right">
+        <dt>วันที่หัก ณ ที่จ่าย</dt>
+      </div>
+      <div class="text-center col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblIns_Date || '...'}}</dd>
+      </div>
 
-      <dt class="col-md-2">วันที่รับแจ้ง</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblIns_RCV}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap col-md-5 col-md-5--sm-gap text-right">
+        <dt>วันที่รับแจ้ง</dt>
+      </div>
+      <div class="text-center col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblIns_RCV || '...'}}</dd>
+      </div>
 
-      <dt class="col-md-2">พนักงานขาย</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblSeller}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap col-md-5 col-md-5--sm-gap text-right">
+        <dt>พนักงานขาย</dt>
+      </div>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap  text-center">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblSeller || '...'}}</dd>
+      </div>
 
-      <dt class="col-md-2">ผู้แจ้งประกัน</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblAccknowage_By}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap col-md-5 col-md-5--sm-gap text-right">
+        <dt>ผู้แจ้งประกัน</dt>
+      </div>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap  text-center">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblAccknowage_By || '...'}}</dd>
+      </div>
 
-      <dt class="col-md-2">ผู้รับแจ้ง</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblInform_By}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap col-md-5 col-md-5--sm-gap text-right">
+        <dt>ผู้รับแจ้ง</dt>
+      </div>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap  text-center">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblInform_By || '...'}}</dd>
+      </div>
 
-      <dt class="col-md-2">เลขที่สติ๊กเกอร์</dt>
-      <dd class="col-md-2">{{vSelected_InsTrans.lblST_No}}</dd>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap col-md-5 col-md-5--sm-gap text-right">
+        <dt>เลขที่สติ๊กเกอร์</dt>
+      </div>
+      <div class="col-xl-2 col-xl-2--sm-gap col-lg-3 col-lg-3--sm-gap  col-md-7 col-md-7--sm-gap  text-center">
+        <dd class="highlighter-blue">{{vSelected_InsTrans.lblST_No || '...'}}</dd>
+      </div>
     </dl>
-
   </div>
-
-
-  <!--<div class="flex-row">-->
-  <!--<div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">-->
-  <!--<p-dataTable [value]="data" [rows]="5">-->
-  <!--<p-header [style]="{'text-align':'left'}">-->
-  <!--<app-custom-button [option]="'process'" [title]="'Insurance History'"></app-custom-button>-->
-  <!--</p-header>-->
-  <!--<p-headerColumnGroup>-->
-  <!--<p-row>-->
-  <!--<p-column header="ชนิดประกันภัย"></p-column>-->
-  <!--<p-column header="Company Code"></p-column>-->
-  <!--<p-column header="Insurance Company"></p-column>-->
-  <!--<p-column header="Policy No."></p-column>-->
-  <!--<p-column header="Ins. Expiry"></p-column>-->
-  <!--<p-column header="ประเภท"></p-column>-->
-  <!--<p-column header="Past Due"></p-column>-->
-  <!--<p-column header="Paid Amt."></p-column>-->
-  <!--</p-row>-->
-  <!--</p-headerColumnGroup>-->
-  <!--<p-column field="no"></p-column>-->
-  <!--<p-column field="com_code"></p-column>-->
-  <!--<p-column field="insurance_com"></p-column>-->
-  <!--<p-column field="policy_no"></p-column>-->
-  <!--<p-column field="ins_exp"></p-column>-->
-  <!--<p-column field="type"></p-column>-->
-  <!--<p-column field="past_due" [style]="{'text-align':'right'}"></p-column>-->
-  <!--<p-column field="paid_amt" [style]="{'text-align':'right'}"></p-column>-->
-  <!--</p-dataTable>-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--<div class="flex-row">-->
-  <!--<div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">-->
-  <!--<p-dataTable [value]="data" [rows]="5">-->
-  <!--<p-headerColumnGroup>-->
-  <!--<p-row>-->
-  <!--<p-column header="งวด"></p-column>-->
-  <!--<p-column header="Company Code"></p-column>-->
-  <!--<p-column header="วันที่ครบกำหนด"></p-column>-->
-  <!--<p-column header="เบี้ยประกัน"></p-column>-->
-  <!--<p-column header="ส่วนลด"></p-column>-->
-  <!--<p-column header="หัก ณ ที่จ่าย"></p-column>-->
-  <!--<p-column header="สุทธิ"></p-column>-->
-  <!--<p-column header="ยอดชำระ"></p-column>-->
-  <!--<p-column header="คงเหลือ"></p-column>-->
-  <!--<p-column header="ยอดค้างสะสม"></p-column>-->
-  <!--<p-column header="Entry_number"></p-column>-->
-  <!--</p-row>-->
-  <!--</p-headerColumnGroup>-->
-  <!--<p-column field="no" [style]="{'text-align':'right'}"></p-column>-->
-  <!--<p-column field="com_code"></p-column>-->
-  <!--<p-column field="3" [style]="{'text-align':'right'}"></p-column>-->
-  <!--<p-column field="4" [style]="{'text-align':'right'}"></p-column>-->
-  <!--<p-column field="5" [style]="{'text-align':'rigth'}"></p-column>-->
-  <!--<p-column field="6" [style]="{'text-align':'right'}"></p-column>-->
-  <!--<p-column field="7" [style]="{'text-align':'right'}"></p-column>-->
-  <!--<p-column field="8" [style]="{'text-align':'right'}"></p-column>-->
-  <!--<p-column header="9" [style]="{'text-align':'right'}"></p-column>-->
-  <!--<p-column header="10" [style]="{'text-align':'right'}"></p-column>-->
-  <!--<p-column header="11" [style]="{'text-align':'right'}"></p-column>-->
-  <!--</p-dataTable>-->
-  <!--</div>-->
-  <!--</div>-->
 </p-panel>

@@ -1,137 +1,73 @@
 <p-panel header="Overdue Installment">
-    <dl class="row">
-      <dt class="col-md-2">Term of past due</dt>
-      <dd class="col-md-4">{{custService.srviceCustModel.ds_overdue.pnlcal_i_term | number:'.2-2'}}</dd>
+  <div class="p-3 border-isa" style="word-break: break-all">
+    <div class="container-fluid">
+      <dl class="row row--sm-gap">
+        <div class="col-xl-2 col-xl-2--sm-gap col-md-3 col-md-3--sm-gap col-12 col-12--sm-gap text-right">
+          <dt>Term of past due</dt>
+        </div>
+        <div class="col-xl-2 col-xl-2--sm-gap col-md-3 col-md-3--sm-gap col-12 col-12--sm-gap text-right">
+          <dd class="highlighter-blue">{{custService.srviceCustModel.ds_overdue.pnlcal_i_term | number:'.2-2'}}</dd>
+        </div>
+        <div class="offset-xl-2"></div>
 
-      <dt class="col-md-2">Overdue Installment</dt>
-      <dd class="col-md-4">{{custService.srviceCustModel.ds_overdue.pnlcal_pastdue | number:'.2-2'}}</dd>
-    </dl>
-
-    <!--<div class="d-flex flex-row">-->
-    <!--<div class="p-2">-->
-    <!--<label class="col-md-3 col-form-label">Show Charge-->
-    <!--<input type="checkbox" (click)="showChargeClicked()">-->
-    <!--</label>-->
-    <!--</div>-->
-    <!--<div class="p-2">-->
-    <!--<label class="col-md-3 col-form-label">Show Rate-->
-    <!--<input type="checkbox" (click)="showRateClicked()">-->
-    <!--</label>-->
-    <!--</div>-->
-    <!--<div class="p-2">-->
-    <!--<label class="col-md-3 col-form-label">Show Detail-->
-    <!--<input type="checkbox" (click)="showDetailClicked()">-->
-    <!--</label>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <!--<div class="row">-->
-    <!--<div class="form-check col-md-6">-->
-    <!--<label class="form-check-label">-->
-    <!--<input class="form-check-input" type="checkbox" (click)="showChargeClicked()">-->
-    <!--Show Charge-->
-    <!--</label>-->
-
-    <!--<label class="form-check-label">-->
-    <!--<input class="form-check-input" type="checkbox" (click)="showRateClicked()">-->
-    <!--Show Rate-->
-    <!--</label>-->
-
-    <!--<label class="form-check-label">-->
-    <!--<input class="form-check-input" type="checkbox" (click)="showDetailClicked()">-->
-    <!--Show Detail-->
-    <!--</label>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <p-table [value]="list_cdsOver_Install" [responsive]="true">
+        <div class="col-xl-2 col-xl-2--sm-gap col-md-3 col-md-3--sm-gap col-12 col-12--sm-gap text-right">
+          <dt>Overdue Installment</dt>
+        </div>
+        <div class="col-xl-2 col-xl-2--sm-gap col-md-3 col-md-3--sm-gap col-12 col-12--sm-gap text-right">
+          <dd class="highlighter-blue">{{custService.srviceCustModel.ds_overdue.pnlcal_pastdue | number:'.2-2'}}</dd>
+        </div>
+        <div class="offset-xl-2"></div>
+      </dl>
+    </div>
+    <p-table [value]="list_cdsOver_Install" [paginator]="true" [rows]="10" scrollable="true" [style]="{width:'72vw'}"
+             scrollHeight="50vh" [resizableColumns]="true" columnResizeMode="expand"
+             selectionMode="single">
+      <ng-template pTemplate="colgroup">
+        <colgroup>
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+        </colgroup>
+      </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th>Term</th>
-          <th>Installment</th>
-          <th>Due</th>
-          <th>As of Date</th>
-          <th>Days Late</th>
-          <th>Total Penalty</th>
-          <th>Interest Charge</th>
-          <th>Late Charge</th>
-          <th>Rate</th>
+          <th pResizableColumn class="text-center">Term</th>
+          <th pResizableColumn class="text-center">Installment</th>
+          <th pResizableColumn class="text-center">Due</th>
+          <th pResizableColumn class="text-center">As of Date</th>
+          <th pResizableColumn class="text-center">Days Late</th>
+          <th pResizableColumn class="text-center">Total Penalty</th>
+          <th pResizableColumn class="text-center">Interest Charge</th>
+          <th pResizableColumn class="text-center">Late Charge</th>
+          <th pResizableColumn class="text-center">Rate</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
         <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
-          <td>{{rowData.term}}</td>
-          <td>{{rowData.installment_e_vat | number:'.2-2'}}</td>
-          <td>{{rowData.due_day}}</td>
-          <td>{{rowData.as_of_date}}</td>
-          <td>{{rowData.days_late}}</td>
-          <td>{{rowData.total_penalty | number:'.2-2'}}</td>
-          <td>{{rowData.interest_charge | number:'.2-2'}}</td>
-          <td>{{rowData.late_charge | number:'.2-2'}}</td>
-          <td>{{rowData.rate_pen}}</td>
+          <td class="text-center">{{rowData.term}}</td>
+          <td class="text-right">{{rowData.installment_e_vat | number:'.2-2'}}</td>
+          <td class="text-center">{{rowData.due_day}}</td>
+          <td class="text-center">{{rowData.as_of_date}}</td>
+          <td class="text-center">{{rowData.days_late}}</td>
+          <td class="text-right">{{rowData.total_penalty | number:'.2-2'}}</td>
+          <td class="text-right">{{rowData.interest_charge | number:'.2-2'}}</td>
+          <td class="text-right">{{rowData.late_charge | number:'.2-2'}}</td>
+          <td class="text-center">{{rowData.rate_pen}}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <th colspan="9">
+            No Record Found
+          </th>
         </tr>
       </ng-template>
     </p-table>
-
-    <!--<p-dataTable [value]="custService.srviceCustModel.ds_overdue.list_cdsOver_Install" [rows]="3"-->
-    <!--[scrollable]="true" [responsive]="true">-->
-    <!--<p-headerColumnGroup>-->
-    <!--<p-row>-->
-    <!--<p-column header="Term" [style]="{'width':'100px'}"></p-column>-->
-    <!--<p-column header="Installment"></p-column>-->
-    <!--<p-column header="Due"></p-column>-->
-    <!--<p-column header="As of Date"></p-column>-->
-    <!--<p-column header="Days Late" [style]="{'width':'100px'}"></p-column>-->
-    <!--<p-column header="Total Penalty"></p-column>-->
-    <!--<div *ngIf="showCharge">-->
-    <!--<p-column header="Interest Charge"></p-column>-->
-    <!--<p-column header="Late Charge"></p-column>-->
-    <!--</div>-->
-    <!--<div *ngIf="showRate">-->
-    <!--<p-column header="Rate" [style]="{'width':'100px'}"></p-column>-->
-    <!--</div>-->
-
-    <!--</p-row>-->
-    <!--</p-headerColumnGroup>-->
-    <!--<p-column field="term" [style]="{'width':'100px','text-align':'center'}"></p-column>-->
-    <!--<p-column field="installment_e_vat" [style]="{'text-align':'right'}">-->
-    <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
-    <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
-    <!--</ng-template>-->
-    <!--</p-column>-->
-    <!--<p-column field="due_day" [style]="{'text-align':'center'}"></p-column>-->
-    <!--<p-column field="as_of_date" [style]="{'text-align':'center'}"></p-column>-->
-    <!--<p-column field="days_late" [style]="{'width':'100px','text-align':'center'}"></p-column>-->
-    <!--<p-column field="total_penalty" [style]="{'text-align':'right'}">-->
-    <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
-    <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
-    <!--</ng-template>-->
-    <!--</p-column>-->
-    <!--<div *ngIf="showCharge">-->
-    <!--<p-column field="interest_charge" [style]="{'text-align':'right'}">-->
-    <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
-    <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
-    <!--</ng-template>-->
-    <!--</p-column>-->
-
-    <!--<p-column field="late_charge" [style]="{'text-align':'right'}">-->
-    <!--<ng-template let-col let-row="rowData" pTemplate="body">-->
-    <!--<span>{{ row[col.field] |  number:'.2-2'  }}</span>-->
-    <!--</ng-template>-->
-    <!--</p-column>-->
-    <!--</div>-->
-    <!--<div *ngIf="showRate">-->
-    <!--<p-column field="rate_pen" [style]="{'width':'100px','text-align':'center'}"></p-column>-->
-    <!--</div>-->
-    <!--</p-dataTable>-->
-
-    <!--<div *ngIf="showDetail" class="flex-row p-3">-->
-    <!--<div class="form-group row">-->
-    <!--<div class="col-md-6">-->
-    <!--<label>Detail</label>-->
-    <!--<textarea class="form-control"></textarea>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
+  </div>
 </p-panel>

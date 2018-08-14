@@ -61,7 +61,8 @@ export class ListDetail {
               public int_rate_name?: any,
               public adv_arr_name?: any,
               public inputIvat?: any,
-              public listStep?: ListStep[]) {
+              public listStep?: ListStep[],
+              public tabFloat? : boolean) {
   }
 
   static parse(jsons: any[]) {
@@ -129,7 +130,8 @@ export class ListDetail {
         json.INT_RATE_NAME,
         json.ADV_ARR_NAME,
         json.inputIVat,
-        ListStep.parse(json.STEP)
+        ListStep.parse(json.STEP),
+        json.CAL_INST_TYP == 'Float' ? true : false
       ))
     }
     return data;

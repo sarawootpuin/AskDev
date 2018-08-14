@@ -1,107 +1,107 @@
 <p-panel header="Penalty">
-  <dl class="row">
-    <dt class="col-md-3"></dt>
-    <dt class="col-md-1 text-center">Total</dt>
-    <dt class="col-md-1 text-center">Paid Amount</dt>
-    <dt class="col-md-1 text-center">Waive Amount</dt>
-    <dt class="col-md-1 text-center">Net Amount</dt>
-  </dl>
+  <div class="p-3 border-isa" style="word-break: break-all">
+    <div class="container-fluid">
+      <div class="row">
+        <p-table [value]="list_array" [responsive]="true">
+          <ng-template pTemplate="colgroup">
+            <colgroup>
+              <col style="width:100px">
+              <col style="width:30px">
+              <col style="width:30px">
+              <col style="width:30px">
+              <col style="width:30px">
+            </colgroup>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th class="text-center">Category</th>
+              <th class="text-center">Total</th>
+              <th class="text-center">Paid Amount</th>
+              <th class="text-center">Waive Amount</th>
+              <th class="text-center">Net Amount</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-idx="rowIndex">
+            <tr>
+              <td [ngClass]="idx%2==1? 'highlighter-blue' : null">
+                <span class="ui-column-title">Category</span>
+                <ng-container *ngIf="idx ==1 || idx ==3; else pointerbule">
+                  <u style="cursor: pointer;color: red">{{rowData.category}}</u>
+                </ng-container>
+              </td>
+              <ng-template #pointerbule>
+                <u style="cursor: pointer;color: blue">{{rowData.category}}</u>
+              </ng-template>
+              <td class="text-right" [ngClass]="idx%2==1? 'highlighter-blue' : null">
+                <span class="ui-column-title">Total</span>
+                {{(rowData.total || '0' | number:'.2-2') }}
+              </td>
 
-  <dl class="row">
-    <dt class="col-md-3">Interest Charge Actually Incurred</dt>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpinterest_actual || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblppaid_interest || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpwaive_interest || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpnet_interest || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-5"></dd>
+              <ng-container *ngIf="idx ==0 || idx ==2; else newtd1">
+                <td rowspan="2" class="text-right" [ngClass]="idx%2==1? 'highlighter-blue' : null">
+                  <span class="ui-column-title">Paid Amount</span>
+                  {{(rowData.paid_amt || '0' | number:'.2-2') }}
+                </td>
+              </ng-container>
+              <ng-template #newtd1>
+                <ng-container *ngIf="idx !=1 && idx !=3; else newtd2">
+                  <td class="text-right" [ngClass]="idx%2==1? 'highlighter-blue' : null">
+                    <span class="ui-column-title">Paid Amount</span>
+                    {{(rowData.paid_amt || '0' | number:'.2-2') }}
+                  </td>
+                </ng-container>
+              </ng-template>
+              <ng-template #newtd2></ng-template>
 
-    <dt class="col-md-3">Interest Charge as the result of payment as of this payment</dt>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpinterest_overdue || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right"></dd>
-    <dd class="col-md-1 txt-right"></dd>
-    <dd class="col-md-1 txt-right"></dd>
-    <dd class="col-md-5"></dd>
-  </dl>
+              <ng-container *ngIf="idx ==0 || idx ==2; else newtd3">
+                <td rowspan="2" class="text-right" [ngClass]="idx%2==1? 'highlighter-blue' : null">
+                  <span class="ui-column-title">Waive Amount</span>
+                  {{(rowData.waive_amt || '0' | number:'.2-2') }}
+                </td>
+              </ng-container>
+              <ng-template #newtd3>
+                <ng-container *ngIf="idx !=1 && idx !=3; else newtd4">
+                  <td class="text-right" [ngClass]="idx%2==1? 'highlighter-blue' : null">
+                    <span class="ui-column-title">Waive Amount</span>
+                    {{(rowData.waive_amt || '0' | number:'.2-2') }}
+                  </td>
+                </ng-container>
+              </ng-template>
+              <ng-template #newtd4></ng-template>
 
-  <dl class="row">
-    <dt class="col-md-3">Late Charge Actually Incurred</dt>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblplate_actual || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblppaid_late || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpwaive_late || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpnet_late || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-5"></dd>
-
-    <dt class="col-md-3">Late Charge as the result of payment as of this payment</dt>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblplate_overdue || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right"></dd>
-    <dd class="col-md-1 txt-right"></dd>
-    <dd class="col-md-1 txt-right"></dd>
-    <dd class="col-md-5"></dd>
-  </dl>
-
-  <dl class="row">
-    <dt class="col-md-3">Returned Cheque Charge</dt>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblprtn_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblppaid_rtn_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpwaive_rtn_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpnet_rtn_charge || 0 | number:'.2-2'}}</dd>
-  </dl>
-
-  <dl class="row">
-    <dt class="col-md-3">Direct Cheque Charge</dt>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpdirect_debit_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblppaid_direct_debit_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpwaive_direct_debit_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpnet_direct_debit_charge || 0 | number:'.2-2'}}</dd>
-  </dl>
-
-  <dl class="row">
-    <dt class="col-md-3">Status Charge</dt>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpstatus_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblppaid_status_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpwaive_status_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpnet_status_charge || 0 | number:'.2-2'}}</dd>
-  </dl>
-
-  <dl class="row">
-    <dt class="col-md-3">Debt Extra Charge</dt>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpdebt_extra_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblppaid_debt_extra_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpwaive_debt_extra_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpnet_debt_extra_charge || 0 | number:'.2-2'}}</dd>
-  </dl>
-
-  <dl class="row">
-    <dt class="col-md-3">Legal Extra Charge</dt>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblplegal_extra_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblppaid_legal_extra_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpwaive_legal_extra_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpnet_legal_extra_charge || 0 | number:'.2-2'}}</dd>
-  </dl>
-
-  <dl class="row">
-    <dt class="col-md-3">Repossess Up Country Charge</dt>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblprepos_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblppaid_repos_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpwaive_repos_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpnet_repos_charge || 0 | number:'.2-2'}}</dd>
-  </dl>
-
-  <dl class="row">
-    <dt class="col-md-3">Legal Charge</dt>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblplegal_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblppaid_legal_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpwaive_legal_charge || 0 | number:'.2-2'}}</dd>
-    <dd class="col-md-1 txt-right">{{ds_penalty.lblpnet_legal_charge || 0 | number:'.2-2'}}</dd>
-  </dl>
-
-  <div class="flex-row p-3 border-isa">
-    <dl class="row">
-      <dt class="col-md-1">Net Penalty</dt>
-      <dd class="col-md-1 text-left">{{ds_penalty.lblpnet_penalty || 0 | number:'.2-2'}}</dd>
-
-      <dt class="col-md-1">Net Charge</dt>
-      <dd class="col-md-1 text-left">{{ds_penalty.lblpnet_charge || 0 | number:'.2-2'}}</dd>
-    </dl>
+              <ng-container *ngIf="idx ==0 || idx ==2; else newtd5">
+                <td rowspan="2" class="text-right" [ngClass]="idx%2==1? 'highlighter-blue' : null">
+                  <span class="ui-column-title">Net Amount</span>
+                  {{(rowData.net_amt || '0' | number:'.2-2') }}
+                </td>
+              </ng-container>
+              <ng-template #newtd5>
+                <ng-container *ngIf="idx !=1 && idx !=3; else newtd6">
+                  <td class="text-right" [ngClass]="idx%2==1? 'highlighter-blue' : null">
+                    <span class="ui-column-title">Net Amount</span>
+                    {{(rowData.net_amt || '0' | number:'.2-2') }}
+                  </td>
+                </ng-container>
+              </ng-template>
+              <ng-template #newtd6></ng-template>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <div class="row row--sm-gap mt-3">
+        <div class="col-md-3 col-md-3--sm-gap text-right">
+          <dt>Net Penalty</dt>
+        </div>
+        <div class="col-md-3 col-md-3--sm-gap">
+          <dd class="highlighter-blue text-center">{{ds_penalty.lblpnet_penalty || 0 | number:'.2-2'}}</dd>
+        </div>
+        <div class="col-md-3 col-md-3--sm-gap text-right">
+          <dt>Net Charge</dt>
+        </div>
+        <div class="col-md-3 col-md-3--sm-gap">
+          <dd class="highlighter-blue text-center">{{ds_penalty.lblpnet_charge || 0 | number:'.2-2'}}</dd>
+        </div>
+      </div>
+    </div>
   </div>
 </p-panel>

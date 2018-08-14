@@ -1,0 +1,63 @@
+<div *ngIf="isLoading" class="text-center my-2">
+  <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>Loading...
+</div>
+<div [hidden]="isLoading">
+
+  <app-action-button-form [title]="'Insert Detail After Prepare CA'" (onSubmit)="saveAll()" [showSubmit]="true" [showExit]="true"></app-action-button-form>
+
+  <div class="card m-1" >
+    <div class="card-header p-1">
+      <p-panel header="Information" [toggleable]="true" [collapsed]="false">
+        <app-information [ListVisitAfter] = "ListVisitAfter"
+                         [ListSelectData]="selectedData"
+                         [urlAddress] = "urlAddress"
+                          (saleCallNo)="genarateData($event)"     >
+        </app-information>
+      </p-panel>
+    </div>
+    <div class="card-body p-1" *ngIf="tabViewShow">
+      <p-tabView>
+        <p-tabPanel header="Visit Detail">
+          <app-visit-detail
+                      [ListSelectData]="selectedData"
+                      [ListVisit]="ListVisit"
+                      [ListFNME]="ListFNME"
+                      [ListFNMT]="ListFNMT"
+                      ></app-visit-detail>
+        </p-tabPanel>
+        <p-tabPanel header="Attendees">
+          <app-ettendees
+                      [ListSelectData]="selectedData"
+                      [thissale_call_no]="saleCallNo"
+
+                      ></app-ettendees>
+        </p-tabPanel>
+        <p-tabPanel header="Apply Expense">
+          <app-expense [ListSelectData]="selectedData"
+                       [ListMKT]="ListMKT"
+                       [ListEMP] ="ListEMP"
+                      ></app-expense>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+</div>
+
+<app-alert-dialog #dialogalert > </app-alert-dialog>
+<app-alert-dialog #Questiondialog  (onOK)="actionOk()"   ></app-alert-dialog>
+
+<app-alert-dialog  #submitdialog   (onOK)="backToHome()" (onCloseDialog)="backToHome()">
+</app-alert-dialog>
+
+<app-action-dialog #dialogWarningInput
+                   [title]= "'Warning!'"
+                   [width]="300"
+                   [showOk]="true"
+                   >
+  <div class="container-fluid">
+    <h5><span>Please fill in this field ...</span></h5><br/>
+    <span class="text-danger" *ngFor="let item of blankField; let i = index">
+      :: {{i+1}} {{item}} <br>
+    </span>
+  </div>
+</app-action-dialog>

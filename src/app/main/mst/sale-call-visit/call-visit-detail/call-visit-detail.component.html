@@ -20,7 +20,7 @@
           <app-call-visit-attendees></app-call-visit-attendees>
         </p-tabPanel>
         <p-tabPanel header="Expense"    *ngIf="SelectList?.sale_call_type == 'V'"  >
-          <app-call-visit-expense></app-call-visit-expense>
+          <app-call-visit-expense [amend] = "amend"></app-call-visit-expense>
         </p-tabPanel>
         <p-tabPanel header="Exposure">
           <app-call-visit-exposure></app-call-visit-exposure>

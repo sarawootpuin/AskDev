@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import {ReassignService} from "../reassign.service";
 import {ActivatedRoute} from "@angular/router";
 import {ReassignListWork} from "../reassign-model/ReassignListWork";
@@ -7,13 +7,14 @@ import {Message} from 'primeng/components/common/api';
 import {LazyLoadEvent} from "primeng/primeng";
 import {ServiceEndpoint} from "../../../../shared/config/service-endpoint";
 import {UserStorage} from "../../../../shared/user/user.storage.service";
+import {Subscription} from "rxjs/Subscription";
 
 
 @Component({
   selector: 'app-app-reassign',
   templateUrl: './app-reassign.component.html'
 })
-export class AppReassignComponent implements OnInit,OnChanges {
+export class AppReassignComponent implements OnInit,OnChanges,OnDestroy {
 
   vcom_code :string;
   vcode :string;
@@ -24,7 +25,8 @@ export class AppReassignComponent implements OnInit,OnChanges {
   mkt_tocode :string;
 
   msgs: Message[] = [];
-
+  subscription : Subscription;
+  subscriptionReassign : Subscription;
   ListWork :ReassignListWork[];
   selectListWork :ReassignListWork[];
   constructor(private pService:ReassignService,
@@ -45,11 +47,20 @@ export class AppReassignComponent implements OnInit,OnChanges {
   }
 
   ngOnChanges(){
-    this.pService.getListWork("web",this.userStorage.getUserName(),this.vcom_code,this.vcode).subscribe(
+    this.subscription = this.pService.getListWork("web",this.userStorage.getUserName(),this.vcom_code,this.vcode).subscribe(
       (data : any) => {
         this.ListWork = ReassignListWork.parse(data.LIST_DATA);
       }
     );
+  }
+
+  ngOnDestroy(){
+    if(this.subscription){
+      this.subscription.unsubscribe()
+    }
+    if(this.subscriptionReassign){
+      this.subscriptionReassign.unsubscribe()
+    }
   }
 
   getName(data :string)
@@ -67,7 +78,7 @@ export class AppReassignComponent implements OnInit,OnChanges {
       if ( !isNullOrUndefined(this.selectListWork) ) {
              //console.log("Send to reassign");
              //console.log(this.selectListWork);
-              this.pService.postsendReassign("web", this.userStorage.getUserName() ,this.userStorage.getCode(),this.mkt_tocode,this.selectListWork).subscribe(
+              this.subscriptionReassign = this.pService.postsendReassign("web", this.userStorage.getUserName() ,this.userStorage.getCode(),this.mkt_tocode,this.selectListWork).subscribe(
                 (data : any) => {
 
                   let msgreturn = data.MSG ;

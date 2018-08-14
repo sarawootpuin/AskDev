@@ -21,10 +21,10 @@ export class CcsReferFollowPersonComponent implements OnInit {
   ngOnInit() {
     this.subscription = this.custService.emitMainJSON.subscribe(
       (data:any) => {
-        console.log(data);
+        // console.log(data);
         this.list_ReferPayPrsn = data.list_ReferPayPrsn;
         this.vSelected_Prsn = this.list_ReferPayPrsn[this.i];
-        console.log(this.list_ReferPayPrsn);
+        // console.log(this.list_ReferPayPrsn);
       }
     );
   }

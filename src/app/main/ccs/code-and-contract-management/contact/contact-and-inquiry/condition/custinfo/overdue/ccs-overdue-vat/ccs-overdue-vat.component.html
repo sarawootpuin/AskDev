@@ -1,40 +1,55 @@
 <p-panel header="Overdue Vat">
-    <dl class="row">
-      <dt class="col-md-2">Term of past due</dt>
-      <dd class="col-md-4">{{custService.srviceCustModel.ds_overvat.pnlcal_v_term | number:'.2-2'}}</dd>
+  <div class="p-3 border-isa" style="word-break: break-all">
+    <div class="container-fluid">
+      <dl class="row row--sm-gap">
+        <div class="col-xl-2 col-xl-2--sm-gap col-md-3 col-md-3--sm-gap col-12 col-12--sm-gap text-right">
+          <dt>Term of past due</dt>
+        </div>
+        <div class="col-xl-2 col-xl-2--sm-gap col-md-3 col-md-3--sm-gap col-12 col-12--sm-gap text-right">
+          <dd class="highlighter-blue">{{custService.srviceCustModel.ds_overvat.pnlcal_v_term | number:'.2-2'}}</dd>
+        </div>
+        <div class="offset-xl-2"></div>
 
-      <dt class="col-md-2">Overdue VAT</dt>
-      <dd class="col-md-4">{{custService.srviceCustModel.ds_overvat.pnlcal_pastdue_vat | number:'.2-2'}}</dd>
-    </dl>
-
-    <p-table [value]="list_cdsover_vat" [responsive]="true">
+        <div class="col-xl-2 col-xl-2--sm-gap col-md-3 col-md-3--sm-gap col-12 col-12--sm-gap text-right">
+          <dt>Overdue VAT</dt>
+        </div>
+        <div class="col-xl-2 col-xl-2--sm-gap col-md-3 col-md-3--sm-gap col-12 col-12--sm-gap text-right">
+          <dd class="highlighter-blue">{{custService.srviceCustModel.ds_overvat.pnlcal_pastdue_vat | number:'.2-2'}}</dd>
+        </div>
+        <div class="offset-xl-2"></div>
+      </dl>
+    </div>
+    <p-table [value]="list_cdsover_vat" [paginator]="true" [rows]="10" scrollable="true" [style]="{width:'72vw'}"
+             scrollHeight="50vh" [resizableColumns]="true" columnResizeMode="expand"
+             selectionMode="single">
+      <ng-template pTemplate="colgroup">
+        <colgroup>
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+        </colgroup>
+      </ng-template>
       <ng-template pTemplate="header">
-        <tr>
-          <th style="width: 10px">Term</th>
-          <th style="width: 10px">VAT</th>
-          <th style="width: 10px">Due VAT</th>
+        <tr class="text-center">
+          <th pResizableColumn>Term</th>
+          <th pResizableColumn>VAT</th>
+          <th pResizableColumn>Due VAT</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
         <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
-          <td>{{rowData.term}}</td>
-          <td>{{rowData.due_day}}</td>
-          <td>{{rowData.vat | number:'.2-2'}}</td>
+          <td class="text-center">{{rowData.term}}</td>
+          <td class="text-right">{{rowData.vat | number:'.2-2'}}</td>
+          <td class="text-center">{{rowData.due_day}}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <th colspan="3">
+            No Record Found
+          </th>
         </tr>
       </ng-template>
     </p-table>
-
-    <!--<p-dataTable [value]="custService.srviceCustModel.ds_overvat.list_cdsover_vat" [rows]="20">-->
-    <!--<p-headerColumnGroup>-->
-    <!--<p-row>-->
-    <!--<p-column header="Term"></p-column>-->
-    <!--<p-column header="VAT"></p-column>-->
-    <!--<p-column header="Due VAT"></p-column>-->
-
-    <!--</p-row>-->
-    <!--</p-headerColumnGroup>-->
-    <!--<p-column field="term" [style]="{'text-align':'center'}"></p-column>-->
-    <!--<p-column field="due_day" [style]="{'text-align':'center'}"></p-column>-->
-    <!--<p-column field="vat" [style]="{'text-align':'right'}"></p-column>-->
-    <!--</p-dataTable>-->
+  </div>
 </p-panel>

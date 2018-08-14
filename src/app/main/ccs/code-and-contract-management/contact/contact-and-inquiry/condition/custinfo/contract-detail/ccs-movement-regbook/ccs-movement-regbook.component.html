@@ -1,14 +1,71 @@
 <p-panel header="Movement Of Registration">
 
-  <dl class="row">
-    <dt class="col-md-2">สถานะเล่มทะเบียน</dt>
-    <dd class="col-md-2">{{vSelect_MMRegTrans.lblMovement_Status}}</dd>
+  <dl class="row row--sm-gap">
+    <div class="col-lg-1 col-lg-1--sm-gap col-md-2 col-md-2--sm-gap my-auto text-right">
+      <dt>ทรัพย์สิน</dt>
+    </div>
+    <div class="col-lg-1 col-lg-1--sm-gap col-md-1 col-md-1--sm-gap p-0">
+      <select class="form-control" [value]="vSelected_list_Asset.lblA_Order" (change)="vSelect_MMRegTrans = list_MMRegTrans[$event.target.value - 1]">
+        <option *ngFor="let obj of list_Asset">{{obj.lblA_Order}}</option>
+      </select>
+    </div>
   </dl>
 
-  <div class="form-group row">
-    <p-table [value]="list_MMReg" [responsive]="true"
-             selectionMode="single"
-             (onRowSelect)="vSelect_MMRegTrans = list_MMRegTrans[$event.index]">
+  <dl class="row row--sm-gap">
+    <div class="col-lg-1 col-lg-1--sm-gap col-md-2 col-md-2--sm-gap text-right">
+      <dt>สถานะเล่มทะเบียน</dt>
+    </div>
+    <div class="col-lg-4 col-lg-4--sm-gap col-md-3 col-md-3--sm-gap">
+      <dd class="highlighter-blue">{{vSelect_MMRegTrans.lblMovement_Status}}</dd>
+    </div>
+  </dl>
+
+  <dl class="row row--sm-gap">
+    <div class="col-lg-6 col-lg-6--sm-gap col-md-12 col-md-12--sm-gap">
+      <div class=" row row--sm-gap">
+        <div class="col-md-2 col-md-2--sm-gap text-right">
+          <dt>รายละเอียด 1</dt>
+        </div>
+        <div class="col-md-10 col-md-10--sm-gap text-center">
+          <dd class="highlighter-blue">{{vSelect_MMRegTrans.detail_1?vSelect_MMRegTrans.detail_1 : "..."}}</dd>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-lg-6--sm-gap col-md-12 col-md-12--sm-gap">
+      <div class="row row--sm-gap">
+        <div class="col-md-2 col-md-2--sm-gap text-right">
+          <dt>รายละเอียด 2</dt>
+        </div>
+        <div class="col-md-10 col-md-10--sm-gap text-center">
+          <dd class="highlighter-blue">{{vSelect_MMRegTrans.detail_2?vSelect_MMRegTrans.detail_2 : "..."}}</dd>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-lg-6--sm-gap col-md-12 col-md-12--sm-gap">
+      <div class="row row--sm-gap">
+        <div class="col-md-2 col-md-2--sm-gap text-right">
+          <dt>รายละเอียด<br>อื่น ๆ</dt>
+        </div>
+        <div class="col-md-10 col-md-10--sm-gap text-center" >
+          <dd class="highlighter-blue">{{vSelect_MMRegTrans.detail_oth ?vSelect_MMRegTrans.detail_oth  : "..."}}</dd>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-lg-6--sm-gap col-md-12 col-md-12--sm-gap">
+      <div class="row row--sm-gap">
+        <div class="col-md-2 col-md-2--sm-gap text-right">
+          <dt>หมายเหตุ</dt>
+        </div>
+        <div class="col-md-10 col-md-10--sm-gap text-center">
+          <dd class="highlighter-blue">{{vSelect_MMRegTrans.remark  ?vSelect_MMRegTrans.remark   : "..."}}</dd>
+        </div>
+      </div>
+    </div>
+  </dl>
+
+  <dl style="word-break: break-all">
+    <p-table [value]="list_MMReg" [responsive]="true" selectionMode="single" (onRowSelect)="vSelect_MMRegTrans = list_MMRegTrans[$event.index]">
       <ng-template pTemplate="header">
         <tr>
           <th>เลขที่เอกสาร</th>
@@ -31,20 +88,14 @@
           <td>{{rowData.purpose}}</td>
         </tr>
       </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <th colspan="7">
+            No Record Found
+          </th>
+        </tr>
+      </ng-template>
     </p-table>
-  </div>
-
-  <dl class="row">
-    <dt class="col-md-2">รายละเอียด 1</dt>
-    <dd class="col-md-10">{{vSelect_MMRegTrans.detail_1 || '...'}}</dd>
-
-    <dt class="col-md-2">รายละเอียด 2</dt>
-    <dd class="col-md-10">{{vSelect_MMRegTrans.detail_2 || '...'}}</dd>
-
-    <dt class="col-md-2">รายละเอียดอื่น ๆ</dt>
-    <dd class="col-md-10">{{vSelect_MMRegTrans.detail_oth || '...'}}</dd>
-
-    <dt class="col-md-2">หมายเหตุ</dt>
-    <dd class="col-md-10">{{vSelect_MMRegTrans.remark || '...'}}</dd>
   </dl>
+
 </p-panel>

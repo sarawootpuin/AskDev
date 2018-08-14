@@ -21,12 +21,15 @@ declare var $: any;
 })
 export class SaleCallVisitComponent implements OnInit, OnDestroy {
   @ViewChild('dialogalert') dialogalert: AlertDialogComponent;
+  @ViewChild('savedialog') savedialog: AlertDialogComponent;
   @ViewChild('Questiondialog') Questiondialog: AlertDialogComponent;
   @ViewChild('submitdialog') submitdialog: AlertDialogComponent;
   submitOrsave : string = '';
 
   subParams: Subscription;
   subscription: Subscription;
+  subscriptionSave: Subscription;
+  subscriptionSubmit: Subscription;
   vsale_no: string = '';
   vcard_no: string = '';
   saleH: SaleCallHead;
@@ -76,9 +79,15 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
     if (this.subParams != null) {
       this.subParams.unsubscribe();
     }
-     if (this.subscription != null){
+    if (this.subscription != null){
        this.subscription.unsubscribe();
-     }
+    }
+    if(this.subscriptionSave){
+      this.subscriptionSave.unsubscribe()
+    }
+    if(this.subscriptionSubmit){
+      this.subscriptionSubmit.unsubscribe()
+    }
   }
 
   getSaleCall() {
@@ -111,19 +120,31 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
   }
 
   Savesalecall() {
-      this.saleCallVisitService.sendSaleCall("web", this.username, this.comCode
+    this.checkLoader = true;
+    this.subscriptionSave = this.saleCallVisitService.sendSaleCall("web", this.username, this.comCode
         , this.vsale_no, "save").subscribe(
         (data: any) => {
+          this.checkLoader = false;
           //console.log(data);
           if ( data.CODE != '500'){
+            if(this.amend == 'Y'){
               this.router.navigate(['/SaleCall'], {
                 queryParams: {
                   sale_call_no: data.CODE,
-                  task : this.task
+                  task : this.task,
+                  amend : 'Y'
                }
               });
-            this.dialogalert.setMessage("Save Complete");
-            this.dialogalert.open();
+            } else {
+              this.router.navigate(['/SaleCall'], {
+                queryParams: {
+                  sale_call_no: data.CODE,
+                  task: this.task
+                }
+              });
+            }
+            this.savedialog.setMessage("Save Complete");
+            this.savedialog.open();
           } else {
             this.dialogalert.setMessage("Save Error");
             this.dialogalert.open();
@@ -132,10 +153,14 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
       );
   }
 
+  handleClick = () => this.getSaleCall()
+
   Submitsalecall() {
-      this.saleCallVisitService.sendSaleCall("web", this.username, this.comCode,
+    this.checkLoader = true;
+    this.subscriptionSubmit = this.saleCallVisitService.sendSaleCall("web", this.username, this.comCode,
         this.vsale_no, "submit").subscribe(
         (test: any) => {
+          this.checkLoader = false;
           //console.log(test);
           if (test.MSG.search('Success  submit') > -1) {
             this.submitdialog.setAction('INFORMATION');

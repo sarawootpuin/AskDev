@@ -1,220 +1,323 @@
-<form style="padding-right: 10px; padding-left: 10px; font-weight: bold">
-  <div class="form-group row d-flex justify-content-center" style="padding-left: 10px; padding-top: 10px">
-    <label class="col-form-label">Date for Paid Update (ค.ศ.)</label>
-
-    <div class="col">
-      <p-calendar [(ngModel)]="date1" [ngModelOptions]="{standalone: true}" dateFormat="dd/mm/yy"></p-calendar>
+<p-panel header="Transfer (For ASK)">
+    <div class="p-3 border-isa">
+      <div class="container-fluid" style="word-break: break-all">
+        <div class="d-flex flex-row justify-content-center">
+          <div class="p-1 flex-md-column">
+            <app-custom-button [option]="'save'" [title]="'บันทึกผลการเจรจา'"></app-custom-button>
+          </div>
+          <div class="p-1">
+            <app-custom-button [option]="'new'" [title]="'ดูผลการเจรจา'"></app-custom-button>
+          </div>
+          <div class="p-1">
+            <app-custom-button [option]="'calculate'" [title]="'Key Customer&Guarantor'"></app-custom-button>
+          </div>
+          <div class="p-1">
+            <app-custom-button [option]="'submit'" [title]="'Submit'"></app-custom-button>
+          </div>
+        </div>
+  
+        <dl class="row row--sm-gap mt-3">
+          <div class="col-xl-6 col-xl-6--sm-gap col-md-12 col-md-12--sm-gap">
+            <div class="row row--sm-gap">
+              <div class="col-4 col-4--sm-gap">
+                <dt class="col-form-label">Transfer Date (ค.ศ.)</dt>
+              </div>
+              <div class="col-5 col-5--sm-gap">
+                <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="date1" dataType="string" [ngModelOptions]="{standalone: true}"></p-calendar>
+              </div>
+              <div class="col-3 col-3--sm-gap">
+                <app-custom-button [title]="'Calc'" [option]="'calculate'"></app-custom-button>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-xl-6 col-xl-6--sm-gap col-md-12 col-md-12--sm-gap">
+            <div class="d-xl-none mt-1"></div>
+            <div class="row row--sm-gap">
+              <div class="col-4 col-4--sm-gap">
+                <dt class="col-form-label">Advance Installment Term</dt>
+              </div>
+              <div class="col-5 col-5--sm-gap">
+                <input type="text" class="form-control" appMyCurrency [fraction]="2" [value]="0.00">
+              </div>
+              <div class="col-3 col-3--sm-gap">
+                <app-custom-button [title]="'Calc'" [option]="'calculate'"></app-custom-button>
+              </div>
+            </div>
+          </div>
+        </dl>
+        <br>
+        <dl class="row row--sm-gap">
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+            <dt>Paid Term</dt>
+          </div>
+          <div class="col-3 col-3--sm-gap text-right">
+            <div>
+              <dd class="highlighter-blue">0.00</dd>
+            </div>
+          </div>
+          <div class="offset-xl-1"></div>
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+            <dt>Paid Amount</dt>
+          </div>
+          <div class="col-3 col-3--sm-gap text-right">
+            <div>
+              <dd class="highlighter-blue">0.00</dd>
+            </div>
+          </div>
+          <div class="offset-xl-1"></div>
+  
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+            <dt>Exposure Amt</dt>
+          </div>
+          <div class="col-3 col-3--sm-gap text-right">
+            <div>
+              <dd class="highlighter-blue">0.00</dd>
+            </div>
+          </div>
+          <div class="offset-xl-7 offset-6"></div>
+  
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+            <dt>Balance AR</dt>
+          </div>
+          <div class="col-3 col-3--sm-gap">
+            <div class="row row--sm-gap">
+              <div class="col-4 col-4--sm-gap text-right">
+                <dd class="highlighter-blue">0.00</dd>
+              </div>
+              <div class="col-8 col-8--sm-gap text-right">
+                <dd class="highlighter-blue">0.00</dd>
+              </div>
+            </div>
+          </div>
+          <div class="offset-xl-1"></div>
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+            <dt>Balance VAT</dt>
+          </div>
+          <div class="col-3 col-3--sm-gap">
+            <div class="row row--sm-gap">
+              <div class="col-4 col-4--sm-gap text-right">
+                <dd class="highlighter-blue">0.00</dd>
+              </div>
+              <div class="col-8 col-8--sm-gap text-right">
+                <dd class="highlighter-blue">0.00</dd>
+              </div>
+            </div>
+          </div>
+        </dl>
+        <hr style="border-color: #64789c">
+  
+        <dl class="row row--sm-gap">
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+            <dt (click)="openMenu('Overdue Installment')">
+              <u style="cursor: pointer;color: blue">
+                Overdue Installment
+              </u>
+            </dt>
+          </div>
+          <div class="col-3 col-3--sm-gap">
+            <div class="row row--sm-gap">
+              <div class="col-4 col-4--sm-gap text-right">
+                <dd class="highlighter-blue">0.00</dd>
+              </div>
+              <div class="col-8 col-8--sm-gap text-right">
+                <dd class="highlighter-blue">0.00</dd>
+              </div>
+            </div>
+          </div>
+          <div class="offset-xl-7 offset-6"></div>
+  
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+            <dt (click)="openMenu('Overdue Vat')">
+              <u style="cursor: pointer;color: blue">
+                VAT Not Paid
+              </u>
+            </dt>
+          </div>
+          <div class="col-3 col-3--sm-gap">
+            <div class="row row--sm-gap">
+              <div class="col-4 col-4--sm-gap text-right">
+                <dd class="highlighter-blue">0.00</dd>
+              </div>
+              <div class="col-8 col-8--sm-gap text-right">
+                <dd class="highlighter-blue">0.00</dd>
+              </div>
+            </div>
+          </div>
+          <div class="offset-xl-1"></div>
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+            <dt>Sub Total</dt>
+          </div>
+          <div class="col-3 col-3--sm-gap text-right">
+            <div>
+              <dd class="font-weight-bold" style="background-color: #ffdd90">0.00</dd>
+            </div>
+          </div>
+        </dl>
+        <hr style="border-color: #64789c">
+  
+        <dl class="row row--sm-gap">
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+            <dt (click)="openMenu('Penalty')">
+              <u style="cursor: pointer;color: blue">
+                Total Penalty
+              </u>
+            </dt>
+          </div>
+          <div class="col-3 col-3--sm-gap text-right">
+            <div>
+              <dd class="highlighter-blue">0.00</dd>
+            </div>
+          </div>
+          <div class="offset-xl-1"></div>
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+            <dt (click)="openMenu('Penalty')">
+              <u style="cursor: pointer;color: blue">
+                Total Charge
+              </u>
+            </dt>
+          </div>
+          <div class="col-3 col-3--sm-gap text-right">
+            <div>
+              <dd class="highlighter-blue">0.00</dd>
+            </div>
+          </div>
+          <div class="offset-xl-1"></div>
+  
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+            <dt>Total Registration</dt>
+          </div>
+          <div class="col-3 col-3--sm-gap text-right">
+            <div>
+              <dd class="highlighter-blue">0.00</dd>
+            </div>
+          </div>
+          <div class="offset-xl-1"></div>
+          <div class="col-3 col-3--sm-gap">
+            <dt (click)="openMenu('Insurance')">
+              <u style="cursor: pointer;color: blue">
+                Total Insurance / Compulsory
+              </u>
+            </dt>
+          </div>
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap text-right">
+            <div>
+              <dd class="highlighter-blue">0.00</dd>
+            </div>
+          </div>
+          <div class="offset-xl-1"></div>
+  
+          <div class="offset-6"></div>
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+            <dt (click)="openMenu('Other Expense')">
+              <u style="cursor: pointer;color: blue">
+                Total Expense & Advance
+              </u>
+            </dt>
+          </div>
+          <div class="col-3 col-3--sm-gap text-right">
+            <dd class="highlighter-blue">0.00</dd>
+          </div>
+          <div class="offset-xl-1"></div>
+  
+          <div class="offset-6"></div>
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+            <dt>Sub Total</dt>
+          </div>
+          <div class="col-3 col-3--sm-gap text-right">
+            <dd style="font-weight: bold; background-color: #ffdd90">0.00</dd>
+          </div>
+          <div class="offset-xl-1"></div>
+        </dl>
+        <hr style="border-color: #64789c">
+  
+        <dl class="row row--sm-gap">
+          <div class="col-xl-3 col-xl-3--sm-gap col-3 col-3--sm-gap">
+            <dt>Transfer Charge (System Calc)</dt>
+          </div>
+          <div class="col-xl-2 col-xl-2--sm-gap  col-3 col-3--sm-gap text-right">
+            <div>
+              <dd class="highlighter-blue">0.00</dd>
+            </div>
+          </div>
+          <div class="offset-xl-1"></div>
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+            <div class="form-check">
+              <label class="form-check-label form-inline">
+                <input class="form-check-input" type="checkbox"> ขอลดหย่อน
+              </label>
+            </div>
+          </div>
+          <div class="offset-xl-4 offset-3"></div>
+          <br>
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap my-auto">
+            <dt>Duty Stamp</dt>
+          </div>
+          <div class="col-3 col-3--sm-gap text-right my-auto">
+            <div>
+              <dd class="highlighter-blue" style="margin-bottom: 0px">0.00</dd>
+            </div>
+          </div>
+          <div class="offset-xl-1"></div>
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+            <dt class="col-form-label">Advance Installment Amount</dt>
+          </div>
+          <div class="col-3 col-3--sm-gap">
+            <input class="form-control" appMyCurrency [fraction]="2" value="0.00">
+          </div>
+          <div class="offset-xl-1"></div>
+  
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap mt-1">
+            <dt class="col-form-label">ค่าเปลี่ยนผู้ครอบครอง</dt>
+          </div>
+          <div class="col-3 col-3--sm-gap mt-1">
+            <input class="form-control" appMyCurrency [fraction]="2" value="0.00">
+          </div>
+          <div class="offset-xl-1"></div>
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap mt-1">
+            <dt class="col-form-label">Status Charge **</dt>
+          </div>
+          <div class="col-3 col-3--sm-gap mt-1">
+            <input class="form-control" appMyCurrency [fraction]="2" value="0.00">
+          </div>
+          <div class="offset-xl-1"></div>
+  
+          <div class="offset-6"></div>
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+            <br>
+            <dt>Sub Total</dt>
+          </div>
+          <div class="col-3 col-3--sm-gap text-right">
+            <br>
+            <dd style="font-weight: bold; background-color: #ffdd90">0.00</dd>
+          </div>
+          <div class="offset-xl-1"></div>
+        </dl>
+        <hr style="border-color: #64789c">
+  
+        <dl class="row row--sm-gap">
+          <div class="offset-6"></div>
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+            <dt>Total Payment Amount</dt>
+          </div>
+          <div class="col-3 col-3--sm-gap text-right">
+            <dd class="font-weight-bold" style="background-color: #ffa67d">0.00</dd>
+          </div>
+          <div class="offset-xl-1"></div>
+        </dl>
+        <hr style="border-color: #64789c">
+  
+        <dl class="row row--sm-gap">
+          <div class="col-xl-2 col-xl-2--sm-gap col-3 col-3--sm-gap">
+            <dt>ยอดเงินคงเหลือรับฝาก</dt>
+          </div>
+          <div class="col-3 col-3--sm-gap text-right">
+            <div>
+              <dd class="highlighter-blue">0.00</dd>
+            </div>
+          </div>
+          <div class="offset-xl-1"></div>
+        </dl>
+      </div>
     </div>
-
-    <!--<label class="col-form-label"></label>-->
-
-    <div class="col">
-      <app-custom-button [title]="'Calc'" [option]="'calculate'"></app-custom-button>
-    </div>
-
-    <label class="col-form-label">Advance Installment Term</label>
-
-    <div class="col">
-      <input type="number" class="form-control txt-right" value="">
-    </div>
-
-    <div class="col">
-      <app-custom-button [title]="'Calc'" [option]="'calculate'"></app-custom-button>
-    </div>
-  </div>
-</form>
-<!--</div>-->
-
-<div class="border border-secondary" style="padding-left: 10px; padding-right: 10px;">
-  <br>
-  <form>
-    <div class="form-group row">
-      <label class="col-md-2 col-form-label">Paid Term</label>
-      <div class="col-md-1">
-        <input type="text" readonly class="form-control txt-right" value="">
-      </div>
-      <div class="col-md-2"></div>
-      <label class="col-md-2 col-form-label">Paid Amount</label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <input type="text" readonly class="form-control txt-right" value="">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-md-2 col-form-label">Exposure Amount</label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <input type="text" readonly class="form-control txt-right" value="">
-      </div>
-      <label class="col-md-2 col-form-label"></label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2"></div>
-    </div>
-    <div class="form-group row">
-      <label class="col-md-2 col-form-label">Balance AR</label>
-      <div class="col-md-1">
-        <input type="text" readonly class="form-control txt-right" value="">
-      </div>
-      <div class="col-md-2">
-        <input type="text" readonly class="form-control txt-right" value="">
-      </div>
-      <label class="col-md-2 col-form-label">Balance VAT</label>
-      <div class="col-md-1">
-        <input type="text" readonly class="form-control txt-right" value="">
-      </div>
-      <div class="col-md-2">
-        <input type="text" readonly class="form-control txt-right" value="">
-      </div>
-    </div>
-
-    <hr style="border-color: #d60c0c; height: 2px">
-    <div class="form-group row">
-      <label class="col-md-2 col-form-label">Overdue Installment</label>
-      <div class="col-md-1">
-        <input type="text" readonly class="form-control txt-right" value="">
-      </div>
-      <div class="col-md-2">
-        <input type="text" readonly class="form-control txt-right" value="">
-      </div>
-      <label class="col-md-2 col-form-label"></label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2"></div>
-    </div>
-    <div class="form-group row">
-      <label class="col-md-2 col-form-label">VAT Not Paid</label>
-      <div class="col-md-1">
-        <input type="text" readonly class="form-control txt-right" value="">
-      </div>
-      <div class="col-md-2">
-        <input type="text" readonly class="form-control txt-right" value="">
-      </div>
-      <label class="col-md-2 col-form-label">Sub Total</label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <input type="text" readonly style="font-weight: bold; background-color: #ffdd90"
-               class="form-control txt-right"
-               value="">
-      </div>
-    </div>
-
-    <hr style="border-color: #d60c0c; height: 2px">
-    <div class="form-group row">
-      <label class="col-md-2 col-form-label">Total Penalty</label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <input type="text" readonly class="form-control txt-right" value="">
-      </div>
-      <label class="col-md-2 col-form-label">Total Charge</label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <input type="text" readonly class="form-control txt-right" value="">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-md-2 col-form-label">Total Expense & Advance</label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <input type="text" readonly class="form-control txt-right" value="">
-      </div>
-      <label class="col-md-2 col-form-label">Total Insurance / Compulsory</label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <input type="text" readonly class="form-control txt-right" value="">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-md-2 col-form-label">Total Registration</label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <input type="text" readonly class="form-control txt-right" value="">
-      </div>
-      <label class="col-md-2 col-form-label">Sub Total</label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2"><input type="text" readonly style="font-weight: bold; background-color: #ffdd90"
-                                   class="form-control txt-right"
-                                   value="">
-      </div>
-    </div>
-
-    <hr style="border-color: #d60c0c; height: 2px">
-    <div class="form-group row">
-      <label class="col-md-2 col-form-label">Transfer Charge (System Calc)</label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <input currencyMask class="form-control txt-right" readonly
-               [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"
-               value="">
-      </div>
-      <label class="col-md-2 col-form-label">Advance Installment Amount</label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2"><input currencyMask class="form-control txt-right"
-                                   [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"
-                                   value="">
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" type="checkbox"> ขอลดหย่อน
-        </label>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-md-2 col-form-label">Duty Stamp</label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <input currencyMask class="form-control txt-right" readonly
-               [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"
-               value="">
-      </div>
-      <label class="col-md-2 col-form-label">Status Charge **</label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <input currencyMask class="form-control txt-right"
-               [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"
-               value="">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-md-2 col-form-label">ค่าเปลี่ยนผู้ครอบครอง</label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <input currencyMask class="form-control txt-right"
-               [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"
-               value="">
-      </div>
-      <label class="col-md-2 col-form-label">Sub Total</label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <input type="text" readonly style="font-weight: bold; background-color: #ffdd90"
-               class="form-control txt-right"
-               value="">
-      </div>
-    </div>
-
-    <hr style="border-color: #d60c0c; height: 2px">
-    <div class="form-group row">
-      <label class="col-md-2 col-form-label"></label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2"></div>
-      <label class="col-md-2 col-form-label">Total Payment Amount</label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <input type="text" readonly style="font-weight: bold; background-color: #ffa67d"
-               class="form-control txt-right"
-               value="">
-      </div>
-    </div>
-    <hr style="border-color: #d60c0c; height: 2px">
-    <div class="form-group row">
-      <label class="col-md-2 col-form-label">ยอดเงินคงเหลือรับฝาก</label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <input currencyMask class="form-control txt-right" readonly
-               [options]="{ prefix: '', thousands: ',', decimal: '.',suffix:'' }"
-               value="">
-      </div>
-      <label class="col-md-2 col-form-label"></label>
-      <div class="col-md-1"></div>
-      <div class="col-md-2"></div>
-    </div>
-  </form>
-</div>
+  </p-panel>

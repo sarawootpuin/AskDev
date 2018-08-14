@@ -21,9 +21,10 @@ const routes: Route[] = [
     {path: 'scoring', loadChildren:'./scoring/scoring.module#ScoringModule'},
     {path: 'entity', loadChildren:'./mst/entity/entity.module#EntityModule'},
     {path: 'reassign',loadChildren:'./mst/reassign/reassign.module#ReassignModule'},
-    {path: 'ccs',loadChildren:'./ccs/customerservice.module#CustomerserviceModule'}
-
-    /*{path: 'monitorSMS',loadChildren:'./mst/monitor/monitor.module#MonitorModule'}
+    {path: 'ccs',loadChildren:'./ccs/customerservice.module#CustomerserviceModule'},
+    {path: 'monitorSMS',loadChildren:'./mst/monitor/monitor.module#MonitorModule'},
+    {path: 'afterCa', loadChildren: './mst/sale-call-visit-after-ca/sale-call-visit-after-ca.module#SaleCallVisitAfterCaModule'}
+    /*
     {path: 'subordinate', component: SubordinateComponent},
     {path: 'IncompleteDoc',loadChildren:'./incomplete-doc/incomplete-doc.module#IncompleteDocModule'},
     {path: 'RegisDriectCredit',loadChildren:'./regis-direct-credit/reg-direct-cr.module#RegDirectCrModule'},

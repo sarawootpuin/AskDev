@@ -8,9 +8,10 @@
     <div class="card-body">
       <div class="input-group">
         <div class="input-group-prepend">
-          <span class="input-group-text"><i class="fa fa-search"></i></span>
+          <span class="input-group-text"> <i class="fa fa-search"></i></span>
         </div>
-        <input #searchInput class="form-control" type="text" pInputText size="50" placeholder="Search">
+        <input #searchInput class="form-control" type="text" pInputText size="50" placeholder="Search"
+               (keyup.enter)="onEnter(searchInput.value)">
       </div>
       <div class="my-3">
         <div *ngIf="isLoading" class="text-center">

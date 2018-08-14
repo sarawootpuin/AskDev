@@ -1,0 +1,50 @@
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-7 form-group">
+        <label><b>Sale Call No</b></label>
+        <div class="form-inline">
+          <input class="form-control" type="text" [(ngModel)]="ListSelectData.sale_call_no"> &nbsp;
+          <app-search-un [inuURL]="urlAddress"
+                         [servicetype]="'GET'"
+                         title="CA No.;SaleCall No.;Customer Name TH;Customer Name EN;MKT Name;" [widthcol]="'170;100;200;200;200;'"
+                         (col1)="setCaNo($event)"
+                         (col2)="setSaleCallNo($event)"
+                         (col3)="setTHnme($event)"
+                         (col4)="setENnme($event)"
+                         (col5)="setName($event)"
+          ></app-search-un>
+        </div>
+      </div>
+      <div class="col-md-5 form-group">
+        <label><b>Visit Date</b></label>
+        <span class="text-danger">*</span>
+        <div>
+          <p-calendar dateFormat="dd/mm/yy" dataType="string" [(ngModel)]="ListSelectData.visitOutSide.visit_dt" showButtonBar="true"></p-calendar>
+        </div>
+      </div>
+      <div class="col-md-12 form-group">
+        <label><b>Visit By.</b></label>
+        <input class="form-control" [(ngModel)]="visitName"  disabled >
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8 form-group">
+    <!--<label><b>Customer Name</b></label>-->
+    <div class="row">
+      <div class="col-md-12 form-group">
+        <label><b>Customer Name - Thai</b></label>
+        <div class="form-inline">
+          <input class="col-md-6 form-control" [(ngModel)]="ListVisitAfter.th_nme" disabled>
+        </div>
+      </div>
+      <div class="col-md-12 form-group">
+        <label><b>Customer Name - English</b></label>
+        <div class="form-inline">
+          <input class="col-md-6 form-control" [(ngModel)]="ListVisitAfter.en_nme" disabled>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

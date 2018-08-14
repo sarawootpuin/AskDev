@@ -1,491 +1,493 @@
 <p-panel header="ประวัติเบิก-เคลียร์เงิน">
+  <div class="p-3 border-isa">
+    <div class="container-fluid" style="word-break: break-all">
+      <div class="row">
+        <p-table [value]="list_array3" [responsive]="true" scrollable="true">
+          <ng-template pTemplate="header">
+            <tr>
+              <th class="text-center">ประเภท</th>
+              <th class="text-center">รับฝากทะเบียน</th>
+              <th class="text-center">รับฝากมัดจำ</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData>
+            <tr>
+              <td class="text-center">
+                <span class="ui-column-title">ประเภท</span>
+                <label>{{rowData.category}}</label>
+              </td>
+              <td class="text-center">
+                <span class="ui-column-title">รับฝากทะเบียน</span>
+                <label>{{rowData.dsreg || '0' | number:'.2-2'}}</label>
+              </td>
+              <td class="text-center">
+                <span class="ui-column-title">รับฝากมัดจำ</span>
+                <label>{{rowData.dsborrow || '0' | number:'.2-2'}}</label>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <th colspan="3">
+                No Record Found
+              </th>
+            </tr>
+          </ng-template>
+        </p-table>
+        <br>
 
-  <div class="row">
-    <div class="col-md-4">
-      <div class="row form-inline">
-        <div class="col-md-4 font-weight-bold">เลขที่สัญญา</div>
-        <div class="col-md-8">
-          <input style="width: 130px; margin-right: 10px" type="text" class="form-control" [(ngModel)]="this.vAgrCode">
-          <button (click)="onClickSearch()">
-            <i class="fa fa-search" ng-reflect-klass="fa" ng-reflect-ng-class="fa-search"></i>
-          </button>
+        <div class="border-isa">
+          <p-tabView>
+            <p-tabPanel header="สรุปรายการคงเหลือรับฝาก / รายได้ เกี่ยวกับทะเบียน">
+              <p-table [value]="listSummary" [rows]="5" selectionMode="single" [paginator]="true">
+
+                <ng-template pTemplate="header">
+                  <tr style="text-align: center">
+                    <th rowspan="2" style="width: 80px"> ประเภทการรับชำระ</th>
+                    <th rowspan="2" style="width: 50px"> เลขที่เอกสาร</th>
+                    <th rowspan="2" style="width: 40px"> วันที่รับ</th>
+                    <th rowspan="2" style="width: 40px"> จำนวนเงิน</th>
+                    <th colspan="3" style="width: 90px"> จำนวนเงิน</th>
+                    <th rowspan="2" style="width: 60px"> แหล่งที่มา</th>
+                  </tr>
+                  <tr style="text-align: center">
+                    <th>คงเหลือ</th>
+                    <th>เคลียร์ / ตัด</th>
+                    <th>เบิก / รอตัด</th>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData>
+                  <tr [pSelectableRow]="rowData">
+                    <td>{{rowData.recieve_name}}</td>
+                    <td>{{rowData.document_no}}</td>
+                    <td>{{rowData.document_date}}</td>
+                    <td style="text-align: right">{{rowData.amount | number:'.2-2'}}</td>
+                    <td style="text-align: right">{{rowData.balance_deposit | number:'.2-2'}}</td>
+                    <td style="text-align: right">{{rowData.deduct_deposit | number:'.2-2'}}</td>
+                    <td style="text-align: right">{{rowData.deduct_deposit_onhand | number:'.2-2'}}</td>
+                    <td>{{rowData.remark}}</td>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="emptymessage">
+                  <tr>
+                    <th colspan="8">
+                      No Record Found
+                    </th>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </p-tabPanel>
+
+            <p-tabPanel header="สรุปรายการรับฝาก / รายได้ เกี่ยวกับทะเบียน">
+              <p-table [value]="listSumbal" [rows]="5" selectionMode="single" [paginator]="true">
+                <ng-template pTemplate="header">
+                  <tr style="text-align: center">
+                    <th rowspan="2" style="width: 80px"> ประเภทการรับชำระ</th>
+                    <th rowspan="2" style="width: 50px"> เลขที่เอกสาร</th>
+                    <th rowspan="2" style="width: 40px"> วันที่รับ</th>
+                    <th rowspan="2" style="width: 40px"> จำนวนเงิน</th>
+                    <th colspan="3" style="width: 90px"> จำนวนเงิน</th>
+                    <th rowspan="2" style="width: 60px"> แหล่งที่มา</th>
+                  </tr>
+                  <tr style="text-align: center">
+                    <th>คงเหลือ</th>
+                    <th>เคลียร์ / ตัด</th>
+                    <th>เบิก / รอตัด</th>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData>
+                  <tr [pSelectableRow]="rowData">
+                    <td>{{rowData.recieve_name}}</td>
+                    <td>{{rowData.document_no}}</td>
+                    <td>{{rowData.document_date}}</td>
+                    <td style="text-align: right">{{rowData.amount | number:'.2-2'}}</td>
+                    <td style="text-align: right">{{rowData.balance_deposit | number:'.2-2'}}</td>
+                    <td style="text-align: right">{{rowData.deduct_deposit | number:'.2-2'}}</td>
+                    <td style="text-align: right">{{rowData.deduct_deposit_onhand | number:'.2-2'}}</td>
+                    <td>{{rowData.remark}}</td>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="emptymessage">
+                  <tr>
+                    <th colspan="8">
+                      No Record Found
+                    </th>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </p-tabPanel>
+
+            <p-tabPanel header="รายการเบิกเงินทดรอง / เบิกเงินชดเชยเงินสดย่อย">
+
+              <p-table [value]="listAdv" [scrollable]="true" [resizableColumns]="true" [(selection)]="vSelected_AdvRow" (onRowSelect)="onSelectRegAdv($event.data,$event.index)"
+                [rows]="5" [paginator]="true" [responsive]="true" [style]="{width:'1000px'}" selectionMode="single">
+                <ng-template pTemplate="colgroup">
+                  <colgroup>
+                    <col style="width:40px">
+                    <col style="width:100px">
+                    <col style="width:100px">
+                    <col style="width:100px">
+                    <col style="width:100px">
+                    <col style="width:100px">
+                    <col style="width:100px">
+                    <col style="width:100px">
+                    <col style="width:100px">
+                    <col style="width:100px">
+                    <col style="width:250px">
+                    <col style="width:100px">
+                    <col style="width:200px">
+                    <col style="width:200px">
+                    <col style="width:100px">
+                    <col style="width:100px">
+                    <col style="width:100px">
+                    <col style="width:100px">
+                    <col style="width:150px">
+                  </colgroup>
+                </ng-template>
+
+                <ng-template pTemplate="header">
+                  <tr style="text-align: center">
+                    <th rowspan="2"> No</th>
+                    <th rowspan="2"> วันที่รับฝาก</th>
+                    <th rowspan="2"> เลขที่ใบรับฝาก</th>
+                    <th rowspan="2"> โครงการ</th>
+                    <th rowspan="2"> เงินรับฝาก</th>
+                    <th rowspan="2"> เงินทดรอง</th>
+                    <th rowspan="2"> ค่าบริการ</th>
+                    <th rowspan="2"> เงินเกิน</th>
+                    <th rowspan="2"> รายได้</th>
+                    <th colspan="1"> จำนวนเงิน</th>
+                    <th colspan="1"> เลขที่ใบเบิก</th>
+                    <th colspan="1"> วันที่เบิก</th>
+                    <th rowspan="2"> ผู้ดำเนินการทะเบียน</th>
+                    <th rowspan="2"> ผู้ทำรายการเบิก/คืนเงิน</th>
+                    <th rowspan="2"> ประเภท</th>
+                    <th colspan="2"> การจ่ายเงิน / ออกเช็ค</th>
+                    <th colspan="2"> บัญชีตรวจสอบการเคลียร์</th>
+                  </tr>
+                  <tr style="text-align: center">
+                    <th>ทดรองรวมรายได้/คืนมัดจำ</th>
+                    <th>เงินทดรอง/มัดจำ</th>
+                    <th>เงินทดรอง/เงินคืนมัดจำ</th>
+                    <th>วันที่จ่ายเงิน</th>
+                    <th>เลขที่จ่ายเงิน</th>
+                    <th>วันที่ตรวจสอบ</th>
+                    <th>เลขที่ตรวจสอบ</th>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+                  <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+                    <td class="text-center">
+                      <button (click)="showTable()">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                    </td>
+                    <td>{{rowData.ds_date}}</td>
+                    <td>{{rowData.ds_number}}</td>
+                    <td>{{rowData.flag_advance}}</td>
+                    <td class="text-right">{{rowData.ds_amount | number:'.2-2'}}</td>
+                    <td class="text-right">{{rowData.regis_amt | number:'.2-2'}}</td>
+                    <td class="text-right">{{rowData.service_fee | number:'.2-2'}}</td>
+                    <td class="text-right">{{rowData.cal_over_amt | number:'.2-2'}}</td>
+                    <td class="text-right">{{rowData.cal_income_amt | number:'.2-2'}}</td>
+                    <td class="text-right">{{rowData.advance_amt | number:'.2-2'}}</td>
+                    <td>{{rowData.advance_no}}</td>
+                    <td>{{rowData.advance_date}}</td>
+                    <td>{{rowData.first_name}}</td>
+                    <td>{{rowData.full_namet}}</td>
+                    <td>{{rowData.insouce_outsouce}}</td>
+                    <td>{{rowData.cv_date}}</td>
+                    <td>{{rowData.cv_num}}</td>
+                    <td>{{rowData.jv_date}}</td>
+                    <td>{{rowData.jv_num}}</td>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                  <tr>
+                    <th colspan="19">
+                      No Record Found
+                    </th>
+                  </tr>
+                </ng-template>
+              </p-table>
+              <br>
+              <div *ngIf="hidelistAdvSub1">
+                <p-table [value]="listAdvSub1" [rows]="5" selectionMode="single" [paginator]="true" [scrollable]="true" [resizableColumns]="true"
+                  [(selection)]="vSelected_AdvRowSub1Row" (onRowSelect)="onSelectRegAdvSub1($event.data,$event.index)" ng-hide="hidelistAdvSub1"
+                  [style]="{width:'1000px'}">
+                  <ng-template pTemplate="colgroup">
+                    <colgroup>
+                      <col style="width:40px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                    </colgroup>
+                  </ng-template>
+
+                  <ng-template pTemplate="header">
+                    <tr style="text-align: center">
+                      <th rowspan="2"> No</th>
+                      <th rowspan="2"> วันที่เคลียร์เงิน</th>
+                      <th rowspan="2"> เลขที่ใบเคลียร์เงิน</th>
+                      <th rowspan="2"> โครงการ</th>
+                      <th colspan="2"> จำนวนเงิน</th>
+                      <th rowspan="2"> เลขที่ใบเบิกเงิน</th>
+                      <th rowspan="2"> ผู้ทำรายการเคลียร์</th>
+                      <th colspan="2"> บัญชีตรวจสอบ</th>
+                    </tr>
+                    <tr style="text-align: center">
+                      <th> เคลียร์ค่าทะเบียน</th>
+                      <th> เคลียร์ค่าบริการ</th>
+                      <th> วันที่ตรวจสอบ</th>
+                      <th> เลขที่ตรวจสอบ</th>
+                    </tr>
+                  </ng-template>
+
+                  <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+                    <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+                      <td>
+                        <button (click)="showTable1()">
+                          <i class="fa fa-plus"></i>
+                        </button>
+                      </td>
+                      <td>{{rowData.clear_advance_date}} </td>
+                      <td>{{rowData.clear_advance_no}}</td>
+                      <td>{{rowData.flag_advance}}</td>
+                      <td class="text-right">{{rowData.expense_amount1 | number:'.2-2'}}</td>
+                      <td class="text-right">{{rowData.expense_amount2 | number:'.2-2'}}</td>
+                      <td>{{rowData.advance_no}}</td>
+                      <td>{{rowData.full_namet}}</td>
+                      <td>{{rowData.jv_date}}</td>
+                      <td>{{rowData.jv_num}} </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <th colspan="10">
+                        No Record Found
+                      </th>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+              <br>
+              <div *ngIf="hidelistAdvSub2">
+                <p-table [value]="listAdvSub2" [rows]="5" selectionMode="single" [paginator]="true" [scrollable]="true" [resizableColumns]="true"
+                  ng-hide="hidelistAdvSub2" [style]="{width:'1000px'}">
+                  <ng-template pTemplate="colgroup" let-columns>
+                    <colgroup>
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                    </colgroup>
+                  </ng-template>
+
+                  <ng-template pTemplate="header">
+                    <tr style="text-align: center">
+                      <th rowspan="2"> เลขที่ตัดรับฝาก</th>
+                      <th rowspan="2"> วันที่ตัดรับฝาก</th>
+                      <th rowspan="2"> เลขที่ใบรับฝาก</th>
+                      <th rowspan="2"> วันที่รับฝาก</th>
+                      <th colspan="2"> จำนวนเงิน</th>
+                      <th rowspan="2"> ทดรองลูกค้าคงเหลือ</th>
+                      <th rowspan="2"> เลขที่ใบเบิกเงินทดรอง</th>
+                    </tr>
+                    <tr style="text-align: center">
+                      <th> รับฝาก</th>
+                      <th> ตัดรับฝาก</th>
+                    </tr>
+                  </ng-template>
+
+                  <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+                    <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+                      <td>{{rowData.advance_no}}</td>
+                      <td>{{rowData.advance_date}}</td>
+                      <td>{{rowData.ds_number}}</td>
+                      <td>{{rowData.ds_date}}</td>
+                      <td class="text-right">{{rowData.ds_amount | number:'.2-2'}}</td>
+                      <td>{{rowData.cus_clear_advance}}</td>
+                      <td>{{rowData.reg_clear_advance}}</td>
+                      <td>{{rowData.description}}</td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <th colspan="8">
+                        No Record Found
+                      </th>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </p-tabPanel>
+
+            <p-tabPanel header="รายการโอนเงิน / ตัดรับฝาก / คืนเงิน (CH.5)">
+
+              <p-table [value]="listCh5" [paginator]="true" [rows]="5" selectionMode="single" [scrollable]="true" [resizableColumns]="true"
+                [(selection)]="vSelected_Ch5Row" (onRowSelect)="onSelectRegCh5($event.data,$event.index)" [style]="{width:'1000px'}">
+                <ng-template pTemplate="colgroup" let-columns>
+                  <colgroup>
+                    <col style="width:40px">
+                    <col style="width:100px">
+                    <col style="width:100px">
+                    <col style="width:200px">
+                    <col style="width:200px">
+                    <col style="width:100px">
+                    <col style="width:100px">
+                    <col style="width:200px">
+                    <col style="width:200px">
+                    <col style="width:200px">
+                    <col style="width:200px">
+                    <col style="width:200px">
+                    <col style="width:100px">
+                    <col style="width:100px">
+                    <col style="width:100px">
+                    <col style="width:100px">
+                  </colgroup>
+                </ng-template>
+
+                <ng-template pTemplate="header">
+                  <tr style="text-align: center">
+                    <th rowspan="2"> No</th>
+                    <th rowspan="2"> วันที่รับฝาก</th>
+                    <th rowspan="2"> เลขที่ใบรับฝาก</th>
+                    <th rowspan="2"> ประเภทเงิน</th>
+                    <th rowspan="2"> เลขที่ใบตัดรับฝาก</th>
+                    <th rowspan="2"> วันที่ทำรายการ</th>
+                    <th rowspan="2"> จำนวนเงิน</th>
+                    <th rowspan="2"> ชื่อลูกค้า</th>
+                    <th rowspan="2"> ชื่อผู้รับเงิน</th>
+                    <th rowspan="2"> ผู้ทำรายการ</th>
+                    <th colspan="2"> หมายเหตุ</th>
+                    <th colspan="2"> นำเข้า Collection</th>
+                    <th rowspan="2"> สถานะงาน</th>
+                    <th rowspan="2"> DS_TO_INC_NUMBER</th>
+                  </tr>
+                  <tr style="text-align: center">
+                    <th> หมายเหตุ1</th>
+                    <th> หมายเหตุ2</th>
+                    <th> วันที่นำเข้า</th>
+                    <th> เลขที่นำเข้า</th>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+                  <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+                    <td>
+                      <button (click)="showListCh5Sub1()">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                    </td>
+                    <td>{{rowData.document_date||'...'}}</td>
+                    <td>{{rowData.document_no||'...'}}</td>
+                    <td>{{rowData.recieve_name||'...'}}</td>
+                    <td>{{rowData.ch5_doc_number||'...'}}</td>
+                    <td>{{rowData.ch5_doc_date||'...'}}</td>
+                    <td style="text-align: right">{{rowData.deduct_amt|| 0 | number:'.2-2'}}</td>
+                    <td>{{rowData.customer_name||'...'}}</td>
+                    <td>{{rowData.disbursment_name||'...'}}</td>
+                    <td>{{rowData.input_user||'...'}}</td>
+                    <td>{{rowData.remark1||'...'}}</td>
+                    <td>{{rowData.remark2||'...'}}</td>
+                    <td>{{rowData.transfer_to_collection_date||'...'}}</td>
+                    <td>{{rowData.transfer_to_collection_entry||'...'}}</td>
+                    <td>{{rowData.current_task||'...'}}</td>
+                    <td>{{rowData.ds_to_inc_number||'...'}}</td>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="emptymessage">
+                  <tr>
+                    <th colspan="16">
+                      No Record Found
+                    </th>
+                  </tr>
+                </ng-template>
+              </p-table>
+
+              <br>
+              <div *ngIf="hidelistCh5Sub1">
+                <p-table [value]="listCh5Sub1" [rows]="5" [paginator]="true" selectionMode="single" [scrollable]="true" [resizableColumns]="true"
+                  [style]="{width:'1000px'}" ng-hide="hidelistCh5Sub1">
+                  <ng-template pTemplate="colgroup" let-columns>
+                    <colgroup>
+                      <col style="width:100px">
+                      <col style="width:200px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:150px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                      <col style="width:100px">
+                    </colgroup>
+                  </ng-template>
+
+                  <ng-template pTemplate="header">
+                    <tr style="text-align: center">
+                      <th rowspan="2"> เลขที่สัญญา</th>
+                      <th rowspan="2"> ประเภทเงิน</th>
+                      <th rowspan="2"> เลขที่เอกสาร</th>
+                      <th rowspan="2"> วันที่เอกสาร</th>
+                      <th rowspan="2"> วันที่รับเงิน</th>
+                      <th rowspan="2"> จำนวนเงิน</th>
+                      <th rowspan="2"> จำนวนเงินที่ตัด</th>
+                      <th rowspan="2"> เงินคงเหลือ</th>
+                      <th rowspan="2"> เลขที่อ้างอิง</th>
+                      <th rowspan="2"> วันที่ยกเลิก</th>
+                      <th rowspan="2"> ผู้ยกเลิกรายการ</th>
+                      <th rowspan="2"> หมายเหตุ</th>
+                    </tr>
+                  </ng-template>
+
+                  <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+                    <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+                      <td>{{rowData.agr_code}}</td>
+                      <td>{{rowData.recieve_name}}</td>
+                      <td>{{rowData.document_no}}</td>
+                      <td>{{rowData.document_date}}</td>
+                      <td>{{rowData.batch_d}}</td>
+                      <td style="text-align: right">{{rowData.amount | number:'.2-2'}}</td>
+                      <td style="text-align: right">{{rowData.deduct_deposit | number:'.2-2'}}</td>
+                      <td style="text-align: right">{{rowData.balance_deposit | number:'.2-2'}}</td>
+                      <td>{{rowData.ref_code}}</td>
+                      <td>{{rowData.cancel_date}}</td>
+                      <td>{{rowData.cancel_person}}</td>
+                      <td>{{rowData.remark}}</td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <th colspan="12">
+                        No Record Found
+                      </th>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </p-tabPanel>
+          </p-tabView>
         </div>
       </div>
     </div>
-
-    <div class="col-md-8">
-      <dl class="row">
-        <dt class="col-md-2"></dt>
-        <dt class="col-md-2 text-center">รับฝากทะเบียน</dt>
-        <dt class="col-md-2 text-center">รับฝากมัดจำ</dt>
-      </dl>
-
-      <dl class="row">
-        <dt class="col-md-2">ทั้งหมด</dt>
-        <dd class="col-md-2 txt-right">{{sumttl_dsreg | number:'.2-2'}}</dd>
-        <dd class="col-md-2 txt-right">{{sumttl_dsborrow | number:'.2-2'}}</dd>
-      </dl>
-
-      <dl class="row">
-        <dt class="col-md-2">คงเหลือ</dt>
-        <dd class="col-md-2 txt-right">{{sumbal_dsreg | number:'.2-2'}}</dd>
-        <dd class="col-md-2 txt-right">{{sumbal_dsborrow | number:'.2-2'}}</dd>
-      </dl>
-    </div>
   </div>
-
-
-
-
-
-  <!--<div class="col-md-12 form-group">-->
-  <!--<div class="row ">-->
-
-  <!--<div class="col-md-2">-->
-  <!--<label><b>เลขที่สัญญา / รหัสลูกค้านอก</b></label> <br>-->
-  <!--<div class="row">-->
-  <!--<div class="col-md-11 form-inline">-->
-  <!--<input style="width: 130px; margin-right: 10px" type="text" class="form-control"-->
-  <!--[(ngModel)]="this.vAgrCode">-->
-  <!--<button (click)="onClickSearch()">-->
-  <!--<i class="fa fa-search" ng-reflect-klass="fa" ng-reflect-ng-class="fa-search"></i>-->
-  <!--</button>-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--</div>-->
-
-  <!--<div class="col-md-3">-->
-  <!--<label><u><b>รับฝากทะเบียน</b></u></label><br>-->
-  <!--<div class="row">-->
-  <!--<div class="col-md-12 form-inline">-->
-  <!--<label style="margin-right: 10px">ทั้งหมด :</label>-->
-
-  <!--<input currencyMask [options]="{precision: 2,prefix: '',thousands: ',', decimal: '.'}" type="text"-->
-  <!--style="width: 90px" class="form-control" [value]="this.sumttl_dsreg" disabled>-->
-
-  <!--<label style="margin-right: 10px; margin-left: 10px">คงเหลือ :</label>-->
-  <!--<input currencyMask [options]="{precision: 2,prefix: '',thousands: ',', decimal: '.'}" type="text"-->
-  <!--style="width: 90px" class="form-control" [value]="this.sumbal_dsreg" disabled>-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--</div>-->
-
-
-  <!--<div class="col-md-3">-->
-  <!--<label><u><b>รับฝากมัดจำ</b></u></label><br>-->
-  <!--<div class="row">-->
-  <!--<div class="col-md-12 form-inline">-->
-  <!--<label style="margin-right: 10px">ทั้งหมด :</label>-->
-  <!--<input currencyMask [options]="{precision: 2,prefix: '',thousands: ',', decimal: '.'}" type="text"-->
-  <!--style="width: 90px" class="form-control" [value]="this.sumttl_dsborrow" disabled>-->
-
-  <!--<label style="margin-right: 10px; margin-left: 10px">คงเหลือ :</label>-->
-  <!--<input currencyMask [options]="{precision: 2,prefix: '',thousands: ',', decimal: '.'}" type="text"-->
-  <!--style="width: 90px" class="form-control" [value]="this.sumbal_dsborrow" disabled>-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--</div>-->
-
-
-  <!--</div>-->
-  <!--</div>-->
-
-  <div class="p-1 m-1 border-isa">
-    <p-tabView>
-
-      <p-tabPanel header="สรุปรายการคงเหลือรับฝาก / รายได้ เกี่ยวกับทะเบียน">
-        <p-table [value]="listSummary" [rows]="8"
-                 selectionMode="single">
-
-          <ng-template pTemplate="header">
-            <tr style="text-align: center">
-              <th rowspan="2" style="width: 80px"> ประเภทการรับชำระ</th>
-              <th rowspan="2" style="width: 50px"> เลขที่เอกสาร</th>
-              <th rowspan="2" style="width: 40px"> วันที่รับ</th>
-              <th rowspan="2" style="width: 40px"> จำนวนเงิน</th>
-              <th colspan="3" style="width: 90px"> จำนวนเงิน</th>
-              <th rowspan="2" style="width: 60px"> แหล่งที่มา</th>
-            </tr>
-            <tr style="text-align: center">
-              <th>คงเหลือ</th>
-              <th>เคลียร์ / ตัด</th>
-              <th>เบิก / รอตัด</th>
-            </tr>
-          </ng-template>
-
-          <ng-template pTemplate="body" let-rowData>
-            <tr [pSelectableRow]="rowData">
-              <td>{{rowData.recieve_name}}</td>
-              <td>{{rowData.document_no}}</td>
-              <td>{{rowData.document_date}}</td>
-              <td style="text-align: right">{{rowData.amount | number:'.2-2'}}</td>
-              <td style="text-align: right">{{rowData.balance_deposit | number:'.2-2'}}</td>
-              <td style="text-align: right">{{rowData.deduct_deposit | number:'.2-2'}}</td>
-              <td style="text-align: right">{{rowData.deduct_deposit_onhand | number:'.2-2'}}</td>
-              <td>{{rowData.remark}}</td>
-            </tr>
-          </ng-template>
-
-        </p-table>
-      </p-tabPanel>
-
-      <p-tabPanel header="สรุปรายการรับฝาก / รายได้ เกี่ยวกับทะเบียน">
-        <p-table [value]="listSumbal" [rows]="8"
-                 selectionMode="single">
-
-          <ng-template pTemplate="header">
-            <tr style="text-align: center">
-              <th rowspan="2" style="width: 80px"> ประเภทการรับชำระ</th>
-              <th rowspan="2" style="width: 50px"> เลขที่เอกสาร</th>
-              <th rowspan="2" style="width: 40px"> วันที่รับ</th>
-              <th rowspan="2" style="width: 40px"> จำนวนเงิน</th>
-              <th colspan="3" style="width: 90px"> จำนวนเงิน</th>
-              <th rowspan="2" style="width: 60px"> แหล่งที่มา</th>
-            </tr>
-            <tr style="text-align: center">
-              <th>คงเหลือ</th>
-              <th>เคลียร์ / ตัด</th>
-              <th>เบิก / รอตัด</th>
-            </tr>
-          </ng-template>
-
-          <ng-template pTemplate="body" let-rowData>
-            <tr [pSelectableRow]="rowData">
-              <td>{{rowData.recieve_name}}</td>
-              <td>{{rowData.document_no}}</td>
-              <td>{{rowData.document_date}}</td>
-              <td style="text-align: right">{{rowData.amount | number:'.2-2'}}</td>
-              <td style="text-align: right">{{rowData.balance_deposit | number:'.2-2'}}</td>
-              <td style="text-align: right">{{rowData.deduct_deposit | number:'.2-2'}}</td>
-              <td style="text-align: right">{{rowData.deduct_deposit_onhand | number:'.2-2'}}</td>
-              <td>{{rowData.remark}}</td>
-            </tr>
-          </ng-template>
-
-        </p-table>
-      </p-tabPanel>
-
-      <p-tabPanel header="รายการเบิกเงินทดรอง / เบิกเงินชดเชยเงินสดย่อย">
-        <p-table [value]="listAdv" [rows]="18" selectionMode="single"
-                 [scrollable]="true" [resizableColumns]="true" [style]="{width:'95vw'}"
-                 [(selection)]="vSelected_AdvRow"
-                 (onRowSelect)="onSelectRegAdv($event.data,$event.index)">
-
-          <ng-template pTemplate="colgroup" let-columns>
-            <colgroup>
-              <col style="width:100px">
-              <col style="width:100px">
-              <col style="width:100px">
-              <col style="width:100px">
-              <col style="width:100px">
-              <col style="width:100px">
-              <col style="width:100px">
-              <col style="width:100px">
-              <col style="width:100px">
-              <col style="width:250px">
-              <col style="width:100px">
-              <col style="width:200px">
-              <col style="width:200px">
-              <col style="width:100px">
-              <col style="width:100px">
-              <col style="width:100px">
-              <col style="width:100px">
-              <col style="width:150px">
-            </colgroup>
-          </ng-template>
-
-          <ng-template pTemplate="header">
-            <tr style="text-align: center">
-              <th rowspan="2"> วันที่รับฝาก</th>
-              <th rowspan="2"> เลขที่ใบรับฝาก</th>
-              <th rowspan="2"> เงินทดรอง</th>
-              <th rowspan="2"> โครงการ</th>
-              <th rowspan="2"> เงินรับฝาก</th>
-              <th rowspan="2"> ค่าบริการ</th>
-              <th rowspan="2"> เงินเกิน</th>
-              <th rowspan="2"> รายได้</th>
-              <th colspan="1"> จำนวนเงิน</th>
-              <th colspan="1"> เลขที่ใบเบิก</th>
-              <th colspan="1"> วันที่เบิก</th>
-              <th rowspan="2"> ผู้ดำเนินการทะเบียน</th>
-              <th rowspan="2"> ผู้ทำรายการเบิก/คืนเงิน</th>
-              <th rowspan="2"> ประเภท</th>
-              <th colspan="2"> การจ่ายเงิน / ออกเช็ค</th>
-              <th colspan="2"> บัญชีตรวจสอบการเคลียร์</th>
-            </tr>
-            <tr style="text-align: center">
-              <th>ทดรองรวมรายได้/คืนมัดจำ</th>
-              <th>เงินทดรอง/มัดจำ</th>
-              <th>เงินทดรอง/เงินคืนมัดจำ</th>
-              <th>วันที่จ่ายเงิน</th>
-              <th>เลขที่จ่ายเงิน</th>
-              <th>วันที่ตรวจสอบ</th>
-              <th>เลขที่ตรวจสอบ</th>
-            </tr>
-          </ng-template>
-
-
-          <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
-            <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
-              <td>{{rowData.ds_date}}</td>
-              <td>{{rowData.ds_number}}</td>
-              <td>{{rowData.flag_advance}}</td>
-              <td>{{rowData.ds_amount | number:'.2-2'}}</td>
-              <td>{{rowData.regis_amt | number:'.2-2'}}</td>
-              <td>{{rowData.service_fee | number:'.2-2'}}</td>
-              <td>{{rowData.cal_over_amt | number:'.2-2'}}</td>
-              <td>{{rowData.cal_income_amt | number:'.2-2'}}</td>
-              <td>{{rowData.advance_amt | number:'.2-2'}}</td>
-              <td>{{rowData.advance_no}}</td>
-              <td>{{rowData.advance_date}}</td>
-              <td>{{rowData.first_name}}</td>
-              <td>{{rowData.full_namet}}</td>
-              <td>{{rowData.insouce_outsouce}}</td>
-              <td>{{rowData.cv_date}}</td>
-              <td>{{rowData.cv_num}}</td>
-              <td>{{rowData.jv_date}}</td>
-              <td>{{rowData.jv_num}}</td>
-            </tr>
-          </ng-template>
-
-        </p-table>
-
-        <br>
-
-        <div class="p-1 m-1 border-isa">
-          <p-table [value]="listAdvSub1" [rows]="9" selectionMode="single"
-                   [scrollable]="true" [resizableColumns]="true" [style]="{width:'95vw'}"
-                   [(selection)]="vSelected_AdvRowSub1Row"
-                   (onRowSelect)="onSelectRegAdvSub1($event.data,$event.index)">
-
-            <ng-template pTemplate="colgroup" let-columns>
-              <colgroup>
-                <col style="width:100px">
-                <col style="width:100px">
-                <col style="width:100px">
-                <col style="width:100px">
-                <col style="width:100px">
-                <col style="width:100px">
-                <col style="width:100px">
-                <col style="width:100px">
-                <col style="width:100px">
-              </colgroup>
-            </ng-template>
-
-            <ng-template pTemplate="header">
-              <tr style="text-align: center">
-                <th rowspan="2"> วันที่เคลียร์เงิน</th>
-                <th rowspan="2"> เลขที่ใบเคลียร์เงิน</th>
-                <th rowspan="2"> โครงการ</th>
-                <th rowspan="2"> เคลียร์ค่าทะเบียน</th>
-                <th rowspan="2"> เคลียร์ค่าบริการ</th>
-                <th rowspan="2"> เลขที่ใบเบิกเงิน</th>
-                <th rowspan="2"> ผู้ทำรายการเคลียร์</th>
-                <th rowspan="2"> วันที่ตรวจสอบ</th>
-                <th rowspan="2"> เลขที่ตรวจสอบ</th>
-              </tr>
-            </ng-template>
-
-
-            <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
-              <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
-                <td>{{rowData.clear_advance_date}}</td>
-                <td>{{rowData.clear_advance_no}}</td>
-                <td>{{rowData.flag_advance}}</td>
-                <td>{{rowData.expense_amount1 | number:'.2-2'}}</td>
-                <td>{{rowData.expense_amount2 | number:'.2-2'}}</td>
-                <td>{{rowData.advance_no}}</td>
-                <td>{{rowData.full_namet}}</td>
-                <td>{{rowData.jv_date}}</td>
-                <td>{{rowData.jv_num}}</td>
-              </tr>
-            </ng-template>
-
-          </p-table>
-
-          <br>
-          <div class="p-1 m-1 border-isa">
-            <p-table [value]="listAdvSub2" [rows]="8" selectionMode="single"
-                     [scrollable]="true" [resizableColumns]="true" [style]="{width:'95vw'}">
-
-              <ng-template pTemplate="colgroup" let-columns>
-                <colgroup>
-                  <col style="width:100px">
-                  <col style="width:100px">
-                  <col style="width:100px">
-                  <col style="width:100px">
-                  <col style="width:100px">
-                  <col style="width:100px">
-                  <col style="width:100px">
-                  <col style="width:100px">
-                </colgroup>
-              </ng-template>
-
-              <ng-template pTemplate="header">
-                <tr style="text-align: center">
-                  <th rowspan="2"> เลขที่ตัดรับฝาก</th>
-                  <th rowspan="2"> วันที่ตัดรับฝาก</th>
-                  <th rowspan="2"> เลขที่ใบรับฝาก</th>
-                  <th rowspan="2"> วันที่รับฝาก</th>
-                  <th rowspan="2"> รับฝาก</th>
-                  <th rowspan="2"> ตัดรับฝาก</th>
-                  <th rowspan="2"> ทดรองลูกค้าคงเหลือ</th>
-                  <th rowspan="2"> เลขที่ใบเบิกเงินทดรอง</th>
-                </tr>
-              </ng-template>
-
-              <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
-                <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
-                  <td>{{rowData.advance_no}}</td>
-                  <td>{{rowData.advance_date}}</td>
-                  <td>{{rowData.ds_number}}</td>
-                  <td>{{rowData.ds_date}}</td>
-                  <td>{{rowData.ds_amount | number:'.2-2'}}</td>
-                  <td>{{rowData.cus_clear_advance}}</td>
-                  <td>{{rowData.reg_clear_advance}}</td>
-                  <td>{{rowData.description}}</td>
-                </tr>
-              </ng-template>
-
-            </p-table>
-          </div>
-
-        </div>
-      </p-tabPanel>
-
-      <p-tabPanel header="รายการโอนเงิน / ตัดรับฝาก / คืนเงิน (CH.5)">
-        <p-table [value]="listCh5" [rows]="15" selectionMode="single"
-                 [scrollable]="true" [resizableColumns]="true" [style]="{width:'95vw'}"
-                 [(selection)]="vSelected_Ch5Row"
-                 (onRowSelect)="onSelectRegCh5($event.data,$event.index)">
-
-          <ng-template pTemplate="colgroup" let-columns>
-            <colgroup>
-              <col style="width:100px">
-              <col style="width:100px">
-              <col style="width:200px">
-              <col style="width:200px">
-              <col style="width:100px">
-              <col style="width:100px">
-              <col style="width:200px">
-              <col style="width:200px">
-              <col style="width:200px">
-              <col style="width:200px">
-              <col style="width:200px">
-              <col style="width:100px">
-              <col style="width:100px">
-              <col style="width:100px">
-              <col style="width:100px">
-            </colgroup>
-          </ng-template>
-
-          <ng-template pTemplate="header">
-            <tr style="text-align: center">
-              <th rowspan="2"> วันที่รับฝาก</th>
-              <th rowspan="2"> เลขที่ใบรับฝาก</th>
-              <th rowspan="2"> ประเภทเงิน</th>
-              <th rowspan="2"> เลขที่ใบตัดรับฝาก</th>
-              <th rowspan="2"> วันที่ทำรายการ</th>
-              <th rowspan="2"> จำนวนเงิน</th>
-              <th rowspan="2"> ชื่อลูกค้า</th>
-              <th rowspan="2"> ชื่อผู้รับเงิน</th>
-              <th rowspan="2"> ผู้ทำรายการ</th>
-              <th rowspan="2"> หมายเหตุ1</th>
-              <th rowspan="2"> หมายเหตุ2</th>
-              <th rowspan="2"> วันที่นำเข้า</th>
-              <th rowspan="2"> เลขที่นำเข้า</th>
-              <th rowspan="2"> สถานะงาน</th>
-              <th rowspan="2"> DS_TO_INC_NUMBER</th>
-            </tr>
-          </ng-template>
-
-
-          <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
-            <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
-              <td>{{rowData.document_date}}</td>
-              <td>{{rowData.document_no}}</td>
-              <td>{{rowData.recieve_name}}</td>
-              <td>{{rowData.ch5_doc_number}}</td>
-              <td>{{rowData.ch5_doc_date}}</td>
-              <td style="text-align: right">{{rowData.deduct_amt | number:'.2-2'}}</td>
-              <td>{{rowData.customer_name}}</td>
-              <td>{{rowData.disbursment_name}}</td>
-              <td>{{rowData.input_user}}</td>
-              <td>{{rowData.remark1}}</td>
-              <td>{{rowData.remark2}}</td>
-              <td>{{rowData.transfer_to_collection_date}}</td>
-              <td>{{rowData.transfer_to_collection_entry}}</td>
-              <td>{{rowData.current_task}}</td>
-              <td>{{rowData.ds_to_inc_number}}</td>
-            </tr>
-          </ng-template>
-        </p-table>
-
-        <br>
-        <div class="p-1 m-1 border-isa">
-          <p-table [value]="listCh5Sub1" [rows]="12" selectionMode="single"
-                   [scrollable]="true" [resizableColumns]="true" [style]="{width:'95vw'}">
-
-            <ng-template pTemplate="colgroup" let-columns>
-              <colgroup>
-                <col style="width:100px">
-                <col style="width:200px">
-                <col style="width:100px">
-                <col style="width:100px">
-                <col style="width:100px">
-                <col style="width:100px">
-                <col style="width:100px">
-                <col style="width:100px">
-                <col style="width:150px">
-                <col style="width:100px">
-                <col style="width:100px">
-                <col style="width:100px">
-              </colgroup>
-            </ng-template>
-
-            <ng-template pTemplate="header">
-              <tr style="text-align: center">
-                <th rowspan="2"> เลขที่สัญญา</th>
-                <th rowspan="2"> ประเภทเงิน</th>
-                <th rowspan="2"> เลขที่เอกสาร</th>
-                <th rowspan="2"> วันที่เอกสาร</th>
-                <th rowspan="2"> วันที่รับเงิน</th>
-                <th rowspan="2"> จำนวนเงิน</th>
-                <th rowspan="2"> จำนวนเงินที่ตัด</th>
-                <th rowspan="2"> เงินคงเหลือ</th>
-                <th rowspan="2"> เลขที่อ้างอิง</th>
-                <th rowspan="2"> วันที่ยกเลิก</th>
-                <th rowspan="2"> ผู้ยกเลิกรายการ</th>
-                <th rowspan="2"> หมายเหตุ</th>
-              </tr>
-            </ng-template>
-
-            <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
-              <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
-                <td>{{rowData.agr_code}}</td>
-                <td>{{rowData.recieve_name}}</td>
-                <td>{{rowData.document_no}}</td>
-                <td>{{rowData.document_date}}</td>
-                <td>{{rowData.batch_d}}</td>
-                <td style="text-align: right">{{rowData.amount | number:'.2-2'}}</td>
-                <td style="text-align: right">{{rowData.deduct_deposit | number:'.2-2'}}</td>
-                <td style="text-align: right">{{rowData.balance_deposit | number:'.2-2'}}</td>
-                <td>{{rowData.ref_code}}</td>
-                <td>{{rowData.cancel_date}}</td>
-                <td>{{rowData.cancel_person}}</td>
-                <td>{{rowData.remark}}</td>
-              </tr>
-            </ng-template>
-
-          </p-table>
-        </div>
-
-      </p-tabPanel>
-
-
-    </p-tabView>
-
-
-  </div>
-
 </p-panel>

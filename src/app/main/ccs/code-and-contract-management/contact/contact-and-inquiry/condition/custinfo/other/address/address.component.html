@@ -1,161 +1,333 @@
 <p-panel header="ข้อมูลลูกค้า">
+  <div class="py-3 border-isa">
+    <div class="container-fluid" style="word-break: break-all">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card border-light">
+            <div class="card-header bg-transparent border-light card-header--blue">
+              <b>ชื่อ - นามสกุล</b>
+            </div>
+            <div class="card-body card-body--sm-gap">
+              <div class="card-text">
+                <div class="row row--sm-gap">
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>คำนำหน้าชื่อ</dt>
+                  </div>
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dd class="highlighter-white">{{vSelect_Addr.lblF_Name || '...'}}</dd>
+                  </div>
 
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="card border-light mb-3">
-        <div class="card-header bg-transparent border-light"><b>ชื่อ - นามสกุล</b></div>
-        <div class="card-body">
-          <div class="card-text">
-            <dl class="row">
-              <dt class="col-md-2">คำนำหน้าชื่อ</dt>
-              <dd class="col-md-4">{{vSelect_Addr.lblF_Name || '...'}}</dd>
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>อายุ</dt>
+                  </div>
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dd class="highlighter-white">{{vSelect_Addr.lbl_age || '...'}}</dd>
+                  </div>
 
-              <dt class="col-md-2">อายุ</dt>
-              <dd class="col-md-4">{{vSelect_Addr.lbl_age || '...'}}</dd>
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>ชื่อ-สกุล</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">{{vSelect_Addr.lblCus_Name || '...'}}</dd>
+                  </div>
 
-              <dt class="col-md-2">ชื่อ-สกุล</dt>
-              <dd class="col-md-10">{{vSelect_Addr.lblCus_Name || '...'}}</dd>
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>เลขที่บัตร</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">{{vSelect_Addr.lblNew_Card_No || '...'}}</dd>
+                  </div>
 
-              <dt class="col-md-2">เลขที่บัตร</dt>
-              <dd class="col-md-10">{{vSelect_Addr.lblNew_Card_No || '...'}}</dd>
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>สาขาที่</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <div class="row row--sm-gap">
+                      <div class="col-md-6 col-md-6--sm-gap">
+                        <dd class="highlighter-white">{{vSelect_Addr.lblBranch_No || '...'}}</dd>
+                      </div>
+                      <div class="col-md-6 col-md-6--sm-gap">
+                        <dd class="highlighter-white">{{vSelect_Addr.lblBus_Vat_Flg || '...'}}</dd>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-              <dt class="col-md-2">สาขาที่</dt>
-              <dd class="col-md-5">{{vSelect_Addr.lblBranch_No || '...'}}</dd>
-              <dd class="col-md-5">{{vSelect_Addr.lblBus_Vat_Flg || '...'}}</dd>
-            </dl>
+          <div class="card border-light">
+            <div class="card-header bg-transparent border-light card-header--blue">
+              <b>Current</b>
+            </div>
+            <div class=" card-body card-body--sm-gap ">
+              <div class="card-text ">
+                <div class="row row--sm-gap">
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>ที่อยู่</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">{{vSelect_Addr.lblAddress + '\n' + vSelect_Addr.lblZip_Desc || '...'}}</dd>
+                  </div>
+
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>สถานที่ใกล้เคียง</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">{{vSelect_Addr.lblNear || '...'}}</dd>
+                  </div>
+
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>ชื่อผู้ติดต่อ</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">{{vSelect_Addr.lblContract || '...'}}</dd>
+                  </div>
+
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>Tel</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <div class="row row--sm-gap">
+                      <div class="col-md-8 col-md-8--sm-gap">
+                        <dd class="highlighter-white">{{vSelect_Addr.lblTel || '...'}}</dd>
+                      </div>
+                      <div class="col-md-4 col-md-4--sm-gap">
+                        <dd>
+                          <u style="cursor: pointer;color: blue" (click)="onTelHist( 'TEL')">History Tel.</u>
+                        </dd>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card border-light">
+            <div class="card-header bg-transparent border-light card-header--blue">
+              <div class="row row--sm-gap">
+                <div class="col-md-3 col-md-3--sm-gap">
+                  <dt>Card</dt>
+                </div>
+                <div class="col-md-9 col-md-9--sm-gap">
+                  <dt class="star">ที่อยู่ในใบเสร็จรับเงิน และใบกำกับภาษี</dt>
+                </div>
+              </div>
+            </div>
+            <div class="card-body card-body--sm-gap">
+              <div class="card-text ">
+                <div class="row row--sm-gap">
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <div class="row row--sm-gap">
+                      <div class="col-md-4 col-md-4--sm-gap">
+                        <dt>ที่อยู่</dt>
+                      </div>
+                      <div class="col-md-8 col-md-8--sm-gap">
+                        <dd class="highlighter-white">{{vSelect_Addr.lblAdd_C + '\n' + vSelect_Addr.lblZip_C_Desc || '...'}}</dd>
+                      </div>
+                      <div class="col-md-4 col-md-4--sm-gap">
+                        <dt>Tel.</dt>
+                      </div>
+                      <div class="col-md-8 col-md-8--sm-gap">
+                        <dd class="highlighter-white">{{vSelect_Addr.lblTel_Card || '...'}}</dd>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dd style="cursor: pointer; color: blue " (click)="onTelHist( 'TEL_C') ">
+                      <u>History Tel.</u>
+                    </dd>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card border-light">
+            <div class="card-header bg-transparent border-light card-header--blue">
+              <b>ติดต่ออื่น ๆ</b>
+            </div>
+            <div class="card-body card-body--sm-gap">
+              <div class="card-text ">
+                <div class="row row--sm-gap">
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <div class="row row--sm-gap">
+                      <div class="col-md-4 col-md-4--sm-gap">
+                        <dt>SMS (Mobile 1)</dt>
+                      </div>
+                      <div class="col-md-8 col-md-8--sm-gap">
+                        <dd class="highlighter-white">{{vSelect_Addr.lblSMS || '...'}}</dd>
+                      </div>
+                      <div class="col-md-4 col-md-4--sm-gap">
+                        <dt>Mobile Phone</dt>
+                      </div>
+                      <div class="col-md-8 col-md-8--sm-gap">
+                        <dd class="highlighter-white">{{vSelect_Addr.lblMobile_Phone || '...'}}</dd>
+                      </div>
+                      <div class="col-md-4 col-md-4--sm-gap">
+                        <dt>E-Mail Address</dt>
+                      </div>
+                      <div class="col-md-8 col-md-8--sm-gap">
+                        <dd class="highlighter-white">{{vSelect_Addr.lblEmail_Address || '...'}}</dd>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dd>
+                      <u style="cursor: pointer;color: blue " (click)="onTelHist( 'MOBILE_PHONE') ">History Tel.
+                        <br>(Mobile & SMS)</u>
+                    </dd>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="card border-light mb-3">
-        <div class="card-header bg-transparent border-light"><b>Current&emsp;&emsp;&emsp; <span style="color:red">ที่อยู่ในใบกำกับภาษี</span></b></div>
-        <div class="card-body">
-          <div class="card-text">
-            <dl class="row">
-              <dt class="col-md-2">ที่อยู่</dt>
-              <dd class="col-md-10">{{vSelect_Addr.lblAddress + '\n' + vSelect_Addr.lblZip_Desc || '...'}}</dd>
+        <div class="col-lg-6 ">
+          <div class="card border-light">
+            <div class="card-header bg-transparent border-light card-header--blue">
+              <b>Office</b>
+            </div>
+            <div class="card-body card-body--sm-gap">
+              <div class="card-text ">
+                <div class="row row--sm-gap">
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>ที่อยู่</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">{{vSelect_Addr.lblAdd_O + '\n' + vSelect_Addr.lblZip_O_Desc|| '...'}}</dd>
+                  </div>
 
-              <dt class="col-md-2">สถานที่ใกล้เคียง</dt>
-              <dd class="col-md-10">{{vSelect_Addr.lblNear || '...'}}</dd>
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>บริษัท</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">{{vSelect_Addr.lblOffice_Name || '...'}}</dd>
+                  </div>
 
-              <dt class="col-md-2">ชื่อผู้ติดต่อ</dt>
-              <dd class="col-md-10">{{vSelect_Addr.lblContract || '...'}}</dd>
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>แผนก</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">{{vSelect_Addr.lblOffice_Department || '...'}}</dd>
+                  </div>
 
-              <dt class="col-md-2">Tel</dt>
-              <dd class="col-md-8">{{vSelect_Addr.lblTel || '...'}}</dd>
-              <dd class="col-md-2" style="cursor: pointer" (click)="onTelHist('TEL')"><u>History Tel.</u></dd>
-            </dl>
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>อาชีพ</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">{{vSelect_Addr.lblOccupa_Desc || '...'}}</dd>
+                  </div>
+
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>ตำแหน่ง</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">{{vSelect_Addr.lblPosi_Desc || '...'}}</dd>
+                  </div>
+
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>สถานที่ใกล้เคียง</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">{{vSelect_Addr.lblNear_O || '...'}}</dd>
+                  </div>
+
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>Tel. (ที่ทำงาน)</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <div class="row row--sm-gap">
+                      <div class="col-md-8 col-md-8--sm-gap">
+                        <dd class="highlighter-white">{{vSelect_Addr.lblTel_O || '...'}}</dd>
+                      </div>
+                      <div class="col-md-4 col-md-4--sm-gap">
+                        <dd>
+                          <u style="cursor: pointer; color: blue" (click)="onTelHist( 'TEL_O') ">History Tel.</u>
+                        </dd>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div class="card border-light mb-3">
-        <div class="card-header bg-transparent border-light"><b>Card&emsp;&emsp;&emsp; <span style="color:red">ที่อยู่ในใบเสร็จรับเงิน และใบกำกับภาษี</span></b>
-        </div>
-        <div class="card-body">
-          <div class="card-text">
-            <dl class="row">
-              <dt class="col-md-2">ที่อยู่</dt>
-              <dd class="col-md-10">{{vSelect_Addr.lblAdd_C || '...'}}</dd>
-
-              <dt class="col-md-2">Tel.</dt>
-              <dd class="col-md-8">{{vSelect_Addr.lblTel_Card || '...'}}</dd>
-              <dd class="col-md-2" style="cursor: pointer" (click)="onTelHist('TEL_C')"><u>History Tel.</u></dd>
-            </dl>
+          <div class="card border-light">
+            <div class="card-header bg-transparent border-light card-header--blue">
+              <div class="row row--sm-gap">
+                <div class="col-md-3 col-md-3--sm-gap">
+                  <dt>Mail</dt>
+                </div>
+                <div class="col-md-9 col-md-9--sm-gap">
+                  <dt class="star">ที่อยู่ในใบเสร็จ</dt>
+                </div>
+              </div>
+            </div>
+            <div class="card-body card-body--sm-gap">
+              <div class="card-text ">
+                <div class="row row--sm-gap">
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>ที่อยู่</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">{{vSelect_Addr.lblAdd_M + '\n' + vSelect_Addr.lblZip_M_Desc || '...'}}</dd>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div class="card border-light mb-3">
-        <div class="card-header bg-transparent border-light"><b>ติดต่ออื่น ๆ</b></div>
-        <div class="card-body">
-          <div class="card-text">
-            <dl class="row">
-              <dt class="col-md-2">SMS (Mobile 1)</dt>
-              <dd class="col-md-7">{{vSelect_Addr.lblSMS || '...'}}</dd>
-              <dd class="col-md-3" style="cursor: pointer" (click)="onTelHist('MOBILE_PHONE')"><u>History Tel.(Mobile & SMS)</u></dd>
+          <div class="card border-light">
+            <div class="card-header bg-transparent border-light card-header--blue">
+              <b>รายละเอียดการส่งใบเสร็จ</b>
+            </div>
+            <div class="card-body card-body--sm-gap">
+              <div class="card-text ">
+                <div class="row row--sm-gap">
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>ประเภทการส่งใบเสร็จรับเงิน</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">{{vSelect_Addr.lbtype_bill || '...'}}</dd>
+                  </div>
 
-              <dt class="col-md-2">Mobile Phone</dt>
-              <dd class="col-md-10">{{vSelect_Addr.lblMobile_Phone || '...'}}</dd>
-
-              <dt class="col-md-2">E-Mail Address</dt>
-              <dd class="col-md-10">{{vSelect_Addr.lblEmail_Address || '...'}}</dd>
-            </dl>
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>เริ่มวันที่</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">{{vSelect_Addr.lbdate_bill || '...'}}</dd>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="card border-light mb-3">
-        <div class="card-header bg-transparent border-light"><b>Office</b></div>
-        <div class="card-body">
-          <div class="card-text">
-            <dl class="row">
-              <dt class="col-md-3">ที่อยู่</dt>
-              <dd class="col-md-7">{{vSelect_Addr.lblAdd_O || '...'}}</dd>
 
-              <dt class="col-md-3">บริษัท</dt>
-              <dd class="col-md-7">{{vSelect_Addr.lblOffice_Name || '...'}}</dd>
+          <div class="card border-light">
+            <div class="card-header bg-transparent border-light card-header--blue">
+              <b>ที่อยู่ติดตามหนี้</b>
+            </div>
+            <div class="card-body card-body--sm-gap">
+              <div class="card-text ">
+                <div class="row row--sm-gap">
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>ที่อยู่</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">{{vSelect_Addr.richAdd_Debt || '...'}}</dd>
+                  </div>
 
-              <dt class="col-md-3">แผนก</dt>
-              <dd class="col-md-7">{{vSelect_Addr.lblOffice_Department}} &nbsp;</dd>
-
-              <dt class="col-md-3">อาชีพ</dt>
-              <dd class="col-md-7">{{vSelect_Addr.lblOccupa_Desc || '...'}}</dd>
-
-              <dt class="col-md-3">ตำแหน่ง</dt>
-              <dd class="col-md-7">{{vSelect_Addr.lblPosi_Desc || '...'}}</dd>
-
-              <dt class="col-md-3">สถานที่ใกล้เคียง</dt>
-              <dd class="col-md-7">{{vSelect_Addr.lblNear_O || '...'}}</dd>
-
-              <dt class="col-md-3">Tel. (ที่ทำงาน)</dt>
-              <dd class="col-md-7">{{vSelect_Addr.lblTel_O || '...'}}</dd>
-              <dd class="col-md-2" style="cursor: pointer" (click)="onTelHist('TEL_O')"><u>History Tel.</u></dd>
-            </dl>
-          </div>
-        </div>
-      </div>
-      <div class="card border-light mb-3">
-        <div class="card-header bg-transparent border-light"><b>Mail&emsp;&emsp;&emsp; <span style="color:red">ที่อยู่ในใบเสร็จ</span></b>
-        </div>
-        <div class="card-body">
-          <div class="card-text">
-            <dl class="row">
-              <dt class="col-md-3">ที่อยู่</dt>
-              <dd class="col-md-7">{{vSelect_Addr.lblAdd_M || '...'}}</dd>
-            </dl>
-          </div>
-        </div>
-      </div>
-
-      <div class="card border-light mb-3">
-        <div class="card-header bg-transparent border-light"><b>รายละเอียดการส่งใบเสร็จ</b></div>
-        <div class="card-body">
-          <div class="card-text">
-            <dl class="row">
-              <dt class="col-md-3">ประเภทการส่งใบเสร็จรับเงิน</dt>
-              <dd class="col-md-7">{{vSelect_Addr.lbtype_bill || '...'}}</dd>
-
-              <dt class="col-md-3">เริ่มวันที่</dt>
-              <dd class="col-md-7">{{vSelect_Addr.lbdate_bill || '...'}}</dd>
-            </dl>
-          </div>
-        </div>
-      </div>
-      <div class="card border-light mb-3">
-        <div class="card-header bg-transparent border-light"><b>ที่อยู่ติดตามหนี้</b></div>
-        <div class="card-body">
-          <div class="card-text">
-            <dl class="row">
-              <dt class="col-md-3">ที่อยู่</dt>
-              <dd class="col-md-7">{{vSelect_Addr.richAdd_Debt || '...'}}</dd>
-
-              <dt class="col-md-3">จังหวัด</dt>
-              <dd class="col-md-9">{{vSelect_Addr.lblProvince_Debt || '...'}}</dd>
-
-              <!--<dd class="col-md-12" style="cursor: pointer">History Change Regional</dd>-->
-            </dl>
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>จังหวัด</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">{{vSelect_Addr.lblProvince_Debt || '...'}}</dd>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -163,8 +335,6 @@
   </div>
 </p-panel>
 
-
-<app-action-dialog [title]="'History (Change Telephone Number)'" #tel_hist [width]="1000"
-                   [showOk]="true">
-  <app-ccs-tel-hist [type]="tel_hist_typ" [ent_code]="ent_code"></app-ccs-tel-hist>
+<app-action-dialog [title]=" 'History (Change Telephone Number)' " #tel_hist [width]="1000 " [showOk]="true ">
+  <app-ccs-tel-hist [type]="tel_hist_typ " [ent_code]="ent_code "></app-ccs-tel-hist>
 </app-action-dialog>

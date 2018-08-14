@@ -1,42 +1,99 @@
-<div class="d-flex">
-  <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px;width: 100%;">
-    <p-dataTable [value]="data" [rows]="20">
-      <p-header>
-        <label><b>Master</b></label>
-      </p-header>
-      <p-headerColumnGroup>
-        <p-row>
-          <p-column header="วันที่ส่งยอด"></p-column>
-          <p-column header="ส่งโดย"></p-column>
-          <p-column header="ประเภท"></p-column>
-          <p-column header="Amount"></p-column>
-          <p-column header="ยอดค้างชำระ"></p-column>
-        </p-row>
-      </p-headerColumnGroup>
-      <p-column field="date"></p-column>
-      <p-column field="sender"></p-column>
-      <p-column field="type"></p-column>
-      <p-column field="amount"></p-column>
-      <p-column field="overdue_amt"></p-column>
-    </p-dataTable>
+<p-panel header="ประวัติการส่งยอดเรียกเก็บเงิน">
+  <div class="p-3 border-isa">
+    <div class="container-fluid" style="word-break: break-all">
+      <dl class="row">
+        <p-table [value]="">
+          <ng-template pTemplate="header">
+            <tr class="text-center" style="background-color: #64789c">
+              <th colspan="8">Master</th>
+            </tr>
+            <tr>
+              <th class="text-center">วันที่ส่งยอด</th>
+              <th class="text-center">ส่งโดย</th>
+              <th class="text-center">ประเภท</th>
+              <th class="text-center">Amount</th>
+              <th class="text-center">ยอดค้างชำระ</th>
+              <th class="text-center">วันหมดอายุ</th>
+              <th class="text-center">ยกเลิกโดย</th>
+              <th class="text-center">วันที่ยกเลิก</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body">
+            <tr>
+              <td class="text-center">
+                <span class="ui-column-title">วันที่ส่งยอด</span>{{rowData.term}}
+              </td>
+              <td class="text-center">
+                <span class="ui-column-title">ส่งโดย</span>{{rowData.term}}
+              </td>
+              <td class="text-center">
+                <span class="ui-column-title">ประเภท</span>{{rowData.term}}
+              </td>
+              <td class="text-center">
+                <span class="ui-column-title">Amount</span>{{rowData.term}}
+              </td>
+              <td class="text-center">
+                <span class="ui-column-title">ยอดค้างชำระ</span>{{rowData.term}}
+              </td>
+              <td class="text-center">
+                <span class="ui-column-title">วันหมดอายุ</span>{{rowData.term}}
+              </td>
+              <td class="text-center">
+                <span class="ui-column-title">ยกเลิกโดย</span>{{rowData.term}}
+              </td>
+              <td class="text-center">
+                <span class="ui-column-title">วันที่ยกเลิก</span>{{rowData.term}}
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <th colspan="8">
+                No Record Found
+              </th>
+            </tr>
+          </ng-template>
+        </p-table>
+      </dl>
+
+      <div class="row">
+        <p-table [value]="">
+          <ng-template pTemplate="header">
+            <tr class="text-center" style="background-color: #64789c">
+              <th colspan="4">Detail</th>
+            </tr>
+            <tr>
+              <th class="text-center">ประเภทการรับเงิน</th>
+              <th class="text-center">ประเภทการรับเงิน(ย่อย)</th>
+              <th class="text-center">ประเภท</th>
+              <th class="text-center">ยอดคงเหลือ</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body">
+            <tr>
+              <td class="text-center">
+                <span class="ui-column-title">ประเภทการรับเงิน</span>{{rowData.term}}
+              </td>
+              <td class="text-center">
+                <span class="ui-column-title">ประเภทการรับเงิน(ย่อย)</span>{{rowData.term}}
+              </td>
+              <td class="text-center">
+                <span class="ui-column-title">ประเภท</span>{{rowData.term}}
+              </td>
+              <td class="text-center">
+                <span class="ui-column-title">ยอดคงเหลือ</span>{{rowData.term}}
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <th colspan="4">
+                No Record Found
+              </th>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
   </div>
-  <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px;width: 100%;">
-    <p-dataTable [value]="data" [rows]="20">
-      <p-header>
-        <label><b>Detail</b></label>
-      </p-header>
-      <p-headerColumnGroup>
-        <p-row>
-          <p-column header="ประเภทการรับเงิน"></p-column>
-          <p-column header="ประเภทการรับเงิน(ย่อย)"></p-column>
-          <p-column header="ประเภท"></p-column>
-          <p-column header="ยอดคงเหลือ"></p-column>
-        </p-row>
-      </p-headerColumnGroup>
-      <p-column field="rec_type"></p-column>
-      <p-column field="subrec_type"></p-column>
-      <p-column field="amount"></p-column>
-      <p-column field="net"></p-column>
-    </p-dataTable>
-  </div>
-</div>
+</p-panel>

@@ -1,103 +1,103 @@
-<div class="border-isa">
-  <div class="flex-row p-3">
-    <div class="form-group row">
-      <div class="col-md-2">
-        <label class="mt-4 pt-2">Status Charge</label>
-      </div>
-      <div class="col-md-2">
-        <label>Total</label>
-        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
-               [value]="custService.srviceCustModel.ds_stslegalreposchrge.lblcharge_status">
-      </div>
-      <div class="col-md-2">
-        <label>Paid Amount</label>
-        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
-               [value]="custService.srviceCustModel.ds_stslegalreposchrge.lblcharge_paid_status">
-      </div>
-      <div class="col-md-2">
-        <label>Waive Amount</label>
-        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
-               [value]="custService.srviceCustModel.ds_stslegalreposchrge.lblcharge_waive_status">
-      </div>
-      <div class="col-md-2">
-        <label>Net Total</label>
-        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
-               [value]="custService.srviceCustModel.ds_stslegalreposchrge.lblcharge_net_status">
-      </div>
-    </div>
-    <div class="form-group row">
-      <div class="col-md-2">
-        <label>Legal Charge</label>
-      </div>
-      <div class="col-md-2">
-        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
-               [value]="custService.srviceCustModel.ds_stslegalreposchrge.lblcharge_legal">
-      </div>
-      <div class="col-md-2">
-        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
-               [value]="custService.srviceCustModel.ds_stslegalreposchrge.lblcharge_paid_legal">
-      </div>
-      <div class="col-md-2">
-        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
-               [value]="custService.srviceCustModel.ds_stslegalreposchrge.lblcharge_waive_legal">
-      </div>
-      <div class="col-md-2">
-        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
-               [value]="custService.srviceCustModel.ds_stslegalreposchrge.lblcharge_net_legal">
-      </div>
-    </div>
-    <div class="form-group row">
-      <div class="col-md-2">
-        <label>Reposses Up Country Charge</label>
-      </div>
-      <div class="col-md-2">
-        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
-               [value]="custService.srviceCustModel.ds_stslegalreposchrge.lblcharge_repos">
-      </div>
-      <div class="col-md-2">
-        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
-               [value]="custService.srviceCustModel.ds_stslegalreposchrge.lblcharge_paid_repos">
-      </div>
-      <div class="col-md-2">
-        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
-               [value]="custService.srviceCustModel.ds_stslegalreposchrge.lblcharge_waive_repos">
-      </div>
-      <div class="col-md-2">
-        <input class="form-control" type="text" readonly appMyCurrency [fraction]="2"
-               [value]="custService.srviceCustModel.ds_stslegalreposchrge.lblcharge_net_repos">
+<p-panel header="Status / Legal/ Reposses Change">
+  <div class="p-3 border-isa">
+    <div class="container-fluid" style="word-break: break-all">
+      <dl class="row">
+        <p-table [value]="list_array">
+          <ng-template pTemplate="header">
+            <tr>
+              <th class="text-center">Category</th>
+              <th class="text-center">Total</th>
+              <th class="text-center">Paid Amount</th>
+              <th class="text-center">Waive Amount</th>
+              <th class="text-center">Net Amount</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-idx="rowIndex">
+            <tr>
+              <td class="text-left" [ngClass]="idx%2==1? 'highlighter-blue-light' : null">
+                <!-- <span class="ui-column-title">Category</span> -->
+                <label>{{rowData.category}}</label>
+              </td>
+              <td class="text-right" [ngClass]="idx%2==1? 'highlighter-blue-light' : null">
+                <!-- <span class="ui-column-title">Total</span> -->
+                {{rowData.total || '0' | number:'.2-2'}}
+              </td>
+              <td class="text-right" [ngClass]="idx%2==1? 'highlighter-blue-light' : null">
+                <!-- <span class="ui-column-title">Paid Amount</span> -->
+                {{rowData.paid_amt || '0' | number:'.2-2'}}
+              </td>
+              <td class="text-right" [ngClass]="idx%2==1? 'highlighter-blue-light' : null">
+                <!-- <span class="ui-column-title">Net Amount</span> -->
+                {{rowData.waive_amt || '0' | number:'.2-2'}}
+              </td>
+              <td class="text-right" [ngClass]="idx%2==1? 'highlighter-blue-light' : null">
+                <!-- <span class="ui-column-title">Net Amount</span> -->
+                {{rowData.net_amt || '0' | number:'.2-2'}}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </dl>
+
+      <div class="row">
+        <p-table [value]="custService.srviceCustModel.list_cdsstatus_charge">
+            <ng-template pTemplate="colgroup">
+                <colgroup>
+                  <col style="width:80px">
+                  <col style="width:80px">
+                  <col style="width:80px">
+                  <col style="width:50px">
+                  <col style="width:80px">
+                  <col style="width:90px">
+                  <col style="width:110px">
+                  <col style="width:100px">
+                  <col style="width:90px">
+                  <col style="width:90px">
+                  <col style="width:90px">
+                  <col style="width:90px">
+                </colgroup>
+              </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th class="text-center">Status Date</th>
+              <th class="text-center">Old Status</th>
+              <th class="text-center">New Status</th>
+              <th class="text-center">Status</th>
+              <th class="text-center">Legal</th>
+              <th class="text-center">Repossesion</th>
+              <th class="text-center">Over due Terms</th>
+              <th class="text-center" style="background-color: #28bd28">Change Owner</th>
+              <th class="text-center" style="background-color: #28bd28">Old Owner</th>
+              <th class="text-center" style="background-color: #28bd28">New Owner</th>
+              <th class="text-center" style="background-color: #28bd28">Appr. Owner</th>
+              <th class="text-center" style="background-color: #28bd28">Request Date</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData>
+            <tr>
+              <td class="text-center">{{rowData.change_status_dt}}</td>
+              <td class="text-center">{{rowData.status_old}}</td>
+              <td class="text-center">{{rowData.status_new}}</td>
+              <td class="text-right">{{rowData.status_chrge_amt | number:'.2-2'}}</td>
+              <td class="text-right">{{rowData.legal_chrge_amt | number:'.2-2'}}</td>
+              <td class="text-right">{{rowData.repos_chrge_amt }}</td>
+              <td class="text-right">{{rowData.over_due_inst_trm | number:'.2-2'}}</td>
+              <td class="text-center">{{rowData.chnge_ownr_dt}}</td>
+              <td class="text-center">{{rowData.cal_old_owner}}</td>
+              <td class="text-center">{{rowData.cal_new_owner}}</td>
+              <td class="text-center">{{rowData.ap_old_name}}</td>
+              <td class="text-center">{{rowData.reqst_dt}}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <th colspan="12">
+                No Record Found
+              </th>
+            </tr>
+          </ng-template>
+        </p-table>
       </div>
     </div>
   </div>
-  <div>
-    <p-dataTable [value]="custService.srviceCustModel.list_cdsstatus_charge" [rows]="20">
-      <p-headerColumnGroup>
-        <p-row>
-          <p-column header="Status Date"></p-column>
-          <p-column header="Old Status"></p-column>
-          <p-column header="New Status"></p-column>
-          <p-column header="Status"></p-column>
-          <p-column header="Legal"></p-column>
-          <p-column header="Repossesion"></p-column>
-          <p-column header="Over due Terms"></p-column>
-          <p-column header="Change Owner"></p-column>
-          <p-column header="Old Owner"></p-column>
-          <p-column header="New Owner"></p-column>
-          <p-column header="Appr. Owner"></p-column>
-          <p-column header="Request Date"></p-column>
-        </p-row>
-      </p-headerColumnGroup>
-      <p-column field="change_status_dt"></p-column>
-      <p-column field="status_old"></p-column>
-      <p-column field="status_new"></p-column>
-      <p-column field="status_chrge_amt" [style]="{'text-align':'right'}"></p-column>
-      <p-column field="legal_chrge_amt" [style]="{'text-align':'right'}"></p-column>
-      <p-column field="repos_chrge_amt" [style]="{'text-align':'right'}"></p-column>
-      <p-column field="over_due_inst_trm" [style]="{'text-align':'right'}"></p-column>
-      <p-column field="chnge_ownr_dt"></p-column>
-      <p-column field="cal_old_owner"></p-column>
-      <p-column field="cal_new_owner"></p-column>
-      <p-column field="ap_old_name"></p-column>
-      <p-column field="reqst_dt"></p-column>
-    </p-dataTable>
-  </div>
-</div>
+</p-panel>

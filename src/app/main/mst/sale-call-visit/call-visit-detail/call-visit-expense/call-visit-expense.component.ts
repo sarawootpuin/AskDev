@@ -6,6 +6,8 @@ import {SaleCallDetail} from "../../model/Sale-Call-Detail";
 import {Subscription} from "rxjs/Subscription";
 import {ActionDialogComponent} from "../../../../../shared/center/action-dialog/action-dialog.component";
 import {UserStorage} from "../../../../../shared/user/user.storage.service";
+import { Input } from '@angular/core';
+import { SaleCallAttendees } from '../../model/Sale-Call-Attendees';
 
 declare var $: any;
 
@@ -16,6 +18,7 @@ declare var $: any;
   encapsulation: ViewEncapsulation.None
 })
 export class CallVisitExpenseComponent implements OnInit, OnDestroy {
+  @Input() amend : string;
   mySaleCallVisitOutside: SaleCallVisitOutSide = new SaleCallVisitOutSide();
 
   subscription: Subscription;
@@ -55,7 +58,12 @@ export class CallVisitExpenseComponent implements OnInit, OnDestroy {
       this.calExpenseAmount();
 
 
-      if ( this.saleCallVisitService.selectsaleD.visitOutSide.submit_flag  == 'Y' ){ this.componentReadOnly = true }
+      if ( this.saleCallVisitService.selectsaleD.visitOutSide.submit_flag  == 'Y' ){ 
+        this.componentReadOnly = true
+        if(this.amend) {
+          this.componentReadOnly = false
+        }
+      }
       else { this.componentReadOnly = false }
 
       if ( this.mySaleCallVisitOutside.travel_name == this.userStorage.getCode() ) {
@@ -99,8 +107,18 @@ export class CallVisitExpenseComponent implements OnInit, OnDestroy {
   }
 
   okAddAttendees(){
-    // console.log(this.saleCallVisitService.selectsaleD.listAttendeesB);
-    let attendeesB = this.saleCallVisitService.selectsaleD.listAttendeesB ;
+    //console.log(this.saleCallVisitService.selectsaleD.listAttendeesB);
+    let attendeesB : SaleCallAttendees[] = [];
+    //let attendeesB = this.saleCallVisitService.selectsaleD.listAttendeesB ;
+    this.saleCallVisitService.selectsaleD.listAttendeesB.forEach(
+      value => {
+        if(value.attnd_name == this.saleCallVisitService.saleH.ownr) {
+
+        } else {
+          attendeesB.push(value);
+        }
+      }
+    )
     if ((attendeesB) && (attendeesB.length > 0) ){
       let stringAttendees = '' ;
       for(let i = 0 ; i < attendeesB.length ; i++){
@@ -164,4 +182,16 @@ export class CallVisitExpenseComponent implements OnInit, OnDestroy {
      { this.mySaleCallVisitOutside.withdraw_amt = 0 }
   }
 
+  clearValue(){
+    this.mySaleCallVisitOutside.from_time = ''
+    this.mySaleCallVisitOutside.to_time = ''
+    this.mySaleCallVisitOutside.mile_start = ''
+    this.mySaleCallVisitOutside.mile_end = ''
+    this.mySaleCallVisitOutside.joiner = ''
+    this.mySaleCallVisitOutside.withdraw_amt = 0
+    this.mySaleCallVisitOutside.travel_name = ''
+    if(this.mySaleCallVisitOutside.travel_by=='OTH'){
+      this.mySaleCallVisitOutside.travel_name = ''
+    }
+  }
 }

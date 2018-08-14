@@ -1,72 +1,138 @@
-<div class="flex-row p-3 border-isa">
-  <div class="form-group row">
-    <div class="col-md-3">
-      <label>ยอดคงเหลือ แผนกทั่วไป</label>
-      <input class="form-control" type="text" disabled>
-    </div>
-  </div>
-  <div class="flex-row p-3 border-isa">
-    <div class="form-group row">
-      <p-dataTable [value]="data" [rows]="20">
-        <p-header>
-          <div class="row pl-2">
-            <div class="col-md-6 form-inline ">
-              <input class="form-check-input" type="checkbox" value="1">
-              <label class="pl-1">Show All</label>
+<p-panel header="Movement of Deposit (General)">
+  <div class="p-3 border-isa">
+    <div class="container-fluid" style="word-break: break-all">
+      <dl class="row row--sm-gap">
+        <div class="col-xl-6 col-xl-6--sm-gap col-md-8 col-xl-8--sm-gap">
+          <div class="row row--sm-gap">
+            <div class="col-6 col-6--sm-gap">
+              <dt class="col-form-label">ยอดคงเหลือ แผนกทั่วไป</dt>
             </div>
-            <div class="col-md-6 form-inline ">
-              <label class="pr-1">ใบรับฝากประเภท</label>
-              <select class="form-control">
-                <option></option>
-              </select>
+            <div class="col-6 col-6--sm-gap">
+              <input type="text" class="form-control" appMyCurrency [fraction]="2" [value]="">
             </div>
           </div>
-        </p-header>
-        <p-headerColumnGroup>
-          <p-row>
-            <p-column header="วันที่"></p-column>
-            <p-column header="เลขที่เอกสาร"></p-column>
-            <p-column header="ประเภทเงินรับฝาก"></p-column>
-            <p-column header="จำนวนเงิน"></p-column>
-            <p-column header="ยอดคงเหลือ"></p-column>
-          </p-row>
-        </p-headerColumnGroup>
-        <p-column field="1"></p-column>
-        <p-column field="2"></p-column>
-        <p-column field="3"></p-column>
-        <p-column field="4" [style]="{'text-align':'right'}"></p-column>
-        <p-column field="5" [style]="{'text-align':'right'}"></p-column>
-      </p-dataTable>
-    </div>
-  </div>
-  <br>
-  <div class="flex-row p-3 border-isa">
-    <div class="form-group row">
-      <p-dataTable [value]="data" [rows]="20">
-        <p-header>
-          <div class="row pl-2">
-            <div class="offset-4 col-md-6 form-inline ">
-              <label class="pl-1">ใบเบิก (จะขึ้นรายละเอียดต่อเมื่อมีการตัดเงิน)</label>
+        </div>
+      </dl>
+
+      <dl class="row">
+        <p-table [value]="">
+          <ng-template pTemplate="colgroup">
+            <colgroup>
+              <col style="width:90px">
+              <col style="width:110px">
+              <col style="width:120px">
+              <col style="width:90px">
+              <col style="width:90px">
+            </colgroup>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr style="background-color: #64789c">
+              <th colspan="2">
+                <div class="container-fluid">
+                  <div class="row ml-2">
+                    <input class="mt-1" type="checkbox" value="1">
+                    <label class="pl-2">Show All</label>
+                  </div>
+                </div>
+              </th>
+              <th colspan="3">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-6 p-1 text-center">
+                      <span>ใบรับฝากประเภท</span>
+                    </div>
+                    <div class="col-md-6">
+                      <p-dropdown [options]="cols" optionLabel="header" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+                    </div>
+                  </div>
+                </div>
+              </th>
+            </tr>
+            <tr>
+              <th class="text-center">วันที่</th>
+              <th class="text-center">เลขที่เอกสาร</th>
+              <th class="text-center">ประเภทเงินรับฝาก</th>
+              <th class="text-center">จำนวนเงิน</th>
+              <th class="text-center">ยอดคงเหลือ</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData>
+            <tr>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <th colspan="5">
+                No Record Found
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+            <div class="container-fluid">
+              <div class="row">
+                <span>ยอดรวม (จำนวนเงิน) : 0.00</span>
+              </div>
             </div>
-          </div>
-        </p-header>
-        <p-headerColumnGroup>
-          <p-row>
-            <p-column header="วันที่"></p-column>
-            <p-column header="เลขที่เอกสาร"></p-column>
-            <p-column header="ใบรับฝากเลขที่"></p-column>
-            <p-column header="จำนวน"></p-column>
-            <p-column header="รายการชำระ"></p-column>
-            <p-column header="Input User"></p-column>
-          </p-row>
-        </p-headerColumnGroup>
-        <p-column field="1"></p-column>
-        <p-column field="2"></p-column>
-        <p-column field="3"></p-column>
-        <p-column field="4" [style]="{'text-align':'right'}"></p-column>
-        <p-column field="5"></p-column>
-        <p-column field="6"></p-column>
-      </p-dataTable>
+          </ng-template>
+        </p-table>
+      </dl>
+
+      <div class="row">
+        <p-table [value]="">
+          <ng-template pTemplate="colgroup">
+            <colgroup>
+              <col style="width:90px">
+              <col style="width:110px">
+              <col style="width:110px">
+              <col style="width:90px">
+              <col style="width:90px">
+              <col style="width:90px">
+            </colgroup>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr style="background-color: #64789c">
+              <th class="text-center" colspan="6">ใบเบิก (จะขึ้นรายละเอียดต่อเมื่อมีการตัดเงิน)</th>
+            </tr>
+            <tr>
+              <th class="text-center">วันที่</th>
+              <th class="text-center">เลขที่ใบเบิก</th>
+              <th class="text-center">ใบรับฝากเลขที่</th>
+              <th class="text-center">จำนวน</th>
+              <th class="text-center">รายการชำระ</th>
+              <th class="text-center">Input User</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData>
+            <tr>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <th colspan="6">
+                No Record Found
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+            <div class="container-fluid">
+              <div class="row">
+                <span>ยอดรวม (จำนวนเงิน) : 0.00</span>
+              </div>
+            </div>
+          </ng-template>
+        </p-table>
+      </div>
     </div>
   </div>
-</div>
+</p-panel>

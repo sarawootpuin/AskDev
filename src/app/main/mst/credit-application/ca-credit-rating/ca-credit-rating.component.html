@@ -1,3 +1,19 @@
-<p>
-  ca-credit-rating works!
-</p>
+<div class="main-container">
+  <div class="form-group">
+    <p-dataTable selectionMode="single"
+                 [value]="listcarating"
+                 [scrollable]="true"
+                 [responsive]="true">
+      <p-column field="id_code" header=" Item no. "[style]="{'width':'50px' ,'height':'50px'}"></p-column>
+      <p-column field="remark" header="Item description"></p-column>
+      <p-column field="remark_sub" header="Result"></p-column>
+      <!--<p-column field="id_code" header=" Item no. " [style]="{'width':'50px' ,'height':'50px'}"></p-column>-->
+      <!--<p-column field="remark" header="Item description" [style]="{'width':'300px','height':'50px'}"></p-column>-->
+      <!--<p-column field="remark_sub" header="Result" [style]="{'width':'500px','height':'50px'}"></p-column>-->
+      <p-footer>
+        <div class="ui-helper-clearfix" style="width:100%">
+        </div>
+      </p-footer>
+    </p-dataTable>
+  </div>
+</div>

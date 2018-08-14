@@ -1,76 +1,86 @@
-<div class="flex-row p-3">
-  <div class="form-group row ">
-    <div class="col-md-3">
-      <label>ประเภทภัยพิบัติ</label>
-      <select class="form-control">
-        <option></option>
-      </select>
-    </div>
-    <div class="col-md-3">
-      <label>วันที่ติดต่อ/รับเรื่อง</label>
-      <br>
-      <p-calendar dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"></p-calendar>
-    </div>
-    <div class="col-md-3">
-      <label>บันทึกโดย</label>
-      <input type="text" class="form-control" disabled>
-    </div>
-    <div class="col-md-3">
-      <label>แก้ไข้ล่าสุดโดย</label>
-      <input type="text" class="form-control" disabled>
+<p-panel header="ข้อมูลการประสบภัยพิบัติ">
+  <div class="p-3 border-isa">
+    <div class="container-fluid" style="word-break: break-all">
+      <div class="d-flex flex-row justify-content-center">
+        <div class="p-1 flex-md-column">
+          <app-custom-button [option]="'save'" [title]="'บันทึกข้อมูล'"></app-custom-button>
+        </div>
+      </div>
+
+      <dl class="row mt-3">
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <dt class="star">ประเภทภัยพิบัติ</dt>
+          <select class="form-control">
+            <option></option>
+          </select>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <dt class="star">วันที่ติดต่อ/รับเรื่อง</dt>
+          <p-calendar dateFormat="dd/mm/yy" class="my-1" placeholder="dd/mm/yyyy"></p-calendar>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <dt>บันทึกโดย</dt>
+          <input type="text" class="form-control" disabled>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <dt>แก้ไข้ล่าสุดโดย</dt>
+          <input type="text" class="form-control" disabled>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <dt class="star">จังหวัด</dt>
+          <select class="form-control">
+            <option></option>
+          </select>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <dt class="star">ประเภทของน้ำท่วม</dt>
+          <select class="form-control">
+            <option></option>
+          </select>
+        </div>
+        <div class="col-md-12 col-lg-8 col-xl-6">
+          <dt>ที่ตั้งทรัพย์สินปัจจุบัน</dt>
+          <input type="text" class="form-control">
+        </div>
+      </dl>
+
+      <div class="row row--sm-gap">
+        <div class="card border-light">
+          <div class="card-header bg-transparent border-light card-header--blue">
+            <b>ผลกระทบที่เกิดขึ้น</b>
+          </div>
+          <div class="card-body card-body--sm-gap">
+            <div class="card-text ">
+              <dl class="row">
+                <div class="col-md-12 col-lg-6">
+                  <dt>ที่อยู่อาศัย</dt>
+                  <input class="form-control" type="text">
+                </div>
+                <div class="col-md-12 col-lg-6">
+                  <dt>เส้นทางสัญจร</dt>
+                  <input class="form-control" type="text">
+                </div>
+                <div class="col-md-12 col-lg-6">
+                  <dt>ชื่อที่ทำงาน / ที่อยู่</dt>
+                  <textarea class="form-control" rows="5"></textarea>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                  <dt class="star">สิ่งที่ลูกค้าร้องขอ</dt>
+                  <textarea class="form-control" rows="5"></textarea>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                  <dt>รวมความเสียหาย</dt>
+                  <input currencyMask class="form-control" [options]="{ prefix: '', thousands: ',', decimal: '.'}" />
+                </div>
+                <div class="col-md-12 col-lg-6">
+                  <dt>จำนวนเงินที่คาดว่าจะเก็บได้</dt>
+                  <input currencyMask class="form-control" [options]="{ prefix: '', thousands: ',', decimal: '.'}" />
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="form-group row ">
-    <div class="col-md-3">
-      <label>Province</label>
-      <select class="form-control">
-        <option></option>
-      </select>
-    </div>
-    <div class="col-md-3">
-      <label>ประเภทของน้ำท่วม</label>
-      <select class="form-control">
-        <option></option>
-      </select>
-    </div>
-    <div class="col-md-6">
-      <label>ที่ตั้งทรัพย์สินปัจจุบัน</label>
-      <input class="form-control" type="text">
-    </div>
-  </div>
-</div>
-<div class="flex-row border-isa p-3">
-  <label class="p-1"><b>ผลกระทบที่เกิดขึ้น</b></label>
-  <div class="form-group row ">
-    <div class="col-md-6">
-      <label>ที่อยู่อาศัย</label>
-      <input class="form-control" type="text">
-    </div>
-    <div class="col-md-6">
-      <label>เส้นทางสัญจร</label>
-      <input class="form-control" type="text">
-    </div>
-  </div>
-  <div class="form-group row ">
-    <div class="col-md-6">
-      <label>ชื่อที่ทำงาน / ที่อยู่</label>
-      <textarea class="form-control" rows="5"></textarea>
-    </div>
-    <div class="col-md-6">
-      <label>สิ่งที่ลูกค้าร้องขอ</label>
-      <textarea class="form-control" rows="5"></textarea>
-    </div>
-  </div>
-  <div class="form-group row ">
-    <div class="col-md-6">
-      <label>รวมความเสียหาย</label>
-      <input currencyMask class="form-control"
-             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
-    </div>
-    <div class="col-md-6">
-      <label>จำนวนเงินที่คาดว่าจะเก็บได้</label>
-      <input currencyMask class="form-control"
-             [options]="{ prefix: '', thousands: ',', decimal: '.'}"/>
-    </div>
-  </div>
-</div>
+</p-panel>

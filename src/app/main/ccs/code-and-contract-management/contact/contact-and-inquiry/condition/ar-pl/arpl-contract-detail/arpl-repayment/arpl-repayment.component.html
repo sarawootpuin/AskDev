@@ -1,30 +1,77 @@
-<div class="border-isa">
-  <p-dataTable [responsive]="true" [value]="data" [rows]="20">
-    <p-headerColumnGroup>
-      <p-row>
-        <p-column header="No."></p-column>
-        <p-column header="Paid date"></p-column>
-        <p-column header="Paid"></p-column>
-        <p-column header="Schd. Ind"></p-column>
-        <p-column header="Schd. Fac"></p-column>
-        <p-column header="Principle"></p-column>
-        <p-column header="O/S AR"></p-column>
-        <p-column header="O/S Pri"></p-column>
-        <p-column header="O/S Interest"></p-column>
-        <p-column header="O/S Fac"></p-column>
-      </p-row>
-    </p-headerColumnGroup>
-    <p-column field="ins"></p-column>
-    <p-column field="due_date"></p-column>
-    <p-column field="due_amt"></p-column>
-    <p-column field="vat"></p-column>
-    <p-column field="begin_prin"></p-column>
-    <p-column field="prin"></p-column>
-    <p-column field="interest"></p-column>
-    <p-column field="end_prin"></p-column>
-    <p-column field="os_interest"></p-column>
-    <p-column field="os_ar"></p-column>
-    <p-column field="oa_vat"></p-column>
-
-  </p-dataTable>
-</div>
+<p-panel header="ตารางค่างวดสินเชื่อบุุคล(ในกรณีจ่ายตรง Due)">
+  <div class="border-isa" style="word-break: break-all">
+    <p-table [value]="list_Repayment" [paginator]="true" [rows]="10" scrollable="true" [style]="{width:'90vw'}"
+             scrollHeight="50vh" [resizableColumns]="true" columnResizeMode="expand"
+             selectionMode="single">
+      <ng-template pTemplate="colgroup">
+        <colgroup>
+          <col style="width:80px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+        </colgroup>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th pResizableColumn class="text-center">No.</th>
+          <th pResizableColumn class="text-center">Paid date</th>
+          <th pResizableColumn class="text-center">Paid</th>
+          <th pResizableColumn class="text-center">Schd. Ind</th>
+          <th pResizableColumn class="text-center">Schd. Fac</th>
+          <th pResizableColumn class="text-center">Principle</th>
+          <th pResizableColumn class="text-center">O/S AR</th>
+          <th pResizableColumn class="text-center">O/S Pri</th>
+          <th pResizableColumn class="text-center">O/S Interest</th>
+          <th pResizableColumn class="text-center">O/S Fac</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData>
+        <tr>
+          <td class="text-center">
+            <label>{{rowData.no}}</label>
+          </td>
+          <td class="text-center">
+            <label>{{rowData.due_date}}</label>
+          </td>
+          <td class="text-right">
+            <label>{{rowData.paid_price | number:'.2-2'}}</label>
+          </td>
+          <td class="text-right">
+            <label>{{rowData.schd_int | number:'.2-2'}}</label>
+          </td>
+          <td class="text-right">
+            <label>{{rowData.schd_fac | number:'.2-2'}}</label>
+          </td>
+          <td class="text-right">
+            <label>{{rowData.principal | number:'.2-2'}}</label>
+          </td>
+          <td class="text-right">
+            <label>{{rowData.os_ar | number:'.2-2'}}</label>
+          </td>
+          <td class="text-right">
+            <label>{{rowData.os_principal | number:'.2-2'}}</label>
+          </td>
+          <td class="text-right">
+            <label>{{rowData.os_interest | number:'.2-2'}}</label>
+          </td>
+          <td class="text-right">
+            <label>{{rowData.os_fac | number:'.2-2'}}</label>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <th colspan="10">
+            No Record Found
+          </th>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</p-panel>

@@ -141,6 +141,8 @@ export class NavMenuComponent implements OnInit, OnDestroy, OnChanges, AfterView
       this.router.navigate(['/SaleCall/inQuery']);
     } else if (menuCodeSelect == "MSM-07") {
       this.router.navigate(['/reassign']);
+    } else if (menuCodeSelect == "MSM-09") {
+      this.router.navigate(['/afterCa'])
     } else if (menuCodeSelect == "MSM-10") {
       this.router.navigate(['/SaleCall/amend']);
     } else if (menuCodeSelect == "AP-00") {
@@ -166,6 +168,8 @@ export class NavMenuComponent implements OnInit, OnDestroy, OnChanges, AfterView
       this.router.navigate(['/appForm/reassign']);
     } else if (menuCodeSelect == "CA-00") {
       this.router.navigate(['/ca/inQuery']);
+    } else if (menuCodeSelect == "CA-00-1") {
+      this.router.navigate(['/ca/edit']);
     } else if (menuCodeSelect == "CA-CRL") {
       this.router.navigate(['/ca/useCreditline']);
     } else if (menuCodeSelect == "AM-00") {

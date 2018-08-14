@@ -10,71 +10,7 @@
       </p-footer>
     </p-dialog>
 
-    <!--boss-->
-    <!--<div class="form-group row">-->
-      <!--&lt;!&ndash;<form role="form" [formGroup]="vFG_Search" (ngSubmit)="onSubmit()">&ndash;&gt;-->
-      <!--&lt;!&ndash;<label class="col-md-1 col-form-label">ค้นหาจาก :</label>&ndash;&gt;-->
-      <!--&lt;!&ndash;<select #fieldid (change)="onSelectedField(fieldid.value)" class="col-md-2 form-control">&ndash;&gt;-->
-        <!--&lt;!&ndash;<option value="AGR_CODE">เลขที่สัญญา</option>&ndash;&gt;-->
-        <!--&lt;!&ndash;<option value="REF_CODE">เลขที่อ้างอิง</option>&ndash;&gt;-->
-        <!--&lt;!&ndash;<option value="ENT_CODE">รหัสลูกค้า/ผู้ค้ำ</option>&ndash;&gt;-->
-        <!--&lt;!&ndash;<option value="CARD_NO">เลขที่บัตร</option>&ndash;&gt;-->
-        <!--&lt;!&ndash;<option value="REG_NUM">ทะเบียน</option>&ndash;&gt;-->
-      <!--&lt;!&ndash;</select>&ndash;&gt;-->
-
-      <!--&emsp;-->
-      <!--<input type="text" #txtid [value]="vSearchText" class="col-md-2 form-control"-->
-             <!--(keyup)="onSubmit(txtid.value,$event)">-->
-
-      <!--<div class="col-md-1"></div>-->
-      <!--<label class="col-md-1 col-form-label">Company:</label>-->
-      <!--<select #comid (change)="onSelectedComCode(comid.value)" class="col-md-2 form-control">-->
-        <!--<option *ngFor="let obj of listComCode" [value]="obj.com_code"-->
-                <!--[selected]="obj.com_code === vComCode">-->
-          <!--{{obj.com_code}}-->
-        <!--</option>-->
-      <!--</select>-->
-      <!--&lt;!&ndash;<span style="float:right">&ndash;&gt;-->
-      <!--&lt;!&ndash;<button type="button">&ndash;&gt;-->
-      <!--&lt;!&ndash;ค้นหาซ้ำจากผลการค้นหาเดิม [F8]&ndash;&gt;-->
-      <!--&lt;!&ndash;</button>&ndash;&gt;-->
-      <!--&lt;!&ndash;</span>&ndash;&gt;-->
-      <!--&lt;!&ndash;</form>&ndash;&gt;-->
-
-    <!--</div>-->
-
-    <!--<div *ngIf="waiting" style="text-align: center">-->
-      <!--<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>-->
-      <!--<span class="sr-only">Loading...</span>-->
-    <!--</div>-->
-
-    <!--<br>-->
-    <!--<p-dataTable [loading]="loading" loadingIcon="fa-spinner" [value]="arrSearch" [rows]="15"-->
-                 <!--[paginator]="true" [totalRecords]="totalRecords" (onLazyLoad)="loadCondition($event)"-->
-                 <!--selectionMode="single" (onRowDblclick)="onDBSelectedRow($event)"-->
-                 <!--[scrollable]="true" [responsive]="true">-->
-      <!--&lt;!&ndash;[resizableColumns]="true"&ndash;&gt;-->
-      <!--<p-column field="ent_code" header="รหัสลูกค้า/ผู้ค้ำ" [style]="{'width':'90px','text-align':'center'}"></p-column>-->
-      <!--<p-column field="ent_type_desc" header="ลูกค้า/ผู้ค้ำ"-->
-                <!--[style]="{'width':'50px','text-align':'center'}"></p-column>-->
-      <!--<p-column header="ชื่อ - สกุล" [style]="{'width':'200px','text-align':'center'}">-->
-        <!--<ng-template let-data="rowData" pTemplate="body">-->
-         <!--<span>-->
-              <!--{{data.f_namet}} {{data.l_namet}}-->
-         <!--</span>-->
-        <!--</ng-template>-->
-      <!--</p-column>-->
-      <!--<p-column field="card_no" header="เลขที่บัตร" [style]="{'width':'120px','text-align':'center'}"></p-column>-->
-      <!--<p-column field="agr_code" header="เลขที่สัญญา" [style]="{'width':'120px','text-align':'center'}"></p-column>-->
-      <!--<p-column field="ref_code" header="เลขที่อ้างอิง" [style]="{'width':'120px','text-align':'center'}"></p-column>-->
-      <!--<p-column field="reg_num" header="ทะเบียน" [style]="{'width':'90px','text-align':'center'}"></p-column>-->
-      <!--<p-column field="owner" header="Owner" [style]="{'width':'150px','text-align':'center'}"></p-column>-->
-      <!--<p-column field="full_status" header="Status" [style]="{'width':'50px','text-align':'center'}"></p-column>-->
-    <!--</p-dataTable>-->
-    <!--boss-->
     <hr>
-
-
 
     <div class="card">
       <div class="card-header ">
@@ -94,18 +30,18 @@
           </div>
           <div *ngIf="!waiting">
             <p-dataTable #dt
-                         [value]="arrSearch"
-                         selectionMode="single"
-                         [rows]="10"
-                         paginatorPosition="both"
-                         [paginator]="true"
-                         (onRowDblclick)="onDBSelectedRow($event)">
-              <p-column field="card_no" header="เลขที่บัตร"></p-column>
-              <p-column field="agr_code" header="เลขที่สัญญา"></p-column>
-              <p-column field="ref_code" header="เลขที่อ้างอิง"></p-column>
-              <p-column field="reg_num" header="ทะเบียน"></p-column>
-              <p-column field="owner" header="Owner"></p-column>
-              <p-column field="full_status" header="Status"></p-column>
+                         [value]="arrSearch" selectionMode="single" [rows]="10"
+                         paginatorPosition="both" [paginator]="true"
+                         scrollable="true" [style]="{width:'100%'}"
+                         (onRowSelect)="onSelectedRow($event)">
+              <p-column [style]="{'width':'100px'}" field="card_no" header="เลขที่บัตร"></p-column>
+              <p-column [style]="{'width':'100px'}" field="agr_code" header="เลขที่สัญญา"></p-column>
+              <p-column [style]="{'width':'100px'}" field="ref_code" header="เลขที่อ้างอิง"></p-column>
+              <p-column [style]="{'width':'100px'}" field="reg_num" header="ทะเบียน"></p-column>
+              <p-column [style]="{'width':'100px'}" field="owner" header="Owner"></p-column>
+              <p-column [style]="{'width':'100px'}" field="full_status" header="Status"></p-column>
+              <p-column [style]="{'width':'100px'}" field="cus_name" header="ชื่อลูกค้า"></p-column>
+              <p-column [style]="{'width':'100px'}" field="mkt_namet" header="ชื่อ Marketing"></p-column>
             </p-dataTable>
           </div>
         </div>

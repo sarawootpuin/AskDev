@@ -76,6 +76,7 @@ export class SaleCallHead {
   public listDetail:SaleCallDetail[]
   public listHistory:SaleCallHistory[]
   public listPCNT   :SaleCallPcnt[]
+  public disabledCardId : boolean
 
 
   constructor()
@@ -90,7 +91,8 @@ export class SaleCallHead {
               ,cluster ,bussiness_detail_name , mkt_name , intro_by_cd_full
               ,listDetail
               ,listHistory
-              ,listPCNT)
+              ,listPCNT,
+              disabledCardId)
   constructor(SALE_CALL_NO?, COMP_THA_NME?, COMP_ENG_NME?, COMP_ENT_CODE?, F_NAME?, F_NAME_E?, CUS_STATUS?,
               INTRO_MTHD_CD?, INTRO_BY_CD?, MD_NAME?, NATIONALITY?, ADDR?, TEL?, FAX?, E_MAIL?, WEBSITE?, OWNR?,
               CURRENT_TASK?, RESULT_CODE?, RESULT_REMARK?, CROSS_SELLING?, DIRECT_MK?, REJECT_DATE?, REJECT_REASON?,
@@ -102,7 +104,8 @@ export class SaleCallHead {
               ,cluster? ,bussiness_detail_name? , mkt_name? , intro_by_cd_full?
               ,listDetail?
               ,listHistory?
-              ,listPCNT?){
+              ,listPCNT?,
+              disabledCardId?){
     this.sale_call_no  =  SALE_CALL_NO ? SALE_CALL_NO : '';
     this.comp_tha_nme  =  COMP_THA_NME;
     this.comp_eng_nme  =  COMP_ENG_NME;
@@ -153,7 +156,7 @@ export class SaleCallHead {
     this.com_code  =  COM_CODE;
     this.mobile_source  =  MOBILE_SOURCE;
     this.prebranch_code  =  PREBRANCH_CODE;
-    this.dealer_type  =  DEALER_TYPE;
+    this.dealer_type  =  DEALER_TYPE ? DEALER_TYPE : 'N';
     this.oth_loan_mkt_flag  =  OTH_LOAN_MKT_FLAG;
     this.team_type_mkt  =  TEAM_TYPE_MKT;
     this.card_type  =  CARD_TYPE;
@@ -170,12 +173,17 @@ export class SaleCallHead {
     this.listDetail     = listDetail;
     this.listHistory    = listHistory;
     this.listPCNT       = listPCNT;
+    this.disabledCardId = disabledCardId
   }
 
 
 
 
   static parse(json: any) {
+    disabled = true
+    if (!json.NEW_CARD_NO) {
+      var disabled : boolean = false
+    }
     return  new SaleCallHead(
         json.SALE_CALL_NO,
         json.COMP_THA_NME,
@@ -240,7 +248,8 @@ export class SaleCallHead {
         json.INTRO_BY_CD_FULL,
         SaleCallDetail.parse(json.LIST_SALE_CALL_DETAIL),
         SaleCallHistory.parse(json.LIST_SALE_CALL_History),
-        SaleCallPcnt.parse(json.LIST_SALE_CALL_PCNT)
+        SaleCallPcnt.parse(json.LIST_SALE_CALL_PCNT),
+        disabled
       );
   }
 }

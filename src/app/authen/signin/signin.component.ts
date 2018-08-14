@@ -60,13 +60,15 @@ export class SigninComponent implements OnInit, OnDestroy {
           (data.ACCESS_COMPANY));
 
 
-          if (data.IS_PWD_EXPIRE == 'Y') {
-            this.userCookies.storeRemember(remember);
-            this.router.navigate(['authen/pwd-expired']);
-          } else {
-            this.userCookies.storeLogin(remember);
-            this.router.navigate(['home']);
-          }
+          // if (data.IS_PWD_EXPIRE == 'Y') {
+          //   this.userCookies.storeRemember(remember);
+          //   this.router.navigate(['authen/pwd-expired']);
+          // } else {
+          //   this.userCookies.storeLogin(remember);
+          //   this.router.navigate(['home']);
+          // }
+          this.userCookies.storeLogin(remember);
+          this.router.navigate(['home']);
         } else {
           this.isError = true;
           this.txtMsg = '' + data.MSG_NAME;

@@ -2,27 +2,27 @@
   <div class="flex-row p-3 border-isa">
     <dl class="row">
       <dt class="col-md-2">ลูกหนี้</dt>
-      <dd class="col-md-1 txt-right">{{custService.srviceCustModel.os_ar | number:'.2-2'}}</dd>
+      <dd class="col-md-1 text-right">{{custService.srviceCustModel.os_ar | number:'.2-2'}}</dd>
       <dt class="col-md-1"></dt>
 
       <dt class="col-md-2">Next Due</dt>
-      <dd class="col-md-1 txt-right">{{custService.srviceCustModel.lbln_due_i || '...'}}</dd>
+      <dd class="col-md-1 text-right">{{custService.srviceCustModel.lbln_due_i || '...'}}</dd>
       <dt class="col-md-1"></dt>
 
       <dt class="col-md-2">เงินต้น</dt>
-      <dd class="col-md-1 txt-right">{{custService.srviceCustModel.os_pri | number:'.2-2'}}</dd>
+      <dd class="col-md-1 text-right">{{custService.srviceCustModel.os_pri | number:'.2-2'}}</dd>
       <dt class="col-md-1"></dt>
 
       <dt class="col-md-2">รายได้รอตัด</dt>
-      <dd class="col-md-1 txt-right">{{custService.srviceCustModel.lblos_unearn | number:'.2-2'}}</dd>
+      <dd class="col-md-1 text-right">{{custService.srviceCustModel.lblos_unearn | number:'.2-2'}}</dd>
       <dt class="col-md-1"></dt>
 
       <dt class="col-md-2">ภาษีมูลค่าเพิ่ม</dt>
-      <dd class="col-md-1 txt-right">{{custService.srviceCustModel.os_vat_t | number:'.2-2'}}</dd>
+      <dd class="col-md-1 text-right">{{custService.srviceCustModel.os_vat_t | number:'.2-2'}}</dd>
       <dt class="col-md-1"></dt>
 
       <dt class="col-md-2">Next Due VAT</dt>
-      <dd class="col-md-1 txt-right">{{custService.srviceCustModel.lbln_due_v || '...'}}</dd>
+      <dd class="col-md-1 text-right">{{custService.srviceCustModel.lbln_due_v || '...'}}</dd>
       <dt class="col-md-1"></dt>
     </dl>
   </div>
@@ -32,27 +32,27 @@
   <div class="flex-row p-3 border-isa">
     <dl class="row">
       <dt class="col-md-2">ค่างวดค้าง</dt>
-      <dd class="col-md-1 txt-right">{{custService.srviceCustModel.ds_overdue.pnlcal_pastdue | number:'.2-2'}}</dd>
+      <dd class="col-md-1 text-right">{{custService.srviceCustModel.ds_overdue.pnlcal_pastdue | number:'.2-2'}}</dd>
       <dt class="col-md-1"></dt>
 
       <dt class="col-md-2">ค่างวด Due</dt>
-      <dd class="col-md-1 txt-right">0.00</dd>
+      <dd class="col-md-1 text-right">0.00</dd>
       <dt class="col-md-1"></dt>
 
       <dt class="col-md-2">VAT ค้าง</dt>
-      <dd class="col-md-1 txt-right">{{custService.srviceCustModel.ds_overvat.pnlcal_pastdue_vat | number:'.2-2'}}</dd>
+      <dd class="col-md-1 text-right">{{custService.srviceCustModel.ds_overvat.pnlcal_pastdue_vat | number:'.2-2'}}</dd>
       <dt class="col-md-1"></dt>
 
       <dt class="col-md-2">VAT Due</dt>
-      <dd class="col-md-1 txt-right">0.00</dd>
+      <dd class="col-md-1 text-right">0.00</dd>
       <dt class="col-md-1"></dt>
 
       <dt class="col-md-2">ค่าเบี้ยภาคสมัครใจค้างชำระทั้งสิ้น</dt>
-      <dd class="col-md-1 txt-right">0.00</dd>
+      <dd class="col-md-1 text-right">0.00</dd>
       <dt class="col-md-1"></dt>
 
       <dt class="col-md-2">ค่าเบี้ยภาคบังคับค้างชำระทั้งสิ้น</dt>
-      <dd class="col-md-1 txt-right">0.00</dd>
+      <dd class="col-md-1 text-right">0.00</dd>
       <dt class="col-md-1"></dt>
     </dl>
   </div>

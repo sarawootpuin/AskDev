@@ -1,56 +1,132 @@
-<div class="flex-row border-isa p-3">
-  <div class="form-group row ">
-    <div class="col-md-3">
-      <label><b>ใบชำระเงิน</b></label>
-      <input type="text" class="form-control">
-    </div>
-  </div>
-  <div class="form-group row ">
-    <div class="col-md-3">
-      <label>หมายเลขผู้เช่าซื้อ</label>
-      <input type="text" class="form-control">
-    </div>
-    <div class="col-md-3">
-      <label>หมายเลขผู้เช่าซื้อ</label>
-      <input type="text" class="form-control">
-    </div>
-  </div>
-  <div class="form-group form-inline">
-    <input type="radio" name="bt" value="ins"> Installment
-    <input type="radio" name="bt" value="ins_nor"> Insurance Normal
-    <input type="radio" name="bt" value="ins_com"> Insurance Compulsory
-    <input type="radio" name="bt" value="reg"> Registration
-  </div>
-</div>
-<div class="flex-row border-isa p-3 mt-1">
-  <div class="form-group row ">
-    <div class="col-md-3">
-      <label><b>Direct Debit</b></label>
-    </div>
-  </div>
-  <div class="form-group row ">
-    <div class="col-md-3">
-      <label>เลขที่บัญชี</label>
-      <input type="text" class="form-control">
-    </div>
-    <div class="col-md-3">
-      <label>ชื่อบัญชี</label>
-      <input type="text" class="form-control">
-    </div>
-    <div class="col-md-3">
-      <label>ประเภทบัญชี</label>
-      <input type="text" class="form-control">
-    </div>
+<p-panel header="ใบชำระเงิน / Direct Debit">
+  <div class="py-3 border-isa">
+    <div class="container-fluid" style="word-break: break-all">
+      <div class="row ">
+        <div class="col-lg-6">
+          <div class="card border-light">
+            <div class="card-header bg-transparent border-light card-header--blue">
+              <b>ใบชำระเงิน</b>
+            </div>
+            <div class="card-body card-body--sm-gap">
+              <div class="card-text">
+                <dl class="row row--sm-gap">
+                  <div class="col-12 col-12--sm-gap col-md-3 col-md-3--sm-gap col-lg-12 col-lg-12--sm-gap col-xl-3 col-xl-3--sm-gap">
+                    <dt>หมายเลขผู้เช่าซื้อ</dt>
+                  </div>
+                  <div class="col-12 col-12--sm-gap col-md-9 col-md-9--sm-gap col-lg-12 col-lg-12--sm-gap col-xl-9 col-xl-9--sm-gap">
+                    <dd class="highlighter-white">...</dd>
+                  </div>
+                  <div class="col-12 col-12--sm-gap col-md-3 col-md-3--sm-gap col-lg-12 col-lg-12--sm-gap col-xl-3 col-xl-3--sm-gap">
+                    <dt>หมายเลขสัญญา</dt>
+                  </div>
+                  <div class="col-12 col-12--sm-gap col-md-9 col-md-9--sm-gap col-lg-12 col-lg-12--sm-gap col-xl-9 col-xl-9--sm-gap">
+                    <dd class="highlighter-white">...</dd>
+                  </div>
+                </dl>
 
-  </div>
-  <div class="form-group row ">
-    <div class="col-md-3">
-      <label>ธนาคาร</label>
-      <input type="text" class="form-control">
+                <dl class="row row--sm-gap">
+                  <div class="col-12 col-12--sm-gap col-md-6 col-md-6--sm-gap col-lg-12 col-lg-12--sm-gap col-xl-6 col-xl-6--sm-gap">
+                    <div class="col-md-12 col-md-12--sm-gap">
+                      <input type="radio" name="bt" value="ins" [(ngModel)]="payment_slip_type"> <span class="font-weight-bold">Installment</span>
+                    </div>
+                    <div class="col-md-12 col-md-12--sm-gap">
+                      <ng-container *ngIf="payment_slip_type=='ins'">
+                        <input type="text">
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="col-12 col-12--sm-gap col-md-6 col-md-6--sm-gap col-lg-12 col-lg-12--sm-gap col-xl-6 col-xl-6--sm-gap">
+                    <div class="col-md-12 col-md-12--sm-gap">
+                      <input type="radio" name="bt" value="ins_nor" [(ngModel)]="payment_slip_type"><span class="font-weight-bold">Insurance Normal</span> 
+                    </div>
+                    <div class="col-md-12 col-md-12--sm-gap">
+                      <ng-container *ngIf="payment_slip_type=='ins_nor'">
+                        <input type="text">
+                      </ng-container>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-12--sm-gap col-md-6 col-md-6--sm-gap col-lg-12 col-lg-12--sm-gap col-xl-6 col-xl-6--sm-gap">
+                    <div class="col-md-12 col-md-12--sm-gap">
+                      <div class="d-none d-sm-none d-md-block d-lg-block d-xl-block mt-2"></div>
+                      <input type="radio" name="bt" value="ins_com" [(ngModel)]="payment_slip_type"><span class="font-weight-bold">Insurance Compulsory</span>  
+                    </div>
+                    <div class="col-md-12 col-md-12--sm-gap">
+                      <ng-container *ngIf="payment_slip_type=='ins_com'">
+                        <input type="text">
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="col-12 col-12--sm-gap col-md-6 col-md-6--sm-gap col-lg-12 col-lg-12--sm-gap col-xl-6 col-xl-6--sm-gap">
+                    <div class="col-md-12 col-md-12--sm-gap">
+                      <div class="d-none d-sm-none d-md-block d-lg-block d-xl-block mt-2"></div>
+                      <input type="radio" name="bt" value="reg" [(ngModel)]="payment_slip_type"> <span class="font-weight-bold">Registration</span>
+                    </div>
+                    <div class="col-md-12 col-md-12--sm-gap">
+                      <ng-container *ngIf="payment_slip_type=='reg'">
+                        <input type="text">
+                      </ng-container>
+                    </div>
+                  </div>
+                </dl>
+
+                <dl class="row row--sm-gap">
+                  <div class="col-6--sm-gap col-6--sm-gap">
+                    <app-custom-button [option]="'print'" [title]="'Payin Slip ให้ลูกค้า'"></app-custom-button>
+                  </div>
+                  <div class="col-6--sm-gap col-6--sm-gap">
+                    <div class="d-block d-sm-block d-md-none d-lg-block d-xl-none mt-1"></div>
+                    <app-custom-button [option]="'print'" [title]="'Payin PDF and Fax. ให้บุคคลอื่น'"></app-custom-button>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card border-light">
+            <div class="card-header bg-transparent border-light card-header--blue">
+              <b>Direct Debit</b>
+            </div>
+            <div class="card-body card-body--sm-gap">
+              <div class="card-text ">
+                <dl class="row row--sm-gap">
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>เลขที่บัญชี</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">...</dd>
+                  </div>
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>ชื่อบัญชี</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">...</dd>
+                  </div>
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>ประเภทบัญชี</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">...</dd>
+                  </div>
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>ธนาคาร</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">...</dd>
+                  </div>
+                  <div class="col-md-3 col-md-3--sm-gap">
+                    <dt>สาขา</dt>
+                  </div>
+                  <div class="col-md-9 col-md-9--sm-gap">
+                    <dd class="highlighter-white">...</dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-md-3">
-      <label>สาขา</label>
-      <input type="text" class="form-control">
-    </div>
   </div>
-</div>
+</p-panel>

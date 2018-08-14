@@ -27,6 +27,7 @@ export class ServiceEndpoint{
   private _ca_api:string = '/WebServices_CA';
   private _entity_api :string = '/WebServices_Entity';
   private _img_api :string = '/WebServices_IMG';
+  private _custinfo_api :string = '/WebServices_Custinfo';
 
   constructor(private http: HttpClient,private configService: ConfigService) {
     //this._url = (<any>dataTNS).tns;
@@ -34,6 +35,14 @@ export class ServiceEndpoint{
     this._url = this.configService.getConfiguration().tns;
   }
 
+
+  get custinfo_api(): string {
+    return this._custinfo_api;
+  }
+
+  set custinfo_api(value: string) {
+    this._custinfo_api = value;
+  }
 
   get img_api(): string {
     return this._img_api;

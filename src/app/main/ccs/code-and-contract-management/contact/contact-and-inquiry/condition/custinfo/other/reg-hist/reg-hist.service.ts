@@ -14,8 +14,8 @@ export class RegHistService {
   }
 
   getRegHistData(comCode: string, agrCode: string, refCode: string) {
-    const url = decodeURI(this.service.url + this.service.ccs_tps + `/ask/CCS/GetRegHistData?com=${comCode}&agr=${agrCode}&ref=${refCode}`);
-    // const url = decodeURI(`http://localhost:8080/WebServices_CCS/ask/CCS/GetRegHistData?com=${comCode}&agr=${agrCode}&ref=${refCode}`);
+    const url = decodeURI(this.service.url + this.service.custinfo_api + `/ask/CCS/GetRegHistData?com=${comCode}&agr=${agrCode}&ref=${refCode}`);
+    // const url = decodeURI(`http://localhost:8080/WebServices_Custinfo/ask/CCS/GetRegHistData?com=${comCode}&agr=${agrCode}&ref=${refCode}`);
 
     // console.log('url',url);
     let options = {

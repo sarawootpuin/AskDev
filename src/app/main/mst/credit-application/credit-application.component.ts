@@ -14,6 +14,8 @@ import { isCallExpression, isPropertyAssignment } from "typescript";
 import { caListMaster } from "./model/ca_listmaster";
 import {CaTempCreditLine} from "./model/ca-temp-credit-line";
 import {CaTempCreditLineGroup} from "./model/ca-temp-credit-line-group";
+import {TextMaskType} from "../../../shared/config/text-mask-type";
+import {tryCatch} from "rxjs/util/tryCatch";
 
 declare var $: any;
 
@@ -29,6 +31,9 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   subscriptionPart: Subscription;
   subscriptionFindPart: Subscription;
+  subscriptionReject: Subscription;
+  subscriptionCancel: Subscription;
+  subscriptionProcess : Subscription
   myCaHead: caHead;
   comCode: string;
   caNo: string;
@@ -71,7 +76,8 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
               private router: Router,
               private service: ServiceEndpoint,
               private creditApplicationService: creditApplicationService,
-              private dateUtils: DateUtils) {
+              private dateUtils: DateUtils,
+              private textmask : TextMaskType) {
     this.urlSeller = this.service.url + this.service.ca_api + '/ask/ca/GetListSearchUn';
     this.dataSeller = {
       "device": "web",
@@ -98,11 +104,11 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
           this.subscriptionFindPart = this.creditApplicationService.findCaDirectoryPart(this.comCode,this.caNo.replace(/\//gi, "_")).subscribe(
             (value : any)=>{
               console.log(value);
-              if(value.CODE == '200'){
+              //if(value.CODE == '200'){
                 this.listFileCa = value.LIST_DATA
-              } else {
-                this.listFileCa = []
-              }
+              //} else {
+              //  this.listFileCa = []
+              //}
             }
           )
 
@@ -153,6 +159,15 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
     if(this.subscriptionFindPart != null){
       this.subscriptionFindPart.unsubscribe();
     }
+    if(this.subscriptionCancel){
+      this.subscriptionCancel.unsubscribe()
+    }
+    if(this.subscriptionReject){
+      this.subscriptionReject.unsubscribe()
+    }
+    if(this.subscriptionProcess){
+      this.subscriptionProcess.unsubscribe()
+    }
   }
 
   callOpendata() {
@@ -196,7 +211,8 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
   questionAction(action: string) {
     this.Questiondialog.reset();
     if (action == 'SAVE') {
-      this.submitOrsave = action;
+      this.submitOrsave =
+      ((this.task == 'CA-05' || this.task == 'CA-00-1') && !this.btnFormEdit) ? 'SAVEP' : action;
     }
     else if (action == 'SUBMIT') {
       this.submitOrsave = (this.task == 'CA-05' && !this.btnFormEdit) ? 'SUBMITP' : action;
@@ -224,7 +240,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
       } else {
         this.isPassWarning(value);
       }
-    } else if (value == 'SAVE') {
+    } else if (value == 'SAVE' || value == 'SAVEP') {
       // this.isPassWarning(value);
       this.processCA(value);
     } else if (value == 'REJECT') {
@@ -481,7 +497,9 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
         if (!detailLoan.terms) {
           this.validateAlert.addMessage('- Terms')
         }
-        if (!detailLoan.es_revenue) {
+        if (typeof(detailLoan.es_revenue) == 'undefined' && detailLoan.es_revenue == null){
+          this.validateAlert.addMessage('- Front-end Fee');
+        } else if(Number(detailLoan.es_revenue) < 0) {
           this.validateAlert.addMessage('- Front-end Fee');
         }
         if (detailLoan.schedule == 'R') {
@@ -688,14 +706,14 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
     this.saveComplete = false;
     this.checkLoader = true;
     console.log(value);
-    this.creditApplicationService.processCa("web"
+    this.subscriptionProcess = this.creditApplicationService.processCa("web"
       , this.userStorage.getUserName()
       , value, this.comment).subscribe(
       (json: any) => {
         this.checkLoader = false;
         //console.log(json);
         let stringMsg: string = '';
-        if (value == 'SAVE') {
+        if (value == 'SAVE' || value == 'SAVEP') {
           stringMsg = 'Save'
         }
         else {
@@ -703,7 +721,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
         }
         if (json.CODE == '200') {
 
-          if (value == 'SAVE') {
+          if (value == 'SAVE' || value == 'SAVEP') {
             this.saveComplete = true;
           }
 
@@ -731,8 +749,8 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
       this.router.navigate(['/home']);
     } else if (this.saveComplete) {
       this.saveComplete = false;
-      console.log('Save Reload');
-      this.callOpendata();
+      (this.task == 'CA-05' || this.task == 'CA-00-1') && !this.btnFormEdit ?
+        this.router.navigate(['/home']) : this.callOpendata();
     }
     this.saveComplete = false;
     this.submitComplete = false;
@@ -742,7 +760,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
     this.submitComplete = false;
     this.saveComplete = false;
     this.checkLoader = true;
-    this.creditApplicationService.callRejectCa("web"
+    this.subscriptionCancel = this.creditApplicationService.callRejectCa("web"
       , this.userStorage.getUserName()
       , 'CANCEL'
       , this.comment
@@ -769,7 +787,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
     this.submitComplete = false;
     this.saveComplete = false;
     this.checkLoader = true;
-    this.creditApplicationService.callRejectCa("web"
+    this.subscriptionReject = this.creditApplicationService.callRejectCa("web"
       , this.userStorage.getUserName()
       , 'REJECT'
       , this.comment
@@ -793,7 +811,8 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
 
   showReport(draft : string) {
     let ca_no: string = this.caNo.replace("/", "_");
-    if(this.myCaHead.current_task == 'Done'){
+    if(this.myCaHead.current_task == 'Done' ||
+       (!this.taskShorten && this.myCaHead.current_task.includes("Amend"))) {
       this.listFileDialog.setTitle("Download File");
       this.listFileDialog.open();
     } else if (this.caNo) {
@@ -806,7 +825,10 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
           strRepNameFr3 = 'CA_AMEND_HPLS_01.fr3';
         }
         strURL = this.service.url_report + `/result?report=MKT\\${strRepNameFr3}&ca_no=${ca_no}&com_code=${this.comCode}&amend_time=${this.myCaHead.amend_time}&format=pdf&cmd_folder=${ca_no}&cmd_path=1&cmd_pdf=${'AM_' + ca_no + '_T' + this.myCaHead.amend_time}&draft=${draft}`;
-      } else if (this.taskShorten == 'CA') {
+      }  else if (this.taskShorten == 'RV'){
+        //strURL = this.service.url_report + `/result?report=MKT\\Attach_Sheet_01.fr3&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf&cmd_folder=${ca_no}&cmd_path=1&cmd_pdf=${'CA_' + ca_no}&draft=${draft}`;
+        strURL = this.service.url_report + `/result?report=MKT\\Attach_Sheet_01.fr3&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf&cmd_folder=${ca_no}&cmd_path=1&cmd_pdf=${'ATT_' + ca_no + '_RV'+this.myCaHead.revise_time }&draft=${draft}`;
+      } else {
         if (this.myCaHead.sbu_typ == 'FDO') {
           strRepNameFr3 = 'CA_DO_01.fr3';
         } else if (this.myCaHead.sbu_typ == 'P') {
@@ -819,17 +841,17 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
           }
         }
         strURL = this.service.url_report + `/result?report=MKT\\${strRepNameFr3}&p_ca_no=${ca_no}&p_id_card=${this.creditApplicationService.newCardNo}&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf&cmd_folder=${ca_no}&cmd_path=1&cmd_pdf=${'CA_' + ca_no}&draft=${draft}`;
-      } else if (this.taskShorten == 'RV'){
-        //strURL = this.service.url_report + `/result?report=MKT\\Attach_Sheet_01.fr3&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf&cmd_folder=${ca_no}&cmd_path=1&cmd_pdf=${'CA_' + ca_no}&draft=${draft}`;
-        strURL = this.service.url_report + `/result?report=MKT\\Attach_Sheet_01.fr3&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf&cmd_folder=${ca_no}&cmd_path=1&cmd_pdf=${'ATT_' + ca_no + '_RV'+this.myCaHead.revise_time }&draft=${draft}`;
       }
       console.log(strURL);
-      window.open(strURL, '_blank');
-      if(this.taskShorten == 'CA' && this.myCaHead.sbu_typ == 'FDO'){
+      // window.open(strURL, '_blank');
+      if((this.taskShorten == 'CA' || this.taskShorten == 'AM') && this.myCaHead.sbu_typ == 'FDO'){
         let rv_time = this.creditApplicationService.caHead.revise_time;
         let strAttach = this.service.url_report + `/result?report=MKT\\Attach_Sheet_01.fr3&ca_no=${ca_no}&com_code=${this.userStorage.getComCode()}&format=pdf&cmd_folder=${ca_no}&cmd_path=1&cmd_pdf=${'ATT_' + ca_no + '_RV'+rv_time }&draft=${draft}`;
+        console.log(strAttach);
         window.open(strAttach, '_blank');
       }
+
+      window.open(strURL, '_blank');
     }
   }
 
@@ -865,12 +887,21 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
     }
     else if (task == 'CA-05') {
       this.btnFormSubmit = true;
-      this.btnFormSave = false;
+      this.btnFormSave = true;
       this.btnFormReject = false;
       this.btnFormCancel = true;
       this.btnFormEdit = true;
       this.editImportant = false;
       this.isReadonly = true;
+    }
+    else if (task == 'CA-00-1') {
+      this.btnFormSubmit = false
+      this.btnFormSave = true
+      this.btnFormReject = false
+      this.btnFormCancel = false
+      this.btnFormEdit = true
+      this.editImportant = false
+      this.isReadonly = true
     }
     else {
       this.btnFormSubmit = true;
@@ -1071,19 +1102,20 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
 
 
   ChkAmtCreditLine(caDetail: caBgDetail[]): boolean {
-    console.log('ChkAmtCreditLine In');
-    let sum = 0,result = true;
+    //console.log('ChkAmtCreditLine In');
+    let sum : number = 0,result : boolean = true;
 
       for (let detail of caDetail) {
-        sum += Number(detail.asst_amt_e_vat);
+        sum += Number(detail.fin_amt_e_vat);
 
         }
-    if (sum > this.myCaHead.main_amount)
-      {result = false;}
+    if (sum <= Number(this.myCaHead.main_amount))
+      result = true
     else
-      {result = true;}
-    console.log(sum);
-    console.log(result);
+      result = false
+    // console.log(sum);
+    // console.log(this.myCaHead.main_amount);
+    // console.log(result);
     return result;
   }
 

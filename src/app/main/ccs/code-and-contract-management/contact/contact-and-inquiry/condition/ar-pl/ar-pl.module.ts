@@ -13,7 +13,6 @@ import {ArPlRoutingModule} from "./ar-pl.routing.module";
 import {ArplAssetAndGuarComponent} from "./arpl-contract-detail/arpl-asset-and-guar/arpl-asset-and-guar.component";
 import {ArplCloseAccountComponent} from "./arpl-collection/arpl-close-account/arpl-close-account.component";
 import {ArplCollectionComponent} from "./arpl-collection/arpl-collection.component";
-import {ArplContractDetailComponent} from "./arpl-contract-detail/arpl-contract-detail.component";
 import {ArplCusPaidComponent} from "./arpl-paid/arpl-cus-paid/arpl-cus-paid.component";
 import {ArplDirectDebitChargeComponent} from "./arpl-overdue/arpl-direct-debit-charge/arpl-direct-debit-charge.component";
 import {ArplExpenseComponent} from "./arpl-overdue/arpl-expense/arpl-expense.component";
@@ -23,9 +22,7 @@ import {ArplMovementDepositComponent} from "./arpl-contract-detail/arpl-movement
 import {ArplMovementRegComponent} from "./arpl-contract-detail/arpl-movement-reg/arpl-movement-reg.component";
 import {ArplNegotiationCloseComponent} from "./arpl-collection/arpl-close-account/arpl-negotiation-close/arpl-negotiation-close.component";
 import {ArplNegotiationComponent} from "./arpl-collection/arpl-update/arpl-negotiation/arpl-negotiation.component";
-import {ArplOverdueComponent} from "./arpl-overdue/arpl-overdue.component";
 import {ArplOverdueInstComponent} from "./arpl-overdue/arpl-overdue-inst/arpl-overdue-inst.component";
-import {ArplPaidComponent} from "./arpl-paid/arpl-paid.component";
 import {ArplPaidInstComponent} from "./arpl-paid/arpl-paid-inst/arpl-paid-inst.component";
 import {ArplPaidInsuranceComponent} from "./arpl-paid/arpl-paid-insurance/arpl-paid-insurance.component";
 import {ArplPaidOtherComponent} from "./arpl-paid/arpl-paid-other/arpl-paid-other.component";
@@ -54,21 +51,25 @@ import {ArplFinanceComponent} from "./other/arpl-finance/arpl-finance.component"
 import {ArplDisasterComponent} from "./other/arpl-disaster/arpl-disaster.component";
 import {ArplDirectDebitComponent} from "./other/arpl-direct-debit/arpl-direct-debit.component";
 import {ArplChequeReturnComponent} from "./other/arpl-cheque-return/arpl-cheque-return.component";
+import {ArPlService} from "./ar-pl.service";
+import {TableModule} from "primeng/table";
 
 @NgModule({
   imports: [
     CommonModule,OverlayPanelModule,
     ArPlRoutingModule,
     CenterModule, CalendarModule, FormsModule, SidebarModule, PanelModule, LightboxModule, TooltipModule,
-    CurrencyMaskModule, TabViewModule, DataTableModule, EntityModule
+    CurrencyMaskModule, TabViewModule, DataTableModule, EntityModule,TableModule
   ],
-  declarations: [ArPlComponent,ArplAssetAndGuarComponent,ArplCloseAccountComponent,ArplCollectionComponent,ArplContractDetailComponent
+  declarations: [ArPlComponent,ArplAssetAndGuarComponent,ArplCloseAccountComponent,ArplCollectionComponent
   ,ArplCusPaidComponent,ArplDirectDebitChargeComponent,ArplExpenseComponent,ArplExtraChargeComponent,ArplFollowupComponent
-  ,ArplMovementDepositComponent,ArplMovementRegComponent,ArplNegotiationCloseComponent,ArplNegotiationComponent,ArplOverdueComponent
-  ,ArplOverdueInstComponent,ArplPaidComponent,ArplPaidInstComponent,ArplPaidInsuranceComponent,ArplPaidOtherComponent
+  ,ArplMovementDepositComponent,ArplMovementRegComponent,ArplNegotiationCloseComponent,ArplNegotiationComponent
+  ,ArplOverdueInstComponent,ArplPaidInstComponent,ArplPaidInsuranceComponent,ArplPaidOtherComponent
   ,ArplPaidRegComponent,ArplPenaltyComponent,ArplTaxCalComponent,ArplUpdateComponent,ArplAddrComponent,ArplAddrDialogComponent
   ,ArplWaiveComponent,ArplTotalLoanComponent,ArplRepossesComponent,ArplRepaymentComponent,ArplReferFollowPersonComponent
   ,ArplPdcComponent,ArplPayerComponent,ArplPaidPartialComponent,ArplPaidLegalComponent,ArplPaidInst2Component,ArplInsuranceHistoryComponent
   ,ArplInsuranceComponent,ArplHistoryCollectionComponent,ArplGuarTelComponent,ArplGuarComponent,ArplFinanceComponent
-  ,ArplDisasterComponent,ArplDirectDebitComponent,ArplChequeReturnComponent]})
+  ,ArplDisasterComponent,ArplDirectDebitComponent,ArplChequeReturnComponent],
+  providers: [ArPlService]
+})
 export class ArPlModule { }

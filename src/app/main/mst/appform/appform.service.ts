@@ -378,7 +378,8 @@ export class AppFormService {
       "rvExcVat": dataDetail.rv_amt_e_vat ? dataDetail.rv_amt_e_vat : 0,
       "cashDep": sumCash,
       "cashType": cltType,
-      "cashIntRate": intRate
+      "cashIntRate": intRate,
+      "withVat": dataDetail.with_vat ? dataDetail.with_vat : 'N'
     };
     console.log(JSON.stringify(data));
     return this.http.post(url, JSON.stringify(data), options);

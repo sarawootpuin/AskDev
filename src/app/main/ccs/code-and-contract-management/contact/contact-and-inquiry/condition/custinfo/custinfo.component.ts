@@ -12,6 +12,7 @@ import {CustinfoModel} from "./model/custinfo";
 import {TransferComponent} from "./collection/transfer/transfer.component";
 import {UpdateService} from "./collection/update/update.service";
 import {AssetModel} from "./contract-detail/ccs-movement-master/ccs-asset";
+import {SideTabLevelComponent} from "../../../../../../../shared/center/side-tab/side-tab-level/side-tab-level.component";
 
 @Component({
   selector: 'app-custinfo',
@@ -25,6 +26,8 @@ export class CustinfoComponent implements OnInit {
   custModel: CustinfoModel;
   asset: AssetModel;
   guar_name1: string;
+  cnt_cheque: number;
+  cnt_guarantee: number;
   @ViewChild('blink') vBlink: ElementRef;
   @ViewChild('blinkStp') vBlinkStp: ElementRef;
 
@@ -36,12 +39,17 @@ export class CustinfoComponent implements OnInit {
   @ViewChild('actionSave') actionSave: ActionDialogComponent;
   @ViewChild('transf') transfComp : TransferComponent;
 
+  sideTab: SideTabLevelComponent;
+
   constructor(private custService: CustinfoService,
               private locatn: Location,
               private route: ActivatedRoute) {
     this.checkLoading = true;
     this.asset = new AssetModel();
     this.guar_name1 = '';
+    this.sideTab = new SideTabLevelComponent();
+    this.cnt_cheque = 0;
+    this.cnt_guarantee = 0;
   }
 
   ngOnInit() {
@@ -65,6 +73,14 @@ export class CustinfoComponent implements OnInit {
 
             if (this.custService.srviceCustModel.list_qryGuarantor.length > 0) {
               this.guar_name1 = this.custService.srviceCustModel.list_qryGuarantor[0].guar_name;
+            }
+
+            if (this.custService.srviceCustModel.list_Cheque.length > 0) {
+              this.cnt_cheque = this.custService.srviceCustModel.list_Cheque.length;
+            }
+
+            if (this.custService.srviceCustModel.list_ChqGuarantee.length > 0) {
+              this.cnt_guarantee = this.custService.srviceCustModel.list_ChqGuarantee.length;
             }
 
             this.checkLoading = false;
@@ -115,6 +131,11 @@ export class CustinfoComponent implements OnInit {
 
   private installment_i_vat() {
     return parseFloat(this.custService.srviceCustModel.installment_e_vat) + parseFloat(this.custService.srviceCustModel.vat);
+  }
+
+  private openMenu(nameMenu) {
+    nameMenu = this.sideTab.convertToAscii(nameMenu);
+    this.sideTab.openContent('',nameMenu);
   }
 
   // onOpenMenu(menu:String) {

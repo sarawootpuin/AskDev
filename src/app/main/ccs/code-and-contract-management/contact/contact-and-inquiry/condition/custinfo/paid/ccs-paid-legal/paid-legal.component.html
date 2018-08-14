@@ -1,16 +1,30 @@
 <p-panel header="Paid Legal">
   <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
-    <p-table [value]="list_cdspaid_legal" [responsive]="true">
+    <p-table [value]="list_cdspaid_legal" [paginator]="true" [rows]="10" scrollable="true" [style]="{width:'72vw'}"
+             scrollHeight="50vh" [resizableColumns]="true" columnResizeMode="expand"
+             selectionMode="single">
+      <ng-template pTemplate="colgroup">
+        <colgroup>
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+        </colgroup>
+      </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th>Batch Date</th>
-          <th>Receipt Number</th>
-          <th>Receipt Date</th>
-          <th>Paid Amount</th>
-          <th>Paid Type</th>
-          <th>Type</th>
-          <th>Amount</th>
-          <th>หมายเหตุ</th>
+          <th pResizableColumn>Batch Date</th>
+          <th pResizableColumn>Receipt Number</th>
+          <th pResizableColumn>Receipt Date</th>
+          <th pResizableColumn>Paid Amount</th>
+          <th pResizableColumn>Paid Type</th>
+          <th pResizableColumn>Type</th>
+          <th pResizableColumn>Amount</th>
+          <th pResizableColumn>หมายเหตุ</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
@@ -25,29 +39,13 @@
           <td>{{rowData.remark}}</td>
         </tr>
       </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <th colspan="8">
+            No Record Found
+          </th>
+        </tr>
+      </ng-template>
     </p-table>
-
-    <!--<p-dataTable [value]="custService.srviceCustModel.list_cdspaid_legal" [rows]="20">-->
-    <!--<p-headerColumnGroup>-->
-    <!--<p-row>-->
-    <!--<p-column header="Batch Date"></p-column>-->
-    <!--<p-column header="Receipt Number"></p-column>-->
-    <!--<p-column header="Receipt Date"></p-column>-->
-    <!--<p-column header="Paid Amount"></p-column>-->
-    <!--<p-column header="Paid Type"></p-column>-->
-    <!--<p-column header="Type"></p-column>-->
-    <!--<p-column header="Amount"></p-column>-->
-    <!--<p-column header="หมายเหตุ"></p-column>-->
-    <!--</p-row>-->
-    <!--</p-headerColumnGroup>-->
-    <!--<p-column field="date_pay"></p-column>-->
-    <!--<p-column field="document_no"></p-column>-->
-    <!--<p-column field="document_date"></p-column>-->
-    <!--<p-column field="amount"></p-column>-->
-    <!--<p-column field="paid_desc"></p-column>-->
-    <!--<p-column field="receive_name"></p-column>-->
-    <!--<p-column field="amount"></p-column>-->
-    <!--<p-column field="remark"></p-column>-->
-    <!--</p-dataTable>-->
   </div>
 </p-panel>

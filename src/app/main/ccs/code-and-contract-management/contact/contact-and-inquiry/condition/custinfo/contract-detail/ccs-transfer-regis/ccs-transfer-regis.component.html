@@ -1,29 +1,50 @@
 <p-panel header="ค่าโอนทะเบียนรถยนต์">
-  <dl class="row">
-    <dt class="col-md-2">ค่าโอน กรณี ขอใช้ทะเบียนจังหวัดเดิม</dt>
-    <dd class="col-md-1 txt-right">{{vSelected_list_Asset.lbl1 | number:'.2-2'}}</dd>
-
-    <dt class="col-md-2">รับฝากค่าโอน</dt>
-    <dd class="col-md-1 txt-right">{{vSelected_list_Asset.lbl2 | number:'.2-2'}}</dd>
-
-    <dt class="col-md-2">รายได้ค่าโอนทะเบียน</dt>
-    <dd class="col-md-1 txt-right">{{vSelected_list_Asset.lbl3 | number:'.2-2'}}</dd>
-
-    <dt class="col-md-2">ภาษีขาย</dt>
-    <dd class="col-md-1 txt-right">{{vSelected_list_Asset.lbl4 | number:'.2-2'}}</dd>
-  </dl>
-
-  <dl class="row">
-    <dt class="col-md-2">ค่าโอน กรณี ขอใช้ทะเบียนจังหวัดอื่น</dt>
-    <dd class="col-md-1 txt-right">{{vSelected_list_Asset.lbl5}}</dd>
-
-    <dt class="col-md-2">รับฝากค่าโอน</dt>
-    <dd class="col-md-1 txt-right">{{vSelected_list_Asset.lbl6 | number:'.2-2'}}</dd>
-
-    <dt class="col-md-2">รายได้ค่าโอนทะเบียน</dt>
-    <dd class="col-md-1 txt-right">{{vSelected_list_Asset.lbl7 | number:'.2-2'}}</dd>
-
-    <dt class="col-md-2">ภาษีขาย</dt>
-    <dd class="col-md-1 txt-right">{{vSelected_list_Asset.lbl8 | number:'.2-2'}}</dd>
-  </dl>
+  <div class="p-3 border-isa">
+    <div class="container-fluid" style="word-break: break-all">
+      <div class="row">
+        <p-table [value]="list_array" [responsive]="true" scrollable="true">
+          <ng-template pTemplate="header">
+            <tr>
+              <th class="text-center">ประเภท</th>
+              <th class="text-center">ค่าโอน</th>
+              <th class="text-center">รับฝากค่าโอน</th>
+              <th class="text-center">รายได้ค่าโอนทะเบียน</th>
+              <th class="text-center">ภาษีขาย</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData>
+            <tr>
+              <td class="text-center">
+                <span class="ui-column-title">ประเภท</span>
+                <label>{{rowData.category}}</label>
+              </td>
+              <td class="text-center">
+                <span class="ui-column-title">ค่าโอน</span>
+                {{rowData.charge || '0' | number:'.2-2'}}
+              </td>
+              <td class="text-center">
+                <span class="ui-column-title">รับฝากค่าโอน</span>
+                {{rowData.deposit || '0' | number:'.2-2'}}
+              </td>
+              <td class="text-center">
+                <span class="ui-column-title">รายได้ค่าโอนทะเบียน</span>
+                {{rowData.income || '0' | number:'.2-2'}}
+              </td>
+              <td class="text-center">
+                <span class="ui-column-title">ภาษีขาย</span>
+                {{rowData.vat || '0' | number:'.2-2'}}
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <th colspan="5">
+                No Record Found
+              </th>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
 </p-panel>

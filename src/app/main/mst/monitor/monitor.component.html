@@ -1,0 +1,14 @@
+<html style="height:auto;width: 100%;z-index: 0;overflow: hidden">
+  <app-action-button-form [title]="'Monitor'" [showSearch]="true" (onSearch)="conditions()" [showExit]="true"></app-action-button-form>
+  <app-search-monitor (sendFromDate)="getFromDate($event)"
+                      (sendToDate)="getToDate($event)"
+                      (sendShowType)="getShowType($event)"
+                      [listMonitor]="ListMonitor"
+                      [statusLoad]=isLoading
+                      [openSearch]=search
+                      [userCodeShow] = tableShow
+
+  ></app-search-monitor>
+</html>
+
+

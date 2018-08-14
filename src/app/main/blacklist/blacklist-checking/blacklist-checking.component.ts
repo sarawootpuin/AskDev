@@ -9,6 +9,7 @@ import {UserStorage} from "../../../shared/user/user.storage.service";
 import {BlacklistHistory} from "../blacklist-resultseach/model/model-blacklisthistory";
 import {AlertDialogComponent} from "../../../shared/center/alert-dialog/alert-dialog.component";
 import {Location} from '@angular/common';
+import {ServiceEndpoint} from "../../../shared/config/service-endpoint";
 
 @Component({
   selector: 'app-blacklistchecking',
@@ -27,7 +28,8 @@ export class BlacklistcheckingComponent implements OnInit {
               private  BLService: BlacklistResultService,
               private router: Router,
               private userStorage: UserStorage,
-              private _location: Location
+              private _location: Location,
+              private serviceEndpoint: ServiceEndpoint,
               //   private applyBlacklistService : ApplyBlacklistService,
               //   private dataPipe : DatePipe
   ) {
@@ -42,6 +44,7 @@ export class BlacklistcheckingComponent implements OnInit {
   CHASSIS: string;
   BRAND: string;
   LICENCE: string;
+  CHECK_GROUP:string='n/a';
 
   createForm() {
     this.blacklistchecking = this.BLChecking.group({
@@ -64,9 +67,30 @@ export class BlacklistcheckingComponent implements OnInit {
 
   }
 
+  handelPrint(){
+    var gropForReport = 0;
+    switch(this.CHECK_GROUP) {
+      case "individual": {
+        gropForReport = 1;
+        break;
+      }
+      case "juristic": {
+        gropForReport =2;
+        break;
+      }
+      default: {
+        gropForReport =0;
+        break;
+      }
+    }
+
+    let strAttach = this.serviceEndpoint.url_report + `/result?report=BL\\BlackList_01.fr3&pGroup=${gropForReport}&pFName=${this.blacklistchecking.value.FIRST_NAME ? this.blacklistchecking.value.FIRST_NAME : '*'}&pLName=${this.blacklistchecking.value.LAST_NAME ? this.blacklistchecking.value.LAST_NAME : '*'}&pIDCard=${this.blacklistchecking.value.ID_CARD ? this.blacklistchecking.value.ID_CARD : '*'}&pEngNum=${this.blacklistchecking.value.ENG_NUM ? this.blacklistchecking.value.ENG_NUM : '*'}&pChassis=${this.blacklistchecking.value.CHASSIS ? this.blacklistchecking.value.CHASSIS : '*'}&pBrand=${this.blacklistchecking.value.BRAND ? this.blacklistchecking.value.BRAND : '*'}&pLicence=${this.blacklistchecking.value.LICENCE ? this.blacklistchecking.value.LICENCE : '*'}&format=pdf`;
+    console.log(strAttach);
+    window.open(strAttach, '_blank');
+
+  }
+
   onSubmit() {
-
-
     this.BLService.controlTabBlacklistChecking = 1;
     this.modelBLchk = new BlacklistChk();
     this.modelBLchk.FIRST_NAME = this.blacklistchecking.value.FIRST_NAME ? this.blacklistchecking.value.FIRST_NAME : '';
@@ -76,6 +100,7 @@ export class BlacklistcheckingComponent implements OnInit {
     this.modelBLchk.CHASSIS = this.blacklistchecking.value.CHASSIS ? this.blacklistchecking.value.CHASSIS : '';
     this.modelBLchk.BRAND = this.blacklistchecking.value.BRAND ? this.blacklistchecking.value.BRAND : '';
     this.modelBLchk.LICENCE = this.blacklistchecking.value.LICENCE ? this.blacklistchecking.value.LICENCE : '';
+
 
     if (this.modelBLchk.FIRST_NAME == '' &&
       this.modelBLchk.LAST_NAME == '' &&
@@ -93,12 +118,11 @@ export class BlacklistcheckingComponent implements OnInit {
       // let userData = userStorage.userName;
       this.modelBLchk.USER = this.userStorage.getCode();
       this.BLService.setModelBLchk(this.modelBLchk);
-      // console.log(this.modelBLchk);
       this.subscription = this.BLService.getBlacklistResult("web", this.modelBLchk).subscribe(
         (data: any) => {
-          // console.log(data.DATA);
           this.ListBlacklistResult = BlacklistResult.parse(data.DATA.RESULT_LIST);
           this.ListBlacklistHistory = BlacklistHistory.parse(data.DATA.HISTORY_LIST);
+          this.ListBlacklistResult = this.fillterByGroup(this.ListBlacklistResult);
           this.BLService.setBlacklistResult(this.ListBlacklistResult);
           this.BLService.setBlacklistHistory(this.ListBlacklistHistory);
           //
@@ -143,6 +167,17 @@ export class BlacklistcheckingComponent implements OnInit {
 
   }
 
+  fillterByGroup(data:BlacklistResult[]){
+    if(this.CHECK_GROUP == 'individual'){
+     return data.filter(obj => obj.LAST_NAME !== '-')
+    }
+    else if(this.CHECK_GROUP == 'juristic'){
+     return data.filter(obj => obj.LAST_NAME === '-')
+    }
+    else{
+      return data;
+    }
+  }
   cancelButton() {
     this.FIRST_NAME = '';
     this.LAST_NAME = '';

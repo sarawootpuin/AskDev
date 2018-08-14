@@ -1,17 +1,17 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {RegHistService} from "./reg-hist.service";
-import {ActivatedRoute, Params} from "@angular/router";
-import {Subscription} from "rxjs/Subscription";
-import {RegSummary} from "./model/reg-summary";
-import {RegSumbal} from "./model/reg-sumbal";
-import {RegAdv} from "./model/reg-adv";
-import {RegCh5} from "./model/reg-ch5";
-import {RegAdvSub1} from "./model/reg-adv-sub1";
-import {RegAdvSub2} from "./model/reg-adv-sub2";
-import {RegCh5Sub1} from "./model/reg-ch5-sub1";
-import {RegSumTot} from "./model/reg-sum-tot";
-import {UserStorage} from "../../../../../../../../../shared/user/user.storage.service";
-import {CustinfoService} from "../../custinfo.service";
+import { Component, OnInit, Input } from '@angular/core';
+import { RegHistService } from "./reg-hist.service";
+import { ActivatedRoute, Params } from "@angular/router";
+import { Subscription } from "rxjs/Subscription";
+import { RegSummary } from "./model/reg-summary";
+import { RegSumbal } from "./model/reg-sumbal";
+import { RegAdv } from "./model/reg-adv";
+import { RegCh5 } from "./model/reg-ch5";
+import { RegAdvSub1 } from "./model/reg-adv-sub1";
+import { RegAdvSub2 } from "./model/reg-adv-sub2";
+import { RegCh5Sub1 } from "./model/reg-ch5-sub1";
+import { RegSumTot } from "./model/reg-sum-tot";
+import { UserStorage } from "../../../../../../../../../shared/user/user.storage.service";
+import { CustinfoService } from "../../custinfo.service";
 
 @Component({
   selector: 'app-clr-regis-hist',
@@ -51,11 +51,20 @@ export class RegHistComponent implements OnInit {
   listCh5Sub1: RegCh5Sub1[] = [];
   vSelected_Ch5Row: RegCh5;
 
+
+  list_array3: any[];
+  hidelistAdvSub1: boolean;
+  hidelistAdvSub2: boolean;
+  hidelistCh5Sub1 : boolean;
+
   constructor(private regHistService: RegHistService,
-              private custService: CustinfoService) {
+    private custService: CustinfoService) {
   }
 
   ngOnInit() {
+    this.hidelistAdvSub1 = false;
+    this.hidelistAdvSub2 = false;
+    this.hidelistCh5Sub1 = false;
 
     this.subscription = this.custService.emitMainJSON.subscribe(
       (data) => {
@@ -96,6 +105,19 @@ export class RegHistComponent implements OnInit {
             this.sumbal_dsreg = this.listSumTot[0].sumbal_dsreg;
             this.sumttl_dsborrow = this.listSumTot[0].sumttl_dsborrow;
             this.sumbal_dsborrow = this.listSumTot[0].sumbal_dsborrow;
+
+            this.list_array3=[
+              {
+                "category" : "ทั้งหมด",
+                "dsreg" : this.sumttl_dsreg,
+                "dsborrow" : this.sumttl_dsborrow
+              },
+              {
+                "category" : "คงเหลือ",
+                "dsreg" : this.sumbal_dsreg,
+                "dsborrow" : this.sumbal_dsborrow
+              }
+            ];
             // console.log(this.listSumTot);
           }
 
@@ -126,7 +148,7 @@ export class RegHistComponent implements OnInit {
             this.listCh5 = RegCh5.parse(json.DATA.listCh5);
 
             if (this.listCh5.length > 0) {
-              this.vSelected_Ch5Row = this.listCh5 [0]; //json.DATA.listCh5[0];
+              this.vSelected_Ch5Row = this.listCh5[0]; //json.DATA.listCh5[0];
               this.onSelectRegCh5(this.vSelected_Ch5Row, 0);
             }
 
@@ -144,9 +166,9 @@ export class RegHistComponent implements OnInit {
     );
   }
 
-  onClickSearch() {
-    this.getRegHistData();
-  }
+  // onClickSearch() {
+  //   this.getRegHistData();
+  // }
 
   onSelectRegAdv(pRegAdv: RegAdv, idx: number) {
     if (pRegAdv.listAdvSub1) {
@@ -165,6 +187,31 @@ export class RegHistComponent implements OnInit {
   onSelectRegCh5(pRegCh5: RegCh5, idx: number) {
     this.listCh5Sub1 = pRegCh5.listCh5Sub1;
     //console.log('this.listCh5Sub1',this.listCh5Sub1);
+  }
+
+  showTable() {
+    if (this.hidelistAdvSub1) {
+      this.hidelistAdvSub1 = false;
+      this.hidelistAdvSub2 = false;
+    }
+    else
+      this.hidelistAdvSub1 = true;
+  }
+
+  showTable1() {
+    if (this.hidelistAdvSub2) {
+      this.hidelistAdvSub2 = false;
+    }
+    else
+      this.hidelistAdvSub2 = true;
+  }
+
+  showListCh5Sub1(){
+    if (this.hidelistCh5Sub1) {
+      this.hidelistCh5Sub1 = false;
+    }
+    else
+      this.hidelistCh5Sub1 = true;
   }
 
 }

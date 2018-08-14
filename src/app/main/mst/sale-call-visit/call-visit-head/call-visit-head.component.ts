@@ -333,46 +333,51 @@ export class CallVisitHeadComponent implements OnInit, OnDestroy {
   private comparesaleCallH: SaleCallHead;
   onNewCardchkEntity(newcard : string, entCode : string){
    //  console.log(newcard);
-    if (newcard.length >= 6) {
-      this.checkLoader = true ;
-      this.subscriptionCheckEntity = this.saleCallVisitService.checkCustomer(
-        'web', this.userStorage.getCode(),
-        this.userStorage.getComCode(), newcard , entCode
-      )
-        .subscribe(
-          (data:any) => {
-            this.checkLoader = false ;
-             console.log(data);
-             if (data.CODE == '400'){
-              this.Aleartdialog.reset();
-              this.Aleartdialog.setAction('WARNING') ;
-              this.Aleartdialog.setMessage(data.MSG);
-              this.Aleartdialog.open();
-              this.saleCallH.new_card_no = '' ;
-            } else {
-               this.saleCallH.new_card_no = newcard;
-               if (data.DATA){
-                 this.comparesaleCallH = SaleCallHead.parse(data.DATA);
-                 if (data.CODE == '204'){
-                   this.QuestionAfnewcard.reset();
-                   this.QuestionAfnewcard.setAction('QUESTION')   ;
-                   this.QuestionAfnewcard.setMessage(data.MSG);
-                   this.QuestionAfnewcard.open();
-                 } else if (data.CODE == '200')  {
-                    if (this.fromSelectEntity){
-                      this.onCompareSaleCall();
-                    }else if (data.DATA.COMP_ENT_CODE) {
-                      this.QuestionAfnewcard.reset();
-                      this.QuestionAfnewcard.setAction('QUESTION')   ;
-                      this.QuestionAfnewcard.setMessage('ลูกค้าคนนี้มีอยู่ในฐานข้อมูล บริษัท ต้องการนำข้อมูลใน ฐานข้อมูล บริษัท มาทับ หรือไม่');
-                      this.QuestionAfnewcard.open();
-                    }
+    if (this.saleCallH.comp_ent_code){
+
+    }
+    else {
+      if (newcard.length >= 6) {
+        this.checkLoader = true ;
+        this.subscriptionCheckEntity = this.saleCallVisitService.checkCustomer(
+          'web', this.userStorage.getCode(),
+          this.userStorage.getComCode(), newcard , entCode
+        )
+          .subscribe(
+            (data:any) => {
+              this.checkLoader = false ;
+               console.log(data);
+               if (data.CODE == '400'){
+                this.Aleartdialog.reset();
+                this.Aleartdialog.setAction('WARNING') ;
+                this.Aleartdialog.setMessage(data.MSG);
+                this.Aleartdialog.open();
+                this.saleCallH.new_card_no = '' ;
+              } else {
+                 this.saleCallH.new_card_no = newcard;
+                 if (data.DATA){
+                   this.comparesaleCallH = SaleCallHead.parse(data.DATA);
+                   if (data.CODE == '204'){
+                     this.QuestionAfnewcard.reset();
+                     this.QuestionAfnewcard.setAction('QUESTION')   ;
+                     this.QuestionAfnewcard.setMessage(data.MSG);
+                     this.QuestionAfnewcard.open();
+                   } else if (data.CODE == '200')  {
+                      if (this.fromSelectEntity){
+                        this.onCompareSaleCall();
+                      }else if (data.DATA.COMP_ENT_CODE) {
+                        this.QuestionAfnewcard.reset();
+                        this.QuestionAfnewcard.setAction('QUESTION')   ;
+                        this.QuestionAfnewcard.setMessage('ลูกค้าคนนี้มีอยู่ในฐานข้อมูล บริษัท ต้องการนำข้อมูลใน ฐานข้อมูล บริษัท มาทับ หรือไม่');
+                        this.QuestionAfnewcard.open();
+                      }
+                   }
                  }
-               }
+              }
+              this.fromSelectEntity = false ;
             }
-            this.fromSelectEntity = false ;
-          }
-      );
+        );
+      }
     }
   }
   

@@ -1,20 +1,40 @@
-<div class="flex-row">
-  <div class="thead-responsive" style="overflow-x: auto;min-height: .01%; padding: 10px">
-    <p-dataTable [value]="data" [rows]="5">
-      <p-headerColumnGroup>
-        <p-row>
-          <p-column header="ประเภท"></p-column>
-          <p-column header="รหัสผู้ค้ำประกัน"></p-column>
-          <p-column header="ชื่อผู้ค้ำประกัน"></p-column>
-          <p-column header="ความสัมพันธ์กับลูกค้า"></p-column>
-          <p-column header="Grade"></p-column>
-        </p-row>
-      </p-headerColumnGroup>
-      <p-column field="type"></p-column>
-      <p-column field="guar_code"></p-column>
-      <p-column field="guar_name"></p-column>
-      <p-column field="relation"></p-column>
-      <p-column field="grade" [style]="{'text-align':'center'}"></p-column>
-    </p-dataTable>
+<p-panel header="Credit Scoring Report">
+  <div class="py-3 border-isa">
+    <div class="container-fluid" style="word-break: break-all">
+      <p-table [value]="">
+        <ng-template pTemplate="colgroup">
+          <colgroup>
+            <col style="width:120px">
+            <col style="width:100px">
+            <col style="width:140px">
+            <col style="width:140px">
+            <col style="width:70px">
+          </colgroup>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="text-center">ประเภท</th>
+            <th class="text-center">รหัสผู้ค้ำประกัน</th>
+            <th class="text-center">ชื่อผู้ค้ำประกัน</th>
+            <th class="text-center">ความสัมพันธ์กับลูกค้า</th>
+            <th class="text-center">Grade</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+          <td class="text-center">{{rowData.type}}</td>
+          <td class="text-center">{{rowData.guar_code}}</td>
+          <td class="text-center">{{rowData.guar_name}}</td>
+          <td class="text-center">{{rowData.relation}}</td>
+          <td class="text-center">{{rowData.grade}}</td>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <th colspan="5">
+              No Record Found
+            </th>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
   </div>
-</div>
+</p-panel>

@@ -1,20 +1,27 @@
 <p-panel header="รับชำระอื่น ๆ">
-    <p-table #dt [columns]="cols" [value]="list_cdspaid_other" [responsive]="true">
+  <div class="p-3 border-isa">
+    <p-table #dt [columns]="cols" [value]="list_cdspaid_other" [style]="{width:'72vw'}"
+             selectionMode="single">
       <ng-template pTemplate="caption">
         <div style="text-align: right">
           <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-          <input type="text" pInputText size="50" placeholder="Global Filter"
-                 (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+          <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')"
+            style="width:auto">
         </div>
+      </ng-template>
+      <ng-template pTemplate="colgroup" let-columns>
+        <colgroup>
+          <col *ngFor="let col of columns" style="width:100px">
+        </colgroup>
       </ng-template>
       <ng-template pTemplate="header" let-columns>
         <tr>
           <th *ngFor="let col of columns" [ngSwitch]="col.field">
-            <p-dropdown *ngSwitchCase="'receive_type'" [options]="receiveType" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
+            <p-dropdown *ngSwitchCase="'receive_name'" [options]="receiveType" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
           </th>
         </tr>
         <tr>
-          <th *ngFor="let col of columns">
+          <th *ngFor="let col of columns" class="text-center" pResizableColumn>
             {{col.header}}
           </th>
         </tr>
@@ -22,11 +29,18 @@
       <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-columns="columns">
         <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
           <td *ngFor="let col of columns">
-            <span class="ui-column-title">{{col.header}}</span>
-            <div *ngIf="col.field == 'amount'">{{rowData[col.field] | number:'.2-2'}}</div>
-            <div *ngIf="col.field != 'amount'">{{rowData[col.field]}}</div>
+            <div *ngIf="col.field == 'amount'" class="text-right">{{rowData[col.field] | number:'.2-2'}}</div>
+            <div *ngIf="col.field != 'amount'" class="text-center">{{rowData[col.field]}}</div>
           </td>
         </tr>
       </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <th colspan="9">
+            No Record Found
+          </th>
+        </tr>
+      </ng-template>
     </p-table>
+  </div>
 </p-panel>

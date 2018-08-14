@@ -11,7 +11,8 @@ export class AuthenService {
   }
 
   signinUser(device: string, username: string, password: string) {
-    const url = this.service.url + this.service.common_tps + `/ask/common/login`;
+     const url = this.service.url + this.service.common_tps + `/ask/common/login`;
+    //const url = 'http://localhost:4200' + this.service.common_tps + `/ask/common/login`;
 
     let data = {
       "device": device,
@@ -24,7 +25,7 @@ export class AuthenService {
         'Content-Type': 'application/json;charset=utf-8'
       }
     };
-
+    //console.log(url,data)
     return this.http.post(url, JSON.stringify(data), options);
   }
 

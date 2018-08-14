@@ -22,7 +22,9 @@ export class TodoService {
         'Content-Type': 'application/json;charset=utf-8'
       }
     };
-    return this.http.get(url, options).timeout(10000);
+    return this.http.get(url, options).timeout(30000);
+    //return this.http.get(url, options);
+
   }
 
   getTaskTodo(device: string, userCode: string, comCode: string, groupTodo: string) {
@@ -33,7 +35,7 @@ export class TodoService {
         'Content-Type': 'application/json;charset=utf-8'
       }
     };
-    return this.http.get(url, options).timeout(10000);
+    return this.http.get(url, options).timeout(30000);
   }
 
   getListSaleCall(device: string, userName: string, taskCode: string, code: string) {
@@ -84,6 +86,30 @@ export class TodoService {
     return this.http.post(url, data, options);
   }
 
+  // getListReg(device: string, userCode: string, comCode: string, taskCode: string,userName: string) {
+  //   //const url = this.service.url + this.service.api_reg_todo + `/ask/regtodo/GetRegTodoList?device=${device}&userCode=${userCode}&comCode=${comCode}&taskCode=${taskCode}`
+  //   const url = this.service.url + this.service.api_reg_todo + `/ask/regtodo/GetRegTodoList?Task=${taskCode}&CODE=${userCode}&device=${device}&user=${userName}&comcode=${comCode}`
+  //   console.log(url)
+  //   let options = {
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8'
+  //     }
+  //   };
+  //   return this.http.get(url, options);
+  // }
+
+  // getListIns(device: string, userCode: string, comCode: string, taskCode: string,userName: string) {
+  //   //const url = this.service.url + this.service.api_ins_todo + `/ask/instodo/GetInsTodoList?device=${device}&userCode=${userCode}&comCode=${comCode}&taskCode=${taskCode}`
+  //
+  //   const url = this.service.url + this.service.api_ins_todo + `/ask/instodo/GetInsTodoList?Task=${taskCode}&CODE=${userCode}&device=${device}&user=${userName}&comcode=${comCode}`
+  //   console.log(url)
+  //   let options = {
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8'
+  //     }
+  //   };
+  //   return this.http.get(url, options);
+  // }
   todoCA(device: string, userCode: string, comCode: string, task: string) {
     const url = this.service.url + this.service.ca_api + `/ask/ca/TodoCA?device=${device}&user=${userCode}&comcode=${comCode}&task=${task}`
     console.log(url)
@@ -109,4 +135,61 @@ export class TodoService {
     };
     return this.http.post(url, data, options);
   }
+
+  getListCosAdmin(device: string, userCode: string, comCode: string, taskCode: string) {
+    const url = this.service.url + this.service.cos_tps + `/ask/CosTodo/CosTodoList?device=${device}&userCode=${userCode}&comCode=${comCode}&taskCode=${taskCode}`;
+    console.log(url);
+    console.log('test by pong 123');
+    let data = {
+      "device" : device,
+      "userName" : "-" ,
+      "userCode" : userCode,
+      "comCode" : comCode,
+      "taskCode" : taskCode
+    };
+    let options = {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    };
+    return this.http.post(url, data, options);
+  }
+
+  getListCosAdminWht(device: string, userCode: string, comCode: string, taskCode: string) {
+    const url = this.service.url + this.service.cos_tps + `/ask/CosTodo/CosTodoWht`;
+    console.log(url);
+    console.log('test by pong 123');
+    let data = {
+      "device" : device,
+      "userName" : "-",
+      "userCode" : userCode,
+      "comCode" : comCode,
+      "taskCode" : taskCode
+    };
+    let options = {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    };
+    return this.http.post(url, data, options);
+  }
+
+  amendCa(device: string, userName: string, comCode: string, caNo: string) {
+    const url = this.service.url + this.service.ca_api + '/ask/ca/AmendInsertTempData';
+
+    let data = {
+      "device": device,
+      "username": userName,
+      "comcode": comCode,
+      "cano": caNo
+    };
+    let options = {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    };
+    //console.log(data);
+    return this.http.post(url, data, options);
+  }
+
 }

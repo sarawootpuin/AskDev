@@ -78,6 +78,7 @@ export class SaleCallVisitService implements OnDestroy {
     }
 
     console.log('Before send data');
+    console.log(url);
     console.log(JSON.stringify(data));
     let options = {
       headers: {
@@ -306,38 +307,38 @@ export class SaleCallVisitService implements OnDestroy {
       && ((this.selectsaleD.sale_call_type == 'V') || (this.selectsaleD.call_result_flg == 'P'))) {
       this.msgs.push({severity: 'warnings', summary: 'warnings Message', detail: '   - Tel'});
     }
-    
+
     if(this.saleH.f_name.substr(0,1) == '2') {
       if (( (!this.saleH.regis_capital_amt) && (this.saleH.regis_capital_amt <= 0) )
         && ((this.selectsaleD.sale_call_type == 'V') || (this.selectsaleD.call_result_flg == 'P'))) {
         this.msgs.push({severity: 'warnings', summary: 'warnings Message', detail: '   - Register Capital'});
       }
-  
+
       if (((!this.saleH.paid_up_capital_amt) && (this.saleH.paid_up_capital_amt <= 0) )
         && ((this.selectsaleD.sale_call_type == 'V') || (this.selectsaleD.call_result_flg == 'P'))) {
         this.msgs.push({severity: 'warnings', summary: 'warnings Message', detail: '   - Paid Up Capital'});
       }
-  
+
       if ((!this.saleH.performance_year)
         && ((this.selectsaleD.sale_call_type == 'V') || (this.selectsaleD.call_result_flg == 'P'))) {
         this.msgs.push({severity: 'warnings', summary: 'warnings Message', detail: '   - Sales Ended Year'});
       }
-  
+
       if (( ( !this.saleH.sale_amt ) && (this.saleH.sale_amt <= 0) )
         && ((this.selectsaleD.sale_call_type == 'V') || (this.selectsaleD.call_result_flg == 'P'))) {
         this.msgs.push({severity: 'warnings', summary: 'warnings Message', detail: '   - Sales Ended Amount'});
       }
-  
+
       if (( (!this.saleH.net_profit_amt ) && (this.saleH.net_profit_amt <= 0) )
         && ((this.selectsaleD.sale_call_type == 'V') || (this.selectsaleD.call_result_flg == 'P'))) {
         this.msgs.push({severity: 'warnings', summary: 'warnings Message', detail: '   - Net Profit'});
       }
-  
+
       if ((!this.saleH.net_worth_year )
         && ((this.selectsaleD.sale_call_type == 'V') || (this.selectsaleD.call_result_flg == 'P'))) {
         this.msgs.push({severity: 'warnings', summary: 'warnings Message', detail: '   - Net Worth Year'});
       }
-  
+
       if (( ( !this.saleH.net_worth_amt ) && (this.saleH.net_worth_amt <= 0) )
         && ((this.selectsaleD.sale_call_type == 'V') || (this.selectsaleD.call_result_flg == 'P'))) {
         this.msgs.push({severity: 'warnings', summary: 'warnings Message', detail: '   - Net Worth Amount'});
@@ -601,7 +602,7 @@ export class SaleCallVisitService implements OnDestroy {
          visit.travel_name = '' ;
          visit.visit_by = this.userStorage.getCode();
       }else if (visit.travel_by == 'OTH' ){
-         visit.travel_by = visit.travel_name ;
+         //visit.travel_by = visit.travel_name ;
       }
     this.selectsaleD.visitOutSide =  visit;
   }

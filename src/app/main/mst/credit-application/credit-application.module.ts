@@ -75,6 +75,7 @@ import {CaTemporarySellerGroupComponent} from "./ca-temporary-seller-group/ca-te
 import {CaTemporaryBuyerComponent} from "./ca-temporary-buyer/ca-temporary-buyer.component";
 import {CaTemporaryBuyerGroupComponent} from "./ca-temporary-buyer-group/ca-temporary-buyer-group.component";
 import {TableModule} from "primeng/table";
+import {CaCreditRatingComponent} from "./ca-credit-rating/ca-credit-rating.component";
 @NgModule({
   imports: [
     ButtonModule, DialogModule, FileUploadModule, PanelModule, TabViewModule, DataTableModule, SharedModule,
@@ -98,7 +99,7 @@ import {TableModule} from "primeng/table";
   ,CaGuarPercentIndComponent,AssetDetailComponent,CaFinanceComponent,CaAttachmentComponent,CaFacPricingComponent,CaRecommendComponent
   ,CaInqueryComponent,CaUseCreditlineComponent,CaAmendContentReasonComponent,CaAmendKeyinComponent,CaSearchAmendComponent
   ,CaTemporaryCreditlineComponent,CaTemporarySellerGroupComponent,CaTemporaryBuyerComponent,CaTemporaryBuyerGroupComponent
-
+  ,CaCreditRatingComponent
 
   ],
   providers:[CurrencyPipe,DecimalPipe,DatePipe,creditApplicationService]

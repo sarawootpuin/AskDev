@@ -16,8 +16,8 @@ export class UpdateService {
   }
 
   InterfaceUpdate(data : CustinfoModel) {
-    const url = this.service.url + this.service.ccs_tps + `/ask/CCS/Custinfo_InterfaceUpdate`;
-    // const url = `http://localhost:8080/WebServices_CCS/ask/CCS/Custinfo_InterfaceUpdate`;
+    const url = this.service.url + this.service.custinfo_api + `/ask/CCS/Custinfo_InterfaceUpdate`;
+    // const url = `http://localhost:8080/WebServices_Custinfo/ask/CCS/Custinfo_InterfaceUpdate`;
 
     let options = {
       headers: {

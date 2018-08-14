@@ -33,6 +33,9 @@ import {AssetModel} from "../contract-detail/ccs-movement-master/ccs-asset";
 import {ReferFollowPersonModel} from "../other/ccs-refer-follow-person/refer-follow-person.model";
 import {MovementRegTransModel} from "../contract-detail/ccs-movement-regbook/movementRegTrans.model";
 import {TelHistModel} from "../other/ccs-tel-hist/tel-hist.model";
+import {CalcExtendVat} from "../other/ccs-calc-extend-vat/ccs-calc-extend-vat.model";
+import {RelateContact} from "../other/ccs-relate/ccs-relate.model";
+import {ChqGuarantee} from "../other/ccs-chq-guarantee/ccs-chq-guarantee.model";
 /**
  * Created by tanapon.sa on 09/11/2560.
  */
@@ -83,6 +86,7 @@ export class CustinfoModel {
   public installment_i_vat: string;
   public unearn: string;
   public vat_dt: string;
+  public accr_dt: string;
   public stop_vat_flg: string;
   public schedule: string;
   public unearn_old: string;
@@ -105,6 +109,7 @@ export class CustinfoModel {
   public collector: string;
   public usercode_collector: string;
   public lblcollector_name: string;
+  public lbl_collector_tel: string;
   public lbln_due_i: string;
   public lbln_due_v: string;
   public lblpaid_amount: string;
@@ -120,6 +125,7 @@ export class CustinfoModel {
   public lblsalesexe: string;
   public trnsf_ownr_proj_dt: string;
   public with_vat: string;
+  public rv: string;
   public lblrefer_old_agr: string;
   public lblfirst_installment_e_vat: string;
   public lbllast_installment_e_vat: string;
@@ -218,6 +224,8 @@ export class CustinfoModel {
   public lbloutlet_desc: string;
   public lblprj_desc: string;
   public lblsale_name: string;
+  public lblver_name: string;
+  public lblRelated_Contact: string;
   public list_cdscust_paid: cdsCust_PaidModel[];
   public list_cdspaid_vat: cdsPaid_VATModel[];
   public list_cdspaid_ins: cdsPaid_InsModel[];
@@ -249,6 +257,9 @@ export class CustinfoModel {
   public list_ReferPayPsrn: ReferFollowPersonModel[];
   public list_MMRegTrans: MovementRegTransModel[];
   public list_TelHist: TelHistModel[];
+  public list_CalcExtendVat: CalcExtendVat[];
+  public list_RelateContact: RelateContact[];
+  public list_ChqGuarantee: ChqGuarantee[];
 
 
   constructor(device?: string, usercode?: string, agr_code?: string, agr_com_code?: string, collector_com_code?: string,
@@ -258,14 +269,14 @@ export class CustinfoModel {
               os_vat?: string, os_vat_t?: string, principal?: string, interest?: string, irr?: string, os_ar?: string,
               v_ar?: string, os_term?: string, os_pri?: string, c_status?: string, sub_c_status?: string, c_status_flg?: string,
               os_compulsory?: string, os_voluntory?: string, com_irr?: string, pastdue_term?: string, upd_crd_grd?: string,
-              new_reg?: string, installment_e_vat?: string, installment_i_vat?: string, unearn?: string, vat_dt?: string, stop_vat_flg?: string,
+              new_reg?: string, installment_e_vat?: string, installment_i_vat?: string, unearn?: string, vat_dt?: string,accr_dt?: string, stop_vat_flg?: string,
               schedule?: string, unearn_old?: string, grace?: string, grace_ty?: string, new_agreement?: string, new_agr_type?: string,
               agr_flg?: string, found_fld54?: string, found_van59?: string, found_fld59?: string, on_click?: string, now?: string,
               prebranchcode?: string, lblp_branch_outlet?: string, start_rd_dt?: string, fin_ty?: string, sub_fin?: string,
-              disbursement_date?: string, collector?: string, usercode_collector?: string, lblcollector_name?: string, lbln_due_i?: string, lbln_due_v?: string,
+              disbursement_date?: string, collector?: string, usercode_collector?: string, lblcollector_name?: string, lbl_collector_tel?: string, lbln_due_i?: string, lbln_due_v?: string,
               lblpaid_amount?: string, w_status_amt?: string, w_legal_extra_amt?: string, w_legal_amt?: string, w_debt_extra_amt?: string,
               w_rtn_direc_amt?: string, w_chqrtn_direc?: string, os_regis?: string, os_regis_vat?: string, vat_terms?: string,
-              lblsalesexe?: string, trnsf_ownr_proj_dt?: string, with_vat?: string, lblrefer_old_agr?: string, lblfirst_installment_e_vat?: string,
+              lblsalesexe?: string, trnsf_ownr_proj_dt?: string, with_vat?: string, rv?: string, lblrefer_old_agr?: string, lblfirst_installment_e_vat?: string,
               lbllast_installment_e_vat?: string, pnlasset_status?: string, pnlwith_vat?:string, pnlnew_reg?: string, pnldeduct_installment?: string, lbldeduct_install_term?: string,
               pnldeduct_voluntory?: string, pnlpur_op?: string, pnladv_arr?: string, new_tr?: string, lbldealer_code?: string, lbloutlet?: string,
               lblprj_code?: string, lbllast_due?: string, lblcost_e_vat?: string, lblcost_vat?: string, lblcost_i_vat?: string,lbldown_e_vat?: string, lbldown_vat?: string,
@@ -285,7 +296,7 @@ export class CustinfoModel {
               lblrental?: string, lblos_inst?: string, lblos_unearn?: string, ds_overdue?: OverdueModel, ds_overvat?: OvervatModel,
               ds_ins?: InsuranceModel, ds_penalty?: PenaltyModel, lblflat_rate?: string, lblfin_amt_e_vat?: string, lblfin_vat?: string,
               lblfin_amt_i_vat?: string, lblnew_tr_desc?: string, lbldealer_name?: string, lbloutlet_desc?: string,
-              lblprj_desc?: string, lblsale_name?: string, list_cdscust_paid ?: cdsCust_PaidModel[], list_cdspaid_vat ?: cdsPaid_VATModel[],
+              lblprj_desc?: string, lblsale_name?: string,lblver_name?: string, lblRelated_Contact?: string, list_cdscust_paid ?: cdsCust_PaidModel[], list_cdspaid_vat ?: cdsPaid_VATModel[],
               list_cdspaid_ins?: cdsPaid_InsModel[],list_cdspaid_legal?: cdsPaid_LegalModel[],ds_stslegalreposchrge ?: stsLegalReposChrgeModel,
               list_cdsstatus_charge?: cdsStatus_ChargeModel[], list_cdsdirect_debit?:cdsDirect_DebitModel[], ds_extracharge?: extraChargeModel,
               list_cdsextracharge?: cdsExtraChargeModel[], list_cbo_custinfo?:cbo_custinfo[], list_cdsfollow_up?:cdsFollow_UpModel[],
@@ -295,7 +306,7 @@ export class CustinfoModel {
               list_receiveTyp_Regis?: ReceiveTypModel[], list_receiveTyp_Ins?: ReceiveTypModel[],list_VatCarHist?: VatCarHistModel[],
               list_Cheque?: ChequePDCModel[],list_RegSuspended?: RegSuspendedModel[],ds_Expense?: ExpenseModel,list_Asset?: AssetModel[],
               list_AddrGuar?: AddressModel[],list_ReferPayPsrn?: ReferFollowPersonModel[],list_MMRegTrans?: MovementRegTransModel[],
-              list_TelHist?: TelHistModel[]) {
+              list_TelHist?: TelHistModel[],list_CalcExtendVat?: CalcExtendVat[],list_RelateContact?: RelateContact[],list_ChqGuarantee?: ChqGuarantee[]) {
     this.device = device || '';
     this.usercode = usercode || '';
     this.agr_code = agr_code || '';
@@ -339,6 +350,7 @@ export class CustinfoModel {
     this.installment_i_vat = installment_i_vat || '';
     this.unearn = unearn || '';
     this.vat_dt = vat_dt || '';
+    this.accr_dt = accr_dt || '';
     this.stop_vat_flg = stop_vat_flg || '';
     this.schedule = schedule || '';
     this.unearn_old = unearn_old || '';
@@ -361,6 +373,7 @@ export class CustinfoModel {
     this.collector = collector || '';
     this.usercode_collector = usercode_collector || '';
     this.lblcollector_name = lblcollector_name || '';
+    this.lbl_collector_tel = lbl_collector_tel || '';
     this.lbln_due_i = lbln_due_i || '';
     this.lbln_due_v = lbln_due_v || '';
     this.lblpaid_amount = lblpaid_amount || '';
@@ -376,6 +389,7 @@ export class CustinfoModel {
     this.lblsalesexe = lblsalesexe || '';
     this.trnsf_ownr_proj_dt = trnsf_ownr_proj_dt || '';
     this.with_vat = with_vat || '';
+    this.rv = rv || '';
     this.lblrefer_old_agr = lblrefer_old_agr || '';
     this.lblfirst_installment_e_vat = lblfirst_installment_e_vat || '';
     this.lbllast_installment_e_vat = lbllast_installment_e_vat || '';
@@ -474,6 +488,8 @@ export class CustinfoModel {
     this.lbloutlet_desc = lbloutlet_desc || '';
     this.lblprj_desc = lblprj_desc || '';
     this.lblsale_name = lblsale_name || '';
+    this.lblver_name = lblver_name || '';
+    this.lblRelated_Contact = lblRelated_Contact || '';
     this.list_cdscust_paid = list_cdscust_paid || [];
     this.list_cdspaid_vat = list_cdspaid_vat || [];
     this.list_cdspaid_ins = list_cdspaid_ins || [];
@@ -505,6 +521,9 @@ export class CustinfoModel {
     this.list_ReferPayPsrn = list_ReferPayPsrn;
     this.list_MMRegTrans = list_MMRegTrans;
     this.list_TelHist = list_TelHist;
+    this.list_CalcExtendVat = list_CalcExtendVat;
+    this.list_RelateContact = list_RelateContact;
+    this.list_ChqGuarantee = list_ChqGuarantee;
   }
 
   static parse(json: any) {
@@ -553,6 +572,7 @@ export class CustinfoModel {
     data.installment_i_vat = json.INSTALLMENT_I_VAT;
     data.unearn = json.UNEARN;
     data.vat_dt = json.VAT_DT;
+    data.accr_dt = json.ACCR_DT;
     data.stop_vat_flg = json.STOP_VAT_FLG;
     data.schedule = json.SCHEDULE;
     data.unearn_old = json.UNEARN_OLD;
@@ -575,6 +595,7 @@ export class CustinfoModel {
     data.collector = json.COLLECTOR;
     data.usercode_collector = json.USERCODE_COLLECTOR;
     data.lblcollector_name = json.LBLCOLLECTOR_NAME;
+    data.lbl_collector_tel = json.LBL_COLLECTOR_TEL;
     data.lbln_due_i = json.LBLN_DUE_I;
     data.lbln_due_v = json.LBLN_DUE_V;
     data.lblpaid_amount = json.LBLPAID_AMOUNT;
@@ -590,6 +611,7 @@ export class CustinfoModel {
     data.lblsalesexe = json.LBLSALESEXE;
     data.trnsf_ownr_proj_dt = json.TRNSF_OWNR_PROJ_DT;
     data.with_vat = json.WITH_VAT;
+    data.rv = json.RV;
     data.lblrefer_old_agr = json.LBLREFER_OLD_AGR;
     data.lblfirst_installment_e_vat = json.LBLFIRST_INSTALLMENT_E_VAT;
     data.lbllast_installment_e_vat = json.LBLLAST_INSTALLMENT_E_VAT;
@@ -688,6 +710,8 @@ export class CustinfoModel {
     data.lbloutlet_desc = json.LBLOUTLET_DESC;
     data.lblprj_desc = json.LBLPRJ_DESC;
     data.lblsale_name = json.LBLSALE_NAME;
+    data.lblver_name = json.LBLVER_NAME;
+    data.lblRelated_Contact = json.LBLRELATED_CONTACT;
     data.list_cdscust_paid = cdsCust_PaidModel.parse(json.LIST_CDSCUST_PAID);
     data.list_cdspaid_vat = cdsPaid_VATModel.parse(json.LIST_CDSPAID_VAT);
     data.list_cdspaid_ins = cdsPaid_InsModel.parse(json.LIST_CDSPAID_INS);
@@ -719,6 +743,9 @@ export class CustinfoModel {
     data.list_ReferPayPsrn =  ReferFollowPersonModel.parse(json.list_PaymentPrsn);
     data.list_MMRegTrans =  MovementRegTransModel.parse(json.LIST_MMRegTrans);
     data.list_TelHist =  TelHistModel.parse(json.LIST_TelHist);
+    data.list_CalcExtendVat =  CalcExtendVat.parse(json.LIST_CalcExtendVat);
+    data.list_RelateContact =  RelateContact.parse(json.LIST_RelateContact);
+    data.list_ChqGuarantee =  ChqGuarantee.parse(json.LIST_ChqGuarantee);
     return data;
   }
 

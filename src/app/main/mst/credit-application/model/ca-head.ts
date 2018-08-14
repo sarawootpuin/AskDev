@@ -18,6 +18,7 @@ import {CaTempCreditLineGroup} from "./ca-temp-credit-line-group";
 import {CaTempBuyer} from "./ca-temp-buyer";
 import {CaRevise} from "./ca-revise";
 import { CaApproveAmend } from "./ca-approve-amend";
+import {caRating} from "./ca-rating";
 export class caHead {
   public com_code;
   public prebranch_code;
@@ -183,6 +184,7 @@ export class caHead {
   public listtempbuyerg: CaTempBuyer[];
   public listrevise: CaRevise[];
   public listapvamend : CaApproveAmend[];
+  public listrating : caRating[];
 
   constructor()
   constructor(com_code, prebranch_code, ca_no, sale_call_no, ctrl_no, cus_status, cus_code, grp_code, joint_seller_group,
@@ -218,7 +220,7 @@ export class caHead {
     , listsellertempcreditlinegroup
     , listtempbuyer
     , listtempbuyerg
-    , listrevise, listapvamend)
+    , listrevise, listapvamend,listrating)
 
   constructor(com_code?, prebranch_code?, ca_no?, sale_call_no?, ctrl_no?, cus_status?, cus_code?, grp_code?, joint_seller_group?,
               sbu_typ?, advance_type?, apply_by?, apply_dt?, expire_dt?, contract_no?, contract_date?, contract_expire_date?,
@@ -254,7 +256,7 @@ export class caHead {
     , listbuyertempcreditlinegroup?
     , listsellertempcreditlinegroup?
     , listtempbuyer?
-    , listtempbuyerg?, listrevise?, listapvamend?) {
+    , listtempbuyerg?, listrevise?, listapvamend?,listrating?) {
     this.com_code = com_code;
     this.prebranch_code = prebranch_code;
     this.ca_no = ca_no;
@@ -417,6 +419,7 @@ export class caHead {
     this.listtempbuyerg = listtempbuyerg;
     this.listrevise = listrevise;
     this.listapvamend = listapvamend;
+    this.listrating = listrating;
   }
 
   static parse(json: any) {
@@ -581,7 +584,8 @@ export class caHead {
       CaTempBuyer.parse(json.listtempbuyer),
       CaTempBuyer.parse(json.listtempbuyerg),
       CaRevise.parse(json.listrevise),
-      CaApproveAmend.parse(json.listapvamend)
+      CaApproveAmend.parse(json.listapvamend),
+      caRating.parse(json.listrating)
     )
   }
 }

@@ -39,7 +39,8 @@
   </div>
 
   <!--------------------------------dialog alert ----------------------------->
-  <app-alert-dialog #dialogalert > </app-alert-dialog>
+  <app-alert-dialog #dialogalert> </app-alert-dialog>
+  <app-alert-dialog #savedialog (onOK)="handleClick()"> </app-alert-dialog>
   <app-alert-dialog #Questiondialog  (onOK)="actionOk()"   ></app-alert-dialog>
 
   <app-alert-dialog  #submitdialog   (onOK)="backToHome()">

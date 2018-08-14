@@ -11,6 +11,7 @@ export class CcsChequePdcComponent implements OnInit {
   list_Cheque: ChequePDCModel[] = [];
   list_ChequeTmp: ChequePDCModel[] = [];
   subscription: Subscription;
+  cols: any[] = [];
 
   constructor(private custService: CustinfoService) { }
 
@@ -19,12 +20,21 @@ export class CcsChequePdcComponent implements OnInit {
       (data: any) => {
         this.list_Cheque = data.list_Cheque;
         this.list_ChequeTmp = JSON.parse(JSON.stringify(this.list_Cheque));
-        this.onFilterCheque('PDC'); // Default
+        this.onFilterCheque('ALL'); // Default
       }
     );
+
+    this.cols = [
+      {value: 'ALL'},
+      {value: 'PDC'},
+      {value: 'Returned'},
+      {value: 'Pay In'},
+      {value: 'Clearing'}
+    ];
   }
 
   onFilterCheque(pType) {
+    // console.log(pType);
     this.list_Cheque = JSON.parse(JSON.stringify(this.list_ChequeTmp));
 
     if (pType != 'ALL') {

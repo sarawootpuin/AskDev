@@ -1,55 +1,49 @@
 <p-panel header="Paid VAT">
-  <!--<div class="flex-row p-3">-->
-    <!--<div class="form-group row">-->
-      <!--<div class="col-md-3">-->
-        <!--<label>จำนวนเงินรวมค่าภาษีทั้งหมด</label>-->
-        <!--<input class="form-control" type="text">-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group row">-->
-      <!--<div class="col-md-3">-->
-        <!--<label>จำนวนเงินภาษีขายรวมตามที่ออกใบกำกับ</label>-->
-        <!--<input class="form-control" type="text" disabled>-->
-      <!--</div>-->
-      <!--<div class="col-md-3">-->
-        <!--<label>จำนวนเงินคงเหลือ</label>-->
-        <!--<input class="form-control" type="text" disabled>-->
-      <!--</div>-->
-      <!--<div class="col-md-3">-->
-        <!--<label>จำนวนเงินภาษีขายรวม ที่ลูกค้าชำระ</label>-->
-        <!--<input class="form-control" type="text" disabled>-->
-      <!--</div>-->
-      <!--<div class="col-md-3">-->
-        <!--<label>จำนวนเงินภาษีขายรวม ที่ยังไม่ชำระ</label>-->
-        <!--<input class="form-control" type="text" disabled>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px">
-    <p-table [value]="list_cdspaid_vat" [responsive]="true">
+  <div class="thead-responsive border-isa" style="overflow-x: auto;min-height: .01%; padding: 10px; word-break: break-all">
+    <p-table [value]="list_cdspaid_vat" [paginator]="true" [rows]="10" scrollable="true" [style]="{width:'72vw'}"
+             scrollHeight="50vh" [resizableColumns]="true" columnResizeMode="expand"
+             selectionMode="single">
+      <ng-template pTemplate="colgroup">
+        <colgroup>
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+          <col style="width:100px">
+        </colgroup>
+      </ng-template>
       <ng-template pTemplate="header">
-        <tr>
-          <th>Tax Invoice</th>
-          <th>Date Vat</th>
-          <th>Terms</th>
-          <th>VAT</th>
-          <th>Receipt Number</th>
-          <th>Paid Date</th>
-          <th>Paid Amount</th>
-          <th>Remark</th>
+        <tr class="text-center">
+          <th pResizableColumn>Tax Invoice</th>
+          <th pResizableColumn>Date Vat</th>
+          <th pResizableColumn>Terms</th>
+          <th pResizableColumn>VAT</th>
+          <th pResizableColumn>Receipt Number</th>
+          <th pResizableColumn>Paid Date</th>
+          <th pResizableColumn>Paid Amount</th>
+          <th pResizableColumn>Remark</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
         <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
-          <td>{{rowData.ref}}</td>
-          <td>{{rowData.date_vat}}</td>
-          <td>{{rowData.terms}}</td>
-          <td>{{rowData.vat | number:'.2-2'}}</td>
-          <td>{{rowData.receipt}}</td>
-          <td>{{rowData.pay_date}}</td>
-          <td>{{rowData.pay_vat  | number:'.2-2'}}</td>
-          <td>{{rowData.remark}}</td>
+          <td class="text-center">{{rowData.ref}}</td>
+          <td class="text-center">{{rowData.date_vat}}</td>
+          <td class="text-center">{{rowData.terms}}</td>
+          <td class="text-right">{{rowData.vat | number:'.2-2'}}</td>
+          <td class="text-center">{{rowData.receipt}}</td>
+          <td class="text-center">{{rowData.pay_date}}</td>
+          <td class="text-right">{{rowData.pay_vat | number:'.2-2'}}</td>
+          <td class="text-left">{{rowData.remark}}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <th colspan="8">
+            No Record Found
+          </th>
         </tr>
       </ng-template>
     </p-table>

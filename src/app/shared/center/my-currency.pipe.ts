@@ -40,7 +40,11 @@ export class MyCurrencyPipe implements PipeTransform {
     if (integer){
       integer = integer.replace(/,/g,'');
       let integerNumber:Number = +integer ;
-      integer = String(integerNumber)  ;
+      if(integer == "-0") {
+        integer = '-'+String(integerNumber)
+      } else {
+        integer = String(integerNumber) ;
+      }
     }
 
     integer = integer.replace(/\B(?=(\d{3})+(?!\d))/g, this.THOUSANDS_SEPARATOR);

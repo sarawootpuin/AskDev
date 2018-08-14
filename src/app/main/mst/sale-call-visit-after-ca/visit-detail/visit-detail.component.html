@@ -1,0 +1,102 @@
+<!--<div class="card p-1">-->
+  <div class="container-fluid border-isa">
+    <div class="row">
+      <div class="col-md-12 form-group">
+        <div class="row" >
+          <div class="col-md-12 form-group">
+            <div class="form-inline">
+              <label><b>Visit type</b></label>
+              <div class="form-check" style="padding-left: 1rem">
+                <input class="form-check-input"  type="radio" name="visit" value="true" [checked] ="ListSelectData.sale_call_type == 'V'">
+                <label class="form-check-label">
+                  Visit
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 form-group">
+            <label><b>Visit Purpose</b></label>
+            <select class="form-control"
+                    [ngModel]="ListSelectData.purpose"
+                    (ngModelChange)="ListSelectData.purpose =$event;"
+                    >
+
+              <option></option>
+              <option *ngFor="let ansPur of ListVisit"
+                      [value]="ansPur.ID">{{ansPur.DISPLAY}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-3 form-group">
+            <label><b>Visit Note</b></label>
+            <textarea class="form-control" [(ngModel)]="ListSelectData.sale_call_note"></textarea>
+          </div>
+          <div class="col-md-2 form-group">
+            <label><b>Interview (minute)</b></label>
+            <div class="form-inline">
+              <input appMyCurrency
+                     class="form-control col-md-6"
+                     [fraction]="0"
+                     (change)="ListSelectData.interview = $event.target.value"
+                     [value]="ListSelectData.interview"
+                     pKeyFilter="pnum">
+            </div>
+          </div>
+          <div class="col-md-2 form-group">
+            <label><b>Traffic Time (minute)</b></label>
+            <div class="form-inline">
+              <input class="form-control col-md-6" appMyCurrency [fraction]="0"
+                     pKeyFilter="pnum" [(ngModel)]="ListSelectData.traffic">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 form-group " >
+        <label>Contact Person</label>
+        <div class="container-fluid">
+          <div class="row  border-isa">
+            <div class="col-md-12">
+              <fieldset [disabled]="componentReadOnly">
+                <app-custom-botton-icon   [option]="'new'" (onBtnClick)="openContract()"  ></app-custom-botton-icon>
+                <app-contactperson #dialogcontactperson     (onContactSelect)="getContact($event)" ></app-contactperson>
+                <app-custom-botton-icon    [option]="'delete'" (onBtnClick)="clearContact()"  ></app-custom-botton-icon>
+              </fieldset>
+            </div>
+            <div class="col-md-2 form-group">
+              <label>Contact Code</label>
+              <input  class="form-control" type="text" disabled [ngModel]="saleCallD?.cont_person_code" >
+            </div>
+            <div class="col-md-4 form-group">
+              <label>Name(Eng)</label>
+              <input  class="form-control" type="text" disabled [ngModel]="saleCallD?.name_en">
+            </div>
+            <div class="col-md-4 form-group">
+              <label>Name(Thai)</label>
+              <input  class="form-control" type="text" disabled [ngModel]="saleCallD?.name_th">
+            </div>
+            <div class="col-md-2 form-group">
+              <label>Position</label>
+              <input type="text" class="form-control"  disabled  [ngModel]="saleCallD?.position">
+            </div>
+            <div class="col-md-3 form-group">
+              <label>Phone</label>
+              <input type="text" class="form-control"  disabled  [ngModel]="saleCallD?.phone">
+            </div>
+            <div class="col-md-3 form-group">
+              <label>Ext</label>
+              <input type="text" class="form-control"  disabled  [ngModel]="saleCallD?.phone_ext">
+            </div>
+            <div class="col-md-2 form-group">
+              <label>Moblie</label>
+              <input type="text" class="form-control"  disabled  [ngModel]="saleCallD?.mobile">
+            </div>
+            <div class="col-md-4 form-group">
+              <label>E-Mail</label>
+              <input type="text" class="form-control"  disabled  [ngModel]="saleCallD?.email">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--</div>-->

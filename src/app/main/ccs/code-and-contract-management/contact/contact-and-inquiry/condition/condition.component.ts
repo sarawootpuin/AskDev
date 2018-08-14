@@ -87,9 +87,9 @@ export class ConditionComponent implements OnInit {
               this.arrSearch = Search.parse(data.LIST_DATA);
               this.dsSearch = this.arrSearch;
               this.totalRecords = this.arrSearch.length;
+              this.vNewTr = this.arrSearch[0].new_tr;
 
               if (this.arrSearch[0].found_agr === 'Y') {
-                this.vNewTr = this.arrSearch[0].new_tr;
                 this.vCon_Agr_Code = this.arrSearch[0].agr_code;
                 this.ccmService.setAGR_CODE(this.vCon_Agr_Code);
                 window.localStorage['data'] = this.vCon_Agr_Code;
@@ -120,8 +120,10 @@ export class ConditionComponent implements OnInit {
     this.vComCode = pComCode;
   }
 
-  onDBSelectedRow(e) {
+  onSelectedRow(e) {
+    window.scrollTo(0,0);
     this.vCon_Agr_Code = e.data.agr_code;
+    this.vNewTr = e.data.new_tr;
     this.onNavigate();
   }
 
@@ -160,13 +162,19 @@ export class ConditionComponent implements OnInit {
             });
           }
         } else {
-          if (this.vFound_LG_Sue) {
-            this.vNavigate_To = "legalpl";
-            // this.router.navigate(['CustomerService/legalpl']);
-          } else {
+          // if (this.vFound_LG_Sue) {
+          //   this.vNavigate_To = "legalpl";
+          //   // this.router.navigate(['CustomerService/legalpl']);
+          // } else {
             // this.vNavigate_To = "arpl";
-            this.router.navigate(['../arpl/'],{relativeTo:this.route});
-          }
+            this.router.navigate(['../arpl/'],{
+              relativeTo:this.route,
+              queryParams: {
+                comCode: this.vComCode.valueOf(),
+                agrCode: this.vCon_Agr_Code.valueOf()
+              }
+            });
+          // }
         }
       },
       (error: any) => {

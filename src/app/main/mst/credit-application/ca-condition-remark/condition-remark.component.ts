@@ -59,10 +59,10 @@ export class CaConditionRemarkComponent implements OnInit, OnDestroy, OnChanges 
   }
 
   ngOnChanges(){
-    if(this.taskReadOnly.includes(this.task)){ 
-      this.readOnlyRemarkAttchSheet = false 
+    if(this.taskReadOnly.includes(this.task)){
+      this.readOnlyRemarkAttchSheet = false
       this.readOnlyPrvCondition = false
-      if(this.task = 'RV-01') {
+      if(this.task == 'RV-01') {
         this.readOnlyPrvCondition = true
       }
     } else {
