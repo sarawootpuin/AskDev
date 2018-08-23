@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-2">
+    <div class="form-group"  style="padding: 2.5rem 1rem 0.5rem 1rem;">
+      <div class="form-inline">
+        <div style="padding-right:1rem;">
+          <label><b>Filter</b></label>
+        </div>
+        <div class="form-check" style="padding-right:1rem;">
+          <input class="form-check-input" type="radio" name="filter" value="" (ngModelChange)="filter($event)" [(ngModel)]="filterBy" checked>
+          <label class="form-check-label">
+            All
+          </label>
+        </div>
+        <div class="form-check" style="padding-right:1rem;">
+          <input class="form-check-input" type="radio" name="filter" value="Y" (ngModelChange)="filter($event)"  [(ngModel)]="filterBy">
+          <label class="form-check-label">
+            Active
+          </label>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isLoading" class="text-center">
+      <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>Loading...
+    </div>
+    <p-tree *ngIf="!isLoading"
+            [value]="getOrdinate[0].children"
+            layout="vertical"
+            selectionMode="single"
+            (onNodeSelect)="click($event)"
+            [(selection)]="selectedNode"
+    >
+      <ng-template let-node  pTemplate="default">
+        <i class="fa fa-user fa-lg" [ngStyle]=" {'color' : node.data.active === 'Y' ? '#56934b' : '#a8a8a8'}"></i>
+        <span  [ngStyle]=" {'color' : node.data.active === 'N' ? '#a8a8a8' : '#000000'}" >{{node.label}}</span>
+      </ng-template>
+    </p-tree>
+  </div>
+  <!--'pointer-events' : node.data.code === userCode ? 'none' : 'auto'  }"-->
+  <!--data.userCode == this.userStorage.getCode() ? true : false,-->
+  <div class="col">
+    <div *ngIf="isLoading" class="text-center">
+      <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>Loading...
+    </div>
+    <div>
+      <div class="form-group" style="padding-top: 0.5rem">
+        <h3>{{todoName}}</h3>
+      </div>
+      <app-todo *ngIf="reload"></app-todo>
+    </div>
+  </div>
+</div>
+
+<app-alert-dialog  #disableddialog   (onOK)="backToHome()" (onCloseDialog)="backToHome()">
+
