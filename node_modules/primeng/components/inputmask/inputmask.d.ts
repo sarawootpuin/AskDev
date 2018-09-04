@@ -21,6 +21,7 @@ export declare class InputMask implements OnInit, OnDestroy, ControlValueAccesso
     name: string;
     required: boolean;
     characterPattern: string;
+    autoFocus: boolean;
     inputViewChild: ElementRef;
     onComplete: EventEmitter<any>;
     onFocus: EventEmitter<any>;

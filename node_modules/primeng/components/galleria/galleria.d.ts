@@ -14,6 +14,7 @@ export declare class Galleria implements AfterViewChecked, AfterViewInit, OnDest
     autoPlay: boolean;
     transitionInterval: number;
     showCaption: boolean;
+    effectDuration: number;
     onImageClicked: EventEmitter<{}>;
     onImageChange: EventEmitter<{}>;
     _images: any[];

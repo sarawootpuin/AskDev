@@ -5,6 +5,7 @@ export declare class UIChart implements AfterViewInit, OnDestroy {
     options: any;
     width: string;
     height: string;
+    responsive: boolean;
     onDataSelect: EventEmitter<any>;
     initialized: boolean;
     _data: any;

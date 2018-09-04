@@ -13,7 +13,7 @@ const routes: Route[] = [
     component: MainComponent, children: [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'home', loadChildren: './home/home.module#HomeModule'},
-    {path: 'setup', loadChildren: './home/setup/setup.module#SetupModule'},
+    // {path: 'setup', loadChildren: './home/setup/setup.module#SetupModule'},
     {path: 'SaleCall',loadChildren:'./mst/sale-call-visit/sale-call-visit.module#SaleCallVisitModule'},
     {path: 'appForm', loadChildren:'./mst/appform/appform.module#AppformModule'},
     {path: 'ca',loadChildren:'./mst/credit-application/credit-application.module#CreditApplicationModule'},

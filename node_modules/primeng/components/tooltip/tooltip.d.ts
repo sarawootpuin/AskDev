@@ -20,7 +20,6 @@ export declare class Tooltip implements AfterViewInit, OnDestroy {
     tooltipText: any;
     showTimeout: any;
     hideTimeout: any;
-    lifeTimeout: any;
     active: boolean;
     _text: string;
     mouseEnterListener: Function;
@@ -37,7 +36,7 @@ export declare class Tooltip implements AfterViewInit, OnDestroy {
     onBlur(e: Event): void;
     onClick(e: Event): void;
     activate(): void;
-    deactivate(useDelay: any): void;
+    deactivate(): void;
     text: string;
     create(): void;
     show(): void;
@@ -59,6 +58,9 @@ export declare class Tooltip implements AfterViewInit, OnDestroy {
     unbindDocumentResizeListener(): void;
     unbindEvents(): void;
     remove(): void;
+    clearShowTimeout(): void;
+    clearHideTimeout(): void;
+    clearTimeouts(): void;
     ngOnDestroy(): void;
 }
 export declare class TooltipModule {

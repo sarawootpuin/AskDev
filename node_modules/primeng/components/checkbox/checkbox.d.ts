@@ -12,6 +12,7 @@ export declare class Checkbox implements ControlValueAccessor {
     inputId: string;
     style: any;
     styleClass: string;
+    labelStyleClass: string;
     formControl: FormControl;
     onChange: EventEmitter<any>;
     model: any;

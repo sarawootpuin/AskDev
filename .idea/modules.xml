@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/AskDev.iml" filepath="$PROJECT_DIR$/.idea/AskDev.iml" />
+      <module fileurl="file://D:\DEVELOP-MIS\AskDevV6\.idea\AskDev.iml" filepath="D:\DEVELOP-MIS\AskDevV6\.idea\AskDev.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/AskDevV6.iml" filepath="$PROJECT_DIR$/.idea/AskDevV6.iml" />
     </modules>
   </component>
 </project>

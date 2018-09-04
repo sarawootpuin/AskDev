@@ -15,6 +15,7 @@ export declare class OrderList implements AfterViewChecked, AfterContentInit {
     metaKeySelection: boolean;
     dragdrop: boolean;
     dragdropScope: string;
+    trackBy: Function;
     onReorder: EventEmitter<any>;
     onSelectionChange: EventEmitter<any>;
     onFilterEvent: EventEmitter<any>;
@@ -50,7 +51,7 @@ export declare class OrderList implements AfterViewChecked, AfterContentInit {
     moveBottom(event: any, listElement: any): void;
     onDragStart(event: DragEvent, index: number): void;
     onDragOver(event: DragEvent, index: number): void;
-    onDragLeave(event: DragEvent, index: number): void;
+    onDragLeave(event: DragEvent): void;
     onDrop(event: DragEvent, index: number): void;
     onDragEnd(event: DragEvent): void;
     onListMouseMove(event: MouseEvent): void;
