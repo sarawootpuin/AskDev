@@ -34,12 +34,13 @@ export class AppFormInQuiryComponent implements OnInit, OnDestroy, OnChanges, Af
     ];
     let userCode = this.userStorage.getCode();
     let comCode = this.userStorage.getComCodePort();
+    let userName = this.userStorage.getUserName();
     this.listAppFormTodo = [];
     this.resetSearchInput();
 
     this.isLoading = true;
     this.subscription = this.todoService.getListAppForm(
-      "web", userCode, comCode, "AP-00").subscribe(
+      "web", userName ,userCode, comCode, "AP-00").subscribe(
       (data: any) => {
         if (data.CODE == 200) {
           this.listAppFormTodo = AppFormTodo.parse(data.LIST_DATA);

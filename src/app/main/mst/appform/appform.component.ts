@@ -30,7 +30,10 @@ declare var $: any;
 })
 export class AppFormComponent implements OnInit, OnDestroy {
   subscription: Subscription;
+  subscriptionSave : Subscription;
+  subscriptionAnswer : Subscription;
   subscriptionIrr: Subscription;
+  subscriptionReason : Subscription;
   typeBeforeSave: string;
   com_code: string;
   ap_no: string;
@@ -123,6 +126,15 @@ export class AppFormComponent implements OnInit, OnDestroy {
     }
     if (this.subscriptionIrr != null) {
       this.subscriptionIrr.unsubscribe();
+    }
+    if(this.subscriptionAnswer){
+      this.subscriptionAnswer.unsubscribe()
+    }
+    if(this.subscriptionSave){
+      this.subscriptionSave.unsubscribe()
+    }
+    if(this.subscriptionReason){
+      this.subscriptionReason.unsubscribe
     }
   }
 
@@ -375,6 +387,9 @@ export class AppFormComponent implements OnInit, OnDestroy {
         }
       }
       else if (this.data.sbu_typ == 'FDO') {
+        if (this.data.listPricing[0].credit_line_amt <= 0){
+          this.alertWarning.addMessage('- Request Credit Line')
+        }
         if (this.data.listBuyer.length == 0) {
           this.alertWarning.addMessage('- Must Have Buyer');
         }
@@ -491,20 +506,23 @@ export class AppFormComponent implements OnInit, OnDestroy {
   saveData() {
     this.typeBeforeSave = this.applyEmit.type;
     this.checkLoader = true;
-    this.appFormService.getSave(this.action, this.applyEmit.type).subscribe(
+    this.subscriptionSave = this.appFormService.getSave(this.action, this.applyEmit.type).subscribe(
       (data: any) => {
         //console.log(data);
         if (data.CODE == "200") {
           if (this.data.current_task == 'Scoring' && this.action == 'Submit') {
-            this.appFormService.saveAnsWer(this.data.com_code, this.data.ca_no, this.appFormService.getAnsWer()).subscribe(
+            this.subscriptionAnswer = this.appFormService.saveAnsWer(this.data.com_code, this.data.ca_no, this.appFormService.getAnsWer()).subscribe(
               (json: any) => {
-                //console.log(json);
-                if (json.CODE == '200') {
+                if(json){
+                  if (json.CODE == '200') {
+                    this.showReturnCase(data.DATA);
+                  }
+                  else {
+                    alert(json.MSG);
+                    this.checkLoader = false;
+                  }
+                } else {
                   this.showReturnCase(data.DATA);
-                }
-                else {
-                  alert(json.MSG);
-                  this.checkLoader = false;
                 }
               }
             )
@@ -552,7 +570,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
 
   genDetailAppForm() {
     this.isLoading = true;
-    this.subscription = this.appFormService.getDetailAppForm("web", this.user.getCode(), this.com_code, this.ap_no).subscribe(
+    this.subscription = this.appFormService.getDetailAppForm("web", this.user.getSuborCode(), this.com_code, this.ap_no).subscribe(
       (data: any) => {
         //console.log(data);
         if (data.CODE === "200") {
@@ -862,7 +880,7 @@ export class AppFormComponent implements OnInit, OnDestroy {
   clickCaApprove() {
     if (this.comment) {
       //console.log('if');
-      this.appFormService.approveReject(this.data.com_code, this.data.ap_no, "AP", "N", this.comment).subscribe(
+      this.subscriptionReason = this.appFormService.approveReject(this.data.com_code, this.data.ap_no, "AP", "N", this.comment).subscribe(
         (result: any) => {
           //console.log(result);
           if (result.MSG == "Complete") {

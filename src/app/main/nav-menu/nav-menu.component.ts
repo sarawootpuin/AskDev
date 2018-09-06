@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnChanges, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, DoCheck, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import {
   ActivatedRoute,
   NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router,
@@ -125,7 +125,18 @@ export class NavMenuComponent implements OnInit, OnDestroy, OnChanges, AfterView
     }
   }
 
+
+  checkSbd() {
+    if (this.userStorage.getCode()!==this.userStorage.getSuborCode()){
+      this.userStorage.storageSuborCode(this.userStorage.getCode());
+      this.userStorage.storageSuborUserName(this.userStorage.getUserName());
+      this.userStorage.storageIsSubor('N')
+      this.userStorage.storageSuborAccessCompany(this.userStorage.getAccessCompany());
+    }
+  }
+
   navigate(menuCodeSelect: string) {
+    this.checkSbd();
     if (menuCodeSelect == "MSM-01") {
       this.router.navigate(['/SaleCall'], {
         relativeTo: this.route,
@@ -222,6 +233,17 @@ export class NavMenuComponent implements OnInit, OnDestroy, OnChanges, AfterView
       //window.location.reload()
     });
     this.userStorage.removeStorage();
+  }
+
+  Subordinates(){
+    this.router.navigate(['/subordinate']).then(() => {
+    });
+  }
+
+  InQuery(){
+    this.checkSbd();
+    this.router.navigate(['/ccs/condition/']).then(() => {
+    });
   }
 
 }

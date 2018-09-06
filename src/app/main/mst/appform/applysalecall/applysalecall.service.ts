@@ -21,7 +21,8 @@ export class ApplyNewService {
 
     let data = {
       "device": "web",
-      "userCode": this.user.getCode(),
+      "userName": this.user.getSuborUserName(),
+      "userCode": this.user.getSuborCode(),
       "type": type
     };
     return this.http.post(url, JSON.stringify(data), options);

@@ -69,7 +69,7 @@ export class MonitorComponent implements OnInit ,OnChanges{
     this.subscription = this.Monitorservice.getListMonitor("web",this.userStorage.getUserName(),this.userStorage.getComCode()
       ,this.userStorage.getCode(),this.date2,this.date3,this.type).subscribe(
       (data : any) =>{
-        //debuggerst
+        debugger
         //console.log("testtt");
 
         if (data) {

@@ -228,7 +228,7 @@ export class AppFormService {
         'Content-Type': 'application/json;charset=utf-8'
       }
     };
-    let data = {"device": device, "userCode": userCode, "comCode": com_code, "apNo": ap_no};
+    let data = {"device": device, "userName": this.user.getSuborUserName() ,"userCode": userCode, "comCode": com_code, "apNo": ap_no};
     console.log(JSON.stringify(data));
     return this.http.post(url, JSON.stringify(data), options);
   }
@@ -243,11 +243,11 @@ export class AppFormService {
     };
     let data = {
       "device": "web",
-      "userName": this.user.getUserName(),
+      "userName": this.user.getSuborUserName(),
       "action": action,
       "data": this.getAppFormData(),
       "type": type,
-      "userCode": this.user.getCode()
+      "userCode": this.user.getSuborCode()
     };
     console.log(JSON.stringify(data));
     return this.http.post(url, JSON.stringify(data), options);
@@ -283,14 +283,15 @@ export class AppFormService {
     let data =
       {
         "device": "web",
-        "userCode": this.user.getCode(),
+        "userName": this.user.getSuborUserName(),
+        "userCode": this.user.getSuborCode(),
         "type": type
       };
     return this.http.post(url, JSON.stringify(data), options);
   }
 
   checkActiveFactoring(newCardNo, creditType) {
-    const url = this.service.url + this.service.appform_api + '/ask/appForm/checkActiveFactoring?device=web&userName=' + this.user.getUserName() +
+    const url = this.service.url + this.service.appform_api + '/ask/appForm/checkActiveFactoring?device=web&userName=' + this.user.getSuborUserName() +
       '&newCardNo=' + newCardNo +
       '&creditType=' + creditType;
     let options = {
@@ -316,7 +317,7 @@ export class AppFormService {
   }
 
   checkBlackList(newCardNo) {
-    const url = this.service.url + this.service.appform_api + '/ask/appForm/checkBlackList?device=web&userName=' + this.user.getUserName() +
+    const url = this.service.url + this.service.appform_api + '/ask/appForm/checkBlackList?device=web&userName=' + this.user.getSuborUserName() +
       '&newCardNo=' + newCardNo;
     console.log(url);
     let options = {
@@ -357,7 +358,8 @@ export class AppFormService {
 
     let data = {
       "device": "web",
-      "userCode": this.user.getCode(),
+      "userName": this.user.getSuborUserName(),
+      "userCode": this.user.getSuborCode(),
       "calType": calType,
       "finType": dataDetail.fin_typ,
       "installmentExcVat": dataDetail.installment_e_vat ? dataDetail.installment_e_vat : 0,
@@ -399,7 +401,8 @@ export class AppFormService {
       "caNo": caNo,
       "approveType": approveType,
       "approveFlg": approveFlg,
-      "userCode": this.user.getCode(),
+      "userCode": this.user.getSuborCode(),
+      "userName": this.user.getSuborUserName(),
       "remark": remark
     };
     console.log(JSON.stringify(data));
@@ -416,7 +419,8 @@ export class AppFormService {
     };
     let data = {
       "device": "web",
-      "userCode": this.user.getCode(),
+      "userCode": this.user.getSuborCode(),
+      "userName": this.user.getSuborUserName(),
       "comCode": comCode,
       "caNo": caNo,
       "ansWer": ansWer
@@ -435,7 +439,8 @@ export class AppFormService {
     };
     let data = {
       "device": "web",
-      "userCode": this.user.getCode()
+      "userCode": this.user.getSuborCode(),
+      "userName": this.user.getSuborUserName()
     };
     console.log(JSON.stringify(data));
     return this.http.post(url, JSON.stringify(data), options);
@@ -451,7 +456,8 @@ export class AppFormService {
     };
     let data = {
       "device": "web",
-      "userCode": this.user.getCode(),
+      "userCode": this.user.getSuborCode(),
+      "userName": this.user.getSuborUserName(),
       "taskCode": taskCode,
       "listReassignDetail": listReassignDetail,
       "reassignOfficer": reassignOfficer

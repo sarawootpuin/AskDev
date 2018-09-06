@@ -45,15 +45,16 @@ export class ListAppFormComponent implements OnInit, OnChanges, OnDestroy,
   }
 
   ngOnChanges() {
-    let userCode = this.userStorage.getCode();
+    let userCode = this.userStorage.getSuborCode();
     let comCode = this.userStorage.getComCodePort();
+    let userName = this.userStorage.getSuborUserName();
     this.listAppFormTodo = [];
     this.resetSearchInput();
 
     if (this.task != undefined && this.task != null) {
       this.isLoading = true;
       this.subscription = this.todoService.getListAppForm(
-        "web", userCode, comCode, this.task.taskCode).subscribe(
+        "web", userName , userCode, comCode, this.task.taskCode).subscribe(
         (data: any) => {
           if (data.CODE == 200) {
             this.listAppFormTodo = AppFormTodo.parse(data.LIST_DATA);

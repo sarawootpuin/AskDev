@@ -103,6 +103,7 @@
           <label>ADVANCE / ARR</label>
           <span class="star">*</span>
           <select class="form-control"
+                  (ngModelChange)= "beginningPay($event)"
                   [(ngModel)]="bgdetail.adv_arr">
             <option [value]="-1"></option>
             <option *ngFor="let list of dataPaid; let i = index "

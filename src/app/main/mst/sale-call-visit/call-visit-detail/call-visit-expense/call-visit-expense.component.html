@@ -44,6 +44,15 @@
               </label>
             </div>
           </div>
+          <div class="col-md-4">
+            <button type="button" 
+                    class="btn btn-outline-primary"
+                    (click) = "mySaleCallVisitOutside.submit_flag = 'N'"
+                    [hidden] = "!(mySaleCallVisitOutside.travel_by == 'OTH' && 
+                                  mySaleCallVisitOutside.submit_flag == 'Y' && 
+                                  this.amend)"
+                    >Amend To Other MKT</button>
+          </div>
           <div class="col-md-8 form-group" *ngIf="mySaleCallVisitOutside?.travel_by=='OTH'">
             <label>MKT Name</label>
             <select class="form-control"     [disabled]="!closeKeyExpense"

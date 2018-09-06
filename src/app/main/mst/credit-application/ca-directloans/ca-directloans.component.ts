@@ -75,6 +75,7 @@ export class CaDirectloansComponent implements OnInit , OnDestroy {
   scheduleChange(){
     if (this.selectbgdetail.schedule === 'I') {
       this.selectbgdetail.installment_e_vat = '';
+      this.selectbgdetail.type_cal_pricing = '7';
       this.insEVatLoan.nativeElement.disabled = true;
     }
     else {

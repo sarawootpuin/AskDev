@@ -27,10 +27,12 @@ body .ui-table-thead {
   background-color: #c2d2e8;
   font-weight: bold;
 }
-body .ui-datatable .ui-editable-column.ui-cell-editing .ui-cell-editor {
+body .ui-datatable .ui-editable-column.ui-cell-editing .ui-cell-editor,
+body .ui-table .ui-table-column.ui-cell-editing .ui-cell-editor {
   font-size: medium;
 }
-body .ui-datatable .ui-paginator {
+body .ui-datatable .ui-paginator,
+body .ui-table .ui-paginator {
   padding: 0;
 }
 body .ui-datatable .ui-datatable-thead > tr > th,
@@ -42,10 +44,17 @@ body .ui-table-thead {
   border-color: #c7c7c7;
   color: white; /*#626769;*/
   font-weight:bold;
+}
+
+body .ui-table .ui-table-tbody > tr > td {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #c7c7c7;
+  cursor: pointer;
 
 }
 
-body .ui-datatable .ui-datatable-data.ui-datatable-hoverable-rows > tr.ui-widget-content:not(.ui-state-highlight):hover{
+body .ui-datatable .ui-datatable-data.ui-datatable-hoverable-rows > tr.ui-widget-content:not(.ui-state-highlight):hover {
   background-color: #2f81d636;
   color: #3519d4;
 }
@@ -59,8 +68,6 @@ border-collapse: collapse;
 body .ui-table-tbody {
   background-color: #FFFFFF;
 }
-
-
 
 body .ui-panel {
   padding: 0;
@@ -478,4 +485,15 @@ p-panel p-panel .ui-panel .ui-panel-titlebar{
   transition-property: top;
   transition: top 0.8s ease 0s;
   padding:70px;
+}
+
+body .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item {
+  padding: 0.375em 0.75em;
+  border-radius: 0;
+  color: black;
+}
+
+/*�?�?�?�?ั�?หา Dialog �?ม�?สามารถทำ�?า�?�?ด�? เมื�?อมี action �?า�? Scrollpanel*/
+body .ui-scrollpanel-wrapper{
+  z-index: unset;
 }

@@ -50,14 +50,18 @@ export class SigninComponent implements OnInit, OnDestroy {
           this.txtMsg = '' + data.MSG;
 
           this.userStorage.storageCode(data.EMP_CODE);
+          this.userStorage.storageSuborCode(data.EMP_CODE);
           this.userStorage.storageComCode(data.COM_CODE);
           this.userStorage.storageComCodePort(data.COM_CODE_PORT);
           this.userStorage.storageUserName(data.USER_NAME);
+          this.userStorage.storageSuborUserName(data.USER_NAME);
           this.userStorage.storageRatePen(data.RATE_PEN);
           this.userStorage.storageVatRate(data.VAT_RATE);
           this.userStorage.storageGrace(data.GRACE);
+          this.userStorage.storageIsSubor('N');
           this.userStorage.storageAccessCompany(JSON.stringify
           (data.ACCESS_COMPANY));
+          this.userStorage.storageSuborAccessCompany(JSON.stringify(data.ACCESS_COMPANY));
 
 
           // if (data.IS_PWD_EXPIRE == 'Y') {

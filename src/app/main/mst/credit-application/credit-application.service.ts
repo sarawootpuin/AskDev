@@ -48,6 +48,7 @@ export class creditApplicationService {
     let data = {
       "device": device,
       "username": username,
+      "usernamesbd": this.userStorage.getSuborUserName(),
       "comcode": this.caHead.com_code,
       "cano": this.caHead.ca_no,
       "action": psendflg,
@@ -392,7 +393,8 @@ export class creditApplicationService {
     }
     let data = {
       "device": "web",
-      "userCode": this.userStorage.getCode(),
+      "userName" : this.userStorage.getSuborUserName(),
+      "userCode": this.userStorage.getSuborCode(),
       "calType": calType,
       "finType": dataDetail.fin_typ,
       "installmentExcVat": dataDetail.installment_e_vat ? dataDetail.installment_e_vat : 0,

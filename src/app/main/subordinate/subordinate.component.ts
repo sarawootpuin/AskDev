@@ -12,6 +12,7 @@ import {Router} from "@angular/router";
 import {AlertDialogComponent} from "../../shared/center/alert-dialog/alert-dialog.component";
 import {element} from "protractor";
 import {el} from "@angular/platform-browser/testing/src/browser_util";
+import { OnDestroy } from '@angular/core';
 
 
 @Component({
@@ -20,22 +21,29 @@ import {el} from "@angular/platform-browser/testing/src/browser_util";
   styleUrls: ['./subordinate.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class SubordinateComponent implements OnInit , OnChanges {
+export class SubordinateComponent implements OnInit , OnChanges , OnDestroy {
   getOrdinate : TreeNode[];
   setAllData : TreeNode[];
   setActiveData  : TreeNode[];
   selectedNode: TreeNode;
+  CompleteMethodData : TreeNode[];
 
   subscription : Subscription;
+  subscriptionAccessCompany : Subscription;
   reload :boolean = false;
   isLoading: boolean = false;
   filterBy : string = 'Y';
+  generalData : any;
 
   showAllData  : ListDaTa = new ListDaTa('','','','','','',[])
   ActiveData  : ListDaTa = new ListDaTa('','','','','','',[])
 
   todoName : any;
-  todoCode : any;
+
+  nameText : string = ''
+
+  warningText : string = ''
+  filteredCountriesSingle : any[];
 
   @ViewChild('disableddialog') disableddialog: AlertDialogComponent;
 
@@ -50,6 +58,7 @@ export class SubordinateComponent implements OnInit , OnChanges {
         try{
           if(data.LIST_DATA.length > 1) {
             this.isLoading = true
+            this.generalData = data
             this.setList(data)
           }else{
             this.disabled()
@@ -67,6 +76,17 @@ export class SubordinateComponent implements OnInit , OnChanges {
 
   }
 
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if(this.subscription){
+      this.subscription.unsubscribe()
+    }
+    if(this.subscriptionAccessCompany){
+      this.subscriptionAccessCompany.unsubscribe()
+    }
+  }
+
   disabled(){
     this.isLoading = false
     this.disableddialog.setAction('WARNING');
@@ -76,29 +96,57 @@ export class SubordinateComponent implements OnInit , OnChanges {
 
   backToHome(){
     this.router.navigate(['/home']);
+    this.userStorage.storageSuborCode(this.userStorage.getCode());
+    this.userStorage.storageSuborUserName(this.userStorage.getUserName());
+    this.userStorage.storageSuborAccessCompany(this.userStorage.getAccessCompany());
+    this.userStorage.storageIsSubor('N');
   }
 
   click(event){
-    this.isLoading = true;
-    this.onNodeSelect(event)
+    if(typeof event == 'string'){
+      console.log(this.CompleteMethodData)
+      this.selectedNode = this.searchTree(this.CompleteMethodData[0],event)
+      this.searchTree(this.CompleteMethodData[0],this.selectedNode.data.layerCode)
+      this.onNodeSelect(this.selectedNode)
+      console.log('node name',this.selectedNode)
+    }else{
+      console.log(typeof event)
+      this.onNodeSelect(event.node)
+    }
+    console.log('>>>>>> select list',this.selectedNode)
+
   }
 
   onNodeSelect(event){
-    this.reload =false;
-    this.todoName = event.node.label
-    this.userStorage.storageSuborCode(event.node.data.code)
-    this.userStorage.storageSuborUserName(event.node.data.userName)
-    this.todoCode = event.node.data.code
-
-    setTimeout(() => {
-      this.reload =true;
-    }, 500);
-    this.isLoading = false
+    this.reload = false;
+    this.todoName = event.label
+    this.userStorage.storageIsSubor('Y');
+    this.userStorage.storageSuborCode(event.data.code)
+    this.userStorage.storageSuborUserName(event.data.userName)
+    this.subscriptionAccessCompany = this.subordinateService.getAccessCompany('web',this.userStorage.getSuborCode(),this.userStorage.getSuborUserName())
+    .subscribe((value : any) => {
+      //console.log(value)
+      try {
+        if (value.MSG_NAME == 'Complete') {
+          this.userStorage.storageSuborAccessCompany(JSON.stringify(value.ACCESS_COMPANY))
+          setTimeout(() => {
+            this.reload = true;
+          }, 500);
+          this.isLoading = false
+        }
+      } catch (error) {
+        //console.log(error)
+      }
+    },(error : any) => {
+      //console.log(error);
+    },() => {
+      //console.log('After complete')
+    })
   }
 
   setList(data : any){
     let subOrdinate = data.LIST_DATA
-
+    //For loop for create data set
     for(let i = 0 ; i < subOrdinate.length ; i++) {
       let count = subOrdinate[i].LAYER_CODE.length
       if (i == 0) {
@@ -133,9 +181,11 @@ export class SubordinateComponent implements OnInit , OnChanges {
     //exchange normal data to TreeNode[] for use <p-tree> , it just show TreeNode[]
     this.setAllData = [this.createNode(this.showAllData)]
     this.setActiveData = [this.createNode(this.ActiveData)]
-    this.getOrdinate = this.setActiveData
+    this.getOrdinate = this.setActiveData[0].children
+    this.CompleteMethodData = this.setActiveData
     this.isLoading = false
 
+    console.log(JSON.parse(JSON.stringify(this.setAllData)))
     console.log(JSON.parse(JSON.stringify(this.ActiveData)))
     console.log(JSON.parse(JSON.stringify(this.getOrdinate)))
   }
@@ -180,7 +230,7 @@ export class SubordinateComponent implements OnInit , OnChanges {
       label : data.enName,
       expanded : data.userCode == this.userStorage.getCode() ? true : false,
       children : childNode,
-      data : {"code" : data.userCode,"userName" : data.userName, "active" : data.active },
+      data : {"code" : data.userCode,"userName" : data.userName, "active" : data.active, "layerCode" : data.layerCode },
       leaf : false
     };
   }
@@ -188,9 +238,84 @@ export class SubordinateComponent implements OnInit , OnChanges {
   filter(event){
         // console.log(event)
     if(event == 'Y'){
-      this.getOrdinate = this.setActiveData
+      this.nameText = ''
+      this.getOrdinate = this.setActiveData[0].children
+      this.CompleteMethodData = this.setActiveData
     }else{
-      this.getOrdinate = this.setAllData
+      this.nameText = ''
+      this.getOrdinate = this.setAllData[0].children
+      this.CompleteMethodData = this.setAllData
     }
   }
+
+  search(event) {
+    this.warningText = "";
+    this.filteredCountriesSingle = []
+    let result = this.getCompleteMethod(this.getOrdinate,event)
+    result.sort((n1,n2) => {
+      if (n1 > n2 ) {
+        return 1;
+      }
+      if (n1 < n2) {
+        return -1;
+      }
+      return 0;
+    })
+    console.log(result)
+    this.filteredCountriesSingle = result
+    result.length == 0 ? this.warningText = "* Not Found!,Please try again." : this.warningText = ""
+  }
+
+  // search(event) {
+  //   this.warningText = "";
+  //   this.filteredCountriesSingle = [];
+  //   let findMKT = this.generalData.LIST_DATA;
+  //   console.log(findMKT,event)
+  //
+  //   if(findMKT.EMP_NAME_E.toLowerCase().indexOf(event.query.toLowerCase())==0 || findMKT.CODE.toLowerCase().indexOf(event.query.toLowerCase())==0) {
+  //     this.filteredCountriesSingle.push(findMKT.EMP_NAME_E);
+  //   }
+  //   this.filteredCountriesSingle.length == 0 ? this.warningText = "* Not Found!,Please try again." : this.warningText = ""
+  // }
+
+  getCompleteMethod(element, matchingTitle){
+    for(let i = 0 ; i < element.length ; i++){
+      if( element[i].label.toLowerCase().indexOf(matchingTitle.query.toLowerCase())==0 ||
+          element[i].data.code.indexOf(matchingTitle.query)==0){
+        this.filteredCountriesSingle.push(element[i].label)
+        if (element[i].children != null){
+          var j;
+          var result = null;
+          for(j=0; result == null && j < element[i].children.length; j++){
+            result = this.getCompleteMethod(element[i].children, matchingTitle)
+          }
+        }
+      }else if (element[i].children != null){
+        var j;
+        var result = null;
+        for(j=0; result == null && j < element[i].children.length; j++){
+          result = this.getCompleteMethod(element[i].children, matchingTitle)
+        }
+      }
+    }
+    return this.filteredCountriesSingle
+  }
+
+searchTree(element, matchingTitle){
+    // console.log(element,matchingTitle.substring(matchingTitle.length - 2, 0))
+    if(element.label == matchingTitle || element.data.layerCode == matchingTitle.substring(matchingTitle.length - 2, 0)){
+      element.expanded = true
+      return element;
+    }else if (element.children != null){
+      var i;
+      var result = null;
+      for(i=0; result == null && i < element.children.length; i++){
+        result = this.searchTree(element.children[i], matchingTitle);
+      }
+      return result;
+    }
+    return null;
+  }
+
+
 }

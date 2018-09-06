@@ -609,7 +609,7 @@ export class CreditApplicationComponent implements OnInit, OnDestroy {
                   checkDetailSub = false;
                   this.validateAlert.addMessage('- Year in Asset Detail');
                 }
-                if (!detailSub.dealer_code) {
+                if (!detailSub.dealer_code && detail.buy_back_flg == 'N') {
                   checkDetailSub = false;
                   this.validateAlert.addMessage('- Dealer Name');
                 }

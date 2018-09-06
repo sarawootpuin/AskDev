@@ -30,8 +30,8 @@ export class TodoListComponent implements OnInit, OnDestroy {
   verifyArray: string[] = ["STG1"];
   verifyGroupArray: string[] = ["STG2", "STG3", "STG4", "STG5"];
   caBgplArray: string[] = ["CA-01", "CA-01-1","CA-01-2","CA-01-3","CA-01-4"
-    , "CA-02", "CA-03","CA-04-1", "CA-04-2", "CA-04-3","CA-05","CA-05-1", "CA-06","CA-06-1", "CA-07"
-    , "AM-01","AM-01-1","AM-02","AM-03","AM-04","AM-04-1","AM-05","AM-05-1"
+    , "CA-02", "CA-03","CA-04-1", "CA-04-2", "CA-04-3","CA-05","CA-05-1", "CA-06", "CA-07"
+    , "AM-01","AM-01-1","AM-02","AM-03","AM-04","AM-04-1","AM-05"
     ,"RV-01","RV-03","RV-04"];
   regArray: string[] = ["RGB-01"];
   insArray: string[] = ["INS37", "INS38","INS06-2"];

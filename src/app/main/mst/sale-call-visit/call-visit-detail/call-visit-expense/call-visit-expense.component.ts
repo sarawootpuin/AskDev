@@ -83,7 +83,12 @@ export class CallVisitExpenseComponent implements OnInit, OnDestroy {
           this.onCreaterjoinerList(this.mySaleCallVisitOutside.joiner );
           // console.log('visit Out side');
           // console.log(obj);
-          if ( obj.submit_flg == 'Y' ){ this.componentReadOnly = true }
+          if ( obj.submit_flg == 'Y' ){ 
+            this.componentReadOnly = true
+            if(this.amend) {
+              this.componentReadOnly = false
+            } 
+          }
           else { this.componentReadOnly = false }
 
           console.log(this.mySaleCallVisitOutside.travel_name);
@@ -112,10 +117,18 @@ export class CallVisitExpenseComponent implements OnInit, OnDestroy {
     //let attendeesB = this.saleCallVisitService.selectsaleD.listAttendeesB ;
     this.saleCallVisitService.selectsaleD.listAttendeesB.forEach(
       value => {
-        if(value.attnd_name == this.saleCallVisitService.saleH.ownr) {
+        if(this.mySaleCallVisitOutside.travel_by == 'OTH'){
+          if(value.attnd_name == this.mySaleCallVisitOutside.travel_name){
 
+          } else {
+            attendeesB.push(value);
+          }
         } else {
-          attendeesB.push(value);
+          if(value.attnd_name == this.saleCallVisitService.saleH.ownr) {
+  
+          } else {
+            attendeesB.push(value);
+          }
         }
       }
     )

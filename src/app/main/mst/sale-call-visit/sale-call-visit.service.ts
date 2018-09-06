@@ -77,9 +77,9 @@ export class SaleCallVisitService implements OnDestroy {
       "saleCallDetail": this.selectsaleD
     }
 
-    console.log('Before send data');
-    console.log(url);
-    console.log(JSON.stringify(data));
+    // console.log('Before send data');
+    // console.log(url);
+    // console.log(JSON.stringify(data));
     let options = {
       headers: {
         'Content-Type': 'application/json;charset=utf-8'

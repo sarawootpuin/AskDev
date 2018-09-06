@@ -30,6 +30,14 @@ export class SubordinateService {
     };
     return this.http.get(url, options)
   }
-
-
+ 
+  getAccessCompany(device: string, userCode : string , userName : string) {
+    const url = this.service.url + this.service.common_tps + `/ask/common/getAccessCompany?userCode=${userCode}&device=${device}&userName=${userName}`
+    let options = {
+      headers : {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    }
+    return this.http.get(url,options)
+  }
 }

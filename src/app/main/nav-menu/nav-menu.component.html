@@ -29,7 +29,8 @@
     </ul>
 
     <li class="navbar-nav" routerLinkActive="active">
-      <a class="nav-link text-uppercase" [routerLink]="['/ccs/condition']">
+      <!--<a class="nav-link text-uppercase" [routerLink]="['/ccs/condition']">-->
+      <a class="nav-link text-uppercase" style="cursor: pointer;" (click)="InQuery()">
         <i class="fa fa-book mr-1"></i>INQUIRY</a>
     </li>
     <ul class="navbar-nav">
@@ -40,6 +41,9 @@
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="Preview">
+          <!--<li>-->
+            <!--<a class="dropdown-item" (click)="Subordinates()" >Subordinates</a>-->
+          <!--</li>-->
           <li>
             <a class="dropdown-item" (click)="logout()" >Log out</a>
           </li>

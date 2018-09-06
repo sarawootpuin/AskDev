@@ -23,6 +23,7 @@ export class CustomButtonComponent implements OnInit, OnChanges {
   btnCalculate = {'name': 'CALCULATE', 'icon': 'fa-calculator', 'style': 'btn-nav-calculateisa'};
   btnSubmit = {'name': 'SUBMIT', 'icon': 'fa-thumbs-up', 'style': 'btn-nav-submitisa'};
   btnReject = {'name': 'REJECT', 'icon': 'fa-thumbs-down', 'style': 'btn-nav-rejectisa'};
+  btnExcel = {'name': 'EXCEL', 'icon': 'fa-file-excel-o', 'style': 'btn-nav-excelisa'};
   btnSelect = { 'name': '','style': '','icon': ''};
 
   constructor() {
@@ -55,6 +56,8 @@ export class CustomButtonComponent implements OnInit, OnChanges {
       this.btnSelect = this.btnSubmit;
     } else if (this.option == 'reject') {
       this.btnSelect = this.btnReject;
+    } else if (this.option == 'excel') {
+      this.btnSelect = this.btnExcel;
     }
 
     if(this.title)
@@ -70,6 +73,7 @@ export class CustomButtonComponent implements OnInit, OnChanges {
       this.btnCalculate.name = this.title;
       this.btnSubmit.name = this.title;
       this.btnReject.name = this.title;
+      this.btnExcel.name = this.title;
     }
   }
 

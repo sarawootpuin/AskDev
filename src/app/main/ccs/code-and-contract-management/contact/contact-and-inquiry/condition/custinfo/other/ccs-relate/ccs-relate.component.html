@@ -1,0 +1,69 @@
+<p-panel header="สินเชื่อรวม">
+  <div class="p-3 border-isa" style="word-break: break-all">
+    <div class="row">
+      <div class="col-lg-4 col-md-12">
+        <p-table [value]="list_Relate" [responsive]="true" [(selection)]="vSelected" selectionMode="single" [metaKeySelection]="true"
+          (onRowSelect)="list_RelateDtail = list_Relate[$event.index].LIST_DTAIL">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>ชื่อ</th>
+              <th>ราย</th>
+              <th>ลูกหนี้รวม</th>
+              <th>เงินต้นรวม</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+            <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+              <td>{{rowData.ENT_NAME}}</td>
+              <td>{{rowData.SUM_RELATE}}</td>
+              <td>{{rowData.SUM_AR}}</td>
+              <td>{{rowData.SUM_FIN}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+      <div class="col-lg-8 col-md-12">
+        <div class="d-block d-md-block d-lg-none d-xl-none">
+          <br>
+        </div>
+        <p-table [value]="list_RelateDtail" [responsive]="true">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>ลูกค้า/ผู้ค้ำ</th>
+              <th>รหัส</th>
+              <th>เลขที่สัญญา</th>
+              <th>Due Date</th>
+              <th>Installemnt</th>
+              <th>Schedule</th>
+              <th>License No.</th>
+              <th>Payment Grading</th>
+              <th>Status</th>
+              <th>Owner</th>
+              <th>ลูกหนี้</th>
+              <th>เงินต้น</th>
+              <th>เลขที่อ้างอิง</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+            <tr [pSelectableRow]="rowData">
+              <td>{{rowData.ENT_TYPE}}</td>
+              <td>{{rowData.ENT_CD}}</td>
+              <td>{{rowData.AGR_CODE}}</td>
+              <td>{{rowData.DUE_DAY}}</td>
+              <td>{{rowData.INSTALLMENT}}</td>
+              <td>{{rowData.SCHEDULE_TYPE}}</td>
+              <td>{{rowData.REG_NUM_PROV}}</td>
+              <td>{{rowData.PAYMENT_GRADING}}</td>
+              <td>{{rowData.FULL_STATUS}}</td>
+              <td>{{rowData.COLLECTOR}}</td>
+              <td>{{rowData.AR}}</td>
+              <td>{{rowData.FIN_AMT_E_VAT}}</td>
+              <td>{{rowData.REF_CODE}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</p-panel>

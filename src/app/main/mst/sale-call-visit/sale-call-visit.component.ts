@@ -34,7 +34,7 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
   vcard_no: string = '';
   saleH: SaleCallHead;
   msgs: Message[] = [];
-
+  seqNo : string;
   code: string = "";
   username: string = "";
   comCode: string = "";
@@ -238,7 +238,7 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
     }
     else
     if (task == 'Wait For Apply CA'){
-      this.btnFormSubmit = false ;
+      this.btnFormSubmit = true ;
       this.btnFormSave   = false ;
     }
     if(this.amend == 'Y'){
@@ -257,14 +257,18 @@ export class SaleCallVisitComponent implements OnInit, OnDestroy {
       let strURL = '' ;
       //strURL = this.service.url_report +`/result?report=MKT\\CA_HPLS_01.fr3&p_ca_no=${ca_no}&p_id_card=${this.creditApplicationService.newCardNo}&ca_no=${ca_no}&com_code=${this.comCode}&format=pdf`;
 
-      strURL = this.service.url_report +`/result?report=MKT\\CallVisit_01.fr3&SaleCallNo=${sale_no}&SeqNo=1&format=pdf`;
+      strURL = this.service.url_report +`/result?report=MKT\\CallVisit_01.fr3&SaleCallNo=${sale_no}&SeqNo=${this.seqNo}&format=pdf`;
 
       // http://192.168.112.125:8097/result?report=MKT\CallVisit_01.fr3&SaleCallNo=61_00064&SeqNo=1&format=pdf
       window.open(strURL, '_blank');
-      console.log(strURL);
+      //console.log(strURL);
     }
 
     //this.questionAction('SAVE');
 
+  }
+
+  changeSeq(event : string){
+    this.seqNo = event
   }
 }

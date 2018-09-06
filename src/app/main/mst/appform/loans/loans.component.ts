@@ -61,6 +61,7 @@ export class LoansComponent implements OnInit, OnDestroy {
   scheduleChange() {
     if (this.data.schedule === 'I') {
       this.data.installment_e_vat = '';
+      this.data.type_cal_pricing = '7';
       this.insEVatLoan.nativeElement.disabled = true;
     }
     else {
@@ -132,11 +133,11 @@ export class LoansComponent implements OnInit, OnDestroy {
     if (calCheck) {
       this.checkLoader = true;
       //console.log("Before");
-      //console.log(this.data);
+      console.log(this.data);
       this.subscriptionIrr = this.appFormService.calculateIrr(this.data.sub_id, this.data.type_cal_pricing).subscribe(
         (data: any) => {
           //console.log("After");
-          //console.log(data);
+         console.log(data);
           if (data.CODE == '200') {
             //console.log(data.LIST_DATA[0]);
             this.data.fin_amt_e_vat = data.LIST_DATA[0].finExcVat;

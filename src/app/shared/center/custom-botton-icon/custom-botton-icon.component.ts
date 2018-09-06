@@ -20,6 +20,7 @@ export class CustomBottonIconComponent implements OnInit, OnChanges {
   btnDelete = { 'icon': 'fa-trash', 'style': 'btn-nav-deleteisa'};
   btnProcess = { 'icon': 'fa-clock-o', 'style': 'btn-nav-processisa'};
   btnCopy = { 'icon': 'fa-copy', 'style': 'btn-nav-copyisa'};
+  btnExcel = { 'icon': 'fa-file-excel-o', 'style': 'btn-nav-excelisa'};
   btnSelect = {'icon':'','style': ''};
   constructor() { }
 
@@ -44,6 +45,8 @@ export class CustomBottonIconComponent implements OnInit, OnChanges {
       this.btnSelect = this.btnDelete;
     } else if (this.option == 'process') {
       this.btnSelect = this.btnProcess;
+    } else if (this.option == 'excel') {
+      this.btnSelect = this.btnExcel;
     } else if (this.option == 'copy') {
       this.btnSelect = this.btnCopy;
     }

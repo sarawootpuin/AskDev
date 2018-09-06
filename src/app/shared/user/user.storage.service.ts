@@ -12,6 +12,10 @@ export class UserStorage {
   public grace: string = 'u_grace';
   public newEntCode: string = 'u_newEntCode';
   public newEntType: string = 'u_newEntType';
+  public suborCode: string = 'u_suborCode';
+  public suborUserName: string = 'u_suborUserName';
+  public suboraccessCompany: string = 'u_subor_access_company'
+  public IsSubor: string = 'u_IsSubor';
 
   constructor() {
   }
@@ -43,6 +47,14 @@ export class UserStorage {
     // localStorage.setItem(this.code, value);
   }
 
+  storageSuborCode(value:string){
+    sessionStorage.setItem(this.suborCode, value);
+  }
+
+  storageIsSubor(value:string){
+    sessionStorage.setItem(this.IsSubor, value);
+  }
+
   storageComCode(value: string) {
     sessionStorage.setItem(this.comCode, value);
     // localStorage.setItem(this.comCode, value);
@@ -57,8 +69,16 @@ export class UserStorage {
     sessionStorage.setItem(this.userName, value);
   }
 
+  storageSuborUserName(value: string) {
+    sessionStorage.setItem(this.suborUserName, value);
+  }
+
   storageAccessCompany(value: string) {
     sessionStorage.setItem(this.accessCompany, value);
+  }
+
+  storageSuborAccessCompany(value: string) {
+    sessionStorage.setItem(this.suboraccessCompany, value);
   }
 
   storageRatePen(value: string) {
@@ -87,12 +107,20 @@ export class UserStorage {
     sessionStorage.removeItem(this.ratePen);
     sessionStorage.removeItem(this.vatRate);
     sessionStorage.removeItem(this.grace);
+    sessionStorage.removeItem(this.suborUserName);
+    sessionStorage.removeItem(this.suborCode);
+    sessionStorage.removeItem(this.suboraccessCompany);
+    sessionStorage.removeItem(this.IsSubor);
 
     localStorage.removeItem(this.code);
     localStorage.removeItem(this.comCode);
     localStorage.removeItem(this.comCodePort);
     localStorage.removeItem(this.userName);
     localStorage.removeItem(this.accessCompany);
+    localStorage.removeItem(this.suborUserName);
+    localStorage.removeItem(this.suborCode);
+    localStorage.removeItem(this.suboraccessCompany)
+    localStorage.removeItem(this.IsSubor);
   }
 
   getCode(): string {
@@ -100,6 +128,22 @@ export class UserStorage {
       return localStorage.getItem(this.code);
     } else {
       return sessionStorage.getItem(this.code)
+    }
+  }
+
+  getSuborCode(): string {
+    if (!sessionStorage.getItem(this.suborCode)) {
+      return localStorage.getItem(this.suborCode);
+    } else {
+      return sessionStorage.getItem(this.suborCode)
+    }
+  }
+
+  getIsSubor(): string {
+    if (!sessionStorage.getItem(this.IsSubor)) {
+      return localStorage.getItem(this.IsSubor);
+    } else {
+      return sessionStorage.getItem(this.IsSubor)
     }
   }
 
@@ -127,11 +171,27 @@ export class UserStorage {
     }
   }
 
+  getSuborUserName(): string {
+    if (!sessionStorage.getItem(this.suborUserName)){
+      return localStorage.getItem(this.suborUserName);
+    } else {
+      return sessionStorage.getItem(this.suborUserName);
+    }
+  }
+
   getAccessCompany(): string {
     if (!sessionStorage.getItem(this.accessCompany)){
       return localStorage.getItem(this.accessCompany);
     } else {
       return sessionStorage.getItem(this.accessCompany);
+    }
+  }
+
+  getSuborAccessCompany(): string {
+    if (!sessionStorage.getItem(this.suboraccessCompany)){
+      return localStorage.getItem(this.suboraccessCompany);
+    } else {
+      return sessionStorage.getItem(this.suboraccessCompany);
     }
   }
 
@@ -154,4 +214,5 @@ export class UserStorage {
   getnewEntType():string{
     return sessionStorage.getItem(this.newEntType);
   }
+
 }

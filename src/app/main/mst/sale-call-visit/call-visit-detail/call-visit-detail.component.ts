@@ -1,10 +1,11 @@
-import {Component, OnDestroy, OnInit, ViewEncapsulation, Input} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation, Input, Output} from '@angular/core';
 import {SaleCallVisitService} from "../sale-call-visit.service";
 import {DatePipe} from "@angular/common";
 import {SaleCallDetail} from "../model/Sale-Call-Detail";
 import {isUndefined} from "util";
 import {UserStorage} from "../../../../shared/user/user.storage.service";
 import {Subscription} from "rxjs/Subscription";
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-call-visit-detail',
@@ -14,6 +15,7 @@ import {Subscription} from "rxjs/Subscription";
 })
 export class CallVisitDetailComponent implements OnInit, OnDestroy {
   @Input() amend : string;
+  @Output() seq : EventEmitter<string> = new EventEmitter<string>();
   mySaleCallD: SaleCallDetail[] = [];
 
   subscription: Subscription;
@@ -60,8 +62,9 @@ export class CallVisitDetailComponent implements OnInit, OnDestroy {
   selectSaleCallDetail(select: SaleCallDetail) {
     this.SelectList =  select ;
     this.saleCallVisitService.setselectsaleD(select);
+    this.seq.emit(select.seq_no)
   }
-
+  
   newDetail() {
 
     let chekNew = false;

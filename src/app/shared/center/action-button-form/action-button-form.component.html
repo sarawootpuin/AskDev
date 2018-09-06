@@ -17,6 +17,14 @@
       <i class="fa fa-sitemap" ></i> {{titleProcess}}
     </button>
     <!--new-->
+    <button type="button" class="btn btn-apply" *ngIf="showApply"
+            (click)="onApplyClick()">
+      <i class="fa fa-thumbs-up" ></i> {{titleApply}}
+    </button>
+    <button type="button" class="btn btn-nav-excelisa" *ngIf="showExcel"
+            (click)="onExcelClick()">
+      <i class="fa fa-file-excel-o" ></i> {{titleExcel}}
+    </button>
     <button type="button" class="btn btn-back" *ngIf="showBack"
             (click)="onBackClick()">
       <i class="fa fa-undo"></i> {{titleBack}}
@@ -89,6 +97,8 @@
             (click)="onClose()">
       <i class="fa fa-power-off" ></i> Close
     </button>
+
+
   </div>
 </div>
 

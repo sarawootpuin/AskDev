@@ -711,8 +711,21 @@ export class CaFinanceComponent implements OnInit, OnDestroy ,OnChanges {
     else {
       this.mode = "Normal Mode";
       this.bgdetail.free_text = "";
+      this.bgdetail.net_irr = 0
+      this.bgdetail.gross_irr = 0
     }
     // console.log(this.mode);
+  }
+
+  beginningPay(value){
+    console.log(value);
+    if(value == 'V') { // Paid In Advance 
+      this.bgdetail.first = this.bgdetail.disburse_dt
+    } else if (value == 'A') { // Paid In Rear
+      this.bgdetail.first = this.dateUtils.addMonth(this.bgdetail.disburse_dt,1)
+    } else {
+
+    }
   }
 
 }

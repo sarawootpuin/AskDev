@@ -38,7 +38,7 @@ export class VisitDetailComponent implements OnInit,OnChanges {
 
   getContact( contact : ContactPersonModel)
   {
-    console.log(contact);
+    //console.log(contact);
     if (contact) {
       this.ListSelectData.cont_person_code= contact.cont_person_code ;
       this.saleCallD.cont_person_code= contact.cont_person_code ;

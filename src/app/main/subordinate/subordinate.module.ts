@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { SubordinateRoutingModule } from './subordinate.routing.module';
 import {SubordinateComponent} from "./subordinate.component";
 import {
-  AccordionModule, CalendarModule, DataGridModule, DataTableModule, OrganizationChartModule, ScrollPanelModule,
+  AccordionModule, AutoCompleteModule, CalendarModule, DataGridModule, DataTableModule, OrganizationChartModule,
+  ScrollPanelModule,
   TabViewModule
 } from "primeng/primeng";
 import {FormsModule} from "@angular/forms";
@@ -37,7 +38,8 @@ import {HomeModule} from "../home/home.module";
     ScrollPanelModule,
     CardModule,
     TreeModule,
-    HomeModule
+    HomeModule,
+    AutoCompleteModule
 
   ],
   declarations: [

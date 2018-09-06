@@ -45,10 +45,23 @@ export class ListSaleCallComponent implements OnInit, OnChanges, OnDestroy,
   }
 
   ngOnChanges() {
-    let userName = this.userStorage.getUserName();
-    let code = this.userStorage.getCode();
+    // let userName = this.userStorage.getSuborUserName();
+    // let code = this.userStorage.getSuborCode();
+
+    let code : string
+    let userName : string
+    let url = location.hash
+    if(url.search('home')> 0){
+      code = this.userStorage.getCode()
+      userName = this.userStorage.getUserName()
+    }else{
+      code = this.userStorage.getSuborCode()
+      userName = this.userStorage.getSuborUserName();
+    }
+
     this.listSalecallTodo = [];
     this.resetSearchInput();
+
     if (this.task != undefined && this.task != null) {
       this.isLoading = true;
       this.subscription = this.todoService.getListSaleCall(
@@ -83,9 +96,10 @@ export class ListSaleCallComponent implements OnInit, OnChanges, OnDestroy,
   }
 
   rowSelectList(saleCallSelected: SaleCallTodo) {
+    console.log(this.router.navigate)
     if (this.task.taskName == 'Cross Expense') {
       this.router.navigate(['/SaleCall/crossExpense'], {
-        queryParams: {
+       queryParams: {
           sale_call_no: saleCallSelected.sale_call_no,
           seq: saleCallSelected.SEQ_NO,
           task : this.task.taskName

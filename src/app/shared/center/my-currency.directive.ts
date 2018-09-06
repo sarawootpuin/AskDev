@@ -42,5 +42,10 @@ export class MyCurrencyDirective implements OnInit,OnChanges {
   onBlur(value) {
     this.el.value = this.currencyPipe.transform(value,this.fraction);
   }
-  
+
+  @HostListener("change", ["$event.target.value"])
+  onChange(value) {
+    this.el.value = this.currencyPipe.transform(value,this.fraction);
+  }
+
 }

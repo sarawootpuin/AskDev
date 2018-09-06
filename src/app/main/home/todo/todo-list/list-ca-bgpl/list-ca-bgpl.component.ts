@@ -42,8 +42,15 @@ export class ListCaBgplComponent implements OnInit, OnChanges, OnDestroy, AfterV
   }
 
   ngOnChanges() {
-    let userCode = this.userStorage.getCode();
+    // let userCode = this.userStorage.getCode();
     let comCode = this.userStorage.getComCode();
+    let userCode : string
+    let url = location.hash
+    if(url.search('home')> 0){
+      userCode = this.userStorage.getCode()
+    }else{
+      userCode = this.userStorage.getSuborCode()
+    }
     this.listCaTodoBgpl = [];
     this.resetSearchInput();
 
@@ -83,7 +90,7 @@ export class ListCaBgplComponent implements OnInit, OnChanges, OnDestroy, AfterV
   }
 
   rowSelectList(caTodoBgpl: CaTodoBgpl) {
-    if (this.task.taskCode !== 'CA-01-4') { 
+    if (this.task.taskCode !== 'CA-01-4') {
       this.router.navigate(['/ca'], {
         queryParams: {
           ca_no: caTodoBgpl.caNo,

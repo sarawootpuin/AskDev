@@ -1,4 +1,7 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {
+  Component, ElementRef, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import {UserStorage} from "../../../shared/user/user.storage.service";
 import {AccessCompany} from "../../../shared/user/access-company";
 import {TodoService} from "./todo.service";
@@ -10,7 +13,7 @@ import {Subscription} from "rxjs/Subscription";
   styleUrls: ['./todo.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class TodoComponent implements OnInit, OnDestroy {
+export class TodoComponent implements OnInit, OnDestroy , OnChanges {
   subscription: Subscription;
   comCode: string;
   accessCompany: AccessCompany[] = [];
@@ -21,10 +24,13 @@ export class TodoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    console.log('test')
     this.comCode = this.userStorage.getComCode();
     this.todoService.comCode = this.comCode;
     this.todoService.comCodeSelected.emit(this.comCode);
-    let accJson = JSON.parse(this.userStorage.getAccessCompany());
+    console.log(this.userStorage.getSuborAccessCompany())
+    //let accJson = JSON.parse(this.userStorage.getAccessCompany());
+    let accJson = JSON.parse(this.userStorage.getSuborAccessCompany());
     for (let i = 0; i < accJson.length; i++) {
       let acc: AccessCompany = new AccessCompany(accJson[i].COM_CODE);
       this.accessCompany.push(acc);
@@ -36,6 +42,11 @@ export class TodoComponent implements OnInit, OnDestroy {
       }
     );
   }
+
+  ngOnChanges(  ) {
+    console.log('OnChange---------------->');
+  }
+
 
   ngOnDestroy() {
     if (this.subscription != null) {

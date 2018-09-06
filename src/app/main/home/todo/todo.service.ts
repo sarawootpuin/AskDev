@@ -29,7 +29,7 @@ export class TodoService {
 
   getTaskTodo(device: string, userCode: string, comCode: string, groupTodo: string) {
     const url = this.service.url + this.service.common_tps + `/ask/common/getTaskTodo?device=${device}&userCode=${userCode}&comCode=${comCode}&groupTodo=${groupTodo}`;
-    console.log(url);
+    // console.log(url);
     let options = {
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
@@ -48,9 +48,9 @@ export class TodoService {
     return this.http.get(url, options);
   }
 
-  getListAppForm(device: string, userCode: string, comCode: string, taskCode: string) {
-    const url = this.service.url + this.service.appform_api + `/ask/appForm/TodoAppform?device=${device}&userCode=${userCode}&comCode=${comCode}&taskCode=${taskCode}`
-    console.log(url)
+  getListAppForm(device: string, userName: string ,userCode: string, comCode: string, taskCode: string) {
+    const url = this.service.url + this.service.appform_api + `/ask/appForm/TodoAppform?device=${device}&userName=${userName}&userCode=${userCode}&comCode=${comCode}&taskCode=${taskCode}`
+    //console.log(url)
     let options = {
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
@@ -61,7 +61,7 @@ export class TodoService {
 
   getScoringTodo(device: string, userName: string, comCode: string, stgId: number) {
     const url = this.service.url + this.service.mks_scoring + `/ask/scoring/ScoringGetToDo?device=${device}&user=${userName}&comcode=${comCode}&stgid=${stgId}`
-    console.log(url)
+    // console.log(url)
     let options = {
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
@@ -112,7 +112,7 @@ export class TodoService {
   // }
   todoCA(device: string, userCode: string, comCode: string, task: string) {
     const url = this.service.url + this.service.ca_api + `/ask/ca/TodoCA?device=${device}&user=${userCode}&comcode=${comCode}&task=${task}`
-    console.log(url)
+    // console.log(url)
     let options = {
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
@@ -138,7 +138,7 @@ export class TodoService {
 
   getListCosAdmin(device: string, userCode: string, comCode: string, taskCode: string) {
     const url = this.service.url + this.service.cos_tps + `/ask/CosTodo/CosTodoList?device=${device}&userCode=${userCode}&comCode=${comCode}&taskCode=${taskCode}`;
-    console.log(url);
+    // console.log(url);
     console.log('test by pong 123');
     let data = {
       "device" : device,
@@ -157,7 +157,7 @@ export class TodoService {
 
   getListCosAdminWht(device: string, userCode: string, comCode: string, taskCode: string) {
     const url = this.service.url + this.service.cos_tps + `/ask/CosTodo/CosTodoWht`;
-    console.log(url);
+    // console.log(url);
     console.log('test by pong 123');
     let data = {
       "device" : device,

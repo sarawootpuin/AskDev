@@ -57,5 +57,12 @@ export class DateUtils {
     }
     return result;
   }
-
+  
+  convertFormatDate(date : string) : string {
+    const day = date.slice(0, 2)
+    const month = date.slice(3, 5)
+    const year = date.slice(6, 10)
+    const newDate = year + month + day
+    return newDate
+  }
 }

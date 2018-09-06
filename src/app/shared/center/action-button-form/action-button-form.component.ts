@@ -33,6 +33,12 @@ export class ActionButtonFormComponent implements OnInit {
   @Input() showImportEx : boolean;
   @Input() showEmail : boolean;
   @Input() showRenew : boolean;
+
+  //gad
+  @Input() showPayer: boolean;
+  @Input() showApply: boolean;
+  @Input() showExcel: boolean;
+  //
   // new-----------
 
   @Input() titleSubmit: string;
@@ -66,6 +72,11 @@ export class ActionButtonFormComponent implements OnInit {
   @Input() titleImportEx: string;
   @Input() titleEmail : string;
   @Input() titleRenew : string;
+  @Input() titlePayer : string;
+  //gad
+  @Input() titleApply : string;
+  @Input() titleExcel : string;
+
   @Output() onSubmitOnlySelect: EventEmitter<any> = new EventEmitter();
   @Output() onSubmitAll: EventEmitter<any> = new EventEmitter();
   @Output() onProcess: EventEmitter<any> = new EventEmitter();
@@ -74,7 +85,13 @@ export class ActionButtonFormComponent implements OnInit {
   @Output() onImportEx: EventEmitter<any> = new EventEmitter();
   @Output() onEmail: EventEmitter<any> = new EventEmitter();
   @Output() onRenew: EventEmitter<any> = new EventEmitter();
+  @Output() onPayer: EventEmitter<any> = new EventEmitter();
   // new-----------
+  //gad
+  @Output() onApply: EventEmitter<any> = new EventEmitter();
+  @Output() onExcel: EventEmitter<any> = new EventEmitter();
+
+
 
   @ViewChild('Questiondialog') Questiondialog: AlertDialogComponent;
 
@@ -101,6 +118,10 @@ export class ActionButtonFormComponent implements OnInit {
     this.showImportEx = false;
     this.showEmail = false;
     this.showRenew = false;
+    //gad
+    this.showPayer = false;
+    this.showApply = false;
+    this.showExcel = false;
     //new --------
 
     this.titleSubmit = 'Submit';
@@ -123,6 +144,10 @@ export class ActionButtonFormComponent implements OnInit {
     this.titleImportEx = 'Import Excel File';
     this.titleEmail = 'Send Mail';
     this.titleRenew = 'Renew';
+    //gad
+    this.titlePayer = 'Payer';
+    this.titleApply = 'Apply';
+    this.titleExcel = 'Excel';
     //new --------
   }
 
@@ -198,6 +223,19 @@ export class ActionButtonFormComponent implements OnInit {
   onRenewClick(){
     this.onRenew.emit();
   }
+  //gad
+  onPayerClick(){
+    this.onPayer.emit();
+  }
+
+  onApplyClick(){
+    this.onApply.emit();
+  }
+
+  onExcelClick(){
+    this.onExcel.emit();
+  }
+  //
 
   // new ------
 
